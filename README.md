@@ -24,8 +24,7 @@ I learned a few things messing around with the files:
 
 MS_PARAM.BIN:
 
-	The game reads this file literally. It does not care about the ID at the start of the spell/move, it might as well not exist. However, you can safely remove any empty entries at the end of the file(after Taint of WInd), and the game will still work perfectly. If you try to remove the empty entries between spells/moves, then the spells/moves will be off-place
-(i.e. - if you remove 1 entry before Tenseiken Slash, Ryudo will have a start of Flying Tenseiken, Purple Lightning, and Sky Dragon Slash, with the old Sky Dragon Slash being an empty entry.
+	The game reads this file literally. It does not care about the ID at the start of the spell/move, it might as well not exist. However, you can safely remove any empty entries at the end of the file(after Taint of WInd), and the game will still work perfectly. If you try to remove the empty entries between spells/moves, then the spells/moves will be off-place(i.e. - if you remove 1 entry before Tenseiken Slash, Ryudo will have a start of Flying Tenseiken, Purple Lightning, and Sky Dragon Slash, with the old Sky Dragon Slash being an empty entry.
 
 SK_PARAM.BIN:
 
