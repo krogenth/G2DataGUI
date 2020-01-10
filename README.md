@@ -13,9 +13,13 @@ MS_PARAM.BIN(moves)
 How to use:
 
 1.) Copy the content/data/ folder to where the program is, or move the program to the game root directory, right where Grandia2.exe is(steamapps/common/Grandia II Anniversary Edition).
+
 2.) Back-up the content/data/ in case anything gets messed up
+
 3.) Run the program
+
 4.) Edit values as desired
+
 5.) Save
 
 Other information:
