@@ -6,6 +6,7 @@
 #include <dinput.h>
 #include <tchar.h>
 
+#include <Windows.h>
 #include <type_traits>
 #include <string>
 
@@ -22,7 +23,7 @@ void CreateRenderTarget();
 void CleanupRenderTarget();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-int main(int argc, char** argv) {
+int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow) {
 
     ImU16 numMoves = 0;
     MoveStruct* moves = readMS(numMoves);
