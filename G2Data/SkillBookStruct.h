@@ -6,7 +6,7 @@
 struct SkillImplementationStruct {
 
 public:
-	MoveStruct* SkillOffset = nullptr;
+	ImU8 SkillOffset = 0;
 	ImU8 startingLevel = 0;
 	ImU8 bookLevelRequired = 0;
 	ImU8 unkown = 0;

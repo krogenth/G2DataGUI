@@ -1551,6 +1551,88 @@ static bool Items_SingleStringGetter(void* data, int idx, const char** out_text)
 }
 
 // Old API, prefer using BeginCombo() nowadays if you can.
+bool ImGui::Combo(const char* label, ImU8* current_item, bool (*items_getter)(void*, int, const char**), void* data, int items_count, int popup_max_height_in_items)
+{
+    ImGuiContext& g = *GImGui;
+
+    // Call the getter to obtain the preview string which is a parameter to BeginCombo()
+    const char* preview_value = NULL;
+    if (*current_item >= 0 && *current_item < items_count)
+        items_getter(data, *current_item, &preview_value);
+
+    // The old Combo() API exposed "popup_max_height_in_items". The new more general BeginCombo() API doesn't have/need it, but we emulate it here.
+    if (popup_max_height_in_items != -1 && !(g.NextWindowData.Flags & ImGuiNextWindowDataFlags_HasSizeConstraint))
+        SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(FLT_MAX, CalcMaxPopupHeightFromItemCount(popup_max_height_in_items)));
+
+    if (!BeginCombo(label, preview_value, ImGuiComboFlags_None))
+        return false;
+
+    // Display items
+    // FIXME-OPT: Use clipper (but we need to disable it on the appearing frame to make sure our call to SetItemDefaultFocus() is processed)
+    bool value_changed = false;
+    for (int i = 0; i < items_count; i++)
+    {
+        PushID((void*)(intptr_t)i);
+        const bool item_selected = (i == *current_item);
+        const char* item_text;
+        if (!items_getter(data, i, &item_text))
+            item_text = "*Unknown item*";
+        if (Selectable(item_text, item_selected))
+        {
+            value_changed = true;
+            *current_item = i;
+        }
+        if (item_selected)
+            SetItemDefaultFocus();
+        PopID();
+    }
+
+    EndCombo();
+    return value_changed;
+}
+
+// Old API, prefer using BeginCombo() nowadays if you can.
+bool ImGui::Combo(const char* label, ImU16* current_item, bool (*items_getter)(void*, int, const char**), void* data, int items_count, int popup_max_height_in_items)
+{
+    ImGuiContext& g = *GImGui;
+
+    // Call the getter to obtain the preview string which is a parameter to BeginCombo()
+    const char* preview_value = NULL;
+    if (*current_item >= 0 && *current_item < items_count)
+        items_getter(data, *current_item, &preview_value);
+
+    // The old Combo() API exposed "popup_max_height_in_items". The new more general BeginCombo() API doesn't have/need it, but we emulate it here.
+    if (popup_max_height_in_items != -1 && !(g.NextWindowData.Flags & ImGuiNextWindowDataFlags_HasSizeConstraint))
+        SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(FLT_MAX, CalcMaxPopupHeightFromItemCount(popup_max_height_in_items)));
+
+    if (!BeginCombo(label, preview_value, ImGuiComboFlags_None))
+        return false;
+
+    // Display items
+    // FIXME-OPT: Use clipper (but we need to disable it on the appearing frame to make sure our call to SetItemDefaultFocus() is processed)
+    bool value_changed = false;
+    for (int i = 0; i < items_count; i++)
+    {
+        PushID((void*)(intptr_t)i);
+        const bool item_selected = (i == *current_item);
+        const char* item_text;
+        if (!items_getter(data, i, &item_text))
+            item_text = "*Unknown item*";
+        if (Selectable(item_text, item_selected))
+        {
+            value_changed = true;
+            *current_item = i;
+        }
+        if (item_selected)
+            SetItemDefaultFocus();
+        PopID();
+    }
+
+    EndCombo();
+    return value_changed;
+}
+
+// Old API, prefer using BeginCombo() nowadays if you can.
 bool ImGui::Combo(const char* label, int* current_item, bool (*items_getter)(void*, int, const char**), void* data, int items_count, int popup_max_height_in_items)
 {
     ImGuiContext& g = *GImGui;
@@ -1588,6 +1670,20 @@ bool ImGui::Combo(const char* label, int* current_item, bool (*items_getter)(voi
     }
 
     EndCombo();
+    return value_changed;
+}
+
+// Combo box helper allowing to pass an array of strings.
+bool ImGui::Combo(const char* label, ImU8* current_item, const char* const items[], int items_count, int height_in_items)
+{
+    const bool value_changed = Combo(label, current_item, Items_ArrayGetter, (void*)items, items_count, height_in_items);
+    return value_changed;
+}
+
+// Combo box helper allowing to pass an array of strings.
+bool ImGui::Combo(const char* label, ImU16* current_item, const char* const items[], int items_count, int height_in_items)
+{
+    const bool value_changed = Combo(label, current_item, Items_ArrayGetter, (void*)items, items_count, height_in_items);
     return value_changed;
 }
 
@@ -3037,11 +3133,26 @@ bool ImGui::InputUByte(const char* label, ImU8* v, int step, int step_fast, ImGu
     return InputScalar(label, ImGuiDataType_U8, (void*)v, (void*)(step > 0 ? &step : NULL), (void*)(step_fast > 0 ? &step_fast : NULL), format, flags);
 }
 
+bool ImGui::InputUByte2(const char* label, ImU8 v[2], ImGuiInputTextFlags flags)
+{
+    return InputScalarN(label, ImGuiDataType_U8, v, 2, NULL, NULL, "%d", flags);
+}
+
+bool ImGui::InputUByte4(const char* label, ImU8 v[4], ImGuiInputTextFlags flags)
+{
+    return InputScalarN(label, ImGuiDataType_U8, v, 4, NULL, NULL, "%d", flags);
+}
+
 bool ImGui::InputByte(const char* label, ImS8* v, int step, int step_fast, ImGuiInputTextFlags flags)
 {
     // Hexadecimal input provided as a convenience but the flag name is awkward. Typically you'd use InputText() to parse your own data, if you want to handle prefixes.
     const char* format = (flags & ImGuiInputTextFlags_CharsHexadecimal) ? "%08X" : "%d";
     return InputScalar(label, ImGuiDataType_S8, (void*)v, (void*)(step > 0 ? &step : NULL), (void*)(step_fast > 0 ? &step_fast : NULL), format, flags);
+}
+
+bool ImGui::InputByte4(const char* label, ImS8 v[4], ImGuiInputTextFlags flags)
+{
+    return InputScalarN(label, ImGuiDataType_S8, v, 4, NULL, NULL, "%d", flags);
 }
 
 bool ImGui::InputUShort(const char* label, ImU16* v, int step, int step_fast, ImGuiInputTextFlags flags)
@@ -3051,11 +3162,21 @@ bool ImGui::InputUShort(const char* label, ImU16* v, int step, int step_fast, Im
     return InputScalar(label, ImGuiDataType_U16, (void*)v, (void*)(step > 0 ? &step : NULL), (void*)(step_fast > 0 ? &step_fast : NULL), format, flags);
 }
 
+bool ImGui::InputUShort2(const char* label, ImU16 v[2], ImGuiInputTextFlags flags)
+{
+    return InputScalarN(label, ImGuiDataType_U16, v, 2, NULL, NULL, "%d", flags);
+}
+
 bool ImGui::InputShort(const char* label, ImS16* v, int step, int step_fast, ImGuiInputTextFlags flags)
 {
     // Hexadecimal input provided as a convenience but the flag name is awkward. Typically you'd use InputText() to parse your own data, if you want to handle prefixes.
     const char* format = (flags & ImGuiInputTextFlags_CharsHexadecimal) ? "%08X" : "%d";
     return InputScalar(label, ImGuiDataType_S16, (void*)v, (void*)(step > 0 ? &step : NULL), (void*)(step_fast > 0 ? &step_fast : NULL), format, flags);
+}
+
+bool ImGui::InputShort2(const char* label, ImS16 v[2], ImGuiInputTextFlags flags)
+{
+    return InputScalarN(label, ImGuiDataType_S16, v, 2, NULL, NULL, "%d", flags);
 }
 
 bool ImGui::InputUInt(const char* label, ImU32* v, int step, int step_fast, ImGuiInputTextFlags flags)

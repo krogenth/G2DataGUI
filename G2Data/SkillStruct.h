@@ -6,8 +6,9 @@ struct SkillStruct {
 public:
 	char* name = new char[19]{};
 	ImU8 cost1 = 0;
-	ImU8 cost2 = 0;
+	ImU8& cost2 = cost1;
 	ImU16 baseHp = 0;
+	ImU16 baseMp = 0;
 	ImU16 baseSp = 0;
 	ImU16 baseStr = 0;
 	ImU16 baseVit = 0;
@@ -15,15 +16,20 @@ public:
 	ImU16 baseMov = 0;
 	ImU16 baseMag = 0;
 	ImU16 baseMen = 0;
-	ImU8 baseFirePercent = 0;
-	ImU8 baseWindPercent = 0;
-	ImU8 baseEarthPercent = 0;
-	ImU8 baseLightningPercent = 0;
-	ImU8 baseBlizzardPercent = 0;
-	ImU8 baseWaterPercent = 0;
-	ImU8 baseExplosionPercent = 0;
-	ImU8 baseForestPercent = 0;
-	ImU16 special = 0;
+	ImU8 unknown1 = 0;
+	ImU8 unknown2 = 0;
+	ImU8 unknown3 = 0;
+	ImU8 unknown4 = 0;
+	ImU8 unknown5 = 0;
+	ImS8 baseFirePercent = 0;
+	ImS8 baseWindPercent = 0;
+	ImS8 baseEarthPercent = 0;
+	ImS8 baseLightningPercent = 0;
+	ImS8 baseBlizzardPercent = 0;
+	ImS8 baseWaterPercent = 0;
+	ImS8 baseExplosionPercent = 0;
+	ImS8 baseForestPercent = 0;
+	ImU8 special = 0;
 	ImU16 coinCost1 = 0;
 	ImU16 coinCost2 = 0;
 	ImU16 coinCost3 = 0;
@@ -36,6 +42,7 @@ public:
 
 /*
 18 byte Name - name of skill
+01 byte C - cost type(MC/SP)
 01 byte C - cost type(MC/SP)
 02 byte HP - Base HP increase value
 02 byte MP - Base MP increase value
@@ -69,3 +76,6 @@ public:
 02 byte Mlt - Skill value multiplier(Does not appear to affect anything)
 40 byte Desc - Description of skill
 */
+
+void writeSK(SkillStruct* skills, const ImU16& count);
+SkillStruct* readSK(ImU16& count);

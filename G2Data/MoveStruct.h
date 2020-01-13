@@ -1,6 +1,4 @@
 #pragma once
-#include <tuple>
-
 #include "imgui.h"
 
 struct MoveStruct {
@@ -81,5 +79,5 @@ public:
 */
 
 //void writeMS();
-void writeMS(MoveStruct* moves, ImU16& count);
+void writeMS(MoveStruct* moves, const ImU16& count);
 MoveStruct * readMS(ImU16& count);

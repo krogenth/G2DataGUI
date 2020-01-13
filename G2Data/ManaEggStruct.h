@@ -6,10 +6,10 @@
 struct SpellImplementationStruct{
 
 public:
-	MoveStruct* Spell = nullptr;
+	ImU8 spellOffset = 0;
 	ImU8 startingLevel = 0;
 	ImU8 eggLevelRequired = 0;
-	ImU8 unkown = 0;
+	ImU8 unknown1 = 0;
 
 };
 
@@ -26,3 +26,6 @@ public:
 01 byte EL - Egg level required to unlock move
 01 byte ? - Unknown
 */
+
+void writeMAG(ManaEggStruct* eggs, const ImU16& count);
+ManaEggStruct* readMAG(ImU16& count);

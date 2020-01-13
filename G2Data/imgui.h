@@ -424,8 +424,12 @@ namespace ImGui
     // - The old Combo() api are helpers over BeginCombo()/EndCombo() which are kept available for convenience purpose.
     IMGUI_API bool          BeginCombo(const char* label, const char* preview_value, ImGuiComboFlags flags = 0);
     IMGUI_API void          EndCombo(); // only call EndCombo() if BeginCombo() returns true!
+    IMGUI_API bool          Combo(const char* label, ImU8* current_item, const char* const items[], int items_count, int popup_max_height_in_items = -1);
+    IMGUI_API bool          Combo(const char* label, ImU16* current_item, const char* const items[], int items_count, int popup_max_height_in_items = -1);
     IMGUI_API bool          Combo(const char* label, int* current_item, const char* const items[], int items_count, int popup_max_height_in_items = -1);
     IMGUI_API bool          Combo(const char* label, int* current_item, const char* items_separated_by_zeros, int popup_max_height_in_items = -1);      // Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"
+    IMGUI_API bool          Combo(const char* label, ImU8* current_item, bool(*items_getter)(void* data, int idx, const char** out_text), void* data, int items_count, int popup_max_height_in_items = -1);
+    IMGUI_API bool          Combo(const char* label, ImU16* current_item, bool(*items_getter)(void* data, int idx, const char** out_text), void* data, int items_count, int popup_max_height_in_items = -1);
     IMGUI_API bool          Combo(const char* label, int* current_item, bool(*items_getter)(void* data, int idx, const char** out_text), void* data, int items_count, int popup_max_height_in_items = -1);
 
     // Widgets: Drags
@@ -478,9 +482,14 @@ namespace ImGui
     IMGUI_API bool          InputFloat3(const char* label, float v[3], const char* format = "%.3f", ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputFloat4(const char* label, float v[4], const char* format = "%.3f", ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputUByte(const char* label, ImU8* v, int step = 1, int step_fast = 100, ImGuiInputTextFlags flags = 0);
+    IMGUI_API bool          InputUByte2(const char* label, ImU8 v[2], ImGuiInputTextFlags flags = 0);
+    IMGUI_API bool          InputUByte4(const char* label, ImU8 v[4], ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputByte(const char* label, ImS8* v, int step = 1, int step_fast = 100, ImGuiInputTextFlags flags = 0);
+    IMGUI_API bool          InputByte4(const char* label, ImS8 v[4], ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputUShort(const char* label, ImU16* v, int step = 1, int step_fast = 100, ImGuiInputTextFlags flags = 0);
+    IMGUI_API bool          InputUShort2(const char* label, ImU16 v[2], ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputShort(const char* label, ImS16* v, int step = 1, int step_fast = 100, ImGuiInputTextFlags flags = 0);
+    IMGUI_API bool          InputShort2(const char* label, ImS16 v[2], ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputUInt(const char* label, ImU32* v, int step = 1, int step_fast = 100, ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputInt(const char* label, ImS32* v, int step = 1, int step_fast = 100, ImGuiInputTextFlags flags = 0);
     IMGUI_API bool          InputInt2(const char* label, int v[2], ImGuiInputTextFlags flags = 0);
