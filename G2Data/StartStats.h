@@ -1,46 +1,52 @@
 #pragma once
 #include "imgui.h"
 
-struct StratStatsStruct {
+struct StartStatsStruct {
 
 public:
 	ImU32 exp = 0;
 	ImU16 weapon = 0;
-	ImU16 armor = 0;
+	ImU16 armour = 0;
 	ImU16 headgear = 0;
 	ImU16 footwear = 0;
 	ImU16 accessory = 0;
 	ImU16 manaEgg = 0;
-	ImU16 stamina = 0;
-	ImU8 ailmentResistBitflag = 0;
-	ImU8 REGIST = 0;// (bit flag, from DreamCast Debug Menu)
-	ImU32 unknown = 0;
-	ImU16 hp = 0;
-	ImU16 mp = 0;
-	ImU16 sp = 0;
-	ImU16 str = 0;
-	ImU16 vit = 0;
-	ImU16 agi = 0;
-	ImU16 mov = 0;
-	ImU16 mag = 0;
-	ImU16 men = 0;
-	ImU16 ipStun = 0;
-	ImU16 ipCancelStun = 0;
-	ImU8 comboSPRegen = 0;
-	ImU8 critSPRegen = 0;
-	ImU8 unknown2 = 0;
-	ImU8 hitSpRegen = 0;
-	ImU8 unkown3 = 0;
-	ImU8 evasionStillRate = 0;
-	ImU8 evasionMovingRate = 0;
-	ImU8 RKB = 0;// R KB from DreamCast Debug Menu
+	ImS16 stamina = 0;
+	ImU16 unknown1 = 0;
+	ImU16 unknown2 = 0;
+	ImU16 unknown3 = 0;
 	ImU16 unknown4 = 0;
-	ImU16 TREC = 0;// TREC from DreamCast Debug Menu
-	ImU16 TDMG = 0;// TDMG from DreamCast Debug Menu
 	ImU16 unknown5 = 0;
-	ImU16 THEAL = 0;// THEAL from DreamCast Debug Menu
-	ImU16 size = 0;
-	//18 remaining bytes, unsure what they are
+	ImU16 unknown6 = 0;
+	ImU16 unknown7 = 0;
+	ImU16 unknown8 = 0;
+	ImU16 unknown9 = 0;
+	ImU16 unknown10 = 0;
+	ImS16 ipStun = 0;
+	ImS16 ipCancelStun = 0;
+	ImU8 comboSpRegen = 0;
+	ImU8 critSpRegen = 0;
+	ImU8 unknown11 = 0;
+	ImU8 hitSpRegen = 0;
+	ImU8 unknown12 = 0;
+	ImS8 evasionStillRate = 0;
+	ImS8 evasionMovingRate = 0;
+	ImS8 ResistKnockback = 0;// R KB from DreamCast Debug Menu
+	ImU16 unknown13 = 0;
+	ImS16 TREC = 0;// T REC from DreamCast Debug Menu
+	ImS16 TDMG = 0;// T DMG from DreamCast Debug Menu
+	ImU16 unknown14 = 0;
+	ImS16 THEAL = 0;// T HEAL from DreamCast Debug Menu
+	ImS16 size = 0;
+	ImU16 unknown15 = 0;
+	ImU16 unknown16 = 0;
+	ImU16 unknown17 = 0;
+	ImU16 unknown18 = 0;
+	ImU16 unknown19 = 0;
+	ImU16 unknown20 = 0;
+	ImU16 unknown21 = 0;
+	ImU16 unknown22 = 0;
+	ImU16 unknown23 = 0;
 
 };
 
@@ -53,9 +59,7 @@ public:
 2 byte SAC - Starting Accessory
 2 byte SE - Starting Mana Egg
 2 byte STA - Stamina(Duration chatacter can move before getting "tired out")
-1 byte ST? - STATUS RESIST
-1 byte ??? - REGIST(bit flag, from DreamCast Debug Menu)
-4 byte ??? - Unknown
+2 byte ??? - Unknown
 2 byte HP? - Maximum Starting HP?
 2 byte MP? - Maximum Starting MP?
 2 byte SP? - Maximum Starting SP?
@@ -74,7 +78,7 @@ public:
 1 byte ??? - Unknown
 1 byte EV  - Evasion rate
 1 byte EVM  - Evasion rate moving
-1 byte RKB - R KB from DreamCast Debug Menu
+1 byte RKB - Resist Knockback(R KB from DreamCast Debug Menu)[Ryduo DreamCast Debug Menu value is 0.80, likely 1.0 - (value / 100)?]
 2 byte ???
 2 byte TR - TREC from DreamCast Debug Menu
 2 byte TD - TDMG from DreamCast Debug Menu
@@ -82,3 +86,6 @@ public:
 2 byte TH - THEAL from DreamCast Debug Menu
 2 byte SZ - SIZE
 */
+
+void writePC(StartStatsStruct* stats, const ImU16& count);
+StartStatsStruct* readPC(ImU16& count);

@@ -6,17 +6,17 @@
 struct SkillImplementationStruct {
 
 public:
-	ImU8 SkillOffset = 0;
+	ImU8 skillOffset = 0;
 	ImU8 startingLevel = 0;
 	ImU8 bookLevelRequired = 0;
-	ImU8 unkown = 0;
+	ImU8 unknown1 = 0;
 
 };
 
 struct SkillBookStruct {
 
 public:
-	SkillImplementationStruct spells[18];
+	SkillImplementationStruct skills[6];
 
 };
 
@@ -26,3 +26,6 @@ public:
 01 byte EL - Skillbook level required to unlock skill
 01 byte ? - Unknown
 */
+
+void writeSKI(SkillBookStruct* books, const ImU16& count);
+SkillBookStruct* readSKI(ImU16& count);

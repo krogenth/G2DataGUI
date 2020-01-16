@@ -5,17 +5,17 @@ struct EquipmentStruct {
 
 public:
 	ImU16 characterBitflag = 0b00000000;
-	ImU16 str = 0;
-	ImU16 vit = 0;
-	ImU16 act = 0;
-	ImU16 mov = 0;
+	ImS16 str = 0;
+	ImS16 vit = 0;
+	ImS16 act = 0;
+	ImS16 mov = 0;
 	ImU8 effectiveOn = 0;
 	ImS8 fireAffinity = 0;
 	ImS8 windAffinity = 0;
 	ImS8 earthAffinity = 0;
 	ImS8 lightningAffinity = 0;
 	ImS8 blizzardAffinity = 0;
-	ImS8 ailmentsBitflag = 0b00000000;
+	ImU8 ailmentsBitflag = 0b00000000;
 	ImU8 ailmentsChance = 0;
 	ImU8 unknown1 = 0;
 	ImU8 unknown2 = 0;
@@ -79,8 +79,8 @@ public:
 	ImS8 movMod = 0;
 	ImU8 breakChance = 0;
 	ImU8 special = 0;
-	ImU8 unknown1 = 0;
 	ImU8 unknown2 = 0;
+	ImU8 unknown3 = 0;
 
 };
 
@@ -117,11 +117,11 @@ public:
 	char* name = new char[19]{};
 	char* description = new char[41]{};
 	ImU8 entryType = 0;
-	ImU8 unkown1 = 0;
-	ImU8 unkown2 = 0;
-	ImU8 unkown3 = 0;
-	ImU8 unkown4 = 0;
-	ImU8 unkown5 = 0;
+	ImU8 unknown1 = 0;
+	ImU8 unknown2 = 0;
+	ImU8 unknown3 = 0;
+	ImU8 icon = 0;
+	ImU8 unknown5 = 0;
 	ImU32 price = 0;
 	EquipmentStruct* equipmentOffset = nullptr;// 0xFFFFFFFF means null
 	UsableStruct* usableOffset = nullptr;// 0xFFFFFFFF means null
@@ -143,3 +143,6 @@ public:
 04 byte Item Offset(from start of file)
 04 byte Unknown(Previously believed to be an ID, but that was wrong. Items are referenced by their entry offset from the start of ITEM.BIN, so these 4 bytes were changed for easier reference.)
 */
+
+void writeITE(ItemStruct* items, const ImU16& count);
+ItemStruct* readITE(ImU16& count);

@@ -14,6 +14,10 @@
 #include "MoveStruct.h"
 #include "SkillStruct.h"
 #include "ManaEggStruct.h"
+#include "SkillBookStruct.h"
+#include "SpecialMoveStruct.h"
+#include "StartStats.h"
+#include "ItemStruct.h"
 
 static ID3D11Device* g_pd3dDevice = NULL;
 static ID3D11DeviceContext* g_pd3dDeviceContext = NULL;
@@ -28,19 +32,10 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow) {
 
-    /*
-    	01(0x01) Restore HP
-	02(0x02) Restore MP
-	03(0x03) Restore SP
-	04(0x04) Ally(?) Buff/Debuff
-	05(0x05) Attack/Move(?) Damage
-	06(0x06) Magic(?) Damage
-	07(0x07) Enemy(?) Buff/Debuff
-	08(0x08) Status Change
-	15(0x0F) Special(Spellbinding Eye, Gravity, etc.)
-    */
-    const char* targetEffects[] = {"NULL\0", "Restore HP(MEN)\0", "Restore MP\0", "Restore SP\0", "Ally Buff/Debuff\0", "Physical Damage(STR)\0", "Magical Damage(MAG)\0", "Enemy Buff/Debuff\0", "Status Change\0", "Unknown\0", "Unknown\0", "Unknown\0", "Unknown\0", "Unknown\0", "Unknown\0", "Special\0"};
-    const char* targetTypes[] = {"NULL\0", "One Ally\0", "Area Allies\0", "All Allies\0", "One Enemy\0", "Area Enemies\0", "All Enemies\0", "Enemy Line\0", "Self\0", "Unknown\0", "Area Around Self\0", "Unknown\0", "Unknown\0", "Area Around Self\0", "Unknown\0", "Unknown\0"};
+    const char* targetEffects[] = {"NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special"};
+    const char* targetTypes[] = {"NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown"};
+    const char* effectiveOn[] = {"NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown"};
+    const char* elements[] = {"Fire", "Wind", "Earth", "Lightning", "Blizzard"};
 
     ImU16 numMoves = 0;
     MoveStruct* moves = readMS(numMoves);
@@ -51,15 +46,34 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
     ImU16 numEggs = 0;
     ManaEggStruct* eggs = readMAG(numEggs);
 
+    ImU16 numBooks = 0;
+    SkillBookStruct* books = readSKI(numBooks);
+
+    ImU16 numSpecials = 0;
+    SpecialMoveStruct* specials = readSPC(numSpecials);
+
+    ImU16 numItems = 0;
+    ItemStruct* items = readITE(numItems);
+
+    ImU16 numStats = 0;
+    StartStatsStruct* stats = readPC(numStats);
+
     char** moveIDs = new char* [numMoves] {};
     char** skillIDs = new char* [numSkills] {};
+    char** itemIDs = new char* [numItems] {};
     const char* eggIDs[] = {"NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg"};
+    const char* bookIDs[] = {"NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning"};
+    const char* specialIDs[] = {"NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"};
+    const char* statIDs[] = { "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
 
     for (ImU16 i = 0; i < numMoves; i++)
         moveIDs[i] = moves[i].name;
 
     for (ImU16 i = 0; i < numSkills; i++)
         skillIDs[i] = skills[i].name;
+
+    for (ImU16 i = 0; i < numItems; i++)
+        itemIDs[i] = items[i].name;
 
     // Create application window
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("G2Data"), NULL };
@@ -126,9 +140,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             static bool AilmentBitFlags[8] = {};
 
             ImGui::Begin("MS_PARAM");
-
-            /*
-            if (ImGui::Combo("Index", (int*)&moveID, moveIDs, (int)numMoves), -1)
+            
+            if (ImGui::Combo("Index", &moveID, moveIDs, (int)numMoves))
                 for (size_t i = 0; i < 8; i++)
                     AilmentBitFlags[i] = moves[moveID].ailmentsBitflag & (1 << i);
 
@@ -136,17 +149,17 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             if (ImGui::Button("Save"))
                 writeMS(moves, numMoves);
 
-            ImGui::InputUByte2("ID/Icon", &moves[moveID].id);
+            ImGui::LabelText("ID", std::to_string(moves[moveID].id).c_str());
 
+            ImGui::InputUByte("Icon", &moves[moveID].icon);
             ImGui::InputText("Name", moves[moveID].name, 19);
             ImGui::InputUShort("Cost", &moves[moveID].cost);
-            ImGui::InputUByte("Target Effect", &moves[moveID].targetEffect);
-            //ImGui::Combo("Target Effect", (int*)&moves[moveID].targetEffect, targetEffects, 16, -1);
-            ImGui::InputUByte("Target Type", &moves[moveID].targetType);
-            //ImGui::Combo("Target Type", (int*)&moves[moveID].targetType, targetTypes, 16, -1);
 
-            ImGui::InputUShort2("Strength/Power", &moves[moveID].str);
+            ImGui::Combo("Target Effect", &moves[moveID].targetEffect, targetEffects, 16);
+            ImGui::Combo("Target Type", &moves[moveID].targetType, targetTypes, 16);
 
+            ImGui::InputUShort("Strength", &moves[moveID].str);
+            ImGui::InputUShort("Power", &moves[moveID].pow);
             ImGui::InputUShort("Range", &moves[moveID].range);
 
             ImGui::InputUShort2("Cast Time Lv1/Lv5", &moves[moveID].cast1);
@@ -159,80 +172,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::InputShort2("IP Damage/IP Cancel Damage", &moves[moveID].ipDamage);
 
             ImGui::InputShort("Knockback", &moves[moveID].knockback);
-            ImGui::InputUByte("Element", &moves[moveID].element);
-            ImGui::InputUByte("Element Strength", &moves[moveID].elementStr);
 
-            if (ImGui::Checkbox("Poison", &AilmentBitFlags[0]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[0] << 0);
-            ImGui::SameLine();
-            if (ImGui::Checkbox("Sleep", &AilmentBitFlags[1]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[1] << 1);
-            ImGui::SameLine();
-            if (ImGui::Checkbox("Paralysis", &AilmentBitFlags[2]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[2] << 2);
-            ImGui::SameLine();
-            if (ImGui::Checkbox("Confusion", &AilmentBitFlags[3]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[3] << 3);
-            ImGui::SameLine();
-            if (ImGui::Checkbox("Plague", &AilmentBitFlags[4]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[4] << 4);
-            ImGui::SameLine();
-            if (ImGui::Checkbox("Magic Block", &AilmentBitFlags[5]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[5] << 5);
-            ImGui::SameLine();
-            if (ImGui::Checkbox("Move Block", &AilmentBitFlags[6]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[6] << 6);
-            ImGui::SameLine();
-            if (ImGui::Checkbox("Death", &AilmentBitFlags[7]))
-                moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[7] << 7);
-
-            ImGui::InputUByte("Ailments Chance", &moves[moveID].ailmentsChance);
-
-            ImGui::InputByte4("Atk/Def/Act/Mov Modifiers", &moves[moveID].atkMod);
-
-            ImGui::InputUShort("Special", &moves[moveID].special);
-            ImGui::InputUShort("Coin Cost Lv1", &moves[moveID].coinCost1);
-            ImGui::InputUShort("Coin Cost Lv2", &moves[moveID].coinCost2);
-            ImGui::InputUShort("Coin Cost Lv3", &moves[moveID].coinCost3);
-            ImGui::InputUShort("Coin Cost Lv4", &moves[moveID].coinCost4);
-            ImGui::InputUShort("Coin Cost Lv5", &moves[moveID].coinCost5);
-            ImGui::InputUShort("Multiplier", &moves[moveID].multiplier);
-            ImGui::InputText("Description", moves[moveID].description, 41);
-            */
-            
-            if (ImGui::Combo("Index", &moveID, moveIDs, (int)numMoves))
-                for (size_t i = 0; i < 8; i++)
-                    AilmentBitFlags[i] = moves[moveID].ailmentsBitflag & (1 << i);
-
-            ImGui::SameLine();
-            if (ImGui::Button("Save"))
-                writeMS(moves, numMoves);
-
-            ImGui::LabelText("ID", std::to_string(moves[moveID].id).c_str());
-            //ImGui::InputUByte("ID", &moves[moveID].id);
-            ImGui::InputUByte("Icon", &moves[moveID].icon);
-            ImGui::InputText("Name", moves[moveID].name, 19);
-            ImGui::InputUShort("Cost", &moves[moveID].cost);
-
-            //ImGui::InputUByte("Target Effect", &moves[moveID].targetEffect);
-            //ImGui::InputUByte("Target Type", &moves[moveID].targetType);
-
-            ImGui::Combo("Target Effect", &moves[moveID].targetEffect, targetEffects, 16, -1);
-            ImGui::Combo("Target Type", &moves[moveID].targetType, targetTypes, 16, -1);
-
-            ImGui::InputUShort("Strength", &moves[moveID].str);
-            ImGui::InputUShort("Power", &moves[moveID].pow);
-            ImGui::InputUShort("Range", &moves[moveID].range);
-            ImGui::InputUShort("Cast Time Lv1", &moves[moveID].cast1);
-            ImGui::InputUShort("Cast Time Lv5", &moves[moveID].cast5);
-            ImGui::InputUShort("Recovery", &moves[moveID].recovery);
-            ImGui::InputUShort("Animation", &moves[moveID].animation);
-            ImGui::InputUByte("Unknown #1", &moves[moveID].unknown1);
-            ImGui::InputUByte("Unknown #2", &moves[moveID].unknown2);
-            ImGui::InputShort("IP Damage", &moves[moveID].ipDamage);
-            ImGui::InputShort("IP Cancel Damage", &moves[moveID].ipCancelDamage);
-            ImGui::InputShort("Knockback", &moves[moveID].knockback);
-            ImGui::InputUByte("Element", &moves[moveID].element);
+            ImGui::Combo("Element", &moves[moveID].element, elements, 5);
             ImGui::InputUByte("Element Strength", &moves[moveID].elementStr);
 
             if (ImGui::Checkbox("Poison", &AilmentBitFlags[0]))
@@ -260,7 +201,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                 moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[7] << 7);
 
             ImGui::InputUByte("Ailments Chance", &moves[moveID].ailmentsChance);
-            ImGui::InputByte4("Atk/Def/Act/Mov Modifiers", &moves[moveID].atkMod);
+            ImGui::InputByte4("Atk/Def/Act/Mov Mods", &moves[moveID].atkMod);
             ImGui::InputUShort("Special", &moves[moveID].special);
             ImGui::InputUShort("Coin Cost Lv1", &moves[moveID].coinCost1);
             ImGui::InputUShort("Coin Cost Lv2", &moves[moveID].coinCost2);
@@ -303,14 +244,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::InputUByte("Unknown #3", &skills[skillID].unknown3);
             ImGui::InputUByte("Unknown #4", &skills[skillID].unknown4);
             ImGui::InputUByte("Unknown #5", &skills[skillID].unknown5);
-            ImGui::InputByte("Base Fire", &skills[skillID].baseFirePercent);
-            ImGui::InputByte("Base Wind", &skills[skillID].baseWindPercent);
-            ImGui::InputByte("Base Earth", &skills[skillID].baseEarthPercent);
-            ImGui::InputByte("Base Lightning", &skills[skillID].baseLightningPercent);
-            ImGui::InputByte("Base Blizzard", &skills[skillID].baseBlizzardPercent);
-            ImGui::InputByte("Base Water", &skills[skillID].baseWaterPercent);
-            ImGui::InputByte("Base Explosion", &skills[skillID].baseExplosionPercent);
-            ImGui::InputByte("Base Forest", &skills[skillID].baseForestPercent);
+            ImGui::InputByte("Base Fire %", &skills[skillID].baseFirePercent);
+            ImGui::InputByte("Base Wind %", &skills[skillID].baseWindPercent);
+            ImGui::InputByte("Base Earth %", &skills[skillID].baseEarthPercent);
+            ImGui::InputByte("Base Lightning %", &skills[skillID].baseLightningPercent);
+            ImGui::InputByte("Base Blizzard %", &skills[skillID].baseBlizzardPercent);
+            ImGui::InputByte("Base Water %", &skills[skillID].baseWaterPercent);
+            ImGui::InputByte("Base Explosion %", &skills[skillID].baseExplosionPercent);
+            ImGui::InputByte("Base Forest %", &skills[skillID].baseForestPercent);
             ImGui::InputUByte("Special", &skills[skillID].special);
             ImGui::InputUShort("Coin Cost Lv1", &skills[skillID].coinCost1);
             ImGui::InputUShort("Coin Cost Lv2", &skills[skillID].coinCost2);
@@ -327,6 +268,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
         {   //TB_MAGIC WINDOW
 
             static ImU16 eggID = 0;
+            static ImU16 spellSlot = 0;
+            const char* slotIDs[] = {"Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6", "Slot 7", "Slot 8", "Slot 9", "Slot 10", "Slot 11", "Slot 12", "Slot 13", "Slot 14", "Slot 15", "Slot 16", "Slot 17", "Slot 18"};
 
             ImGui::Begin("TB_MAGIC");
 
@@ -334,21 +277,383 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
             ImGui::SameLine();
             if (ImGui::Button("Save"))
-                writeMAG(eggs, numEggs); ImGui::NewLine();
+                writeMAG(eggs, numEggs);
 
-            
-            for (size_t i = 0; i < 18; i++) {
+            ImGui::Combo("Slot", &spellSlot, slotIDs, 18); ImGui::NewLine();
 
-                ImGui::Combo("Spell", &eggs[eggID].spells[i].spellOffset, moveIDs, (int)numMoves);
-                ImGui::InputUByte("Spell ID", &eggs[eggID].spells[i].spellOffset);
-                ImGui::InputUByte("Starting Level", &eggs[eggID].spells[i].startingLevel);
-                ImGui::InputUByte("Egg Level Required", &eggs[eggID].spells[i].eggLevelRequired);
-                ImGui::InputUByte("Unknown #1", &eggs[eggID].spells[i].unknown1); ImGui::NewLine();
+            ImGui::Combo("Spell", &eggs[eggID].spells[spellSlot].spellOffset, moveIDs, (int)numMoves);
+            ImGui::InputUByte("Starting Level", &eggs[eggID].spells[spellSlot].startingLevel);
+            ImGui::InputUByte("Egg Level Required", &eggs[eggID].spells[spellSlot].eggLevelRequired);
+            ImGui::InputUByte("Unknown #1", &eggs[eggID].spells[spellSlot].unknown1); ImGui::NewLine();
 
-                //ImGui::InputUByte4("Spell ID/Starting Level/Egg Level Required/Unknown #1", &eggs[eggID].spells[i].spellOffset);
+            ImGui::End();
+
+        }
+
+        {   //TB_SKILL WINDOW
+
+            static ImU16 bookID = 0;
+            static ImU16 skillSlot = 0;
+            const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6"};
+
+            ImGui::Begin("TB_SKILL");
+
+            ImGui::Combo("Index", &bookID, bookIDs, (int)numBooks); ImGui::SameLine();
+
+            ImGui::SameLine();
+            if (ImGui::Button("Save"))
+                writeSKI(books, numBooks);
+
+            ImGui::Combo("Slot", &skillSlot, slotIDs, 6); ImGui::NewLine();
+
+            ImGui::Combo("Skill", &books[bookID].skills[skillSlot].skillOffset, skillIDs, (int)numSkills);
+            ImGui::InputUByte("Starting Level", &books[bookID].skills[skillSlot].startingLevel);
+            ImGui::InputUByte("Book Level Required", &books[bookID].skills[skillSlot].bookLevelRequired);
+            ImGui::InputUByte("Unknown #1", &books[bookID].skills[skillSlot].unknown1); ImGui::NewLine();
+
+            ImGui::End();
+
+        }
+
+        {   //TB_SPCL WINDOW
+
+            static ImU16 specialID = 0;
+            static ImU16 moveSlot = 0;
+            const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6" };
+
+            ImGui::Begin("TB_SPCL");
+
+            ImGui::Combo("Index", &specialID, specialIDs, (int)numSpecials); ImGui::SameLine();
+
+            ImGui::SameLine();
+            if (ImGui::Button("Save"))
+                writeSPC(specials, numSpecials);
+
+            ImGui::Combo("Slot", &moveSlot, slotIDs, 6); ImGui::NewLine();
+
+            ImGui::Combo("Move", &specials[specialID].moves[moveSlot].moveOffset, moveIDs, (int)numMoves);
+            ImGui::InputUByte("Starting Level", &specials[specialID].moves[moveSlot].startingLevel);
+            ImGui::InputUShort("Story Flag", &specials[specialID].moves[moveSlot].storyFlag);
+
+            ImGui::End();
+
+        }
+
+        {   //PC_INIT WINDOW
+
+            static ImU16 statID = 0;
+
+            ImGui::Begin("PC_INIT");
+
+            ImGui::Combo("Index", &statID, statIDs, (int)numStats); ImGui::SameLine();
+
+            ImGui::SameLine();
+            if (ImGui::Button("Save"))
+                writePC(stats, numStats);
+
+            ImGui::InputUInt("EXP", &stats[statID].exp);
+
+            ImGui::Combo("Weapon", &stats[statID].weapon, itemIDs, (int)numItems);
+            ImGui::Combo("Armour", &stats[statID].armour, itemIDs, (int)numItems);
+            ImGui::Combo("Headgear", &stats[statID].headgear, itemIDs, (int)numItems);
+            ImGui::Combo("Footwear", &stats[statID].footwear, itemIDs, (int)numItems);
+            ImGui::Combo("Accessory", &stats[statID].accessory, itemIDs, (int)numItems);
+            ImGui::Combo("Mana Egg", &stats[statID].manaEgg, itemIDs, (int)numItems);
+
+            ImGui::InputShort("Stamina", &stats[statID].stamina);
+
+            ImGui::InputUShort("Unknown #1", &stats[statID].unknown1);
+            ImGui::InputUShort("Unknown #2", &stats[statID].unknown2);
+            ImGui::InputUShort("Unknown #3", &stats[statID].unknown3);
+            ImGui::InputUShort("Unknown #4", &stats[statID].unknown4);
+            ImGui::InputUShort("Unknown #5", &stats[statID].unknown5);
+            ImGui::InputUShort("Unknown #6", &stats[statID].unknown6);
+            ImGui::InputUShort("Unknown #7", &stats[statID].unknown7);
+            ImGui::InputUShort("Unknown #8", &stats[statID].unknown8);
+            ImGui::InputUShort("Unknown #9", &stats[statID].unknown9);
+            ImGui::InputUShort("Unknown #10", &stats[statID].unknown10);
+
+            ImGui::InputShort("IP Stun", &stats[statID].ipStun);
+            ImGui::InputShort("IP Cancel Stun", &stats[statID].ipCancelStun);
+
+            ImGui::InputUByte("Combo SP Regen", &stats[statID].comboSpRegen);
+            ImGui::InputUByte("Critical SP Regen", &stats[statID].critSpRegen);
+
+            ImGui::InputUByte("Unknown #11", &stats[statID].unknown11);
+
+            ImGui::InputUByte("Damaged SP Regen", &stats[statID].hitSpRegen);
+
+            ImGui::InputUByte("Unknown #12", &stats[statID].unknown12);
+
+            ImGui::InputByte("Still Evasion Rate", &stats[statID].evasionStillRate);
+            ImGui::InputByte("Move Evasion Rate", &stats[statID].evasionMovingRate);
+            ImGui::InputByte("Knockback Resist Rate", &stats[statID].ResistKnockback);
+
+            ImGui::InputUShort("Unknown #13", &stats[statID].unknown13);
+
+            ImGui::InputShort("TREC", &stats[statID].TREC);
+            ImGui::InputShort("TDMG", &stats[statID].TDMG);
+
+            ImGui::InputUShort("Unknown #14", &stats[statID].unknown14);
+
+            ImGui::InputShort("THEAL", &stats[statID].THEAL);
+
+            ImGui::InputShort("Size", &stats[statID].size);
+
+            ImGui::InputUShort("Unknown #15", &stats[statID].unknown15);
+            ImGui::InputUShort("Unknown #16", &stats[statID].unknown16);
+            ImGui::InputUShort("Unknown #17", &stats[statID].unknown17);
+            ImGui::InputUShort("Unknown #18", &stats[statID].unknown18);
+            ImGui::InputUShort("Unknown #19", &stats[statID].unknown19);
+            ImGui::InputUShort("Unknown #20", &stats[statID].unknown20);
+            ImGui::InputUShort("Unknown #21", &stats[statID].unknown21);
+            ImGui::InputUShort("Unknown #22", &stats[statID].unknown22);
+            ImGui::InputUShort("Unknown #23", &stats[statID].unknown23);
+
+            ImGui::End();
+
+        }
+
+        {   //ITEM WINDOW
+
+            static ImU16 itemID = 0;
+            static bool hasEquip = false;
+            static bool hasUsable = false;
+            static bool EquipmentCharacterBitFlags[7] = {};
+            static bool EquipmentAilmentBitFlags[8] = {};
+            static bool UsableAilmentBitFlags[8] = {};
+            const char* entryIDs[] = { "NULL", "Item", "Item", "Perm. Stat Modifier(?)", "Weapon", "Armour", "Headgear", "Footwear", "Accessory", "Mana Egg", "Unknown", "Valuable", "Skillbook", "Special", "Unknown", "Unknown" };
+
+            ImGui::Begin("ITEM");
+
+            if (ImGui::Combo("Index", &itemID, itemIDs, (int)numItems)) {
+
+                (items[itemID].equipmentOffset) ? hasEquip = true : hasEquip = false;
+                (items[itemID].usableOffset) ? hasUsable = true : hasUsable = false;
+
+                if (hasEquip) {
+
+                    for (size_t i = 0; i < 7; i++)
+                        EquipmentCharacterBitFlags[i] = items[itemID].equipmentOffset->characterBitflag & (1 << i);
+
+                    for (size_t i = 0; i < 8; i++)
+                        EquipmentAilmentBitFlags[i] = items[itemID].equipmentOffset->ailmentsBitflag & (1 << i);
+
+                }
+                else {
+
+                    for (size_t i = 0; i < 7; i++)
+                        EquipmentCharacterBitFlags[i] = 0;
+
+                    for (size_t i = 0; i < 8; i++)
+                        EquipmentAilmentBitFlags[i] = 0;
+
+                }
+
+                if (hasUsable)
+                    for (size_t i = 0; i < 8; i++)
+                        UsableAilmentBitFlags[i] = items[itemID].usableOffset->ailmentsBitflag & (1 << i);
+                else
+                    for (size_t i = 0; i < 8; i++)
+                        UsableAilmentBitFlags[i] = 0;
+
+            }
+
+            ImGui::SameLine();
+            if (ImGui::Button("Save"))
+                writeITE(items, numItems);
+
+            ImGui::LabelText("ID", std::to_string(items[itemID].id).c_str());   //it does come last in the file, but better to allow quick finding of the ID
+
+            ImGui::InputText("Name", items[itemID].name, 19);
+            ImGui::InputText("Description", items[itemID].description, 41);
+
+            ImGui::Combo("Entry Type", &items[itemID].entryType, entryIDs, 16);
+
+            ImGui::InputUByte("Unknown #1", &items[itemID].unknown1);
+            ImGui::InputUByte("Unknown #2", &items[itemID].unknown2);
+            ImGui::InputUByte("Unknown #3", &items[itemID].unknown3);
+            ImGui::InputUByte("Icon", &items[itemID].icon);
+            ImGui::InputUByte("Unknown #5", &items[itemID].unknown5);
+
+            ImGui::InputUInt("Price", &items[itemID].price);
+
+            if (ImGui::Checkbox("Equipment", &hasEquip)) {
+
+                if (hasEquip)
+                    items[itemID].equipmentOffset = new EquipmentStruct;
+                else {
+
+                    delete items[itemID].equipmentOffset;
+                    items[itemID].equipmentOffset = nullptr;
+
+                    for (size_t i = 0; i < 8; i++)
+                        EquipmentAilmentBitFlags[i] = 0;
+
+                }
 
             }
             
+            ImGui::SameLine();
+
+            if (ImGui::Checkbox("Usable", &hasUsable)) {
+
+                if (hasUsable)
+                    items[itemID].usableOffset = new UsableStruct;
+                else {
+
+                    delete items[itemID].usableOffset;
+                    items[itemID].usableOffset = nullptr;
+
+                    for (size_t i = 0; i < 8; i++)
+                        UsableAilmentBitFlags[i] = 0;
+
+                }
+
+            }
+
+            if (hasEquip) {
+
+                ImGui::Begin("Item Equipment");
+
+                if (ImGui::Checkbox("Ryudo", &EquipmentCharacterBitFlags[0]))
+                    items[itemID].equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[0] << 0);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Elena", &EquipmentCharacterBitFlags[1]))
+                    items[itemID].equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[1] << 1);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Millenia", &EquipmentCharacterBitFlags[2]))
+                    items[itemID].equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[2] << 2);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Roan", &EquipmentCharacterBitFlags[3]))
+                    items[itemID].equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[3] << 3);
+
+                if (ImGui::Checkbox("Tio", &EquipmentCharacterBitFlags[4]))
+                    items[itemID].equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[4] << 4);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Mareg", &EquipmentCharacterBitFlags[5]))
+                    items[itemID].equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[5] << 5);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Prince Roan", &EquipmentCharacterBitFlags[6]))
+                    items[itemID].equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[6] << 6);
+
+                ImGui::InputShort("Strength", &items[itemID].equipmentOffset->str);
+                ImGui::InputShort("Vitality", &items[itemID].equipmentOffset->vit);
+                ImGui::InputShort("Action", &items[itemID].equipmentOffset->act);
+                ImGui::InputShort("Movement", &items[itemID].equipmentOffset->mov);
+
+                ImGui::Combo("Effective On", &items[itemID].equipmentOffset->effectiveOn, effectiveOn, 16);
+
+                ImGui::InputByte("Fire %", &items[itemID].equipmentOffset->fireAffinity);
+                ImGui::InputByte("Wind %", &items[itemID].equipmentOffset->windAffinity);
+                ImGui::InputByte("Earth %", &items[itemID].equipmentOffset->earthAffinity);
+                ImGui::InputByte("Lightning %", &items[itemID].equipmentOffset->lightningAffinity);
+                ImGui::InputByte("Blizzard %", &items[itemID].equipmentOffset->blizzardAffinity);
+
+                if (ImGui::Checkbox("Poison", &EquipmentAilmentBitFlags[0]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[0] << 0);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Sleep", &EquipmentAilmentBitFlags[1]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[1] << 1);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Paralysis", &EquipmentAilmentBitFlags[2]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[2] << 2);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Confusion", &EquipmentAilmentBitFlags[3]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[3] << 3);
+
+                if (ImGui::Checkbox("Plague", &EquipmentAilmentBitFlags[4]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[4] << 4);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Magic Block", &EquipmentAilmentBitFlags[5]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[5] << 5);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Move Block", &EquipmentAilmentBitFlags[6]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[6] << 6);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Death", &EquipmentAilmentBitFlags[7]))
+                    items[itemID].equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[7] << 7);
+
+                ImGui::InputUByte("Ailments Chance", &items[itemID].equipmentOffset->ailmentsChance);
+
+                ImGui::InputUByte("Unknown #1", &items[itemID].equipmentOffset->unknown1);
+                ImGui::InputUByte("Unknown #2", &items[itemID].equipmentOffset->unknown2);
+                ImGui::InputUByte("Unknown #3", &items[itemID].equipmentOffset->unknown3);
+                ImGui::InputUByte("Unknown #4", &items[itemID].equipmentOffset->unknown4);
+                ImGui::InputUByte("Unknown #5", &items[itemID].equipmentOffset->unknown5);
+                ImGui::InputUByte("Unknown #6", &items[itemID].equipmentOffset->unknown6);
+                ImGui::InputUByte("Unknown #7", &items[itemID].equipmentOffset->unknown7);
+                ImGui::InputUByte("Unknown #8", &items[itemID].equipmentOffset->unknown8);
+
+                ImGui::InputUShort("Special", &items[itemID].equipmentOffset->special);
+
+                ImGui::End();
+
+            }
+
+            equipNotOpen:
+
+            if (hasUsable) {
+
+                ImGui::Begin("Item Usable");
+
+                ImGui::Combo("Target Effect", &items[itemID].usableOffset->targetEffect, targetEffects, 16);
+                ImGui::Combo("Target Type", &items[itemID].usableOffset->targetType, targetTypes, 16);
+
+                ImGui::InputUShort("Power", &items[itemID].usableOffset->power);
+                ImGui::InputUShort("Range", &items[itemID].usableOffset->range);
+                ImGui::InputUShort("Cast Time", &items[itemID].usableOffset->castTime);
+                ImGui::InputUShort("Recovery", &items[itemID].usableOffset->recoveryTime);
+                ImGui::InputUShort("Animation", &items[itemID].usableOffset->animation);
+
+                ImGui::Combo("Effective On", &items[itemID].usableOffset->effectiveOn, effectiveOn, 16);
+
+                ImGui::InputUByte("Unknown #1", &items[itemID].usableOffset->unknown1);
+
+                ImGui::InputShort("IP Damage", &items[itemID].usableOffset->ipDamage);
+                ImGui::InputShort("IP Damage", &items[itemID].usableOffset->ipCancelDamage);
+                ImGui::InputShort("IP Damage", &items[itemID].usableOffset->knockback);
+
+                ImGui::Combo("Element", &items[itemID].usableOffset->element, elements, 5);
+                ImGui::InputUByte("Element Strength", &items[itemID].usableOffset->elementStr);
+
+                if (ImGui::Checkbox("Poison", &UsableAilmentBitFlags[0]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[0] << 0);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Sleep", &UsableAilmentBitFlags[1]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[1] << 1);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Paralysis", &UsableAilmentBitFlags[2]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[2] << 2);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Confusion", &UsableAilmentBitFlags[3]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[3] << 3);
+
+                if (ImGui::Checkbox("Plague", &UsableAilmentBitFlags[4]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[4] << 4);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Magic Block", &UsableAilmentBitFlags[5]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[5] << 5);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Move Block", &UsableAilmentBitFlags[6]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[6] << 6);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Death", &UsableAilmentBitFlags[7]))
+                    items[itemID].usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[7] << 7);
+
+                ImGui::InputByte4("Atk/Def/Act/Mov Mods", &items[itemID].usableOffset->atkMod);
+
+                ImGui::InputUByte("Break Chance", &items[itemID].usableOffset->breakChance);
+                ImGui::InputUByte("Special", &items[itemID].usableOffset->special);
+
+                ImGui::InputUByte("Unknown #2", &items[itemID].usableOffset->unknown2);
+                ImGui::InputUByte("Unknown #3", &items[itemID].usableOffset->unknown3);
+
+                ImGui::End();
+
+            }
+
+            usableNotOpen:
 
             ImGui::End();
 

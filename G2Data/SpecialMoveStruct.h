@@ -4,7 +4,7 @@
 struct MoveImplementationStruct {
 
 public:
-	ImU8 SkillOffset = 0;
+	ImU8 moveOffset = 0;
 	ImU8 startingLevel = 0;
 	ImU16 storyFlag = 0;
 
@@ -13,7 +13,7 @@ public:
 struct SpecialMoveStruct {
 
 public:
-	MoveImplementationStruct spells[18];
+	MoveImplementationStruct moves[6];
 
 };
 
@@ -22,3 +22,6 @@ public:
 01 byte SL - Starting level of move
 02 byte SF - Story progress flag required to unlock move(?)
 */
+
+void writeSPC(SpecialMoveStruct* specials, const ImU16& count);
+SpecialMoveStruct* readSPC(ImU16& count);
