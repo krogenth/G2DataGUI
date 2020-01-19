@@ -9,7 +9,7 @@ void writeSKI(SkillBookStruct* books, const ImU16& count) {
 	std::ofstream output("content/data/afs/xls_data/TB_SKILL.BIN", std::ios::binary);
 
 	if (!output.is_open())
-		return;
+		throw new std::exception("TB_SKILL.BIN not found to be written!");
 
 	for (size_t i = 0; i < 0x0A; i++) {
 
@@ -38,7 +38,7 @@ SkillBookStruct* readSKI(ImU16& count) {
 	SkillBookStruct* books = new SkillBookStruct[count];	//entries are 24 bytes long(each skill is 4 bytes long, 6 skills per book)
 
 	if (!input.is_open())
-		throw new std::exception();
+		throw new std::exception("TB_SKILL.BIN not found to be read!");
 
 	for (size_t i = 0; i < count; i++) {
 

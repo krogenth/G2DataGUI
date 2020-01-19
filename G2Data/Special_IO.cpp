@@ -9,7 +9,7 @@ void writeSPC(SpecialMoveStruct* specials, const ImU16& count) {
 	std::ofstream output("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
 
 	if (!output.is_open())
-		return;
+		throw new std::exception("TB_SPCL.BIN not found to be written!");
 
 	for (size_t i = 0; i < 0x0E; i++) {
 
@@ -39,7 +39,7 @@ SpecialMoveStruct* readSPC(ImU16& count) {
 	SpecialMoveStruct* specials = new SpecialMoveStruct[count];	//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
 
 	if (!input.is_open())
-		throw new std::exception();
+		throw new std::exception("TB_SPCL.BIN not found to be read!");
 
 	for (size_t i = 0; i < count; i++) {
 

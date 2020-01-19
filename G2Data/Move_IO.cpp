@@ -9,7 +9,7 @@ void writeMS(MoveStruct* moves, const ImU16& count) {
 	std::ofstream output("content/data/afs/xls_data/MS_PARAM.BIN", std::ios::binary);
 
 	if (!output.is_open())
-		return;
+		throw new std::exception("MS_PARAM.BIN not found to be written!");
 
 	for (size_t i = 0; i < count; i++) {
 
@@ -103,7 +103,7 @@ MoveStruct* readMS(ImU16& count) {
 	MoveStruct* moves = new MoveStruct[0x81 * 108];	//entries are 108 bytes long
 
 	if (!input.is_open())
-		throw new std::exception;
+		throw new std::exception("MS_PARAM.BIN not found to be read!");
 
 	for (int i = 0; !input.eof(); i++) {
 

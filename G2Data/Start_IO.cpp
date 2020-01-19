@@ -8,7 +8,7 @@ void writePC(StartStatsStruct* stats, const ImU16& count) {
 	std::ofstream output("content/data/afs/xls_data/PC_INIT.BIN", std::ios::binary);
 
 	if (!output.is_open())
-		return;
+		throw new std::exception("PC_INIT.BIN not found to be written!");
 
 	for (size_t i = 0; i < count; i++) {
 
@@ -142,6 +142,7 @@ void writePC(StartStatsStruct* stats, const ImU16& count) {
 }
 
 StartStatsStruct* readPC(ImU16& count) {
+	//Upon starting a new game, all characters gain EXP together. The EXP value displayed is what each character starts the game at
 
 	char* readByte = new char[4]{};
 
@@ -151,7 +152,7 @@ StartStatsStruct* readPC(ImU16& count) {
 	StartStatsStruct* stats = new StartStatsStruct[count * 80];	//entries are 80 bytes long
 
 	if (!input.is_open())
-		throw new std::exception();
+		throw new std::exception("PC_INIT.BIN not found to be read!");
 
 	for (size_t i = 0; i < count; i++) {
 

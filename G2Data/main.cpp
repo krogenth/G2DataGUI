@@ -1,6 +1,6 @@
-#include "imgui.h"
-#include "imgui_impl_win32.h"
-#include "imgui_impl_dx11.h"
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_impl_win32.h"
+#include "ImGui/imgui_impl_dx11.h"
 #include <d3d11.h>
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
@@ -32,53 +32,10 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow) {
 
-    const char* targetEffects[] = {"NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special"};
-    const char* targetTypes[] = {"NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown"};
-    const char* effectiveOn[] = {"NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown"};
-    const char* elements[] = {"Fire", "Wind", "Earth", "Lightning", "Blizzard"};
-
-    ImU16 numMoves = 0;
-    MoveStruct* moves = readMS(numMoves);
-
-    ImU16 numSkills = 0;
-    SkillStruct* skills = readSK(numSkills);
-
-    ImU16 numEggs = 0;
-    ManaEggStruct* eggs = readMAG(numEggs);
-
-    ImU16 numBooks = 0;
-    SkillBookStruct* books = readSKI(numBooks);
-
-    ImU16 numSpecials = 0;
-    SpecialMoveStruct* specials = readSPC(numSpecials);
-
-    ImU16 numItems = 0;
-    ItemStruct* items = readITE(numItems);
-
-    ImU16 numStats = 0;
-    StartStatsStruct* stats = readPC(numStats);
-
-    char** moveIDs = new char* [numMoves] {};
-    char** skillIDs = new char* [numSkills] {};
-    char** itemIDs = new char* [numItems] {};
-    const char* eggIDs[] = {"NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg"};
-    const char* bookIDs[] = {"NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning"};
-    const char* specialIDs[] = {"NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"};
-    const char* statIDs[] = { "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
-
-    for (ImU16 i = 0; i < numMoves; i++)
-        moveIDs[i] = moves[i].name;
-
-    for (ImU16 i = 0; i < numSkills; i++)
-        skillIDs[i] = skills[i].name;
-
-    for (ImU16 i = 0; i < numItems; i++)
-        itemIDs[i] = items[i].name;
-
     // Create application window
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("G2Data"), NULL };
     RegisterClassEx(&wc);
-    HWND hwnd = CreateWindow(wc.lpszClassName, _T("G2Data"), WS_OVERLAPPEDWINDOW, 100, 100, 1280, 800, NULL, NULL, wc.hInstance, NULL);
+    HWND hwnd = CreateWindow(wc.lpszClassName, _T("G2Data"), WS_OVERLAPPEDWINDOW, 100, 100, 1920, 1080, NULL, NULL, wc.hInstance, NULL);
 
     // Initialize Direct3D 
     if (!CreateDeviceD3D(hwnd)) {
@@ -96,7 +53,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGuiIO& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
@@ -109,6 +66,142 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
     ImGui_ImplDX11_Init(g_pd3dDevice, g_pd3dDeviceContext);
 
     ImVec4 clear_color = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+
+    bool* canClose = new bool[1]{ true };
+
+    ImU16 numMoves = 0;
+    MoveStruct* moves = nullptr;
+
+    ImU16 numSkills = 0;
+    SkillStruct* skills = nullptr;
+
+    ImU16 numEggs = 0;
+    ManaEggStruct* eggs = nullptr;
+
+    ImU16 numBooks = 0;
+    SkillBookStruct* books = nullptr;
+
+    ImU16 numSpecials = 0;
+    SpecialMoveStruct* specials = nullptr;
+
+    ImU16 numItems = 0;
+    ItemStruct* items = nullptr;
+
+    ImU16 numStats = 0;
+    StartStatsStruct* stats = nullptr;
+
+    try {
+
+        moves = readMS(numMoves);
+
+    }
+    catch (const std::exception & e) {
+
+        ImGui::Begin("ERROR", canClose);
+        ImGui::LabelText("", e.what());
+        ImGui::End();
+
+    }
+
+    try {
+
+        skills = readSK(numSkills);
+
+    }
+    catch (const std::exception & e) {
+
+        ImGui::Begin("ERROR", canClose);
+        ImGui::LabelText("", e.what());
+        ImGui::End();
+
+    }
+
+    try {
+
+        eggs = readMAG(numEggs);
+
+    }
+    catch (const std::exception & e) {
+
+        ImGui::Begin("ERROR", canClose);
+        ImGui::LabelText("", e.what());
+        ImGui::End();
+
+    }
+
+    try {
+
+        books = readSKI(numBooks);
+
+    }
+    catch (const std::exception & e) {
+
+        ImGui::Begin("ERROR", canClose);
+        ImGui::LabelText("", e.what());
+        ImGui::End();
+
+    }
+
+    try {
+
+        specials = readSPC(numSpecials);
+
+    }
+    catch (const std::exception & e) {
+
+        ImGui::Begin("ERROR", canClose);
+        ImGui::LabelText("", e.what());
+        ImGui::End();
+
+    }
+
+    try {
+
+        items = readITE(numItems);
+
+    }
+    catch (const std::exception & e) {
+
+        ImGui::Begin("ERROR", canClose);
+        ImGui::LabelText("", e.what());
+        ImGui::End();
+
+    }
+
+    try {
+
+        stats = readPC(numStats);
+
+    }
+    catch (const std::exception & e) {
+
+        ImGui::Begin("ERROR", canClose);
+        ImGui::LabelText("", e.what());
+        ImGui::End();
+
+    }
+
+    const char* targetEffects[] = { "NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special" };
+    const char* targetTypes[] = { "NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown" };
+    const char* effectiveOn[] = { "NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown" };
+    const char* elements[] = { "Fire", "Wind", "Earth", "Lightning", "Blizzard" };
+
+    char** moveIDs = new char* [numMoves] {};
+    char** skillIDs = new char* [numSkills] {};
+    char** itemIDs = new char* [numItems] {};
+    const char* eggIDs[] = {"NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg"};
+    const char* bookIDs[] = {"NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning"};
+    const char* specialIDs[] = {"NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"};
+    const char* statIDs[] = { "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
+
+    for (ImU16 i = 0; i < numMoves; i++)
+        moveIDs[i] = moves[i].name;
+
+    for (ImU16 i = 0; i < numSkills; i++)
+        skillIDs[i] = skills[i].name;
+
+    for (ImU16 i = 0; i < numItems; i++)
+        itemIDs[i] = items[i].name;
 
     // Main loop
     MSG msg;
@@ -134,6 +227,45 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
+        {   //General Information WINDOW
+
+            ImGui::Begin("Information");
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
+            if (ImGui::Button("Launch Grandia II")) {
+
+                STARTUPINFO si;
+                PROCESS_INFORMATION pi;
+                LPCWSTR path = L"grandia2.exe";
+
+                // set the size of the structures
+                ZeroMemory(&si, sizeof(si));
+                si.cb = sizeof(si);
+                ZeroMemory(&pi, sizeof(pi));
+
+                // start the program up
+                CreateProcess(path,   // the path
+                    lpCmdLine,        // Command line
+                    NULL,           // Process handle not inheritable
+                    NULL,           // Thread handle not inheritable
+                    FALSE,          // Set handle inheritance to FALSE
+                    0,              // No creation flags
+                    NULL,           // Use parent's environment block
+                    NULL,           // Use parent's starting directory 
+                    &si,            // Pointer to STARTUPINFO structure
+                    &pi             // Pointer to PROCESS_INFORMATION structure (removed extra parentheses)
+                );
+
+                // Close process and thread handles. 
+                CloseHandle(pi.hProcess);
+                CloseHandle(pi.hThread);
+
+            }
+
+            ImGui::End();
+
+        }
+
         {   //MS_PARAM WINDOW
             
             static ImU16 moveID = 0;
@@ -146,8 +278,22 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                     AilmentBitFlags[i] = moves[moveID].ailmentsBitflag & (1 << i);
 
             ImGui::SameLine();
-            if (ImGui::Button("Save"))
-                writeMS(moves, numMoves);
+            if (ImGui::Button("Save")) {
+
+                try {
+
+                    writeMS(moves, numMoves);
+
+                }
+                catch (const std::exception & e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
 
             ImGui::LabelText("ID", std::to_string(moves[moveID].id).c_str());
 
@@ -224,8 +370,22 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::Combo("Index", &skillID, skillIDs, (int)numSkills); ImGui::SameLine();
 
                 ImGui::SameLine();
-            if (ImGui::Button("Save"))
+            if (ImGui::Button("Save")) {
+
+                try {
+
                 writeSK(skills, numSkills);
+
+                }
+                catch (const std::exception & e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
 
             ImGui::InputText("Name", skills[skillID].name, 19);
             ImGui::InputUByte("Cost Type #1", &skills[skillID].cost1);
@@ -276,8 +436,22 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::Combo("Index", &eggID, eggIDs, (int)numEggs); ImGui::SameLine();
 
             ImGui::SameLine();
-            if (ImGui::Button("Save"))
+            if (ImGui::Button("Save")) {
+
+                try {
+
                 writeMAG(eggs, numEggs);
+
+                }
+                catch (const std::exception & e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
 
             ImGui::Combo("Slot", &spellSlot, slotIDs, 18); ImGui::NewLine();
 
@@ -301,8 +475,21 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::Combo("Index", &bookID, bookIDs, (int)numBooks); ImGui::SameLine();
 
             ImGui::SameLine();
-            if (ImGui::Button("Save"))
-                writeSKI(books, numBooks);
+            if (ImGui::Button("Save")) {
+
+                try {
+
+                    writeSKI(books, numBooks);
+
+                }
+                catch (const std::exception & e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+            }
 
             ImGui::Combo("Slot", &skillSlot, slotIDs, 6); ImGui::NewLine();
 
@@ -326,8 +513,22 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::Combo("Index", &specialID, specialIDs, (int)numSpecials); ImGui::SameLine();
 
             ImGui::SameLine();
-            if (ImGui::Button("Save"))
+            if (ImGui::Button("Save")) {
+
+                try {
+
                 writeSPC(specials, numSpecials);
+
+                }
+                catch (const std::exception & e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
 
             ImGui::Combo("Slot", &moveSlot, slotIDs, 6); ImGui::NewLine();
 
@@ -348,8 +549,22 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::Combo("Index", &statID, statIDs, (int)numStats); ImGui::SameLine();
 
             ImGui::SameLine();
-            if (ImGui::Button("Save"))
+            if (ImGui::Button("Save")) {
+
+                try {
+
                 writePC(stats, numStats);
+
+                }
+                catch (const std::exception & e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
 
             ImGui::InputUInt("EXP", &stats[statID].exp);
 
@@ -460,8 +675,22 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             }
 
             ImGui::SameLine();
-            if (ImGui::Button("Save"))
+            if (ImGui::Button("Save")) {
+
+                try {
+
                 writeITE(items, numItems);
+
+                }
+                catch (const std::exception & e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
 
             ImGui::LabelText("ID", std::to_string(items[itemID].id).c_str());   //it does come last in the file, but better to allow quick finding of the ID
 
@@ -591,8 +820,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
             }
 
-            equipNotOpen:
-
             if (hasUsable) {
 
                 ImGui::Begin("Item Usable");
@@ -652,8 +879,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                 ImGui::End();
 
             }
-
-            usableNotOpen:
 
             ImGui::End();
 

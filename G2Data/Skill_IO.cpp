@@ -9,7 +9,7 @@ void writeSK(SkillStruct* skills, const ImU16& count) {
 	std::ofstream output("content/data/afs/xls_data/SK_PARAM.BIN", std::ios::binary);
 
 	if (!output.is_open())
-		return;
+		throw new std::exception("SK_PARAM.BIN not found to be written!");
 
 	for (size_t i = 0; i < count; i++) {
 
@@ -97,7 +97,7 @@ SkillStruct* readSK(ImU16& count) {
 	SkillStruct* skills = new SkillStruct[count * 104];	//entries are 104 bytes long
 
 	if (!input.is_open())
-		throw new std::exception();
+		throw new std::exception("SK_PARAM.BIN not found to be read!");
 
 	for (size_t i = 0; i < count; i++) {
 

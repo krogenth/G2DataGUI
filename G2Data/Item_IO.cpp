@@ -4,33 +4,6 @@
 #include "StringManip.h"
 #include "ItemStruct.h"
 
-/*
-void writeSPC(SpecialMoveStruct* specials, const ImU16& count) {
-
-	std::ofstream output("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
-
-	if (!output.is_open())
-		return;
-
-	for (size_t i = 0; i < 0x0E; i++) {
-
-		for (size_t j = 0; j < 6; j++) {
-
-			output.put(specials[i].moves[j].moveOffset);
-			output.put(specials[i].moves[j].startingLevel);
-
-			output.put(specials[i].moves[j].storyFlag);
-			output.put((specials[i].moves[j].storyFlag >> 8));
-
-		}
-
-	}
-
-	output.close();
-
-}
-*/
-
 void writeITE(ItemStruct* items, const ImU16& count) {
 
 	size_t offset = 0xF9B0;	//80 * 799
@@ -38,7 +11,7 @@ void writeITE(ItemStruct* items, const ImU16& count) {
 	std::ofstream output("content/data/afs/xls_data/ITEM.BIN", std::ios::binary);
 
 	if (!output.is_open())
-		throw new std::exception();
+		throw new std::exception("ITEM.BIN not found to be written!");
 
 	for (size_t i = 0; i < count; i++) {
 
@@ -194,13 +167,13 @@ void writeITE(ItemStruct* items, const ImU16& count) {
 
 			output.put(items[i].usableOffset->ailmentsChance);
 
-			output.put(items[i].usableOffset->atkMod);
+			output.put(items[i].usableOffset->atkMod % 6);
 
-			output.put(items[i].usableOffset->defMod);
+			output.put(items[i].usableOffset->defMod % 6);
 
-			output.put(items[i].usableOffset->actMod);
+			output.put(items[i].usableOffset->actMod % 6);
 
-			output.put(items[i].usableOffset->movMod);
+			output.put(items[i].usableOffset->movMod % 6);
 
 			output.put(items[i].usableOffset->breakChance);
 
@@ -229,7 +202,7 @@ ItemStruct* readITE(ImU16& count) {
 	ItemStruct* items = new ItemStruct[count];	//entries are broken down into 3 possible parts(first is always there, 80 bytes long; second is equipment, 28 bytes long; third is usables, 32 bytes long)
 
 	if (!input.is_open())
-		throw new std::exception();
+		throw new std::exception("ITEM.BIN not found to be read!");
 
 	for (size_t i = 0; i < count; i++) {
 
