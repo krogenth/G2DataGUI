@@ -24,7 +24,7 @@ PC_INIT.BIN
 
 ## How to use:
 
-1.) Copy the /content/ folder to where the program is, or move the program to the game root directory, right where Grandia2.exe is(steamapps/common/Grandia II Anniversary Edition).
+1.) Move the program to the game root directory, right where grandia2.exe is(steamapps/common/Grandia II Anniversary Edition).
 
 2.) Back-up the content/data/ in case anything gets messed up
 
