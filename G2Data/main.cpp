@@ -838,8 +838,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                 ImGui::InputUByte("Unknown #1", &items[itemID].usableOffset->unknown1);
 
                 ImGui::InputShort("IP Damage", &items[itemID].usableOffset->ipDamage);
-                ImGui::InputShort("IP Damage", &items[itemID].usableOffset->ipCancelDamage);
-                ImGui::InputShort("IP Damage", &items[itemID].usableOffset->knockback);
+                ImGui::InputShort("IP Cancel Damage", &items[itemID].usableOffset->ipCancelDamage);
+                ImGui::InputShort("Knockback", &items[itemID].usableOffset->knockback);
 
                 ImGui::Combo("Element", &items[itemID].usableOffset->element, elements, 5);
                 ImGui::InputUByte("Element Strength", &items[itemID].usableOffset->elementStr);

@@ -153,13 +153,13 @@ MoveStruct* readMS(ImU16& count) {
 		moves[i].unknown2 = (ImU8)readByte[0];
 
 		input.read(readByte, 2);
-		moves[i].ipDamage = (readByte[1] << 8) + readByte[0];
+		moves[i].ipDamage = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 		
 		input.read(readByte, 2);
-		moves[i].ipCancelDamage = (readByte[1] << 8) + readByte[0];;
+		moves[i].ipCancelDamage = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 
 		input.read(readByte, 2);
-		moves[i].knockback = (readByte[1] << 8) + readByte[0];;
+		moves[i].knockback = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 
 		input.read(readByte, 1);
 		moves[i].element = (ImU8)readByte[0];

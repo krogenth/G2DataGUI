@@ -348,13 +348,13 @@ ItemStruct* readITE(ImU16& count) {
 			items[i].usableOffset->unknown1 = (ImU8)readByte[0];
 
 			input.read(readByte, 2);
-			items[i].usableOffset->ipDamage = (readByte[1] << 8) + readByte[0];
+			items[i].usableOffset->ipDamage = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 
 			input.read(readByte, 2);
-			items[i].usableOffset->ipCancelDamage = (readByte[1] << 8) + readByte[0];
+			items[i].usableOffset->ipCancelDamage = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 
 			input.read(readByte, 2);
-			items[i].usableOffset->knockback = (readByte[1] << 8) + readByte[0];
+			items[i].usableOffset->knockback = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 
 			input.read(readByte, 1);
 			items[i].usableOffset->element = (ImU8)readByte[0];
