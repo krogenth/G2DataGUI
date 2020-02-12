@@ -30,6 +30,13 @@ void CreateRenderTarget();
 void CleanupRenderTarget();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+/*
+TODO:
+    Implement enemy data, groupings(from *.mdt files in /maps/), and patrolling sections(?)(from *.mdt files in /maps/)
+    Implement hints for various entries(ex: specials, stamina, etc.)
+
+*/
+
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow) {
 
     // Create application window
@@ -59,7 +66,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
-    //ImGui::StyleColorsClassic();
 
     // Setup Platform/Renderer bindings
     ImGui_ImplWin32_Init(hwnd);
@@ -246,14 +252,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                 // start the program up
                 CreateProcess(path,   // the path
                     lpCmdLine,        // Command line
-                    NULL,           // Process handle not inheritable
-                    NULL,           // Thread handle not inheritable
-                    FALSE,          // Set handle inheritance to FALSE
-                    0,              // No creation flags
-                    NULL,           // Use parent's environment block
-                    NULL,           // Use parent's starting directory 
-                    &si,            // Pointer to STARTUPINFO structure
-                    &pi             // Pointer to PROCESS_INFORMATION structure (removed extra parentheses)
+                    NULL,             // Process handle not inheritable
+                    NULL,             // Thread handle not inheritable
+                    FALSE,            // Set handle inheritance to FALSE
+                    0,                // No creation flags
+                    NULL,             // Use parent's environment block
+                    NULL,             // Use parent's starting directory 
+                    &si,              // Pointer to STARTUPINFO structure
+                    &pi               // Pointer to PROCESS_INFORMATION structure (removed extra parentheses)
                 );
 
                 // Close process and thread handles. 
@@ -741,7 +747,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
             }
 
-            if (hasEquip) {
+            if (hasEquip) { //Item Equippable WINDOW
 
                 ImGui::Begin("Item Equipment");
 
@@ -820,7 +826,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
             }
 
-            if (hasUsable) {
+            if (hasUsable) {    //Item Usable WINDOW
 
                 ImGui::Begin("Item Usable");
 
@@ -904,6 +910,25 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
     UnregisterClass(wc.lpszClassName, wc.hInstance);
 
     delete[] moves;
+    moves = nullptr;
+
+    delete[] skills;
+    skills = nullptr;
+
+    delete[] eggs;
+    eggs = nullptr;
+
+    delete[] books;
+    books = nullptr;
+
+    delete[] specials;
+    specials = nullptr;
+
+    delete[] items;
+    items = nullptr;
+
+    delete[] stats;
+    stats = nullptr;
 
     return 0;
 

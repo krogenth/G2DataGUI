@@ -12,13 +12,6 @@ void writePC(StartStatsStruct* stats, const ImU16& count) {
 
 	for (size_t i = 0; i < count; i++) {
 
-		/*
-		output.put(items[i].id);
-		output.put((items[i].id >> 8));
-		output.put((items[i].id >> 16));
-		output.put((items[i].id >> 24));
-		*/
-
 		output.put(stats[i].exp);
 		output.put((stats[i].exp >> 8));
 		output.put((stats[i].exp >> 16));

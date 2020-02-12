@@ -78,6 +78,5 @@ public:
 40 byte Desc - Description of spell/move
 */
 
-//void writeMS();
 void writeMS(MoveStruct* moves, const ImU16& count);
 MoveStruct * readMS(ImU16& count);

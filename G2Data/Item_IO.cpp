@@ -348,13 +348,13 @@ ItemStruct* readITE(ImU16& count) {
 			items[i].usableOffset->unknown1 = (ImU8)readByte[0];
 
 			input.read(readByte, 2);
-			items[i].usableOffset->ipDamage = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
+			items[i].usableOffset->ipDamage = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
 
 			input.read(readByte, 2);
-			items[i].usableOffset->ipCancelDamage = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
+			items[i].usableOffset->ipCancelDamage = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
 
 			input.read(readByte, 2);
-			items[i].usableOffset->knockback = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
+			items[i].usableOffset->knockback = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
 
 			input.read(readByte, 1);
 			items[i].usableOffset->element = (ImU8)readByte[0];
@@ -406,40 +406,3 @@ ItemStruct* readITE(ImU16& count) {
 	return items;
 
 }
-
-/*
-SpecialMoveStruct* readSPC(ImU16& count) {
-
-	char* readByte = new char[2]{};
-
-	std::ifstream input("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
-
-	count = 0x0E;
-	SpecialMoveStruct* specials = new SpecialMoveStruct[count];	//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
-
-	if (!input.is_open())
-		throw new std::exception();
-
-	for (size_t i = 0; i < count; i++) {
-
-		for (size_t j = 0; j < 6; j++) {
-
-			input.read(readByte, 1);
-			specials[i].moves[j].moveOffset = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			specials[i].moves[j].startingLevel = (ImU8)readByte[0];
-
-			input.read(readByte, 2);
-			specials[i].moves[j].storyFlag = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-		}
-
-	}
-
-	input.close();
-
-	return specials;
-
-}
-*/
