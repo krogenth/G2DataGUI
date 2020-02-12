@@ -54,11 +54,11 @@ ITEM.BIN:
 
 There are 3 different sections: the initial entry of the item, and 2 different types of "definitions." The definitions are for different types of items, one being for equipment, the other for usable items. Some equipment can have both an equipment definition and item definition.
 	
-For those seeking information on files not handled yet(particularly *.pvp, *.nj, *.dat, etc.) check out this Github repo:
+For those seeking information on files not handled yet(particularly \*.pvp, \*.nj, \*.dat, etc.) check out this Github repo:
 https://github.com/bogglez/Ninja-Lib/tree/master/documentation
 
-For *.nj files(data/afs/map/*/*.chr, data/afs/model/*.dat) check out:
+For \*.nj files(data/afs/map/\*/\*.chr, data/afs/model/\*.dat) check out:
 http://sharnoth.com/psodevwiki/format/nj
 
-For *.njm files(data/afs/map/*/*.chr, data/afs/map/*/*.chr2) check out:
+For \*.njm files(data/afs/map/\*/\*.chr, data/afs/map/\*/\*.chr2) check out:
 http://sharnoth.com/psodevwiki/dreamcast/njm
