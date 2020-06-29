@@ -1,5 +1,6 @@
 #include <fstream>
 #include <exception>
+#include <string>
 
 #include "StringManip.h"
 #include "MoveStruct.h"
@@ -14,7 +15,7 @@ void writeMS(MoveStruct* moves, const ImU16& count) {
 	for (size_t i = 0; i < count; i++) {
 
 		output.put(moves[i].id);
-		output.put(moves[i].icon);
+		output.put((moves[i].icon + 1));
 		output.write((char*)moves[i].name, 18);
 
 		output.put(moves[i].cost);
@@ -100,18 +101,21 @@ MoveStruct* readMS(ImU16& count) {
 	std::ifstream input("content/data/afs/xls_data/MS_PARAM.BIN", std::ios::binary);
 
 	count = 0x81;
-	MoveStruct* moves = new MoveStruct[0x81 * 108];	//entries are 108 bytes long
+	MoveStruct* moves = new MoveStruct[count];	//entries are 108 bytes long
 
 	if (!input.is_open())
 		throw new std::exception("MS_PARAM.BIN not found to be read!");
 
-	for (int i = 0; !input.eof(); i++) {
+	for (int i = 0; i < count; i++) {
 
 		input.read(readByte, 1);
 		moves[i].id = i;	//overwrite all IDs, we want them to be equal to the offset of the entry in the file
 
 		input.read(readByte, 1);
-		moves[i].icon = (ImU8)readByte[0];
+		if ((ImU8)readByte[0] == 0)
+			moves[i].icon = 0;
+		else
+			moves[i].icon = (ImU8)readByte[0] - 1;
 
 		input.read(&moves[i].name[0], 18);
 		replaceNulls(moves[i].name, 18);

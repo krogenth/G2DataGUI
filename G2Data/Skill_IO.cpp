@@ -94,7 +94,7 @@ SkillStruct* readSK(ImU16& count) {
 	std::ifstream input("content/data/afs/xls_data/SK_PARAM.BIN", std::ios::binary);
 
 	count = 0x83;
-	SkillStruct* skills = new SkillStruct[count * 104];	//entries are 104 bytes long
+	SkillStruct* skills = new SkillStruct[count];	//entries are 104 bytes long
 
 	if (!input.is_open())
 		throw new std::exception("SK_PARAM.BIN not found to be read!");

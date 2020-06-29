@@ -18,6 +18,7 @@
 #include "SpecialMoveStruct.h"
 #include "StartStats.h"
 #include "ItemStruct.h"
+#include "EnemyStatsStruct.h"
 
 static ID3D11Device* g_pd3dDevice = NULL;
 static ID3D11DeviceContext* g_pd3dDeviceContext = NULL;
@@ -96,109 +97,133 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
     ImU16 numStats = 0;
     StartStatsStruct* stats = nullptr;
 
-    try {
+    ImU16 numEnemies = 0;
+    EnemyStatsStruct* enemies = nullptr;
+    
+    const char* moveIcons[] =       { "Fire", "Wind", "Earth", "Lightning", "Blizzard", "Water", "Explosion", "Forest", "Light", "Darkness", "Sword", "Staff", "Crossbow", "Dagger", "Poleaxe", "Chakram", "Red Shoe" };
+    const char* targetEffects[] =   { "NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special" };
+    const char* targetTypes[] =     { "NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown" };
+    const char* effectiveOn[] =     { "NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown" };
+    const char* elements[] =        { "Fire", "Wind", "Earth", "Lightning", "Blizzard" };
 
-        moves = readMS(numMoves);
+    const char* eggIDs[] =          { "NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg" };
+    const char* bookIDs[] =         { "NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning" };
+    const char* specialIDs[] =      { "NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
+    const char* statIDs[] =         { "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
+    
+    //CALL READ DATA FUNCTIONS
+    {
+
+        try {
+
+            moves = readMS(numMoves);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
+
+        try {
+
+            skills = readSK(numSkills);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
+
+        try {
+
+            eggs = readMAG(numEggs);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
+
+        try {
+
+            books = readSKI(numBooks);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
+
+        try {
+
+            specials = readSPC(numSpecials);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
+
+        try {
+
+            items = readITE(numItems);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
+
+        try {
+
+            stats = readPC(numStats);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
+
+        try {
+
+            enemies = readEnemyStats(numEnemies);
+
+        }
+        catch (const std::exception& e) {
+
+            ImGui::Begin("ERROR", canClose);
+            ImGui::LabelText("", e.what());
+            ImGui::End();
+
+        }
 
     }
-    catch (const std::exception & e) {
-
-        ImGui::Begin("ERROR", canClose);
-        ImGui::LabelText("", e.what());
-        ImGui::End();
-
-    }
-
-    try {
-
-        skills = readSK(numSkills);
-
-    }
-    catch (const std::exception & e) {
-
-        ImGui::Begin("ERROR", canClose);
-        ImGui::LabelText("", e.what());
-        ImGui::End();
-
-    }
-
-    try {
-
-        eggs = readMAG(numEggs);
-
-    }
-    catch (const std::exception & e) {
-
-        ImGui::Begin("ERROR", canClose);
-        ImGui::LabelText("", e.what());
-        ImGui::End();
-
-    }
-
-    try {
-
-        books = readSKI(numBooks);
-
-    }
-    catch (const std::exception & e) {
-
-        ImGui::Begin("ERROR", canClose);
-        ImGui::LabelText("", e.what());
-        ImGui::End();
-
-    }
-
-    try {
-
-        specials = readSPC(numSpecials);
-
-    }
-    catch (const std::exception & e) {
-
-        ImGui::Begin("ERROR", canClose);
-        ImGui::LabelText("", e.what());
-        ImGui::End();
-
-    }
-
-    try {
-
-        items = readITE(numItems);
-
-    }
-    catch (const std::exception & e) {
-
-        ImGui::Begin("ERROR", canClose);
-        ImGui::LabelText("", e.what());
-        ImGui::End();
-
-    }
-
-    try {
-
-        stats = readPC(numStats);
-
-    }
-    catch (const std::exception & e) {
-
-        ImGui::Begin("ERROR", canClose);
-        ImGui::LabelText("", e.what());
-        ImGui::End();
-
-    }
-
-    const char* targetEffects[] = { "NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special" };
-    const char* targetTypes[] = { "NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown" };
-    const char* effectiveOn[] = { "NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown" };
-    const char* elements[] = { "Fire", "Wind", "Earth", "Lightning", "Blizzard" };
 
     char** moveIDs = new char* [numMoves] {};
     char** skillIDs = new char* [numSkills] {};
     char** itemIDs = new char* [numItems] {};
-    const char* eggIDs[] = {"NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg"};
-    const char* bookIDs[] = {"NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning"};
-    const char* specialIDs[] = {"NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"};
-    const char* statIDs[] = { "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
+    char** enemyIDs = new char* [numEnemies] {};
 
     for (ImU16 i = 0; i < numMoves; i++)
         moveIDs[i] = moves[i].name;
@@ -208,6 +233,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
     for (ImU16 i = 0; i < numItems; i++)
         itemIDs[i] = items[i].name;
+
+    for (ImU16 i = 0; i < numEnemies; i++)
+        enemyIDs[i] = enemies[i].name;
 
     // Main loop
     MSG msg;
@@ -233,10 +261,36 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        {   //General Information WINDOW
+        //General Information WINDOW
+        {
 
             ImGui::Begin("Information");
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+            if (ImGui::Button("Save All")) {
+
+                try {
+
+                    writeMS(moves, numMoves);
+                    writeSK(skills, numSkills);
+                    writeMAG(eggs, numEggs);
+                    writeSKI(books, numBooks);
+                    writeSPC(specials, numSpecials);
+                    writePC(stats, numStats);
+                    writeITE(items, numItems);
+                    writeEnemyStats(enemies, numEnemies);
+
+                }
+                catch (const std::exception& e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
+
+            ImGui::SameLine();
 
             if (ImGui::Button("Launch Grandia II")) {
 
@@ -272,7 +326,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        {   //MS_PARAM WINDOW
+        //MS_PARAM WINDOW
+        {
             
             static ImU16 moveID = 0;
             static bool AilmentBitFlags[8] = {};
@@ -301,9 +356,10 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
             }
 
-            ImGui::LabelText("ID", std::to_string(moves[moveID].id).c_str());
+            //ImGui::LabelText("ID", std::to_string(moves[moveID].id).c_str());
 
-            ImGui::InputUByte("Icon", &moves[moveID].icon);
+            //ImGui::InputUByte("Icon", &moves[moveID].icon);
+            ImGui::Combo("Icon", &moves[moveID].icon, moveIcons, 17);
             ImGui::InputText("Name", moves[moveID].name, 19);
             ImGui::InputUShort("Cost", &moves[moveID].cost);
 
@@ -367,7 +423,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        {   //SK_PARAM WINDOW
+        //SK_PARAM WINDOW
+        {
 
             static ImU16 skillID = 0;
 
@@ -431,7 +488,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        {   //TB_MAGIC WINDOW
+        //TB_MAGIC WINDOW
+        {
 
             static ImU16 eggID = 0;
             static ImU16 spellSlot = 0;
@@ -470,7 +528,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        {   //TB_SKILL WINDOW
+        //TB_SKILL WINDOW
+        {
 
             static ImU16 bookID = 0;
             static ImU16 skillSlot = 0;
@@ -508,7 +567,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        {   //TB_SPCL WINDOW
+        //TB_SPCL WINDOW
+        {
 
             static ImU16 specialID = 0;
             static ImU16 moveSlot = 0;
@@ -546,7 +606,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        {   //PC_INIT WINDOW
+        //PC_INIT WINDOW
+        {
 
             static ImU16 statID = 0;
 
@@ -635,7 +696,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        {   //ITEM WINDOW
+        //ITEM WINDOW
+        {
 
             static ImU16 itemID = 0;
             static bool hasEquip = false;
@@ -698,7 +760,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
             }
 
-            ImGui::LabelText("ID", std::to_string(items[itemID].id).c_str());   //it does come last in the file, but better to allow quick finding of the ID
+            //ImGui::LabelText("ID", std::to_string(items[itemID].id).c_str());   //it does come last in the file, but better to allow quick finding of the ID
 
             ImGui::InputText("Name", items[itemID].name, 19);
             ImGui::InputText("Description", items[itemID].description, 41);
@@ -885,6 +947,104 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                 ImGui::End();
 
             }
+
+            ImGui::End();
+
+        }
+
+        //ENEMY WINDOW
+        {
+
+            static ImU16 enemyID = 0;
+            static bool AilmentBitFlags[8] = {};
+
+            ImGui::Begin("ENEMIES");
+
+            if (ImGui::Combo("Index", &enemyID, enemyIDs, (int)numEnemies))
+                for (size_t i = 0; i < 8; i++)
+                    AilmentBitFlags[i] = enemies[enemyID].ailmentsBitflag & (1 << i);
+
+            ImGui::SameLine();
+            if (ImGui::Button("Save")) {
+
+                try {
+
+                    writeEnemyStats(enemies, numEnemies);
+
+                }
+                catch (const std::exception& e) {
+
+                    ImGui::Begin("ERROR", canClose);
+                    ImGui::LabelText("", e.what());
+                    ImGui::End();
+
+                }
+
+            }
+
+            ImGui::InputText("Name", enemies[enemyID].name, 19);
+
+            ImGui::InputUByte("Type1", &enemies[enemyID].type1);
+            ImGui::InputUByte("Type2", &enemies[enemyID].type2);
+
+            ImGui::InputShort("Level", &enemies[enemyID].level);
+            ImGui::InputInt("Health", &enemies[enemyID].health);
+            ImGui::InputShort("MP", &enemies[enemyID].mp);
+            ImGui::InputShort("SP", &enemies[enemyID].sp);
+            ImGui::InputShort("VIT", &enemies[enemyID].vit);
+            ImGui::InputShort("AGI", &enemies[enemyID].agi);
+            ImGui::InputShort("SPD", &enemies[enemyID].spd);
+            ImGui::InputShort("MEN", &enemies[enemyID].men);
+            ImGui::InputShort("Stamina", &enemies[enemyID].stamina);
+            ImGui::InputShort("IP Stun", &enemies[enemyID].ipStun);
+            ImGui::InputShort("IP Cancel Stun", &enemies[enemyID].ipCancelStun);
+            ImGui::InputByte("Still Evasion Rate", &enemies[enemyID].evasionStillRate);
+            ImGui::InputByte("Moving Evasion Rate", &enemies[enemyID].evasionMovingRate);
+            ImGui::InputByte("Fire Resist", &enemies[enemyID].fireResist);
+            ImGui::InputByte("Wind Resist", &enemies[enemyID].windResist);
+            ImGui::InputByte("Earth Resist", &enemies[enemyID].earthResist);
+            ImGui::InputByte("Lightning Resist", &enemies[enemyID].lightningResist);
+            ImGui::InputByte("Blizzard Resist", &enemies[enemyID].blizzardResist);
+
+            if (ImGui::Checkbox("Poison", &AilmentBitFlags[0]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[0] << 0);
+            ImGui::SameLine();
+            if (ImGui::Checkbox("Sleep", &AilmentBitFlags[1]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[1] << 1);
+            ImGui::SameLine();
+            if (ImGui::Checkbox("Paralysis", &AilmentBitFlags[2]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[2] << 2);
+            ImGui::SameLine();
+            if (ImGui::Checkbox("Confusion", &AilmentBitFlags[3]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[3] << 3);
+
+            if (ImGui::Checkbox("Plague", &AilmentBitFlags[4]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[4] << 4);
+            ImGui::SameLine();
+            if (ImGui::Checkbox("Magic Block", &AilmentBitFlags[5]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[5] << 5);
+            ImGui::SameLine();
+            if (ImGui::Checkbox("Move Block", &AilmentBitFlags[6]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[6] << 6);
+            ImGui::SameLine();
+            if (ImGui::Checkbox("Death", &AilmentBitFlags[7]))
+                enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[7] << 7);
+
+            ImGui::InputShort("Knockback Resist", &enemies[enemyID].knockbackResist);
+            ImGui::InputShort("Size", &enemies[enemyID].size);
+            ImGui::InputByte("No Run", &enemies[enemyID].noRunFlag);
+            ImGui::InputInt("EXP", &enemies[enemyID].exp);
+            ImGui::InputInt("Skill Coins", &enemies[enemyID].skillCoins);
+            ImGui::InputInt("Magic Coins", &enemies[enemyID].magicCoins);
+            ImGui::InputInt("Gold Coins", &enemies[enemyID].goldCoins);
+
+            ImGui::Combo("Item1", &enemies[enemyID].item1, itemIDs, (int)numItems);
+            ImGui::Combo("Item2", &enemies[enemyID].item2, itemIDs, (int)numItems);
+
+            ImGui::InputByte("Item1 Chance", &enemies[enemyID].item1Chance);
+            ImGui::InputByte("Item2 Chance", &enemies[enemyID].item2Chance);
+
+            //ImGui::LabelText("Filename", enemies[enemyID].filename.c_str());      //Used for testing to verify files are correct
 
             ImGui::End();
 

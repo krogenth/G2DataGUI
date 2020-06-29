@@ -142,7 +142,7 @@ StartStatsStruct* readPC(ImU16& count) {
 	std::ifstream input("content/data/afs/xls_data/PC_INIT.BIN", std::ios::binary);
 
 	count = 0x0D;
-	StartStatsStruct* stats = new StartStatsStruct[count * 80];	//entries are 80 bytes long
+	StartStatsStruct* stats = new StartStatsStruct[count];	//entries are 80 bytes long
 
 	if (!input.is_open())
 		throw new std::exception("PC_INIT.BIN not found to be read!");
