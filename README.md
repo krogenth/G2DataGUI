@@ -1,10 +1,12 @@
-A Graphical version of G2Data
+## A Graphical version of G2Data
 
 Grandia 2 Data reading/writing
+
  - Programming by krogenth: http://steamcommunity.com/profiles/76561198163774445
+ 
  - Thanks to woog for providing most data entries: http://steamcommunity.com/profiles/76561198008094982/
 
-What this does:
+## What this does:
 
 This is a C++ GUI program(MSVC 2019) using DX11. Currently supports:
 
