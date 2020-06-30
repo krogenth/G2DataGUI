@@ -9,20 +9,31 @@ What this does:
 This is a C++ GUI program(MSVC 2019) using DX11. Currently supports:
 
 MS_PARAM.BIN
+
 SK_PARAM.BIN
+
 TB_MAGIC.BIN
+
 TB_SKILL.BIN
+
 TB_SPCL.BIN
+
 ITEM.BIN
+
 PC_INIT.BIN
+
 Enemy Data Files(excluding boss move tables)
 
 ## How to use:
 
 1.) Move the program to the game root directory, right where grandia2.exe is(steamapps/common/Grandia II Anniversary Edition).
+
 2.) Back-up the content/data/ in case anything gets messed up
+
 3.) Run the program
+
 4.) Edit values as desired
+
 5.) Save
 
 ## Other information:
