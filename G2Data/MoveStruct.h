@@ -18,9 +18,9 @@ public:
 	ImU16 recovery = 0;
 	ImU16 animation = 0;
 	ImU8 unknown1 = 0;
-	ImU8 unknown2 = 0;
-	ImS16 ipDamage = 0;
-	ImS16 ipCancelDamage = 0;
+	ImU8 knockDown = 0;
+	ImS16 ipStun = 0;
+	ImS16 ipCancelStun = 0;
 	ImS16 knockback = 0;
 	ImU8 element = 0;
 	ImU8 elementStr = 0;

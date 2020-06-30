@@ -1,6 +1,40 @@
 #pragma once
 #include "ImGui/imgui.h"
 
+struct EnemyMoveStatsStruct {
+
+	char* name = new char[19]{};
+	ImU16 mp = 0;
+	ImU16 sp = 0;
+	ImU8 unknown = 0;
+	ImU8 targetEffect = 0;
+	ImU16 str = 0;
+	ImU16 pow = 0;
+	ImU16 ad = 0;
+	ImU8 targetType = 0;
+	ImU8 unknown1 = 0;
+	ImU16 distance = 0;
+	ImU16 accuracy = 0;
+	ImU16 range = 0;
+	ImU16 castTime = 0;
+	ImU16 recovery = 0;
+	ImU8 animation = 0;
+	ImU8 knockDown = 0;
+	ImS16 ipStun = 0;
+	ImS16 ipCancelStun = 0;
+	ImS16 knockback = 0;
+	ImU8 element = 0;
+	ImU8 elementStr = 0;
+	ImU8 ailmentsBitflag = 0;
+	ImU8 ailmentsChance = 0;
+	ImS8 atkMod = 0;
+	ImS8 defMod = 0;
+	ImS8 actMod = 0;
+	ImS8 movMod = 0;
+	ImU16 special = 0;
+
+};
+
 struct EnemyStatsStruct {
 	char* name = new char[19]{};
 	ImU8 unknown = 0;
@@ -44,6 +78,8 @@ struct EnemyStatsStruct {
 	ImU16 item2 = 0;
 	ImS8 item1Chance = 0;
 	ImS8 item2Chance = 0;
+
+	EnemyMoveStatsStruct moves[5]{};
 
 	std::string filename = "";
 

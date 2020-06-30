@@ -375,9 +375,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::InputUShort("Recovery", &moves[moveID].recovery);
             ImGui::InputUShort("Animation", &moves[moveID].animation);
             ImGui::InputUByte("Unknown #1", &moves[moveID].unknown1);
-            ImGui::InputUByte("Unknown #2", &moves[moveID].unknown2);
+            ImGui::InputUByte("knockDown Flag", &moves[moveID].knockDown);
 
-            ImGui::InputShort2("IP Damage/IP Cancel Damage", &moves[moveID].ipDamage);
+            ImGui::InputShort2("IP Stun/IP Cancel Stun", &moves[moveID].ipStun);
 
             ImGui::InputShort("Knockback", &moves[moveID].knockback);
 
@@ -957,10 +957,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
             static ImU16 enemyID = 0;
             static bool AilmentBitFlags[8] = {};
+            static bool showMoves = false;
+            static bool MoveAilmentBitFlags[8] = {};
+            static ImU16 moveSlot = 0;
+            const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5" };
 
             ImGui::Begin("ENEMIES");
 
-            if (ImGui::Combo("Index", &enemyID, enemyIDs, (int)numEnemies))
+            if (ImGui::Combo("Index", &enemyID, enemyIDs, (int)numEnemies), 100)
                 for (size_t i = 0; i < 8; i++)
                     AilmentBitFlags[i] = enemies[enemyID].ailmentsBitflag & (1 << i);
 
@@ -1045,6 +1049,81 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
             ImGui::InputByte("Item2 Chance", &enemies[enemyID].item2Chance);
 
             //ImGui::LabelText("Filename", enemies[enemyID].filename.c_str());      //Used for testing to verify files are correct
+
+            ImGui::Checkbox("Show Moves", &showMoves);
+
+            if(showMoves) {
+
+                ImGui::Begin("ENEMY MOVES");
+
+                if (ImGui::Combo("Slot", &moveSlot, slotIDs, 5))
+                    for (size_t i = 0; i < 8; i++)
+                        MoveAilmentBitFlags[i] = enemies[enemyID].moves[moveSlot].ailmentsBitflag & (1 << i);
+
+                ImGui::InputText("Name", enemies[enemyID].moves[moveSlot].name, 19);
+                ImGui::InputUShort("MP Cost", &enemies[enemyID].moves[moveSlot].mp);
+                ImGui::InputUShort("SP Cost", &enemies[enemyID].moves[moveSlot].sp);
+                ImGui::InputUByte("Unknown #1", &enemies[enemyID].moves[moveSlot].unknown);
+
+                ImGui::Combo("Target Effect", &enemies[enemyID].moves[moveSlot].targetEffect, targetEffects, 16);
+
+                ImGui::InputUShort("Strength", &enemies[enemyID].moves[moveSlot].str);
+                ImGui::InputUShort("Power", &enemies[enemyID].moves[moveSlot].pow);
+                ImGui::InputUShort("Damage(?)", &enemies[enemyID].moves[moveSlot].ad);
+
+                ImGui::Combo("Target Type", &enemies[enemyID].moves[moveSlot].targetType, targetTypes, 16);
+
+                ImGui::InputUByte("Unknown #2", &enemies[enemyID].moves[moveSlot].unknown1);
+                ImGui::InputUShort("Distance", &enemies[enemyID].moves[moveSlot].distance);
+                ImGui::InputUShort("Accuracy", &enemies[enemyID].moves[moveSlot].accuracy);
+                ImGui::InputUShort("Range", &enemies[enemyID].moves[moveSlot].range);
+                ImGui::InputUShort("Cast Time", &enemies[enemyID].moves[moveSlot].castTime);
+                ImGui::InputUShort("Recovery", &enemies[enemyID].moves[moveSlot].recovery);
+
+                //ImGui::InputUByte("Animation", &enemies[enemyID].moves[moveSlot].animation);
+                ImGui::Combo("Animation", &enemies[enemyID].moves[moveSlot].animation, moveIDs, numMoves);
+
+                ImGui::InputUByte("Knockdown", &enemies[enemyID].moves[moveSlot].knockDown);
+
+                ImGui::InputShort2("IP Stun/IP Cancel Stun", &enemies[enemyID].moves[moveSlot].ipStun);
+                ImGui::InputShort("Knockback", &enemies[enemyID].moves[moveSlot].knockback);
+
+                ImGui::Combo("Element", &enemies[enemyID].moves[moveSlot].element, elements, 5);
+                ImGui::InputUByte("Element Strength", &enemies[enemyID].moves[moveSlot].elementStr);
+
+                if (ImGui::Checkbox("Poison", &MoveAilmentBitFlags[0]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[0] << 0);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Sleep", &MoveAilmentBitFlags[1]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[1] << 1);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Paralysis", &MoveAilmentBitFlags[2]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[2] << 2);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Confusion", &MoveAilmentBitFlags[3]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[3] << 3);
+
+                if (ImGui::Checkbox("Plague", &MoveAilmentBitFlags[4]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[4] << 4);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Magic Block", &MoveAilmentBitFlags[5]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[5] << 5);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Move Block", &MoveAilmentBitFlags[6]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[6] << 6);
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Death", &MoveAilmentBitFlags[7]))
+                    enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[7] << 7);
+
+                ImGui::InputUByte("Ailments Chance", &enemies[enemyID].moves[moveSlot].ailmentsChance);
+
+                ImGui::InputByte4("Atk/Def/Act/Mov Mods", &enemies[enemyID].moves[moveSlot].atkMod);
+
+                ImGui::InputUShort("Special", &enemies[enemyID].moves[moveSlot].special);
+
+                ImGui::End();
+
+            }
 
             ImGui::End();
 

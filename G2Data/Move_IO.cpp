@@ -46,13 +46,13 @@ void writeMS(MoveStruct* moves, const ImU16& count) {
 		output.put((moves[i].animation >> 8));
 
 		output.put(moves[i].unknown1);
-		output.put(moves[i].unknown2);
+		output.put(moves[i].knockDown % 2);
 		
-		output.put(moves[i].ipDamage);
-		output.put((moves[i].ipDamage >> 8));
+		output.put(moves[i].ipStun);
+		output.put((moves[i].ipStun >> 8));
 		
-		output.put(moves[i].ipCancelDamage);
-		output.put((moves[i].ipCancelDamage >> 8));
+		output.put(moves[i].ipCancelStun);
+		output.put((moves[i].ipCancelStun >> 8));
 		
 		output.put(moves[i].knockback);
 		output.put((moves[i].knockback >> 8));
@@ -154,13 +154,13 @@ MoveStruct* readMS(ImU16& count) {
 		moves[i].unknown1 = (ImU8)readByte[0];
 
 		input.read(readByte, 1);
-		moves[i].unknown2 = (ImU8)readByte[0];
+		moves[i].knockDown = (ImU8)readByte[0];
 
 		input.read(readByte, 2);
-		moves[i].ipDamage = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
+		moves[i].ipStun = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
 		
 		input.read(readByte, 2);
-		moves[i].ipCancelDamage = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
+		moves[i].ipCancelStun = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 
 		input.read(readByte, 2);
 		moves[i].knockback = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
