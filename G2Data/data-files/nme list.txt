@@ -258,7 +258,6 @@ z04b	regenerator(first)
 
 
 
-
 z06		valmar's heart(second)(A4F4)
 z06a	left eye(second)
 z06b	right eye(second)
