@@ -29,3 +29,4 @@ public:
 
 void writeSKI(SkillBookStruct* books, const ImU16& count);
 SkillBookStruct* readSKI(ImU16& count);
+void drawSKI(SkillBookStruct* books, ImU16& numBooks, bool* canClose, char** skillIDs, ImU16& numSkills);

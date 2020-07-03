@@ -25,3 +25,4 @@ public:
 
 void writeSPC(SpecialMoveStruct* specials, const ImU16& count);
 SpecialMoveStruct* readSPC(ImU16& count);
+void drawSPC(SpecialMoveStruct* specials, ImU16& numSpecials, bool* canClose, char** moveIDs, ImU16& numMoves);

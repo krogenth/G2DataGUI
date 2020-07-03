@@ -29,3 +29,4 @@ public:
 
 void writeMAG(ManaEggStruct* eggs, const ImU16& count);
 ManaEggStruct* readMAG(ImU16& count);
+void drawMAG(ManaEggStruct* eggs, ImU16& numEggs, bool* canClose, char** moveIDs, ImU16& numMoves);

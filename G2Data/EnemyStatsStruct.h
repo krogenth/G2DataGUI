@@ -1,4 +1,6 @@
 #pragma once
+#include <future>
+
 #include "ImGui/imgui.h"
 
 struct EnemyMoveStatsStruct {
@@ -86,4 +88,5 @@ struct EnemyStatsStruct {
 };
 
 void writeEnemyStats(EnemyStatsStruct* enemies, const ImU16& count);
-EnemyStatsStruct* readEnemyStats(ImU16& count);
+void readEnemyStats(std::promise<EnemyStatsStruct*> &&ftr, ImU16& count);
+void drawEnemyStats(EnemyStatsStruct* enemies, char** enemyIDs, ImU16& numEnemies, bool* canClose, char** moveIDs, ImU16& numMoves, char** itemIDs, ImU16& numItems);

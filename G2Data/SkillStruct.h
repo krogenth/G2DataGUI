@@ -1,4 +1,6 @@
 #pragma once
+#include <future>
+
 #include "ImGui/imgui.h"
 
 struct SkillStruct {
@@ -78,4 +80,5 @@ public:
 */
 
 void writeSK(SkillStruct* skills, const ImU16& count);
-SkillStruct* readSK(ImU16& count);
+void readSK(std::promise<SkillStruct*> &&ftr, ImU16& count);
+void drawSK(SkillStruct* skills, char** skillIDs, ImU16& numSkills, bool* canClose);

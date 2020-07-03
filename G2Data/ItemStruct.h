@@ -1,4 +1,6 @@
 #pragma once
+#include <future>
+
 #include "ImGui/imgui.h"
 
 struct EquipmentStruct {
@@ -145,4 +147,5 @@ public:
 */
 
 void writeITE(ItemStruct* items, const ImU16& count);
-ItemStruct* readITE(ImU16& count);
+void readITE(std::promise<ItemStruct*>&& ftr, ImU16& count);
+void drawITE(ItemStruct* items, char** itemIDs, ImU16& numItems, bool* canClose);

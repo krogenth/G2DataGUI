@@ -9,7 +9,7 @@
 #include "EnemyStatsStruct.h"
 
 /*
-enemy.csv = 5 slot offset
+enemy.csv = 5 slot offset(field enemies 8 slot offset)
 boss.csv = 20 slot offset
 */
 
@@ -244,7 +244,7 @@ void writeEnemyStats(EnemyStatsStruct* enemies, const ImU16& count) {
 
 }
 
-EnemyStatsStruct* readEnemyStats(ImU16& count) {
+void readEnemyStats(std::promise<EnemyStatsStruct*>&& ftr, ImU16& count) {
 
 	char* readByte = new char[4]{};
 	std::ifstream input;
@@ -841,6 +841,184 @@ EnemyStatsStruct* readEnemyStats(ImU16& count) {
 
 	}
 
-	return enemies;
+	ftr.set_value(enemies);
+
+}
+
+void drawEnemyStats(EnemyStatsStruct* enemies, char** enemyIDs, ImU16& numEnemies, bool* canClose, char** moveIDs, ImU16& numMoves, char** itemIDs, ImU16& numItems) {
+
+	const char* targetEffects[] = { "NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special" };
+	const char* targetTypes[] = { "NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown" };
+	const char* elements[] = { "Fire", "Wind", "Earth", "Lightning", "Blizzard" };
+	const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5" };
+	static ImU16 enemyID = 0;
+	static bool AilmentBitFlags[8] = {};
+	static bool showMoves = false;
+	static bool MoveAilmentBitFlags[8] = {};
+	static ImU16 moveSlot = 0;
+
+	ImGui::Begin("ENEMIES");
+
+	if (ImGui::Combo("Index", &enemyID, enemyIDs, (int)numEnemies), 100)
+		for (size_t i = 0; i < 8; i++)
+			AilmentBitFlags[i] = enemies[enemyID].ailmentsBitflag & (1 << i);
+
+	ImGui::SameLine();
+	if (ImGui::Button("Save")) {
+
+		try {
+
+			writeEnemyStats(enemies, numEnemies);
+
+		}
+		catch (const std::exception& e) {
+
+			ImGui::Begin("ERROR", canClose);
+			ImGui::LabelText("", e.what());
+			ImGui::End();
+
+		}
+
+	}
+
+	ImGui::InputText("Name", enemies[enemyID].name, 19);
+
+	ImGui::InputUByte("Type1", &enemies[enemyID].type1);
+	ImGui::InputUByte("Type2", &enemies[enemyID].type2);
+
+	ImGui::InputShort("Level", &enemies[enemyID].level);
+	ImGui::InputInt("Health", &enemies[enemyID].health);
+	ImGui::InputShort("MP", &enemies[enemyID].mp);
+	ImGui::InputShort("SP", &enemies[enemyID].sp);
+	ImGui::InputShort("VIT", &enemies[enemyID].vit);
+	ImGui::InputShort("AGI", &enemies[enemyID].agi);
+	ImGui::InputShort("SPD", &enemies[enemyID].spd);
+	ImGui::InputShort("MEN", &enemies[enemyID].men);
+	ImGui::InputShort("Stamina", &enemies[enemyID].stamina);                                    if (ImGui::IsItemHovered()) ImGui::SetTooltip("How long can they move without tiring?");
+	ImGui::InputShort2("IP Stun/IP Cancel Stun", &enemies[enemyID].ipStun);                     if (ImGui::IsItemHovered()) ImGui::SetTooltip("IP Stun/IP Cancel Stun Resistance.");
+	ImGui::InputByte("Still Evasion Rate", &enemies[enemyID].evasionStillRate);
+	ImGui::InputByte("Moving Evasion Rate", &enemies[enemyID].evasionMovingRate);
+	ImGui::InputByte("Fire Resist", &enemies[enemyID].fireResist);
+	ImGui::InputByte("Wind Resist", &enemies[enemyID].windResist);
+	ImGui::InputByte("Earth Resist", &enemies[enemyID].earthResist);
+	ImGui::InputByte("Lightning Resist", &enemies[enemyID].lightningResist);
+	ImGui::InputByte("Blizzard Resist", &enemies[enemyID].blizzardResist);
+
+	if (ImGui::Checkbox("Poison", &AilmentBitFlags[0]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[0] << 0);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Sleep", &AilmentBitFlags[1]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[1] << 1);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Paralysis", &AilmentBitFlags[2]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[2] << 2);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Confusion", &AilmentBitFlags[3]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[3] << 3);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+
+	if (ImGui::Checkbox("Plague", &AilmentBitFlags[4]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[4] << 4);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Magic Block", &AilmentBitFlags[5]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[5] << 5);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Move Block", &AilmentBitFlags[6]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[6] << 6);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Death", &AilmentBitFlags[7]))
+		enemies[enemyID].ailmentsBitflag ^= (AilmentBitFlags[7] << 7);                          if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
+
+	ImGui::InputShort("Knockback Resist Rate", &enemies[enemyID].knockbackResist);
+	ImGui::InputShort("Size", &enemies[enemyID].size);
+	ImGui::InputByte("No Run", &enemies[enemyID].noRunFlag);
+	ImGui::InputInt("EXP", &enemies[enemyID].exp);
+	ImGui::InputInt("Skill Coins", &enemies[enemyID].skillCoins);
+	ImGui::InputInt("Magic Coins", &enemies[enemyID].magicCoins);
+	ImGui::InputInt("Gold Coins", &enemies[enemyID].goldCoins);
+
+	ImGui::Combo("Item1", &enemies[enemyID].item1, itemIDs, (int)numItems);
+	ImGui::Combo("Item2", &enemies[enemyID].item2, itemIDs, (int)numItems);
+
+	ImGui::InputByte("Item1 Chance", &enemies[enemyID].item1Chance);
+	ImGui::InputByte("Item2 Chance", &enemies[enemyID].item2Chance);
+
+	//ImGui::LabelText("Filename", enemies[enemyID].filename.c_str());      //Used for testing to verify files are correct
+
+	ImGui::Checkbox("Show Moves", &showMoves);
+
+	if (showMoves) {
+
+		ImGui::Begin("ENEMY MOVES");
+
+		if (ImGui::Combo("Slot", &moveSlot, slotIDs, 5))
+			for (size_t i = 0; i < 8; i++)
+				MoveAilmentBitFlags[i] = enemies[enemyID].moves[moveSlot].ailmentsBitflag & (1 << i);
+
+		ImGui::InputText("Name", enemies[enemyID].moves[moveSlot].name, 19);
+		ImGui::InputUShort("MP Cost", &enemies[enemyID].moves[moveSlot].mp);
+		ImGui::InputUShort("SP Cost", &enemies[enemyID].moves[moveSlot].sp);
+		ImGui::InputUByte("Unknown #1", &enemies[enemyID].moves[moveSlot].unknown);
+
+		ImGui::Combo("Target Effect", &enemies[enemyID].moves[moveSlot].targetEffect, targetEffects, 16);
+
+		ImGui::InputUShort("Strength", &enemies[enemyID].moves[moveSlot].str);
+		ImGui::InputUShort("Power", &enemies[enemyID].moves[moveSlot].pow);
+		ImGui::InputUShort("Damage(?)", &enemies[enemyID].moves[moveSlot].ad);
+
+		ImGui::Combo("Target Type", &enemies[enemyID].moves[moveSlot].targetType, targetTypes, 16);
+
+		ImGui::InputUByte("Unknown #2", &enemies[enemyID].moves[moveSlot].unknown1);
+		ImGui::InputUShort("Distance", &enemies[enemyID].moves[moveSlot].distance);             if (ImGui::IsItemHovered()) ImGui::SetTooltip("How far away to use move?");
+		ImGui::InputUShort("Accuracy", &enemies[enemyID].moves[moveSlot].accuracy);
+		ImGui::InputUShort("Range", &enemies[enemyID].moves[moveSlot].range);                   if (ImGui::IsItemHovered()) ImGui::SetTooltip("How big is the move area?");
+		ImGui::InputUShort("Cast Time", &enemies[enemyID].moves[moveSlot].castTime);
+		ImGui::InputUShort("Recovery", &enemies[enemyID].moves[moveSlot].recovery);
+
+		//ImGui::InputUByte("Animation", &enemies[enemyID].moves[moveSlot].animation);
+		ImGui::Combo("Animation", &enemies[enemyID].moves[moveSlot].animation, moveIDs, numMoves);
+
+		ImGui::InputUByte("Knockdown", &enemies[enemyID].moves[moveSlot].knockDown);            if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
+
+		ImGui::InputShort2("IP Stun/IP Cancel Stun", &enemies[enemyID].moves[moveSlot].ipStun);
+		ImGui::InputShort("Knockback", &enemies[enemyID].moves[moveSlot].knockback);            if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
+
+		ImGui::Combo("Element", &enemies[enemyID].moves[moveSlot].element, elements, 5);
+		ImGui::InputUByte("Element Strength", &enemies[enemyID].moves[moveSlot].elementStr);    if (ImGui::IsItemHovered()) ImGui::SetTooltip("* 10 percent of damage is this element.");
+
+		if (ImGui::Checkbox("Poison", &MoveAilmentBitFlags[0]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[0] << 0);
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Sleep", &MoveAilmentBitFlags[1]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[1] << 1);
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Paralysis", &MoveAilmentBitFlags[2]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[2] << 2);
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Confusion", &MoveAilmentBitFlags[3]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[3] << 3);
+
+		if (ImGui::Checkbox("Plague", &MoveAilmentBitFlags[4]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[4] << 4);
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Magic Block", &MoveAilmentBitFlags[5]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[5] << 5);
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Move Block", &MoveAilmentBitFlags[6]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[6] << 6);
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Death", &MoveAilmentBitFlags[7]))
+			enemies[enemyID].moves[moveSlot].ailmentsBitflag ^= (MoveAilmentBitFlags[7] << 7);
+
+		ImGui::InputUByte("Ailments Chance", &enemies[enemyID].moves[moveSlot].ailmentsChance);
+
+		ImGui::InputByte4("Atk/Def/Act/Mov Mods", &enemies[enemyID].moves[moveSlot].atkMod);
+
+		ImGui::InputUShort("Special", &enemies[enemyID].moves[moveSlot].special);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("In Beta, use at your own peril.");
+
+		ImGui::End();
+
+	}
+
+	ImGui::End();
 
 }

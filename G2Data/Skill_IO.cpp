@@ -87,7 +87,7 @@ void writeSK(SkillStruct* skills, const ImU16& count) {
 
 }
 
-SkillStruct* readSK(ImU16& count) {
+void readSK(std::promise<SkillStruct*> &&ftr, ImU16& count) {
 
 	char* readByte = new char[2]{};
 
@@ -202,6 +202,70 @@ SkillStruct* readSK(ImU16& count) {
 
 	input.close();
 
-	return skills;
+	ftr.set_value(skills);
+
+}
+
+void drawSK(SkillStruct* skills, char** skillIDs, ImU16& numSkills, bool* canClose) {
+
+	static ImU16 skillID = 0;
+
+	ImGui::Begin("SK_PARAM");
+
+	ImGui::Combo("Index", &skillID, skillIDs, (int)numSkills); ImGui::SameLine();
+
+	ImGui::SameLine();
+	if (ImGui::Button("Save")) {
+
+		try {
+
+			writeSK(skills, numSkills);
+
+		}
+		catch (const std::exception& e) {
+
+			ImGui::Begin("ERROR", canClose);
+			ImGui::LabelText("", e.what());
+			ImGui::End();
+
+		}
+
+	}
+
+	ImGui::InputText("Name", skills[skillID].name, 19);
+	ImGui::InputUByte("Cost Type #1", &skills[skillID].cost1);
+	ImGui::InputUByte("Cost Type #2", &skills[skillID].cost2);
+	ImGui::InputUShort("Base HP", &skills[skillID].baseHp);
+	ImGui::InputUShort("Base MP", &skills[skillID].baseMp);
+	ImGui::InputUShort("Base SP", &skills[skillID].baseSp);
+	ImGui::InputUShort("Base STR", &skills[skillID].baseStr);
+	ImGui::InputUShort("Base VIT", &skills[skillID].baseVit);
+	ImGui::InputUShort("Base ACT", &skills[skillID].baseAct);
+	ImGui::InputUShort("Base MOV", &skills[skillID].baseMov);
+	ImGui::InputUShort("Base MAG", &skills[skillID].baseMag);
+	ImGui::InputUShort("Base MEN", &skills[skillID].baseMen);
+	ImGui::InputUByte("Unknown #1", &skills[skillID].unknown1);
+	ImGui::InputUByte("Unknown #2", &skills[skillID].unknown2);
+	ImGui::InputUByte("Unknown #3", &skills[skillID].unknown3);
+	ImGui::InputUByte("Unknown #4", &skills[skillID].unknown4);
+	ImGui::InputUByte("Unknown #5", &skills[skillID].unknown5);
+	ImGui::InputByte("Base Fire %", &skills[skillID].baseFirePercent);
+	ImGui::InputByte("Base Wind %", &skills[skillID].baseWindPercent);
+	ImGui::InputByte("Base Earth %", &skills[skillID].baseEarthPercent);
+	ImGui::InputByte("Base Lightning %", &skills[skillID].baseLightningPercent);
+	ImGui::InputByte("Base Blizzard %", &skills[skillID].baseBlizzardPercent);
+	ImGui::InputByte("Base Water %", &skills[skillID].baseWaterPercent);
+	ImGui::InputByte("Base Explosion %", &skills[skillID].baseExplosionPercent);
+	ImGui::InputByte("Base Forest %", &skills[skillID].baseForestPercent);
+	ImGui::InputUByte("Special", &skills[skillID].special);
+	ImGui::InputUShort("Coin Cost Lv1", &skills[skillID].coinCost1);
+	ImGui::InputUShort("Coin Cost Lv2", &skills[skillID].coinCost2);
+	ImGui::InputUShort("Coin Cost Lv3", &skills[skillID].coinCost3);
+	ImGui::InputUShort("Coin Cost Lv4", &skills[skillID].coinCost4);
+	ImGui::InputUShort("Coin Cost Lv5", &skills[skillID].coinCost5);
+	ImGui::InputUShort("Multiplier", &skills[skillID].multiplier);
+	ImGui::InputText("Description", skills[skillID].description, 41);
+
+	ImGui::End();
 
 }

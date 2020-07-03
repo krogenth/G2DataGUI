@@ -65,3 +65,42 @@ SkillBookStruct* readSKI(ImU16& count) {
 	return books;
 
 }
+
+void drawSKI(SkillBookStruct* books, ImU16& numBooks, bool* canClose, char** skillIDs, ImU16& numSkills) {
+
+	const char* bookIDs[] = { "NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning" };
+	const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6" };
+	static ImU16 bookID = 0;
+	static ImU16 skillSlot = 0;
+
+	ImGui::Begin("TB_SKILL");
+
+	ImGui::Combo("Index", &bookID, bookIDs, (int)numBooks); ImGui::SameLine();
+
+	ImGui::SameLine();
+	if (ImGui::Button("Save")) {
+
+		try {
+
+			writeSKI(books, numBooks);
+
+		}
+		catch (const std::exception& e) {
+
+			ImGui::Begin("ERROR", canClose);
+			ImGui::LabelText("", e.what());
+			ImGui::End();
+
+		}
+	}
+
+	ImGui::Combo("Slot", &skillSlot, slotIDs, 6); ImGui::NewLine();
+
+	ImGui::Combo("Skill", &books[bookID].skills[skillSlot].skillOffset, skillIDs, (int)numSkills);
+	ImGui::InputUByte("Starting Level", &books[bookID].skills[skillSlot].startingLevel);
+	ImGui::InputUByte("Book Level Required", &books[bookID].skills[skillSlot].bookLevelRequired);
+	ImGui::InputUByte("Unknown #1", &books[bookID].skills[skillSlot].unknown1); ImGui::NewLine();
+
+	ImGui::End();
+
+}

@@ -63,3 +63,42 @@ SpecialMoveStruct* readSPC(ImU16& count) {
 	return specials;
 
 }
+
+void drawSPC(SpecialMoveStruct* specials, ImU16& numSpecials, bool* canClose, char** moveIDs, ImU16& numMoves) {
+
+	const char* specialIDs[] = { "NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
+	const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6" };
+	static ImU16 specialID = 0;
+	static ImU16 moveSlot = 0;
+
+	ImGui::Begin("TB_SPCL");
+
+	ImGui::Combo("Index", &specialID, specialIDs, (int)numSpecials); ImGui::SameLine();
+
+	ImGui::SameLine();
+	if (ImGui::Button("Save")) {
+
+		try {
+
+			writeSPC(specials, numSpecials);
+
+		}
+		catch (const std::exception& e) {
+
+			ImGui::Begin("ERROR", canClose);
+			ImGui::LabelText("", e.what());
+			ImGui::End();
+
+		}
+
+	}
+
+	ImGui::Combo("Slot", &moveSlot, slotIDs, 6); ImGui::NewLine();
+
+	ImGui::Combo("Move", &specials[specialID].moves[moveSlot].moveOffset, moveIDs, (int)numMoves);
+	ImGui::InputUByte("Starting Level", &specials[specialID].moves[moveSlot].startingLevel);
+	ImGui::InputUShort("Story Flag", &specials[specialID].moves[moveSlot].storyFlag);
+
+	ImGui::End();
+
+}

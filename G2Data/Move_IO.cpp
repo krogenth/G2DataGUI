@@ -94,7 +94,7 @@ void writeMS(MoveStruct* moves, const ImU16& count) {
 
 }
 
-MoveStruct* readMS(ImU16& count) {
+void readMS(std::promise<MoveStruct*> ftr, ImU16& count) {
 
 	char* readByte = new char[2]{};
 
@@ -158,7 +158,7 @@ MoveStruct* readMS(ImU16& count) {
 
 		input.read(readByte, 2);
 		moves[i].ipStun = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-		
+
 		input.read(readByte, 2);
 		moves[i].ipCancelStun = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
 
@@ -217,6 +217,107 @@ MoveStruct* readMS(ImU16& count) {
 
 	input.close();
 
-	return moves;
+	ftr.set_value(moves);
+
+}
+
+void drawMS(MoveStruct* moves, char** moveIDs, ImU16& numMoves, bool* canClose) {
+
+	const char* moveIcons[] = { "Fire", "Wind", "Earth", "Lightning", "Blizzard", "Water", "Explosion", "Forest", "Light", "Darkness", "Sword", "Staff", "Crossbow", "Dagger", "Poleaxe", "Chakram", "Red Shoe" };
+	const char* targetEffects[] = { "NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special" };
+	const char* targetTypes[] = { "NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown" };
+	const char* elements[] = { "Fire", "Wind", "Earth", "Lightning", "Blizzard" };
+
+	static ImU16 moveID = 0;
+	static bool AilmentBitFlags[8] = {};
+
+	ImGui::Begin("MS_PARAM");
+
+	if (ImGui::Combo("Index", &moveID, moveIDs, (int)numMoves))
+		for (size_t i = 0; i < 8; i++)
+			AilmentBitFlags[i] = moves[moveID].ailmentsBitflag & (1 << i);
+
+	ImGui::SameLine();
+	if (ImGui::Button("Save")) {
+
+		try {
+
+			writeMS(moves, numMoves);
+
+		}
+		catch (const std::exception& e) {
+
+			ImGui::Begin("ERROR", canClose);
+			ImGui::LabelText("", e.what());
+			ImGui::End();
+
+		}
+
+	}
+
+	//ImGui::LabelText("ID", std::to_string(moves[moveID].id).c_str());
+
+	//ImGui::InputUByte("Icon", &moves[moveID].icon);
+	ImGui::Combo("Icon", &moves[moveID].icon, moveIcons, 17);
+	ImGui::InputText("Name", moves[moveID].name, 19);
+	ImGui::InputUShort("Cost", &moves[moveID].cost);
+
+	ImGui::Combo("Target Effect", &moves[moveID].targetEffect, targetEffects, 16);
+	ImGui::Combo("Target Type", &moves[moveID].targetType, targetTypes, 16);
+
+	ImGui::InputUShort("Strength", &moves[moveID].str);
+	ImGui::InputUShort("Power", &moves[moveID].pow);
+	ImGui::InputUShort("Range", &moves[moveID].range);
+
+	ImGui::InputUShort2("Cast Time Lv1/Lv5", &moves[moveID].cast1);
+
+	ImGui::InputUShort("Recovery", &moves[moveID].recovery);
+	ImGui::InputUShort("Animation", &moves[moveID].animation);
+	ImGui::InputUByte("Unknown #1", &moves[moveID].unknown1);
+	ImGui::InputUByte("Knockdown", &moves[moveID].knockDown);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
+
+	ImGui::InputShort2("IP Stun/IP Cancel Stun", &moves[moveID].ipStun);
+
+	ImGui::InputShort("Knockback", &moves[moveID].knockback);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
+
+	ImGui::Combo("Element", &moves[moveID].element, elements, 5);
+	ImGui::InputUByte("Element Strength", &moves[moveID].elementStr);
+
+	if (ImGui::Checkbox("Poison", &AilmentBitFlags[0]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[0] << 0);
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Sleep", &AilmentBitFlags[1]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[1] << 1);
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Paralysis", &AilmentBitFlags[2]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[2] << 2);
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Confusion", &AilmentBitFlags[3]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[3] << 3);
+
+	if (ImGui::Checkbox("Plague", &AilmentBitFlags[4]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[4] << 4);
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Magic Block", &AilmentBitFlags[5]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[5] << 5);
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Move Block", &AilmentBitFlags[6]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[6] << 6);
+	ImGui::SameLine();
+	if (ImGui::Checkbox("Death", &AilmentBitFlags[7]))
+		moves[moveID].ailmentsBitflag ^= (AilmentBitFlags[7] << 7);
+
+	ImGui::InputUByte("Ailments Chance", &moves[moveID].ailmentsChance);
+	ImGui::InputByte4("Atk/Def/Act/Mov Mods", &moves[moveID].atkMod);
+	ImGui::InputUShort("Special", &moves[moveID].special);
+	ImGui::InputUShort("Coin Cost Lv1", &moves[moveID].coinCost1);
+	ImGui::InputUShort("Coin Cost Lv2", &moves[moveID].coinCost2);
+	ImGui::InputUShort("Coin Cost Lv3", &moves[moveID].coinCost3);
+	ImGui::InputUShort("Coin Cost Lv4", &moves[moveID].coinCost4);
+	ImGui::InputUShort("Coin Cost Lv5", &moves[moveID].coinCost5);
+	ImGui::InputUShort("Multiplier", &moves[moveID].multiplier);
+	ImGui::InputText("Description", moves[moveID].description, 41);
+
+	ImGui::End();
 
 }

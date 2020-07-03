@@ -1,4 +1,7 @@
 #pragma once
+#include <Windows.h>
+#include <future>
+
 #include "ImGui/imgui.h"
 
 struct MoveStruct {
@@ -79,4 +82,5 @@ public:
 */
 
 void writeMS(MoveStruct* moves, const ImU16& count);
-MoveStruct * readMS(ImU16& count);
+void readMS(std::promise<MoveStruct*> ftr, ImU16& count);
+void drawMS(MoveStruct* moves, char** moveIDs, ImU16& numMoves, bool* canClose);

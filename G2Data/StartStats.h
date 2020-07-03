@@ -89,3 +89,4 @@ public:
 
 void writePC(StartStatsStruct* stats, const ImU16& count);
 StartStatsStruct* readPC(ImU16& count);
+void drawPC(StartStatsStruct* stats, ImU16& numStats, bool* canClose, char** itemIDs, ImU16& numItems);
