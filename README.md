@@ -1,4 +1,4 @@
-## A Graphical version of G2Data
+## A Graphical version of [G2Data](https://github.com/krogenth/G2Data) using [Dear ImGui](https://github.com/ocornut/imgui)
 
 Grandia 2 Data reading/writing
  - Programming by [krogenth](http://steamcommunity.com/profiles/76561198163774445)
