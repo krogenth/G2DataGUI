@@ -1,3 +1,6 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#include <experimental/filesystem>
 #include <fstream>
 #include <exception>
 
@@ -30,11 +33,14 @@ void writeSKI(SkillBookStruct* books, const ImU16& count) {
 
 SkillBookStruct* readSKI(ImU16& count) {
 
+	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_SKILL.BIN");
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
 	char* readByte = new char[1]{};
 
 	std::ifstream input("content/data/afs/xls_data/TB_SKILL.BIN", std::ios::binary);
 
-	count = 0x0A;
+	count = (ImU16)(fileSize / 24);
 	SkillBookStruct* books = new SkillBookStruct[count];	//entries are 24 bytes long(each skill is 4 bytes long, 6 skills per book)
 
 	if (!input.is_open())

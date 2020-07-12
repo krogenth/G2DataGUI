@@ -1,3 +1,6 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#include <experimental/filesystem>
 #include <fstream>
 #include <exception>
 
@@ -137,11 +140,14 @@ void writePC(StartStatsStruct* stats, const ImU16& count) {
 StartStatsStruct* readPC(ImU16& count) {
 	//Upon starting a new game, all characters gain EXP together. The EXP value displayed is what each character starts the game at
 
+	std::experimental::filesystem::path filePath("content/data/afs/xls_data/PC_INIT.BIN");
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
 	char* readByte = new char[4]{};
 
 	std::ifstream input("content/data/afs/xls_data/PC_INIT.BIN", std::ios::binary);
 
-	count = 0x0D;
+	count = fileSize / 80;
 	StartStatsStruct* stats = new StartStatsStruct[count];	//entries are 80 bytes long
 
 	if (!input.is_open())

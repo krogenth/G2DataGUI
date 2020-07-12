@@ -1,3 +1,6 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#include <experimental/filesystem>
 #include <fstream>
 #include <exception>
 
@@ -89,11 +92,14 @@ void writeSK(SkillStruct* skills, const ImU16& count) {
 
 void readSK(std::promise<SkillStruct*> &&ftr, ImU16& count) {
 
+	std::experimental::filesystem::path filePath("content/data/afs/xls_data/SK_PARAM.BIN");
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
 	char* readByte = new char[2]{};
 
 	std::ifstream input("content/data/afs/xls_data/SK_PARAM.BIN", std::ios::binary);
 
-	count = 0x83;
+	count = (ImU16)(fileSize / 104);
 	SkillStruct* skills = new SkillStruct[count];	//entries are 104 bytes long
 
 	if (!input.is_open())

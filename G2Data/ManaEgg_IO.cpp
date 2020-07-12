@@ -1,3 +1,6 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#include <experimental/filesystem>
 #include <fstream>
 #include <exception>
 
@@ -30,11 +33,14 @@ void writeMAG(ManaEggStruct* eggs, const ImU16& count) {
 
 ManaEggStruct* readMAG(ImU16& count) {
 
+	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_MAGIC.BIN");
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
 	char* readByte = new char[1]{};
 
 	std::ifstream input("content/data/afs/xls_data/TB_MAGIC.BIN", std::ios::binary);
 
-	count = 0x0B;
+	count = fileSize / 72;
 	ManaEggStruct* eggs = new ManaEggStruct[count];	//entries are 72 bytes long(each spell is 4 bytes long, 18 spells per egg)
 
 	if (!input.is_open())

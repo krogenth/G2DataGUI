@@ -1,3 +1,6 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#include <experimental/filesystem>
 #include <fstream>
 #include <exception>
 #include <string>
@@ -96,11 +99,14 @@ void writeMS(MoveStruct* moves, const ImU16& count) {
 
 void readMS(std::promise<MoveStruct*> ftr, ImU16& count) {
 
+	std::experimental::filesystem::path filePath("content/data/afs/xls_data/MS_PARAM.BIN");
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
 	char* readByte = new char[2]{};
 
 	std::ifstream input("content/data/afs/xls_data/MS_PARAM.BIN", std::ios::binary);
 
-	count = 0x81;
+	count = (ImU16)(fileSize / 108);
 	MoveStruct* moves = new MoveStruct[count];	//entries are 108 bytes long
 
 	if (!input.is_open())

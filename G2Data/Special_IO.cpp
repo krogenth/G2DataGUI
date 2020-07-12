@@ -1,3 +1,6 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#include <experimental/filesystem>
 #include <fstream>
 #include <exception>
 
@@ -31,11 +34,14 @@ void writeSPC(SpecialMoveStruct* specials, const ImU16& count) {
 
 SpecialMoveStruct* readSPC(ImU16& count) {
 
+	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_SPCL.BIN");
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
 	char* readByte = new char[2]{};
 
 	std::ifstream input("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
 
-	count = 0x0E;
+	count = (ImU16)(fileSize / 24);
 	SpecialMoveStruct* specials = new SpecialMoveStruct[count];	//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
 
 	if (!input.is_open())
