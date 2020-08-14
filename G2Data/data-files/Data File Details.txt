@@ -69,6 +69,10 @@
 	0x08 XX YY ZZ	XX = ???, YY = ???(noticed either 0x21 or 0x41), ZZ = ???(only been 0x01)
 	0x11 XX []		adds item to inventory, XX = ???
 	0x18 00 XX		changes character protrait, XX = character protrait offset
+	
+	0x0000	-	Header Length(always 0x200)
+	
+	
 
 	0x0008	-	# Map Entry Locations 32 byte Entries
 	0x000C	-	Map Entry Locations Offset
@@ -154,7 +158,7 @@
 	0x00E0	-	# of Unknown 112(?) Bytes
 	0x00E4	-	Unknown Offset
 	
-	0x00E8	-	
+	0x00E8	-	Unknown Offset(0x20(32) Bytes)
 	0x00EC	-	
 	
 	0x00F0	-	
@@ -258,31 +262,99 @@
 
 MODELS {	//All Ninja formats use POF0, which means pointers go from the start of the chunk, not file
 	
-	.CHR/.CHR2 FILES {
-		
-		2000.CHR
-			Elena
-			Father Carius
-			Kid
-		
+	.CHR {	//NPC/ENEMY
+	
+		CDDH segment(only the very first NJCM of file)
+			04 byte remaining header byte length
+				04 byte number of entries
+				04 byte file number
+				04 byte GPHD offset
+			GIXL segment
+				4 byte remaining header byte length
+					4 byte number of entries
+						4 byte ???
+			NJCM segment
+			
+		MCS_ segment
+			4 byte remaining length
+				4 byte number of entries
+					4 byte ???
+					4 byte 0x????FFFF end	//included in number of entires
+			GIXL segment
+				4 byte remaining header byte length
+					4 byte number of entries
+						4 byte ???
+			NJCM segment
+			
+		GPHD segment(only the very first NMDM in file)
+			4 byte remaining header byte length
+			4 byte GPHD index(which GPHD number within the file)(?)
+			MIXL segment(1 per model motion table, says how many motions there are)
+				4 byte remaining header byte length
+					1 byte Model Index	//	Index of NJCM Model NMDM Model Motion sections belong to, until new MIXL section is encountered
+					1 byte # of Model Motions in section
+						1 byte Incremental Index(?) of Model Motions
+							0xFF padded to nearest 4 bytes
+				NMDM segment(x amount of NMDM sections based on MIXL)
+				
+		GAMT segment
+			4 byte remaining header byte length
+			4 byte ???	//only 0 or 1 so far
+			MIXL segment(1 per model motion table, says how many motions there are)
+				4 byte remaining header byte length
+					1 byte Model Index	//	Index of NJCM Model NMDM Model Motion sections belong to, until new MIXL section is encountered
+					1 byte # of Model Motions in section
+						1 byte Incremental Index(?) of Model Motions
+							0xFF padded to nearest 4 bytes
+				NMDM segment(x amount of NMDM sections based on MIXL)
+				
 	}
 	
-	CHARACTER MODEL *.DAT FILES {
-		
-		GIXL header
-		Stores NJCM then NMDM files
-		
+	.CHR2 {	//EXTRA MOTION DATA
+	
+		CDDH segment
+			04 byte remaining header byte length
+				04 byte number of entries
+				04 byte file number
+				04 byte GPHD offset
+			GPHD segment
+				4 byte remaining header byte length
+				4 byte GPHD index(which GPHD number within the file)(?)
+				MIXL segment
+					4 byte remaining header byte length
+						1 byte Model Index	//	Index of NJCM Model NMDM Model Motion sections belong to, until new MIXL section is encountered
+						1 byte # of Model Motions in section
+							1 byte Incremental Index(?) of Model Motions
+								0xFF padded to nearest 4 bytes
+					GAMT segment	// Only after first entry
+						4 byte remaining header byte length
+						4 byte ???	//only 0 or 1 so far
+						NMDM segment
+					
 	}
-
-	ENEMY MODEL *.DAT FILES {
+	
+	.MNJ {	//ENVIRONMENT MODELS
+	
 		
-		4 byte remaining header byte length	//(0x20(32) bytes max)
-			4 byte file offset
-			4 byte file length
+	
+	}
+	
+	GBIX(Global Index) {
 		
+		4 byte remaining length
+			4 byte Global Index
+			4 byte 0x00000000 or 0x20202020
+			
+	}
+	
+	NJTL {		//	Ninja Texlist(texture list?)
+	
+		4 byte remaining header byte length
+			
+	
 	}
 		
-	NJCM {
+	NJCM {		//	Ninja Chunk Model Tree
 		
 		Chunk header types {
 			
@@ -412,7 +484,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				
 	}
 	
-	NMDM(Ninja Model Motion) {
+	NMDM {		//	Ninja Model Motion
 		
 		4 byte remaining length
 		1 byte[remaining length] chunk body
@@ -433,55 +505,6 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		
 	}
 	
-	CDDH(CHR, CHR2) {
-		
-		4 byte remaining header byte length
-			4 byte number of entries
-			4 byte file number
-			4 byte NMDM file(s) offset
-			
-	}
-				
-	GPHD(CHR, CHR2) {
-		
-		4 byte remaining header byte length
-			4 byte ???
-			
-	}
-			
-	MIXL(CHR, CHR2) {
-		
-		4 byte remaining header byte length
-			1 byte ???
-			1 byte number of ???
-				1 byte incremental to number(end padded with 0xFF to nearest 4 bytes)
-				
-	}
-					
-	GIXL(CHR) {
-		
-		4 byte remaining header byte length
-			4 byte number of entries
-				4 byte ???
-				
-	}
-				
-	GAMT(CHR, CHR2) {
-		
-		4 byte remaining header byte length
-			4 byte ???	//only 0 or 1 so far
-			
-	}
-				
-	MCS_(CHR) {
-		
-		4 byte remaining length
-			4 byte number of entries
-				4 byte ???
-				4 byte 0x????FFFF end	//included in number of entires
-				
-	}
-	
 	NJTL(Ninja Textlist) {
 		
 		4 byte remaining length
@@ -490,14 +513,6 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				4 byte texture number
 				8 byte ???
 				
-	}
-					
-	GBIX(Global Index) {
-		
-		4 byte remaining length
-			4 byte Global Index
-			4 byte 0x00000000 or 0x20202020
-			
 	}
 	
 	PVRT {
@@ -545,12 +560,18 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 			
 		
 	}
-	
-	NJCM(Ninja Chunk Model Tree) {
-		
-		
-		
-	}
+
+}
+
+.DST FOLDER {
+
+	For background textures
+
+}
+
+.PVL FOLDER {
+
+	For overworld models
 
 }
 
