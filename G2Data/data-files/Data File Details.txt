@@ -1,22 +1,22 @@
 .CSO FILES {
 	
 	Chunk type
-		ICFE 	//Interface. Describes any interfaces, and implementing classes, present in the source HLSL.
-		ISGN 	//Input signature
-		OSG5 	//Output signature (SM5)
-		OSGN 	//Output signature
-		PCSG 	//Patch constant signature
-		RDEF 	//Resource definition. Describes constant buffers and resource bindings.
-		SDGB 	//Shader debugging info (old-style)
-		SFI0 	//Not really sure… it stores a value that indicates whether double-precision floating point operations are enabled, but I don’t know why that needs to be in its own chunk
-		SHDR 	//Shader (SM4). The shader itself.
-		SHEX 	//Shader (SM5)
-		SPDB 	//Shader debugging info (new-style)
-		STAT 	//Statistics. Useful statistics about the shader, such as instruction count, declaration count, etc.
+		ICFE 	//	Interface. Describes any interfaces, and implementing classes, present in the source HLSL.
+		ISGN 	//	Input signature
+		OSG5 	//	Output signature (SM5)
+		OSGN 	//	Output signature
+		PCSG 	//	Patch constant signature
+		RDEF 	//	Resource definition. Describes constant buffers and resource bindings.
+		SDGB 	//	Shader debugging info (old-style)
+		SFI0 	//	Not really sure… it stores a value that indicates whether double-precision floating point operations are enabled, but I don’t know why that needs to be in its own chunk
+		SHDR 	//	Shader (SM4). The shader itself.
+		SHEX 	//	Shader (SM5)
+		SPDB 	//	Shader debugging info (new-style)
+		STAT 	//	Statistics. Useful statistics about the shader, such as instruction count, declaration count, etc.
 	
 	DXBL
-		16 byte Checksum	//proprietary, likely cannot determine
-		04 byte ???			//always 1
+		16 byte Checksum	//	Proprietary, likely cannot determine
+		04 byte ???			//	Always 1
 		04 byte File byte size
 		04 byte Chunk count
 		04 byte RDEF chunk offset
@@ -260,9 +260,9 @@
 		
 }
 
-MODELS {	//All Ninja formats use POF0, which means pointers go from the start of the chunk, not file
+MODELS {	//	All Ninja formats use POF0, which means pointers go from the start of the chunk, not file
 	
-	.CHR {	//NPC/ENEMY
+	.CHR {	//	NPC/ENEMY
 	
 		CDDH segment(only the very first NJCM of file)
 			04 byte remaining header byte length
@@ -272,18 +272,18 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 			GIXL segment
 				4 byte remaining header byte length
 					4 byte number of entries
-						4 byte ???
+						4 byte model key		// Uses *.dds file at offset 0x20 value, they probably used std::map for a dictionary
 			NJCM segment
 			
 		MCS_ segment
 			4 byte remaining length
 				4 byte number of entries
 					4 byte ???
-					4 byte 0x????FFFF end	//included in number of entires
+					4 byte 0x????FFFF end	//	Included in number of entires
 			GIXL segment
 				4 byte remaining header byte length
 					4 byte number of entries
-						4 byte ???
+						4 byte model key		// Uses *.dds file at offset 0x20 value, they probably used std::map for a dictionary
 			NJCM segment
 			
 		GPHD segment(only the very first NMDM in file)
@@ -299,7 +299,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				
 		GAMT segment
 			4 byte remaining header byte length
-			4 byte ???	//only 0 or 1 so far
+			4 byte ???	//	Only 0 or 1 so far
 			MIXL segment(1 per model motion table, says how many motions there are)
 				4 byte remaining header byte length
 					1 byte Model Index	//	Index of NJCM Model NMDM Model Motion sections belong to, until new MIXL section is encountered
@@ -310,7 +310,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				
 	}
 	
-	.CHR2 {	//EXTRA MOTION DATA
+	.CHR2 {	//	EXTRA MOTION DATA
 	
 		CDDH segment
 			04 byte remaining header byte length
@@ -422,7 +422,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				0b00100000 ZXY rotation order, apply rotations in LightWave3D order
 				0b01000000 Skip motion
 				0b10000000 Skip shape motion
-			4 byte NJS_MODEL pointer	//from start of model chunk
+			4 byte NJS_MODEL pointer			//from start of model chunk
 				4 byte NJS_VERTEX_LIST pointer	//from start of model chunk
 					1 byte chunk type
 					1 byte chunk flag
@@ -431,15 +431,15 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 					2 byte vertex count
 					? byte vertex data
 						4[3] byte vertex
-				4 byte NJS_INDICE_LIST pointer	//from start of model chunk
+				4 byte NJS_INDICE_LIST pointer	//	from start of model chunk
 					"material, tiny, bit, null, strip chunks"
 				4[3] byte float model center
 				4 byte float radius of circumscribed sphere
 			4[3] byte float position
 			4[3] byte int32_t rotation
 			4[3] byte float scale
-			4 byte child object pointer	//from start of model chunk
-			4 byte sibling object pointer	//from start of model chunk
+			4 byte child object pointer			//	from start of model chunk
+			4 byte sibling object pointer		//	from start of model chunk
 		
 		Bits Chunk
 			2 byte chunk head
@@ -454,17 +454,17 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				0x20 flip_u
 				0x40 flip_v
 			2 byte chunk body
-				13 bits texture ID	//least significant
+				13 bits texture ID				//	least significant
 				1 bit super sample
-				2 bit filter mode	//most significant
+				2 bit filter mode				//	most significant
 				
 		Material Chunk
 			1 byte chunk head
 			1 byte chunk flag
 			2 byte chunk length?
-			4 byte diffuse color		//chunk head & 0x01
-			4 byte spectacular color	//chunk head & 0x02
-			4 byte ambient color		//chunk head & 0x04
+			4 byte diffuse color				//	chunk head & 0x01
+			4 byte spectacular color			//	chunk head & 0x02
+			4 byte ambient color				//	chunk head & 0x04
 			
 		Vertex Chunk
 			1 byte chunk head
@@ -490,11 +490,11 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		1 byte[remaining length] chunk body
 			4 byte motion data
 			4 byte frame count
-			2 byte motion type	//flags for position, rotation, and scale
+			2 byte motion type					//	flags for position, rotation, and scale
 				0x01 position
 				0x02 rotation
 				0x04 scale
-			2 byte int_fp	//interpolation & factor count: increment for position/rotation/scale if they are used
+			2 byte int_fp						//	interpolation & factor count: increment for position/rotation/scale if they are used
 				0x03 factor count
 				0x40 spline interpolation
 				0x80 user interpolation
@@ -505,7 +505,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		
 	}
 	
-	NJTL(Ninja Textlist) {
+	NJTL {		//	Ninja Textlist(texture list?)
 		
 		4 byte remaining length
 			4 byte NJS_TEXNAME pointer(offset from current position)
@@ -518,14 +518,14 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 	PVRT {
 		
 		4 byte remaining length
-		1 byte pixel format	//2 byte per pixel
-			0x00 ARGB1555	//1-bit A, 5-bit RGB
-			0x01 RGB565		//5-bit RB, 6-bit G
-			0x02 ARGB4444	//4-bit ARGB
+		1 byte pixel format	//	2 byte per pixel
+			0x00 ARGB1555	//	1-bit A, 5-bit RGB
+			0x01 RGB565		//	5-bit RB, 6-bit G
+			0x02 ARGB4444	//	4-bit ARGB
 		1 byte data format
 			0x01 Squared twiddled
 			0x02 Squared twiddled with mipmap
-			0x03 VQ		//vector quantization
+			0x03 VQ		//	vector quantization
 			0x04 VQ with mipmap
 			0x05 4-bit indexed with external palette
 			0x07 8-bit indexed with external palette
@@ -538,7 +538,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		2 byte texture width
 		2 byte texture height
 		? byte palatte data
-		? byte texture data		//if mipmap, go smallest to largest
+		? byte texture data		//	if mipmap, go smallest to largest
 		
 	}
 					
@@ -555,8 +555,8 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		
 		PVPL
 			4 byte remaining length
-			4 byte ???	//0x06000000
-			4 byte ???	//0x00000001
+			4 byte ???	//	0x06000000
+			4 byte ???	//	0x00000001
 			
 		
 	}
@@ -571,7 +571,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 
 .PVL FOLDER {
 
-	For overworld models
+	For overworld textures
 
 }
 
@@ -639,7 +639,7 @@ PC_INIT.BIN(80 byte entries) {
 	
 }
 
-TB_SHOP.BIN(164 byte entries) {
+TB_SHOP.BIN(164 byte entries) {	//TB_SHOP.BIN is not used, data is stored in relevant *.MDT files
 	
 	2 byte Map Name(by folder name)
 	2 byte Number of catagories(?)
