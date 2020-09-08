@@ -90,4 +90,4 @@ struct MoveStruct {
 
 void writeMS(std::vector<MoveStruct>& moves);
 void readMS(std::vector<MoveStruct>& moves);
-void drawMS(std::vector<MoveStruct>& moves, char** moveIDs, bool* canClose);
+void drawMS(std::vector<MoveStruct>& moves, bool* canClose, char** moveIDs, const size_t& numMoves);

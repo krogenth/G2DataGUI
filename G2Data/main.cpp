@@ -252,7 +252,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
         }
 
-        drawMS(moves, moveIDs, canClose);
+        drawMS(moves, canClose, moveIDs, moves.size());
         drawSK(skills, skillIDs, canClose);
         drawMAG(eggs, canClose, moveIDs, moves.size());
         drawSKI(books, canClose, skillIDs, skills.size());

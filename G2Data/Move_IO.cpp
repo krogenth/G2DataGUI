@@ -81,7 +81,7 @@ void readMS(std::vector<MoveStruct>& moves) {
 
 }
 
-void drawMS(std::vector<MoveStruct>& moves, char** moveIDs, bool* canClose) {
+void drawMS(std::vector<MoveStruct>& moves, bool* canClose, char** moveIDs, const size_t& numMoves) {
 
 	static ImU16 moveID = 0;
 	static bool AilmentBitFlags[8] = {};
@@ -124,7 +124,9 @@ void drawMS(std::vector<MoveStruct>& moves, char** moveIDs, bool* canClose) {
 	ImGui::InputUShort2("Cast Time Lv1/Lv5", &moves[moveID].stats.cast1);
 
 	ImGui::InputUShort("Recovery", &moves[moveID].stats.recovery);
-	ImGui::InputUShort("Animation", &moves[moveID].stats.animation);
+	//ImGui::Combo("Animation", &enemies[enemyID].moves[moveSlot].stats.animation, moveIDs, numMoves);
+	//ImGui::InputUShort("Animation", &moves[moveID].stats.animation);
+	ImGui::Combo("Animation", &moves[moveID].stats.animation, moveIDs, numMoves);
 	ImGui::InputUByte("Unknown #1", &moves[moveID].stats.unknown1);
 	ImGui::InputUByte("Knockdown", &moves[moveID].stats.knockDown);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
 
