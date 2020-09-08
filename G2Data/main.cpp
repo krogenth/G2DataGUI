@@ -5,6 +5,7 @@
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 #include <tchar.h>
+#include <vector>
 
 #include <cstdlib>
 #include <Windows.h>
@@ -42,7 +43,7 @@ TODO:
     Include TB_LVUP.BIN
 */
 
-int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow) {
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPTSTR lpCmdLine, _In_ int nCmdShow) {
 
     // Create application window
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("G2Data"), NULL };
@@ -77,29 +78,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
     ImVec4 clear_color = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
 
-    ImU16 numMoves = 0;
-    MoveStruct* moves = nullptr;
-
-    ImU16 numSkills = 0;
-    SkillStruct* skills = nullptr;
-
-    ImU16 numEggs = 0;
-    ManaEggStruct* eggs = nullptr;
-
-    ImU16 numBooks = 0;
-    SkillBookStruct* books = nullptr;
-
-    ImU16 numSpecials = 0;
-    SpecialMoveStruct* specials = nullptr;
-
-    ImU16 numItems = 0;
-    ItemStruct* items = nullptr;
-
-    ImU16 numStats = 0;
-    StartStatsStruct* stats = nullptr;
-
-    ImU16 numEnemies = 0;
-    EnemyStatsStruct* enemies = nullptr;
+    std::vector<MoveStruct> moves;
+    std::vector<SkillStruct> skills;
+    std::vector<ManaEggStruct> eggs;
+    std::vector<SkillBookStruct> books;
+    std::vector<SpecialMoveStruct> specials;
+    std::vector<ItemStruct> items;
+    std::vector<StartStatsStruct> stats;
+    std::vector<EnemyStruct> enemies;
     
     /*
     const char* moveIcons[] =       { "Fire", "Wind", "Earth", "Lightning", "Blizzard", "Water", "Explosion", "Forest", "Light", "Darkness", "Sword", "Staff", "Crossbow", "Dagger", "Poleaxe", "Chakram", "Red Shoe" };
@@ -118,39 +104,20 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
     {
 
         try {
-
-            std::promise<MoveStruct*> movesPromise;
-            auto movesFuture = movesPromise.get_future();
-
-            std::promise<SkillStruct*> skillsPromise;
-            auto skillsFuture = skillsPromise.get_future();
-
-            std::promise<ItemStruct*> itemsPromise;
-            auto itemsFuture = itemsPromise.get_future();
-
-            std::promise<EnemyStatsStruct*> enemiesPromise;
-            auto enemiesFuture = enemiesPromise.get_future();
             
-            std::thread movesThread(readMS, std::move(movesPromise), std::ref(numMoves));
-            std::thread skillsThread(readSK, std::move(skillsPromise), std::ref(numSkills));
-            std::thread itemsThread(readITE, std::move(itemsPromise), std::ref(numItems));
-            std::thread enemiesThread(readEnemyStats, std::move(enemiesPromise), std::ref(numEnemies));
-            eggs = readMAG(numEggs);
-            books = readSKI(numBooks);
-            specials = readSPC(numSpecials);
-            stats = readPC(numStats);
+            std::thread movesThread(readMS, std::ref(moves));
+            std::thread skillsThread(readSK, std::ref(skills));
+            std::thread itemsThread(readITE, std::ref(items));
+            std::thread enemiesThread(readEnemyStats, std::ref(enemies));
+            readMAG(eggs);
+            readSKI(books);
+            readSPC(specials);
+            readPC(stats);
 
             movesThread.join();
-            moves = movesFuture.get();
-
             skillsThread.join();
-            skills = skillsFuture.get();
-
             itemsThread.join();
-            items = itemsFuture.get();
-
             enemiesThread.join();
-            enemies = enemiesFuture.get();
 
         }
         catch (const std::exception& e) {
@@ -163,21 +130,21 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
     }
 
-    char** moveIDs = new char* [numMoves] {};
-    char** skillIDs = new char* [numSkills] {};
-    char** itemIDs = new char* [numItems] {};
-    char** enemyIDs = new char* [numEnemies] {};
+    char** moveIDs = new char* [moves.size()] {};
+    char** skillIDs = new char* [skills.size()] {};
+    char** itemIDs = new char* [items.size()] {};
+    char** enemyIDs = new char* [enemies.size()] {};
 
-    for (ImU16 i = 0; i < numMoves; i++)
+    for (ImU16 i = 0; i < moves.size(); i++)
         moveIDs[i] = moves[i].name;
 
-    for (ImU16 i = 0; i < numSkills; i++)
+    for (ImU16 i = 0; i < skills.size(); i++)
         skillIDs[i] = skills[i].name;
 
-    for (ImU16 i = 0; i < numItems; i++)
+    for (ImU16 i = 0; i < items.size(); i++)
         itemIDs[i] = items[i].name;
 
-    for (ImU16 i = 0; i < numEnemies; i++)
+    for (ImU16 i = 0; i < enemies.size(); i++)
         enemyIDs[i] = enemies[i].name;
 
     // Main loop
@@ -250,14 +217,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
                         
                         try {
 
-                            writeMS(moves, numMoves);
-                            writeSK(skills, numSkills);
-                            writeMAG(eggs, numEggs);
-                            writeSKI(books, numBooks);
-                            writeSPC(specials, numSpecials);
-                            writePC(stats, numStats);
-                            writeITE(items, numItems);
-                            writeEnemyStats(enemies, numEnemies);
+                            writeMS(moves);
+                            writeSK(skills);
+                            writeMAG(eggs);
+                            writeSKI(books);
+                            writeSPC(specials);
+                            writePC(stats);
+                            writeITE(items);
+                            writeEnemyStats(enemies);
 
                         }
                         catch (const std::exception& e) {
@@ -285,14 +252,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
         }
 
-        drawMS(moves, moveIDs, numMoves, canClose);
-        drawSK(skills, skillIDs, numSkills, canClose);
-        drawMAG(eggs, numEggs, canClose, moveIDs, numMoves);
-        drawSKI(books, numBooks, canClose, skillIDs, numSkills);
-        drawSPC(specials, numSpecials, canClose, moveIDs, numMoves);
-        drawPC(stats, numStats, canClose, itemIDs, numItems);
-        drawITE(items, itemIDs, numItems, canClose);
-        drawEnemyStats(enemies, enemyIDs, numEnemies, canClose, moveIDs, numMoves, itemIDs, numItems);
+        drawMS(moves, moveIDs, canClose);
+        drawSK(skills, skillIDs, canClose);
+        drawMAG(eggs, canClose, moveIDs, moves.size());
+        drawSKI(books, canClose, skillIDs, skills.size());
+        drawSPC(specials, canClose, moveIDs, moves.size());
+        drawPC(stats, canClose, itemIDs, items.size());
+        drawITE(items, itemIDs, canClose);
+        drawEnemyStats(enemies, enemyIDs, canClose, moveIDs, moves.size(), itemIDs, items.size());
 
         // Rendering
         ImGui::Render();
@@ -313,28 +280,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
     DestroyWindow(hwnd);
     UnregisterClass(wc.lpszClassName, wc.hInstance);
 
-    delete[] moves;
-    moves = nullptr;
-
-    delete[] skills;
-    skills = nullptr;
-
-    delete[] eggs;
-    eggs = nullptr;
-
-    delete[] books;
-    books = nullptr;
-
-    delete[] specials;
-    specials = nullptr;
-
-    delete[] items;
-    items = nullptr;
-
-    delete[] stats;
-    stats = nullptr;
-
-    return 0;
+    return EXIT_SUCCESS;
 
 }
 

@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "ImGui/imgui.h"
 
 #include "MoveStruct.h"
@@ -27,6 +29,6 @@ public:
 01 byte ? - Unknown
 */
 
-void writeSKI(SkillBookStruct* books, const ImU16& count);
-SkillBookStruct* readSKI(ImU16& count);
-void drawSKI(SkillBookStruct* books, ImU16& numBooks, bool* canClose, char** skillIDs, ImU16& numSkills);
+void writeSKI(std::vector<SkillBookStruct>& books);
+void readSKI(std::vector<SkillBookStruct>& books);
+void drawSKI(std::vector<SkillBookStruct>& books, bool* canClose, char** skillIDs, const size_t& numSkills);

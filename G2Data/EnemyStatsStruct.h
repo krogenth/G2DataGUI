@@ -1,11 +1,11 @@
 #pragma once
-#include <future>
+#include <vector>
 
 #include "ImGui/imgui.h"
 
+#pragma pack(1)
 struct EnemyMoveStatsStruct {
 
-	char* name = new char[19]{};
 	ImU16 mp = 0;
 	ImU16 sp = 0;
 	ImU8 unknown = 0;
@@ -36,9 +36,18 @@ struct EnemyMoveStatsStruct {
 	ImU16 special = 0;
 
 };
+#pragma pack()
 
-struct EnemyStatsStruct {
+struct EnemyMoveStruct {
+
 	char* name = new char[19]{};
+	EnemyMoveStatsStruct stats;
+
+};
+
+#pragma pack(1)
+struct EnemyStatsStruct {
+
 	ImU8 unknown = 0;
 	ImU8 unknown1 = 0;
 	ImU8 type1 = 0;
@@ -81,12 +90,18 @@ struct EnemyStatsStruct {
 	ImS8 item1Chance = 0;
 	ImS8 item2Chance = 0;
 
-	EnemyMoveStatsStruct moves[5]{};
+};
+#pragma pack()
+
+struct EnemyStruct {
+	char* name = new char[19]{};
+	EnemyStatsStruct stats;
+	EnemyMoveStruct moves[5]{};
 
 	std::string filename = "";
 
 };
 
-void writeEnemyStats(EnemyStatsStruct* enemies, const ImU16& count);
-void readEnemyStats(std::promise<EnemyStatsStruct*> &&ftr, ImU16& count);
-void drawEnemyStats(EnemyStatsStruct* enemies, char** enemyIDs, ImU16& numEnemies, bool* canClose, char** moveIDs, ImU16& numMoves, char** itemIDs, ImU16& numItems);
+void writeEnemyStats(std::vector<EnemyStruct>& enemies);
+void readEnemyStats(std::vector<EnemyStruct>& enemies);
+void drawEnemyStats(std::vector<EnemyStruct>& enemies, char** enemyIDs, bool* canClose, char** moveIDs, const size_t& numMoves, char** itemIDs, const size_t& numItems);

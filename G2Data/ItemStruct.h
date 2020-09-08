@@ -1,8 +1,9 @@
 #pragma once
-#include <future>
+#include <vector>
 
 #include "ImGui/imgui.h"
 
+#pragma pack(1)
 struct EquipmentStruct {
 
 public:
@@ -30,6 +31,7 @@ public:
 	ImU16 special = 0;
 
 };
+#pragma pack()
 
 /*
 02 byte Character Bitflag(Add together for multiple characters)
@@ -56,6 +58,7 @@ public:
 02 byte Special Effect
 */
 
+#pragma pack(1)
 struct UsableStruct {
 
 public:
@@ -85,6 +88,7 @@ public:
 	ImU8 unknown3 = 0;
 
 };
+#pragma pack()
 
 /*
 01 byte Target Effect
@@ -113,11 +117,9 @@ public:
 01 byte Unknown
 */
 
-struct ItemStruct {
+#pragma pack(1)
+struct ItemStatsStruct {
 
-public:
-	char* name = new char[19]{};
-	char* description = new char[41]{};
 	ImU8 entryType = 0;
 	ImU8 unknown1 = 0;
 	ImU8 unknown2 = 0;
@@ -125,6 +127,16 @@ public:
 	ImU8 icon = 0;
 	ImU8 unknown5 = 0;
 	ImU32 price = 0;
+
+};
+#pragma pack()
+
+struct ItemStruct {
+
+public:
+	char* name = new char[19]{};
+	char* description = new char[41]{};
+	ItemStatsStruct stats;
 	EquipmentStruct* equipmentOffset = nullptr;// 0xFFFFFFFF means null
 	UsableStruct* usableOffset = nullptr;// 0xFFFFFFFF means null
 	ImU32 id = 0;// overwrite this to array index, used for overworld items and enemy drops
@@ -146,6 +158,6 @@ public:
 04 byte Unknown(Previously believed to be an ID, but that was wrong. Items are referenced by their entry offset from the start of ITEM.BIN, so these 4 bytes were changed for easier reference.)
 */
 
-void writeITE(ItemStruct* items, const ImU16& count);
-void readITE(std::promise<ItemStruct*>&& ftr, ImU16& count);
-void drawITE(ItemStruct* items, char** itemIDs, ImU16& numItems, bool* canClose);
+void writeITE(std::vector<ItemStruct>& items);
+void readITE(std::vector<ItemStruct>& items);
+void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose);

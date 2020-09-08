@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "ImGui/imgui.h"
 
 struct MoveImplementationStruct {
@@ -23,6 +25,6 @@ public:
 02 byte SF - Story progress flag required to unlock move(?)
 */
 
-void writeSPC(SpecialMoveStruct* specials, const ImU16& count);
-SpecialMoveStruct* readSPC(ImU16& count);
-void drawSPC(SpecialMoveStruct* specials, ImU16& numSpecials, bool* canClose, char** moveIDs, ImU16& numMoves);
+void writeSPC(std::vector<SpecialMoveStruct>& specials);
+void readSPC(std::vector<SpecialMoveStruct>& specials);
+void drawSPC(std::vector<SpecialMoveStruct>& specials, bool* canClose, char** moveIDs, const size_t& numMoves);

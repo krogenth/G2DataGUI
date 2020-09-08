@@ -1,15 +1,11 @@
 #pragma once
-#include <Windows.h>
-#include <future>
+#include <vector>
 
 #include "ImGui/imgui.h"
 
-struct MoveStruct {
+#pragma pack(1)
+struct MoveStatsStruct {
 
-public:
-	ImU8 id = 0;// overwrite this with array index, used to reference which move manaeggs and specials reference
-	ImU8 icon = 0;
-	char* name = new char[19]{};
 	ImU16 cost = 0;
 	ImU8 targetEffect = 0;
 	ImU8 targetType = 0;
@@ -40,6 +36,17 @@ public:
 	ImU16 coinCost4 = 0;
 	ImU16 coinCost5 = 0;
 	ImU16 multiplier = 0;
+
+};
+#pragma pack()
+
+struct MoveStruct {
+
+	ImU8 id = 0;// overwrite this with array index, used to reference which move manaeggs and specials reference
+	ImU8 icon = 0;
+	char* name = new char[19]{};
+	ImU16 cost = 0;
+	MoveStatsStruct stats;
 	char* description = new char[41]{};
 
 };
@@ -81,6 +88,6 @@ public:
 40 byte Desc - Description of spell/move
 */
 
-void writeMS(MoveStruct* moves, const ImU16& count);
-void readMS(std::promise<MoveStruct*> ftr, ImU16& count);
-void drawMS(MoveStruct* moves, char** moveIDs, ImU16& numMoves, bool* canClose);
+void writeMS(std::vector<MoveStruct>& moves);
+void readMS(std::vector<MoveStruct>& moves);
+void drawMS(std::vector<MoveStruct>& moves, char** moveIDs, bool* canClose);

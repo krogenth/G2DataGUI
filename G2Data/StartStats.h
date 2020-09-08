@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "ImGui/imgui.h"
 
 struct StartStatsStruct {
@@ -87,6 +89,6 @@ public:
 2 byte SZ - SIZE
 */
 
-void writePC(StartStatsStruct* stats, const ImU16& count);
-StartStatsStruct* readPC(ImU16& count);
-void drawPC(StartStatsStruct* stats, ImU16& numStats, bool* canClose, char** itemIDs, ImU16& numItems);
+void writePC(std::vector<StartStatsStruct>& stats);
+void readPC(std::vector<StartStatsStruct>& stats);
+void drawPC(std::vector<StartStatsStruct>& stats, bool* canClose, char** itemIDs, const size_t& numItems);

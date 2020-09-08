@@ -6,33 +6,25 @@
 
 #include "StringManip.h"
 #include "SpecialMoveStruct.h"
+#include "io_util.h"
+#include "char_constants.h"
 
-void writeSPC(SpecialMoveStruct* specials, const ImU16& count) {
+void writeSPC(std::vector<SpecialMoveStruct>& specials) {
 
 	std::ofstream output("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("TB_SPCL.BIN not found to be written!");
 
-	for (size_t i = 0; i < 0x0E; i++) {
-
-		for (size_t j = 0; j < 6; j++) {
-
-			output.put(specials[i].moves[j].moveOffset);
-			output.put(specials[i].moves[j].startingLevel);
-
-			output.put(specials[i].moves[j].storyFlag);
-			output.put((specials[i].moves[j].storyFlag >> 8));
-
-		}
-
-	}
+	for (size_t i = 0; i < specials.size(); i++)
+		for (size_t j = 0; j < 6; j++)
+			writeRaw<MoveImplementationStruct>(output, specials[i].moves[j]);
 
 	output.close();
 
 }
 
-SpecialMoveStruct* readSPC(ImU16& count) {
+void readSPC(std::vector<SpecialMoveStruct>& specials) {
 
 	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_SPCL.BIN");
 	size_t fileSize = std::experimental::filesystem::file_size(filePath);
@@ -41,52 +33,34 @@ SpecialMoveStruct* readSPC(ImU16& count) {
 
 	std::ifstream input("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
 
-	count = (ImU16)(fileSize / 24);
-	SpecialMoveStruct* specials = new SpecialMoveStruct[count];	//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
+	specials.resize(fileSize / 24);		//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
 
 	if (!input.is_open())
 		throw new std::exception("TB_SPCL.BIN not found to be read!");
 
-	for (size_t i = 0; i < count; i++) {
-
-		for (size_t j = 0; j < 6; j++) {
-
-			input.read(readByte, 1);
-			specials[i].moves[j].moveOffset = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			specials[i].moves[j].startingLevel = (ImU8)readByte[0];
-
-			input.read(readByte, 2);
-			specials[i].moves[j].storyFlag = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-		}
-
-	}
+	for (size_t i = 0; i < specials.size(); i++)
+		for (size_t j = 0; j < 6; j++)
+			specials[i].moves[j] = readRaw<MoveImplementationStruct>(input);
 
 	input.close();
 
-	return specials;
-
 }
 
-void drawSPC(SpecialMoveStruct* specials, ImU16& numSpecials, bool* canClose, char** moveIDs, ImU16& numMoves) {
+void drawSPC(std::vector<SpecialMoveStruct>& specials, bool* canClose, char** moveIDs, const size_t& numMoves) {
 
-	const char* specialIDs[] = { "NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
-	const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6" };
 	static ImU16 specialID = 0;
 	static ImU16 moveSlot = 0;
 
 	ImGui::Begin("TB_SPCL");
 
-	ImGui::Combo("Index", &specialID, specialIDs, (int)numSpecials); ImGui::SameLine();
+	ImGui::Combo("Index", &specialID, specialIDs, (int)specials.size()); ImGui::SameLine();
 
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) {
 
 		try {
 
-			writeSPC(specials, numSpecials);
+			writeSPC(specials);
 
 		}
 		catch (const std::exception& e) {

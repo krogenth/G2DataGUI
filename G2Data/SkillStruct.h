@@ -1,14 +1,13 @@
 #pragma once
-#include <future>
+#include <vector>
 
 #include "ImGui/imgui.h"
 
-struct SkillStruct {
+#pragma pack(1)
+struct SkillStatsStruct {
 
-public:
-	char* name = new char[19]{};
 	ImU8 cost1 = 0;
-	ImU8& cost2 = cost1;
+	ImU8 cost2 = 0;
 	ImU16 baseHp = 0;
 	ImU16 baseMp = 0;
 	ImU16 baseSp = 0;
@@ -38,6 +37,15 @@ public:
 	ImU16 coinCost4 = 0;
 	ImU16 coinCost5 = 0;
 	ImU16 multiplier = 0;
+
+};
+#pragma pack()
+
+struct SkillStruct {
+
+public:
+	char* name = new char[19]{};
+	SkillStatsStruct stats;
 	char* description = new char[41]{};
 
 };
@@ -79,6 +87,6 @@ public:
 40 byte Desc - Description of skill
 */
 
-void writeSK(SkillStruct* skills, const ImU16& count);
-void readSK(std::promise<SkillStruct*> &&ftr, ImU16& count);
-void drawSK(SkillStruct* skills, char** skillIDs, ImU16& numSkills, bool* canClose);
+void writeSK(std::vector<SkillStruct>& skills);
+void readSK(std::vector<SkillStruct>& skills);
+void drawSK(std::vector<SkillStruct>& skills, char** skillIDs, bool* canClose);

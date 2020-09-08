@@ -3,187 +3,55 @@
 
 #include "StringManip.h"
 #include "ItemStruct.h"
+#include "io_util.h"
+#include "char_constants.h"
 
-void writeITE(ItemStruct* items, const ImU16& count) {
+void writeITE(std::vector<ItemStruct>& items) {
 
-	size_t offset = 0xF9B0;	//80 * 799
+	ImU32 offset = 0x0000F9B0;	//80 * 799
+	ImU32 badOffset = 0xFFFFFFFF;
 
 	std::ofstream output("content/data/afs/xls_data/ITEM.BIN", std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("ITEM.BIN not found to be written!");
 
-	for (size_t i = 0; i < count; i++) {
+	for (size_t i = 0; i < items.size(); i++) {
 
 		output.write(items[i].name, 18);
 		output.write(items[i].description, 40);
 
-		output.put(items[i].entryType);
+		writeRaw<ItemStatsStruct>(output, items[i].stats);
 
-		output.put(items[i].unknown1);
-		output.put(items[i].unknown2);
-		output.put(items[i].unknown3);
-		output.put(items[i].icon);
-		output.put(items[i].unknown5);
-
-		output.put(items[i].price);
-		output.put((items[i].price >> 8));
-		output.put((items[i].price >> 16));
-		output.put((items[i].price >> 24));
-
-		if (!items[i].equipmentOffset) {
-
-			output.put(0xFF);
-			output.put(0xFF);
-			output.put(0xFF);
-			output.put(0xFF);
-
-		}
+		if (!items[i].equipmentOffset)
+			writeRaw<ImU32>(output, badOffset);
 		else {
 
-			output.put(offset);
-			output.put((offset >> 8));
-			output.put((offset >> 16));
-			output.put((offset >> 24));
-
-			offset += 0x1C;
+			writeRaw<ImU32>(output, offset);
+			offset += sizeof(EquipmentStruct);
 
 		}
 
-		if (!items[i].usableOffset) {
-
-			output.put(0xFF);
-			output.put(0xFF);
-			output.put(0xFF);
-			output.put(0xFF);
-
-		}
+		if (!items[i].usableOffset)
+			writeRaw<ImU32>(output, badOffset);
 		else {
 
-			output.put(offset);
-			output.put((offset >> 8));
-			output.put((offset >> 16));
-			output.put((offset >> 24));
-
-			offset += 0x20;
+			writeRaw<ImU32>(output, offset);
+			offset += sizeof(UsableStruct);
 
 		}
 
-		output.put(items[i].id);
-		output.put((items[i].id >> 8));
-		output.put((items[i].id >> 16));
-		output.put((items[i].id >> 24));
+		writeRaw<ImU32>(output, items[i].id);
 
 	}
 
-	for (size_t i = 0; i < count; i++) {
+	for (size_t i = 0; i < items.size(); i++) {
 
-		if (items[i].equipmentOffset) {
+		if (items[i].equipmentOffset)
+			writeRaw<EquipmentStruct>(output, *(items[i].equipmentOffset));
 
-			output.put(items[i].equipmentOffset->characterBitflag);
-			output.put((items[i].equipmentOffset->characterBitflag >> 8));
-
-			output.put(items[i].equipmentOffset->str);
-			output.put((items[i].equipmentOffset->str >> 8));
-
-			output.put(items[i].equipmentOffset->vit);
-			output.put((items[i].equipmentOffset->vit >> 8));
-
-			output.put(items[i].equipmentOffset->act);
-			output.put((items[i].equipmentOffset->act >> 8));
-
-			output.put(items[i].equipmentOffset->mov);
-			output.put((items[i].equipmentOffset->mov >> 8));
-
-			output.put(items[i].equipmentOffset->effectiveOn);
-
-			output.put(items[i].equipmentOffset->fireAffinity);
-
-			output.put(items[i].equipmentOffset->windAffinity);
-
-			output.put(items[i].equipmentOffset->earthAffinity);
-
-			output.put(items[i].equipmentOffset->lightningAffinity);
-
-			output.put(items[i].equipmentOffset->blizzardAffinity);
-
-			output.put(items[i].equipmentOffset->ailmentsBitflag);
-
-			output.put(items[i].equipmentOffset->ailmentsChance);
-
-			output.put(items[i].equipmentOffset->unknown1);
-			output.put(items[i].equipmentOffset->unknown2);
-			output.put(items[i].equipmentOffset->unknown3);
-			output.put(items[i].equipmentOffset->unknown4);
-			output.put(items[i].equipmentOffset->unknown5);
-			output.put(items[i].equipmentOffset->unknown6);
-			output.put(items[i].equipmentOffset->unknown7);
-			output.put(items[i].equipmentOffset->unknown8);
-
-			output.put(items[i].equipmentOffset->special);
-			output.put((items[i].equipmentOffset->special >> 8));
-
-		}
-
-		if (items[i].usableOffset) {
-
-			output.put(items[i].usableOffset->targetEffect);
-
-			output.put(items[i].usableOffset->targetType);
-
-			output.put(items[i].usableOffset->power);
-			output.put((items[i].usableOffset->power >> 8));
-
-			output.put(items[i].usableOffset->range);
-			output.put((items[i].usableOffset->range >> 8));
-
-			output.put(items[i].usableOffset->castTime);
-			output.put((items[i].usableOffset->castTime >> 8));
-
-			output.put(items[i].usableOffset->recoveryTime);
-			output.put((items[i].usableOffset->recoveryTime >> 8));
-
-			output.put(items[i].usableOffset->animation);
-			output.put((items[i].usableOffset->animation >> 8));
-
-			output.put(items[i].usableOffset->effectiveOn);
-
-			output.put(items[i].usableOffset->unknown1);
-
-			output.put(items[i].usableOffset->ipDamage);
-			output.put((items[i].usableOffset->ipDamage >> 8));
-
-			output.put(items[i].usableOffset->ipCancelDamage);
-			output.put((items[i].usableOffset->ipCancelDamage >> 8));
-
-			output.put(items[i].usableOffset->knockback);
-			output.put((items[i].usableOffset->knockback >> 8));
-
-			output.put(items[i].usableOffset->element);
-
-			output.put(items[i].usableOffset->elementStr);
-
-			output.put(items[i].usableOffset->ailmentsBitflag);
-
-			output.put(items[i].usableOffset->ailmentsChance);
-
-			output.put(items[i].usableOffset->atkMod % 6);
-
-			output.put(items[i].usableOffset->defMod % 6);
-
-			output.put(items[i].usableOffset->actMod % 6);
-
-			output.put(items[i].usableOffset->movMod % 6);
-
-			output.put(items[i].usableOffset->breakChance);
-
-			output.put(items[i].usableOffset->special);
-
-			output.put(items[i].usableOffset->unknown2);
-
-			output.put(items[i].usableOffset->unknown3);
-
-		}
+		if (items[i].usableOffset)
+			writeRaw<UsableStruct>(output, *(items[i].usableOffset));
 
 	}
 
@@ -191,20 +59,19 @@ void writeITE(ItemStruct* items, const ImU16& count) {
 
 }
 
-void readITE(std::promise<ItemStruct*>&& ftr, ImU16& count) {
+void readITE(std::vector<ItemStruct>& items) {
 
 	char* readByte = new char[4]{};
 	std::streampos pos = 0;
 
 	std::ifstream input("content/data/afs/xls_data/ITEM.BIN", std::ios::binary);
 
-	count = 0x31F;
-	ItemStruct* items = new ItemStruct[count];	//entries are broken down into 3 possible parts(first is always there, 80 bytes long; second is equipment, 28 bytes long; third is usables, 32 bytes long)
+	items.resize(0x31F);		//entries are broken down into 3 possible parts(first is always there, 80 bytes long; second is equipment, 28 bytes long; third is usables, 32 bytes long)
 
 	if (!input.is_open())
 		throw new std::exception("ITEM.BIN not found to be read!");
 
-	for (size_t i = 0; i < count; i++) {
+	for (size_t i = 0; i < items.size(); i++) {
 
 		input.read(items[i].name, 18);
 		replaceNulls(items[i].name, 18);
@@ -212,26 +79,7 @@ void readITE(std::promise<ItemStruct*>&& ftr, ImU16& count) {
 		input.read(items[i].description, 40);
 		replaceNulls(items[i].description, 40);
 
-		input.read(readByte, 1);
-		items[i].entryType = (ImU8)readByte[0];
-
-		input.read(readByte, 1);
-		items[i].unknown1 = (ImU8)readByte[0];
-
-		input.read(readByte, 1);
-		items[i].unknown2 = (ImU8)readByte[0];
-
-		input.read(readByte, 1);
-		items[i].unknown3 = (ImU8)readByte[0];
-
-		input.read(readByte, 1);
-		items[i].icon = (ImU8)readByte[0];
-
-		input.read(readByte, 1);
-		items[i].unknown5 = (ImU8)readByte[0];
-
-		input.read(readByte, 4);
-		items[i].price = ((((ImU32)((ImU8)readByte[3])) << 24) + (((ImU32)((ImU8)readByte[2])) << 16) + (((ImU32)((ImU8)readByte[1])) << 8) + (ImU32)((ImU8)readByte[0]));
+		items[i].stats = readRaw<ItemStatsStruct>(input);
 
 		input.read(readByte, 4);
 		pos = input.tellg();
@@ -242,71 +90,7 @@ void readITE(std::promise<ItemStruct*>&& ftr, ImU16& count) {
 			items[i].equipmentOffset = new EquipmentStruct;
 			input.seekg(((((ImS32)((ImU8)readByte[3])) << 24) + (((ImS32)((ImU8)readByte[2])) << 16) + (((ImS32)((ImU8)readByte[1])) << 8) + (ImS32)((ImU8)readByte[0])), std::ios::beg);
 
-			input.read(readByte, 2);
-			items[i].equipmentOffset->characterBitflag = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].equipmentOffset->str = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].equipmentOffset->vit = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].equipmentOffset->act = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].equipmentOffset->mov = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->effectiveOn = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->fireAffinity = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->windAffinity = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->earthAffinity = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->lightningAffinity = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->blizzardAffinity = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->ailmentsBitflag = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->ailmentsChance = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown1 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown2 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown3 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown4 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown5 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown6 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown7 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].equipmentOffset->unknown8 = (ImU8)readByte[0];
-
-			input.read(readByte, 2);
-			items[i].equipmentOffset->special = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
+			*(items[i].equipmentOffset) = readRaw<EquipmentStruct>(input);
 
 		}
 
@@ -320,77 +104,7 @@ void readITE(std::promise<ItemStruct*>&& ftr, ImU16& count) {
 			items[i].usableOffset = new UsableStruct;
 			input.seekg(((((ImS32)((ImU8)readByte[3])) << 24) + (((ImS32)((ImU8)readByte[2])) << 16) + (((ImS32)((ImU8)readByte[1])) << 8) + (ImS32)((ImU8)readByte[0])), std::ios::beg);
 
-			input.read(readByte, 1);
-			items[i].usableOffset->targetEffect = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->targetType = (ImU8)readByte[0];
-
-			input.read(readByte, 2);
-			items[i].usableOffset->power = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].usableOffset->range = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].usableOffset->castTime = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].usableOffset->recoveryTime = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].usableOffset->animation = ((ImU16)((ImU8)(readByte[1])) << 8) + (ImU16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 1);
-			items[i].usableOffset->effectiveOn = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->unknown1 = (ImU8)readByte[0];
-
-			input.read(readByte, 2);
-			items[i].usableOffset->ipDamage = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].usableOffset->ipCancelDamage = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 2);
-			items[i].usableOffset->knockback = ((ImS16)((ImU8)(readByte[1])) << 8) + (ImS16)((ImU8)(readByte[0]));
-
-			input.read(readByte, 1);
-			items[i].usableOffset->element = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->elementStr = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->ailmentsBitflag = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->ailmentsChance = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->atkMod = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->defMod = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->actMod = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->movMod = readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->breakChance = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->special = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->unknown2 = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			items[i].usableOffset->unknown3 = (ImU8)readByte[0];
+			*(items[i].usableOffset) = readRaw<UsableStruct>(input);
 
 		}
 
@@ -403,17 +117,10 @@ void readITE(std::promise<ItemStruct*>&& ftr, ImU16& count) {
 
 	input.close();
 
-	ftr.set_value(items);
-
 }
 
-void drawITE(ItemStruct* items, char** itemIDs, ImU16& numItems, bool* canClose) {
+void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose) {
 
-	const char* entryIDs[] = { "NULL", "Item", "Item", "Perm. Stat Modifier(?)", "Weapon", "Armour", "Headgear", "Footwear", "Accessory", "Mana Egg", "Unknown", "Valuable", "Skillbook", "Special", "Unknown", "Unknown" };
-	const char* targetEffects[] = { "NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special" };
-	const char* targetTypes[] = { "NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown" };
-	const char* effectiveOn[] = { "NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown" };
-	const char* elements[] = { "Fire", "Wind", "Earth", "Lightning", "Blizzard" };
 	static ImU16 itemID = 0;
 	static bool hasEquip = false;
 	static bool hasUsable = false;
@@ -423,7 +130,7 @@ void drawITE(ItemStruct* items, char** itemIDs, ImU16& numItems, bool* canClose)
 
 	ImGui::Begin("ITEM");
 
-	if (ImGui::Combo("Index", &itemID, itemIDs, (int)numItems)) {
+	if (ImGui::Combo("Index", &itemID, itemIDs, (int)items.size())) {
 
 		(items[itemID].equipmentOffset) ? hasEquip = true : hasEquip = false;
 		(items[itemID].usableOffset) ? hasUsable = true : hasUsable = false;
@@ -461,7 +168,7 @@ void drawITE(ItemStruct* items, char** itemIDs, ImU16& numItems, bool* canClose)
 
 		try {
 
-			writeITE(items, numItems);
+			writeITE(items);
 
 		}
 		catch (const std::exception& e) {
@@ -479,15 +186,15 @@ void drawITE(ItemStruct* items, char** itemIDs, ImU16& numItems, bool* canClose)
 	ImGui::InputText("Name", items[itemID].name, 19);
 	ImGui::InputText("Description", items[itemID].description, 41);
 
-	ImGui::Combo("Entry Type", &items[itemID].entryType, entryIDs, 16);
+	ImGui::Combo("Entry Type", &items[itemID].stats.entryType, entryIDs, 16);
 
-	ImGui::InputUByte("Unknown #1", &items[itemID].unknown1);
-	ImGui::InputUByte("Unknown #2", &items[itemID].unknown2);
-	ImGui::InputUByte("Unknown #3", &items[itemID].unknown3);
-	ImGui::InputUByte("Icon", &items[itemID].icon);
-	ImGui::InputUByte("Unknown #5", &items[itemID].unknown5);
+	ImGui::InputUByte("Unknown #1", &items[itemID].stats.unknown1);
+	ImGui::InputUByte("Unknown #2", &items[itemID].stats.unknown2);
+	ImGui::InputUByte("Unknown #3", &items[itemID].stats.unknown3);
+	ImGui::InputUByte("Icon", &items[itemID].stats.icon);
+	ImGui::InputUByte("Unknown #5", &items[itemID].stats.unknown5);
 
-	ImGui::InputUInt("Price", &items[itemID].price);
+	ImGui::InputUInt("Price", &items[itemID].stats.price);
 
 	if (ImGui::Checkbox("Equipment", &hasEquip)) {
 

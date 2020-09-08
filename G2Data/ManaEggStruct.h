@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "ImGui/imgui.h"
 
 #include "MoveStruct.h"
@@ -27,6 +29,6 @@ public:
 01 byte ? - Unknown
 */
 
-void writeMAG(ManaEggStruct* eggs, const ImU16& count);
-ManaEggStruct* readMAG(ImU16& count);
-void drawMAG(ManaEggStruct* eggs, ImU16& numEggs, bool* canClose, char** moveIDs, ImU16& numMoves);
+void writeMAG(std::vector<ManaEggStruct>& eggs);
+void readMAG(std::vector<ManaEggStruct>& eggs);
+void drawMAG(std::vector<ManaEggStruct>& eggs, bool* canClose, char** moveIDs, const size_t& numMoves);

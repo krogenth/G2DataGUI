@@ -6,32 +6,25 @@
 
 #include "StringManip.h"
 #include "ManaEggStruct.h"
+#include "io_util.h"
+#include "char_constants.h"
 
-void writeMAG(ManaEggStruct* eggs, const ImU16& count) {
+void writeMAG(std::vector<ManaEggStruct>& eggs) {
 
 	std::ofstream output("content/data/afs/xls_data/TB_MAGIC.BIN", std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("TB_MAGIC.BIN not found to be written!");
 
-	for (size_t i = 0; i < 0x0B; i++) {
-
-		for (size_t j = 0; j < 18; j++) {
-
-			output.put(eggs[i].spells[j].spellOffset);
-			output.put(eggs[i].spells[j].startingLevel);
-			output.put(eggs[i].spells[j].eggLevelRequired);
-			output.put(eggs[i].spells[j].unknown1);
-
-		}
-
-	}
+	for (size_t i = 0; i < eggs.size(); i++)
+		for (size_t j = 0; j < 18; j++)
+			writeRaw<SpellImplementationStruct>(output, eggs[i].spells[j]);
 
 	output.close();
 
 }
 
-ManaEggStruct* readMAG(ImU16& count) {
+void readMAG(std::vector<ManaEggStruct>& eggs) {
 
 	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_MAGIC.BIN");
 	size_t fileSize = std::experimental::filesystem::file_size(filePath);
@@ -40,55 +33,37 @@ ManaEggStruct* readMAG(ImU16& count) {
 
 	std::ifstream input("content/data/afs/xls_data/TB_MAGIC.BIN", std::ios::binary);
 
-	count = fileSize / 72;
-	ManaEggStruct* eggs = new ManaEggStruct[count];	//entries are 72 bytes long(each spell is 4 bytes long, 18 spells per egg)
+	eggs.resize(fileSize / 72);		//entries are 72 bytes long(each spell is 4 bytes long, 18 spells per egg)
 
 	if (!input.is_open())
 		throw new std::exception("TB_MAGIC.BIN not found to be read!");
 
-	for (size_t i = 0; i < count; i++) {
+	for (size_t i = 0; i < eggs.size(); i++) {
 
-		for (size_t j = 0; j < 18; j++) {
-
-			input.read(readByte, 1);
-			eggs[i].spells[j].spellOffset = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			eggs[i].spells[j].startingLevel = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			eggs[i].spells[j].eggLevelRequired = (ImU8)readByte[0];
-
-			input.read(readByte, 1);
-			eggs[i].spells[j].unknown1 = (ImU8)readByte[0];
-
-		}
+		for (size_t j = 0; j < 18; j++)
+			eggs[i].spells[j] = readRaw<SpellImplementationStruct>(input);
 
 	}
 
 	input.close();
 
-	return eggs;
-
 }
 
-void drawMAG(ManaEggStruct* eggs, ImU16& numEggs, bool* canClose, char** moveIDs, ImU16& numMoves) {
+void drawMAG(std::vector<ManaEggStruct>& eggs, bool* canClose, char** moveIDs, const size_t& numMoves) {
 
-	const char* eggIDs[] = { "NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg" };
-	const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6", "Slot 7", "Slot 8", "Slot 9", "Slot 10", "Slot 11", "Slot 12", "Slot 13", "Slot 14", "Slot 15", "Slot 16", "Slot 17", "Slot 18" };
 	static ImU16 eggID = 0;
 	static ImU16 spellSlot = 0;
 
 	ImGui::Begin("TB_MAGIC");
 
-	ImGui::Combo("Index", &eggID, eggIDs, (int)numEggs); ImGui::SameLine();
+	ImGui::Combo("Index", &eggID, eggIDs, (int)eggs.size()); ImGui::SameLine();
 
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) {
 
 		try {
 
-			writeMAG(eggs, numEggs);
+			writeMAG(eggs);
 
 		}
 		catch (const std::exception& e) {
