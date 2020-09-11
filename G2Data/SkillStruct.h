@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -87,6 +88,6 @@ public:
 40 byte Desc - Description of skill
 */
 
-void writeSK(std::vector<SkillStruct>& skills);
-void readSK(std::vector<SkillStruct>& skills);
+void writeSK(std::vector<SkillStruct>& skills, std::string filename = "content/data/afs/xls_data/SK_PARAM.BIN");
+void readSK(std::vector<SkillStruct>& skills, std::string filename = "content/data/afs/xls_data/SK_PARAM.BIN");
 void drawSK(std::vector<SkillStruct>& skills, char** skillIDs, bool* canClose);

@@ -9,9 +9,11 @@
 #include "io_util.h"
 #include "char_constants.h"
 
-void writeSKI(std::vector<SkillBookStruct>& books) {
+extern bool isHDVersion;
 
-	std::ofstream output("content/data/afs/xls_data/TB_SKILL.BIN", std::ios::binary);
+void writeSKI(std::vector<SkillBookStruct>& books, std::string filename) {
+
+	std::ofstream output(filename, std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("TB_SKILL.BIN not found to be written!");
@@ -24,19 +26,19 @@ void writeSKI(std::vector<SkillBookStruct>& books) {
 
 }
 
-void readSKI(std::vector<SkillBookStruct>& books) {
+void readSKI(std::vector<SkillBookStruct>& books, std::string filename) {
 
-	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_SKILL.BIN");
-	size_t fileSize = std::experimental::filesystem::file_size(filePath);
-
-	char* readByte = new char[1]{};
-
-	std::ifstream input("content/data/afs/xls_data/TB_SKILL.BIN", std::ios::binary);
-
-	books.resize(fileSize / 24);		//	entries are 24 bytes long(each skill is 4 bytes long, 6 skills per book)	
+	std::ifstream input(filename, std::ios::binary);	
 
 	if (!input.is_open())
 		throw new std::exception("TB_SKILL.BIN not found to be read!");
+
+	std::experimental::filesystem::path filePath(filename);
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
+	books.resize(fileSize / 24);		//	entries are 24 bytes long(each skill is 4 bytes long, 6 skills per book)
+
+	char* readByte = new char[1]{};
 
 	for (size_t i = 0; i < books.size(); i++)
 		for (size_t j = 0; j < 6; j++)
@@ -60,7 +62,10 @@ void drawSKI(std::vector<SkillBookStruct>& books, bool* canClose, char** skillID
 
 		try {
 
-			writeSKI(books);
+			if (isHDVersion)
+				writeSKI(books);
+			else
+				writeSKI(books, "data/afs/xls_data/TB_SKILL.BIN");
 
 		}
 		catch (const std::exception& e) {

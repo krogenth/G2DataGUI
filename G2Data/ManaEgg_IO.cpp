@@ -9,9 +9,11 @@
 #include "io_util.h"
 #include "char_constants.h"
 
-void writeMAG(std::vector<ManaEggStruct>& eggs) {
+extern bool isHDVersion;
 
-	std::ofstream output("content/data/afs/xls_data/TB_MAGIC.BIN", std::ios::binary);
+void writeMAG(std::vector<ManaEggStruct>& eggs, std::string filename) {
+
+	std::ofstream output(filename, std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("TB_MAGIC.BIN not found to be written!");
@@ -24,19 +26,19 @@ void writeMAG(std::vector<ManaEggStruct>& eggs) {
 
 }
 
-void readMAG(std::vector<ManaEggStruct>& eggs) {
+void readMAG(std::vector<ManaEggStruct>& eggs, std::string filename) {
 
-	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_MAGIC.BIN");
-	size_t fileSize = std::experimental::filesystem::file_size(filePath);
-
-	char* readByte = new char[1]{};
-
-	std::ifstream input("content/data/afs/xls_data/TB_MAGIC.BIN", std::ios::binary);
-
-	eggs.resize(fileSize / 72);		//entries are 72 bytes long(each spell is 4 bytes long, 18 spells per egg)
+	std::ifstream input(filename, std::ios::binary);
 
 	if (!input.is_open())
 		throw new std::exception("TB_MAGIC.BIN not found to be read!");
+
+	std::experimental::filesystem::path filePath(filename);
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
+	eggs.resize(fileSize / 72);		//entries are 72 bytes long(each spell is 4 bytes long, 18 spells per egg)
+
+	char* readByte = new char[1]{};
 
 	for (size_t i = 0; i < eggs.size(); i++) {
 
@@ -63,7 +65,10 @@ void drawMAG(std::vector<ManaEggStruct>& eggs, bool* canClose, char** moveIDs, c
 
 		try {
 
-			writeMAG(eggs);
+			if (isHDVersion)
+				writeMAG(eggs);
+			else
+				writeMAG(eggs, "data/afs/xls_data/TB_MAGIC.BIN");
 
 		}
 		catch (const std::exception& e) {

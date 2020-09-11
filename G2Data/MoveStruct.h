@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -42,7 +43,7 @@ struct MoveStatsStruct {
 
 struct MoveStruct {
 
-	ImU8 id = 0;// overwrite this with array index, used to reference which move manaeggs and specials reference
+	ImU8 id = 0;	// overwrite this with array index, used to reference which move manaeggs and specials reference
 	ImU8 icon = 0;
 	char* name = new char[19]{};
 	ImU16 cost = 0;
@@ -88,6 +89,6 @@ struct MoveStruct {
 40 byte Desc - Description of spell/move
 */
 
-void writeMS(std::vector<MoveStruct>& moves);
-void readMS(std::vector<MoveStruct>& moves);
+void writeMS(std::vector<MoveStruct>& moves, std::string filename = "content/data/afs/xls_data/MS_PARAM.BIN");
+void readMS(std::vector<MoveStruct>& moves, std::string filename = "content/data/afs/xls_data/MS_PARAM.BIN");
 void drawMS(std::vector<MoveStruct>& moves, bool* canClose, char** moveIDs, const size_t& numMoves);

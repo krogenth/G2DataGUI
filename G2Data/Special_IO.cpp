@@ -9,9 +9,11 @@
 #include "io_util.h"
 #include "char_constants.h"
 
-void writeSPC(std::vector<SpecialMoveStruct>& specials) {
+extern bool isHDVersion;
 
-	std::ofstream output("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
+void writeSPC(std::vector<SpecialMoveStruct>& specials, std::string filename) {
+
+	std::ofstream output(filename, std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("TB_SPCL.BIN not found to be written!");
@@ -24,19 +26,19 @@ void writeSPC(std::vector<SpecialMoveStruct>& specials) {
 
 }
 
-void readSPC(std::vector<SpecialMoveStruct>& specials) {
+void readSPC(std::vector<SpecialMoveStruct>& specials, std::string filename) {
 
-	std::experimental::filesystem::path filePath("content/data/afs/xls_data/TB_SPCL.BIN");
-	size_t fileSize = std::experimental::filesystem::file_size(filePath);
-
-	char* readByte = new char[2]{};
-
-	std::ifstream input("content/data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
-
-	specials.resize(fileSize / 24);		//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
+	std::ifstream input(filename, std::ios::binary);
 
 	if (!input.is_open())
 		throw new std::exception("TB_SPCL.BIN not found to be read!");
+
+	std::experimental::filesystem::path filePath(filename);
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
+	specials.resize(fileSize / 24);		//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
+
+	char* readByte = new char[2]{};
 
 	for (size_t i = 0; i < specials.size(); i++)
 		for (size_t j = 0; j < 6; j++)
@@ -60,7 +62,10 @@ void drawSPC(std::vector<SpecialMoveStruct>& specials, bool* canClose, char** mo
 
 		try {
 
-			writeSPC(specials);
+			if (isHDVersion)
+				writeSPC(specials);
+			else
+				writeSPC(specials, "data/afs/xls_data/TB_SPCL.BIN");
 
 		}
 		catch (const std::exception& e) {

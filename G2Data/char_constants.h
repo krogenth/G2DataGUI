@@ -7,7 +7,7 @@ static const char* elements[] = { "Fire", "Wind", "Earth", "Lightning", "Blizzar
 static const char* slotIDs[] = { "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6", "Slot 7", "Slot 8", "Slot 9", "Slot 10", "Slot 11", "Slot 12", "Slot 13", "Slot 14", "Slot 15", "Slot 16", "Slot 17", "Slot 18" };
 
 static const char* entryIDs[] = { "NULL", "Item", "Item", "Perm. Stat Modifier(?)", "Weapon", "Armour", "Headgear", "Footwear", "Accessory", "Mana Egg", "Unknown", "Valuable", "Skillbook", "Special", "Unknown", "Unknown" };
-static const char* effectiveOn[] = { "NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown" };
+static const char* effectiveOn[] = { "NULL", "Bird", "Bug/Crustacean", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown" };
 
 static const char* bookIDs[] = { "NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning" };
 static const char* eggIDs[] = { "NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg" };

@@ -1,3 +1,5 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_impl_win32.h"
 #include "ImGui/imgui_impl_dx11.h"
@@ -6,12 +8,13 @@
 #include <dinput.h>
 #include <tchar.h>
 #include <vector>
+#include <experimental/filesystem>
 
 #include <cstdlib>
 #include <Windows.h>
 #include <type_traits>
 #include <string>
-#include <thread>
+//#include <thread>
 #include <future>
 #include <utility>
 
@@ -34,6 +37,8 @@ void CleanupDeviceD3D();
 void CreateRenderTarget();
 void CleanupRenderTarget();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+bool isHDVersion = true;
 
 bool* canClose = new bool[1]{ true };
 
@@ -86,45 +91,75 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     std::vector<ItemStruct> items;
     std::vector<StartStatsStruct> stats;
     std::vector<EnemyStruct> enemies;
-    
-    /*
-    const char* moveIcons[] =       { "Fire", "Wind", "Earth", "Lightning", "Blizzard", "Water", "Explosion", "Forest", "Light", "Darkness", "Sword", "Staff", "Crossbow", "Dagger", "Poleaxe", "Chakram", "Red Shoe" };
-    const char* targetEffects[] =   { "NULL", "Restore HP(MEN)", "Restore MP", "Restore SP", "Ally Buff/Debuff", "Physical Damage(STR)", "Magical Damage(MAG)", "Enemy Buff/Debuff", "Status Change", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Special" };
-    const char* targetTypes[] =     { "NULL", "One Ally", "Area Allies", "All Allies", "One Enemy", "Area Enemies", "All Enemies", "Enemy Line", "Self", "Unknown", "Area Around Self", "Unknown", "Unknown", "Area Around Self", "Unknown", "Unknown" };
-    const char* effectiveOn[] =     { "NULL", "Bird", "Bug", "Reptile", "Animal", "Humanoid", "Unknown", "Undead", "Valmar", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown" };
-    const char* elements[] =        { "Fire", "Wind", "Earth", "Lightning", "Blizzard" };
 
-    const char* eggIDs[] =          { "NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg" };
-    const char* bookIDs[] =         { "NULL", "Adventure Book", "Book of Wizards", "Book of Warriors", "Book of Priests", "Book of Gales", "Book of Swords", "Book of War", "Book of Sages", "Book of Learning" };
-    const char* specialIDs[] =      { "NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
-    const char* statIDs[] =         { "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
-    */
+    if (!std::experimental::filesystem::exists("content"))
+        isHDVersion = false;
 
     //CALL READ DATA FUNCTIONS
     {
 
-        try {
-            
-            std::thread movesThread(readMS, std::ref(moves));
-            std::thread skillsThread(readSK, std::ref(skills));
-            std::thread itemsThread(readITE, std::ref(items));
-            std::thread enemiesThread(readEnemyStats, std::ref(enemies));
-            readMAG(eggs);
-            readSKI(books);
-            readSPC(specials);
-            readPC(stats);
+        if (isHDVersion) {
 
-            movesThread.join();
-            skillsThread.join();
-            itemsThread.join();
-            enemiesThread.join();
+            try {
+
+                //std::thread movesThread(readMS, std::ref(moves));
+                //std::thread skillsThread(readSK, std::ref(skills));
+                //std::thread itemsThread(readITE, std::ref(items));
+                //std::thread enemiesThread(readEnemyStats, std::ref(enemies));
+                readMS(moves);
+                readSK(skills);
+                readITE(items);
+                readEnemyStats(enemies);
+                readMAG(eggs);
+                readSKI(books);
+                readSPC(specials);
+                readPC(stats);
+
+                //movesThread.join();
+                //skillsThread.join();
+                //itemsThread.join();
+                //enemiesThread.join();
+
+            }
+            catch (const std::exception& e) {
+
+                ImGui::Begin("ERROR", canClose);
+                ImGui::LabelText("", e.what());
+                ImGui::End();
+
+            }
 
         }
-        catch (const std::exception& e) {
+        else {
 
-            ImGui::Begin("ERROR", canClose);
-            ImGui::LabelText("", e.what());
-            ImGui::End();
+            try {
+
+                //std::thread movesThread(readMS, std::ref(moves), "data/afs/xls_data/MS_PARAM.BIN");
+                //std::thread skillsThread(readSK, std::ref(skills), "data/afs/xls_data/SK_PARAM.BIN");
+                //std::thread itemsThread(readITE, std::ref(items), "data/afs/xls_data/ITEM.BIN");
+                //std::thread enemiesThread(readEnemyStats, std::ref(enemies), "data/afs/enemy");
+                readMS(moves, "data/afs/xls_data/MS_PARAM.BIN");
+                readSK(skills, "data/afs/xls_data/SK_PARAM.BIN");
+                readITE(items, "data/afs/xls_data/ITEM.BIN");
+                readEnemyStats(enemies, "data/afs/");
+                readMAG(eggs, "data/afs/xls_data/TB_MAGIC.BIN");
+                readSKI(books, "data/afs/xls_data/TB_SKILL.BIN");
+                readSPC(specials, "data/afs/xls_data/TB_SPCL.BIN");
+                readPC(stats, "data/afs/xls_data/PC_INIT.BIN");
+
+                //movesThread.join();
+                //skillsThread.join();
+                //itemsThread.join();
+                //enemiesThread.join();
+
+            }
+            catch (const std::exception& e) {
+
+                ImGui::Begin("ERROR", canClose);
+                ImGui::LabelText("", e.what());
+                ImGui::End();
+
+            }
 
         }
 

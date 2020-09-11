@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -158,6 +159,6 @@ public:
 04 byte Unknown(Previously believed to be an ID, but that was wrong. Items are referenced by their entry offset from the start of ITEM.BIN, so these 4 bytes were changed for easier reference.)
 */
 
-void writeITE(std::vector<ItemStruct>& items);
-void readITE(std::vector<ItemStruct>& items);
+void writeITE(std::vector<ItemStruct>& items, std::string filename = "content/data/afs/xls_data/ITEM.BIN");
+void readITE(std::vector<ItemStruct>& items, std::string filename = "content/data/afs/xls_data/ITEM.BIN");
 void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose);

@@ -8,9 +8,11 @@
 #include "io_util.h"
 #include "char_constants.h"
 
-void writePC(std::vector<StartStatsStruct>& stats) {
+extern bool isHDVersion;
 
-	std::ofstream output("content/data/afs/xls_data/PC_INIT.BIN", std::ios::binary);
+void writePC(std::vector<StartStatsStruct>& stats, std::string filename) {
+
+	std::ofstream output(filename, std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("PC_INIT.BIN not found to be written!");
@@ -22,20 +24,20 @@ void writePC(std::vector<StartStatsStruct>& stats) {
 
 }
 
-void readPC(std::vector<StartStatsStruct>& stats) {
+void readPC(std::vector<StartStatsStruct>& stats, std::string filename) {
 	//Upon starting a new game, all characters gain EXP together. The EXP value displayed is what each character starts the game at
 
-	std::experimental::filesystem::path filePath("content/data/afs/xls_data/PC_INIT.BIN");
-	size_t fileSize = std::experimental::filesystem::file_size(filePath);
-
-	char* readByte = new char[4]{};
-
-	std::ifstream input("content/data/afs/xls_data/PC_INIT.BIN", std::ios::binary);
-
-	stats.resize(fileSize / 80);		//entries are 80 bytes long
+	std::ifstream input(filename, std::ios::binary);
 
 	if (!input.is_open())
 		throw new std::exception("PC_INIT.BIN not found to be read!");
+
+	std::experimental::filesystem::path filePath(filename);
+	size_t fileSize = std::experimental::filesystem::file_size(filePath);
+
+	stats.resize(fileSize / 80);		//entries are 80 bytes long
+
+	char* readByte = new char[4]{};
 
 	for (size_t i = 0; i < stats.size(); i++)
 		stats[i] = readRaw<StartStatsStruct>(input);
@@ -57,7 +59,10 @@ void drawPC(std::vector<StartStatsStruct>& stats, bool* canClose, char** itemIDs
 
 		try {
 
-			writePC(stats);
+			if (isHDVersion)
+				writePC(stats);
+			else
+				writePC(stats, "data/afs/xls_data/PC_INIT.BIN");
 
 		}
 		catch (const std::exception& e) {

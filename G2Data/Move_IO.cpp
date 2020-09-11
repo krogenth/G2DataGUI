@@ -3,7 +3,6 @@
 #include <experimental/filesystem>
 #include <fstream>
 #include <exception>
-#include <string>
 #include <algorithm>
 
 #include "StringManip.h"
@@ -11,9 +10,11 @@
 #include "io_util.h"
 #include "char_constants.h"
 
-void writeMS(std::vector<MoveStruct>& moves) {
+extern bool isHDVersion;
 
-	std::ofstream output("content/data/afs/xls_data/MS_PARAM.BIN", std::ios::binary);
+void writeMS(std::vector<MoveStruct>& moves, std::string filename) {
+
+	std::ofstream output(filename, std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("MS_PARAM.BIN not found to be written!");
@@ -43,19 +44,19 @@ void writeMS(std::vector<MoveStruct>& moves) {
 
 }
 
-void readMS(std::vector<MoveStruct>& moves) {
+void readMS(std::vector<MoveStruct>& moves, std::string filename) {
 
-	std::experimental::filesystem::path filePath("content/data/afs/xls_data/MS_PARAM.BIN");
+	std::ifstream input(filename, std::ios::binary);
+
+	if (!input.is_open())
+		throw new std::exception("MS_PARAM.BIN not found to be read!");
+
+	std::experimental::filesystem::path filePath(filename);
 	size_t fileSize = std::experimental::filesystem::file_size(filePath);
 
 	char* readByte = new char[2]{};
 
-	std::ifstream input("content/data/afs/xls_data/MS_PARAM.BIN", std::ios::binary);
-
 	moves.resize(fileSize / 108);		//	entries are 108 bytes long
-
-	if (!input.is_open())
-		throw new std::exception("MS_PARAM.BIN not found to be read!");
 
 	for (int i = 0; i < moves.size(); i++) {
 
@@ -97,7 +98,10 @@ void drawMS(std::vector<MoveStruct>& moves, bool* canClose, char** moveIDs, cons
 
 		try {
 
-			writeMS(moves);
+			if (isHDVersion)
+				writeMS(moves);
+			else
+				writeMS(moves, "data/afs/xls_data/MS_PARAM.BIN");
 
 		}
 		catch (const std::exception& e) {
@@ -124,8 +128,6 @@ void drawMS(std::vector<MoveStruct>& moves, bool* canClose, char** moveIDs, cons
 	ImGui::InputUShort2("Cast Time Lv1/Lv5", &moves[moveID].stats.cast1);
 
 	ImGui::InputUShort("Recovery", &moves[moveID].stats.recovery);
-	//ImGui::Combo("Animation", &enemies[enemyID].moves[moveSlot].stats.animation, moveIDs, numMoves);
-	//ImGui::InputUShort("Animation", &moves[moveID].stats.animation);
 	ImGui::Combo("Animation", &moves[moveID].stats.animation, moveIDs, numMoves);
 	ImGui::InputUByte("Unknown #1", &moves[moveID].stats.unknown1);
 	ImGui::InputUByte("Knockdown", &moves[moveID].stats.knockDown);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");

@@ -6,12 +6,14 @@
 #include "io_util.h"
 #include "char_constants.h"
 
-void writeITE(std::vector<ItemStruct>& items) {
+extern bool isHDVersion;
+
+void writeITE(std::vector<ItemStruct>& items, std::string filename) {
 
 	ImU32 offset = 0x0000F9B0;	//80 * 799
 	ImU32 badOffset = 0xFFFFFFFF;
 
-	std::ofstream output("content/data/afs/xls_data/ITEM.BIN", std::ios::binary);
+	std::ofstream output(filename, std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("ITEM.BIN not found to be written!");
@@ -59,17 +61,17 @@ void writeITE(std::vector<ItemStruct>& items) {
 
 }
 
-void readITE(std::vector<ItemStruct>& items) {
+void readITE(std::vector<ItemStruct>& items, std::string filename) {
+
+	std::ifstream input(filename, std::ios::binary);
+
+	if (!input.is_open())
+		throw new std::exception("ITEM.BIN not found to be read!");
 
 	char* readByte = new char[4]{};
 	std::streampos pos = 0;
 
-	std::ifstream input("content/data/afs/xls_data/ITEM.BIN", std::ios::binary);
-
 	items.resize(0x31F);		//entries are broken down into 3 possible parts(first is always there, 80 bytes long; second is equipment, 28 bytes long; third is usables, 32 bytes long)
-
-	if (!input.is_open())
-		throw new std::exception("ITEM.BIN not found to be read!");
 
 	for (size_t i = 0; i < items.size(); i++) {
 
@@ -168,7 +170,10 @@ void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose) {
 
 		try {
 
-			writeITE(items);
+			if (isHDVersion)
+				writeITE(items);
+			else
+				writeITE(items, "data/afs/xls_data/ITEM.BIN");
 
 		}
 		catch (const std::exception& e) {
@@ -194,7 +199,7 @@ void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose) {
 	ImGui::InputUByte("Icon", &items[itemID].stats.icon);
 	ImGui::InputUByte("Unknown #5", &items[itemID].stats.unknown5);
 
-	ImGui::InputUInt("Price", &items[itemID].stats.price);
+	ImGui::InputUInt("Price", &items[itemID].stats.price);						if (ImGui::IsItemHovered()) ImGui::SetTooltip("sell = price / 2");
 
 	if (ImGui::Checkbox("Equipment", &hasEquip)) {
 

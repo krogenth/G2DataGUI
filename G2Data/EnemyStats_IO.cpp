@@ -3,7 +3,6 @@
 #include <fstream>
 #include <exception>
 #include <experimental/filesystem>
-#include <string>
 
 #include "StringManip.h"
 #include "EnemyStatsStruct.h"
@@ -70,7 +69,7 @@ void writeEnemyStats(std::vector<EnemyStruct>& enemies) {
 
 }
 
-void readEnemyStats(std::vector<EnemyStruct>& enemies) {
+void readEnemyStats(std::vector<EnemyStruct>& enemies, std::string filepath) {
 
 	char* readByte = new char[4]{};
 	std::ifstream input;
@@ -78,7 +77,7 @@ void readEnemyStats(std::vector<EnemyStruct>& enemies) {
 	std::string filename = "";
 	uint32_t offset = 0;
 
-	for (const auto& p : std::experimental::filesystem::directory_iterator("content/data/afs/enemy")) {
+	for (const auto& p : std::experimental::filesystem::directory_iterator(filepath + "enemy")) {
 
 		filename = p.path().u8string();
 
@@ -138,7 +137,7 @@ void readEnemyStats(std::vector<EnemyStruct>& enemies) {
 
 	}
 
-	for (const auto& p : std::experimental::filesystem::directory_iterator("content/data/afs/boss")) {
+	for (const auto& p : std::experimental::filesystem::directory_iterator(filepath + "boss")) {
 
 		filename = p.path().u8string();
 

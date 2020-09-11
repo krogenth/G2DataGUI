@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -29,6 +30,6 @@ public:
 01 byte ? - Unknown
 */
 
-void writeSKI(std::vector<SkillBookStruct>& books);
-void readSKI(std::vector<SkillBookStruct>& books);
+void writeSKI(std::vector<SkillBookStruct>& books, std::string filename = "content/data/afs/xls_data/TB_SKILL.BIN");
+void readSKI(std::vector<SkillBookStruct>& books, std::string filename = "content/data/afs/xls_data/TB_SKILL.BIN");
 void drawSKI(std::vector<SkillBookStruct>& books, bool* canClose, char** skillIDs, const size_t& numSkills);

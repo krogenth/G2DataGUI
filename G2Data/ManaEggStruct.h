@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -29,6 +30,6 @@ public:
 01 byte ? - Unknown
 */
 
-void writeMAG(std::vector<ManaEggStruct>& eggs);
-void readMAG(std::vector<ManaEggStruct>& eggs);
+void writeMAG(std::vector<ManaEggStruct>& eggs, std::string filename = "content/data/afs/xls_data/TB_MAGIC.BIN");
+void readMAG(std::vector<ManaEggStruct>& eggs, std::string filename = "content/data/afs/xls_data/TB_MAGIC.BIN");
 void drawMAG(std::vector<ManaEggStruct>& eggs, bool* canClose, char** moveIDs, const size_t& numMoves);

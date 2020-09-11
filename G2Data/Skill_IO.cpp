@@ -8,9 +8,11 @@
 #include "SkillStruct.h"
 #include "io_util.h"
 
-void writeSK(std::vector<SkillStruct>& skills) {
+extern bool isHDVersion;
 
-	std::ofstream output("content/data/afs/xls_data/SK_PARAM.BIN", std::ios::binary);
+void writeSK(std::vector<SkillStruct>& skills, std::string filename) {
+
+	std::ofstream output(filename, std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("SK_PARAM.BIN not found to be written!");
@@ -29,19 +31,19 @@ void writeSK(std::vector<SkillStruct>& skills) {
 
 }
 
-void readSK(std::vector<SkillStruct>& skills) {
+void readSK(std::vector<SkillStruct>& skills, std::string filename) {
 
-	std::experimental::filesystem::path filePath("content/data/afs/xls_data/SK_PARAM.BIN");
+	std::ifstream input(filename, std::ios::binary);
+
+	if (!input.is_open())
+		throw new std::exception("SK_PARAM.BIN not found to be read!");
+
+	std::experimental::filesystem::path filePath(filename);
 	size_t fileSize = std::experimental::filesystem::file_size(filePath);
 
 	char* readByte = new char[2]{};
 
-	std::ifstream input("content/data/afs/xls_data/SK_PARAM.BIN", std::ios::binary);
-
 	skills.resize(fileSize / 104);		//entries are 104 bytes long
-
-	if (!input.is_open())
-		throw new std::exception("SK_PARAM.BIN not found to be read!");
 
 	for (size_t i = 0; i < skills.size(); i++) {
 
@@ -70,7 +72,10 @@ void drawSK(std::vector<SkillStruct>& skills, char** skillIDs, bool* canClose) {
 
 		try {
 
-			writeSK(skills);
+			if (isHDVersion)
+				writeSK(skills);
+			else
+				writeSK(skills, "data/afs/xls_data/SK_PARAM.BIN");
 
 		}
 		catch (const std::exception& e) {

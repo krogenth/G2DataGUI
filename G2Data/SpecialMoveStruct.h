@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -25,6 +26,6 @@ public:
 02 byte SF - Story progress flag required to unlock move(?)
 */
 
-void writeSPC(std::vector<SpecialMoveStruct>& specials);
-void readSPC(std::vector<SpecialMoveStruct>& specials);
+void writeSPC(std::vector<SpecialMoveStruct>& specials, std::string filename = "content/data/afs/xls_data/TB_SPCL.BIN");
+void readSPC(std::vector<SpecialMoveStruct>& specials, std::string filename = "content/data/afs/xls_data/TB_SPCL.BIN");
 void drawSPC(std::vector<SpecialMoveStruct>& specials, bool* canClose, char** moveIDs, const size_t& numMoves);

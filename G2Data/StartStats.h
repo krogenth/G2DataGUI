@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -89,6 +90,6 @@ public:
 2 byte SZ - SIZE
 */
 
-void writePC(std::vector<StartStatsStruct>& stats);
-void readPC(std::vector<StartStatsStruct>& stats);
+void writePC(std::vector<StartStatsStruct>& stats, std::string filename = "content/data/afs/xls_data/PC_INIT.BIN");
+void readPC(std::vector<StartStatsStruct>& stats, std::string filename = "content/data/afs/xls_data/PC_INIT.BIN");
 void drawPC(std::vector<StartStatsStruct>& stats, bool* canClose, char** itemIDs, const size_t& numItems);

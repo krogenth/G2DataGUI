@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "ImGui/imgui.h"
 
@@ -103,5 +104,5 @@ struct EnemyStruct {
 };
 
 void writeEnemyStats(std::vector<EnemyStruct>& enemies);
-void readEnemyStats(std::vector<EnemyStruct>& enemies);
+void readEnemyStats(std::vector<EnemyStruct>& enemies, std::string filepath = "content/data/afs/");
 void drawEnemyStats(std::vector<EnemyStruct>& enemies, char** enemyIDs, bool* canClose, char** moveIDs, const size_t& numMoves, char** itemIDs, const size_t& numItems);
