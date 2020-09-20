@@ -11,13 +11,9 @@
 #include <vector>
 #include <experimental/filesystem>
 
-#include <cstdlib>
 #include <Windows.h>
 #include <type_traits>
 #include <string>
-//#include <thread>
-#include <future>
-#include <utility>
 
 #include "MoveStruct.h"
 #include "SkillStruct.h"
@@ -27,6 +23,7 @@
 #include "StartStats.h"
 #include "ItemStruct.h"
 #include "EnemyStatsStruct.h"
+#include "MdtStruct.h"
 
 struct FrameContext
 {
@@ -39,17 +36,17 @@ static FrameContext                 g_frameContext[NUM_FRAMES_IN_FLIGHT] = {};
 static UINT                         g_frameIndex = 0;
 
 static int const                    NUM_BACK_BUFFERS = 3;
-static ID3D12Device* g_pd3dDevice = NULL;
-static ID3D12DescriptorHeap* g_pd3dRtvDescHeap = NULL;
-static ID3D12DescriptorHeap* g_pd3dSrvDescHeap = NULL;
-static ID3D12CommandQueue* g_pd3dCommandQueue = NULL;
-static ID3D12GraphicsCommandList* g_pd3dCommandList = NULL;
-static ID3D12Fence* g_fence = NULL;
+static ID3D12Device*                g_pd3dDevice = NULL;
+static ID3D12DescriptorHeap*        g_pd3dRtvDescHeap = NULL;
+static ID3D12DescriptorHeap*        g_pd3dSrvDescHeap = NULL;
+static ID3D12CommandQueue*          g_pd3dCommandQueue = NULL;
+static ID3D12GraphicsCommandList*   g_pd3dCommandList = NULL;
+static ID3D12Fence*                 g_fence = NULL;
 static HANDLE                       g_fenceEvent = NULL;
 static UINT64                       g_fenceLastSignaledValue = 0;
-static IDXGISwapChain3* g_pSwapChain = NULL;
+static IDXGISwapChain3*             g_pSwapChain = NULL;
 static HANDLE                       g_hSwapChainWaitableObject = NULL;
-static ID3D12Resource* g_mainRenderTargetResource[NUM_BACK_BUFFERS] = {};
+static ID3D12Resource*              g_mainRenderTargetResource[NUM_BACK_BUFFERS] = {};
 static D3D12_CPU_DESCRIPTOR_HANDLE  g_mainRenderTargetDescriptor[NUM_BACK_BUFFERS] = {};
 
 bool CreateDeviceD3D(HWND hWnd);
@@ -114,6 +111,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     std::vector<ItemStruct> items;
     std::vector<StartStatsStruct> stats;
     std::vector<EnemyStruct> enemies;
+    std::vector<MdtStruct> mdt;
 
     if (!std::experimental::filesystem::exists("content"))
         isHDVersion = false;
@@ -125,10 +123,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
             try {
 
-                //std::thread movesThread(readMS, std::ref(moves));
-                //std::thread skillsThread(readSK, std::ref(skills));
-                //std::thread itemsThread(readITE, std::ref(items));
-                //std::thread enemiesThread(readEnemyStats, std::ref(enemies));
                 readMS(moves);
                 readSK(skills);
                 readITE(items);
@@ -137,11 +131,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
                 readSKI(books);
                 readSPC(specials);
                 readPC(stats);
-
-                //movesThread.join();
-                //skillsThread.join();
-                //itemsThread.join();
-                //enemiesThread.join();
+                readMdt(mdt);
 
             }
             catch (const std::exception& e) {
@@ -157,10 +147,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
             try {
 
-                //std::thread movesThread(readMS, std::ref(moves), "data/afs/xls_data/MS_PARAM.BIN");
-                //std::thread skillsThread(readSK, std::ref(skills), "data/afs/xls_data/SK_PARAM.BIN");
-                //std::thread itemsThread(readITE, std::ref(items), "data/afs/xls_data/ITEM.BIN");
-                //std::thread enemiesThread(readEnemyStats, std::ref(enemies), "data/afs/enemy");
                 readMS(moves, "data/afs/xls_data/MS_PARAM.BIN");
                 readSK(skills, "data/afs/xls_data/SK_PARAM.BIN");
                 readITE(items, "data/afs/xls_data/ITEM.BIN");
@@ -169,11 +155,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
                 readSKI(books, "data/afs/xls_data/TB_SKILL.BIN");
                 readSPC(specials, "data/afs/xls_data/TB_SPCL.BIN");
                 readPC(stats, "data/afs/xls_data/PC_INIT.BIN");
-
-                //movesThread.join();
-                //skillsThread.join();
-                //itemsThread.join();
-                //enemiesThread.join();
+                readMdt(mdt, "data/afs/map");
 
             }
             catch (const std::exception& e) {
@@ -188,10 +170,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
     }
 
+    size_t numMoves = moves.size();
+    size_t numSkills = skills.size();
+    size_t numItems = items.size();
+
     char** moveIDs = new char* [moves.size()] {};
-    char** skillIDs = new char* [skills.size()] {};
+    char** skillIDs = new char* [skills.size()]{};
     char** itemIDs = new char* [items.size()] {};
     char** enemyIDs = new char* [enemies.size()] {};
+    char** mdtIDs = new char* [mdt.size()] {};
 
     for (ImU16 i = 0; i < moves.size(); i++)
         moveIDs[i] = moves[i].name;
@@ -204,6 +191,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
     for (ImU16 i = 0; i < enemies.size(); i++)
         enemyIDs[i] = enemies[i].name;
+
+    for (ImU16 i = 0; i < mdt.size(); i++)
+        mdtIDs[i] = &mdt[i].filename[0];
 
     // Main loop
     MSG msg;
@@ -218,8 +208,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
         if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE)) {
 
-            ::TranslateMessage(&msg);
-            ::DispatchMessage(&msg);
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
             continue;
 
         }
@@ -310,14 +300,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
         }
 
-        drawMS(moves, canClose, moveIDs, moves.size());
+        drawMS(moves, canClose, moveIDs, numMoves);
         drawSK(skills, skillIDs, canClose);
-        drawMAG(eggs, canClose, moveIDs, moves.size());
-        drawSKI(books, canClose, skillIDs, skills.size());
-        drawSPC(specials, canClose, moveIDs, moves.size());
-        drawPC(stats, canClose, itemIDs, items.size());
+        drawMAG(eggs, canClose, moveIDs, numMoves);
+        drawSKI(books, canClose, skillIDs, numSkills);
+        drawSPC(specials, canClose, moveIDs, numSkills);
+        drawPC(stats, canClose, itemIDs, numItems);
         drawITE(items, itemIDs, canClose);
-        drawEnemyStats(enemies, enemyIDs, canClose, moveIDs, moves.size(), itemIDs, items.size());
+        drawEnemyStats(enemies, enemyIDs, canClose, moveIDs, numMoves, itemIDs, numItems);
+        drawMdt(mdt, mdtIDs, canClose, itemIDs, numItems);
 
         // Rendering
         FrameContext* frameCtxt = WaitForNextFrameResources();

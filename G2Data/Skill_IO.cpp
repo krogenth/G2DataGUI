@@ -41,8 +41,6 @@ void readSK(std::vector<SkillStruct>& skills, std::string filename) {
 	std::experimental::filesystem::path filePath(filename);
 	size_t fileSize = std::experimental::filesystem::file_size(filePath);
 
-	char* readByte = new char[2]{};
-
 	skills.resize(fileSize / 104);		//entries are 104 bytes long
 
 	for (size_t i = 0; i < skills.size(); i++) {

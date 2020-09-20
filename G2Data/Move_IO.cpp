@@ -54,8 +54,6 @@ void readMS(std::vector<MoveStruct>& moves, std::string filename) {
 	std::experimental::filesystem::path filePath(filename);
 	size_t fileSize = std::experimental::filesystem::file_size(filePath);
 
-	char* readByte = new char[2]{};
-
 	moves.resize(fileSize / 108);		//	entries are 108 bytes long
 
 	for (int i = 0; i < moves.size(); i++) {

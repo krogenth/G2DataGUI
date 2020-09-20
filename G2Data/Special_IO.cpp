@@ -38,8 +38,6 @@ void readSPC(std::vector<SpecialMoveStruct>& specials, std::string filename) {
 
 	specials.resize(fileSize / 24);		//entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
 
-	char* readByte = new char[2]{};
-
 	for (size_t i = 0; i < specials.size(); i++)
 		for (size_t j = 0; j < 6; j++)
 			specials[i].moves[j] = readRaw<MoveImplementationStruct>(input);

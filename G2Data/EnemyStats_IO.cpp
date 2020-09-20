@@ -81,59 +81,58 @@ void readEnemyStats(std::vector<EnemyStruct>& enemies, std::string filepath) {
 
 		filename = p.path().u8string();
 
-		if (std::strstr(filename.c_str(), "_0.dat")) {
+		if (!std::strstr(filename.c_str(), "_0.dat"))
+			continue;
 
-			input.open(p.path().u8string(), std::ios::binary);
+		input.open(p.path().u8string(), std::ios::binary);
 
-			if (!input.is_open())
-				throw new std::exception(filename.c_str());
+		if (!input.is_open())
+			throw new std::exception(filename.c_str());
 
-			for (size_t i = 0; i < 2; i++) {
+		for (size_t i = 0; i < 2; i++) {
+
+			if (!i)
+				input.seekg(0x34, std::ios::beg);	//	first copy data offset is always at 0x34
+			else
+				input.seekg(0x44, std::ios::beg);	//	second copy data offset is always at 0x44
+			input.read(readByte, 4);
+			offset = ((ImU32)((ImU8)(readByte[3])) << 24) + ((ImU32)((ImU8)(readByte[2])) << 16) + ((ImU32)((ImU8)(readByte[1])) << 8) + (ImU32)((ImU8)(readByte[0]));
+
+			if (offset) {
+
+				enemies.emplace_back(EnemyStruct());
+				input.seekg(offset, std::ios::beg);
+
+				input.read(enemies[enemies.size() - 1].name, 18);
+				replaceNulls(enemies[enemies.size() - 1].name, 18);
+
+				enemies[enemies.size() - 1].stats = readRaw<EnemyStatsStruct>(input);
+
+				enemies[enemies.size() - 1].filename = p.path().u8string();
 
 				if (!i)
-					input.seekg(0x34, std::ios::beg);	//	first copy data offset is always at 0x34
+					input.seekg(0x3C, std::ios::beg);	//	first copy move data offset is always at 0x3C
 				else
-					input.seekg(0x44, std::ios::beg);	//	second copy data offset is always at 0x44
+					input.seekg(0x4C, std::ios::beg);	//	second copy move data offset is always at 0x4C
 				input.read(readByte, 4);
 				offset = ((ImU32)((ImU8)(readByte[3])) << 24) + ((ImU32)((ImU8)(readByte[2])) << 16) + ((ImU32)((ImU8)(readByte[1])) << 8) + (ImU32)((ImU8)(readByte[0]));
+				input.seekg(offset, std::ios::beg);
 
-				if (offset) {
+				//don't bother checking if the move data segment is non-null, if the enemy data exists, the move data should too
+				for (size_t j = 0; j < 5; j++) {
 
-					enemies.emplace_back(EnemyStruct());
-					input.seekg(offset, std::ios::beg);
+					input.read(enemies[enemies.size() - 1].moves[j].name, 18);
+					replaceNulls(enemies[enemies.size() - 1].moves[j].name, 18);
 
-					input.read(enemies[enemies.size() - 1].name, 18);
-					replaceNulls(enemies[enemies.size() - 1].name, 18);
-
-					enemies[enemies.size() - 1].stats = readRaw<EnemyStatsStruct>(input);
-
-					enemies[enemies.size() - 1].filename = p.path().u8string();
-
-					if (!i)
-						input.seekg(0x3C, std::ios::beg);	//	first copy move data offset is always at 0x3C
-					else
-						input.seekg(0x4C, std::ios::beg);	//	second copy move data offset is always at 0x4C
-					input.read(readByte, 4);
-					offset = ((ImU32)((ImU8)(readByte[3])) << 24) + ((ImU32)((ImU8)(readByte[2])) << 16) + ((ImU32)((ImU8)(readByte[1])) << 8) + (ImU32)((ImU8)(readByte[0]));
-					input.seekg(offset, std::ios::beg);
-
-					//don't bother checking if the move data segment is non-null, if the enemy data exists, the move data should too
-					for (size_t j = 0; j < 5; j++) {
-
-						input.read(enemies[enemies.size() - 1].moves[j].name, 18);
-						replaceNulls(enemies[enemies.size() - 1].moves[j].name, 18);
-
-						enemies[enemies.size() - 1].moves[j].stats = readRaw<EnemyMoveStatsStruct>(input);
-
-					}
+					enemies[enemies.size() - 1].moves[j].stats = readRaw<EnemyMoveStatsStruct>(input);
 
 				}
 
 			}
 
-			input.close();
-
 		}
+
+		input.close();
 
 	}
 
@@ -141,59 +140,58 @@ void readEnemyStats(std::vector<EnemyStruct>& enemies, std::string filepath) {
 
 		filename = p.path().u8string();
 
-		if (std::strstr(filename.c_str(), "_0.dat")) {
+		if (!std::strstr(filename.c_str(), "_0.dat"))
+			continue;
 
-			input.open(p.path().u8string(), std::ios::binary);
+		input.open(p.path().u8string(), std::ios::binary);
 
-			if (!input.is_open())
-				throw new std::exception(filename.c_str());
+		if (!input.is_open())
+			throw new std::exception(filename.c_str());
 
-			for (size_t i = 0; i < 2; i++) {
+		for (size_t i = 0; i < 2; i++) {
+
+			if (!i)
+				input.seekg(0x34, std::ios::beg);	//	first copy data offset is always at 0x34
+			else
+				input.seekg(0x44, std::ios::beg);	//	second copy data offset is always at 0x44
+			input.read(readByte, 4);
+			offset = ((ImU32)((ImU8)(readByte[3])) << 24) + ((ImU32)((ImU8)(readByte[2])) << 16) + ((ImU32)((ImU8)(readByte[1])) << 8) + (ImU32)((ImU8)(readByte[0]));
+
+			if (offset) {
+
+				enemies.emplace_back(EnemyStruct());
+				input.seekg(offset, std::ios::beg);
+
+				input.read(enemies[enemies.size() - 1].name, 18);
+				replaceNulls(enemies[enemies.size() - 1].name, 18);
+
+				enemies[enemies.size() - 1].stats = readRaw<EnemyStatsStruct>(input);
+
+				enemies[enemies.size() - 1].filename = p.path().u8string();	//	we need the filename for writing data
 
 				if (!i)
-					input.seekg(0x34, std::ios::beg);	//	first copy data offset is always at 0x34
+					input.seekg(0x3C, std::ios::beg);	//	first copy move data offset is always at 0x3C
 				else
-					input.seekg(0x44, std::ios::beg);	//	second copy data offset is always at 0x44
+					input.seekg(0x4C, std::ios::beg);	//	second copy move data offset is always at 0x4C
 				input.read(readByte, 4);
 				offset = ((ImU32)((ImU8)(readByte[3])) << 24) + ((ImU32)((ImU8)(readByte[2])) << 16) + ((ImU32)((ImU8)(readByte[1])) << 8) + (ImU32)((ImU8)(readByte[0]));
+				input.seekg(offset, std::ios::beg);
 
-				if (offset) {
+				//	don't bother checking if the move data segment is non-null, if the enemy data exists, the move data should too
+				for (size_t j = 0; j < 5; j++) {
 
-					enemies.emplace_back(EnemyStruct());
-					input.seekg(offset, std::ios::beg);
+					input.read(enemies[enemies.size() - 1].moves[j].name, 18);
+					replaceNulls(enemies[enemies.size() - 1].moves[j].name, 18);
 
-					input.read(enemies[enemies.size() - 1].name, 18);
-					replaceNulls(enemies[enemies.size() - 1].name, 18);
-
-					enemies[enemies.size() - 1].stats = readRaw<EnemyStatsStruct>(input);
-
-					enemies[enemies.size() - 1].filename = p.path().u8string();	//	we need the filename for writing data
-
-					if (!i)
-						input.seekg(0x3C, std::ios::beg);	//	first copy move data offset is always at 0x3C
-					else
-						input.seekg(0x4C, std::ios::beg);	//	second copy move data offset is always at 0x4C
-					input.read(readByte, 4);
-					offset = ((ImU32)((ImU8)(readByte[3])) << 24) + ((ImU32)((ImU8)(readByte[2])) << 16) + ((ImU32)((ImU8)(readByte[1])) << 8) + (ImU32)((ImU8)(readByte[0]));
-					input.seekg(offset, std::ios::beg);
-
-					//	don't bother checking if the move data segment is non-null, if the enemy data exists, the move data should too
-					for (size_t j = 0; j < 5; j++) {
-
-						input.read(enemies[enemies.size() - 1].moves[j].name, 18);
-						replaceNulls(enemies[enemies.size() - 1].moves[j].name, 18);
-
-						enemies[enemies.size() - 1].moves[j].stats = readRaw<EnemyMoveStatsStruct>(input);
-
-					}
+					enemies[enemies.size() - 1].moves[j].stats = readRaw<EnemyMoveStatsStruct>(input);
 
 				}
 
 			}
 
-			input.close();
-
 		}
+
+		input.close();
 
 	}
 
@@ -286,11 +284,11 @@ void drawEnemyStats(std::vector<EnemyStruct>& enemies, char** enemyIDs, bool* ca
 	ImGui::InputInt("Magic Coins", &enemies[enemyID].stats.magicCoins);
 	ImGui::InputInt("Gold Coins", &enemies[enemyID].stats.goldCoins);
 
-	ImGui::Combo("Item1", &enemies[enemyID].stats.item1, itemIDs, (int)numItems);
-	ImGui::Combo("Item2", &enemies[enemyID].stats.item2, itemIDs, (int)numItems);
+	ImGui::Combo("Item #1", &enemies[enemyID].stats.item1, itemIDs, (int)numItems);
+	ImGui::Combo("Item #2", &enemies[enemyID].stats.item2, itemIDs, (int)numItems);
 
-	ImGui::InputByte("Item1 Chance", &enemies[enemyID].stats.item1Chance);
-	ImGui::InputByte("Item2 Chance", &enemies[enemyID].stats.item2Chance);
+	ImGui::InputByte("Item #1 Chance", &enemies[enemyID].stats.item1Chance);
+	ImGui::InputByte("Item #2 Chance", &enemies[enemyID].stats.item2Chance);
 
 	//ImGui::LabelText("Filename", enemies[enemyID].filename.c_str());      //Used for testing to verify files are correct
 

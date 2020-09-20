@@ -37,8 +37,6 @@ void readPC(std::vector<StartStatsStruct>& stats, std::string filename) {
 
 	stats.resize(fileSize / 80);		//entries are 80 bytes long
 
-	char* readByte = new char[4]{};
-
 	for (size_t i = 0; i < stats.size(); i++)
 		stats[i] = readRaw<StartStatsStruct>(input);
 

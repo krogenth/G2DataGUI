@@ -38,8 +38,6 @@ void readSKI(std::vector<SkillBookStruct>& books, std::string filename) {
 
 	books.resize(fileSize / 24);		//	entries are 24 bytes long(each skill is 4 bytes long, 6 skills per book)
 
-	char* readByte = new char[1]{};
-
 	for (size_t i = 0; i < books.size(); i++)
 		for (size_t j = 0; j < 6; j++)
 			books[i].skills[j] = readRaw<SkillImplementationStruct>(input);
