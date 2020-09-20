@@ -213,15 +213,15 @@ struct ShopStruct {			//	0x000000A8 && 0x000000AC
 
 	ImU16 mapID = 0;
 	ImU16 catagories = 0;
-	char* weaponChar = new char[9]{};
+	char weaponChar[8];
 	ShopItemStruct weapons[12];
-	char* armorChar = new char[9]{};
+	char armorChar[8];
 	ShopItemStruct armors[12];
-	char* jewelryChar = new char[9]{};
+	char jewelryChar[8];
 	ShopItemStruct jewelry[12];
-	char* itemsChar = new char[9]{};
+	char itemsChar[8];
 	ShopItemStruct items[12];
-	char* regionalChar = new char[9]{};
+	char regionalChar[8];
 	ShopItemStruct regionals[12];
 
 };

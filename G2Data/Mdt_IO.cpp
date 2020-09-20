@@ -57,9 +57,50 @@ void writeMdt(std::vector<MdtStruct>& mdt) {
 			writeRaw<IconStruct>(output, mdt[i].icons[j]);
 
 		//	write in shop
-		//output.seekg(mdt[i].header.offsetMapEntries, std::ios::beg);
-		//for (size_t j = 0; j < mdt[i].header.numMapEntries; j++)
-			//writeRaw<MapEntriesStruct>(output, mdt[i].mapEntries[j]);
+		if (mdt[i].shop.size()) {
+
+			for (ImU16 j = 0; j < 12; j++) {
+
+				if (mdt[i].shop[0].weapons[j].item)
+					mdt[i].shop[0].weapons[j].item += 0x0800;
+
+				if (mdt[i].shop[0].armors[j].item)
+					mdt[i].shop[0].armors[j].item += 0x0800;
+
+				if (mdt[i].shop[0].jewelry[j].item)
+					mdt[i].shop[0].jewelry[j].item += 0x0800;
+
+				if (mdt[i].shop[0].items[j].item)
+					mdt[i].shop[0].items[j].item += 0x0800;
+
+				if (mdt[i].shop[0].regionals[j].item)
+					mdt[i].shop[0].regionals[j].item += 0x0800;
+
+			}
+
+			output.seekg(mdt[i].header.offsetShop, std::ios::beg);
+			writeRaw<ShopStruct>(output, mdt[i].shop[0]);
+
+			for (ImU16 j = 0; j < 12; j++) {
+
+				if (mdt[i].shop[0].weapons[j].item)
+					mdt[i].shop[0].weapons[j].item -= 0x0800;
+
+				if (mdt[i].shop[0].armors[j].item)
+					mdt[i].shop[0].armors[j].item -= 0x0800;
+
+				if (mdt[i].shop[0].jewelry[j].item)
+					mdt[i].shop[0].jewelry[j].item -= 0x0800;
+
+				if (mdt[i].shop[0].items[j].item)
+					mdt[i].shop[0].items[j].item -= 0x0800;
+
+				if (mdt[i].shop[0].regionals[j].item)
+					mdt[i].shop[0].regionals[j].item -= 0x0800;
+
+			}
+
+		}
 
 		output.close();
 
