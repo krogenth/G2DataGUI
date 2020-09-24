@@ -6,7 +6,7 @@ Grandia 2 Data reading/writing
 
 ## What this does:
 
-This is a C++ GUI program(MSVC 2019) using DX11. Currently supports:
+This is a C++ GUI program(MSVC 2019) using DX12. Currently supports:
 
 MS_PARAM.BIN
 
