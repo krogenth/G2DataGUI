@@ -103,6 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\G2Data\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,6 +136,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>$(SolutionDir)\G2Data\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -159,6 +161,8 @@
     <ClCompile Include="Item_IO.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ManaEgg_IO.cpp" />
+    <ClCompile Include="Mdt_IO.cpp" />
+    <ClCompile Include="model_IO.cpp" />
     <ClCompile Include="Move_IO.cpp" />
     <ClCompile Include="SkillBook_IO.cpp" />
     <ClCompile Include="Skill_IO.cpp" />
@@ -179,6 +183,8 @@
     <ClInclude Include="include\ImGui\imstb_truetype.h" />
     <ClInclude Include="io_util.h" />
     <ClInclude Include="ItemStruct.h" />
+    <ClInclude Include="MdtStruct.h" />
+    <ClInclude Include="modelStruct.h" />
     <ClInclude Include="MoveStruct.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />

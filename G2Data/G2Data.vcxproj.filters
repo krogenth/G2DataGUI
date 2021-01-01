@@ -57,14 +57,20 @@
     <ClCompile Include="include\ImGui\imgui_draw.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="include\ImGui\imgui_impl_dx11.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="include\ImGui\imgui_impl_win32.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
     <ClCompile Include="include\ImGui\imgui_widgets.cpp">
       <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="include\ImGui\imgui_impl_dx12.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Mdt_IO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model_IO.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +113,6 @@
     <ClInclude Include="include\ImGui\imgui.h">
       <Filter>ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="include\ImGui\imgui_impl_dx11.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="include\ImGui\imgui_impl_win32.h">
       <Filter>ImGui</Filter>
     </ClInclude>
@@ -129,6 +132,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="char_constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\imgui_impl_dx12.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="MdtStruct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="modelStruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
