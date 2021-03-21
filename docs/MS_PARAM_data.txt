@@ -1,0 +1,220 @@
+OFF   ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani  ? DF   IP  IPC   KB   EL ES   S   % ATK DEF ACT MOV   SP  LV1  LV2  LV3  LV4  LV5  Mlt Desc
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  1   1              Burn!  6  6  4    40   250     0   180    30 12000     1  0  0    0    0   80   0  10   0   0   0   0   0   0    0  120   60   90  150  240   25 Attack enemy with fireballs             
+  2   1          Burnflame 16  6  5    70   250   600   240    40 12000     2  0  0    0    0   50   0  10   0   0   0   0   0   0    0  160   80  120  200  320   25 Attack with a huge pillar of fire       
+  3   1         Burnstrike 20  6  4   240   250     0   270    20 13000     3  0  1    0    0  120   0  10   0   0   0   0   0   0    0  240  120  180  300  480   25 Attack enemy with countless firebirds   
+  4   1         Hellburner 42  6  6   320   250     0   360    60 13000     4  0  1    0    0  100   0  10   0   0   0   0   0   0    0  320  160  240  400  640   25 Burn up enemy with hellfire             
+  5   2               Howl  9  6  5     0   225   600   180    30 12000     5  0  0 1000    0  100   1  10   0   0   0   0   0   0    0  120   60   90  150  240   25 Attack with tornado energy              
+  6   2          Howlslash 14  6  7   100   225   300   240    40 12000     6  0  1 1500    0  200   1  10   0   0   0   0   0   0    0  160   80  120  200  320   25 Attack with sharp wind blades           
+  7   2           Howlnado 45  6  6   320   225     0   360    60 13000     7  0  1 1000    0    0   1  10   8  30   0   0   0   0   11  320  160  240  400  640   25 Tornado attack that engulfs all enemies 
+  8   2             Runner  3  4  3     0     0     0   120    20 11000     8  0  0    0    0    0   0   0   0   0   0   0   0   1    0   60   30   45   75  120    0 Boosts movement with a tailwind         
+  9   2              Shhh! 10  7  5     0     0   400   150    25 11000     9  0  0    0    0    0   0   0  32  70   0   0   0   0    0   60   30   45   75  120    0 Blocks magic with a vacuum              
+ 10   6             Snooze  5  7  6     0     0     0   165    15 11000    10  0  0    0    0    0   0   0   2  70   0   0   0   0    0   60   30   45   75  120    0 Puts enemies to sleep with bubbles      
+ 11   6               Heal  6  1  1     0   400     0   165    15 11000    11  0  0    0    0    0   0   0   0   0   0   0   0   0    0  120   60   90  150  240   50 Restores a little HP                    
+ 12   6             Healer 12  1  1     0   800     0   180    30 11000    12  0  0    0    0    0   0   0   0   0   0   0   0   0    0  160   80  120  200  320   50 Restores a lot of HP                    
+ 13   6            Healer+ 24  1  1     0  1200     0   270    20 12000    13  0  0    0    0    0   0   0   0   0   0   0   0   0    0  240  120  180  300  480   50 Restores a whole lot of HP              
+ 14   6           Alhealer 18  1  3     0   700     0   240    40 13000    14  0  0    0    0    0   0   0   0   0   0   0   0   0    0  200  100  150  250  400   50 Restores a lot of HP                    
+ 15   6          Resurrect 40  8  1     0     0     0   270    20 12000    15  0  0    0    0    0   0   0 128 100   0   0   0   0    0  240  120  180  300  480    0 Revives a fallen character              
+ 16   3             Tremor 15  6  5   160   150   600   240    40 12000    16  0  0 2000    0   50   2  10   0   0   0   0   0   0    0  160   80  120  200  320   25 Call up earth energy and attack         
+ 17   3              Quake 40  6  6   520   150     0   360    60 13000    17  0  0 2000    0   80   2  10   0   0   0   0   0   0    0  320  160  240  400  640   25 Attack all enemies with earth rage      
+ 18   3            Diggin'  4  4  3     0     0     0   120    20 11000    18  0  0    0    0    0   0   0   0   0   0   1   0   0    0   60   30   45   75  120    0 Ups defense with the power of earth     
+ 19   3           Def-Loss  5  7  6     0     0     0   120    20 11000    19  0  0    0    0    0   0   0   0   0   0  -1   0   0    0   60   30   45   75  120    0 Drops defense with the power of earth   
+ 20   3            Gravity  8 15  5     0     0   800   150    25 11000    20  0  0    0    0    0   0   0   0   0   0   0   0   0   12   80   40   60  100  160    0 Use gravity to |gather enemies          
+ 21   7              BOOM! 22  6  5   160   200   600   300    50 13000    21  0  1 2000    0  120   0   0   0   0   0   0   0   0    0  240  120  180  300  480   25 Attack with an explosion                
+ 22   7           BA-BOOM! 75  6  6   580   200     0   480    80 14000    22  0  1 2000    0  150   0   0   0   0   0   0   0   0    0  400  200  300  500  800   25 Attack with a huge explosion            
+ 23   7      Meteor Strike 50  6  4   720   200     0   480    55 14000    23  0  1 3000    0  120   0   0   0   0   0   0   0   0    0  400  200  300  500  800   25 Meteor attack |from the sky             
+ 24   7               WOW!  5  4  1     0     0     0   120    20 11000    24  0  0    0    0    0   0   0   0   0   2   0   0   0    0   80   40   60  100  160    0 Ups attack power                        
+ 25   4               Zap! 24  6  5    80   300   600   300    50 13000    25  0  0 1000    0   50   3  10   4  15   0   0   0   0    0  240  120  180  300  480   25 Attack by shooting balls of lightning   
+ 26   4            Zap All 36  6  6   150   300     0   360    60 13000    26  0  1 1000    0   80   3  10   4  15   0   0   0   0    0  320  160  240  400  640   25 Lightning attack |Burns all enemies     
+ 27   4             GadZap 55  6  4   480   300     0   480    55 14000    27  0  1 1500    0   80   3  10   4  30   0   0   0   0    0  400  200  300  500  800   25 Attack with holy lightning from heaven  
+ 28   4          DragonZap 58  6  7   420   300   300   480    80 14000    28  0  1 1500    0  120   3  10   4  15   0   0   0   0    0  400  200  300  500  800   25 Attack with dragon lightning            
+ 29   4              Stram  6  7  4     0     0     0   120    20 11000    29  0  0    0    0    0   0   0   0   0  -2   0   0   0    0   80   40   60  100  160    0 Robs strength and drops enemy defense   
+ 30   8              Poizn 15  6  5    25   180   600   240    40 12000    30  0  0    0    0    0   0   0   1  60   0   0   0   0    0  160   80  120  200  320   25 Covers a range with a poisonous gel     
+ 31   8             Speedy  7  4  1     0     0     0   150    25 11000    31  0  0    0    0    0   0   0   0   0   0   0   2   0    0   80   40   60  100  160    0 Forest life-force ups movement ability  
+ 32   8              Craze 10  7  5     0     0   600   165    15 11000    32  0  0    0    0    0   0   0   8  70   0   0   0   0    0   60   30   45   75  120    0 Confuse enemy by dropping spores        
+ 33   8               Cure  4  8  1     0     0     0   165    15 11000    33  0  0    0    0    0   0   0   5 100   0   0   0   0    0   60   30   45   75  120    0 Green power cures poison and paralysis  
+ 34   8            Refresh 12  8  1     0     0     0   180    30 11000    34  0  0    0    0    0   0   0  96 100   0   0   0   0    0   80   40   60  100  160    0 Unblocks magic/|moves                   
+ 35   8             Halvah 24  8  1     0     0     0   270    20 12000    35  0  0    0    0    0   0   0 127 100   0   0   0   0    0  200  100  150  250  400    0 Cures all status abnormalities          
+ 36   5            Crackle 16  6  4   220   275     0   270    20 13000    36  0  1 4000    0   50   4  10   0   0   0   0   0   0    0  240  120  180  300  480   25 Attack enemy with icicle knives         
+ 37   5          Crackling 52  6  6   420   275     0   480    80 14000    37  0  1 2500    0  100   4  10   0   0   0   0   0   0    0  400  200  300  500  800   25 Attack enemies with diamond dust        
+ 38   5               Cold  7  7  4     0     0     0   150    25 11000    38  0  0    0    0    0   0   0   0   0   0   0  -2   0    0   80   40   60  100  160    0 Drops movement with soul-chilling cold  
+ 39   5            Freeze!  5  7  6     0     0     0   120    20 11000    39  0  0    0    0    0   0   0   0   0   0   0   0  -1    0   60   30   45   75  120    0 Drops action with bone-chilling cold    
+ 40   5              Fiora 12  7  5     0     0   400   150    25 11000    40  0  0    0    0    0   0   0  64  70   0   0   0   0    0   80   40   60  100  160    0 Magic symbol blocks enemy moves         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+ 61  11    Tenseiken Slash 24  5  4    50   200     0   240     0 12000    61  0  1 2500 5000  100   0   0   0   0   0   0   0   0    0  500  250  500 1000 2000   50 Upward slash from below  Cancel effect  
+ 62  11   Flying Tenseiken 40  5  4   200   200     0   390    30 14000    62  0  1 4000    0    0   0   0   0   0   0   0   0   0    0  800  400  800 1600 3200   75 Uppercut slash |with Skye's help        
+ 63   4   Purple Lightning 32  5  4    75   200     0   300    30 13000    63  0  1 3000    0  100   3   8   0   0   0   0   0   0    0  700  350  700 1400 2800   75 Deadly slash with a lightning-lit sword 
+ 64  11   Sky Dragon Slash 99  5  6   200   400     0   450    90 15000    64  0  1 5000    0  100   0   0   0   0   0   0   0   0    0 1500  750 1500 3000 6000   50 The ultimate esoteric deadly slash      
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+ 67  12        Impact Bomb 25  5  4    50   250     0   240     0 12000    67  0  1 2000 4000   50   0   0   0   0   0   0   0   0    0  500  250  500 1000 2000   50 Ball of light pounds enemy Cancel effect
+ 68  12     Nightmare Ball 18  6  5     0   200   600   210    30 13000    68  0  0    0    0    0   0   0   2  90   0   0   0   0    0  600  300  600 1200 2400   50 Bubbles from staff put enemy to sleep   
+ 69   9   Droplets of Life 90  1  3   200   200     0   300    60 15000    69  0  0    0    0    0   0   0 255 100   0   0   0   0   13 1400  700 1400 2800 5600  100 Water of life |restores all             
+ 70   9   White Apocalypse 80  6  6   125   250     0   450    90 15000    70  0  1 3000    0    0   0   0   0   0   0   0   0   0    0 1200  600 1200 2400 4800  150 Intense light reduces enemy to dust     
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+ 73  13         Arrow Shot 25  5  4    50   250     0   240     0 12000    73  0  0 2000 4000  150   0   0   0   0   0   0   0   0    0  500  250  500 1000 2000   50 A single surefire shot  Cancel effect   
+ 74  17         Heel Crush 20  5  4     0   200     0   210    30 12000    74  0  1 1500    0   50   0   0   0   0  -1  -1  -1  -1    0  500  250  500 1000 2000   50 Deadly heel attack saps enemy spirit    
+ 75  10       Fallen Wings 75  6  6   100   150     0   450    90 15000    75  0  1 3000    0   80   0   0   0   0   0   0   0   0    0  800  400  800 1600 3200  150 Attack with wing power                  
+ 76  10    Starving Tongue 55  6  6   100   200     0   360    60 14000    76  0  1    0    0  100   0   0   0   0   0   0   0   0    0  600  300  600 1200 2400   50 Absorb HP with tongue power             
+ 77  10   Spellbinding Eye 60 15  4   600     0     0   450    90 14000    77  0  0    0    0    0   0   0   0   0   0   0   0   0   14 1000  500 1000 2000 4000   25 Block enemy |movement                   
+ 78  10     Grudging Claws 42  6  4   150   250     0   390    30 14000    78  0  0 4500    0    0   0   0   0   0   0   0   0   0    0  700  350  700 1400 2800  100 Split enemy with claw power             
+ 79  14      Golden Hammer 22  5  4    50   250     0   240     0 12000    79  0  1 2000 4000   80   0   0   0   0   0   0   0   0    0  500  250  500 1000 2000   50 Attack with a hammer Cancel effect      
+ 80   5    Snowball Fight! 40  6  5    50   200   600   300    60 13000    80  0  1 1500    0    0   4   8   0   0   0   0   0   0    0  700  350  700 1400 2800   50 Attack by throwing a huge snowball      
+ 81  14        Dragon Rise 38  5  4   200   200     0   390    30 14000    81  0  1 2500    0  200   0   0   0   0   0   0   0   0    0  800  400  800 1600 3200   75 Legendary esoteric attack               
+ 82  14     Vitality March 20  8  3     0     0     0   210    30 12000    82  0  0    0    0    0   0   0 127 100   0   0   0   0    0  400  200  400  800 1600    0 Cures status |disorders                 
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+ 85  16       Lotus Flower 28  5  7     0   200   200   240     0 12000    85  0  1 1500 3000  150   0   0   0   0   0   0   0   0    0  500  250  500 1000 2000   50 A splendid attack Cancel effect         
+ 86   2            Tornado 48  6  6    75   200     0   360    60 13000    86  0  1 1500    0    0   1   8   0   0   0   0   0   0    0 1000  500 1000 2000 4000   75 A dance move that stops wind currents   
+ 87  16   Fast Dance-Whirl 38  5  4   200   200     0   390    30 14000    87  0  1 3000    0  200   0   0   0   0   0   0   0   0    0  800  400  800 1600 3200   75 A legendary attack dance                
+ 88  16   Whisper to Stars 36  4  3     0     0     0   300    30 12000    88  0  0    0    0    0   0   0   0   0   1   1   1   1    0  600  300  600 1200 2400    0 Power of stars raise all variable status
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+ 91  15     Beast-Fang Cut 26  5  4    50   200     0   240     0 12000    91  0  1 3000 6000  150   0   0   0   0   0   0   0   0    0    0  250  500 1000 2000   50 Spirited axe attack       Cancel effect 
+ 92   1   Beast-King Blast 52  5 10    75   200  1000   360    60 14000    92  0  1 4000    0  100   0   8   0   0   0   0   0   0    0 1000  500 1000 2000 4000   75 Blast enemy with beast-soul power       
+ 93  15   Beast-King Smash 44  5  4   200   200     0   390    30 14000    93  0  1 5000    0  200   0   0   0   0   0   0   0   0    0  800  400  800 1600 3200   75 Killer blow with all mind and body      
+ 94  15        Lion's Roar 18  4  3     0     0     0   210    30 12000    94  0  0    0    0    0   0   0   0   0   1   0   0   0    0  600  300  600 1200 2400    0 Heartening roar |ups attack power       
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+ 97  14      Golden Hammer 22  5  4    50   250     0   240     0 12000    97  0  1 2000 4000   80   0   0   0   0   0   0   0   0    0  500  250  500 1000 2000   50 Attack with a hammer Cancel effect      
+ 98   5         Ice Prison 30  5  4    75   250     0   300    30 12000    98  0  1    0    0  200   4   8   0   0   0   0   0   0    0  700  350  700 1400 2800   75 Deadly slash with cold                  
+ 99  14   True Dragon Rise 42  5  4   200   250     0   390    30 14000    99  0  1 3500    0  200   0   0   0   0   0   0   0   0    0  800  400  800 1600 3200   75 True legendary esoteric attack          
+100  14     Vitality March 20  4  3     0     0     0   210    30 13000   100  0  0 2500    0    0   0   0 127 100   0   0   0   0    0  400  200  400  800 1600    0 Cures status |disorders                 
+101   0      Taint of Wind  0 15 13     0     0   600    60    60 12000     0  0  1 5000    0  800   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+  0   0                     0  0  0     0     0     0     0     0     0     0  0  0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
+
+01 byte OFF - entry # offset
+01 byte ICON - icon used for entry(1 + element type)
+	01(0x01) Fire
+	02(0x02) Wind
+	03(0x03) Earth
+	04(0x04) Lightning
+	05(0x05) Blizzard
+	06(0x06) Water
+	07(0x07) Explosion
+	08(0x08) Forest
+	09(0x09) Light
+	10(0x0A) Darkness
+	11(0x0B) Sword
+	12(0x0C) Staff
+	13(0x0D) Crossbow
+	14(0x0E) Dagger
+	15(0x0F) Poleaxe
+	16(0x10) Chakram
+	17(0x11) Red Shoe
+18 byte Name - name of spell/move
+02 byte C - cost of spell/move
+01 byte T1 - target effect
+	01(0x01) Restore HP
+	02(0x02) Restore MP
+	03(0x03) Restore SP
+	04(0x04) Ally(?) Buff/Debuff
+	05(0x05) Attack/Move(?) Damage
+	06(0x06) Magic(?) Damage
+	07(0x07) Enemy(?) Buff/Debuff
+	08(0x08) Status Change
+	15(0x0F) Special(Spellbinding Eye, Gravity, etc.)
+01 byte T2 - target type
+	01(0x01) One Ally
+	02(0x02) Area Allies
+	03(0x03) All Allies
+	04(0x04) One Enemy
+	05(0x05) Area Enemies
+	06(0x06) All Enemies
+	07(0x07) Enemy Line
+	08(0x08) Self
+	09(0x09) Unknown
+	10(0x0A) Area Around Self(Beast King Blast)
+	11(0x0B) Unknown
+	12(0x0C) Unknown
+	13(0x0D) Area Around Self(Taint of Wind)
+	14(0x0E) Unknown
+	15(0x0F) Unknown
+02 byte STR - Strength added to base stat of character
+02 byte POW - Power of spell/move
+02 byte Range - Range the spell/move hits, based on T1 and T2
+02 byte Cast1 - Time it takes to cast spell/move, lower = faster
+02 byte Cast5 - Time it takes to cast spell/move, lower = faster
+02 byte Rec - recovery time
+02 byte Ani - animation of move
+01 byte ?
+01 byte DF - DOWN_FLG(from decompilation, likely a knock down flag)
+02 byte IP - IP damage from spell/move
+02 byte IPC - IP cancel damage from spell/move
+02 byte KB - knockback from spell/move
+01 byte E - element of spell/move
+	00(0x00) Fire
+	01(0x01) Wind
+	02(0x02) Earth
+	03(0x03) Lightning
+	04(0x04) Blizzard
+01 byte ES - element strength of spell/move
+01 byte S - status effect bitflag(Add together for multiple effects)
+	001(0x01) Poison
+	002(0x02) Sleep
+	004(0x04) Paralysis
+	008(0x08) Confusion
+	016(0x10) Plague
+	032(0x20) Magic Block
+	064(0x40) Move Block
+	128(0x80) Death
+01 byte % - % chance of status effect
+02 byte ATK - attack stat change
+02 byte DEF - defense stat change
+02 byte ACT - action stat change
+02 byte MOV - movement stat change
+02 byte SP - special effect
+		Special_Effects.txt
+02 byte LV1 - cost of lv1
+02 byte LV2 - cost of lv2
+02 byte LV3 - cost of lv3
+02 byte LV4 - cost of lv4
+02 byte LV5 - cost of lv5
+02 byte Mlt - Power Multiplier for spell/move
+40 byte Desc - Description of spell/move

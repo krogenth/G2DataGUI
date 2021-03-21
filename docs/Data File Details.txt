@@ -1,0 +1,797 @@
+.CSO FILES {
+	
+	Chunk type
+		ICFE 	//	Interface. Describes any interfaces, and implementing classes, present in the source HLSL.
+		ISGN 	//	Input signature
+		OSG5 	//	Output signature (SM5)
+		OSGN 	//	Output signature
+		PCSG 	//	Patch constant signature
+		RDEF 	//	Resource definition. Describes constant buffers and resource bindings.
+		SDGB 	//	Shader debugging info (old-style)
+		SFI0 	//	Not really sure… it stores a value that indicates whether double-precision floating point operations are enabled, but I don’t know why that needs to be in its own chunk
+		SHDR 	//	Shader (SM4). The shader itself.
+		SHEX 	//	Shader (SM5)
+		SPDB 	//	Shader debugging info (new-style)
+		STAT 	//	Statistics. Useful statistics about the shader, such as instruction count, declaration count, etc.
+	
+	DXBL
+		16 byte Checksum	//	Proprietary, likely cannot determine
+		04 byte ???			//	Always 1
+		04 byte File byte size
+		04 byte Chunk count
+		04 byte RDEF chunk offset
+		04 byte ISGN chunk offset
+		04 byte OSGN chunk offset
+		04 byte SHDR chunk offset
+		04 byte STAT chunk offset
+	
+	CHUNKS {
+		
+		RDEF
+			04 byte Remaining chunk byte size
+			04 byte Constant buffer count
+				04 byte Offset to Constant
+			04 byte Resource binding count
+				04 byte Offset to Resource
+			01 byte Minor Version
+			01 byte Major Version
+			02 byte Program type
+			04 byte Bitflags
+			04 byte Offset to "creator" string
+		
+		ISGN
+			04 byte Remaining chunk byte size
+		
+		OSGN
+			04 byte Remaining chunk byte size
+		
+		SHDR
+			04 byte Remaining chunk byte size
+		
+		STAT
+			04 byte Remaining chunk byte size
+		
+	}
+	
+}
+
+.MDT FILES {
+	
+	CODES			DETAILS
+	0x05 XX YY		XX = script number? YY = character id
+	0x08 XX YY ZZ	XX = ???, YY = ???(noticed either 0x21 or 0x41), ZZ = ???(only been 0x01)
+	0x0B ???		2 parameters most likely(seen in 2000.mdt at 0x1AB71), according to old notes, this handles camera changes
+	0x11 XX []		adds item to inventory, XX = ???
+	0x17 XX	[YY ZZ]	Box stuff
+		XX = 00			Remove textbox? Used at end of dialogues
+		XX = 01			Create textbox? Used at beginning of dialogues
+		XX = 80, YY ZZ	Create overword textbox, YY = length of textbox, ZZ = height of textbox
+	0x18 00 XX		changes character portrait, XX = character portrait offset
+	0x1A			next page
+	0x1D FF XX		pause(frame/tick?)
+	0x1F			next line
+	
+	Likely Codes
+		0x02
+		0x04	1 byte
+		0x14
+		0x1B	1 byte
+		0x?? 0x70
+		
+	
+	0x0000	-	Header Length(always 0x200)
+	
+	
+
+	0x0008	-	# Map Entry Locations 32 byte Entries
+	0x000C	-	Map Entry Locations Offset
+	
+	0x0010	-	???
+	0x0014	-	???
+	
+	0x0018	-	# of Intances 30 Byte Entries
+	0x001C	-	Instances Offset
+	
+	0x0020	-	# of HTA 72 byte Entries(lots of floating point numbers)
+	0x0024	-	HTA Offset
+	
+	0x0028	-	# of Movement Scripts?
+	0x002C	-	Movement Scripts Offset
+	
+	0x0030	-	# of Unknown 148 byte Entries
+	0x0034	-	Unknown Offset
+	
+	0x0038	-	# of Enemy Groups Positions 104 Byte Entries
+	0x003C	-	Enemy Groups Positions Offset
+	
+	0x0040	-	# of Unknown 192 byte Entries
+	0x0044	-	Unknown Offset
+	
+	0x0048	-	# of Enemy Group Data 120 Byte Entries
+	0x004C	-	Enemy Group Data Offset
+	
+	0x0050	-	# of MOS 32 byte Entries
+	0x0054	-	MOS Offset
+	
+	0x0058	-	# of Unknown 8 byte Entries(pure floating point numbers)
+	0x005C	-	Unknown Offset
+	
+	0x0060	-	# of unknown 4 byte Entries
+	0x0064	-	Unknown Offset
+	
+	0x0068	-	# of Unknown 12 byte Entries
+	0x006C	-	Unknown offset
+	
+	0x0070	-	# of Unknown 64 byte Entires(check D800.mdt)
+	0x0074	-	Unknown Offset
+	
+	0x0078	-	Dialogue Byte Length
+	0x007C	-	Dialogue Offset
+	
+	0x0080	-	# of Unknown 12 Byte Entries
+	0x0084	-	Unknown Entries Offset
+	
+	0x0088	-	# of Unknown 16 Byte Entries
+	0x008C	-	Unknown Entries Offset
+	
+	0x0090	-	# of Unknown 8 Byte Entries
+	0x0094	-	Unknown Entries Offset
+	
+	0x0098	-	# of Icon 32 Byte Entries(overworld interactables)
+	0x009C	-	Icon Entries Offset
+	
+	0x00A0	-	# of Unknown Bytes
+	0x00A4	-	Offset to Unknown Data
+	
+	0x00A8	-	Shop Data Length
+	0x00AC	-	Shop Data Offset
+	
+	0x00B0	-	???(so far, always 0x0000)
+	0x00B4	-	???(so far, always 0x0000)
+	
+	0x00B8	-	# of Unknown 18 Byte Entries
+	0x00BC	-	Unknown Entries Offset
+	
+	0x00C0	-	# of Unknown 128 Byte Entries
+	0x00C4	-	Unknown Entries Offset
+	
+	0x00C8	-	# of Unknown 116 byte Entries(lots of floating point numbers)
+	0x00CC	-	Unknown Offset
+	
+	0x00D0	-	
+	0x00D4	-	
+	
+	0x00D8	-	# of Unknown 44 Bytes
+	0x00DC	-	Unknown Offset
+	
+	0x00E0	-	# of Unknown 112(?) Bytes
+	0x00E4	-	Unknown Offset
+	
+	0x00E8	-	Unknown Offset(0x20(32) Bytes)
+	0x00EC	-	
+	
+	0x00F0	-	
+	0x00F4	-	
+	
+	0x00F8	-	
+	0x00FC	-	
+	
+	MAP ENTRIES {
+		
+		04 byte ID
+		04 byte X Position
+		04 byte Y Position
+		04 byte Z Position
+		04 byte Direction
+		04 byte ??? float
+		04 byte ???
+		04 byte 0xFF/0x00
+		
+		2000.mdt
+			East Silesia
+			East Silesia?
+			Carbo Inn
+			Carbo General Store
+			Carbo Church
+			Carbo Church?
+			Carbo House 1
+			Carbo House 2
+			Carbo House 3
+			Carbo House 4
+			Garmia Tower
+			Witt Forest
+		
+	}
+
+	INSTANCES {
+		
+		02 byte ID
+		02 byte Index
+		02 byte ???
+		02 byte Trans(lation)?
+		04 byte X Position Float
+		04 byte Y Position Float
+		04 byte Z Position Float
+		04 byte X Angle Float
+		04 byte Y Angle Float
+		04 byte Z Angle Float
+		04 byte CX Float
+		04 byte CY Float
+		04 byte CZ Float
+		
+	}
+	
+	HTA { (Center = (Minimum + Maximum) / 2)
+		
+		01 byte Shape
+		01 byte Type
+		01 byte Trigger
+		05 byte ???
+		01 byte Attribute
+		07 byte ???
+		04 byte X Minimum
+		04 byte Y Minimum
+		04 byte Z Minimum
+		04 byte X Maximum
+		04 byte Y Maximum
+		04 byte Z Maximum
+		32 byte ???
+		
+	}
+	
+	Scripts {	//tells entity to do action/move to specified coordinates
+	
+		40 byte ???
+		04 byte X coord offset?
+		04 byte Y coord offset?
+		04 byte Z coord offset?
+		04 byte floating point #
+		01 byte x4 only 00 or 01
+	
+	}
+		
+	Enemy Positions(104 byte entries) {
+		
+		02 byte Index
+		02 byte ???
+		04 byte X position minimum
+		04 byte Z position minimum
+		04 byte X position maximum
+		04 byte Z position maximum
+		04 byte X Position
+		04 byte Y Position
+		04 byte Z Position
+		24 byte ???(6 sets of x, y, z coordinates)
+		
+	}
+		
+	ENEMY DATA(120 byte) {
+		
+		02 byte Index
+		22 byte ???
+		02 byte ???
+		02 byte # of enemy
+		02 byte Enemy ID
+		
+	}
+	
+	MOS Status {
+		
+		02 byte ID + 1
+		02 byte Index(from Dreamcast debug)
+		04 byte ???
+		02 byte X(?) Position
+		02 byte Y(?) Position
+		02 byte Z(?) Position
+		18 byte ???
+		
+	}
+		
+	ICONS {
+		
+		01 byte ID
+		03 byte ???
+		04 byte X Position
+		04 byte Y Position
+		04 byte Z Position
+		04 byte 
+		04 byte Y Angle?
+		08 byte ???
+		06 byte Item Offsets(2 byte)
+		02 byte Flag
+		
+	}
+
+
+	2000.mdt
+		ryudo script 0x2804
+		first dialogue 0x1A880
+			0x1AB40 in here Elena turns right, and waves
+		
+}
+
+MODELS {	//	All Ninja formats use POF0, which means pointers go from the start of the chunk, not file
+
+	//	NPC/Playables have MCS_ segment, enemies do not, these segments can only be found in content/data/afs/map so far
+	//	POF0 segments can be found within content/data/afs/model(includes model and sometimes PVRT) for each playable/enemy or C0?/c0?_*.dat for playables(includes MCS_ and model motions)
+	//	need to find NPC POF0 segments
+	
+	.CHR {	//	NPC/ENEMY
+	
+		CDDH segment(only the very first NJCM of file)
+			04 byte remaining header byte length
+				04 byte number of entries
+				04 byte file number
+				04 byte GPHD offset
+			GIXL segment
+				4 byte remaining header byte length
+					4 byte number of entries
+						4 byte model key			// Uses *.dds file at offset 0x20 value, they probably used std::map for a dictionary
+			NJCM segment
+			POF0 segment							//	required
+			MCS_ segment							//	for playable/NPC
+		
+		
+			4 byte remaining length
+				4 byte number of entries
+					4 byte ???
+					4 byte 0x????FFFF end			//	Included in number of entires
+			GIXL segment
+				4 byte remaining header byte length
+					4 byte number of entries
+						4 byte model key			// Uses *.dds file at offset 0x20 value, they probably used std::map for a dictionary
+			NJCM segment
+			POF0 segment							//	required
+			MCS_ segment							//	for playable/NPC
+			
+		GPHD segment(only the very first NMDM in file)
+			4 byte remaining header byte length
+			4 byte GPHD index(which GPHD number within the file)(?)
+			MIXL segment(1 per model motion table, says how many motions there are)
+				4 byte remaining header byte length
+					1 byte Model Index				//	Index of NJCM Model this NMDM Model Motion sections belong to, until new MIXL section is encountered
+					1 byte # of Model Motions in section
+						1 byte Incremental Index(?) of Model Motions
+							0xFF padded to nearest 4 bytes
+				NMDM segment(x amount of NMDM sections based on MIXL)
+				POF0 segment						//	required
+				
+		GAMT segment
+			4 byte remaining header byte length
+			4 byte ???								//	Only 0 or 1 so far
+			MIXL segment(1 per model motion table, says how many motions there are)
+				4 byte remaining header byte length
+					1 byte Model Index				//	Index of NJCM Model this NMDM Model Motion sections belong to, until new MIXL section is encountered
+					1 byte # of Model Motions in section
+						1 byte Incremental Index(?) of Model Motions
+							0xFF padded to nearest 4 bytes
+				NMDM segment(x amount of NMDM sections based on MIXL)
+				POF0 segment						//	required
+				
+	}
+	
+	.CHR2 {	//	EXTRA MOTION DATA
+	
+		CDDH segment
+			04 byte remaining header byte length
+				04 byte number of entries
+				04 byte file number
+				04 byte GPHD offset
+			GPHD segment
+				4 byte remaining header byte length
+				4 byte GPHD index(which GPHD number within the file)(?)
+				MIXL segment
+					4 byte remaining header byte length
+						1 byte Model Index			//	Index of NJCM Model this NMDM Model Motion sections belong to, until new MIXL section is encountered
+						1 byte # of Model Motions in section
+							1 byte Incremental Index(?) of Model Motions
+								0xFF padded to nearest 4 bytes
+					GAMT segment					// Only after first entry
+						4 byte remaining header byte length
+						4 byte ???					//only 0 or 1 so far
+						NMDM segment
+						POF0 segment				//	required
+	
+		2000.chr
+			Elena First
+				NMDM
+					1: standing(bobbing)
+					2: walking
+					3: running
+					4: standing(bobbing)
+					5: standing(back straight, bobbing)
+	
+	}
+	
+	.MNJ {	//ENVIRONMENT MODELS
+	
+		
+	
+	}
+	
+	GBIX(Global Index) {
+		
+		4 byte remaining length
+			4 byte Global Index
+			4 byte 0x00000000 or 0x20202020
+			
+	}
+	
+	NJTL {		//	Ninja Texlist(texture list?)
+	
+		4 byte remaining header byte length
+			
+	
+	}
+		
+	NJCM {		//	Ninja Chunk Model Tree
+		
+		Chunk header types {
+			
+			0x00 - 0x00 null
+			0x01 - 0x05 Bits
+				01 NJD_CB_BA			//Alpha blend											3 bits for alpha SRC and 3 bits for alpha DST
+				02 NJD_CB_DA			//Mipmap “D” adjust										4 bits for “D” adjust
+				03 NJD_CB_EXP		//Specular exponent											5 bits for the exponent
+				04 NJD_CB_CP			//Cache polygon list									8 bits for the cache number
+				05 NJD_CB_DP			//Draw polygon list										8 bits for the cache number
+			0x08 - 0x09 Tiny
+			0x11 - 0x1F Material
+				11 NJD_CM_D			//Diffuse													4 bytes
+				12 NJD_CM_A			//Ambient													4 bytes
+				13 NJD_CM_DA		//Diffuse, Ambient											8 bytes
+				14 NJD_CM_S			//Specular													4 bytes
+				15 NJD_CM_DS		//Diffuse, Specular											8 bytes
+				16 NJD_CM_AS		//Ambient, Specular											8 bytes
+				17 NJD_CM_DAS		//Diffuse, Ambient, Specular								12 bytes
+			0x20 - 0x32 Vertex
+				20 NJD_CV_SH		//x,y,z,1.0F												16 bytes					SH4 OPTIMIZED
+				21 NJD_CV_VN_SH		//x,y,z,1.0F,nx,ny,nz,0.0F									32 bytes					VERTEX NORMAL SH4 OPTIMIZED
+				22 NJD_CV			//x,y,z														12 bytes
+				23 NJD_CV_D8		//x,y,z,D8888												16 bytes					DIFFUSE ARGB8888 ONLY
+				24 NJD_CV_UF		//x,y,z,UserFlags32											16 bytes					USER FLAGS EXTENSION
+				25 NJD_CV_NF		//x,y,z,NinjaFlags32										16 bytes					NINJA FLAGS EXTENSION
+				26 NJD_CV_S5		//x,y,z,D565,S565											16 bytes					DIFFUSE RGB565 SPECULAR RGB565
+				27 NJD_CV_S4		//x,y,z,D4444,S565											16 bytes					DIFFUSE RGB4444 SPECULAR RGB565
+				28 NJD_CV_IN		//x,y,z,D16,S16												16 bytes					DIFFUSE(16 bit) SPECULAR(16 bit)
+				29 NJD_CV_VN		//x,y,z,nx,ny,nz											24 bytes					VERTEX NORMAL
+				2A NJD_CV_VN_D8		//x,y,z,nx,ny,nz,D8888										28 bytes
+				2B NJD_CV_VN_UF		//x,y,z,nx,ny,nz,UserFlags32								28 bytes
+				2C NJD_CV_VN_NF		//x,y,z,nx,ny,nz,NinjaFlags32								28 bytes
+				2D NJD_CV_VN_S5		//x,y,z,nx,ny,nz,D565,S565									28 bytes
+				2E NJD_CV_VN_S4		//x,y,z,nx,ny,nz,D4444,S565									28 bytes
+				2F NJD_CV_VN_IN		//x,y,z,nx,ny,nz,D16,S16									28 bytes
+				30 NJD_CV_VNX		//x,y,z,nxyz32												16 bytes					VERTEX NORMAL RESERVED
+				31 NJD_CV_VNX_D8	//x,y,z,nxyz32,D8888										20 bytes					VERTEX NORMAL RESERVED DIFFUSE ARGB8888 ONLY
+				32 NJD_CV_VNX_UF	//x,y,z,nxyz32,UserFlags32									20 bytes
+			0x38 - 0x3A Volume
+			0x40 - 0x4B Strip
+				40 NJD_CS			//index0(16)												2 bytes
+				41 NJD_CS_UVN		//index0(16), U0(16), V0(16)								6 bytes
+				42 NJD_CS_UVH		//index0(16), U0(16), V0(16)								6 bytes
+				43 NJD_CS_VN		//index0(16), vnx0(16), vny0(16), vnz0(16)					8 bytes
+				44 NJD_CS_UVN_VN	//index0(16), U0(16), V0(16), vnx0(16), vny0(16), vnz0(16)	12 bytes
+				45 NJD_CS_UVH_VN	//index0(16), U0(16), V0(16), vnx0(16), vny0(16), vnz0(16)	12 bytes
+				46 NJD_CS_D8		//index0(16), AR0(16), GB0(16)								6 bytes
+				47 NJD_CS_UVN_D8	//index0(16), U0(16), V0(16), AR0(16), GB0(16)				10 bytes
+				48 NJD_CS_UVH_D8	//index0(16), U0(16), V0(16), AR0(16), GB0(16)				10 bytes
+				49 NJD_CS_2			//index0(16),												2 bytes
+				4A NJD_CS_UVN2		//index0(16), U0a(16), V0a(16), U0b(16), V0b(16)			10 bytes
+				4B NJD_CS_UVH2		//index0(16), U0a(16), V0a(16), U0b(16), V0b(16)			10 bytes
+			0xFF - 0xFF End
+			
+		}
+		
+		4 byte remaining length
+			4 byte evaluation flag
+				0x00000001 Don't apply translation, when x, y, z are 0
+				0b00000010 Don't apply rotation, when rot_x, rot_y, rot_z are 0
+				0b00000100 Don't apply scale, when scl_x, scl_y, scl_z are 0
+				0b00001000 Don't render model
+				0b00010000 Break child trace, don't render child objects
+				0b00100000 ZXY rotation order, apply rotations in LightWave3D order
+				0b01000000 Skip motion
+				0b10000000 Skip shape motion
+			4 byte NJS_MODEL pointer			//	from start of model chunk
+				4 byte NJS_VERTEX_LIST pointer	//	from start of model chunk
+					1 byte chunk type			//	chunk header type(always 0x29)
+					1 byte chunk flag			//	always 00???
+					2 byte num 4 byte chunks
+					2 byte vertex data offset?
+					2 byte vertex ???
+					? byte vertex data
+						?[?] byte vertex		//	see table above for listings
+				4 byte NJS_INDICE_LIST pointer	//	from start of model chunk
+					"material, tiny, bit, null, strip chunks"
+				4[3] byte float model center
+				4 byte float radius of circumscribed sphere
+			4[3] byte float position
+			4[3] byte int32_t rotation
+			4[3] byte float scale
+			4 byte child object pointer			//	from start of model chunk
+			4 byte sibling object pointer		//	from start of model chunk
+			
+				/*
+				for bones(it seems they will always be the first thing, might be all bases of the model themselves)
+				the 4[3] byte float position is the "offset" from 1.0 x, 1.0 y, 1.0 z origin(the 1.0, 1.0, 1.0 origin should be the 4[3] byte float scale)
+				*/
+		
+		Bits Chunk
+			2 byte chunk head
+			2 byte chunk flag
+			
+		Tiny Chunk
+			1 byte chunk head
+			1 byte chunk flag
+				0x07 mip_depth
+				0x08 clamp_u
+				0x10 clamp_v
+				0x20 flip_u
+				0x40 flip_v
+			2 byte chunk body
+				13 bits texture ID				//	least significant
+				1 bit super sample
+				2 bit filter mode				//	most significant
+				
+		Material Chunk
+			1 byte chunk head
+			1 byte chunk flag
+			2 byte chunk length?
+			4 byte diffuse color				//	chunk head & 0x01
+			4 byte specular color				//	chunk head & 0x02
+			4 byte ambient color				//	chunk head & 0x04
+			
+		Vertex Chunk
+			1 byte chunk head
+			1 byte chunk flag
+			2 byte chunk length in 4 bytes(this * 4 = actual chunk length)
+			2 byte vertex offset
+			2 byte vertex count
+			? byte vertex data
+				4[3] byte vertex
+				
+		Strip Chunk
+			1 byte chunk head
+			1 byte chunk flag
+			2 byte chunk length in 2 bytes
+			2 byte chunk count
+			? byte strip data
+				
+	}
+	
+	NMDM {		//	Ninja Model Motion
+		
+		4 byte remaining length
+		1 byte[remaining length] chunk body
+			4 byte motion data
+			4 byte frame count
+			2 byte motion type					//	flags for position, rotation, and scale
+				0x01 position
+				0x02 rotation
+				0x04 scale
+			2 byte int_fp						//	interpolation & factor count: increment for position/rotation/scale if they are used
+				0x03 factor count
+				0x40 spline interpolation
+				0x80 user interpolation
+		
+		NJS_MDATA(Motion Data)
+			4[int_fp] byte factor pointer
+			4[3] byte factor count
+		
+	}
+	
+	NJTL {		//	Ninja Textlist(texture list?)
+		
+		4 byte remaining length
+			4 byte NJS_TEXNAME pointer(offset from current position)
+			2 byte number of textures
+				4 byte texture number
+				8 byte ???
+				
+	}
+	
+	PVRT {
+		
+		4 byte remaining length
+		1 byte pixel format	//	2 byte per pixel
+			0x00 ARGB1555	//	1-bit A, 5-bit RGB
+			0x01 RGB565		//	5-bit RB, 6-bit G
+			0x02 ARGB4444	//	4-bit ARGB
+		1 byte data format
+			0x01 Squared twiddled
+			0x02 Squared twiddled with mipmap
+			0x03 VQ		//	vector quantization
+			0x04 VQ with mipmap
+			0x05 4-bit indexed with external palette
+			0x07 8-bit indexed with external palette
+			0x09 Rectangle
+			0x0D Rectangle Twiddled
+			0x10 Small VQ
+			0x11 Small VQ with mipmap
+			0x12 Square twiddled with mipmap(alternative)
+		2 byte 0x0000
+		2 byte texture width
+		2 byte texture height
+		? byte palatte data
+		? byte texture data		//	if mipmap, go smallest to largest
+		
+	}
+					
+	POF0 {
+		
+		4 byte remaining length
+			4 byte ???
+			
+	}
+	
+	MCS_ {
+		
+		4 byte remaining length
+		2 byte num 4 byte chunks
+		2 byte ???
+		
+	}
+
+	*.PVP FILES {
+		
+		F_ICON_32.PVP == F_FACE_SP.PVP
+		
+		PVPL
+			4 byte remaining length
+			4 byte ???	//	0x06000000
+			4 byte ???	//	0x00000001
+			
+		
+	}
+
+}
+
+.DST FOLDER {
+
+	For background textures
+
+}
+
+.PVL FOLDER {
+
+	For overworld textures
+
+}
+
+FONT FILE {
+	
+	xls_data/gr2us.dat	Follows unicode dictionary starting at 0x20(space)
+
+}
+
+TB_SPCL.BIN(24 byte entries) {
+	
+	1 byte Attack Offset
+	1 byte Attack Starting Level
+	2 byte Story Flag Requirement
+	
+}
+	
+TB_SKILL.BIN(24 byte entries) {
+	
+	1 byte Skill Offset
+	1 byte Starting Level
+	1 byte Skillbook Level Requirement
+	1 byte Unknown
+	
+}
+
+TB_MAGIC.BIN(72 byte entries) {
+	
+	1 byte Attack Offset
+	1 byte Attack Starting Level
+	1 byte Mana Egg Level Requirement
+	1 byte Unknown
+	
+}
+	
+TB_LVUP.BIN(24 byte entries)(Starts @ Lvl 1) {
+	
+	4 byte EXP Requirement
+	2 byte HP Increase
+	2 byte MP Increase
+	2 byte SP Increase
+	2 byte STR Increase
+	2 byte VIT Increase
+	2 byte MAG Increase
+	2 byte MEN Increase
+	2 byte MOV Increase
+	2 byte ACT Increase
+	2 byte Skill Slot Increase
+	
+}
+	
+PC_INIT.BIN(80 byte entries) {
+	
+	4 byte EXP Starting
+	38 byte Unknown
+	1 byte Attack SP Recovery
+	1 byte Critical SP Recovery
+	1 byte Unknown
+	1 byte Damaged SP Recovery
+	1 byte Unknown
+	1 byte Evasion
+	1 byte Move Evasion
+	1 byte R_KB
+	32 byte Unknown
+	
+}
+
+TB_SHOP.BIN(164 byte entries) {	//TB_SHOP.BIN is not used, data is stored in relevant *.MDT files
+	
+	2 byte Map Name(by folder name)
+	2 byte Number of catagories(?)
+	8 byte "weapons"
+	24 byte Item Listing
+		2 byte Item "ID"(offset by 0x0008)
+	8 byte "  armor"
+	24 byte Item Listing
+		2 byte Item "ID"(offset by 0x0008)
+	8 byte "jewelry"
+	24 byte Item Listing
+		2 byte Item "ID"(offset by 0x0008)
+	8 byte "   items"
+	24 byte Item Listing
+		2 byte Item "ID"(offset by 0x0008)
+	8 byte "regional"
+	24 byte Item Listing
+		2 byte Item "ID"(offset by 0x0008)
+		
+}
+
+SAVE FILES {
+	
+	Stats offset 0x308(108 byte entries)
+		12 byte Name(Trailing 0's)
+		2 byte Level
+		4 byte Current EXP
+		4 byte EXP to Next Level
+		4 byte Current Max HP
+		2 byte Current HP
+		2 byte Current Max MP
+		2 byte Current MP
+		2 byte Current Max SP
+		2 byte Current SP
+		2 byte STR
+		2 byte VIT
+		2 byte ACT
+		2 byte MOV
+		2 byte MAG
+		2 byte MEN
+		12 byte ???
+		2 byte Weapon
+		2 byte Armor
+		2 byte Headgear
+		2 byte Footwear
+		2 byte Accessory
+		2 byte Mana Egg
+		2 byte Skill Slots
+		30 byte ???
+		160 byte copy of relevant TB_SPCL.BIN data(including story flags)
+	
+}
+	
+ENEMY FILES {
+	
+	AI DATA
+		0x01 Entry AI
+		0x06 HP Threshold? AI
+		
+	d18_0	-	Mottled Spider
+		0x0000	-	Required to properly link enemy data
+		
+		0x0034	-	Offset to Enemy Data
+		0x0038	-	Enemy Data Length
+		0x003C	-	Offset to Moves Data
+		0x0040	-	Moves Data Length
+		0x0044	-	Offset to Enemy Data v2
+		0x0048	-	Enemy Data v2 Length
+		0x004C	-	Offset to Moves Data v2
+		0x0050	-	Moves Data v2 Length
+		
+}
