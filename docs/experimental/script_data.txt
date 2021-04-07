@@ -1,0 +1,100 @@
+1	Ryudo
+2	Ryudo
+3	Elena
+4	Elena
+5	Millenia
+6	Millenia
+7	Roan
+8	Roan
+9	Ryudo
+A	Ryudo
+B	Mareg
+C	Mareg
+D	Skye
+E	Ryudo
+F	Ryudo
+10	Ryudo
+11	Ryudo
+12	Ryudo
+13	Elena
+14	Elena
+15	Elena
+16	Elena
+17	Elena
+18	Elena
+19	Elena
+1A	Elena
+1B	Elena
+1C	Elena
+1D	Millenia
+1E	Millenia
+1F	Millenia
+20	Millenia
+21	Millenia
+22	Millenia
+23	Millenia
+24	Ryudo
+25	Roan
+26	Roan
+27	Roan
+28	Ryudo
+29	Mareg
+2A	Mareg
+2B	Elena
+2C	Carius
+2D	Carius
+2E	Carius
+2F	Tessa
+30	Tessa
+31	Inn Master
+32	Store Master
+33	Tutor
+34	Client
+35	Daughter
+36	Ismene
+37	Eurydice
+38	Velda
+39	Isolde
+3A	Carius' Wife
+
+00451FB4	probably 00451F70	offset 44	OR	probably 00451FB4
+00451FB8	probably 00451F70	offset 48	OR	probably 
+00451FBC	probably 00451F70	offset 4C
+	
+2000:
+	0B80		Ryudo		Moves out of way for sisters
+	37B4/3F9C	Elena		Joining the party
+	3F40		Elena		Before saying "My NAME is Elena"
+	47E0		Ryudo		Alignment to enter the church
+	483C		Ryudo		Entering the church
+	
+2010:		//Father Carius is chr 9
+	1CC0		Carius		Walks down to Ryudo
+	1EE8		Carius		Walks towards Ryudo in chair
+	1F44		Carius		Walks to place gold on table
+	22DC		Carius		Leaves inn
+	2560		Ryudo		Walks to chair
+	272C		Ryudo		Stands up to confront Carius
+	2840		Ryudo		Walks down to table
+	2BD8		Ryudo		When you interact with inn keeper
+	
+2030:		//Father Carius is chr 0, Elena is chr 3
+	0170		Ryudo		Set starting position for entering church???
+	0228		Ryudo		First stop inside church
+	04AC		Ryudo		Appears in pew
+	0508		Ryudo		Exit pew, stand in walkway
+	050C		Ryudo		Walks up to Elena
+	09B4		Carius		Walks into room
+	0C38		Carius		Walks up next to Elena
+	
+                                                                                                                                            X POS         Y POS         Z POS         ANGLE?                                    I1 I2                       SIG 2                                                   
+00 00 00 00   00 00 00 00   00 00 00 00   00 00 00 00   00 00 00 00   00 00 00 00   00 00 00 00   01 00 00 00   01 00 FF FF   00 00 00 00   00 00 F0 C1   00 00 20 42   00 00 2F C5   00 00 C0 40   00 00 01 00   00 00 00 00   05 06 FF FF   14 00 00 00   00 00 00 00   00 00 00 00   00 00 00 00   00 00 00 00   00 00 00 00
+
+I1		-	Can only be 0x05 or 0x06, all others do not work
+I2		-	Can only be 0x06, all others do not work
+SIG 2	-	2 significant bytes that must be 0x00 for the movement it seems
+
+
+-18.13	20.43	-2635.72(HTA entry 70)
+1543.50	0		51.73
+1090	0		220

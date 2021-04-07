@@ -95,7 +95,7 @@
 	0x0020	-	# of HTA 72 byte Entries(lots of floating point numbers)
 	0x0024	-	HTA Offset
 	
-	0x0028	-	# of Movement Scripts?
+	0x0028	-	# of Movement Scripts?	//	92 bytes per entry
 	0x002C	-	Movement Scripts Offset
 	
 	0x0030	-	# of Unknown 148 byte Entries
@@ -178,11 +178,11 @@
 	
 	MAP ENTRIES {
 		
-		04 byte ID
-		04 byte X Position
+		04 byte Map ID			//	map entered from
+		04 byte X Position		//	position player enters map
 		04 byte Y Position
 		04 byte Z Position
-		04 byte Direction
+		04 byte Direction		//	at least on BAKED PLAINS 2, when entering from BAKED PLAINS 3, player goes to negative of this value upon entering
 		04 byte ??? float
 		04 byte ???
 		04 byte 0xFF/0x00
@@ -221,13 +221,14 @@
 		
 	}
 	
-	HTA { (Center = (Minimum + Maximum) / 2)
+	HTA { (Center = (Minimum + Maximum) / 2)		//	Hit Detection, things like steam vents in Baked Plains, wall objects inside map, and map entrances)
 		
 		01 byte Shape
 		01 byte Type
 		01 byte Trigger
 		05 byte ???
 		01 byte Attribute
+			0x01 - active		//	turned off once destroyed
 		07 byte ???
 		04 byte X Minimum
 		04 byte Y Minimum
@@ -245,8 +246,9 @@
 		04 byte X coord offset?
 		04 byte Y coord offset?
 		04 byte Z coord offset?
-		04 byte floating point #
-		01 byte x4 only 00 or 01
+		04 byte direction?
+		4 byte ???
+		4 byte map ID		//	map you transition to	DOES NOTHING
 	
 	}
 		
@@ -275,7 +277,7 @@
 		
 	}
 	
-	MOS Status {
+	MOS Status {	//	appear to be visible effects that happen(i.e. - steam in Baked Plains)
 		
 		02 byte ID + 1
 		02 byte Index(from Dreamcast debug)
