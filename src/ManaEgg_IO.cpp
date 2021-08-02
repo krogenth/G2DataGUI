@@ -84,7 +84,7 @@ void drawMAG(std::vector<ManaEggStruct>& eggs, bool* canClose, char** moveIDs, c
 	ImGui::Combo("Spell", &eggs[eggID].spells[spellSlot].spellOffset, moveIDs, (int)numMoves);
 	ImGui::InputUByte("Starting Level", &eggs[eggID].spells[spellSlot].startingLevel);
 	ImGui::InputUByte("Egg Level Required", &eggs[eggID].spells[spellSlot].eggLevelRequired);
-	ImGui::InputUByte("Unknown #1", &eggs[eggID].spells[spellSlot].unknown1); ImGui::NewLine();
+	ImGui::InputUByte("Unknown #1", &eggs[eggID].spells[spellSlot].unknown1);
 
 	ImGui::End();
 

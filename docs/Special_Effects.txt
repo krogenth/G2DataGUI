@@ -2,8 +2,7 @@
 2	
 3	
 4	
-5	
-6	
+5		
 6	
 7	
 8	
@@ -48,7 +47,7 @@
 47	70% dmg as MP(!BROKEN!)
 48	80% dmg as MP(!BROKEN!)
 49	90% dmg as MP(!BROKEN!)
-50	100% dmg as MP(!BROKEN!)
+50	100% dmg as MP(!BROKEN!)				//	everything from here and above are for moves, equipment can use some as well(likely from 30 down)
 51	+1 SP Regen
 52	+2 SP Regen
 53	+3 SP Regen

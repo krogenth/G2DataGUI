@@ -78,7 +78,7 @@ void drawSKI(std::vector<SkillBookStruct>& books, bool* canClose, char** skillID
 	ImGui::Combo("Skill", &books[bookID].skills[skillSlot].skillOffset, skillIDs, (int)numSkills);
 	ImGui::InputUByte("Starting Level", &books[bookID].skills[skillSlot].startingLevel);
 	ImGui::InputUByte("Book Level Required", &books[bookID].skills[skillSlot].bookLevelRequired);
-	ImGui::InputUByte("Unknown #1", &books[bookID].skills[skillSlot].unknown1); ImGui::NewLine();
+	ImGui::InputUByte("Unknown #1", &books[bookID].skills[skillSlot].unknown1);
 
 	ImGui::End();
 

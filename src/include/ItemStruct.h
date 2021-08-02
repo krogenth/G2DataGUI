@@ -21,14 +21,14 @@ public:
 	ImS8 blizzardAffinity = 0;
 	ImU8 ailmentsBitflag = 0b00000000;
 	ImU8 ailmentsChance = 0;
-	ImU8 unknown1 = 0;
-	ImU8 unknown2 = 0;
-	ImU8 unknown3 = 0;
-	ImU8 unknown4 = 0;
-	ImU8 unknown5 = 0;
-	ImU8 unknown6 = 0;
-	ImU8 unknown7 = 0;
-	ImU8 unknown8 = 0;
+	ImS8 increaseFirePercent = 0;
+	ImS8 increaseWindPercent = 0;
+	ImS8 increaseEarthPercent = 0;
+	ImS8 increaseLightningPercent = 0;
+	ImS8 increaseBlizzardPercent = 0;
+	ImS8 increaseWaterPercent = 0;
+	ImS8 increaseExplosionPercent = 0;
+	ImS8 increaseForestPercent = 0;
 	ImU16 special = 0;
 
 };

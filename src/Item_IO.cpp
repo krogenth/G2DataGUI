@@ -299,14 +299,14 @@ void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose) {
 
 		ImGui::InputUByte("Ailments Chance", &items[itemID].equipmentOffset->ailmentsChance);
 
-		ImGui::InputUByte("Unknown #1", &items[itemID].equipmentOffset->unknown1);
-		ImGui::InputUByte("Unknown #2", &items[itemID].equipmentOffset->unknown2);
-		ImGui::InputUByte("Unknown #3", &items[itemID].equipmentOffset->unknown3);
-		ImGui::InputUByte("Unknown #4", &items[itemID].equipmentOffset->unknown4);
-		ImGui::InputUByte("Unknown #5", &items[itemID].equipmentOffset->unknown5);
-		ImGui::InputUByte("Unknown #6", &items[itemID].equipmentOffset->unknown6);
-		ImGui::InputUByte("Unknown #7", &items[itemID].equipmentOffset->unknown7);
-		ImGui::InputUByte("Unknown #8", &items[itemID].equipmentOffset->unknown8);
+		ImGui::InputByte("Increase Fire %", &items[itemID].equipmentOffset->increaseFirePercent);
+		ImGui::InputByte("Increase Wind %", &items[itemID].equipmentOffset->increaseWindPercent);
+		ImGui::InputByte("Increase Earth %", &items[itemID].equipmentOffset->increaseEarthPercent);
+		ImGui::InputByte("Increase Lightning %", &items[itemID].equipmentOffset->increaseLightningPercent);
+		ImGui::InputByte("Increase Blizzard %", &items[itemID].equipmentOffset->increaseBlizzardPercent);
+		ImGui::InputByte("Increase Water %", &items[itemID].equipmentOffset->increaseWaterPercent);
+		ImGui::InputByte("Increase Explosion %", &items[itemID].equipmentOffset->increaseExplosionPercent);
+		ImGui::InputByte("Increase Forest %", &items[itemID].equipmentOffset->increaseForestPercent);
 
 		ImGui::InputUShort("Special", &items[itemID].equipmentOffset->special);
 
