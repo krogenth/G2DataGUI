@@ -1,17 +1,16 @@
-#include ".\imgui.h"
-#include ".\imgui_impl_win32.h"
-#include ".\imgui_impl_dx12.h"
-#include <d3d12.h>
-#include <dxgi1_4.h>
-//#define DIRECTINPUT_VERSION 0x0800
-//#include <dinput.h>
 #include <tchar.h>
 #include <vector>
 #include <filesystem>
+#include <string>
 
 #include <Windows.h>
 #include <type_traits>
-#include <string>
+#include <d3d12.h>
+#include <dxgi1_4.h>
+
+#include ".\imgui.h"
+#include ".\imgui_impl_win32.h"
+#include ".\imgui_impl_dx12.h"
 
 #include ".\include\MoveStruct.h"
 #include ".\include\SkillStruct.h"
@@ -35,17 +34,17 @@ static FrameContext                 g_frameContext[NUM_FRAMES_IN_FLIGHT] = {};
 static UINT                         g_frameIndex = 0;
 
 static int const                    NUM_BACK_BUFFERS = 3;
-static ID3D12Device*                g_pd3dDevice = NULL;
-static ID3D12DescriptorHeap*        g_pd3dRtvDescHeap = NULL;
-static ID3D12DescriptorHeap*        g_pd3dSrvDescHeap = NULL;
-static ID3D12CommandQueue*          g_pd3dCommandQueue = NULL;
-static ID3D12GraphicsCommandList*   g_pd3dCommandList = NULL;
-static ID3D12Fence*                 g_fence = NULL;
+static ID3D12Device* g_pd3dDevice = NULL;
+static ID3D12DescriptorHeap* g_pd3dRtvDescHeap = NULL;
+static ID3D12DescriptorHeap* g_pd3dSrvDescHeap = NULL;
+static ID3D12CommandQueue* g_pd3dCommandQueue = NULL;
+static ID3D12GraphicsCommandList* g_pd3dCommandList = NULL;
+static ID3D12Fence* g_fence = NULL;
 static HANDLE                       g_fenceEvent = NULL;
 static UINT64                       g_fenceLastSignaledValue = 0;
-static IDXGISwapChain3*             g_pSwapChain = NULL;
+static IDXGISwapChain3* g_pSwapChain = NULL;
 static HANDLE                       g_hSwapChainWaitableObject = NULL;
-static ID3D12Resource*              g_mainRenderTargetResource[NUM_BACK_BUFFERS] = {};
+static ID3D12Resource* g_mainRenderTargetResource[NUM_BACK_BUFFERS] = {};
 static D3D12_CPU_DESCRIPTOR_HANDLE  g_mainRenderTargetDescriptor[NUM_BACK_BUFFERS] = {};
 
 bool CreateDeviceD3D(HWND hWnd);
@@ -58,7 +57,6 @@ void ResizeSwapChain(HWND hWnd, int width, int height);
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 bool isHDVersion = true;
-
 bool* canClose = new bool[1]{ true };
 
 /*
@@ -183,7 +181,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     char** itemIDs = new char* [items.size()] {};
     char** enemyIDs = new char* [enemies.size()] {};
     char** mdtIDs = new char* [mdt.size()] {};
-    char** modelIDs = new char* [models.size()] {};
+    //char** modelIDs = new char* [models.size()] {};
 
     for (ImU16 i = 0; i < moves.size(); i++)
         moveIDs[i] = moves[i].name;
@@ -200,8 +198,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     for (ImU16 i = 0; i < mdt.size(); i++)
         mdtIDs[i] = &mdt[i].filename[0];
 
-    for (ImU16 i = 0; i < models.size(); i++)
-        modelIDs[i] = &models[i].filename[0];
+    //for (ImU16 i = 0; i < models.size(); i++)
+        //modelIDs[i] = &models[i].filename[0];
+
+
 
     // Main loop
     MSG msg;
@@ -227,84 +227,76 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        //General Information WINDOW
+        //  MAIN MENU BAR
         {
 
-            static bool my_tool_active = true;
+            ImGui::BeginMainMenuBar();
 
-            ImGui::Begin("Information", &my_tool_active, ImGuiWindowFlags_MenuBar);
-
-            if (ImGui::BeginMenuBar())
+            if (ImGui::BeginMenu("File"))
             {
-                if (ImGui::BeginMenu("File"))
-                {
 
-                    if (ImGui::MenuItem("Launch G2", "Ctrl+L")) {
+                if (ImGui::MenuItem("Launch G2", "Ctrl+L")) {
 
-                        STARTUPINFO si;
-                        PROCESS_INFORMATION pi;
-                        LPCWSTR path = L"grandia2.exe";
+                    STARTUPINFO si;
+                    PROCESS_INFORMATION pi;
+                    LPCWSTR path = L"grandia2.exe";
 
-                        // set the size of the structures
-                        ZeroMemory(&si, sizeof(si));
-                        si.cb = sizeof(si);
-                        ZeroMemory(&pi, sizeof(pi));
+                    // set the size of the structures
+                    ZeroMemory(&si, sizeof(si));
+                    si.cb = sizeof(si);
+                    ZeroMemory(&pi, sizeof(pi));
 
-                        // start the program up
-                        CreateProcess(path,   // the path
-                            lpCmdLine,        // Command line
-                            NULL,             // Process handle not inheritable
-                            NULL,             // Thread handle not inheritable
-                            FALSE,            // Set handle inheritance to FALSE
-                            0,                // No creation flags
-                            NULL,             // Use parent's environment block
-                            NULL,             // Use parent's starting directory 
-                            &si,              // Pointer to STARTUPINFO structure
-                            &pi               // Pointer to PROCESS_INFORMATION structure (removed extra parentheses)
-                        );
+                    // start the program up
+                    CreateProcess(path,   // the path
+                        lpCmdLine,        // Command line
+                        NULL,             // Process handle not inheritable
+                        NULL,             // Thread handle not inheritable
+                        FALSE,            // Set handle inheritance to FALSE
+                        0,                // No creation flags
+                        NULL,             // Use parent's environment block
+                        NULL,             // Use parent's starting directory 
+                        &si,              // Pointer to STARTUPINFO structure
+                        &pi               // Pointer to PROCESS_INFORMATION structure (removed extra parentheses)
+                    );
 
-                        // Close process and thread handles. 
-                        CloseHandle(pi.hProcess);
-                        CloseHandle(pi.hThread);
+                    // Close process and thread handles. 
+                    CloseHandle(pi.hProcess);
+                    CloseHandle(pi.hThread);
 
-                    }
-
-                    if (ImGui::MenuItem("Save All", "Ctrl+S")) {
-                        
-                        try {
-
-                            writeMS(moves);
-                            writeSK(skills);
-                            writeMAG(eggs);
-                            writeSKI(books);
-                            writeSPC(specials);
-                            writePC(stats);
-                            writeITE(items);
-                            writeEnemyStats(enemies);
-
-                        }
-                        catch (const std::exception& e) {
-
-                            ImGui::Begin("ERROR", canClose);
-                            ImGui::LabelText("", e.what());
-                            ImGui::End();
-
-                        }
-
-                    }
-                    if (ImGui::MenuItem("Close", "Ctrl+W")) {
-
-                        exit(0);
-
-                    }
-                    ImGui::EndMenu();
                 }
-                ImGui::EndMenuBar();
+
+                if (ImGui::MenuItem("Save All", "Ctrl+S")) {
+
+                    try {
+
+                        writeMS(moves);
+                        writeSK(skills);
+                        writeMAG(eggs);
+                        writeSKI(books);
+                        writeSPC(specials);
+                        writePC(stats);
+                        writeITE(items);
+                        writeEnemyStats(enemies);
+
+                    }
+                    catch (const std::exception& e) {
+
+                        ImGui::Begin("ERROR", canClose);
+                        ImGui::LabelText("", e.what());
+                        ImGui::End();
+
+                    }
+
+                }
+                if (ImGui::MenuItem("Close", "Ctrl+W")) {
+
+                    exit(0);
+
+                }
+                ImGui::EndMenu();
             }
 
-            ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-
-            ImGui::End();
+            ImGui::EndMenuBar();
 
         }
 
@@ -316,7 +308,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         drawPC(stats, canClose, itemIDs, numItems);
         drawITE(items, itemIDs, canClose);
         drawEnemyStats(enemies, enemyIDs, canClose, moveIDs, numMoves, itemIDs, numItems);
-        drawMdt(mdt, mdtIDs, canClose, itemIDs, numItems, models, modelIDs);
+        drawMdt(mdt, mdtIDs, canClose, itemIDs, numItems, models);
 
         // Rendering
         FrameContext* frameCtxt = WaitForNextFrameResources();
@@ -367,8 +359,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     return EXIT_SUCCESS;
 
 }
-
-// Helper functions
 
 bool CreateDeviceD3D(HWND hWnd)
 {

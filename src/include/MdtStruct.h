@@ -328,8 +328,10 @@ struct MdtStruct {
 	std::string filename = "";
 	std::string filenameChr = "";
 
+	char** modelNames = nullptr;
+
 };
 
 void writeMdt(std::vector<MdtStruct>& mdt);
 void readMdt(std::vector<MdtStruct>& mdt, std::vector<njcmStruct>& models, std::string filepath = "content/data/afs/map");
-void drawMdt(std::vector<MdtStruct>& mdt, char** mapIDs, bool* canClose, char** itemIDs, const size_t& numItems, std::vector<njcmStruct>& models, char** modelIDs);
+void drawMdt(std::vector<MdtStruct>& mdt, char** mapIDs, bool* canClose, char** itemIDs, const size_t& numItems, std::vector<njcmStruct>& models);

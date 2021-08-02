@@ -271,11 +271,6 @@ void readMdt(std::vector<MdtStruct>& mdt, std::vector<njcmStruct>& models, std::
 
 				input.close();
 
-				//	we need to now read the .chr file to map all models to this map
-				input.open(mdt.back().filenameChr, std::ios::binary);
-				readModel(models, &mdt.back(), input);
-				input.close();
-
 			}
 
 		}
@@ -284,7 +279,7 @@ void readMdt(std::vector<MdtStruct>& mdt, std::vector<njcmStruct>& models, std::
 
 }
 
-void drawMdt(std::vector<MdtStruct>& mdt, char** mapIDs, bool* canClose, char** itemIDs, const size_t& numItems, std::vector<njcmStruct>& models, char** modelIDs) {
+void drawMdt(std::vector<MdtStruct>& mdt, char** mapIDs, bool* canClose, char** itemIDs, const size_t& numItems, std::vector<njcmStruct>& models) {
 
 	static ImU16 mapID = 0;
 	static ImU16 mapEntryID = 0;
@@ -300,7 +295,24 @@ void drawMdt(std::vector<MdtStruct>& mdt, char** mapIDs, bool* canClose, char** 
 
 	ImGui::Begin("MDT");
 
-	ImGui::Combo("Map", &mapID, mapIDs, (int)mdt.size(), 100);
+	if (ImGui::Combo("Map", &mapID, mapIDs, (int)mdt.size(), 100)) {
+
+		if (mdt[mapID].models.size() == 0) {
+
+			//	we need to now read the .chr file to map all models to this map
+			std::ifstream input;
+			input.open(mdt[mapID].filenameChr, std::ios::binary);
+			readModel(models, &mdt[mapID], input);
+			input.close();
+
+			mdt[mapID].modelNames = new char* [mdt[mapID].models.size()]{};
+
+			for (size_t i = 0; i < mdt[mapID].models.size(); i++)
+				mdt[mapID].modelNames[i] = &models[mdt[mapID].models[i]].filename[0];
+
+		}
+
+	}
 
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) {
@@ -490,7 +502,7 @@ void drawMdt(std::vector<MdtStruct>& mdt, char** mapIDs, bool* canClose, char** 
 
 	}
 
-	drawModel(models, modelIDs, &mdt[mapID], canClose);
+	drawModel(models, &mdt[mapID], canClose);
 
 	ImGui::End();
 

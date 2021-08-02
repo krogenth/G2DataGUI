@@ -232,7 +232,7 @@ void readModel(std::vector<njcmStruct>& models, MdtStruct* mdt, std::ifstream& i
 
 }
 
-void drawModel(std::vector<njcmStruct>& models, char** modelIDs, MdtStruct* mdt, bool* canClose) {
+void drawModel(std::vector<njcmStruct>& models, MdtStruct* mdt, bool* canClose) {
 
 	static ImU16 modelSlot = 0;
 	static ImU16 modelID = 0;
@@ -241,7 +241,7 @@ void drawModel(std::vector<njcmStruct>& models, char** modelIDs, MdtStruct* mdt,
 
 		if (ImGui::CollapsingHeader("Models")) {
 
-			ImGui::Combo("ModelSlot", &modelSlot, modelIDs, mdt->models.size());
+			ImGui::Combo("ModelSlot", &modelSlot, mdt->modelNames, mdt->models.size());
 			ImGui::InputText("Filename", &models[mdt->models[modelSlot]].filename[0], models[mdt->models[modelSlot]].filename.length());
 
 		}

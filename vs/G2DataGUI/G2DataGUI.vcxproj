@@ -194,6 +194,33 @@
   <ItemGroup>
     <Image Include="g2.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\docs\Data File Details.txt" />
+    <Text Include="..\..\docs\enemycompare.txt" />
+    <Text Include="..\..\docs\enemy_hard_compare.txt" />
+    <Text Include="..\..\docs\enemy_hard_normal_compare.txt" />
+    <Text Include="..\..\docs\eskills.txt" />
+    <Text Include="..\..\docs\experimental\HTA_Map_transitions.txt" />
+    <Text Include="..\..\docs\experimental\MCS_data.txt" />
+    <Text Include="..\..\docs\experimental\script_data.txt" />
+    <Text Include="..\..\docs\ITEM_data.txt" />
+    <Text Include="..\..\docs\MapNames.txt" />
+    <Text Include="..\..\docs\MS_PARAM_data.txt" />
+    <Text Include="..\..\docs\nme list.txt" />
+    <Text Include="..\..\docs\PC_INIT_data.txt" />
+    <Text Include="..\..\docs\SK_PARAM_data.txt" />
+    <Text Include="..\..\docs\Special_Effects.txt" />
+    <Text Include="..\..\docs\TB_LVUP_data.txt" />
+    <Text Include="..\..\docs\TB_MAGIC_data.txt" />
+    <Text Include="..\..\docs\TB_SKILL_data.txt" />
+    <Text Include="..\..\docs\TB_SPCL_data.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\docs\boss_hard.csv" />
+    <None Include="..\..\docs\boss_normal.csv" />
+    <None Include="..\..\docs\enemy_hard.csv" />
+    <None Include="..\..\docs\enemy_normal.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -12,7 +12,7 @@ extern bool isHDVersion;
 
 void writeMS(std::vector<MoveStruct>& moves, std::string filename) {
 
-	std::ofstream output(filename, std::ios::binary);
+	std::fstream output(filename, std::ios::out | std::ios::binary);
 
 	if (!output.is_open())
 		throw new std::exception("MS_PARAM.BIN not found to be written!");

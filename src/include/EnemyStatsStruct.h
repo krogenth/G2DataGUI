@@ -5,6 +5,17 @@
 #include ".\imgui.h"
 
 #pragma pack(1)
+struct EnemyAIStruct {
+	ImU8 aiType = 0;
+	ImU8 move1Chance = 0;
+	ImU8 move2Chance = 0;
+	ImU8 move3Chance = 0;
+	ImU8 move4Chance = 0;
+	ImU8 move5Chance = 0;
+};
+#pragma pack()
+
+#pragma pack(1)
 struct EnemyMoveStatsStruct {
 
 	ImU16 mp = 0;
@@ -90,13 +101,14 @@ struct EnemyStatsStruct {
 	ImU16 item2 = 0;
 	ImS8 item1Chance = 0;
 	ImS8 item2Chance = 0;
-
+	ImU16 unknown6 = 0;
 };
 #pragma pack()
 
 struct EnemyStruct {
 	char* name = new char[19]{};
 	EnemyStatsStruct stats;
+	EnemyAIStruct ai[6]{};
 	EnemyMoveStruct moves[5]{};
 
 	std::string filename = "";

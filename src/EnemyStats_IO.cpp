@@ -41,6 +41,10 @@ void writeEnemyStats(std::vector<EnemyStruct>& enemies) {
 				output.write((char*)enemies[i].name, 18);
 				writeRaw<EnemyStatsStruct>(output, enemies[i].stats);
 
+				//	write AI data
+				for (size_t k = 0; k < 5; k++)
+					writeRaw<EnemyAIStruct>(output, enemies[i].ai[k]);
+
 				if (!j)
 					output.seekg(0x3C, std::ios::beg);	//	first copy move data offset is always at 0x3C
 				else
@@ -105,6 +109,10 @@ void readEnemyStats(std::vector<EnemyStruct>& enemies, std::string filepath) {
 				replaceNulls(enemies.back().name, 18);
 
 				enemies.back().stats = readRaw<EnemyStatsStruct>(input);
+
+				//	read in enemy AI data
+				for (size_t j = 0; j < 5; j++)
+					enemies.back().ai[j] = readRaw<EnemyAIStruct>(input);
 
 				enemies.back().filename = p.path().u8string();
 
@@ -200,8 +208,10 @@ void drawEnemyStats(std::vector<EnemyStruct>& enemies, char** enemyIDs, bool* ca
 	static ImU16 enemyID = 0;
 	static bool AilmentBitFlags[8] = {};
 	static bool showMoves = false;
+	static bool showAI = false;
 	static bool MoveAilmentBitFlags[8] = {};
 	static ImU16 moveSlot = 0;
+	static ImU16 aiSlot = 0;
 
 	ImGui::Begin("ENEMIES");
 
@@ -290,7 +300,8 @@ void drawEnemyStats(std::vector<EnemyStruct>& enemies, char** enemyIDs, bool* ca
 
 	//ImGui::LabelText("Filename", enemies[enemyID].filename.c_str());      //Used for testing to verify files are correct
 
-	ImGui::Checkbox("Show Moves", &showMoves);
+	ImGui::Checkbox("Show Moves", &showMoves);	ImGui::SameLine();
+	ImGui::Checkbox("Show AI", &showAI);
 
 	if (showMoves) {
 
@@ -362,6 +373,21 @@ void drawEnemyStats(std::vector<EnemyStruct>& enemies, char** enemyIDs, bool* ca
 		ImGui::InputUShort("Special", &enemies[enemyID].moves[moveSlot].stats.special);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("In Beta, use at your own peril.");
 
 		ImGui::End();
+
+	}
+
+	if (showAI) {
+
+		ImGui::Begin("ENEMY AI");
+
+		ImGui::Combo("Slot", &aiSlot, slotIDs, 5);
+
+		ImGui::InputUByte("AI Type", &enemies[enemyID].ai[aiSlot].aiType);
+		ImGui::InputUByte("Move #1 Chance", &enemies[enemyID].ai[aiSlot].move1Chance);
+		ImGui::InputUByte("Move #2 Chance", &enemies[enemyID].ai[aiSlot].move2Chance);
+		ImGui::InputUByte("Move #3 Chance", &enemies[enemyID].ai[aiSlot].move3Chance);
+		ImGui::InputUByte("Move #4 Chance", &enemies[enemyID].ai[aiSlot].move4Chance);
+		ImGui::InputUByte("Move #5 Chance", &enemies[enemyID].ai[aiSlot].move5Chance);
 
 	}
 

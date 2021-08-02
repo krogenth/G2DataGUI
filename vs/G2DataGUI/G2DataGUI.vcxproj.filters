@@ -16,6 +16,12 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{d4353f09-fee3-45f2-9d4c-5cf7af574787}</UniqueIdentifier>
     </Filter>
+    <Filter Include="docs">
+      <UniqueIdentifier>{4d5bdad7-9915-494a-9f45-0d1eb7f3c15c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="docs\experimental">
+      <UniqueIdentifier>{a752ae3c-64bd-4167-8e2b-b27ec8edf753}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EnemyStats_IO.cpp">
@@ -150,5 +156,78 @@
     <Image Include="g2.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\docs\TB_SPCL_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\Data File Details.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\enemy_hard_compare.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\enemy_hard_normal_compare.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\enemycompare.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\eskills.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\ITEM_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\MapNames.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\MS_PARAM_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\nme list.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\PC_INIT_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\SK_PARAM_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\Special_Effects.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\TB_LVUP_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\TB_MAGIC_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\TB_SKILL_data.txt">
+      <Filter>docs</Filter>
+    </Text>
+    <Text Include="..\..\docs\experimental\HTA_Map_transitions.txt">
+      <Filter>docs\experimental</Filter>
+    </Text>
+    <Text Include="..\..\docs\experimental\MCS_data.txt">
+      <Filter>docs\experimental</Filter>
+    </Text>
+    <Text Include="..\..\docs\experimental\script_data.txt">
+      <Filter>docs\experimental</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\docs\boss_hard.csv">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="..\..\docs\boss_normal.csv">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="..\..\docs\enemy_hard.csv">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="..\..\docs\enemy_normal.csv">
+      <Filter>docs</Filter>
+    </None>
   </ItemGroup>
 </Project>
