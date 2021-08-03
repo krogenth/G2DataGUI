@@ -51,8 +51,8 @@ void drawSKI(std::vector<SkillBookStruct>& books, bool* canClose, char** skillID
 
 	ImGui::Begin("TB_SKILL");
 
-	ImGui::Combo("Index", &bookID, bookIDs, (int)books.size()); ImGui::SameLine();
-
+	ImGui::Combo("Index", &bookID, bookIDs, (int)books.size());
+	
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) {
 

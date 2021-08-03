@@ -144,14 +144,14 @@
 01 byte ?
 01 byte ?
 01 byte ?
-01 byte FI - Base Fire damage dealt(1 = 10%)
-01 byte WI - Base Wind damage dealt(1 = 10%)
-01 byte EA - Base Earth damage dealt(1 = 10%)
-01 byte LI - Base Lightning damage dealt(1 = 10%)
-01 byte BZ - Base Blizzard damage dealt(1 = 10%)
-01 byte WA - Base Water healing dealt(1 = 10%)
-01 byte EX - Base Explosion damage dealt(1 = 10%)
-01 byte FO - Base Forest damage dealt(1 = 10%)
+01 byte FI - Increased Fire damage dealt(1 = 10%)
+01 byte WI - Increased Wind damage dealt(1 = 10%)
+01 byte EA - Increased Earth damage dealt(1 = 10%)
+01 byte LI - Increased Lightning damage dealt(1 = 10%)
+01 byte BZ - Increased Blizzard damage dealt(1 = 10%)
+01 byte WA - Increased Water healing dealt(1 = 10%)
+01 byte EX - Increased Explosion damage dealt(1 = 10%)
+01 byte FO - Increased Forest damage dealt(1 = 10%)
 01 byte SP - Special Effect
 	Special_Effects.txt
 02 byte LV1 - cost of lv1

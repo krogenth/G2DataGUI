@@ -8,6 +8,8 @@
 #include ".\include\io_util.h"
 #include ".\include\char_constants.h"
 
+#include ".\include\copypaste_obj.h"
+
 extern bool isHDVersion;
 
 void writeMS(std::vector<MoveStruct>& moves, std::string filename) {
@@ -84,6 +86,47 @@ void drawMS(std::vector<MoveStruct>& moves, bool* canClose, char** moveIDs, cons
 	static bool AilmentBitFlags[8] = {};
 
 	ImGui::Begin("MS_PARAM");
+
+	if (ImGui::Button("Save")) {
+
+		try {
+
+			if (isHDVersion)
+				writeMS(moves);
+			else
+				writeMS(moves, "data/afs/xls_data/MS_PARAM.BIN");
+
+		}
+		catch (const std::exception& e) {
+
+			ImGui::Begin("ERROR", canClose);
+			ImGui::LabelText("", e.what());
+			ImGui::End();
+
+		}
+
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Copy")) {
+
+		copyObj(&moves[moveID], "Move");
+
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Paste")) {
+
+		if (checkObjType("Move")) {
+
+			moves[moveID] = *((MoveStruct*)pasteObj());
+
+			for (size_t i = 0; i < 8; i++)
+				AilmentBitFlags[i] = moves[moveID].stats.ailmentsBitflag & (1 << i);
+
+		}
+
+	}
 
 	if (ImGui::Combo("Index", &moveID, moveIDs, (int)moves.size()))
 		for (size_t i = 0; i < 8; i++)

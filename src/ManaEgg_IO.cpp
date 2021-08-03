@@ -7,6 +7,8 @@
 #include ".\include\io_util.h"
 #include ".\include\char_constants.h"
 
+#include ".\include\copypaste_obj.h"
+
 extern bool isHDVersion;
 
 void writeMAG(std::vector<ManaEggStruct>& eggs, std::string filename) {
@@ -56,8 +58,8 @@ void drawMAG(std::vector<ManaEggStruct>& eggs, bool* canClose, char** moveIDs, c
 
 	ImGui::Begin("TB_MAGIC");
 
-	ImGui::Combo("Index", &eggID, eggIDs, (int)eggs.size()); ImGui::SameLine();
-
+	ImGui::Combo("Index", &eggID, eggIDs, (int)eggs.size());
+	
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) {
 

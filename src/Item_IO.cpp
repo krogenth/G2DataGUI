@@ -6,6 +6,8 @@
 #include ".\include\io_util.h"
 #include ".\include\char_constants.h"
 
+#include ".\include\copypaste_obj.h"
+
 extern bool isHDVersion;
 
 void writeITE(std::vector<ItemStruct>& items, std::string filename) {
@@ -132,6 +134,89 @@ void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose) {
 
 	ImGui::Begin("ITEM");
 
+	if (ImGui::Button("Save")) {
+
+		try {
+
+			if (isHDVersion)
+				writeITE(items);
+			else
+				writeITE(items, "data/afs/xls_data/ITEM.BIN");
+
+		}
+		catch (const std::exception& e) {
+
+			ImGui::Begin("ERROR", canClose);
+			ImGui::LabelText("", e.what());
+			ImGui::End();
+
+		}
+
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Copy")) {
+
+		copyObj(&items[itemID], "Item");
+
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Paste")) {
+
+		if (checkObjType("Item")) {
+
+			ItemStruct* tempObj = ((ItemStruct*)pasteObj());
+
+			items[itemID] = *tempObj;
+			
+			if (tempObj->equipmentOffset) {
+
+				if (!items[itemID].equipmentOffset)
+					items[itemID].equipmentOffset = new EquipmentStruct;
+
+				*(items[itemID].equipmentOffset) = *(tempObj->equipmentOffset);
+
+				for (size_t i = 0; i < 7; i++)
+					EquipmentCharacterBitFlags[i] = items[itemID].equipmentOffset->characterBitflag & (1 << i);
+
+				for (size_t i = 0; i < 8; i++)
+					EquipmentAilmentBitFlags[i] = items[itemID].equipmentOffset->ailmentsBitflag & (1 << i);
+
+				hasEquip = true;
+
+			}
+			else if (items[itemID].equipmentOffset) {
+
+				hasEquip = false;
+				delete items[itemID].equipmentOffset;
+
+			}
+
+			if (tempObj->usableOffset) {
+
+				if (!items[itemID].usableOffset)
+					items[itemID].usableOffset = new UsableStruct;
+
+				*(items[itemID].usableOffset) = *(tempObj->usableOffset);
+
+				for (size_t i = 0; i < 8; i++)
+					UsableAilmentBitFlags[i] = items[itemID].usableOffset->ailmentsBitflag & (1 << i);
+
+				hasUsable = true;
+
+			}
+			else if (items[itemID].usableOffset) {
+
+				delete items[itemID].usableOffset;
+				hasUsable = false;
+
+			}
+
+		}
+
+	}
+
 	if (ImGui::Combo("Index", &itemID, itemIDs, (int)items.size())) {
 
 		(items[itemID].equipmentOffset) ? hasEquip = true : hasEquip = false;
@@ -162,27 +247,6 @@ void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose) {
 		else
 			for (size_t i = 0; i < 8; i++)
 				UsableAilmentBitFlags[i] = 0;
-
-	}
-
-	ImGui::SameLine();
-	if (ImGui::Button("Save")) {
-
-		try {
-
-			if (isHDVersion)
-				writeITE(items);
-			else
-				writeITE(items, "data/afs/xls_data/ITEM.BIN");
-
-		}
-		catch (const std::exception& e) {
-
-			ImGui::Begin("ERROR", canClose);
-			ImGui::LabelText("", e.what());
-			ImGui::End();
-
-		}
 
 	}
 
@@ -218,7 +282,6 @@ void drawITE(std::vector<ItemStruct>& items, char** itemIDs, bool* canClose) {
 	}
 
 	ImGui::SameLine();
-
 	if (ImGui::Checkbox("Usable", &hasUsable)) {
 
 		if (hasUsable)

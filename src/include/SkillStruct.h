@@ -45,9 +45,9 @@ struct SkillStatsStruct {
 struct SkillStruct {
 
 public:
-	char* name = new char[19]{};
+	char name[19];
 	SkillStatsStruct stats;
-	char* description = new char[41]{};
+	char description[41];
 
 };
 

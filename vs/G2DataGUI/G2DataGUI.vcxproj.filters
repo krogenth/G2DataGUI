@@ -78,6 +78,9 @@
     <ClCompile Include="..\..\libs\imgui\backends\imgui_impl_win32.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\copypaste_obj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\include\char_constants.h">
@@ -144,6 +147,9 @@
       <Filter>imgui</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\copypaste_obj.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

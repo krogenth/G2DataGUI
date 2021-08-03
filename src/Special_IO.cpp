@@ -51,7 +51,7 @@ void drawSPC(std::vector<SpecialMoveStruct>& specials, bool* canClose, char** mo
 
 	ImGui::Begin("TB_SPCL");
 
-	ImGui::Combo("Index", &specialID, specialIDs, (int)specials.size()); ImGui::SameLine();
+	ImGui::Combo("Index", &specialID, specialIDs, (int)specials.size());
 
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) {

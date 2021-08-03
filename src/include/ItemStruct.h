@@ -7,7 +7,6 @@
 #pragma pack(1)
 struct EquipmentStruct {
 
-public:
 	ImU16 characterBitflag = 0b00000000;
 	ImS16 str = 0;
 	ImS16 vit = 0;
@@ -62,7 +61,6 @@ public:
 #pragma pack(1)
 struct UsableStruct {
 
-public:
 	ImU8 targetEffect = 0;
 	ImU8 targetType = 0;
 	ImU16 power = 0;
@@ -134,9 +132,8 @@ struct ItemStatsStruct {
 
 struct ItemStruct {
 
-public:
-	char* name = new char[19]{};
-	char* description = new char[41]{};
+	char name[19];
+	char description[41];
 	ItemStatsStruct stats;
 	EquipmentStruct* equipmentOffset = nullptr;// 0xFFFFFFFF means null
 	UsableStruct* usableOffset = nullptr;// 0xFFFFFFFF means null

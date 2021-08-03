@@ -6,6 +6,8 @@
 #include ".\include\SkillStruct.h"
 #include ".\include\io_util.h"
 
+#include ".\include\copypaste_obj.h"
+
 extern bool isHDVersion;
 
 void writeSK(std::vector<SkillStruct>& skills, std::string filename) {
@@ -61,9 +63,6 @@ void drawSK(std::vector<SkillStruct>& skills, char** skillIDs, bool* canClose) {
 
 	ImGui::Begin("SK_PARAM");
 
-	ImGui::Combo("Index", &skillID, skillIDs, (int)skills.size()); ImGui::SameLine();
-
-	ImGui::SameLine();
 	if (ImGui::Button("Save")) {
 
 		try {
@@ -83,6 +82,23 @@ void drawSK(std::vector<SkillStruct>& skills, char** skillIDs, bool* canClose) {
 		}
 
 	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Copy")) {
+
+		copyObj(&skills[skillID], "Skill");
+
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Paste")) {
+
+		if (checkObjType("Skill"))
+			skills[skillID] = *((SkillStruct*)pasteObj());
+
+	}
+
+	ImGui::Combo("Index", &skillID, skillIDs, (int)skills.size());
 
 	ImGui::InputText("Name", skills[skillID].name, 19);
 	ImGui::InputUByte("Cost Type #1", &skills[skillID].stats.cost1);

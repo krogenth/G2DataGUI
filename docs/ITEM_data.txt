@@ -875,14 +875,14 @@ section 2(equipment, 28(0x1C) bytes)
 		32(0x20) Move Block
 		64(0x40) Death
 	01 byte % Chance of Effect
-	01 byte Fire
-	01 byte Wind
-	01 byte Earth
-	01 byte Thunder
-	01 byte Blizzard
-	01 byte Water
-	01 byte Explosion
-	01 byte Forest
+	01 byte FI - Increased Fire damage dealt(1 = 10%)
+    01 byte WI - Increased Wind damage dealt(1 = 10%)
+    01 byte EA - Increased Earth damage dealt(1 = 10%)
+    01 byte LI - Increased Lightning damage dealt(1 = 10%)
+    01 byte BZ - Increased Blizzard damage dealt(1 = 10%)
+    01 byte WA - Increased Water healing dealt(1 = 10%)
+    01 byte EX - Increased Explosion damage dealt(1 = 10%)
+    01 byte FO - Increased Forest damage dealt(1 = 10%)
 	02 byte Special Effect
 		Special_Effects.txt
 

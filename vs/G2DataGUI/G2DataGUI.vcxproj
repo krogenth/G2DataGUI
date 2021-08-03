@@ -151,6 +151,7 @@
     <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\src\copypaste_obj.cpp" />
     <ClCompile Include="..\..\src\EnemyStats_IO.cpp" />
     <ClCompile Include="..\..\src\Item_IO.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="..\..\libs\imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\libs\imgui\imstb_truetype.h" />
     <ClInclude Include="..\..\src\include\char_constants.h" />
+    <ClInclude Include="..\..\src\include\copypaste_obj.h" />
     <ClInclude Include="..\..\src\include\EnemyStatsStruct.h" />
     <ClInclude Include="..\..\src\include\io_util.h" />
     <ClInclude Include="..\..\src\include\ItemStruct.h" />
