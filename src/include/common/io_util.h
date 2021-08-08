@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream>
+#include <assert.h>
 
 template<typename T>
 T readRaw(std::ifstream& stream) {

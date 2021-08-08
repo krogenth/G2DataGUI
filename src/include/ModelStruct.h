@@ -92,6 +92,5 @@ struct njcmStruct {
 #pragma pack()
 
 void writeModel(std::vector<njcmStruct>& models);
-void readModel(std::vector<njcmStruct>& models);													// used only for content/data/afs/model/xxx.dat files, used the same way as for C0x folders
 void readModel(std::vector<njcmStruct>& models, MdtStruct* mdt, std::ifstream& input);				// used only for content/data/afs/map/xxxx/xxxx.chr files
 void drawModel(std::vector<njcmStruct>& models, MdtStruct* mdt, bool* canClose);

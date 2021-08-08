@@ -151,19 +151,19 @@
     <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="..\..\src\copypaste_obj.cpp" />
-    <ClCompile Include="..\..\src\EnemyStats_IO.cpp" />
-    <ClCompile Include="..\..\src\Item_IO.cpp" />
+    <ClCompile Include="..\..\src\common\copypaste_obj.cpp" />
+    <ClCompile Include="..\..\src\common\string_manip.cpp" />
+    <ClCompile Include="..\..\src\EnemiesClass.cpp" />
+    <ClCompile Include="..\..\src\ImGuiInstance.cpp" />
+    <ClCompile Include="..\..\src\ItemsClass.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
-    <ClCompile Include="..\..\src\ManaEgg_IO.cpp" />
-    <ClCompile Include="..\..\src\Mdt_IO.cpp" />
-    <ClCompile Include="..\..\src\Model_IO.cpp" />
-    <ClCompile Include="..\..\src\Move_IO.cpp" />
-    <ClCompile Include="..\..\src\SkillBook_IO.cpp" />
-    <ClCompile Include="..\..\src\Skill_IO.cpp" />
-    <ClCompile Include="..\..\src\Special_IO.cpp" />
-    <ClCompile Include="..\..\src\Start_IO.cpp" />
-    <ClCompile Include="..\..\src\StringManip.cpp" />
+    <ClCompile Include="..\..\src\ManaEggsClass.cpp" />
+    <ClCompile Include="..\..\src\MdtsClass.cpp" />
+    <ClCompile Include="..\..\src\MovesClass.cpp" />
+    <ClCompile Include="..\..\src\SkillBooksClass.cpp" />
+    <ClCompile Include="..\..\src\SkillsClass.cpp" />
+    <ClCompile Include="..\..\src\SpecialsClass.cpp" />
+    <ClCompile Include="..\..\src\StartStatsClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libs\imgui\backends\imgui_impl_dx12.h" />
@@ -174,20 +174,21 @@
     <ClInclude Include="..\..\libs\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\..\libs\imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\libs\imgui\imstb_truetype.h" />
-    <ClInclude Include="..\..\src\include\char_constants.h" />
-    <ClInclude Include="..\..\src\include\copypaste_obj.h" />
-    <ClInclude Include="..\..\src\include\EnemyStatsStruct.h" />
-    <ClInclude Include="..\..\src\include\io_util.h" />
-    <ClInclude Include="..\..\src\include\ItemStruct.h" />
-    <ClInclude Include="..\..\src\include\ManaEggStruct.h" />
-    <ClInclude Include="..\..\src\include\MdtStruct.h" />
-    <ClInclude Include="..\..\src\include\ModelStruct.h" />
-    <ClInclude Include="..\..\src\include\MoveStruct.h" />
-    <ClInclude Include="..\..\src\include\SkillBookStruct.h" />
-    <ClInclude Include="..\..\src\include\SkillStruct.h" />
-    <ClInclude Include="..\..\src\include\SpecialMoveStruct.h" />
-    <ClInclude Include="..\..\src\include\StartStats.h" />
-    <ClInclude Include="..\..\src\include\StringManip.h" />
+    <ClInclude Include="..\..\src\include\BaseDataClass.h" />
+    <ClInclude Include="..\..\src\include\common\char_constants.h" />
+    <ClInclude Include="..\..\src\include\common\copypaste_obj.h" />
+    <ClInclude Include="..\..\src\include\common\io_util.h" />
+    <ClInclude Include="..\..\src\include\common\string_manip.h" />
+    <ClInclude Include="..\..\src\include\EnemiesClass.h" />
+    <ClInclude Include="..\..\src\include\ImGuiInstance.h" />
+    <ClInclude Include="..\..\src\include\ItemsClass.h" />
+    <ClInclude Include="..\..\src\include\ManaEggsClass.h" />
+    <ClInclude Include="..\..\src\include\MdtsClass.h" />
+    <ClInclude Include="..\..\src\include\MovesClass.h" />
+    <ClInclude Include="..\..\src\include\SkillBooksClass.h" />
+    <ClInclude Include="..\..\src\include\SkillsClass.h" />
+    <ClInclude Include="..\..\src\include\SpecialsClass.h" />
+    <ClInclude Include="..\..\src\include\StartStatsClass.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

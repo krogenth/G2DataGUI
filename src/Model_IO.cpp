@@ -5,85 +5,11 @@
 #include ".\include\MdtStruct.h"
 #include ".\include\modelStruct.h"
 #include ".\include\io_util.h"
+#include ".\include\char_constants.h"
 
 void writeModel(std::vector<njcmStruct>& models) {
 
 
-
-}
-
-void readModel(std::vector<njcmStruct>& models) {
-
-	std::string filepath = "content/data/afs/model/";
-	uint32_t readByte = 0;
-	std::ifstream input;
-	uint32_t seekpos = 0;
-
-	std::string filename = "";
-
-	for (const auto& p : std::filesystem::directory_iterator(filepath)) {
-
-		filename = p.path().u8string();
-
-		if (!std::strstr(filename.c_str(), "mdl.dat"))
-			continue;
-
-		input.open(filename, std::ios::binary);
-
-		if (!input.is_open())
-			throw new std::exception(filename.c_str());
-
-		readByte = readRaw<ImU32>(input);
-
-		while(readByte != 0x4D434A4E)			//	we need to find the NJCM chunk first before anything else
-			readByte = readRaw<ImU32>(input);
-
-		//	since there is only one NJCM chunk per file in the content/data/afs/model directory, we can safely read the entire NJCM chunk immediately
-		models.emplace_back(njcmStruct());
-		models.back().chunk_body_size = readRaw<ImU32>(input);
-		models.back().chunk_body.resize(models.back().chunk_body_size);
-		for (size_t i = 0; i < models.back().chunk_body_size; i++)
-			models.back().chunk_body[i] = readRaw<ImU8>(input);
-
-		//models.back().chunk_body_hash = boost::hash_range(models.back().chunk_body.begin(), models.back().chunk_body.end());
-		models.back().chunk_body_hash = std::hash<std::vector<bool>>{}(models.back().chunk_body);
-
-		//temp.chunk_body_hash = boost::hash_range(temp.chunk_body.begin(), temp.chunk_body.end());
-		//temp.chunk_body_hash = std::hash<std::vector<bool>>{}(temp.chunk_body);
-
-		while (!input.eof()) {
-
-			switch (readByte) {
-
-			case 0x58494247:		//	GBIX chunk		//	this will only be encountered after the NJCM chunk for the content/data/afs/model files(GBIX states the PVRT(texture))
-				input.seekg(4, std::ios::cur);			//	we need to move 4 bytes ahead, structure is: 4 byte header(always 8), 4 byte length, 4 byte PVRT number, 4 byte waste
-				models.back().textureMagic.magicTex.push_back(readRaw<ImU32>(input));
-				input.seekg(8, std::ios::cur);			//	we need to move past the last 4 bytes and the PVRT header to get the PVRT length to move forward in the file
-				seekpos = readRaw<uint32_t>(input);
-				input.seekg(seekpos, std::ios::cur);
-				break;
-
-			case 0x30464F50:		//	POF0 chunk		//	there won't be any NMDM chunks in these files, so we have to wait until we read the content/data/afs/map/xxxx/xxxx.chr files
-				models.back().chunk_pointer.length = readRaw<ImU32>(input);
-				models.back().chunk_pointer.data.resize(models.back().chunk_pointer.length);
-				for (size_t i = 0; i < models.back().chunk_pointer.length; i++)
-					models.back().chunk_pointer.data[i] = readRaw<ImU8>(input);
-				break;
-
-			default:
-				break;
-
-			}
-
-			readByte = readRaw<ImU32>(input);
-
-		}
-
-		//	unfortunately, there is not a good way to handle linking these to the actual name yet
-		models.back().filename = filename;
-		input.close();
-
-	}
 
 }
 
@@ -132,7 +58,7 @@ void readModel(std::vector<njcmStruct>& models, MdtStruct* mdt, std::ifstream& i
 				if (temp.chunk_body_hash == models[i].chunk_body_hash) {
 
 					didBreak = true;
-					mdt->models.push_back(i);
+					mdt->models.push_back(uint32_t(i));
 					break;
 
 				}
@@ -143,7 +69,8 @@ void readModel(std::vector<njcmStruct>& models, MdtStruct* mdt, std::ifstream& i
 
 				models.push_back(njcmStruct());
 				models.back() = temp;
-				mdt->models.push_back(models.size() - 1);
+				models.back().filename = mdt->filenameChr;
+				mdt->models.push_back(uint32_t(models.size() - 1));
 
 			}
 
@@ -241,7 +168,10 @@ void drawModel(std::vector<njcmStruct>& models, MdtStruct* mdt, bool* canClose) 
 
 		if (ImGui::CollapsingHeader("Models")) {
 
-			ImGui::Combo("ModelSlot", &modelSlot, mdt->modelNames, mdt->models.size());
+			ImGui::Combo("Model #", &modelSlot, slotIDs, int(mdt->models.size()));
+			ImGui::Text("MDT Filename source: %s", &mdt->filename[0]);
+			//ImGui::Text("Model Filename: %s", models[mdt->models[modelSlot]].filename[0]);
+			ImGui::InputText("MDT Filename", &mdt->filename[0], mdt->filename.length());
 			ImGui::InputText("Filename", &models[mdt->models[modelSlot]].filename[0], models[mdt->models[modelSlot]].filename.length());
 
 		}

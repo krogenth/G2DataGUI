@@ -1,4 +1,4 @@
-#include ".\include\StringManip.h"
+#include "..\include\common\string_manip.h"
 
 void replaceNulls(char* str, uint32_t size) {
 
