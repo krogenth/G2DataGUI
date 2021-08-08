@@ -205,8 +205,6 @@ void EnemiesClass::draw() {
 
 	ImGui::Begin("ENEMIES");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::BeginCombo("Enemy Index", this->_enemies.at(this->_enemyIndex).name)) {
 
 		for (size_t i = 0; i < this->_enemies.size(); i++) {

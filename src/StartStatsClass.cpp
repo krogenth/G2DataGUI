@@ -52,8 +52,6 @@ void StartStatsClass::draw() {
 
 	ImGui::Begin("PC_INIT");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::BeginCombo("Start Stat Index", statIDs[this->_statIndex])) {
 
 		for (size_t i = 0; i < this->_startStats.size(); i++) {

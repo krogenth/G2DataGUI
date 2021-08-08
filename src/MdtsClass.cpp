@@ -286,8 +286,6 @@ void MdtsClass::draw() {
 
 	ImGui::Begin("MDT");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::BeginCombo("MDT Index", this->_mdts.at(this->_mdtIndex).filename.c_str())) {
 
 		for (size_t i = 0; i < this->_mdts.size(); i++) {

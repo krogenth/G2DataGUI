@@ -13,6 +13,7 @@
 /vs/.vs/
 /vs/x64/
 /vs/G2DataGUI/content/
+/vs/G2DataGui/csv/
 
 # ignored specific files
 /vs/G2DataGUI/*.ini

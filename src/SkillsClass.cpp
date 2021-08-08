@@ -64,8 +64,6 @@ void SkillsClass::draw() {
 
 	ImGui::Begin("SK_PARAM");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::Button("Save")) {
 
 		this->write();

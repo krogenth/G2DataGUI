@@ -130,8 +130,6 @@ void ItemsClass::draw() {
 
 	ImGui::Begin("ITEM");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::Button("Save")) {
 
 		this->write();

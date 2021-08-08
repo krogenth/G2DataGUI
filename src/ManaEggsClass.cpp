@@ -57,8 +57,6 @@ void ManaEggsClass::draw() {
 
 	ImGui::Begin("TB_MAGIC");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	//	ManaEgg names are stored inside ITEMS.BIN, so until we find a way to track that, we stick with a hardcoded version
 	if (ImGui::BeginCombo("ManaEgg Index", eggIDs[this->_eggIndex])) {
 
@@ -131,6 +129,35 @@ void ManaEggsClass::draw() {
 
 void ManaEggsClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\TB_MAGIC.CSV");
 
+	if (!output.is_open())
+		return;
+
+	output << "manaegg";
+	
+	for(size_t i = 0; i < 18; i++)
+		output << ",move,starting level,level required,???";
+	output << '\n';
+
+	for (size_t i = 0; i < this->_manaeggs.size(); i++) {
+
+		output << eggIDs[i];
+
+		for (size_t j = 0; j < 18; j++) {
+
+			output << ',' << this->_moves[this->_manaeggs.at(i).spells[j].spellOffset].name
+				<< ',' << std::to_string(this->_manaeggs.at(i).spells[j].startingLevel)
+				<< ',' << std::to_string(this->_manaeggs.at(i).spells[j].eggLevelRequired)
+				<< ',' << std::to_string(this->_manaeggs.at(i).spells[j].unknown1);
+
+		}
+
+		output << '\n';
+
+	}
+
+	output.close();
 
 }

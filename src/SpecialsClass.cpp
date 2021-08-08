@@ -52,8 +52,6 @@ void SpecialsClass::draw() {
 
 	ImGui::Begin("TB_SPCL");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::BeginCombo("Special Index", specialIDs[this->_specialIndex])) {
 
 		for (size_t i = 0; i < this->_specials.size(); i++) {

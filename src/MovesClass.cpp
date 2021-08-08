@@ -85,8 +85,6 @@ void MovesClass::draw() {
 
 	ImGui::Begin("MS_PARAM");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::Button("Save")) {
 
 		this->write();
@@ -267,6 +265,54 @@ void MovesClass::draw() {
 
 void MovesClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\MS_PARAM.CSV");
 
+	if (!output.is_open())
+		return;
+
+	output  << "index,icon,name,cost,target effect,target type,strength,power,range,cast Lv1,castLv5,Recovery,Animation,???,knockdown,IP Damage,IP Cancel Damage,knockback,element,element strength,status effect bitflag,"
+			<< "status effect chance, ATK change, DEF change, ACT change, MOV change, special effect, cost Lv1, cost Lv2, cost Lv3, cost Lv4, cost Lv5, power multiplier, description\n";
+
+	for (const auto& val : this->_moves) {
+
+		output << std::to_string(val.id) << ','
+			<< std::to_string(val.icon) << ','
+			<< val.name << ','
+			<< std::to_string(val.stats.cost) << ','
+			<< targetEffects[val.stats.targetEffect] << ','
+			<< targetTypes[val.stats.targetType] << ','
+			<< std::to_string(val.stats.str) << ','
+			<< std::to_string(val.stats.pow) << ','
+			<< std::to_string(val.stats.range) << ','
+			<< std::to_string(val.stats.cast1) << ','
+			<< std::to_string(val.stats.cast5) << ','
+			<< std::to_string(val.stats.recovery) << ','
+			<< this->_moves.at(val.stats.animation).name << ','
+			<< std::to_string(val.stats.unknown1) << ','
+			<< std::to_string(val.stats.knockDown) << ','
+			<< std::to_string(val.stats.ipStun) << ','
+			<< std::to_string(val.stats.ipCancelStun) << ','
+			<< std::to_string(val.stats.knockback) << ','
+			<< elements[val.stats.element] << ','
+			<< std::to_string(val.stats.elementStr) << ','
+			<< std::to_string(val.stats.ailmentsBitflag) << ','
+			<< std::to_string(val.stats.ailmentsChance) << ','
+			<< std::to_string(val.stats.atkMod) << ','
+			<< std::to_string(val.stats.defMod) << ','
+			<< std::to_string(val.stats.actMod) << ','
+			<< std::to_string(val.stats.movMod) << ','
+			<< std::to_string(val.stats.special) << ','
+			<< std::to_string(val.stats.coinCost1) << ','
+			<< std::to_string(val.stats.coinCost2) << ','
+			<< std::to_string(val.stats.coinCost3) << ','
+			<< std::to_string(val.stats.coinCost4) << ','
+			<< std::to_string(val.stats.coinCost5) << ','
+			<< std::to_string(val.stats.multiplier) << ','
+			<< val.description << '\n';
+
+	}
+
+	output.close();
 
 }

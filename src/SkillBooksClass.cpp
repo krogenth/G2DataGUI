@@ -52,8 +52,6 @@ void SkillBooksClass::draw() {
 
 	ImGui::Begin("TB_SKILL");
 
-	ImGui::Text("%s", &this->_filename[0]);
-
 	if (ImGui::BeginCombo("SkillBook Index", bookIDs[this->_bookIndex])) {
 
 		for (size_t i = 0; i < this->_skillbooks.size(); i++) {
