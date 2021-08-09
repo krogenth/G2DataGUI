@@ -122,6 +122,34 @@ void SpecialsClass::draw() {
 
 void SpecialsClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\TB_SPCL.CSV");
 
+	if (!output.is_open())
+		return;
+
+	output << "character";
+
+	for (size_t i = 0; i < 6; i++)
+		output << ",move,starting level,story flag";
+	output << '\n';
+
+	for (size_t i = 0; i < this->_specials.size(); i++) {
+
+		output << specialIDs[i];
+
+		for (size_t j = 0; j < 6; j++) {
+
+			output << ',' << this->_moves[this->_specials.at(i).moves[j].moveOffset].name
+				<< ',' << std::to_string(this->_specials.at(i).moves[j].startingLevel)
+				<< ',' << std::to_string(this->_specials.at(i).moves[j].storyFlag);
+
+		}
+
+		output << '\n';
+
+	}
+
+	output.close();
 
 }

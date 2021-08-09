@@ -143,6 +143,52 @@ void SkillsClass::draw() {
 
 void SkillsClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\SK_PARAM.CSV");
 
+	if (!output.is_open())
+		return;
+
+	output << "name,cost type,cost type,base HP inc,base MP inc,base SP inc,base STR inc,base VIT inc,base ACT inc,base MOV inc,base MAG inc,base MEN inc,???,???,???,???,???,"
+		<< "fire pow inc %,wind pow inc %,earth pow inc %,blizzard pow inc %,water pow inc %,explosion pow inc %,forest pow inc %,special,cost Lv1,cost Lv2,cost Lv3,cost Lv4,cost Lv5,multiplier,description\n";
+
+	for (const auto& val : this->_skills) {
+
+		output << val.name << ','
+			<< std::to_string(val.stats.cost1) << ','
+			<< std::to_string(val.stats.cost2) << ','
+			<< std::to_string(val.stats.baseHp) << ','
+			<< std::to_string(val.stats.baseMp) << ','
+			<< std::to_string(val.stats.baseSp) << ','
+			<< std::to_string(val.stats.baseStr) << ','
+			<< std::to_string(val.stats.baseVit) << ','
+			<< std::to_string(val.stats.baseAct) << ','
+			<< std::to_string(val.stats.baseMov) << ','
+			<< std::to_string(val.stats.baseMag) << ','
+			<< std::to_string(val.stats.baseMen) << ','
+			<< std::to_string(val.stats.unknown1) << ','
+			<< std::to_string(val.stats.unknown2) << ','
+			<< std::to_string(val.stats.unknown3) << ','
+			<< std::to_string(val.stats.unknown4) << ','
+			<< std::to_string(val.stats.unknown5) << ','
+			<< std::to_string(val.stats.increaseFirePercent) << ','
+			<< std::to_string(val.stats.increaseWindPercent) << ','
+			<< std::to_string(val.stats.increaseEarthPercent) << ','
+			<< std::to_string(val.stats.increaseBlizzardPercent) << ','
+			<< std::to_string(val.stats.increaseWaterPercent) << ','
+			<< std::to_string(val.stats.increaseExplosionPercent) << ','
+			<< std::to_string(val.stats.increaseForestPercent) << ','
+			<< std::to_string(val.stats.special) << ','
+			<< std::to_string(val.stats.coinCost1) << ','
+			<< std::to_string(val.stats.coinCost2) << ','
+			<< std::to_string(val.stats.coinCost3) << ','
+			<< std::to_string(val.stats.coinCost4) << ','
+			<< std::to_string(val.stats.coinCost5) << ','
+			<< std::to_string(val.stats.multiplier) << ','
+			<< val.description << '\n';
+
+	}
+
+	output.close();
 
 }

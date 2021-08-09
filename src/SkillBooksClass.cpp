@@ -122,6 +122,35 @@ void SkillBooksClass::draw() {
 
 void SkillBooksClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\TB_SKILL.CSV");
 
+	if (!output.is_open())
+		return;
+
+	output << "skillbook";
+
+	for (size_t i = 0; i < 6; i++)
+		output << ",skill,starting level,level required,???";
+	output << '\n';
+
+	for (size_t i = 0; i < this->_skillbooks.size(); i++) {
+
+		output << bookIDs[i];
+
+		for (size_t j = 0; j < 6; j++) {
+
+			output << ',' << this->_skills[this->_skillbooks.at(i).skills[j].skillOffset].name
+				<< ',' << std::to_string(this->_skillbooks.at(i).skills[j].startingLevel)
+				<< ',' << std::to_string(this->_skillbooks.at(i).skills[j].bookLevelRequired)
+				<< ',' << std::to_string(this->_skillbooks.at(i).skills[j].unknown1);
+
+		}
+
+		output << '\n';
+
+	}
+
+	output.close();
 
 }
