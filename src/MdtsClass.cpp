@@ -119,8 +119,6 @@ void MdtsClass::read(std::string filename) {
 	std::string actualFilename = "";
 	uint32_t offset = 0;
 
-	std::ofstream test("test.txt");
-
 	for (const auto& p : std::filesystem::directory_iterator(filename)) {
 
 		if (std::filesystem::is_directory(p)) {
@@ -291,8 +289,6 @@ void MdtsClass::read(std::string filename) {
 		}
 
 	}
-
-	test.close();
 
 }
 
