@@ -112,13 +112,14 @@ void MdtsClass::write() {
 
 void MdtsClass::read(std::string filename) {
 
-	ImU32 readByte = 0;
-	ImU16 readDiagHeader = 0;
-	ImU8 readChar = 0;
+	uint32_t readByte = 0;
+	uint8_t readChar = 0;
 	std::ifstream input;
 
 	std::string actualFilename = "";
 	uint32_t offset = 0;
+
+	std::ofstream test("test.txt");
 
 	for (const auto& p : std::filesystem::directory_iterator(filename)) {
 
@@ -224,50 +225,61 @@ void MdtsClass::read(std::string filename) {
 					}
 
 				}
+				
+				input.seekg(0x78, std::ios::beg);
+				uint32_t sectionLength = readRaw<uint32_t>(input);
+				uint32_t sectionOffset = readRaw<uint32_t>(input);
 
-				/*
+				//	dialogue section exists, lets do our thing
+				if (sectionLength && sectionOffset) {
 
-				//	find and read map name
-				input.seekg(0x0000007C, std::ios::beg);
-				readByte = readRaw<ImU32>(input);
-				input.seekg(readByte, std::ios::beg);
+					input.seekg(sectionOffset, std::ios::beg);
+					uint32_t diagHeaderSize = readRaw<uint32_t>(input);
+					input.seekg(diagHeaderSize - 4, std::ios::beg);
+					input.seekg(sectionOffset, std::ios::beg);
 
-				size_t headerLength = readRaw<ImU32>(input);
-				input.seekg(headerLength - 10, std::ios::cur);		//	first 8 bytes are useless, and we want to read the last 2 bytes
-				std::streampos diagHeader = input.tellg();
+					for (size_t offset = 10; offset < diagHeaderSize; offset += 4) {
 
-				for (ImU32 i = 0; i < ((headerLength - 4) / 4); i++) {
+						input.seekg(offset, std::ios::cur);
 
-					readDiagHeader = readRaw<ImU16>(input);
+						uint16_t diagOffset = readRaw<uint16_t>(input);
+						//	check if it's padding, if so, ignore it
+						if (diagOffset == 0xFFFF)
+							continue;
+						input.seekg(sectionOffset + diagHeaderSize, std::ios::beg);
+						input.seekg(diagOffset * 8, std::ios::cur);
 
-					input.seekg(diagHeader);
-					input.seekg((ImU32)((size_t)i * -4), std::ios::cur);
+						//	check if it's the proper bytecode for a map name textbox
+						if ((readRaw<uint8_t>(input) == (uint8_t)0x17) && (readRaw<uint8_t>(input) == (uint8_t)0x80)) {
 
-					if (readDiagHeader == 0xFFFF)
-						continue;
+							input.seekg(2, std::ios::cur);
 
-					input.seekg(diagHeader);
-					input.seekg(readDiagHeader + 2, std::ios::cur);
+							readChar = readRaw<uint8_t>(input);
+							while (readChar != 0x17) {
 
-					readDiagHeader = readRaw<ImU16>(input);
-					if (readDiagHeader != 0x1780)
-						continue;
+								this->_mdts.back().mapname.push_back(readChar);
+								readChar = readRaw<uint8_t>(input);
 
-					input.seekg(2, std::ios::cur);
+							}
 
-					readChar = readRaw<ImU8>(input);
-					while (readChar != 0x17) {
+							//	anything that contains the string "to " is not the current map name
+							if (this->_mdts.back().mapname.find("to ") != std::string::npos) {
 
-						mdt.back().mapname.push_back(readChar);
-						readChar = readRaw<ImU8>(input);
+								this->_mdts.back().mapname.erase(this->_mdts.back().mapname.begin(), this->_mdts.back().mapname.end());
+								input.seekg(sectionOffset, std::ios::beg);
+								continue;
+
+							}
+							else
+								break;
+
+						}
+						else
+							input.seekg(sectionOffset, std::ios::beg);
 
 					}
 
-					break;
-
 				}
-
-				*/
 
 				this->_mdts.back().filename = actualFilename;
 				this->_mdts.back().filenameChr = actualFilename.substr(0, actualFilename.length() - 4) + ".chr";
@@ -280,19 +292,21 @@ void MdtsClass::read(std::string filename) {
 
 	}
 
+	test.close();
+
 }
 
 void MdtsClass::draw() {
 
 	ImGui::Begin("MDT");
 
-	if (ImGui::BeginCombo("MDT Index", this->_mdts.at(this->_mdtIndex).filename.c_str())) {
+	if (ImGui::BeginCombo("MDT Index", this->_mdts.at(this->_mdtIndex).mapname.c_str())) {
 
 		for (size_t i = 0; i < this->_mdts.size(); i++) {
 
 			ImGui::PushID(i);
 			bool is_selected = (i == this->_mdtIndex);
-			if (ImGui::Selectable(this->_mdts.at(i).filename.c_str(), is_selected))
+			if (ImGui::Selectable(this->_mdts.at(i).mapname.c_str(), is_selected))
 				this->_mdtIndex = i;
 			if (is_selected)
 				ImGui::SetItemDefaultFocus();

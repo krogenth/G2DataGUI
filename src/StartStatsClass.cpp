@@ -259,6 +259,63 @@ void StartStatsClass::draw() {
 
 void StartStatsClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\PC_INIT.CSV");
 
+	if (!output.is_open())
+		return;
+
+	output << "EXP,weapon,armor,headgear,footwear,accessory,manaegg,stamina,???,???,???,???,???,???,???,???,???,???,hit IP Stun,cancel IP Stun,combo SP regen,crit SP regen,???,"
+		<< "hit SP regen,???,evasion,moveing evasion,R_KB,???,T_REC,T_DMG,???,T_HEAL,Size,???,???,???,???,???,???,???,???,???\n";
+
+	for (const auto& val : this->_startStats) {
+
+		output << std::to_string(val.exp) << ','
+			<< this->_items[val.weapon].name << ','
+			<< this->_items[val.armour].name << ','
+			<< this->_items[val.headgear].name << ','
+			<< this->_items[val.footwear].name << ','
+			<< this->_items[val.accessory].name << ','
+			<< this->_items[val.manaEgg].name << ','
+			<< std::to_string(val.stamina) << ','
+			<< std::to_string(val.unknown1) << ','
+			<< std::to_string(val.unknown2) << ','
+			<< std::to_string(val.unknown3) << ','
+			<< std::to_string(val.unknown4) << ','
+			<< std::to_string(val.unknown5) << ','
+			<< std::to_string(val.unknown6) << ','
+			<< std::to_string(val.unknown7) << ','
+			<< std::to_string(val.unknown8) << ','
+			<< std::to_string(val.unknown9) << ','
+			<< std::to_string(val.unknown10) << ','
+			<< std::to_string(val.ipStun) << ','
+			<< std::to_string(val.ipCancelStun) << ','
+			<< std::to_string(val.comboSpRegen) << ','
+			<< std::to_string(val.critSpRegen) << ','
+			<< std::to_string(val.unknown11) << ','
+			<< std::to_string(val.hitSpRegen) << ','
+			<< std::to_string(val.unknown12) << ','
+			<< std::to_string(val.evasionStillRate) << ','
+			<< std::to_string(val.evasionMovingRate) << ','
+			<< std::to_string(val.ResistKnockback) << ','
+			<< std::to_string(val.unknown13) << ','
+			<< std::to_string(val.TREC) << ','
+			<< std::to_string(val.TDMG) << ','
+			<< std::to_string(val.unknown14) << ','
+			<< std::to_string(val.THEAL) << ','
+			<< std::to_string(val.size) << ','
+			<< std::to_string(val.unknown15) << ','
+			<< std::to_string(val.unknown16) << ','
+			<< std::to_string(val.unknown17) << ','
+			<< std::to_string(val.unknown18) << ','
+			<< std::to_string(val.unknown19) << ','
+			<< std::to_string(val.unknown20) << ','
+			<< std::to_string(val.unknown21) << ','
+			<< std::to_string(val.unknown22) << ','
+			<< std::to_string(val.unknown23) << '\n';
+
+	}
+
+	output.close();
 
 }
