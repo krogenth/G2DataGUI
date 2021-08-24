@@ -430,13 +430,13 @@ void ItemsClass::draw() {
 		ImGui::InputUShort("Cast Time", &this->_items.at(this->_itemIndex).usableOffset->castTime);
 		ImGui::InputUShort("Recovery", &this->_items.at(this->_itemIndex).usableOffset->recoveryTime);
 
-		if (ImGui::BeginCombo("Animation", &this->_moves[this->_items.at(this->_itemIndex).usableOffset->animation].name[0])) {
+		if (ImGui::BeginCombo("Animation", animationIDs[this->_items.at(this->_itemIndex).usableOffset->animation])) {
 
 			for (size_t i = 0; i < this->_numMoves; i++) {
 
 				ImGui::PushID(i);
 				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->animation);
-				if (ImGui::Selectable(&this->_moves[i].name[0], is_selected))
+				if (ImGui::Selectable(animationIDs[i], is_selected))
 					this->_items.at(this->_itemIndex).usableOffset->animation = i;
 				if (is_selected)
 					ImGui::SetItemDefaultFocus();

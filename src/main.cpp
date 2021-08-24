@@ -17,7 +17,7 @@
 
 /*
 TODO:
-    Implement enemy groupings(from *.mdt files in /maps/), and patrolling sections(?)(from *.mdt files in /maps/)
+    Implement enemy groupings(from *.mdt files in /maps/), and patrolling sections(?)(from *.mdt files in /map/)
     Include TB_LVUP.BIN
 */
 

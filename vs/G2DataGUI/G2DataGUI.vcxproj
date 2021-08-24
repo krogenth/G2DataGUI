@@ -104,7 +104,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -159,6 +159,7 @@
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\ManaEggsClass.cpp" />
     <ClCompile Include="..\..\src\MdtsClass.cpp" />
+    <ClCompile Include="..\..\src\ModelClass.cpp" />
     <ClCompile Include="..\..\src\MovesClass.cpp" />
     <ClCompile Include="..\..\src\SkillBooksClass.cpp" />
     <ClCompile Include="..\..\src\SkillsClass.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="..\..\src\include\ItemsClass.h" />
     <ClInclude Include="..\..\src\include\ManaEggsClass.h" />
     <ClInclude Include="..\..\src\include\MdtsClass.h" />
+    <ClInclude Include="..\..\src\include\ModelClass.h" />
     <ClInclude Include="..\..\src\include\MovesClass.h" />
     <ClInclude Include="..\..\src\include\SkillBooksClass.h" />
     <ClInclude Include="..\..\src\include\SkillsClass.h" />

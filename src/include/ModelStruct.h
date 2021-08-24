@@ -65,8 +65,7 @@ struct MCS_ {
 #pragma pack(1)
 struct nmdmStruct {
 
-	ImU32 chunk_body_size = 0;
-	std::vector<bool> chunk_body;
+	std::vector<uint8_t> chunk_body;
 	POF0 chunk_pointer;
 
 };

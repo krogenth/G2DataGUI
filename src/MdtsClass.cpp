@@ -110,30 +110,30 @@ void MdtsClass::write() {
 
 }
 
-void MdtsClass::read(std::string filename) {
+void MdtsClass::read(std::string filepath) {
 
 	uint32_t readByte = 0;
 	uint8_t readChar = 0;
 	std::ifstream input;
 
-	std::string actualFilename = "";
+	std::string filename = "";
 	uint32_t offset = 0;
 
-	for (const auto& p : std::filesystem::directory_iterator(filename)) {
+	for (const auto& p : std::filesystem::directory_iterator(filepath)) {
 
 		if (std::filesystem::is_directory(p)) {
 
 			for (const auto& q : std::filesystem::directory_iterator(p)) {
 
-				actualFilename = q.path().u8string();
+				filename = q.path().u8string();
 
-				if (!std::strstr(actualFilename.c_str(), ".mdt"))
+				if (!std::strstr(filename.c_str(), ".mdt"))
 					continue;
 
-				input.open(actualFilename.c_str(), std::ios::binary);
+				input.open(filename.c_str(), std::ios::binary);
 
 				if (!input.is_open())
-					throw new std::exception(actualFilename.c_str());
+					throw new std::exception(filename.c_str());
 
 				this->_mdts.emplace_back(MdtStruct());
 
@@ -279,8 +279,8 @@ void MdtsClass::read(std::string filename) {
 
 				}
 
-				this->_mdts.back().filename = actualFilename;
-				this->_mdts.back().filenameChr = actualFilename.substr(0, actualFilename.length() - 4) + ".chr";
+				this->_mdts.back().filename = filename;
+				this->_mdts.back().filenameChr = filename.substr(0, filename.length() - 4) + ".chr";
 
 				input.close();
 
@@ -489,7 +489,7 @@ void MdtsClass::draw() {
 
 			}
 
-			ImGui::InputUShort("Group Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupPosIndex].index);
+			ImGui::InputUShort("Group Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].index);
 
 			if (ImGui::BeginCombo("Enemy #", slotIDs[this->_eGroupPosIndex])) {
 

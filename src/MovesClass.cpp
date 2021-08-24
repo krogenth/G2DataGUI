@@ -114,7 +114,7 @@ void MovesClass::draw() {
 
 	if (ImGui::BeginCombo("Move Index", this->_moves.at(this->_moveIndex).name)) {
 
-		for (size_t i = 0; i < this->_moves.size(); i++) {
+		for (size_t i = 0; i < this->_moves.size() - 1; i++) {
 
 			ImGui::PushID(i);
 			bool is_selected = (i == this->_moveIndex);
@@ -179,13 +179,13 @@ void MovesClass::draw() {
 
 	ImGui::InputUShort("Recovery", &this->_moves.at(this->_moveIndex).stats.recovery);
 
-	if (ImGui::BeginCombo("Animation", this->_moves[this->_moves.at(this->_moveIndex).stats.animation].name)) {
+	if (ImGui::BeginCombo("Animation", animationIDs[this->_moves.at(this->_moveIndex).stats.animation])) {
 
 		for (size_t i = 0; i < this->_moves.size(); i++) {
 
 			ImGui::PushID(i);
 			bool is_selected = (i == this->_moves.at(this->_moveIndex).stats.animation);
-			if (ImGui::Selectable(this->_moves[i].name, is_selected))
+			if (ImGui::Selectable(animationIDs[i], is_selected))
 				this->_moves.at(this->_moveIndex).stats.animation = i;
 			if (is_selected)
 				ImGui::SetItemDefaultFocus();

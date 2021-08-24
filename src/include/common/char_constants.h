@@ -18,3 +18,12 @@ static const char* bookIDs[] = { "NULL", "Adventure Book", "Book of Wizards", "B
 static const char* eggIDs[] = { "NULL", "Holy Egg", "Chaos Egg", "Mist Egg", "Gravity Egg", "Soul Egg", "Star Egg", "Tutor Egg", "Change Egg", "Fairy Egg", "Dragon Egg" };
 static const char* specialIDs[] = { "NULL", "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
 static const char* statIDs[] = { "Ryduo", "Elena", "Millenia", "Roan", "Tio", "Mareg", "Prince Roan", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL" };
+
+static const char* animationIDs[] = { "Physical Attack", "Burn!", "Burnflame", "Burnstrike", "Hellburner", "Howl", "Howlslash", "Howlnado", "Runner", "Shhh!", "Snooze", "Heal", "Healer", "Healer+", "Alhealer", "Resurrect", "Tremor", "Quake", "Diggin'", "Def-Loss", "Gravity", "BOOM!", "BA-BOOM!",
+						"Meteor Strike", "WOW!", "Zap!", "Zap All", "GadZap", "DragonZap", "Stram", "Poizn", "Speedy", "Craze", "Cure", "Refresh", "Halvah", "Crackle", "Crackling", "Cold", "Freeze!", "Fiora", "unknown 1", "unknown 2", "unknown 3", "unknown 4", "unknown 5", "Alhealer",
+						"unknown 7", "unknown 8", "Glitter/Confetti", "Alheal", "Healer(Teal)", "Healer+(Teal)", "Healer(Green)", "Alhealer(Green)", "unknown 15", "Bomb", "Vanish", "unknown17", "unknown 18", "unknown 19", "Tenseiken Slash", "Flying Tenseiken", "Purple Lightning", "Sky Dragon Slash",
+						"unknown 20", "unknown 21", "Impact Bomb", "Nightmare Ball", "Droplets of Life", "White Apocalypse", "unknown 22", "unknown 23", "Arrow Shot", "Heel Crush", "Fallen Wings", "Starving Tongue", "Spellbinding Eye", "Grudging Claws", "Golden Hammer", "Snowball Fight!",
+						"Dragon Rise", "Vitality March", "unknown 24", "unknown 25", "Lotus Flower", "Tornado", "Fast Dance-Whirl", "Whisper to Stars", "unknown 26", "unknown 27", "Beast-Fang Cut", "Beat-King Blast", "Beast-King Smash", "Lion's Roar", "unknown 28", "unknown 29", "Golden Hammer",
+						"Ice Prison", "True Dragon Rise", "Vitality March", "Taint of Wind", "unknown 30", "unknown 31", "unknown 32", "unknown 33", "unknown 34", "unknown 35", "unknown 36", "unknown 37", "unknown 38", "unknown 39", "unknown 40", "unknown 41", "unknown 42", "unknown 43",
+						"unknown 44", "unknown 45", "unknown 46", "unknown 47", "unknown 48", "unknown 49", "unknown 50", "unknown 51", "unknown 52", "unknown 53", "unknown 54", "unknown 55" };
+

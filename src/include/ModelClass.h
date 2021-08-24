@@ -5,42 +5,49 @@
 
 #include "BaseDataClass.h"
 
-typedef struct {
+struct POF0 {
 
 	uint32_t length = 0;
 	std::vector<uint8_t> data;
 
-} POF0;
+};
 
 struct nmdmStruct {
 
-	uint32_t chunk_body_size = 0;
-	std::vector<bool> chunk_body;
+	std::vector<uint8_t> chunk_body;
 	POF0 chunk_pointer;
 
 };
 
-typedef struct {
+struct NJS_POINT3 {
 
 	float x;
 	float y;
 	float z;
 
-} NJS_POINT3, NJS_VECTOR;
+};
 
-typedef union {
+struct NJS_VECTOR {
+
+	float x;
+	float y;
+	float z;
+
+};
+
+union NJS_COLOR {
 
 	uint32_t color;
-	struct {
+	struct tex {
 		int16_t u, v;
-	} tex;
-	struct {
+	};
+	struct argb {
 		int8_t b, g, r, a;
-	} argb;
+	};
+	
+};
 
-} NJS_COLOR;
-
-typedef struct {
+struct NJS_MATERIAL {
 
 	NJS_COLOR diffuse;
 	NJS_COLOR specular;
@@ -48,88 +55,83 @@ typedef struct {
 	uint32_t attr_tex_id;
 	uint32_t attr_flags;
 
-} NJS_MATERIAL;
+};
 
-typedef struct {
+struct NJS_MESHSET {
 
-	uint16_t type_mat_id;		//	type and material id		//	upper 2 bits say what type: triangular polygons, quadrilateral polygons, N-sided polygons, continiguous polygons(trimesh)
-	uint16_t numMesh;			//	number of polygons
-	int16_t* meshes;			//	polygon list
-	uint32_t* attrs;			//	polygon attributes
-	NJS_VECTOR* normals;		//	polygon normal line list
-	NJS_COLOR* vert_color;		//	vector color list
-	NJS_COLOR* vertuv;			//	vector UV list
+	uint16_t type_mat_id;				//	type and material id		//	upper 2 bits say what type: triangular polygons, quadrilateral polygons, N-sided polygons, continiguous polygons(trimesh)
+	uint16_t numMesh;					//	number of polygons
+	int16_t* meshes = nullptr;			//	polygon list
+	uint32_t* attrs = nullptr;			//	polygon attributes
+	NJS_VECTOR* normals = nullptr;		//	polygon normal line list
+	NJS_COLOR* vert_color = nullptr;	//	vector color list
+	NJS_COLOR* vertuv = nullptr;		//	vector UV list
 
-} NJS_MESHSET;
+};
 
-typedef struct {
+struct NJS_MODEL {
 
-	NJS_POINT3* points;			//	vertex list
-	NJS_VECTOR* normals;		//	normal line list
-	uint32_t numPoints;			//	number of points
-	NJS_MESHSET* meshsets;		//	polygon list
-	NJS_MATERIAL* mats;			//	material lists
-	uint16_t numMeshsets;		//	number of mesh lists
-	uint16_t numMats;			//	number of material lists
-	NJS_POINT3 center;			//	model center
-	float r;					//	radius of circumscribed sphere
+	NJS_POINT3* points = nullptr;		//	vertex list
+	NJS_VECTOR* normals = nullptr;		//	normal line list
+	uint32_t numPoints;					//	number of points
+	NJS_MESHSET* meshsets = nullptr;	//	polygon list
+	NJS_MATERIAL* mats = nullptr;		//	material lists
+	uint16_t numMeshsets;				//	number of mesh lists
+	uint16_t numMats;					//	number of material lists
+	NJS_POINT3 center;					//	model center
+	float r;							//	radius of circumscribed sphere
 
-} NJS_MODEL;					//	NJCM model
+};							//	NJCM model
 
-typedef struct {
+struct NJS_OBJECT {
 
-	uint32_t eval_flags;		//	evaluation method optimization
+	uint32_t eval_flags;				//	evaluation method optimization
 	NJS_MODEL* model;
-	float pos[3];				//	parallel motion
-	float ang[3];				//	rotation
-	float scl[3];				//	scale
-	NJS_OBJECT* child;			//	child object
-	NJS_OBJECT* sibling;		//	sibling object
+	float pos[3];						//	parallel motion
+	float ang[3];						//	rotation
+	float scl[3];						//	scale
+	NJS_OBJECT* child = nullptr;		//	child object
+	NJS_OBJECT* sibling = nullptr;		//	sibling object
 
-} NJS_OBJECT;
+};
 
-typedef struct {
+struct GIXL_CHUNK {
 
 	std::vector<uint32_t> magicTex;						//	super magical *.dds offset 0x20 number used to link texture to model
 
-} GIXL_CHUNK;
+};
 
-typedef struct {
+struct MCS_ {
 
 	uint32_t length = 0;
 	uint16_t nbSizeOfIntChunks = 0;
 	uint16_t unknown = 0;
 	std::vector<uint32_t> data;
 
-} MCS_;
+};
 
-typedef struct {
+struct modelStruct {
 
-	size_t chunk_body_hash = 0;
-
-	GIXL_CHUNK textureMagic;
-	uint32_t chunk_body_size = 0;
-	std::vector<bool> chunk_body;
-	POF0 chunk_pointer;
+	GIXL_CHUNK textureMagic;				//	GIXL can also tell use if the models are the same, based on their contained value
+	NJS_OBJECT* model_object = nullptr;
 	MCS_* chunk_mcs = nullptr;
-
-	bool mixlRead = false;
 	std::vector<nmdmStruct> motions;
 
 	std::string filename = "";
 
-} MODEL_OBJECT;
+};
 
 class ModelClass : public BaseDataClass {
 
 public:
 	ModelClass() {};
 	void write();
-	void read(std::string);
+	void read(std::string);					//	reads an entire file that contains any number of models
 	void draw();
 	void outputToCSV();
 
 private:
+	std::vector<modelStruct> _models;
 
 };
 

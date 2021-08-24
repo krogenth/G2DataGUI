@@ -490,7 +490,7 @@ MODELS {	//	All Ninja formats use POF0, which means pointers go from the start o
 			
 		}
 		
-		4 byte remaining length
+		4 byte remaining length					//	does not contain these 4 bytes, will lead straight to next section, likely a POF0
 			4 byte evaluation flag
 				0x00000001 Don't apply translation, when x, y, z are 0
 				0b00000010 Don't apply rotation, when rot_x, rot_y, rot_z are 0

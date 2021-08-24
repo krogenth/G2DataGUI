@@ -379,22 +379,19 @@ void EnemiesClass::draw() {
 		ImGui::InputUShort("Cast Time", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.castTime);
 		ImGui::InputUShort("Recovery", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.recovery);
 
-		if (ImGui::BeginCombo("Animation", this->_moves[this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.animation].name)) {
+		if (ImGui::BeginCombo("Animation", animationIDs[this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.animation])) {
 
 			for (size_t i = 0; i < this->_numMoves; i++) {
 
 				ImGui::PushID(i);
 				bool is_selected = (i == this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.animation);
-				if (ImGui::Selectable(this->_moves[i].name, is_selected))
+				if (ImGui::Selectable(animationIDs[i], is_selected))
 					this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.animation = i;
 				if (is_selected)
 					ImGui::SetItemDefaultFocus();
 				ImGui::PopID();
 
 			}
-
-			for (size_t i = 0; i < 8; i++)
-				MoveAilmentBitFlags[i] = this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.ailmentsBitflag & (1 << i);
 
 			ImGui::EndCombo();
 

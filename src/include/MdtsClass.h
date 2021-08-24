@@ -7,6 +7,7 @@
 
 #include ".\ItemsClass.h"
 #include ".\EnemiesClass.h"
+#include ".\ModelClass.h"
 
 #pragma pack(1)
 struct MapEntriesStruct {		//	0x00000008 && 0x0000000C
@@ -321,7 +322,7 @@ struct MdtStruct {
 	std::vector<IconStruct> icons;
 	std::vector<ShopStruct> shop;
 
-	//std::vector<uint32_t> models;
+	//std::vector<modelStruct*> models;
 
 	std::string mapname = "";
 	std::string filename = "";
@@ -339,6 +340,8 @@ public:
 	void outputToCSV();
 
 	void storeItems(ItemStruct* items, size_t numItems) { _items = items; _numItems = numItems; };
+	void storeEnemies(EnemyStruct* enemies, size_t numEnemies) { _enemies = enemies; _numEnemies = numEnemies; };
+	void storeModels(modelStruct* models, size_t numModels) { _models = models; _numModels = numModels; };
 	MdtStruct* getMdts() {
 
 		if (_mdts.size())
@@ -370,6 +373,12 @@ private:
 
 	ItemStruct* _items = nullptr;
 	size_t _numItems = 0;
+
+	EnemyStruct* _enemies = nullptr;
+	size_t _numEnemies = 0;
+
+	modelStruct* _models = nullptr;
+	size_t _numModels = 0;
 
 };
 
