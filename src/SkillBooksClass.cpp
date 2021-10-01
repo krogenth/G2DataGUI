@@ -1,5 +1,6 @@
 #include <fstream>
 #include <filesystem>
+#include <random>
 
 #include ".\include\SkillBooksClass.h"
 
@@ -152,5 +153,31 @@ void SkillBooksClass::outputToCSV() {
 	}
 
 	output.close();
+
+}
+
+void SkillBooksClass::randomize() {
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	for (auto& skillbook : this->_skillbooks) {
+
+		for (size_t i = 0; i < 6; i++) {
+
+			do {
+
+				skillbook.skills[i].skillOffset = g() % this->_numSkills;
+
+			} while (std::string(this->_skills[skillbook.skills[i].skillOffset].name).find_first_not_of(' ') == std::string::npos);
+
+			skillbook.skills[i].startingLevel = (g() % 2) ? g() % 6 : 0;
+
+			if (skillbook.skills[i].startingLevel == 0)
+				skillbook.skills[i].bookLevelRequired = g() % 16;
+
+		}
+
+	}
 
 }

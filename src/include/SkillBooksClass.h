@@ -29,6 +29,7 @@ public:
 	void read(std::string);
 	void draw();
 	void outputToCSV();
+	void randomize();
 	
 	void storeSkills(SkillStruct* skills, size_t numSkills) { _skills = skills; _numSkills = numSkills; };
 	SkillBookStruct* getSkillBooks() {

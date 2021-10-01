@@ -1,5 +1,6 @@
 #include <fstream>
 #include <filesystem>
+#include <random>
 
 #include ".\include\MdtsClass.h"
 
@@ -845,5 +846,109 @@ void MdtsClass::draw() {
 void MdtsClass::outputToCSV() {
 
 
+
+}
+
+void MdtsClass::randomize() {
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	for (auto& mdt : this->_mdts) {
+
+		for (auto& icon : mdt.icons) {
+
+			do {
+
+				icon.item1 = g() % this->_numItems;
+
+			} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
+
+			do {
+
+				icon.item2 = g() % this->_numItems;
+
+			} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
+
+			do {
+
+				icon.item2 = g() % this->_numItems;
+
+			} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
+
+			if (g() % 2) {
+
+				icon.item3 = 0;
+
+			}
+
+			if (icon.item3 == 0 && g() % 2) {
+
+				icon.item2 = 0;
+
+			}
+
+		}
+
+		for (auto& shop : mdt.shop) {
+
+			//	weapons
+			for (size_t i = 0; i < 12; i++) {
+
+				do {
+
+					shop.weapons[i].item = 300 + g() % 200;
+
+				} while (std::string(this->_items[shop.weapons[i].item].name).find_first_not_of(' ') == std::string::npos);
+
+			}
+
+			//	armors
+			for (size_t i = 0; i < 12; i++) {
+
+				do {
+
+					shop.armors[i].item = 500 + g() % 200;
+
+				} while (std::string(this->_items[shop.armors[i].item].name).find_first_not_of(' ') == std::string::npos);
+
+			}
+
+			//	accessories
+			for (size_t i = 0; i < 12; i++) {
+
+				do {
+
+					shop.jewelry[i].item = 700 + g() % 99;
+
+				} while (std::string(this->_items[shop.jewelry[i].item].name).find_first_not_of(' ') == std::string::npos);
+
+			}
+
+			//	items
+			for (size_t i = 0; i < 12; i++) {
+
+				do {
+
+					shop.items[i].item = 100 + g() % 100;
+
+				} while (std::string(this->_items[shop.items[i].item].name).find_first_not_of(' ') == std::string::npos);
+
+			}
+
+			//	regionals
+			for (size_t i = 0; i < 12; i++) {
+
+				do {
+
+					shop.regionals[i].item = 200 + g() % 100;
+
+				} while (std::string(this->_items[shop.regionals[i].item].name).find_first_not_of(' ') == std::string::npos);
+
+			}
+
+		}
+
+	}
 
 }

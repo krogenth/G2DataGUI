@@ -1,5 +1,6 @@
 #include <fstream>
 #include <filesystem>
+#include <random>
 
 #include ".\include\ManaEggsClass.h"
 
@@ -159,5 +160,31 @@ void ManaEggsClass::outputToCSV() {
 	}
 
 	output.close();
+
+}
+
+void ManaEggsClass::randomize() {
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	for (auto& manaegg : this->_manaeggs) {
+
+		for (size_t i = 0; i < 18; i++) {
+
+			do {
+
+				manaegg.spells[i].spellOffset = g() % this->_numMoves;
+
+			} while (std::string(this->_moves[manaegg.spells[i].spellOffset].name).find_first_not_of(' ') == std::string::npos);
+
+			manaegg.spells[i].startingLevel = (g() % 2) ? g() % 6 : 0;
+
+			if (manaegg.spells[i].startingLevel == 0)
+				manaegg.spells[i].eggLevelRequired = g() % 41;
+
+		}
+
+	}
 
 }

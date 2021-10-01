@@ -60,6 +60,7 @@ public:
 	void read(std::string);
 	void draw();
 	void outputToCSV();
+	void randomize();
 
 	SkillStruct* getSkills() { 
 		

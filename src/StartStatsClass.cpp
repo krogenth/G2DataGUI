@@ -1,5 +1,6 @@
 #include <fstream>
 #include <filesystem>
+#include <random>
 
 #include ".\include\StartStatsClass.h"
 
@@ -317,5 +318,58 @@ void StartStatsClass::outputToCSV() {
 	}
 
 	output.close();
+
+}
+
+void StartStatsClass::randomize() {
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	for (auto& startStat : this->_startStats) {
+
+		do {
+
+			startStat.weapon = 300 + g() % 200;
+
+		} while (std::string(this->_items[startStat.weapon].name).find_first_not_of(' ') == std::string::npos);
+
+		do {
+
+			startStat.armour = 500 + g() % 200;
+
+		} while (std::string(this->_items[startStat.armour].name).find_first_not_of(' ') == std::string::npos);
+
+		do {
+
+			startStat.headgear = 500 + g() % 200;
+
+		} while (std::string(this->_items[startStat.headgear].name).find_first_not_of(' ') == std::string::npos);
+
+		do {
+
+			startStat.footwear = 500 + g() % 200;
+
+		} while (std::string(this->_items[startStat.footwear].name).find_first_not_of(' ') == std::string::npos);
+
+		do {
+
+			startStat.accessory = 700 + g() % 99;
+
+		} while (std::string(this->_items[startStat.accessory].name).find_first_not_of(' ') == std::string::npos && std::string(this->_items[startStat.accessory].name).find("Egg"));
+
+		if (g() % 3 != 0)
+			startStat.manaEgg = 0;
+		else {
+
+			do {
+
+				startStat.manaEgg = 700 + g() % 99;
+
+			} while (std::string(this->_items[startStat.manaEgg].name).find("Egg") == std::string::npos);
+
+		}
+
+	}
 
 }

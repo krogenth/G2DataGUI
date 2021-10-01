@@ -1,5 +1,6 @@
 #include <fstream>
 #include <filesystem>
+#include <random>
 
 #include ".\include\SpecialsClass.h"
 
@@ -151,5 +152,38 @@ void SpecialsClass::outputToCSV() {
 	}
 
 	output.close();
+
+}
+
+void SpecialsClass::randomize() {
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	for (auto& special : this->_specials) {
+
+		for (size_t i = 0; i < 6; i++) {
+
+			if (i > 0 && g() % 4 == 0) {
+
+				for (size_t j = i; j < 6; j++)
+					special.moves[j].moveOffset = 0;
+
+				break;
+
+			}
+
+			do {
+
+				special.moves[i].moveOffset = g() % this->_numMoves;
+
+			} while (std::string(this->_moves[special.moves[i].moveOffset].name).find_first_not_of(' ') == std::string::npos);
+
+			special.moves[i].startingLevel = (g() % 2) ? g() % 6 : 0;
+			special.moves[i].storyFlag = 0;
+
+		}
+
+	}
 
 }

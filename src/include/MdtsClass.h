@@ -338,6 +338,7 @@ public:
 	void read(std::string);
 	void draw();
 	void outputToCSV();
+	void randomize();
 
 	void storeItems(ItemStruct* items, size_t numItems) { _items = items; _numItems = numItems; };
 	void storeEnemies(EnemyStruct* enemies, size_t numEnemies) { _enemies = enemies; _numEnemies = numEnemies; };

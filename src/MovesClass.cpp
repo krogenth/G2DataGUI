@@ -1,5 +1,8 @@
 #include <fstream>
 #include <filesystem>
+#include <random>
+#include <iterator>
+#include <algorithm>
 
 #include ".\include\MovesClass.h"
 
@@ -314,5 +317,13 @@ void MovesClass::outputToCSV() {
 	}
 
 	output.close();
+
+}
+
+void MovesClass::randomize() {
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+	std::shuffle(this->_moves.begin() + 1, this->_moves.end(), g);
 
 }

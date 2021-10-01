@@ -1,5 +1,6 @@
 #include <fstream>
 #include <filesystem>
+#include <random>
 
 #include ".\include\EnemiesClass.h"
 
@@ -480,5 +481,45 @@ void EnemiesClass::draw() {
 void EnemiesClass::outputToCSV() {
 
 
+
+}
+
+void EnemiesClass::randomize() {
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	for (auto& enemy : this->_enemies) {
+		
+		//	keep going until an item is hit
+		do {
+
+			enemy.stats.item1 = g() % this->_numItems;
+
+		} while (std::string(this->_items[enemy.stats.item1].name).find_first_not_of(' ') == std::string::npos);
+
+		//	random chance for the item to be removed
+		if (g() % 10 == 0)
+			enemy.stats.item1 = 0;
+
+		do {
+
+			enemy.stats.item2 = g() % this->_numItems;
+
+		} while (std::string(this->_items[enemy.stats.item2].name).find_first_not_of(' ') == std::string::npos);
+
+		//	random chance for the item to be removed
+		if (g() % 10 == 0)
+			enemy.stats.item2 = 0;
+
+		//	keep getting numbers until the total is less than 100%
+		do {
+
+			enemy.stats.item1Chance = (enemy.stats.item1) ? g() % 101 : 0;
+			enemy.stats.item2Chance = (enemy.stats.item2) ? g() % 101 : 0;
+
+		} while ((size_t)enemy.stats.item1Chance + (size_t)enemy.stats.item2Chance > 100);
+
+	}
 
 }
