@@ -176,12 +176,8 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeg
 
         if (ImGui::MenuItem("Randomize")) {
 
-            moves->randomize();
             manaeggs->randomize();
-            skills->randomize();
             skillbooks->randomize();
-            specials->randomize();
-            items->randomize();
             startStats->randomize();
             enemies->randomize();
             mdts->randomize();

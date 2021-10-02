@@ -303,8 +303,21 @@ void MdtsClass::draw() {
 
 			ImGui::PushID(i);
 			bool is_selected = (i == this->_mdtIndex);
-			if (ImGui::Selectable(this->_mdts.at(i).mapname.c_str(), is_selected))
+			if (ImGui::Selectable(this->_mdts.at(i).mapname.c_str(), is_selected)) {
+
 				this->_mdtIndex = i;
+
+				this->_mapEntryIndex = 0;
+				this->_instanceIndex = 0;
+				this->_htaIndex = 0;
+				this->_ePosIndex = 0;
+				this->_eGroupIndex = 0;
+				this->_eGroupPosIndex = 0;
+				this->_mosIndex = 0;
+				this->_iconIndex = 0;
+				this->_shopIndex = 0;
+
+			}
 			if (is_selected)
 				ImGui::SetItemDefaultFocus();
 			ImGui::PopID();

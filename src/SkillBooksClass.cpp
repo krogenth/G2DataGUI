@@ -167,7 +167,7 @@ void SkillBooksClass::randomize() {
 
 			do {
 
-				skillbook.skills[i].skillOffset = g() % this->_numSkills;
+				skillbook.skills[i].skillOffset = (g() % (this->_numSkills - 1)) + 1;
 
 			} while (std::string(this->_skills[skillbook.skills[i].skillOffset].name).find_first_not_of(' ') == std::string::npos);
 

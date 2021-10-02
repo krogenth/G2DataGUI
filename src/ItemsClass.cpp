@@ -537,16 +537,3 @@ void ItemsClass::outputToCSV() {
 
 
 }
-
-void ItemsClass::randomize() {
-	std::random_device rd;
-	std::mt19937 g(rd());
-	for (size_t i = 0; i < this->_items.size(); i += 100) {
-		if (i == 0)
-			std::shuffle(this->_items.begin() + i + 1, this->_items.begin() + i + 99, g);
-		else
-			std::shuffle(this->_items.begin() + i, this->_items.begin() + i + 99, g);
-	}
-	this->_hasUsable = (this->_items.at(this->_itemIndex).usableOffset > 0);
-	this->_hasEquip = (this->_items.at(this->_itemIndex).equipmentOffset > 0);
-}

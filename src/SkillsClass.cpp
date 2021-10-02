@@ -195,11 +195,3 @@ void SkillsClass::outputToCSV() {
 	output.close();
 
 }
-
-void SkillsClass::randomize() {
-
-	std::random_device rd;
-	std::mt19937 g(rd());
-	std::shuffle(this->_skills.begin() + 1, this->_skills.end(), g);
-
-}

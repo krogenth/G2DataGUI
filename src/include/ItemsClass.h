@@ -102,7 +102,6 @@ public:
 	void read(std::string);
 	void draw();
 	void outputToCSV();
-	void randomize();
 
 	void storeMoves(MoveStruct* moves, size_t numMoves) { _moves = moves; _numMoves = numMoves; };
 	ItemStruct* getItems() {

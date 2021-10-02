@@ -1,6 +1,7 @@
 #include <fstream>
 #include <filesystem>
 #include <random>
+#include <unordered_map>
 
 #include ".\include\ManaEggsClass.h"
 
@@ -170,18 +171,24 @@ void ManaEggsClass::randomize() {
 
 	for (auto& manaegg : this->_manaeggs) {
 
+		std::unordered_map<int8_t, int8_t> usedIndices;
+
 		for (size_t i = 0; i < 18; i++) {
 
 			do {
 
-				manaegg.spells[i].spellOffset = g() % this->_numMoves;
+				manaegg.spells[i].spellOffset = (g() % (50 - 1)) + 1;
 
-			} while (std::string(this->_moves[manaegg.spells[i].spellOffset].name).find_first_not_of(' ') == std::string::npos);
+			} while (std::string(this->_moves[manaegg.spells[i].spellOffset].name).find_first_not_of(' ') == std::string::npos || usedIndices.find(manaegg.spells[i].spellOffset) != usedIndices.end());
+
+			usedIndices.insert(std::make_pair(manaegg.spells[i].spellOffset, manaegg.spells[i].spellOffset));
 
 			manaegg.spells[i].startingLevel = (g() % 2) ? g() % 6 : 0;
 
 			if (manaegg.spells[i].startingLevel == 0)
 				manaegg.spells[i].eggLevelRequired = g() % 41;
+			else
+				manaegg.spells[i].eggLevelRequired = 0;
 
 		}
 
