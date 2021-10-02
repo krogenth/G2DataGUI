@@ -871,33 +871,33 @@ void MdtsClass::randomize() {
 
 		for (auto& icon : mdt.icons) {
 
-			do {
+			if (icon.item1) {
 
-				icon.item1 = g() % this->_numItems;
+				do {
 
-			} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
+					icon.item1 = g() % this->_numItems;
 
-			do {
-
-				icon.item2 = g() % this->_numItems;
-
-			} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
-
-			do {
-
-				icon.item2 = g() % this->_numItems;
-
-			} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
-
-			if (g() % 2) {
-
-				icon.item3 = 0;
+				} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
 
 			}
 
-			if (icon.item3 == 0 && g() % 2) {
+			if (icon.item2) {
 
-				icon.item2 = 0;
+				do {
+
+					icon.item2 = g() % this->_numItems;
+
+				} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
+
+			}
+
+			if (icon.item3) {
+
+				do {
+
+					icon.item2 = g() % this->_numItems;
+
+				} while (std::string(this->_items[icon.item1].name).find_first_not_of(' ') == std::string::npos);
 
 			}
 
