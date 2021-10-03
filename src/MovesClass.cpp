@@ -274,8 +274,8 @@ void MovesClass::outputToCSV() {
 	if (!output.is_open())
 		return;
 
-	output  << "index,icon,name,cost,target effect,target type,strength,power,range,cast Lv1,castLv5,Recovery,Animation,???,knockdown,IP Damage,IP Cancel Damage,knockback,element,element strength,status effect bitflag,"
-			<< "status effect chance, ATK change, DEF change, ACT change, MOV change, special effect, cost Lv1, cost Lv2, cost Lv3, cost Lv4, cost Lv5, power multiplier, description\n";
+	output  << "Index,Icon,Name,Cost,Target Effect,Target Type,Strength,Power,Range,Cast Lv1,Cast Lv5,Recovery,Animation,???,Knockdown,IP Damage,IP Cancel Damage,Knockback,Element,Element Strength,Status Effect Bitflag,"
+			<< "Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special Effect,Cost Lv1,Cost Lv2,Cost Lv3,Cost Lv4,Cost Lv5,Power Multiplier,Description\n";
 
 	for (const auto& val : this->_moves) {
 

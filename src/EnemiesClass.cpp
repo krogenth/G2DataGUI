@@ -480,7 +480,104 @@ void EnemiesClass::draw() {
 
 void EnemiesClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\ENEMIES.CSV");
 
+	std::ofstream output2;
+	output2.open(".\\csv\\ENEMY_MOVES.CSV");
+
+	if (!output.is_open() || !output2.is_open())
+		return;
+
+	output << "Name,Type 1,Type 2,Level,Health,MP,SP,VIT,AGI,SPD,MEN,Stamina,IP Stun,IP Cancel Stun,Evasion Still %,Evasion Moving %,Fire Resist %,Wind Resist %,Earth Resist %,Lightning Resist %,Blizzard Resist %,"
+		<< "Status Effect Resist Bitflag,Knockback Resist,Status Recovery Time,T_DMG,T_HEAL,Size,No Run,EXP,Skill Coins,Magic Coins,Gold Coins,Item 1,Item 2,Item 1 Chance,Item 2 Chance\n";
+
+	
+
+	output2 << "Enemy,Move,MP,SP,???,Target Effect,STR,POW,AD,Target Type,???,Distance,Accuracy,Range,Cast Time,Recovery,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback,Element,Element Strength,Status Effect Bitflag,"
+		<< "Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special\n";
+
+	for (const auto& val : this->_enemies) {
+
+		output << val.name << ','
+			<< std::to_string(val.stats.type1) << ','
+			<< std::to_string(val.stats.type2) << ','
+			<< std::to_string(val.stats.level) << ','
+			<< std::to_string(val.stats.health) << ','
+			<< std::to_string(val.stats.mp) << ','
+			<< std::to_string(val.stats.sp) << ','
+			<< std::to_string(val.stats.vit) << ','
+			<< std::to_string(val.stats.agi) << ','
+			<< std::to_string(val.stats.spd) << ','
+			<< std::to_string(val.stats.men) << ','
+			<< std::to_string(val.stats.stamina) << ','
+			<< std::to_string(val.stats.ipStun) << ','
+			<< std::to_string(val.stats.ipCancelStun) << ','
+			<< std::to_string(val.stats.evasionStillRate) << ','
+			<< std::to_string(val.stats.evasionMovingRate) << ','
+			<< std::to_string(val.stats.fireResist) << ','
+			<< std::to_string(val.stats.windResist) << ','
+			<< std::to_string(val.stats.earthResist) << ','
+			<< std::to_string(val.stats.lightningResist) << ','
+			<< std::to_string(val.stats.blizzardResist) << ','
+			<< std::to_string(val.stats.ailmentsBitflag) << ','
+			<< std::to_string(val.stats.knockbackResist) << ','
+			<< std::to_string(val.stats.T_REC) << ','
+			<< std::to_string(val.stats.T_DMG) << ','
+			<< std::to_string(val.stats.T_HEAL) << ','
+			<< std::to_string(val.stats.size) << ','
+			<< std::to_string(val.stats.noRunFlag) << ','
+			<< std::to_string(val.stats.exp) << ','
+			<< std::to_string(val.stats.skillCoins) << ','
+			<< std::to_string(val.stats.magicCoins) << ','
+			<< std::to_string(val.stats.goldCoins) << ','
+			<< this->_items[val.stats.item1].name << ','
+			<< this->_items[val.stats.item2].name << ','
+			<< std::to_string(val.stats.item1Chance) << ','
+			<< std::to_string(val.stats.item2Chance) << '\n';
+
+		for (size_t i = 0; i < 5; i++) {
+
+			if (std::string(val.moves[i].name).find_first_not_of(' ') == std::string::npos)
+				continue;
+
+			output2 << val.name << ','
+				<< val.moves[i].name << ','
+				<< std::to_string(val.moves[i].stats.mp) << ','
+				<< std::to_string(val.moves[i].stats.sp) << ','
+				<< std::to_string(val.moves[i].stats.unknown) << ','
+				<< targetEffects[val.moves[i].stats.targetEffect] << ','
+				<< std::to_string(val.moves[i].stats.str) << ','
+				<< std::to_string(val.moves[i].stats.pow) << ','
+				<< std::to_string(val.moves[i].stats.ad) << ','
+				<< targetTypes[val.moves[i].stats.targetType] << ','
+				<< std::to_string(val.moves[i].stats.unknown1) << ','
+				<< std::to_string(val.moves[i].stats.distance) << ','
+				<< std::to_string(val.moves[i].stats.accuracy) << ','
+				<< std::to_string(val.moves[i].stats.range) << ','
+				<< std::to_string(val.moves[i].stats.castTime) << ','
+				<< std::to_string(val.moves[i].stats.recovery) << ','
+				<< std::to_string(val.moves[i].stats.animation) << ','
+				<< std::to_string(val.moves[i].stats.knockDown) << ','
+				<< std::to_string(val.moves[i].stats.ipStun) << ','
+				<< std::to_string(val.moves[i].stats.ipCancelStun) << ','
+				<< std::to_string(val.moves[i].stats.knockback) << ','
+				<< elements[val.moves[i].stats.element] << ','
+				<< std::to_string(val.moves[i].stats.elementStr) << ','
+				<< std::to_string(val.moves[i].stats.ailmentsBitflag) << ','
+				<< std::to_string(val.moves[i].stats.ailmentsChance) << ','
+				<< std::to_string(val.moves[i].stats.atkMod) << ','
+				<< std::to_string(val.moves[i].stats.defMod) << ','
+				<< std::to_string(val.moves[i].stats.actMod) << ','
+				<< std::to_string(val.moves[i].stats.movMod) << ','
+				<< std::to_string(val.moves[i].stats.special) << '\n';
+
+		}
+
+	}
+
+	output.close();
+	output2.close();
 
 }
 

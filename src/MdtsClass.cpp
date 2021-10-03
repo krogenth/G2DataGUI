@@ -857,7 +857,18 @@ void MdtsClass::draw() {
 
 void MdtsClass::outputToCSV() {
 
+	std::ofstream output;
+	output.open(".\\csv\\MAP_NAMES.CSV");
 
+	output << "File,Map\n";
+
+	for (const auto& val : this->_mdts) {
+
+		output << val.filename << ',' << val.mapname << '\n';
+
+	}
+
+	output.close();
 
 }
 

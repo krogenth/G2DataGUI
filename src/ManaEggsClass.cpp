@@ -137,10 +137,10 @@ void ManaEggsClass::outputToCSV() {
 	if (!output.is_open())
 		return;
 
-	output << "manaegg";
+	output << "Manaegg";
 	
 	for(size_t i = 0; i < 18; i++)
-		output << ",move,starting level,level required,???";
+		output << ",Move,Starting Level,Level Required,???";
 	output << '\n';
 
 	for (size_t i = 0; i < this->_manaeggs.size(); i++) {

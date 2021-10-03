@@ -1,0 +1,474 @@
+Enemy,Move,MP,SP,???,Target Effect,STR,POW,AD,Target Type,???,Distance,Accuracy,Range,Cast Time,Recovery,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback,Element,Element Strength,Status Effect Bitflag,Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special
+          Big Foot,            Attack,0,0,1,Physical Damage(STR),85,200,85,One Enemy,1,150,100,0,60,9999,0,0,0,0,120,Blizzard,9,0,0,0,0,0,0,0
+  Huge Caterpillar,            Attack,0,0,20,Physical Damage(STR),90,150,90,One Enemy,1,50,300,0,30,9999,0,0,0,0,30,Earth,10,1,20,0,0,0,0,0
+         Chameleon,            Attack,0,0,1,Physical Damage(STR),110,170,160,One Enemy,1,91,100,0,60,9999,0,0,0,0,60,Fire,0,1,15,0,0,0,0,0
+     Granas Knight,            Attack,0,0,4,Physical Damage(STR),190,500,200,One Enemy,1,130,120,0,30,9999,0,0,2000,3000,130,Fire,0,0,0,0,0,0,0,0
+        Frost Frog,            Attack,0,0,1,Physical Damage(STR),55,125,70,One Enemy,1,197,100,0,60,9999,0,0,0,0,150,Blizzard,8,0,0,0,0,0,0,0
+       Star Mirage,            Attack,0,0,1,Physical Damage(STR),100,150,70,One Enemy,1,200,130,0,60,9999,0,0,0,0,120,Fire,0,0,0,0,0,0,0,0
+       Star Mirage,       Power Press,0,16,9,Physical Damage(STR),100,260,70,One Enemy,0,0,0,0,270,13000,0,1,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+       Giga Mantis,            Attack,0,0,1,Physical Damage(STR),165,230,150,One Enemy,1,84,100,0,60,9999,0,0,0,0,70,Fire,0,0,0,0,0,0,0,0
+       Giga Mantis,       Power Press,0,16,9,Physical Damage(STR),100,260,70,One Enemy,0,0,0,0,270,13000,0,1,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+        Fenny Bird,            Attack,0,0,1,Physical Damage(STR),165,270,100,One Enemy,1,10,110,0,30,9999,0,0,500,0,120,Fire,9,0,0,0,0,0,0,0
+        Fenny Bird,       Power Press,0,16,9,Physical Damage(STR),100,260,70,One Enemy,0,0,0,0,270,13000,0,1,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+        Crag Snake,            Attack,0,0,1,Physical Damage(STR),55,140,70,One Enemy,1,400,100,0,60,9999,0,0,1000,0,50,Earth,8,1,10,0,0,0,0,0
+        Crag Snake,       Power Press,0,16,9,Physical Damage(STR),100,260,70,One Enemy,0,0,0,0,270,13000,0,1,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+        Hammerhead,            Attack,0,0,1,Physical Damage(STR),95,210,70,One Enemy,1,100,110,0,60,9999,0,0,0,0,80,Lightning,5,0,0,0,0,0,0,0
+        Hammerhead,       Giga Spread,0,36,13,Physical Damage(STR),95,270,70,All Enemies,0,0,0,600,210,13000,0,0,2000,3000,130,Lightning,9,4,30,0,0,0,0,0
+   Durham Minotaur,            Attack,0,0,4,Physical Damage(STR),90,120,100,One Enemy,1,80,120,0,30,9999,0,0,0,0,200,Earth,7,0,0,0,0,0,0,0
+   Durham Minotaur,      Tornado Horn,0,24,1,Physical Damage(STR),90,170,150,One Enemy,0,0,0,0,240,15000,0,1,4000,5000,0,Earth,9,8,75,0,0,0,0,0
+        Troglodyte,            Attack,0,0,1,Physical Damage(STR),55,140,60,One Enemy,1,120,100,0,60,9999,0,0,0,0,50,Blizzard,7,0,0,0,0,0,0,0
+        Troglodyte,       Sleep Spawn,0,16,36,Physical Damage(STR),55,150,100,One Enemy,0,0,0,0,300,12000,0,0,2000,0,0,Fire,0,2,80,0,0,0,0,0
+         Twin Ogre,            Attack,0,0,1,Physical Damage(STR),95,210,90,One Enemy,1,163,100,0,60,9999,0,0,0,0,50,Earth,8,0,0,0,0,0,0,0
+         Twin Ogre,       Throw Buddy,0,26,6,Physical Damage(STR),95,250,100,One Enemy,0,0,0,0,180,12000,0,1,1000,3000,150,Earth,8,0,0,0,-1,0,0,0
+      Warp Warrior,            Attack,0,0,1,Physical Damage(STR),125,210,100,One Enemy,1,116,100,0,60,9999,0,0,0,0,80,Wind,3,0,0,0,0,0,0,0
+      Warp Warrior,         Air Slash,0,42,7,Physical Damage(STR),125,180,100,Area Enemies,0,0,0,400,210,13000,0,0,500,0,150,Wind,9,0,0,0,0,0,0,0
+      Warp Warrior,       Power Crush,0,34,9,Physical Damage(STR),125,380,100,One Enemy,0,0,0,0,270,15000,0,1,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+    Mottled Spider,            Attack,0,0,1,Physical Damage(STR),50,115,50,One Enemy,1,20,100,0,60,9999,0,0,0,0,50,Fire,0,0,0,0,0,0,0,0
+    Mottled Spider,          Web Trap,0,12,4,Physical Damage(STR),50,120,100,One Enemy,0,0,0,0,420,12000,0,0,1500,3000,0,Fire,0,0,0,0,0,0,-1,0
+    Mottled Spider,       Power Crush,0,34,9,Physical Damage(STR),125,380,100,One Enemy,0,0,0,0,270,15000,0,1,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+   Man-Eating Tree,            Attack,0,0,1,Physical Damage(STR),150,280,100,One Enemy,1,50,100,0,60,9999,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+   Man-Eating Tree,        Apple Hurl,0,20,5,Physical Damage(STR),150,390,200,One Enemy,0,0,0,0,180,15000,0,1,3000,5000,130,Fire,0,0,0,0,0,0,0,0
+   Man-Eating Tree,       Power Crush,0,34,9,Physical Damage(STR),125,380,100,One Enemy,0,0,0,0,270,15000,0,1,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+      Crimson Claw,            Attack,0,0,1,Physical Damage(STR),140,210,100,One Enemy,1,59,100,0,60,9999,0,0,0,0,50,Earth,5,0,0,0,0,0,0,0
+      Crimson Claw,   Move Block Step,0,22,31,Physical Damage(STR),140,250,180,One Enemy,0,0,0,0,210,13000,0,0,2000,2000,0,Earth,7,64,70,0,0,0,0,0
+      Crimson Claw,       Power Crush,0,34,9,Physical Damage(STR),125,380,100,One Enemy,0,0,0,0,270,15000,0,1,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+       Land Cougar,            Attack,0,0,1,Physical Damage(STR),120,190,130,One Enemy,1,100,100,0,30,9999,0,0,0,0,120,Wind,7,0,0,0,0,0,0,0
+       Land Cougar,             Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,180,13000,9,0,0,0,0,Fire,0,32,30,0,0,0,0,0
+       Land Cougar,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,90,11000,8,0,0,0,0,Fire,0,0,0,0,0,0,2,0
+       Land Cougar,              Howl,9,0,5,Magical Damage(MAG),120,160,70,Area Enemies,0,0,0,600,150,12000,5,0,1000,0,100,Wind,10,0,0,0,0,0,0,0
+       Land Cougar,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+           Sandman,            Attack,0,0,1,Physical Damage(STR),70,135,50,One Enemy,1,44,120,0,60,9999,0,0,0,0,50,Earth,5,0,0,0,0,0,0,0
+           Sandman,        Sand Spray,0,12,1,Physical Damage(STR),70,130,60,One Enemy,0,0,0,0,180,12000,0,0,1000,0,30,Earth,10,0,0,0,0,0,-1,0
+           Sandman,       Earth Break,0,24,6,Physical Damage(STR),70,140,150,One Enemy,0,0,0,0,300,13000,0,1,3000,5000,120,Earth,8,0,0,0,0,0,0,0
+           Sandman,              Howl,9,0,5,Magical Damage(MAG),120,160,70,Area Enemies,0,0,0,600,150,12000,5,0,1000,0,100,Wind,10,0,0,0,0,0,0,0
+           Sandman,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+      Crimson Tail,            Attack,0,0,1,Physical Damage(STR),165,250,170,One Enemy,1,80,120,0,30,9000,0,0,0,0,80,Earth,5,0,0,0,0,0,0,0
+      Crimson Tail,    Scissors Storm,0,32,9,Physical Damage(STR),165,430,230,One Enemy,0,0,0,0,150,15000,0,1,4000,5000,250,Earth,7,4,75,0,0,0,0,0
+      Crimson Tail,      Phantom Echo,0,46,7,Physical Damage(STR),165,320,180,Area Enemies,0,0,0,500,120,12000,0,0,1500,0,120,Earth,10,0,0,0,-1,0,0,0
+      Crimson Tail,              Howl,9,0,5,Magical Damage(MAG),120,160,70,Area Enemies,0,0,0,600,150,12000,5,0,1000,0,100,Wind,10,0,0,0,0,0,0,0
+      Crimson Tail,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+       Skull Snail,            Attack,0,0,1,Physical Damage(STR),125,180,100,One Enemy,1,140,100,0,60,9999,0,0,0,0,80,Blizzard,5,0,0,0,0,0,0,0
+       Skull Snail,      Bloodsucking,0,22,9,Physical Damage(STR),125,330,120,One Enemy,0,0,0,0,210,15000,0,1,3000,3000,40,Blizzard,8,0,0,0,0,0,0,40
+       Skull Snail,             Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,150,12000,40,0,0,0,0,Fire,0,64,50,0,0,0,0,0
+       Skull Snail,             Poizn,15,0,20,Magical Damage(MAG),125,70,100,Area Enemies,0,0,0,600,180,13000,30,0,0,0,0,Fire,0,1,60,0,0,0,0,0
+       Skull Snail,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+         Clay Bird,            Attack,0,0,1,Physical Damage(STR),150,200,100,One Enemy,1,2,150,0,60,9999,0,0,0,0,50,Earth,6,0,0,0,0,0,0,0
+         Clay Bird,    Feather Needle,0,33,1,Physical Damage(STR),150,290,240,All Enemies,0,0,0,0,210,15000,0,0,1000,3000,100,Earth,8,0,0,0,0,0,0,0
+         Clay Bird,            Tremor,15,0,1,Magical Damage(MAG),150,170,150,Area Enemies,0,0,0,600,150,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+         Clay Bird,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,120,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+         Clay Bird,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+         Hellhound,            Attack,0,0,9,Physical Damage(STR),65,200,100,One Enemy,1,30,100,0,30,9999,0,0,0,0,80,Fire,7,0,0,0,0,0,0,0
+         Hellhound,         Burnflame,16,0,5,Magical Damage(MAG),105,130,110,Area Enemies,0,0,0,600,210,12000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+         Hellhound,              WOW!,5,0,3,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,120,11000,24,0,0,0,0,Fire,0,0,0,2,0,0,0,0
+         Hellhound,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,120,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+         Hellhound,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+             Ghoul,            Attack,0,0,1,Physical Damage(STR),75,140,85,One Enemy,1,500,100,0,60,9999,0,0,0,0,30,Blizzard,4,0,0,0,0,0,0,0
+             Ghoul,       Power Drain,0,28,9,Physical Damage(STR),75,220,85,One Enemy,0,0,0,0,240,15000,0,0,3000,5000,40,Blizzard,6,0,0,0,0,0,0,40
+             Ghoul,       Ice Prickle,0,34,7,Physical Damage(STR),75,160,85,Area Enemies,0,0,0,400,180,13000,0,1,1000,3000,70,Blizzard,7,0,0,0,0,0,0,0
+             Ghoul,           Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,0,800,150,12000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+             Ghoul,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+         Brain Bat,            Attack,0,0,1,Physical Damage(STR),185,180,170,One Enemy,1,50,110,0,60,9999,0,0,0,0,30,Wind,6,0,0,0,0,0,0,0
+         Brain Bat,             Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,120,11000,9,0,0,0,0,Fire,0,32,60,0,0,0,0,0
+         Brain Bat,         Howlslash,14,0,4,Magical Damage(MAG),185,150,150,Enemy Line,0,0,0,300,150,12000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+         Brain Bat,          Howlnado,45,0,2,Magical Damage(MAG),185,380,210,All Enemies,0,0,0,0,210,15000,7,1,1000,0,0,Wind,10,8,30,0,0,0,0,11
+         Brain Bat,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+          Gargoyle,            Attack,0,0,1,Physical Damage(STR),50,140,50,One Enemy,1,8,180,0,60,9999,0,0,0,0,120,Wind,7,0,0,0,0,0,0,0
+          Gargoyle,              Howl,9,0,9,Magical Damage(MAG),50,110,100,Area Enemies,0,0,0,600,300,12000,5,0,1000,0,100,Wind,10,0,0,0,0,0,0,0
+          Gargoyle,         Howlslash,14,0,9,Magical Damage(MAG),50,160,100,Enemy Line,0,0,0,300,360,14000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+          Gargoyle,          Howlnado,45,0,2,Magical Damage(MAG),185,380,210,All Enemies,0,0,0,0,210,15000,7,1,1000,0,0,Wind,10,8,30,0,0,0,0,11
+          Gargoyle,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+         Dragonoid,            Attack,0,0,1,Physical Damage(STR),120,160,100,One Enemy,1,130,120,0,60,9999,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+         Dragonoid,          Fireball,0,16,6,Physical Damage(STR),120,300,100,One Enemy,0,0,0,0,210,15000,0,1,3000,5000,200,Fire,8,0,0,0,-2,0,0,0
+         Dragonoid,         Burnflame,16,0,7,Magical Damage(MAG),120,150,100,Area Enemies,0,0,0,600,180,13000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+         Dragonoid,          Howlnado,45,0,2,Magical Damage(MAG),185,380,210,All Enemies,0,0,0,0,210,15000,7,1,1000,0,0,Wind,10,8,30,0,0,0,0,11
+         Dragonoid,         Howlslash,14,0,7,Magical Damage(MAG),120,160,120,Enemy Line,0,0,0,300,210,15000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+        Naga Queen,            Attack,0,0,1,Physical Damage(STR),215,280,140,One Enemy,1,80,120,0,30,8500,0,0,0,0,50,Blizzard,6,0,0,0,0,0,0,0
+        Naga Queen,      Freezing Eye,0,32,25,Physical Damage(STR),215,400,260,Enemy Line,0,0,0,150,180,15000,0,0,3500,0,80,Blizzard,10,0,0,0,0,-2,-2,0
+        Naga Queen,     Blizzard Edge,0,26,1,Physical Damage(STR),215,350,200,Area Around Self,0,0,0,700,120,13000,0,0,1000,3000,250,Blizzard,8,0,0,0,0,0,0,0
+        Naga Queen,             Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,90,12000,40,0,0,0,0,Fire,0,64,60,0,0,0,0,0
+        Naga Queen,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+      Valmar Young,            Attack,0,0,1,Physical Damage(STR),225,280,160,One Enemy,1,200,160,0,30,9999,0,0,0,0,120,Fire,0,0,0,0,0,0,0,0
+      Valmar Young,         Leg Drill,0,36,5,Physical Damage(STR),225,360,300,One Enemy,0,0,0,0,150,13000,0,0,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+      Valmar Young,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+      Valmar Young,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+      Valmar Young,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+        Valmar Fly,            Attack,0,0,1,Physical Damage(STR),225,290,100,One Enemy,1,200,100,0,60,9999,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+        Valmar Fly,         Leg Drill,0,36,5,Physical Damage(STR),225,360,300,One Enemy,0,0,0,0,150,13000,0,0,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+        Valmar Fly,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+        Valmar Fly,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+        Valmar Fly,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+              Yeti,            Attack,0,0,1,Physical Damage(STR),200,320,200,One Enemy,1,150,100,0,60,9999,0,0,0,0,150,Earth,8,0,0,0,0,0,0,0
+              Yeti,         Leg Drill,0,36,5,Physical Damage(STR),225,360,300,One Enemy,0,0,0,0,150,13000,0,0,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+              Yeti,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+              Yeti,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+              Yeti,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+    Venomous Larva,            Attack,0,0,1,Physical Damage(STR),180,230,180,One Enemy,1,50,300,0,30,9999,0,0,0,0,30,Fire,10,1,10,0,0,0,0,0
+    Venomous Larva,         Leg Drill,0,36,5,Physical Damage(STR),225,360,300,One Enemy,0,0,0,0,150,13000,0,0,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+    Venomous Larva,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+    Venomous Larva,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+    Venomous Larva,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+        Salamadile,            Attack,0,0,1,Physical Damage(STR),190,240,140,One Enemy,1,91,100,0,60,9999,0,0,0,0,50,Fire,7,16,10,0,0,0,0,0
+        Salamadile,         Leg Drill,0,36,5,Physical Damage(STR),225,360,300,One Enemy,0,0,0,0,150,13000,0,0,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+        Salamadile,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+        Salamadile,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+        Salamadile,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+        Flame Toad,            Attack,0,0,20,Physical Damage(STR),140,230,100,One Enemy,1,197,100,0,60,9999,0,0,0,0,60,Fire,6,1,10,0,0,0,0,0
+        Flame Toad,         Leg Drill,0,36,5,Physical Damage(STR),225,360,300,One Enemy,0,0,0,0,150,13000,0,0,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+        Flame Toad,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+        Flame Toad,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+        Flame Toad,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+       Immune Cell,            Attack,0,0,1,Physical Damage(STR),180,200,260,One Enemy,1,200,130,0,60,9999,0,0,0,0,50,Lightning,4,0,0,0,0,0,0,0
+       Immune Cell,       Spark Press,0,25,34,Physical Damage(STR),180,300,300,One Enemy,0,0,0,0,180,13000,0,1,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+       Immune Cell,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+       Immune Cell,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+       Immune Cell,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+      Giant Mantis,            Attack,0,0,1,Physical Damage(STR),70,130,60,One Enemy,1,84,100,0,60,9999,0,0,0,0,60,Wind,7,0,0,0,0,0,0,0
+      Giant Mantis,       Spark Press,0,25,34,Physical Damage(STR),180,300,300,One Enemy,0,0,0,0,180,13000,0,1,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+      Giant Mantis,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+      Giant Mantis,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+      Giant Mantis,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+              Dodo,            Attack,0,0,1,Physical Damage(STR),50,130,30,One Enemy,1,10,110,0,60,9999,0,0,0,0,120,Blizzard,7,0,0,0,0,0,0,0
+              Dodo,       Spark Press,0,25,34,Physical Damage(STR),180,300,300,One Enemy,0,0,0,0,180,13000,0,1,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+              Dodo,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+              Dodo,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+              Dodo,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+         Pit Viper,            Attack,0,0,1,Physical Damage(STR),150,230,100,One Enemy,1,400,100,0,30,9999,0,0,0,0,80,Fire,0,4,15,0,0,0,0,0
+         Pit Viper,       Spark Press,0,25,34,Physical Damage(STR),180,300,300,One Enemy,0,0,0,0,180,13000,0,1,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+         Pit Viper,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+         Pit Viper,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+         Pit Viper,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+      Dino Freezer,            Attack,0,0,1,Physical Damage(STR),185,270,170,One Enemy,1,100,110,0,60,9999,0,1,0,0,150,Blizzard,5,0,0,0,0,0,0,0
+      Dino Freezer,   Freezing Breath,0,36,1,Physical Damage(STR),185,400,240,All Enemies,0,0,0,600,180,13000,0,0,3500,5000,120,Blizzard,9,0,0,0,0,-1,0,0
+      Dino Freezer,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+      Dino Freezer,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+      Dino Freezer,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+      Leck Guarder,            Attack,0,0,1,Physical Damage(STR),215,300,200,One Enemy,1,80,120,0,30,8000,0,0,0,0,60,Fire,6,0,0,0,0,0,0,0
+      Leck Guarder,       Buster Horn,0,56,31,Physical Damage(STR),215,400,350,One Enemy,0,0,0,0,180,13000,0,1,4000,7000,0,Fire,9,64,70,0,0,0,0,0
+      Leck Guarder,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+      Leck Guarder,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+      Leck Guarder,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+     Scaly Warrior,            Attack,0,0,1,Physical Damage(STR),145,240,120,One Enemy,1,120,100,0,60,9999,0,0,0,0,50,Fire,0,0,0,0,0,0,0,0
+     Scaly Warrior,        Lunacy Egg,0,38,27,Physical Damage(STR),145,210,210,One Enemy,0,0,0,0,210,13000,0,0,1500,3000,30,Fire,0,8,50,0,0,0,0,0
+     Scaly Warrior,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+     Scaly Warrior,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+     Scaly Warrior,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+           Nyarmot,            Attack,0,0,1,Physical Damage(STR),190,230,190,One Enemy,1,163,100,0,60,9999,0,0,0,0,50,Fire,8,0,0,0,0,0,0,0
+           Nyarmot,       Burning Sun,0,22,32,Physical Damage(STR),190,370,240,One Enemy,0,0,0,0,210,13000,0,1,2500,4000,150,Fire,8,0,0,0,0,0,0,0
+           Nyarmot,    Berserk Launch,0,40,4,Physical Damage(STR),225,300,200,One Enemy,0,0,0,0,180,14000,0,1,1000,0,80,Fire,0,24,50,0,0,0,0,0
+           Nyarmot,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+           Nyarmot,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+   Ancient Warrior,            Attack,0,0,1,Physical Damage(STR),200,250,270,One Enemy,1,116,100,0,60,9999,0,0,0,0,60,Fire,5,0,0,0,0,0,0,0
+   Ancient Warrior,       Beat Spiral,0,33,30,Physical Damage(STR),200,430,260,Area Enemies,0,0,0,400,150,13000,0,1,500,0,100,Fire,8,0,0,0,0,0,0,0
+   Ancient Warrior,      Hyper Buster,0,45,8,Physical Damage(STR),200,600,230,One Enemy,0,0,0,0,120,15000,0,0,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+   Ancient Warrior,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+   Ancient Warrior,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+         Tarantula,            Attack,0,0,1,Physical Damage(STR),180,240,140,One Enemy,1,20,100,0,60,9999,0,0,0,0,50,Fire,0,0,0,0,0,0,0,0
+         Tarantula,        Plague Net,0,22,4,Physical Damage(STR),180,250,290,One Enemy,0,0,0,0,180,13000,0,0,1000,3000,0,Fire,0,16,80,0,0,0,-2,0
+         Tarantula,      Hyper Buster,0,45,8,Physical Damage(STR),200,600,230,One Enemy,0,0,0,0,120,15000,0,0,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+         Tarantula,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+         Tarantula,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+       Killer Tree,            Attack,0,0,1,Physical Damage(STR),215,280,260,One Enemy,1,50,100,0,60,9999,0,0,0,0,60,Fire,6,0,0,0,0,0,0,0
+       Killer Tree,      Napalm Fruit,0,39,6,Physical Damage(STR),215,400,300,Area Enemies,0,0,0,500,150,13000,0,0,1000,0,50,Fire,8,0,0,0,0,0,0,0
+       Killer Tree,      Hyper Buster,0,45,8,Physical Damage(STR),200,600,230,One Enemy,0,0,0,0,120,15000,0,0,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+       Killer Tree,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+       Killer Tree,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+        Giant Crab,            Attack,0,0,1,Physical Damage(STR),90,170,100,One Enemy,1,59,100,0,60,9999,0,0,0,0,50,Earth,7,0,0,0,0,0,0,0
+        Giant Crab,       Sleep Dance,0,18,36,Physical Damage(STR),90,210,100,One Enemy,0,0,0,0,210,13000,0,1,1000,3000,0,Earth,8,2,75,0,0,0,0,0
+        Giant Crab,      Hyper Buster,0,45,8,Physical Damage(STR),200,600,230,One Enemy,0,0,0,0,120,15000,0,0,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+        Giant Crab,            Tremor,15,0,1,Magical Damage(MAG),225,260,150,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+        Giant Crab,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+      Snow Leopard,            Attack,0,0,1,Physical Damage(STR),215,280,180,One Enemy,1,100,100,0,30,9999,0,0,0,0,80,Blizzard,7,0,0,0,0,0,0,0
+      Snow Leopard,           Crackle,16,0,6,Magical Damage(MAG),215,350,170,One Enemy,0,0,0,0,180,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+      Snow Leopard,           Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,120,11000,39,0,0,0,0,Fire,0,0,0,0,0,0,-1,0
+      Snow Leopard,              Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,150,12000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+      Snow Leopard,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+      Desert Diver,            Attack,0,0,1,Physical Damage(STR),170,250,200,One Enemy,1,44,120,0,60,9999,0,0,0,0,60,Earth,4,0,0,0,0,0,0,0
+      Desert Diver,        Acid Spray,0,27,23,Physical Damage(STR),170,230,150,One Enemy,0,0,0,0,150,12000,0,0,1000,0,30,Earth,9,16,50,0,0,0,0,0
+      Desert Diver,       Terra Break,0,45,24,Physical Damage(STR),170,300,300,One Enemy,0,0,0,0,180,15000,0,1,3500,7000,300,Earth,7,0,0,0,0,0,0,0
+      Desert Diver,              Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,150,12000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+      Desert Diver,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+         Dual Fist,            Attack,0,0,1,Physical Damage(STR),230,340,280,One Enemy,1,80,120,0,30,8000,0,1,0,0,120,Blizzard,5,0,0,0,0,0,0,0
+         Dual Fist,       Freeze Down,0,33,1,Physical Damage(STR),230,510,360,One Enemy,0,0,0,0,120,14000,0,0,2000,4000,50,Blizzard,6,2,80,0,0,0,0,0
+         Dual Fist,     Blizzard Rise,0,44,8,Physical Damage(STR),230,750,140,Area Enemies,0,0,0,800,90,12000,0,0,1000,0,30,Blizzard,8,0,0,0,0,-1,0,0
+         Dual Fist,              Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,150,12000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+         Dual Fist,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+     Evil Maneuver,            Attack,0,0,1,Physical Damage(STR),195,230,220,One Enemy,1,140,100,0,60,9999,0,0,0,0,50,Lightning,6,0,0,0,0,0,0,0
+     Evil Maneuver,      Block Needle,0,31,31,Physical Damage(STR),195,300,360,One Enemy,0,0,0,0,150,14000,0,1,2000,3000,30,Fire,0,64,30,0,0,0,0,0
+     Evil Maneuver,              Zap!,24,0,34,Magical Damage(MAG),195,140,270,Area Enemies,0,0,0,600,120,12000,25,0,1000,0,50,Lightning,10,4,15,0,0,0,0,0
+     Evil Maneuver,              Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,150,12000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+     Evil Maneuver,          Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,0,150,11000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+      Emerald Bird,            Attack,0,0,1,Physical Damage(STR),200,370,120,One Enemy,1,2,150,0,60,9999,0,0,0,0,50,Blizzard,5,0,0,0,0,0,0,0
+      Emerald Bird,        Snowflakes,0,36,27,Physical Damage(STR),200,460,240,All Enemies,0,0,0,0,180,15000,0,0,1500,3000,100,Blizzard,9,0,0,0,0,0,-2,0
+      Emerald Bird,             Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,120,12000,40,0,0,0,0,Fire,0,64,60,0,0,0,0,0
+      Emerald Bird,           Crackle,16,0,1,Magical Damage(MAG),200,430,275,One Enemy,0,0,0,0,150,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+      Emerald Bird,              Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,11000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+    Death Doberman,            Attack,0,0,1,Physical Damage(STR),200,270,160,One Enemy,1,30,100,0,60,9999,0,0,0,0,50,Wind,6,0,0,0,0,0,0,0
+    Death Doberman,             Shhh!,10,0,7,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,90,11000,9,0,0,0,0,Fire,0,32,60,0,0,0,0,0
+    Death Doberman,         Howlslash,14,0,4,Magical Damage(MAG),200,230,225,Enemy Line,0,0,0,300,150,13000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+    Death Doberman,          Howlnado,45,0,2,Magical Damage(MAG),200,360,225,All Enemies,0,0,0,0,180,15000,7,1,1000,0,0,Wind,10,8,30,0,0,0,0,11
+    Death Doberman,              Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,11000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+        Mind Eater,            Attack,0,0,1,Physical Damage(STR),215,280,200,One Enemy,1,500,100,0,60,9999,0,0,0,0,100,Lightning,5,4,10,0,0,0,0,0
+        Mind Eater,      Mana Capture,0,26,41,Magical Damage(MAG),215,250,10,One Enemy,0,0,0,0,150,13000,0,0,2500,0,120,Fire,0,0,0,0,0,0,0,50
+        Mind Eater,       Spark Spine,0,37,7,Physical Damage(STR),215,390,400,Area Enemies,0,0,0,400,180,15000,0,0,1500,2000,50,Lightning,8,4,30,0,0,0,0,0
+        Mind Eater,           Zap All,36,0,2,Magical Damage(MAG),215,230,300,All Enemies,0,0,0,0,120,12000,26,1,1000,0,80,Lightning,10,4,15,0,0,0,0,0
+        Mind Eater,              Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,11000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+        Vein Brain,            Attack,0,0,1,Physical Damage(STR),130,150,70,One Enemy,1,50,110,0,60,9999,0,0,0,0,30,Lightning,6,0,0,0,0,0,0,0
+        Vein Brain,             Stram,6,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+        Vein Brain,              Zap!,24,0,34,Magical Damage(MAG),130,100,150,Area Enemies,0,0,0,600,180,13000,25,0,1000,0,50,Lightning,10,4,15,0,0,0,0,0
+        Vein Brain,           Zap All,36,0,2,Magical Damage(MAG),215,230,300,All Enemies,0,0,0,0,120,12000,26,1,1000,0,80,Lightning,10,4,15,0,0,0,0,0
+        Vein Brain,              Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,11000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+             Devil,            Attack,0,0,1,Physical Damage(STR),200,320,250,One Enemy,1,8,200,0,30,9999,0,0,2500,5000,50,Fire,6,0,0,0,0,0,0,0
+             Devil,         Burnflame,16,0,1,Magical Damage(MAG),200,280,250,Area Enemies,0,0,0,600,120,12000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+             Devil,        Burnstrike,20,0,1,Magical Damage(MAG),200,560,250,One Enemy,0,0,0,0,180,15000,3,0,0,0,80,Fire,10,0,0,0,0,0,0,0
+             Devil,             BOOM!,22,0,1,Magical Damage(MAG),200,450,200,Area Enemies,0,0,0,600,150,13000,21,1,2000,0,120,Fire,0,0,0,0,0,0,0,0
+             Devil,          BA-BOOM!,75,0,2,Magical Damage(MAG),200,2170,200,All Enemies,0,0,0,0,180,17000,22,1,2000,0,150,Fire,0,0,0,0,0,0,0,0
+     Dragon Knight,            Attack,0,0,1,Physical Damage(STR),195,270,250,One Enemy,1,130,120,0,30,9999,0,0,0,0,50,Lightning,5,0,0,0,0,0,0,0
+     Dragon Knight,    Lightning Ball,0,42,34,Physical Damage(STR),195,510,200,Area Enemies,0,0,0,400,150,15000,0,1,2000,4000,180,Lightning,8,4,25,0,0,0,0,0
+     Dragon Knight,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,11000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+     Dragon Knight,         DragonZap,58,0,1,Magical Damage(MAG),195,420,350,Enemy Line,0,0,0,300,210,14000,28,1,1500,0,120,Lightning,10,4,20,0,0,0,0,0
+     Dragon Knight,          BA-BOOM!,75,0,2,Magical Damage(MAG),200,2170,200,All Enemies,0,0,0,0,180,17000,22,1,2000,0,150,Fire,0,0,0,0,0,0,0,0
+          Guardian,            Attack,0,0,1,Physical Damage(STR),235,340,120,One Enemy,1,80,120,0,30,8000,0,0,0,0,50,Lightning,4,0,0,0,0,0,0,0
+          Guardian,    Killer Voltage,0,38,4,Physical Damage(STR),235,520,150,Enemy Line,0,0,0,150,150,14000,0,1,2500,5000,120,Lightning,10,4,25,-1,-1,-1,-1,0
+          Guardian,       Spark Slice,0,46,1,Physical Damage(STR),235,410,290,Area Around Self,0,0,0,600,90,12000,0,0,1000,3000,100,Lightning,7,4,20,0,0,0,0,0
+          Guardian,            Snooze,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,120,13000,10,0,0,0,0,Fire,0,2,40,0,0,0,0,0
+          Guardian,           Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,0,800,60,11000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+      Valmar Magna,            Attack,0,0,1,Physical Damage(STR),240,500,150,One Enemy,1,250,180,0,30,9999,0,0,0,0,120,Fire,0,0,0,0,0,0,0,0
+      Valmar Magna,      Magna Boring,0,70,1,Physical Damage(STR),240,430,270,One Enemy,0,0,0,0,180,15000,0,1,4000,0,150,Fire,0,96,65,0,0,0,0,0
+      Valmar Magna,      Magna Ripper,0,50,1,Physical Damage(STR),240,350,600,One Enemy,0,0,0,0,150,13000,0,0,3000,5000,80,Fire,0,0,0,0,0,0,0,0
+      Valmar Magna,             BOOM!,22,0,1,Magical Damage(MAG),240,450,200,Area Enemies,0,0,0,600,90,12000,21,1,2000,0,120,Fire,0,0,0,0,0,0,0,0
+      Valmar Magna,           Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,0,800,60,11000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+       Valmar Moth,            Attack,0,0,1,Physical Damage(STR),240,600,100,One Enemy,1,200,100,0,30,9999,0,0,0,0,150,Fire,0,0,0,0,0,0,0,0
+       Valmar Moth,      Magna Boring,0,70,1,Physical Damage(STR),240,430,270,One Enemy,0,0,0,0,180,15000,0,1,4000,0,150,Fire,0,96,65,0,0,0,0,0
+       Valmar Moth,      Magna Ripper,0,50,1,Physical Damage(STR),240,350,600,One Enemy,0,0,0,0,150,13000,0,0,3000,5000,80,Fire,0,0,0,0,0,0,0,0
+       Valmar Moth,             BOOM!,22,0,1,Magical Damage(MAG),240,450,200,Area Enemies,0,0,0,600,90,12000,21,1,2000,0,120,Fire,0,0,0,0,0,0,0,0
+       Valmar Moth,           Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,0,800,60,11000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+          Millenia,             Combo,0,0,37,Physical Damage(STR),55,120,60,One Enemy,1,50,110,0,30,9999,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+          Millenia,             Burn!,6,0,37,Magical Damage(MAG),55,110,100,One Enemy,0,0,0,0,75,12000,1,0,0,0,80,Fire,10,0,0,0,0,0,0,0
+          Millenia,             Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,65,11000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+          Millenia,              Zap!,24,0,37,Magical Damage(MAG),55,110,150,Area Enemies,0,0,0,600,125,13000,25,0,1000,0,50,Lightning,10,4,100,0,0,0,0,0
+          Millenia,           Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,0,800,60,11000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+         Beast-Man,             Combo,0,0,37,Physical Damage(STR),80,180,100,One Enemy,1,170,120,0,30,9999,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+         Beast-Man,    Beast-Fang Cut,0,26,37,Physical Damage(STR),80,230,200,One Enemy,0,0,0,0,240,13000,0,1,3000,6000,150,Fire,0,0,0,0,0,0,0,0
+         Beast-Man,             Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,65,11000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+         Beast-Man,              Zap!,24,0,37,Magical Damage(MAG),55,110,150,Area Enemies,0,0,0,600,125,13000,25,0,1000,0,50,Lightning,10,4,100,0,0,0,0,0
+         Beast-Man,           Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,0,800,60,11000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+       Eyeball Bat,            Attack,0,0,5,Physical Damage(STR),150,190,80,One Enemy,1,100,100,0,60,9999,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+       Eyeball Bat,       Delta Burst,0,37,1,Physical Damage(STR),150,270,150,One Enemy,0,0,0,0,270,13000,0,0,1000,3000,0,Fire,0,0,0,0,0,0,0,0
+       Eyeball Bat,             Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,65,11000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+       Eyeball Bat,              Zap!,24,0,37,Magical Damage(MAG),55,110,150,Area Enemies,0,0,0,600,125,13000,25,0,1000,0,50,Lightning,10,4,100,0,0,0,0,0
+       Eyeball Bat,           Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,0,800,60,11000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+         Tio Clone,             Combo,0,0,9,Physical Damage(STR),215,260,100,One Enemy,1,60,110,0,30,9999,0,0,0,0,70,Fire,0,0,0,0,0,0,0,0
+         Tio Clone,      Lotus Flower,0,28,5,Physical Damage(STR),215,260,400,Enemy Line,0,0,0,200,60,13000,0,1,1500,3000,150,Fire,0,0,0,0,0,0,0,0
+         Tio Clone,           Tornado,0,48,2,Magical Damage(MAG),215,260,350,All Enemies,0,0,0,0,120,14000,0,1,1500,0,0,Wind,8,0,0,0,0,0,0,0
+         Tio Clone,              Gale,9,0,7,Magical Damage(MAG),215,190,225,Area Enemies,0,0,0,500,60,12000,5,0,1000,0,100,Wind,10,0,0,0,0,0,0,0
+         Tio Clone,           Silence,0,20,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,11000,9,0,0,0,0,Fire,0,32,50,0,0,0,0,0
+          Millenia,             Combo,0,0,1,Physical Damage(STR),240,290,100,One Enemy,1,50,110,0,30,9999,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+          Millenia,      Fallen Wings,0,75,2,Magical Damage(MAG),240,200,450,All Enemies,0,0,0,0,180,15000,0,1,3000,0,80,Fire,0,0,0,0,0,0,0,0
+          Millenia,            Vanish,0,16,2,Status Change,0,0,0,Unknown,0,0,0,0,120,15000,57,0,0,0,0,Fire,0,0,0,0,0,0,0,22
+          Millenia,         DragonZap,58,0,9,Magical Damage(MAG),240,200,300,Enemy Line,0,0,0,300,150,15000,28,1,1500,0,120,Lightning,10,4,15,0,0,0,0,0
+          Millenia,         Burnflame,16,0,7,Magical Damage(MAG),240,170,250,Area Enemies,0,0,0,600,120,13000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+        Right Hand,            Attack,0,0,1,Physical Damage(STR),125,140,80,One Enemy,1,600,150,0,30,9000,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+        Right Hand,        Spew Venom,0,16,6,Physical Damage(STR),125,230,80,Area Enemies,0,0,0,300,240,15000,0,0,2000,0,120,Fire,0,1,30,0,0,0,0,0
+        Right Hand,          Gluttony,0,15,23,Physical Damage(STR),125,170,100,Area Enemies,0,0,0,400,240,12000,0,1,2000,5000,0,Fire,0,0,0,0,-1,0,0,0
+        Right Hand,         Huge Leap,0,33,2,Physical Damage(STR),125,120,90,All Enemies,0,0,0,0,120,13000,0,1,1000,0,150,Fire,0,0,0,0,0,0,0,0
+        Right Hand,           Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,180,12000,39,0,0,0,0,Fire,0,0,0,0,0,0,-1,0
+        Right Hand,            Attack,0,0,1,Physical Damage(STR),260,320,100,One Enemy,1,600,150,0,30,9999,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+        Right Hand,        Spew Venom,0,24,6,Physical Damage(STR),260,350,230,Area Enemies,0,0,0,300,150,15000,0,1,1500,0,120,Fire,0,1,100,0,0,0,0,0
+        Right Hand,          Gluttony,0,26,23,Physical Damage(STR),260,490,250,Area Enemies,0,0,0,400,150,14000,0,1,1000,0,0,Fire,0,0,0,0,0,0,0,0
+        Right Hand,         Huge Leap,0,40,2,Physical Damage(STR),260,360,300,All Enemies,0,0,0,0,120,13000,0,1,500,2000,150,Fire,0,0,0,0,0,0,0,0
+        Right Hand,              WOW!,5,0,22,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,60,12000,24,0,0,0,0,Fire,0,0,0,2,0,0,0,0
+         Left Hand,            Attack,0,0,8,Physical Damage(STR),125,140,120,One Enemy,1,600,150,0,30,9000,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+         Left Hand,      Flamethrower,0,12,4,Physical Damage(STR),125,230,120,Area Enemies,0,0,0,300,240,15000,0,0,2000,0,120,Fire,7,0,0,0,0,0,0,0
+         Left Hand,          Gluttony,0,15,23,Physical Damage(STR),125,170,100,Area Enemies,0,0,0,400,240,12000,0,1,2000,5000,0,Fire,0,0,0,0,-1,0,0,0
+         Left Hand,         Huge Leap,0,33,2,Physical Damage(STR),125,120,90,All Enemies,0,0,0,0,120,13000,0,1,1000,0,150,Fire,0,0,0,0,0,0,0,0
+         Left Hand,           Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,180,12000,39,0,0,0,0,Fire,0,0,0,0,0,0,-1,0
+         Left Hand,            Attack,0,0,1,Physical Damage(STR),260,360,130,One Enemy,1,600,150,0,30,9999,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+         Left Hand,      Flamethrower,0,18,4,Physical Damage(STR),260,420,210,Area Enemies,0,0,0,300,150,15000,0,0,2500,5000,500,Fire,8,0,0,0,0,0,0,0
+         Left Hand,          Gluttony,0,26,23,Physical Damage(STR),260,490,250,Area Enemies,0,0,0,400,150,14000,0,1,1000,0,0,Fire,0,0,0,0,0,0,0,0
+         Left Hand,         Huge Leap,0,40,2,Physical Damage(STR),260,360,300,All Enemies,0,0,0,0,120,13000,0,1,500,2000,150,Fire,0,0,0,0,0,0,0,0
+         Left Hand,              WOW!,5,0,22,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,60,12000,24,0,0,0,0,Fire,0,0,0,2,0,0,0,0
+              Head,     Eat 'em Alive,0,18,8,Physical Damage(STR),125,300,100,One Enemy,0,0,0,0,300,18000,0,1,3000,7000,100,Fire,0,8,70,0,0,0,0,0
+              Head,             Burn!,6,0,9,Magical Damage(MAG),125,60,90,One Enemy,0,0,0,0,150,11000,1,0,0,0,80,Fire,10,0,0,0,0,0,0,0
+              Head,         Burnflame,16,0,1,Magical Damage(MAG),125,130,90,Area Enemies,0,0,0,600,240,12000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+              Head,            Snooze,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,210,15000,10,0,0,0,0,Fire,0,2,30,0,0,0,0,0
+              Head,              Heal,6,0,39,Restore HP(MEN),0,800,100,One Ally,0,0,0,0,180,12000,11,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+              Head,     Eat 'em Alive,0,33,9,Physical Damage(STR),260,330,600,One Enemy,0,0,0,0,150,18000,0,1,3000,7000,100,Fire,0,8,90,0,0,0,0,0
+              Head,             Burn!,6,0,1,Magical Damage(MAG),260,90,250,One Enemy,0,0,0,0,60,11000,1,0,0,0,80,Fire,10,0,0,0,0,0,0,0
+              Head,         Burnflame,16,0,7,Magical Damage(MAG),260,160,250,Area Enemies,0,0,0,600,90,12000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+              Head,        Burnstrike,20,0,40,Magical Damage(MAG),260,270,250,One Enemy,0,0,0,0,120,13000,3,1,0,0,120,Fire,10,0,0,0,0,0,0,0
+              Head,        Hellburner,42,0,2,Magical Damage(MAG),260,380,250,All Enemies,0,0,0,0,150,14000,4,1,0,0,100,Fire,10,0,0,0,0,0,0,0
+   Valmar's Tongue,            Attack,0,0,1,Physical Damage(STR),125,100,90,One Enemy,1,470,150,0,30,9000,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+   Valmar's Tongue,   Starving Tongue,0,55,2,Magical Damage(MAG),125,145,100,All Enemies,0,0,0,0,270,13000,0,1,0,0,100,Fire,0,0,0,0,0,0,0,0
+   Valmar's Tongue,          Gluttony,0,15,23,Physical Damage(STR),125,170,100,Area Enemies,0,0,0,400,240,12000,0,1,2000,5000,0,Fire,0,0,0,0,-1,0,0,0
+   Valmar's Tongue,         Huge Leap,0,33,2,Physical Damage(STR),125,120,90,All Enemies,0,0,0,0,120,13000,0,1,1000,0,150,Fire,0,0,0,0,0,0,0,0
+   Valmar's Tongue,           Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,180,12000,39,0,0,0,0,Fire,0,0,0,0,0,0,-1,0
+   Valmar's Tongue,            Attack,0,0,4,Physical Damage(STR),260,310,150,One Enemy,1,470,150,0,30,9999,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+   Valmar's Tongue,             BOOM!,22,0,7,Magical Damage(MAG),260,250,200,Area Enemies,0,0,0,600,120,12000,21,1,2000,0,120,Fire,0,0,0,0,0,0,0,0
+   Valmar's Tongue,          Gluttony,0,26,23,Physical Damage(STR),260,490,250,Area Enemies,0,0,0,400,150,14000,0,1,1000,0,0,Fire,0,0,0,0,0,0,0,0
+   Valmar's Tongue,         Huge Leap,0,40,2,Physical Damage(STR),260,360,300,All Enemies,0,0,0,0,120,13000,0,1,500,2000,150,Fire,0,0,0,0,0,0,0,0
+   Valmar's Tongue,              WOW!,5,0,22,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,60,12000,24,0,0,0,0,Fire,0,0,0,2,0,0,0,0
+     Right Tendril,            Attack,0,0,1,Physical Damage(STR),150,300,100,One Enemy,1,200,150,0,30,9000,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+     Right Tendril,    Seed of Poison,0,12,20,Physical Damage(STR),150,260,130,Area Enemies,0,0,0,400,180,12000,0,0,2000,0,30,Fire,0,1,40,0,0,0,0,0
+     Right Tendril,           Crackle,16,0,9,Magical Damage(MAG),150,130,280,One Enemy,0,0,0,0,210,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+     Right Tendril,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+     Right Tendril,            Runner,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+     Right Tendril,            Attack,0,0,20,Physical Damage(STR),265,320,180,One Enemy,1,200,150,0,30,8000,0,0,0,0,100,Fire,0,1,50,0,0,0,0,0
+     Right Tendril,    Seed of Poison,0,20,20,Physical Damage(STR),265,450,160,Area Enemies,0,0,0,400,180,12000,0,1,500,0,30,Fire,0,1,100,0,0,0,0,0
+     Right Tendril,            Speedy,7,0,26,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,60,11000,31,0,0,0,0,Fire,0,0,0,0,0,2,0,0
+     Right Tendril,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+     Right Tendril,           Refresh,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+      Left Tendril,            Attack,0,0,1,Physical Damage(STR),150,300,100,One Enemy,1,200,150,0,30,9000,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+      Left Tendril,     Seed of Sleep,0,15,1,Physical Damage(STR),150,210,100,Area Enemies,0,0,0,400,180,12000,0,0,2000,0,30,Fire,0,2,70,0,0,0,0,0
+      Left Tendril,           Crackle,16,0,9,Magical Damage(MAG),150,130,280,One Enemy,0,0,0,0,210,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+      Left Tendril,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+      Left Tendril,            Runner,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+      Left Tendril,            Attack,0,0,36,Physical Damage(STR),265,320,180,One Enemy,1,200,150,0,30,8000,0,0,0,0,100,Fire,0,2,25,0,0,0,0,0
+      Left Tendril,     Seed of Sleep,0,24,36,Physical Damage(STR),265,450,160,Area Enemies,0,0,0,400,180,12000,0,1,500,0,30,Fire,0,2,50,0,0,0,0,0
+      Left Tendril,            Speedy,7,0,26,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,60,11000,31,0,0,0,0,Fire,0,0,0,0,0,2,0,0
+      Left Tendril,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+      Left Tendril,           Refresh,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+       Eyeball Bat,            Attack,0,0,9,Physical Damage(STR),150,190,80,One Enemy,1,100,100,0,60,9999,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+       Eyeball Bat,       Delta Burst,0,37,1,Physical Damage(STR),150,270,150,One Enemy,0,0,0,0,270,13000,0,0,1000,3000,0,Fire,0,0,0,0,0,0,0,0
+       Eyeball Bat,           Crackle,16,0,9,Magical Damage(MAG),150,130,280,One Enemy,0,0,0,0,210,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+       Eyeball Bat,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+       Eyeball Bat,            Runner,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+       Eyeball Bat,            Attack,0,0,9,Physical Damage(STR),265,420,100,One Enemy,1,100,100,0,60,8000,0,0,0,0,100,Fire,0,0,0,0,0,0,0,0
+       Eyeball Bat,       Delta Burst,0,28,34,Physical Damage(STR),265,560,250,One Enemy,0,0,0,0,150,13000,0,0,2500,4000,0,Fire,0,4,25,0,0,0,0,0
+       Eyeball Bat,            Speedy,7,0,26,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,60,11000,31,0,0,0,0,Fire,0,0,0,0,0,2,0,0
+       Eyeball Bat,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+       Eyeball Bat,           Refresh,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+      Valmar's Eye,  Spellbinding Eye,0,60,5,Special,0,720,0,One Enemy,0,0,0,0,300,14000,0,0,0,0,0,Fire,0,0,0,0,0,0,0,14
+      Valmar's Eye,       Pollen Spew,0,24,21,Physical Damage(STR),150,160,200,Area Enemies,0,0,0,400,150,12000,0,0,1000,2000,0,Fire,0,8,30,0,0,0,0,0
+      Valmar's Eye,           Crackle,16,0,9,Magical Damage(MAG),150,130,280,One Enemy,0,0,0,0,210,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+      Valmar's Eye,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+      Valmar's Eye,            Runner,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+      Valmar's Eye,         Howlslash,14,0,1,Magical Damage(MAG),265,270,225,Enemy Line,0,0,0,250,120,12000,6,1,1500,0,200,Wind,10,0,0,0,0,0,0,0
+      Valmar's Eye,       Pollen Spew,0,32,1,Physical Damage(STR),265,340,240,Area Enemies,0,0,0,400,150,13000,0,0,1500,2000,50,Fire,0,8,60,0,0,0,0,0
+      Valmar's Eye,            Speedy,7,0,26,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,60,11000,31,0,0,0,0,Fire,0,0,0,0,0,2,0,0
+      Valmar's Eye,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,9999,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+      Valmar's Eye,           Refresh,12,0,29,Status Change,0,0,0,One Ally,0,0,0,0,90,11000,34,0,0,0,0,Fire,0,96,100,0,0,0,0,0
+         Right Arm,            Attack,0,0,5,Physical Damage(STR),175,410,100,One Enemy,1,260,170,0,60,8500,0,1,0,0,80,Blizzard,6,0,0,0,0,0,-1,0
+         Right Arm,        Ice Bullet,0,27,1,Physical Damage(STR),175,340,100,Area Enemies,0,0,0,400,150,15000,21,1,2500,2000,100,Blizzard,8,0,0,0,0,0,0,0
+         Right Arm,           Crackle,16,0,40,Magical Damage(MAG),175,230,150,One Enemy,0,0,0,0,180,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+         Right Arm,              Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,11000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+         Right Arm,             Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,120,12000,40,0,0,0,0,Fire,0,64,50,0,0,0,0,0
+          Left Arm,            Attack,0,0,4,Physical Damage(STR),175,190,100,One Enemy,1,260,170,0,60,8500,0,0,0,0,80,Lightning,5,4,30,0,0,0,0,0
+          Left Arm,    Thunder Bullet,0,36,34,Physical Damage(STR),175,210,100,Area Enemies,0,0,0,400,150,15000,21,0,500,0,100,Lightning,7,4,20,0,0,0,0,0
+          Left Arm,              Zap!,24,0,1,Magical Damage(MAG),175,270,100,Area Enemies,0,0,0,600,180,13000,25,0,1000,0,50,Lightning,10,4,15,0,0,0,0,0
+          Left Arm,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+          Left Arm,            Healer,12,0,39,Restore HP(MEN),0,2000,100,One Ally,0,0,0,0,150,11000,12,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+     Valmar's Claw,            Attack,0,0,1,Physical Damage(STR),175,240,100,One Enemy,1,210,190,0,60,8500,0,1,0,0,150,Fire,0,0,0,0,0,0,0,0
+     Valmar's Claw,     Infernal Sigh,0,28,7,Physical Damage(STR),175,260,120,Area Enemies,0,0,0,400,120,12000,0,0,2000,0,50,Fire,8,0,0,0,0,0,0,0
+     Valmar's Claw,     Avenging Claw,0,42,9,Magical Damage(MAG),175,490,150,One Enemy,0,0,0,0,210,13000,0,0,4500,0,0,Fire,0,0,0,0,0,0,0,0
+     Valmar's Claw,      Tail Piercer,0,35,6,Physical Damage(STR),175,290,200,One Enemy,0,0,0,0,150,15000,0,1,6000,5000,80,Fire,0,0,0,0,0,0,0,0
+     Valmar's Claw,           Gravity,8,0,7,Special,0,0,0,Area Enemies,0,0,0,800,90,11000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+             Sword,            Attack,0,0,31,Physical Damage(STR),200,600,100,One Enemy,1,110,120,0,30,9999,0,1,0,0,80,Fire,0,64,50,0,0,0,0,0
+             Sword, Demon Horde Slash,0,75,2,Physical Damage(STR),200,370,280,All Enemies,0,0,0,0,180,17000,0,0,1500,0,100,Fire,0,0,0,0,0,0,0,0
+             Sword,Wailing Soul Slash,0,50,9,Physical Damage(STR),200,580,240,One Enemy,0,0,0,0,150,15000,0,1,8000,7000,0,Fire,0,0,0,0,0,0,0,0
+             Sword,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+             Sword,             Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,120,12000,9,0,0,0,0,Fire,0,32,65,0,0,0,0,0
+             Sword,            Attack,0,0,31,Physical Damage(STR),200,360,100,One Enemy,1,110,120,0,30,9999,0,1,0,0,80,Fire,0,64,50,0,0,0,0,0
+             Sword, Demon Horde Slash,0,75,2,Physical Damage(STR),200,370,230,All Enemies,0,0,0,0,210,17000,0,0,1500,0,100,Fire,0,0,0,0,0,0,0,0
+             Sword,Wailing Soul Slash,0,50,9,Physical Damage(STR),200,560,200,One Enemy,0,0,0,0,150,15000,0,1,8000,7000,0,Fire,0,0,0,0,0,0,0,0
+             Sword,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+             Sword,             Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,120,12000,9,0,0,0,0,Fire,0,32,50,0,0,0,0,0
+       Regenerator,            Speedy,7,0,39,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,120,12000,31,0,0,0,0,Fire,0,0,0,0,0,2,0,0
+       Regenerator,           Diggin',4,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,11000,18,0,0,0,0,Fire,0,0,0,0,1,0,0,0
+       Regenerator,              WOW!,5,0,38,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,90,12000,24,0,0,0,0,Fire,0,0,0,2,0,0,0,0
+       Regenerator,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,60,11000,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+       Regenerator,           Gravity,8,0,7,Special,0,0,0,Area Enemies,0,0,0,800,150,12000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+       Regenerator,            Speedy,7,0,38,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,120,12000,31,0,0,0,0,Fire,0,0,0,0,0,1,0,0
+       Regenerator,           Diggin',4,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,11000,18,0,0,0,0,Fire,0,0,0,0,1,0,0,0
+       Regenerator,              WOW!,5,0,38,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,90,12000,24,0,0,0,0,Fire,0,0,0,1,0,0,0,0
+       Regenerator,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,60,11000,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+       Regenerator,           Gravity,8,0,7,Special,0,0,0,Area Enemies,0,0,0,800,150,12000,20,0,0,0,0,Fire,0,0,0,0,0,0,0,12
+           Melfice,          Critical,0,0,1,Physical Damage(STR),200,430,100,One Enemy,1,110,120,0,60,9999,0,0,3000,5000,120,Fire,0,0,0,0,0,0,0,0
+           Melfice, Demon Horde Slash,0,75,2,Physical Damage(STR),200,370,280,All Enemies,0,0,0,0,180,17000,0,0,1500,0,100,Fire,0,0,0,0,0,0,0,0
+           Melfice,Wailing Soul Slash,0,50,9,Physical Damage(STR),200,580,240,One Enemy,0,0,0,0,150,15000,0,1,8000,7000,0,Fire,0,0,0,0,0,0,0,0
+           Melfice,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+           Melfice,             Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,120,12000,9,0,0,0,0,Fire,0,32,65,0,0,0,0,0
+           Melfice,          Critical,0,0,1,Physical Damage(STR),200,430,100,One Enemy,1,110,120,0,60,9999,0,0,3000,5000,120,Fire,0,0,0,0,0,0,0,0
+           Melfice, Demon Horde Slash,0,75,2,Physical Damage(STR),200,370,230,All Enemies,0,0,0,0,210,17000,0,0,1500,0,100,Fire,0,0,0,0,0,0,0,0
+           Melfice,Wailing Soul Slash,0,50,9,Physical Damage(STR),200,560,200,One Enemy,0,0,0,0,150,15000,0,1,8000,7000,0,Fire,0,0,0,0,0,0,0,0
+           Melfice,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+           Melfice,             Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,120,12000,9,0,0,0,0,Fire,0,32,50,0,0,0,0,0
+    Right Tentacle,            Attack,0,0,1,Physical Damage(STR),700,280,160,Enemy Line,1,294,150,200,30,9999,0,1,0,0,100,Fire,7,0,0,0,0,0,0,0
+    Right Tentacle,              Zap!,24,0,1,Magical Damage(MAG),220,170,200,Area Enemies,0,0,0,600,150,13000,25,0,1000,0,50,Lightning,10,4,10,0,0,0,0,0
+    Right Tentacle,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+    Right Tentacle,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,12000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+    Right Tentacle,            Healer,12,0,38,Restore HP(MEN),0,5000,100,One Ally,0,0,0,0,150,13000,12,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+     Left Tentacle,            Attack,0,0,1,Physical Damage(STR),700,280,160,Enemy Line,1,294,150,200,60,9999,0,0,2500,5000,100,Blizzard,7,0,0,0,0,0,0,0
+     Left Tentacle,              Zap!,24,0,1,Magical Damage(MAG),220,170,200,Area Enemies,0,0,0,600,150,13000,25,0,1000,0,50,Lightning,10,4,10,0,0,0,0,0
+     Left Tentacle,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+     Left Tentacle,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,12000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+     Left Tentacle,            Healer,12,0,38,Restore HP(MEN),0,5000,100,One Ally,0,0,0,0,150,13000,12,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+     Valmar's Body,           Suck In,0,15,2,Special,0,0,0,All Enemies,0,0,0,0,60,9999,0,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+     Valmar's Body,              Zap!,24,0,1,Magical Damage(MAG),220,170,200,Area Enemies,0,0,0,600,150,13000,25,0,1000,0,50,Lightning,10,4,10,0,0,0,0,0
+     Valmar's Body,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+     Valmar's Body,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,12000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+     Valmar's Body,            Healer,12,0,38,Restore HP(MEN),0,5000,100,One Ally,0,0,0,0,150,13000,12,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+          Left Eye,             Burn!,6,0,1,Magical Damage(MAG),225,280,100,One Enemy,0,0,0,0,90,11000,1,0,0,0,80,Fire,10,0,0,0,0,0,0,0
+          Left Eye,         Burnflame,16,0,7,Magical Damage(MAG),225,360,130,Area Enemies,0,0,0,600,120,13000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+          Left Eye,        Burnstrike,20,0,9,Magical Damage(MAG),225,430,150,One Enemy,0,0,0,0,150,13000,3,1,0,0,120,Fire,10,0,0,0,0,0,0,0
+          Left Eye,            Tremor,15,0,1,Magical Damage(MAG),225,320,120,Area Enemies,0,0,0,600,120,12000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+          Left Eye,             Shhh!,10,0,7,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,90,12000,9,0,0,0,0,Fire,0,32,50,0,0,0,0,0
+          Left Eye,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,12000,29,0,0,0,0,Fire,0,0,0,-1,0,0,0,0
+          Left Eye,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,60,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+          Left Eye,           Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,60,12000,39,0,0,0,0,Fire,0,0,0,0,0,0,-1,0
+          Left Eye,              Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,90,11000,38,0,0,0,0,Fire,0,0,0,0,0,-1,0,0
+          Left Eye,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-1,0,0,0,0
+         Right Eye,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-2,0,0,0,0
+         Right Eye,          Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,11000,19,0,0,0,0,Fire,0,0,0,0,-1,0,0,0
+         Right Eye,           Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,90,12000,39,0,0,0,0,Fire,0,0,0,0,0,0,-1,0
+         Right Eye,              Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,11000,38,0,0,0,0,Fire,0,0,0,0,0,-2,0,0
+         Right Eye,            Snooze,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,150,15000,10,0,0,0,0,Fire,0,2,30,0,0,0,0,0
+         Right Eye,              WOW!,5,0,38,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,90,12000,24,0,0,0,0,Fire,0,0,0,1,0,0,0,0
+         Right Eye,           Diggin',4,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,90,11000,18,0,0,0,0,Fire,0,0,0,0,1,0,0,0
+         Right Eye,            Speedy,7,0,26,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,120,12000,31,0,0,0,0,Fire,0,0,0,0,0,1,0,0
+         Right Eye,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,60,11000,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+         Right Eye,              Heal,6,0,10,Restore HP(MEN),0,2000,100,One Ally,0,0,0,0,120,11000,11,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+    Valmar's Heart,            Attack,0,0,1,Physical Damage(STR),225,260,250,One Enemy,1,1,280,200,60,9999,0,1,0,0,150,Fire,0,0,0,0,0,0,0,0
+    Valmar's Heart,       Avici Slash,0,42,2,Magical Damage(MAG),225,290,300,All Enemies,0,0,0,0,180,15000,0,0,3000,0,50,Fire,0,0,0,0,0,0,0,0
+    Valmar's Heart,      Aorta Pummel,0,24,1,Physical Damage(STR),225,520,200,One Enemy,0,0,0,0,120,12000,0,1,1000,3000,80,Fire,0,0,0,0,0,0,0,0
+    Valmar's Heart,    Black Fog Spew,0,35,1,Physical Damage(STR),225,310,280,All Enemies,0,0,0,0,150,13000,0,0,1500,0,120,Fire,0,16,25,0,0,0,0,0
+    Valmar's Heart,             Shhh!,10,0,7,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,90,12000,9,0,0,0,0,Fire,0,32,50,0,0,0,0,0
+    Valmar's Heart,            Attack,0,0,1,Physical Damage(STR),270,380,200,One Enemy,1,1,280,200,60,9999,0,1,0,0,150,Fire,0,0,0,0,0,0,0,0
+    Valmar's Heart,             Quake,40,0,2,Magical Damage(MAG),270,670,150,All Enemies,0,0,0,0,150,13000,17,0,2000,0,80,Earth,10,0,0,0,0,0,0,0
+    Valmar's Heart,      Aorta Pummel,0,24,1,Physical Damage(STR),270,450,460,One Enemy,0,0,0,0,90,12000,0,0,3000,5000,80,Fire,0,0,0,0,0,0,0,0
+    Valmar's Heart,    Black Fog Spew,0,35,1,Physical Damage(STR),270,340,320,All Enemies,0,0,0,0,120,13000,21,0,500,0,120,Fire,0,16,40,0,0,0,0,0
+    Valmar's Heart,             Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,0,120,12000,29,0,0,0,0,Fire,0,0,0,-1,0,0,0,0
+               Bit,            Attack,0,0,1,Physical Damage(STR),240,320,140,One Enemy,1,40,100,0,30,9999,0,0,0,0,80,Fire,0,0,0,0,0,0,0,0
+               Bit,    Desperate Blow,0,56,6,Physical Damage(STR),240,430,280,One Enemy,0,0,0,0,240,15000,0,0,3000,5000,120,Fire,0,0,0,0,0,0,0,0
+               Bit,           Diggin',4,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,11000,18,0,0,0,0,Fire,0,0,0,0,1,0,0,0
+               Bit,            Speedy,7,0,3,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,150,12000,31,0,0,0,0,Fire,0,0,0,0,0,2,0,0
+               Bit,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,90,11000,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+      Egg Guardian,            Attack,0,0,1,Physical Damage(STR),240,320,290,One Enemy,1,220,170,0,60,9999,0,1,1500,3000,120,Wind,7,0,0,0,0,0,0,0
+      Egg Guardian,              WOW!,5,0,3,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,120,12000,24,0,0,0,0,Fire,0,0,0,2,0,0,0,0
+      Egg Guardian,           Diggin',4,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,120,11000,18,0,0,0,0,Fire,0,0,0,0,1,0,0,0
+      Egg Guardian,            Speedy,7,0,3,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,150,12000,31,0,0,0,0,Fire,0,0,0,0,0,2,0,0
+      Egg Guardian,            Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,0,90,11000,8,0,0,0,0,Fire,0,0,0,0,0,0,1,0
+       Middle Head,   Starving Tongue,0,55,2,Magical Damage(MAG),275,780,100,All Enemies,0,0,0,0,90,9999,0,1,0,0,100,Fire,0,0,0,0,0,0,0,0
+       Middle Head, Destruction Light,0,40,1,Physical Damage(STR),275,640,250,Enemy Line,0,0,0,300,120,13000,0,0,2000,0,100,Fire,0,0,0,0,0,0,0,0
+       Middle Head,       Hammer Claw,0,49,7,Physical Damage(STR),275,310,260,Area Enemies,0,0,0,400,90,13000,0,1,3000,0,300,Fire,0,0,0,0,0,0,0,0
+       Middle Head,   Day of Judgment,0,63,2,Magical Damage(MAG),275,430,350,All Enemies,0,0,0,0,150,18000,0,0,500,0,50,Fire,0,0,0,0,0,0,0,23
+       Middle Head,            Vanish,0,16,2,Status Change,0,0,0,Unknown,0,0,0,0,120,15000,57,0,0,0,0,Fire,0,0,0,0,0,0,0,22
+        Right Head,  Spellbinding Eye,0,60,5,Special,0,600,0,One Enemy,0,0,0,0,150,15000,0,0,0,0,0,Fire,0,0,0,0,0,0,0,14
+        Right Head,            Snooze,6,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,0,120,14000,10,0,0,0,0,Fire,0,2,30,0,0,0,0,0
+        Right Head,             Shhh!,10,0,7,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,90,12000,9,0,0,0,0,Fire,0,32,60,0,0,0,0,0
+        Right Head,             Craze,10,0,7,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,0,400,90,13000,32,0,0,0,0,Fire,0,8,40,0,0,0,0,0
+        Right Head,          Alhealer,18,0,2,Restore HP(MEN),0,1200,100,All Allies,0,0,0,0,180,13000,14,0,0,0,0,Fire,0,0,0,0,0,0,0,0
+         Left Head,     Avenging Claw,0,42,9,Magical Damage(MAG),275,750,200,One Enemy,0,0,0,0,150,16000,0,0,4500,0,0,Fire,0,0,0,0,0,0,0,0
+         Left Head,         Burnflame,16,0,7,Magical Damage(MAG),275,170,250,Area Enemies,0,0,0,600,90,12000,2,0,0,0,50,Fire,10,0,0,0,0,0,0,0
+         Left Head,              Howl,9,0,1,Magical Damage(MAG),275,130,225,Area Enemies,0,0,0,600,60,11000,5,0,1000,0,100,Wind,10,0,0,0,0,0,0,0
+         Left Head,            Tremor,15,0,4,Magical Damage(MAG),275,320,150,Area Enemies,0,0,0,600,120,13000,16,0,2000,0,50,Earth,10,0,0,0,0,0,0,0
+         Left Head,           Crackle,1,0,1,Magical Damage(MAG),275,250,275,One Enemy,0,0,0,0,90,13000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+       Valmar Core,            Attack,0,0,4,Physical Damage(STR),275,350,180,One Enemy,1,284,190,0,30,9999,0,0,0,0,100,Fire,0,16,5,0,0,0,0,0
+       Valmar Core,         Dead Claw,0,28,35,Physical Damage(STR),275,470,210,One Enemy,0,0,0,0,60,12000,0,1,1000,3000,150,Fire,0,64,80,0,0,0,0,0
+       Valmar Core,       Hammer Claw,0,49,7,Physical Damage(STR),275,310,260,Area Enemies,0,0,0,400,90,13000,0,1,3000,0,300,Fire,0,0,0,0,0,0,0,0
+       Valmar Core,   Day of Judgment,0,63,2,Magical Damage(MAG),275,430,350,All Enemies,0,0,0,0,150,18000,0,0,500,0,50,Fire,0,0,0,0,0,0,0,23
+       Valmar Core,            Vanish,0,16,2,Status Change,0,0,0,Unknown,0,0,0,0,120,15000,57,0,0,0,0,Fire,0,0,0,0,0,0,0,22
+       Zera Valmar,           Crackle,1,0,1,Magical Damage(MAG),280,380,275,One Enemy,0,0,0,0,30,12000,36,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+       Zera Valmar,             Poizn,1,0,7,Magical Damage(MAG),280,540,100,Area Enemies,0,0,0,600,30,13000,30,0,0,0,0,Fire,0,1,100,0,0,0,0,0
+       Zera Valmar,          BA-BOOM!,1,0,2,Magical Damage(MAG),280,630,200,All Enemies,0,0,0,0,60,18000,22,1,2000,0,150,Fire,0,0,0,0,0,0,0,0
+       Zera Valmar,            GadZap,1,0,9,Magical Damage(MAG),280,720,300,One Enemy,0,0,0,0,60,16000,27,1,1500,0,80,Lightning,10,4,70,0,0,0,0,0
+       Zera Valmar,     Breath of God,1,0,3,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,0,30,11000,24,0,0,0,0,Fire,0,0,0,1,1,1,1,0

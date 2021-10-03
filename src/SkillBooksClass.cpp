@@ -129,10 +129,10 @@ void SkillBooksClass::outputToCSV() {
 	if (!output.is_open())
 		return;
 
-	output << "skillbook";
+	output << "Skillbook";
 
 	for (size_t i = 0; i < 6; i++)
-		output << ",skill,starting level,level required,???";
+		output << ",Skill,Starting Level,Level Required,???";
 	output << '\n';
 
 	for (size_t i = 0; i < this->_skillbooks.size(); i++) {

@@ -129,10 +129,10 @@ void SpecialsClass::outputToCSV() {
 	if (!output.is_open())
 		return;
 
-	output << "character";
+	output << "Character";
 
 	for (size_t i = 0; i < 6; i++)
-		output << ",move,starting level,story flag";
+		output << ",Move,Starting Level,Story Flag";
 	output << '\n';
 
 	for (size_t i = 0; i < this->_specials.size(); i++) {

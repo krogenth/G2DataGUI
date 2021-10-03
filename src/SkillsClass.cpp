@@ -152,8 +152,8 @@ void SkillsClass::outputToCSV() {
 	if (!output.is_open())
 		return;
 
-	output << "name,cost type,cost type,base HP inc,base MP inc,base SP inc,base STR inc,base VIT inc,base ACT inc,base MOV inc,base MAG inc,base MEN inc,???,???,???,???,???,"
-		<< "fire pow inc %,wind pow inc %,earth pow inc %,blizzard pow inc %,water pow inc %,explosion pow inc %,forest pow inc %,special,cost Lv1,cost Lv2,cost Lv3,cost Lv4,cost Lv5,multiplier,description\n";
+	output << "Name,Cost Type,Cost Type,Base HP Inc,Base MP Inc,Base SP Inc,Base STR Inc,Base VIT Inc,Base ACT Inc,Base MOV Inc,Base MAG Inc,Base MEN Inc,???,???,???,???,???,"
+		<< "Fire Pow Inc %,Wind Pow Inc %,Earth Pow Inc %,Blizzard Pow Inc %,Water Pow Inc %,Explosion Pow Inc %,Forest Pow Inc %,Special,Cost Lv1,Cost Lv2,Cost Lv3,Cost Lv4,Cost Lv5,Multiplier,Description\n";
 
 	for (const auto& val : this->_skills) {
 
