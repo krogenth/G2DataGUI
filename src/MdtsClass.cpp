@@ -864,7 +864,7 @@ void MdtsClass::outputToCSV() {
 
 	for (const auto& val : this->_mdts) {
 
-		output << val.filename << ',' << val.mapname << '\n';
+		output << val.filename << ",\"" << val.mapname << "\"\n";
 
 	}
 

@@ -1,262 +1,262 @@
 File,Map
-.\content\data\afs\map\1000\1000.mdt,
-.\content\data\afs\map\1004\1004.mdt,
-.\content\data\afs\map\1010\1010.mdt,EAST SILESIA
-.\content\data\afs\map\1020\1020.mdt,ISLAND OF GARLAN & VICINITY
-.\content\data\afs\map\1030\1030.mdt,GREAT CLEFT ISLAND OF ARACHNA
-.\content\data\afs\map\1040\1040.mdt,EAST SILESIA
-.\content\data\afs\map\2000\2000.mdt,CARBO VILLAGE
-.\content\data\afs\map\2001\2001.mdt,CARBO VILLAGE
-.\content\data\afs\map\2010\2010.mdt,CARBO INN
-.\content\data\afs\map\2020\2020.mdt,CARBO GENERAL STORE
-.\content\data\afs\map\2030\2030.mdt,CARBO, CHURCH OF GRANAS
-.\content\data\afs\map\20a0\20a0.mdt,CARBO, HOUSE 1
-.\content\data\afs\map\20b0\20b0.mdt,CARBO, HOUSE 2
-.\content\data\afs\map\20c0\20c0.mdt,CARBO, HOUSE 3
-.\content\data\afs\map\20d0\20d0.mdt,CARBO, HOUSE 4
-.\content\data\afs\map\2400\2400.mdt,THE BLACK FOREST 1
-.\content\data\afs\map\2410\2410.mdt,THE BLACK FOREST 2
-.\content\data\afs\map\2801\2801.mdt,GARMIA TOWER
-.\content\data\afs\map\2811\2811.mdt,GARMIA TOWER, 1ST FLOOR
-.\content\data\afs\map\2821\2821.mdt,Garmia Tower, 2nd Floor
-.\content\data\afs\map\2831\2831.mdt,GARMIA TOWER, 3RD FLOOR
-.\content\data\afs\map\28f1\28f1.mdt,GARMIA TOWER, TOP FLOOR
-.\content\data\afs\map\2a00\2a00.mdt,
-.\content\data\afs\map\2c00\2c00.mdt,INOR MOUNTAINS 1
-.\content\data\afs\map\2c10\2c10.mdt,INOR MOUNTAINS 2
-.\content\data\afs\map\3000\3000.mdt,AGEAR TOWN
-.\content\data\afs\map\3010\3010.mdt,AGEAR INN
-.\content\data\afs\map\3014\3014.mdt,AGEAR INN, ROOM 1
-.\content\data\afs\map\3018\3018.mdt,AGEAR INN, ROOM 2
-.\content\data\afs\map\301c\301c.mdt,AGEAR INN, CORRIDOR
-.\content\data\afs\map\3020\3020.mdt,AGEAR, GUARDS' TENT
-.\content\data\afs\map\3400\3400.mdt,DURHAM CAVE 1
-.\content\data\afs\map\3410\3410.mdt,DURHAM CAVE 2
-.\content\data\afs\map\34f0\34f0.mdt,DURHAM CAVE DEPTHS
-.\content\data\afs\map\3800\3800.mdt,BAKED PLAINS 1
-.\content\data\afs\map\3810\3810.mdt,BAKED PLAINS 2
-.\content\data\afs\map\3820\3820.mdt,BAKED PLAINS 3
-.\content\data\afs\map\3c00\3c00.mdt,LILIGUE CITY
-.\content\data\afs\map\3c02\3c02.mdt,LILIGUE CITY
-.\content\data\afs\map\3c04\3c04.mdt,LILIGUE, SKYWAY STATION
-.\content\data\afs\map\3c06\3c06.mdt,LILIGUE, SKYWAY STATION
-.\content\data\afs\map\3c10\3c10.mdt,LILIGUE INN
-.\content\data\afs\map\3c20\3c20.mdt,LILIGUE GENERAL STORE
-.\content\data\afs\map\3c30\3c30.mdt,LILIGUE, ENGINEER'S HOUSE
-.\content\data\afs\map\3c40\3c40.mdt,LILIGUE, GADAN'S HOUSE
-.\content\data\afs\map\3c80\3c80.mdt,LILIGUE, CHURCH, DOWNSTAIRS
-.\content\data\afs\map\3c84\3c84.mdt,LILIGUE, CHURCH, UPSTAIRS
-.\content\data\afs\map\3ca0\3ca0.mdt,LILIGUE, HOUSE 1
-.\content\data\afs\map\3cb0\3cb0.mdt,LILIGUE, HOUSE 2
-.\content\data\afs\map\3cc0\3cc0.mdt,LILIGUE, HOUSE 3
-.\content\data\afs\map\3cd0\3cd0.mdt,LILIGUE, HOUSE 4
-.\content\data\afs\map\3e00\3e00.mdt,
-.\content\data\afs\map\3e10\3e10.mdt,
-.\content\data\afs\map\4000\4000.mdt,LILIGUE CAVE 1
-.\content\data\afs\map\4010\4010.mdt,LILIGUE CAVE 2
-.\content\data\afs\map\4020\4020.mdt,LILIGUE CAVE, CAVERNS
-.\content\data\afs\map\4030\4030.mdt,LILIGUE CAVE 3
-.\content\data\afs\map\40f0\40f0.mdt,LILIGUE CAVE, TEMPLE RUINS
-.\content\data\afs\map\4400\4400.mdt,LUMIR FOREST, CRASH SITE
-.\content\data\afs\map\4410\4410.mdt,LUMIR FOREST
-.\content\data\afs\map\4420\4420.mdt,LUMIR FOREST, CAVERN 1
-.\content\data\afs\map\4430\4430.mdt,LUMIR FOREST, CAVERN 2
-.\content\data\afs\map\4800\4800.mdt,THE GARDEN OF DREAMS
-.\content\data\afs\map\4810\4810.mdt,THE GARDEN OF DREAMS
-.\content\data\afs\map\4c00\4c00.mdt,MIRUMU VILLAGE
-.\content\data\afs\map\4c10\4c10.mdt,MIRUMU INN
-.\content\data\afs\map\4c14\4c14.mdt,MIRUMU INN, GUESTROOM
-.\content\data\afs\map\4c18\4c18.mdt,MIRUMU INN, MANAGER'S ROOM
-.\content\data\afs\map\4c20\4c20.mdt,MIRUMU GENERAL STORE
-.\content\data\afs\map\4c30\4c30.mdt,MIRUMU TOWN HALL
-.\content\data\afs\map\4c40\4c40.mdt,MIRUMU VILLAGE CHIEF'S HOUSE
-.\content\data\afs\map\4c50\4c50.mdt,MIRUMU, SANDRA'S HOUSE
-.\content\data\afs\map\4c60\4c60.mdt,MIRUMU, SHED
-.\content\data\afs\map\4ca0\4ca0.mdt,MIRUMU, HOUSE 1
-.\content\data\afs\map\4cb0\4cb0.mdt,MIRUMU, HOUSE 2
-.\content\data\afs\map\4cc0\4cc0.mdt,MIRUMU, HOUSE 3
-.\content\data\afs\map\5000\5000.mdt,MYSTERIOUS FISSURE, UNDERGROUND
-.\content\data\afs\map\5010\5010.mdt,MYSTERIOUS FISSURE, DEPTHS
-.\content\data\afs\map\5020\5020.mdt,AIRA'S SPACE, 1
-.\content\data\afs\map\5030\5030.mdt,AIRA'S SPACE, 2
-.\content\data\afs\map\5040\5040.mdt,RYUDO'S DREAM
-.\content\data\afs\map\50f0\50f0.mdt,AIRA'S SPACE, ROOM OF SOLITUDE
-.\content\data\afs\map\5400\5400.mdt,St. HEIM MOUNTAINS, BASE
-.\content\data\afs\map\5410\5410.mdt,St. HEIM MOUNTAINS, HALFWAY UP
-.\content\data\afs\map\5420\5420.mdt,St. HEIM MOUNTAINS, CAVERNS
-.\content\data\afs\map\5430\5430.mdt,St. HEIM MOUNTAINS, WATERFALL
-.\content\data\afs\map\5440\5440.mdt,St. HEIM MOUNTAINS, PILGRIM ROAD
-.\content\data\afs\map\5800\5800.mdt,St. HEIM PAPAL STATE
-.\content\data\afs\map\5810\5810.mdt,St. HEIM INN
-.\content\data\afs\map\5820\5820.mdt,St. HEIM GENERAL STORE
-.\content\data\afs\map\5824\5824.mdt,St. HEIM GENERAL STORE
-.\content\data\afs\map\5830\5830.mdt,St. HEIM LIBRARY
-.\content\data\afs\map\5840\5840.mdt,St. HEIM BAKERY
-.\content\data\afs\map\5850\5850.mdt,St. HEIM, PASTURES
-.\content\data\afs\map\58a0\58a0.mdt,St. HEIM, HOUSE 1, DOWNSTAIRS
-.\content\data\afs\map\58a4\58a4.mdt,St. HEIM, HOUSE 1, UPSTAIRS
-.\content\data\afs\map\58b0\58b0.mdt,St. HEIM, HOUSE 2
-.\content\data\afs\map\58c0\58c0.mdt,St. HEIM, HOUSE 3
-.\content\data\afs\map\58d0\58d0.mdt,St. HEIM, HOUSE 4
-.\content\data\afs\map\5c00\5c00.mdt,GRANAS CATHEDRAL
-.\content\data\afs\map\5c01\5c01.mdt,----
-.\content\data\afs\map\5c10\5c10.mdt,CATHEDRAL LOBBY
-.\content\data\afs\map\5c14\5c14.mdt,CATHEDRAL, GUESTROOM CORRIDOR
-.\content\data\afs\map\5c20\5c20.mdt,CATHEDRAL, AUDIENCE CHAMBER
-.\content\data\afs\map\5c30\5c30.mdt,CATHEDRAL, POPE'S ROOM
-.\content\data\afs\map\5c40\5c40.mdt,CATHEDRAL, FORBIDDEN ROOM
-.\content\data\afs\map\5c50\5c50.mdt,CATHEDRAL BALCONY
-.\content\data\afs\map\5c68\5c68.mdt,CATHEDRAL GUESTROOM
-.\content\data\afs\map\5c70\5c70.mdt,CATHEDRAL, HOLY ROOM
-.\content\data\afs\map\5c80\5c80.mdt,CATHEDRAL, ROOM OF TRUTH
-.\content\data\afs\map\5c90\5c90.mdt,CATHEDRAL, POPE'S ROOM CORRIDOR
-.\content\data\afs\map\5cb0\5cb0.mdt,CATHEDRAL LIBRARY
-.\content\data\afs\map\5cc0\5cc0.mdt,CATHEDRAL, ORO'S ROOM
-.\content\data\afs\map\5e00\5e00.mdt,
-.\content\data\afs\map\6000\6000.mdt,RAUL HILLS 1
-.\content\data\afs\map\6010\6010.mdt,RAUL HILLS 2
-.\content\data\afs\map\6400\6400.mdt,CYRUM KINGDOM
-.\content\data\afs\map\6402\6402.mdt,CYRUM KINGDOM
-.\content\data\afs\map\6408\6408.mdt,CYRUM KINGDOM, PORT
-.\content\data\afs\map\6410\6410.mdt,CYRUM INN, DOWNSTAIRS
-.\content\data\afs\map\6414\6414.mdt,CYRUM INN, UPSTAIRS
-.\content\data\afs\map\641c\641c.mdt,CYRUM INN, CORRIDOR
-.\content\data\afs\map\6420\6420.mdt,CYRUM GENERAL STORE
-.\content\data\afs\map\6430\6430.mdt,CYRUM KINGDOM, INFORMANT'S TENT
-.\content\data\afs\map\64a0\64a0.mdt,CYRUM, HOUSE 1, DOWNSTAIRS
-.\content\data\afs\map\64a4\64a4.mdt,CYRUM, HOUSE 1, UPSTAIRS
-.\content\data\afs\map\64b0\64b0.mdt,CYRUM, HOUSE 2, DOWNSTAIRS
-.\content\data\afs\map\64b4\64b4.mdt,CYRUM, HOUSE 2, UPSTAIRS
-.\content\data\afs\map\64c0\64c0.mdt,CYRUM, HOUSE 3
-.\content\data\afs\map\64d0\64d0.mdt,CYRUM, HOUSE 4
-.\content\data\afs\map\6600\6600.mdt,CYRUM CASTLE, SECRET PASSAGE
-.\content\data\afs\map\6800\6800.mdt,CYRUM CASTLE, FRONT GATE
-.\content\data\afs\map\6810\6810.mdt,CYRUM CASTLE, DOWNSTAIRS LOBBY
-.\content\data\afs\map\6820\6820.mdt,CYRUM CASTLE, AUDIENCE CHAMBER
-.\content\data\afs\map\6830\6830.mdt,CYRUM CASTLE, DOWNSTAIRS HALL
-.\content\data\afs\map\6840\6840.mdt,CYRUM CASTLE, ROOM 1
-.\content\data\afs\map\6848\6848.mdt,CYRUM CASTLE, ROOM 2
-.\content\data\afs\map\6880\6880.mdt,CYRUM CASTLE, KING'S CHAMBER
-.\content\data\afs\map\6890\6890.mdt,CYRUM CASTLE, KING'S OFFICE
-.\content\data\afs\map\68a0\68a0.mdt,CASTLE, ROOM OF DEMON-SEALING
-.\content\data\afs\map\68b0\68b0.mdt,CYRUM CASTLE, BACKYARD
-.\content\data\afs\map\68c0\68c0.mdt,CYRUM CASTLE, AUDIENCE SQUARE
-.\content\data\afs\map\6c00\6c00.mdt,UNDERGROUND PLANT 1
-.\content\data\afs\map\6c10\6c10.mdt,UNDERGROUND PLANT 2
-.\content\data\afs\map\6c20\6c20.mdt,UNDERGROUND PLANT 3
-.\content\data\afs\map\6cf0\6cf0.mdt,UNDERGROUND PLANT, CONTROL ROOM
-.\content\data\afs\map\6cf4\6cf4.mdt,UNDERGROUND PLANT, CONTROL ROOM
-.\content\data\afs\map\7000\7000.mdt,CYRUM KINGDOM
-.\content\data\afs\map\7010\7010.mdt,CYRUM INN
-.\content\data\afs\map\7014\7014.mdt,CYRUM INN, GUESTROOM
-.\content\data\afs\map\701c\701c.mdt,CYRUM INN, CORRIDOR
-.\content\data\afs\map\7020\7020.mdt,CYRUM GENERAL STORE
-.\content\data\afs\map\7400\7400.mdt,THE 50/50, DECK
-.\content\data\afs\map\7410\7410.mdt,THE 50/50, CABIN
-.\content\data\afs\map\7420\7420.mdt,THE 50/50, SLEEPING CABIN
-.\content\data\afs\map\74a0\74a0.mdt,¥ÖÇ¥(Ö¥ÖÇ¥(ô(<ñ‡ó(ïê²
-.\content\data\afs\map\7800\7800.mdt,CECEILE REEF, POINT
-.\content\data\afs\map\7820\7820.mdt,CECEILE REEF 1
-.\content\data\afs\map\7830\7830.mdt,CECEILE REEF 2
-.\content\data\afs\map\7c00\7c00.mdt,GARLAN VILLAGE
-.\content\data\afs\map\7c01\7c01.mdt,----
-.\content\data\afs\map\7c10\7c10.mdt,GARLAN INN
-.\content\data\afs\map\7c14\7c14.mdt,GARLAN INN, ROOM 1
-.\content\data\afs\map\7c18\7c18.mdt,GARLAN INN, ROOM 2
-.\content\data\afs\map\7c1c\7c1c.mdt,GARLAN INN, CORRIDOR
-.\content\data\afs\map\7c20\7c20.mdt,GARLAN GENERAL STORE
-.\content\data\afs\map\7c30\7c30.mdt,GARLAN, VILLAGE CHIEF'S HOUSE
-.\content\data\afs\map\7ca0\7ca0.mdt,GARLAN, HOUSE 1
-.\content\data\afs\map\7cb0\7cb0.mdt,GARLAN, HOUSE 2
-.\content\data\afs\map\7cc0\7cc0.mdt,GARLAN, HOUSE 3
-.\content\data\afs\map\7cd0\7cd0.mdt,GARLAN, HOUSE 4
-.\content\data\afs\map\8000\8000.mdt,GRAIL MOUNTAIN ROAD 1
-.\content\data\afs\map\8010\8010.mdt,GRAIL MOUNTAIN ROAD 2
-.\content\data\afs\map\8020\8020.mdt,GRAIL MOUNTAIN, SHRINE SQUARE
-.\content\data\afs\map\8030\8030.mdt,GRAIL MOUNTAIN, SHRINE
-.\content\data\afs\map\8040\8040.mdt,GRAIL MOUNTAIN ROAD 3
-.\content\data\afs\map\8050\8050.mdt,GRAIL MTN., PLATEAU OF MEMORIES
-.\content\data\afs\map\8051\8051.mdt,GRAIL MTN., PLATEAU OF MEMORIES
-.\content\data\afs\map\8060\8060.mdt,RYUDO'S PAST, BLACK HORNS APPEAR
-.\content\data\afs\map\8400\8400.mdt,RYUDO SPIRIT WORLD, BLACK SPACE
-.\content\data\afs\map\8800\8800.mdt,GHOSS FOREST, WEST 1
-.\content\data\afs\map\8810\8810.mdt,GHOSS FOREST, WEST 2
-.\content\data\afs\map\8820\8820.mdt,GHOSS FOREST, EAST 1
-.\content\data\afs\map\8830\8830.mdt,GHOSS FOREST, EAST 2
-.\content\data\afs\map\8c00\8c00.mdt,NANAN VILLAGE
-.\content\data\afs\map\8c10\8c10.mdt,NANAN INN
-.\content\data\afs\map\8c20\8c20.mdt,NANAN GENERAL STORE
-.\content\data\afs\map\8c30\8c30.mdt,NANAN, ELDER'S HOUSE
-.\content\data\afs\map\8c40\8c40.mdt,NANAN, MAREG'S HOUSE
-.\content\data\afs\map\8c50\8c50.mdt,NANAN, HUT OF TRIALS
-.\content\data\afs\map\8c60\8c60.mdt,NANAN, WEAVING HUT
-.\content\data\afs\map\8c70\8c70.mdt,NANAN SPRING
-.\content\data\afs\map\8ca0\8ca0.mdt,NANAN, HOUSE 1
-.\content\data\afs\map\8cb0\8cb0.mdt,NANAN, HOUSE 2
-.\content\data\afs\map\8cc0\8cc0.mdt,NANAN, HOUSE 3
-.\content\data\afs\map\8e00\8e00.mdt,HUT OF TRIALS, UNDERGROUND
-.\content\data\afs\map\9000\9000.mdt,THE GREAT RIFT, 1
-.\content\data\afs\map\9010\9010.mdt,THE GREAT RIFT, 2
-.\content\data\afs\map\9020\9020.mdt,THE GREAT RIFT, 3
-.\content\data\afs\map\9030\9030.mdt,THE GREAT RIFT, 4
-.\content\data\afs\map\9200\9200.mdt,DEMON'S LAW
-.\content\data\afs\map\92f0\92f0.mdt,DEMON'S LAW, CONTROL ROOM
-.\content\data\afs\map\9400\9400.mdt,GRANASABER, OUTSIDE VIEW
-.\content\data\afs\map\9410\9410.mdt,GRANASABER, CONTROL ROOM
-.\content\data\afs\map\9420\9420.mdt,GRANASABER, CABIN
-.\content\data\afs\map\9800\9800.mdt,VALMAR'S BODY, POINT OF ENTRY
-.\content\data\afs\map\9810\9810.mdt,VALMAR'S BODY, TENTACLE PASSAGE
-.\content\data\afs\map\9820\9820.mdt,VALMAR'S BODY, VEIN PASSAGE
-.\content\data\afs\map\9830\9830.mdt,VALMAR'S BODY, ARTERY PASSAGE
-.\content\data\afs\map\9840\9840.mdt,VALMAR'S BODY, SPHERICAL ROOM
-.\content\data\afs\map\98f0\98f0.mdt,VALMAR'S BODY, CORE
-.\content\data\afs\map\9c00\9c00.mdt,VALMAR'S MOON, SURFACE
-.\content\data\afs\map\9c04\9c04.mdt,VALMAR'S MOON, SURFACE
-.\content\data\afs\map\9c10\9c10.mdt,VALMAR'S MOON, 1
-.\content\data\afs\map\9c20\9c20.mdt,VALMAR'S MOON, 2
-.\content\data\afs\map\9c30\9c30.mdt,VALMAR'S MOON, 3
-.\content\data\afs\map\9c40\9c40.mdt,VALMAR'S MOON, EGGSHELL
-.\content\data\afs\map\9cf0\9cf0.mdt,VALMAR'S WOMB
-.\content\data\afs\map\a000\a000.mdt,CYRUM KINGDOM, SOUTH
-.\content\data\afs\map\a004\a004.mdt,CYRUM ROYAL MAUSOLEUM
-.\content\data\afs\map\a010\a010.mdt,BIRTHPLACE OF THE GODS, 1
-.\content\data\afs\map\a020\a020.mdt,BIRTHPLACE OF THE GODS, 2
-.\content\data\afs\map\a030\a030.mdt,BIRTHPLACE OF THE GODS, 3
-.\content\data\afs\map\a040\a040.mdt,BIRTHPLACE OF GODS, CONTROL ROOM
-.\content\data\afs\map\a050\a050.mdt,BIRTHPLACE OF GODS, OPEN SYSTEM
-.\content\data\afs\map\a060\a060.mdt,BIRTHPLACE OF GODS, OPEN THOUGHT
-.\content\data\afs\map\a400\a400.mdt,NEW VALMAR, 1
-.\content\data\afs\map\a410\a410.mdt,NEW VALMAR, 2
-.\content\data\afs\map\a420\a420.mdt,NEW VALMAR, 3
-.\content\data\afs\map\a430\a430.mdt,NEW VALMAR, CORE
-.\content\data\afs\map\a434\a434.mdt,NEW VALMAR, CORE
-.\content\data\afs\map\a4f0\a4f0.mdt,NEW VALMAR, ROOM OF CHAOS
-.\content\data\afs\map\a4f4\a4f4.mdt,NEW VALMAR, ROOM OF CHAOS
-.\content\data\afs\map\a4f8\a4f8.mdt,NEW VALMAR, ROOM OF CHAOS
-.\content\data\afs\map\a4fc\a4fc.mdt,NEW VALMAR, ROOM OF CHAOS
-.\content\data\afs\map\d000\d000.mdt,
-.\content\data\afs\map\d020\d020.mdt,RETURNING THE STOLEN ARTICLE
-.\content\data\afs\map\d030\d030.mdt,WITT FOREST PATH
-.\content\data\afs\map\d400\d400.mdt,JET-BLACK SPACE 1
-.\content\data\afs\map\d410\d410.mdt,JET-BLACK SPACE 2
-.\content\data\afs\map\d800\d800.mdt,RYUDO BURIES SOMEONE'S SWORD
-.\content\data\afs\map\d802\d802.mdt,MIRUMU VILLAGE
-.\content\data\afs\map\d810\d810.mdt,MIRUMU INN
-.\content\data\afs\map\d814\d814.mdt,MIRUMU INN, GUESTROOM
-.\content\data\afs\map\d818\d818.mdt,MIRUMU INN, MANAGER'S ROOM
-.\content\data\afs\map\d820\d820.mdt,íá(Pògó¥ð
-.\content\data\afs\map\d830\d830.mdt,MIRUMU TOWN HALL
-.\content\data\afs\map\d840\d840.mdt,MIRUMU VILLAGE CHIEF'S HOUSE
-.\content\data\afs\map\d850\d850.mdt,MIRUMU, SANDRA'S HOUSE
-.\content\data\afs\map\d8a0\d8a0.mdt,MIRUMU, HOUSE 1
-.\content\data\afs\map\d8b0\d8b0.mdt,MIRUMU, HOUSE 2
-.\content\data\afs\map\d8c0\d8c0.mdt,MIRUMU, HOUSE 3
-.\content\data\afs\map\d8f0\d8f0.mdt,----
-.\content\data\afs\map\e000\e000.mdt,
-.\content\data\afs\map\e010\e010.mdt,RYUDO'S TENT
-.\content\data\afs\map\e020\e020.mdt,
-.\content\data\afs\map\e030\e030.mdt,
-.\content\data\afs\map\e040\e040.mdt,
-.\content\data\afs\map\e050\e050.mdt,
-.\content\data\afs\map\e060\e060.mdt,
-.\content\data\afs\map\e070\e070.mdt,
+.\content\data\afs\map\1000\1000.mdt,""
+.\content\data\afs\map\1004\1004.mdt,""
+.\content\data\afs\map\1010\1010.mdt,"EAST SILESIA"
+.\content\data\afs\map\1020\1020.mdt,"ISLAND OF GARLAN & VICINITY"
+.\content\data\afs\map\1030\1030.mdt,"GREAT CLEFT ISLAND OF ARACHNA"
+.\content\data\afs\map\1040\1040.mdt,"EAST SILESIA"
+.\content\data\afs\map\2000\2000.mdt,"CARBO VILLAGE"
+.\content\data\afs\map\2001\2001.mdt,"CARBO VILLAGE"
+.\content\data\afs\map\2010\2010.mdt,"CARBO INN"
+.\content\data\afs\map\2020\2020.mdt,"CARBO GENERAL STORE"
+.\content\data\afs\map\2030\2030.mdt,"CARBO, CHURCH OF GRANAS"
+.\content\data\afs\map\20a0\20a0.mdt,"CARBO, HOUSE 1"
+.\content\data\afs\map\20b0\20b0.mdt,"CARBO, HOUSE 2"
+.\content\data\afs\map\20c0\20c0.mdt,"CARBO, HOUSE 3"
+.\content\data\afs\map\20d0\20d0.mdt,"CARBO, HOUSE 4"
+.\content\data\afs\map\2400\2400.mdt,"THE BLACK FOREST 1"
+.\content\data\afs\map\2410\2410.mdt,"THE BLACK FOREST 2"
+.\content\data\afs\map\2801\2801.mdt,"GARMIA TOWER"
+.\content\data\afs\map\2811\2811.mdt,"GARMIA TOWER, 1ST FLOOR"
+.\content\data\afs\map\2821\2821.mdt,"Garmia Tower, 2nd Floor"
+.\content\data\afs\map\2831\2831.mdt,"GARMIA TOWER, 3RD FLOOR"
+.\content\data\afs\map\28f1\28f1.mdt,"GARMIA TOWER, TOP FLOOR"
+.\content\data\afs\map\2a00\2a00.mdt,""
+.\content\data\afs\map\2c00\2c00.mdt,"INOR MOUNTAINS 1"
+.\content\data\afs\map\2c10\2c10.mdt,"INOR MOUNTAINS 2"
+.\content\data\afs\map\3000\3000.mdt,"AGEAR TOWN"
+.\content\data\afs\map\3010\3010.mdt,"AGEAR INN"
+.\content\data\afs\map\3014\3014.mdt,"AGEAR INN, ROOM 1"
+.\content\data\afs\map\3018\3018.mdt,"AGEAR INN, ROOM 2"
+.\content\data\afs\map\301c\301c.mdt,"AGEAR INN, CORRIDOR"
+.\content\data\afs\map\3020\3020.mdt,"AGEAR, GUARDS' TENT"
+.\content\data\afs\map\3400\3400.mdt,"DURHAM CAVE 1"
+.\content\data\afs\map\3410\3410.mdt,"DURHAM CAVE 2"
+.\content\data\afs\map\34f0\34f0.mdt,"DURHAM CAVE DEPTHS"
+.\content\data\afs\map\3800\3800.mdt,"BAKED PLAINS 1"
+.\content\data\afs\map\3810\3810.mdt,"BAKED PLAINS 2"
+.\content\data\afs\map\3820\3820.mdt,"BAKED PLAINS 3"
+.\content\data\afs\map\3c00\3c00.mdt,"LILIGUE CITY"
+.\content\data\afs\map\3c02\3c02.mdt,"LILIGUE CITY"
+.\content\data\afs\map\3c04\3c04.mdt,"LILIGUE, SKYWAY STATION"
+.\content\data\afs\map\3c06\3c06.mdt,"LILIGUE, SKYWAY STATION"
+.\content\data\afs\map\3c10\3c10.mdt,"LILIGUE INN"
+.\content\data\afs\map\3c20\3c20.mdt,"LILIGUE GENERAL STORE"
+.\content\data\afs\map\3c30\3c30.mdt,"LILIGUE, ENGINEER'S HOUSE"
+.\content\data\afs\map\3c40\3c40.mdt,"LILIGUE, GADAN'S HOUSE"
+.\content\data\afs\map\3c80\3c80.mdt,"LILIGUE, CHURCH, DOWNSTAIRS"
+.\content\data\afs\map\3c84\3c84.mdt,"LILIGUE, CHURCH, UPSTAIRS"
+.\content\data\afs\map\3ca0\3ca0.mdt,"LILIGUE, HOUSE 1"
+.\content\data\afs\map\3cb0\3cb0.mdt,"LILIGUE, HOUSE 2"
+.\content\data\afs\map\3cc0\3cc0.mdt,"LILIGUE, HOUSE 3"
+.\content\data\afs\map\3cd0\3cd0.mdt,"LILIGUE, HOUSE 4"
+.\content\data\afs\map\3e00\3e00.mdt,""
+.\content\data\afs\map\3e10\3e10.mdt,""
+.\content\data\afs\map\4000\4000.mdt,"LILIGUE CAVE 1"
+.\content\data\afs\map\4010\4010.mdt,"LILIGUE CAVE 2"
+.\content\data\afs\map\4020\4020.mdt,"LILIGUE CAVE, CAVERNS"
+.\content\data\afs\map\4030\4030.mdt,"LILIGUE CAVE 3"
+.\content\data\afs\map\40f0\40f0.mdt,"LILIGUE CAVE, TEMPLE RUINS"
+.\content\data\afs\map\4400\4400.mdt,"LUMIR FOREST, CRASH SITE"
+.\content\data\afs\map\4410\4410.mdt,"LUMIR FOREST"
+.\content\data\afs\map\4420\4420.mdt,"LUMIR FOREST, CAVERN 1"
+.\content\data\afs\map\4430\4430.mdt,"LUMIR FOREST, CAVERN 2"
+.\content\data\afs\map\4800\4800.mdt,"THE GARDEN OF DREAMS"
+.\content\data\afs\map\4810\4810.mdt,"THE GARDEN OF DREAMS"
+.\content\data\afs\map\4c00\4c00.mdt,"MIRUMU VILLAGE"
+.\content\data\afs\map\4c10\4c10.mdt,"MIRUMU INN"
+.\content\data\afs\map\4c14\4c14.mdt,"MIRUMU INN, GUESTROOM"
+.\content\data\afs\map\4c18\4c18.mdt,"MIRUMU INN, MANAGER'S ROOM"
+.\content\data\afs\map\4c20\4c20.mdt,"MIRUMU GENERAL STORE"
+.\content\data\afs\map\4c30\4c30.mdt,"MIRUMU TOWN HALL"
+.\content\data\afs\map\4c40\4c40.mdt,"MIRUMU VILLAGE CHIEF'S HOUSE"
+.\content\data\afs\map\4c50\4c50.mdt,"MIRUMU, SANDRA'S HOUSE"
+.\content\data\afs\map\4c60\4c60.mdt,"MIRUMU, SHED"
+.\content\data\afs\map\4ca0\4ca0.mdt,"MIRUMU, HOUSE 1"
+.\content\data\afs\map\4cb0\4cb0.mdt,"MIRUMU, HOUSE 2"
+.\content\data\afs\map\4cc0\4cc0.mdt,"MIRUMU, HOUSE 3"
+.\content\data\afs\map\5000\5000.mdt,"MYSTERIOUS FISSURE, UNDERGROUND"
+.\content\data\afs\map\5010\5010.mdt,"MYSTERIOUS FISSURE, DEPTHS"
+.\content\data\afs\map\5020\5020.mdt,"AIRA'S SPACE, 1"
+.\content\data\afs\map\5030\5030.mdt,"AIRA'S SPACE, 2"
+.\content\data\afs\map\5040\5040.mdt,"RYUDO'S DREAM"
+.\content\data\afs\map\50f0\50f0.mdt,"AIRA'S SPACE, ROOM OF SOLITUDE"
+.\content\data\afs\map\5400\5400.mdt,"St. HEIM MOUNTAINS, BASE"
+.\content\data\afs\map\5410\5410.mdt,"St. HEIM MOUNTAINS, HALFWAY UP"
+.\content\data\afs\map\5420\5420.mdt,"St. HEIM MOUNTAINS, CAVERNS"
+.\content\data\afs\map\5430\5430.mdt,"St. HEIM MOUNTAINS, WATERFALL"
+.\content\data\afs\map\5440\5440.mdt,"St. HEIM MOUNTAINS, PILGRIM ROAD"
+.\content\data\afs\map\5800\5800.mdt,"St. HEIM PAPAL STATE"
+.\content\data\afs\map\5810\5810.mdt,"St. HEIM INN"
+.\content\data\afs\map\5820\5820.mdt,"St. HEIM GENERAL STORE"
+.\content\data\afs\map\5824\5824.mdt,"St. HEIM GENERAL STORE"
+.\content\data\afs\map\5830\5830.mdt,"St. HEIM LIBRARY"
+.\content\data\afs\map\5840\5840.mdt,"St. HEIM BAKERY"
+.\content\data\afs\map\5850\5850.mdt,"St. HEIM, PASTURES"
+.\content\data\afs\map\58a0\58a0.mdt,"St. HEIM, HOUSE 1, DOWNSTAIRS"
+.\content\data\afs\map\58a4\58a4.mdt,"St. HEIM, HOUSE 1, UPSTAIRS"
+.\content\data\afs\map\58b0\58b0.mdt,"St. HEIM, HOUSE 2"
+.\content\data\afs\map\58c0\58c0.mdt,"St. HEIM, HOUSE 3"
+.\content\data\afs\map\58d0\58d0.mdt,"St. HEIM, HOUSE 4"
+.\content\data\afs\map\5c00\5c00.mdt,"GRANAS CATHEDRAL"
+.\content\data\afs\map\5c01\5c01.mdt,"----"
+.\content\data\afs\map\5c10\5c10.mdt,"CATHEDRAL LOBBY"
+.\content\data\afs\map\5c14\5c14.mdt,"CATHEDRAL, GUESTROOM CORRIDOR"
+.\content\data\afs\map\5c20\5c20.mdt,"CATHEDRAL, AUDIENCE CHAMBER"
+.\content\data\afs\map\5c30\5c30.mdt,"CATHEDRAL, POPE'S ROOM"
+.\content\data\afs\map\5c40\5c40.mdt,"CATHEDRAL, FORBIDDEN ROOM"
+.\content\data\afs\map\5c50\5c50.mdt,"CATHEDRAL BALCONY"
+.\content\data\afs\map\5c68\5c68.mdt,"CATHEDRAL GUESTROOM"
+.\content\data\afs\map\5c70\5c70.mdt,"CATHEDRAL, HOLY ROOM"
+.\content\data\afs\map\5c80\5c80.mdt,"CATHEDRAL, ROOM OF TRUTH"
+.\content\data\afs\map\5c90\5c90.mdt,"CATHEDRAL, POPE'S ROOM CORRIDOR"
+.\content\data\afs\map\5cb0\5cb0.mdt,"CATHEDRAL LIBRARY"
+.\content\data\afs\map\5cc0\5cc0.mdt,"CATHEDRAL, ORO'S ROOM"
+.\content\data\afs\map\5e00\5e00.mdt,""
+.\content\data\afs\map\6000\6000.mdt,"RAUL HILLS 1"
+.\content\data\afs\map\6010\6010.mdt,"RAUL HILLS 2"
+.\content\data\afs\map\6400\6400.mdt,"CYRUM KINGDOM"
+.\content\data\afs\map\6402\6402.mdt,"CYRUM KINGDOM"
+.\content\data\afs\map\6408\6408.mdt,"CYRUM KINGDOM, PORT"
+.\content\data\afs\map\6410\6410.mdt,"CYRUM INN, DOWNSTAIRS"
+.\content\data\afs\map\6414\6414.mdt,"CYRUM INN, UPSTAIRS"
+.\content\data\afs\map\641c\641c.mdt,"CYRUM INN, CORRIDOR"
+.\content\data\afs\map\6420\6420.mdt,"CYRUM GENERAL STORE"
+.\content\data\afs\map\6430\6430.mdt,"CYRUM KINGDOM, INFORMANT'S TENT"
+.\content\data\afs\map\64a0\64a0.mdt,"CYRUM, HOUSE 1, DOWNSTAIRS"
+.\content\data\afs\map\64a4\64a4.mdt,"CYRUM, HOUSE 1, UPSTAIRS"
+.\content\data\afs\map\64b0\64b0.mdt,"CYRUM, HOUSE 2, DOWNSTAIRS"
+.\content\data\afs\map\64b4\64b4.mdt,"CYRUM, HOUSE 2, UPSTAIRS"
+.\content\data\afs\map\64c0\64c0.mdt,"CYRUM, HOUSE 3"
+.\content\data\afs\map\64d0\64d0.mdt,"CYRUM, HOUSE 4"
+.\content\data\afs\map\6600\6600.mdt,"CYRUM CASTLE, SECRET PASSAGE"
+.\content\data\afs\map\6800\6800.mdt,"CYRUM CASTLE, FRONT GATE"
+.\content\data\afs\map\6810\6810.mdt,"CYRUM CASTLE, DOWNSTAIRS LOBBY"
+.\content\data\afs\map\6820\6820.mdt,"CYRUM CASTLE, AUDIENCE CHAMBER"
+.\content\data\afs\map\6830\6830.mdt,"CYRUM CASTLE, DOWNSTAIRS HALL"
+.\content\data\afs\map\6840\6840.mdt,"CYRUM CASTLE, ROOM 1"
+.\content\data\afs\map\6848\6848.mdt,"CYRUM CASTLE, ROOM 2"
+.\content\data\afs\map\6880\6880.mdt,"CYRUM CASTLE, KING'S CHAMBER"
+.\content\data\afs\map\6890\6890.mdt,"CYRUM CASTLE, KING'S OFFICE"
+.\content\data\afs\map\68a0\68a0.mdt,"CASTLE, ROOM OF DEMON-SEALING"
+.\content\data\afs\map\68b0\68b0.mdt,"CYRUM CASTLE, BACKYARD"
+.\content\data\afs\map\68c0\68c0.mdt,"CYRUM CASTLE, AUDIENCE SQUARE"
+.\content\data\afs\map\6c00\6c00.mdt,"UNDERGROUND PLANT 1"
+.\content\data\afs\map\6c10\6c10.mdt,"UNDERGROUND PLANT 2"
+.\content\data\afs\map\6c20\6c20.mdt,"UNDERGROUND PLANT 3"
+.\content\data\afs\map\6cf0\6cf0.mdt,"UNDERGROUND PLANT, CONTROL ROOM"
+.\content\data\afs\map\6cf4\6cf4.mdt,"UNDERGROUND PLANT, CONTROL ROOM"
+.\content\data\afs\map\7000\7000.mdt,"CYRUM KINGDOM"
+.\content\data\afs\map\7010\7010.mdt,"CYRUM INN"
+.\content\data\afs\map\7014\7014.mdt,"CYRUM INN, GUESTROOM"
+.\content\data\afs\map\701c\701c.mdt,"CYRUM INN, CORRIDOR"
+.\content\data\afs\map\7020\7020.mdt,"CYRUM GENERAL STORE"
+.\content\data\afs\map\7400\7400.mdt,"THE 50/50, DECK"
+.\content\data\afs\map\7410\7410.mdt,"THE 50/50, CABIN"
+.\content\data\afs\map\7420\7420.mdt,"THE 50/50, SLEEPING CABIN"
+.\content\data\afs\map\74a0\74a0.mdt,"¥ÖÇ¥(Ö¥ÖÇ¥(ô(<ñ‡ó(ïê²"
+.\content\data\afs\map\7800\7800.mdt,"CECEILE REEF, POINT"
+.\content\data\afs\map\7820\7820.mdt,"CECEILE REEF 1"
+.\content\data\afs\map\7830\7830.mdt,"CECEILE REEF 2"
+.\content\data\afs\map\7c00\7c00.mdt,"GARLAN VILLAGE"
+.\content\data\afs\map\7c01\7c01.mdt,"----"
+.\content\data\afs\map\7c10\7c10.mdt,"GARLAN INN"
+.\content\data\afs\map\7c14\7c14.mdt,"GARLAN INN, ROOM 1"
+.\content\data\afs\map\7c18\7c18.mdt,"GARLAN INN, ROOM 2"
+.\content\data\afs\map\7c1c\7c1c.mdt,"GARLAN INN, CORRIDOR"
+.\content\data\afs\map\7c20\7c20.mdt,"GARLAN GENERAL STORE"
+.\content\data\afs\map\7c30\7c30.mdt,"GARLAN, VILLAGE CHIEF'S HOUSE"
+.\content\data\afs\map\7ca0\7ca0.mdt,"GARLAN, HOUSE 1"
+.\content\data\afs\map\7cb0\7cb0.mdt,"GARLAN, HOUSE 2"
+.\content\data\afs\map\7cc0\7cc0.mdt,"GARLAN, HOUSE 3"
+.\content\data\afs\map\7cd0\7cd0.mdt,"GARLAN, HOUSE 4"
+.\content\data\afs\map\8000\8000.mdt,"GRAIL MOUNTAIN ROAD 1"
+.\content\data\afs\map\8010\8010.mdt,"GRAIL MOUNTAIN ROAD 2"
+.\content\data\afs\map\8020\8020.mdt,"GRAIL MOUNTAIN, SHRINE SQUARE"
+.\content\data\afs\map\8030\8030.mdt,"GRAIL MOUNTAIN, SHRINE"
+.\content\data\afs\map\8040\8040.mdt,"GRAIL MOUNTAIN ROAD 3"
+.\content\data\afs\map\8050\8050.mdt,"GRAIL MTN., PLATEAU OF MEMORIES"
+.\content\data\afs\map\8051\8051.mdt,"GRAIL MTN., PLATEAU OF MEMORIES"
+.\content\data\afs\map\8060\8060.mdt,"RYUDO'S PAST, BLACK HORNS APPEAR"
+.\content\data\afs\map\8400\8400.mdt,"RYUDO SPIRIT WORLD, BLACK SPACE"
+.\content\data\afs\map\8800\8800.mdt,"GHOSS FOREST, WEST 1"
+.\content\data\afs\map\8810\8810.mdt,"GHOSS FOREST, WEST 2"
+.\content\data\afs\map\8820\8820.mdt,"GHOSS FOREST, EAST 1"
+.\content\data\afs\map\8830\8830.mdt,"GHOSS FOREST, EAST 2"
+.\content\data\afs\map\8c00\8c00.mdt,"NANAN VILLAGE"
+.\content\data\afs\map\8c10\8c10.mdt,"NANAN INN"
+.\content\data\afs\map\8c20\8c20.mdt,"NANAN GENERAL STORE"
+.\content\data\afs\map\8c30\8c30.mdt,"NANAN, ELDER'S HOUSE"
+.\content\data\afs\map\8c40\8c40.mdt,"NANAN, MAREG'S HOUSE"
+.\content\data\afs\map\8c50\8c50.mdt,"NANAN, HUT OF TRIALS"
+.\content\data\afs\map\8c60\8c60.mdt,"NANAN, WEAVING HUT"
+.\content\data\afs\map\8c70\8c70.mdt,"NANAN SPRING"
+.\content\data\afs\map\8ca0\8ca0.mdt,"NANAN, HOUSE 1"
+.\content\data\afs\map\8cb0\8cb0.mdt,"NANAN, HOUSE 2"
+.\content\data\afs\map\8cc0\8cc0.mdt,"NANAN, HOUSE 3"
+.\content\data\afs\map\8e00\8e00.mdt,"HUT OF TRIALS, UNDERGROUND"
+.\content\data\afs\map\9000\9000.mdt,"THE GREAT RIFT, 1"
+.\content\data\afs\map\9010\9010.mdt,"THE GREAT RIFT, 2"
+.\content\data\afs\map\9020\9020.mdt,"THE GREAT RIFT, 3"
+.\content\data\afs\map\9030\9030.mdt,"THE GREAT RIFT, 4"
+.\content\data\afs\map\9200\9200.mdt,"DEMON'S LAW"
+.\content\data\afs\map\92f0\92f0.mdt,"DEMON'S LAW, CONTROL ROOM"
+.\content\data\afs\map\9400\9400.mdt,"GRANASABER, OUTSIDE VIEW"
+.\content\data\afs\map\9410\9410.mdt,"GRANASABER, CONTROL ROOM"
+.\content\data\afs\map\9420\9420.mdt,"GRANASABER, CABIN"
+.\content\data\afs\map\9800\9800.mdt,"VALMAR'S BODY, POINT OF ENTRY"
+.\content\data\afs\map\9810\9810.mdt,"VALMAR'S BODY, TENTACLE PASSAGE"
+.\content\data\afs\map\9820\9820.mdt,"VALMAR'S BODY, VEIN PASSAGE"
+.\content\data\afs\map\9830\9830.mdt,"VALMAR'S BODY, ARTERY PASSAGE"
+.\content\data\afs\map\9840\9840.mdt,"VALMAR'S BODY, SPHERICAL ROOM"
+.\content\data\afs\map\98f0\98f0.mdt,"VALMAR'S BODY, CORE"
+.\content\data\afs\map\9c00\9c00.mdt,"VALMAR'S MOON, SURFACE"
+.\content\data\afs\map\9c04\9c04.mdt,"VALMAR'S MOON, SURFACE"
+.\content\data\afs\map\9c10\9c10.mdt,"VALMAR'S MOON, 1"
+.\content\data\afs\map\9c20\9c20.mdt,"VALMAR'S MOON, 2"
+.\content\data\afs\map\9c30\9c30.mdt,"VALMAR'S MOON, 3"
+.\content\data\afs\map\9c40\9c40.mdt,"VALMAR'S MOON, EGGSHELL"
+.\content\data\afs\map\9cf0\9cf0.mdt,"VALMAR'S WOMB"
+.\content\data\afs\map\a000\a000.mdt,"CYRUM KINGDOM, SOUTH"
+.\content\data\afs\map\a004\a004.mdt,"CYRUM ROYAL MAUSOLEUM"
+.\content\data\afs\map\a010\a010.mdt,"BIRTHPLACE OF THE GODS, 1"
+.\content\data\afs\map\a020\a020.mdt,"BIRTHPLACE OF THE GODS, 2"
+.\content\data\afs\map\a030\a030.mdt,"BIRTHPLACE OF THE GODS, 3"
+.\content\data\afs\map\a040\a040.mdt,"BIRTHPLACE OF GODS, CONTROL ROOM"
+.\content\data\afs\map\a050\a050.mdt,"BIRTHPLACE OF GODS, OPEN SYSTEM"
+.\content\data\afs\map\a060\a060.mdt,"BIRTHPLACE OF GODS, OPEN THOUGHT"
+.\content\data\afs\map\a400\a400.mdt,"NEW VALMAR, 1"
+.\content\data\afs\map\a410\a410.mdt,"NEW VALMAR, 2"
+.\content\data\afs\map\a420\a420.mdt,"NEW VALMAR, 3"
+.\content\data\afs\map\a430\a430.mdt,"NEW VALMAR, CORE"
+.\content\data\afs\map\a434\a434.mdt,"NEW VALMAR, CORE"
+.\content\data\afs\map\a4f0\a4f0.mdt,"NEW VALMAR, ROOM OF CHAOS"
+.\content\data\afs\map\a4f4\a4f4.mdt,"NEW VALMAR, ROOM OF CHAOS"
+.\content\data\afs\map\a4f8\a4f8.mdt,"NEW VALMAR, ROOM OF CHAOS"
+.\content\data\afs\map\a4fc\a4fc.mdt,"NEW VALMAR, ROOM OF CHAOS"
+.\content\data\afs\map\d000\d000.mdt,""
+.\content\data\afs\map\d020\d020.mdt,"RETURNING THE STOLEN ARTICLE"
+.\content\data\afs\map\d030\d030.mdt,"WITT FOREST PATH"
+.\content\data\afs\map\d400\d400.mdt,"JET-BLACK SPACE 1"
+.\content\data\afs\map\d410\d410.mdt,"JET-BLACK SPACE 2"
+.\content\data\afs\map\d800\d800.mdt,"RYUDO BURIES SOMEONE'S SWORD"
+.\content\data\afs\map\d802\d802.mdt,"MIRUMU VILLAGE"
+.\content\data\afs\map\d810\d810.mdt,"MIRUMU INN"
+.\content\data\afs\map\d814\d814.mdt,"MIRUMU INN, GUESTROOM"
+.\content\data\afs\map\d818\d818.mdt,"MIRUMU INN, MANAGER'S ROOM"
+.\content\data\afs\map\d820\d820.mdt,"íá(Pògó¥ð"
+.\content\data\afs\map\d830\d830.mdt,"MIRUMU TOWN HALL"
+.\content\data\afs\map\d840\d840.mdt,"MIRUMU VILLAGE CHIEF'S HOUSE"
+.\content\data\afs\map\d850\d850.mdt,"MIRUMU, SANDRA'S HOUSE"
+.\content\data\afs\map\d8a0\d8a0.mdt,"MIRUMU, HOUSE 1"
+.\content\data\afs\map\d8b0\d8b0.mdt,"MIRUMU, HOUSE 2"
+.\content\data\afs\map\d8c0\d8c0.mdt,"MIRUMU, HOUSE 3"
+.\content\data\afs\map\d8f0\d8f0.mdt,"----"
+.\content\data\afs\map\e000\e000.mdt,""
+.\content\data\afs\map\e010\e010.mdt,"RYUDO'S TENT"
+.\content\data\afs\map\e020\e020.mdt,""
+.\content\data\afs\map\e030\e030.mdt,""
+.\content\data\afs\map\e040\e040.mdt,""
+.\content\data\afs\map\e050\e050.mdt,""
+.\content\data\afs\map\e060\e060.mdt,""
+.\content\data\afs\map\e070\e070.mdt,""
