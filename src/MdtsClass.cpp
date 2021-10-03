@@ -234,7 +234,6 @@ void MdtsClass::read(std::string filepath) {
 
 					input.seekg(sectionOffset, std::ios::beg);
 					uint32_t diagHeaderSize = readRaw<uint32_t>(input);
-					input.seekg(diagHeaderSize - 4, std::ios::beg);
 					input.seekg(sectionOffset, std::ios::beg);
 
 					for (size_t offset = 10; offset < diagHeaderSize; offset += 4) {

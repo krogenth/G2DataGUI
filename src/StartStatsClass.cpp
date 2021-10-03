@@ -337,19 +337,19 @@ void StartStatsClass::randomize() {
 
 		do {
 
-			startStat.armour = 500 + (g() % 71);
+			startStat.armour = 500 + (g() % 70);
 
 		} while (std::string(this->_items[startStat.armour].name).find_first_not_of(' ') == std::string::npos);
 
 		do {
 
-			startStat.headgear = 570 + (g() % 71);
+			startStat.headgear = 570 + (g() % 70);
 
 		} while (std::string(this->_items[startStat.headgear].name).find_first_not_of(' ') == std::string::npos);
 
 		do {
 
-			startStat.footwear = 650 + (g() % 151);
+			startStat.footwear = 650 + (g() % 50);
 
 		} while (std::string(this->_items[startStat.footwear].name).find_first_not_of(' ') == std::string::npos);
 
