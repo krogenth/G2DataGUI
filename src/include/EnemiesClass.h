@@ -86,7 +86,7 @@ struct EnemyStatsStruct {
 	int8_t earthResist = 0;
 	int8_t lightningResist = 0;
 	int8_t blizzardResist = 0;
-	int8_t ailmentsBitflag = 0;
+	uint8_t ailmentsBitflag = 0;
 	int16_t knockbackResist = 0;
 	int16_t T_REC = 0;
 	int16_t T_DMG = 0;
