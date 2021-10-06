@@ -112,7 +112,7 @@ struct MCS_ {
 
 struct modelStruct {
 
-	GIXL_CHUNK textureMagic;				//	GIXL can also tell use if the models are the same, based on their contained value
+	GIXL_CHUNK textureMagic;				//	GIXL can also tell us if the models are the same, based on their contained value
 	NJS_OBJECT* model_object = nullptr;
 	MCS_* chunk_mcs = nullptr;
 	std::vector<nmdmStruct> motions;

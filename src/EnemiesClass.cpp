@@ -35,6 +35,9 @@ void EnemiesClass::write() {
 
 			if (offset) {
 
+				if (j)
+					i++;
+
 				output.seekg(offset, std::ios::beg);
 
 				output.write((char*)this->_enemies.at(i).name, 18);
