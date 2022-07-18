@@ -376,7 +376,7 @@ void EnemiesClass::draw() {
 
 		ImGui::Combo("Target Type", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.targetType, targetTypes, 16);
 
-		ImGui::InputUByte("Unknown #2", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.unknown1);
+		ImGui::InputUByte("Unknown #2", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.normalAttackFlag);
 		ImGui::InputUShort("Distance", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.distance);             if (ImGui::IsItemHovered()) ImGui::SetTooltip("How far away to use move?");
 		ImGui::InputUShort("Accuracy", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.accuracy);
 		ImGui::InputUShort("Range", &this->_enemies[this->_enemyIndex].moves[this->_moveIndex].stats.range);                   if (ImGui::IsItemHovered()) ImGui::SetTooltip("How big is the move area?");
@@ -554,7 +554,7 @@ void EnemiesClass::outputToCSV() {
 				<< std::to_string(val.moves[i].stats.pow) << ','
 				<< std::to_string(val.moves[i].stats.ad) << ','
 				<< targetTypes[val.moves[i].stats.targetType] << ','
-				<< std::to_string(val.moves[i].stats.unknown1) << ','
+				<< std::to_string(val.moves[i].stats.normalAttackFlag) << ','
 				<< std::to_string(val.moves[i].stats.distance) << ','
 				<< std::to_string(val.moves[i].stats.accuracy) << ','
 				<< std::to_string(val.moves[i].stats.range) << ','
