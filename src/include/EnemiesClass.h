@@ -30,7 +30,7 @@ struct EnemyMoveStatsStruct {
 	uint16_t pow = 0;
 	uint16_t ad = 0;
 	uint8_t targetType = 0;
-	uint8_t unknown1 = 0;
+	uint8_t normalAttackFlag = 0;
 	uint16_t distance = 0;
 	uint16_t accuracy = 0;
 	uint16_t range = 0;

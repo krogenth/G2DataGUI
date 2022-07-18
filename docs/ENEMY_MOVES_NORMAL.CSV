@@ -1,4 +1,4 @@
-Enemy,Move,MP,SP,???,Target Effect,STR,POW,AD,Target Type,???,Distance,Accuracy,Range,Cast Time,Recovery,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback,Element,Element Strength,Status Effect Bitflag,Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special
+Enemy,Move,MP,SP,???,Target Effect,STR,POW,AD,Target Type,Normal Attack Flag,Distance,Accuracy,Range,Cast Time,Recovery,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback,Element,Element Strength,Status Effect Bitflag,Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special
           Big Foot,            Attack,0,0,1,Physical Damage(STR),85,200,85,One Enemy,1,150,100,0,60,9999,0,0,0,0,120,Blizzard,9,0,0,0,0,0,0,0
   Huge Caterpillar,            Attack,0,0,20,Physical Damage(STR),90,150,90,One Enemy,1,50,300,0,30,9999,0,0,0,0,30,Earth,10,1,20,0,0,0,0,0
          Chameleon,            Attack,0,0,1,Physical Damage(STR),110,170,160,One Enemy,1,91,100,0,60,9999,0,0,0,0,60,Fire,0,1,15,0,0,0,0,0
