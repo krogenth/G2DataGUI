@@ -3,17 +3,18 @@
 #include <filesystem>
 #include <string>
 
-#include ".\include\MovesClass.h"
-#include ".\include\ManaEggsClass.h"
-#include ".\include\SkillsClass.h"
-#include ".\include\SkillBooksClass.h"
-#include ".\include\SpecialsClass.h"
-#include ".\include\ItemsClass.h"
-#include ".\include\StartStatsClass.h"
-#include ".\include\EnemiesClass.h"
-#include ".\include\MdtsClass.h"
+#include "./include/MovesClass.h"
+#include "./include/ManaEggsClass.h"
+#include "./include/SkillsClass.h"
+#include "./include/SkillBooksClass.h"
+#include "./include/SpecialsClass.h"
+#include "./include/ItemsClass.h"
+#include "./include/StartStatsClass.h"
+#include "./include/EnemiesClass.h"
+#include "./include/MdtsClass.h"
+#include "./include/LevelupClass.h"
 
-#include ".\include\ImGuiInstance.h"
+#include "./include/ImGuiInstance.h"
 
 /*
 TODO:
@@ -32,6 +33,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     StartStatsClass startStats;
     EnemiesClass enemies;
     MdtsClass mdts;
+    LevelupClass levelups;
 
     bool isHDVersion = true;
 
@@ -40,30 +42,28 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
     //  read in data
     if (isHDVersion) {
-
-        moves.read(".\\content\\data\\afs\\xls_data\\MS_PARAM.BIN");
-        manaeggs.read(".\\content\\data\\afs\\xls_data\\TB_MAGIC.BIN");
-        skills.read(".\\content\\data\\afs\\xls_data\\SK_PARAM.BIN");
-        skillbooks.read(".\\content\\data\\afs\\xls_data\\TB_SKILL.BIN");
-        specials.read(".\\content\\data\\afs\\xls_data\\TB_SPCL.BIN");
-        items.read(".\\content\\data\\afs\\xls_data\\ITEM.BIN");
-        startStats.read(".\\content\\data\\afs\\xls_data\\PC_INIT.BIN");
-        enemies.read(".\\content\\data\\afs\\");
-        mdts.read(".\\content\\data\\afs\\map\\");
-
+        moves.read("./content/data/afs/xls_data/MS_PARAM.BIN");
+        manaeggs.read("./content/data/afs/xls_data/TB_MAGIC.BIN");
+        skills.read("./content/data/afs/xls_data/SK_PARAM.BIN");
+        skillbooks.read("./content/data/afs/xls_data/TB_SKILL.BIN");
+        specials.read("./content/data/afs/xls_data/TB_SPCL.BIN");
+        items.read("./content/data/afs/xls_data/ITEM.BIN");
+        startStats.read("./content/data/afs/xls_data/PC_INIT.BIN");
+        enemies.read("./content/data/afs/");
+        mdts.read("./content/data/afs/map/");
+        levelups.read("./content/data/afs/xls_data/TB_LVUP.BIN");
     }
     else {
-
-        moves.read(".\\data\\afs\\xls_data\\MS_PARAM.BIN");
-        manaeggs.read(".\\data\\afs\\xls_data\\TB_MAGIC.BIN");
-        skills.read(".\\data\\afs\\xls_data\\SK_PARAM.BIN");
-        skillbooks.read(".\\data\\afs\\xls_data\\TB_SKILL.BIN");
-        specials.read(".\\data\\afs\\xls_data\\TB_SPCL.BIN");
-        items.read(".\\data\\afs\\xls_data\\ITEM.BIN");
-        startStats.read(".\\data\\afs\\xls_data\\PC_INIT.BIN");
-        enemies.read(".\\data\\afs\\");
-        mdts.read(".\\data\\afs\\map\\");
-
+        moves.read("./data/afs/xls_data/MS_PARAM.BIN");
+        manaeggs.read("./data/afs/xls_data/TB_MAGIC.BIN");
+        skills.read("./data/afs/xls_data/SK_PARAM.BIN");
+        skillbooks.read("./data/afs/xls_data/TB_SKILL.BIN");
+        specials.read("./data/afs/xls_data/TB_SPCL.BIN");
+        items.read("./data/afs/xls_data/ITEM.BIN");
+        startStats.read("./data/afs/xls_data/PC_INIT.BIN");
+        enemies.read("./data/afs/");
+        mdts.read("./data/afs/map/");
+        levelups.read("./data/afs/xls_data/TB_LVUP.BIN");
     }
 
     //  now store all needed data into relevant classes
@@ -99,7 +99,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
         StartFrame();
 
-        DrawMenuBar(lpCmdLine, &moves, &manaeggs, &skills, &skillbooks, &specials, &items, &startStats, &enemies, &mdts);
+        DrawMenuBar(lpCmdLine, &moves, &manaeggs, &skills, &skillbooks, &specials, &items, &startStats, &enemies, &mdts, &levelups);
 
         moves.draw();
         manaeggs.draw();
@@ -110,6 +110,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         startStats.draw();
         enemies.draw();
         mdts.draw();
+        levelups.draw();
 
         EndFrame();
 

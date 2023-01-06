@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include ".\BaseDataClass.h"
+#include "./BaseDataClass.h"
 
 #pragma pack(1)
 struct SkillStatsStruct {

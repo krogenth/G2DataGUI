@@ -3,10 +3,10 @@
 
 #include <vector>
 
-#include ".\BaseDataClass.h"
+#include "./BaseDataClass.h"
 
-#include ".\MovesClass.h"
-#include ".\ItemsClass.h"
+#include "./MovesClass.h"
+#include "./ItemsClass.h"
 
 #pragma pack(1)
 struct EnemyAIStruct {
@@ -131,7 +131,7 @@ public:
 
 	void storeMoves(MoveStruct* moves, size_t numMoves) { _moves = moves; _numMoves = numMoves; };
 	void storeItems(ItemStruct* items, size_t numItems) { _items = items; _numItems = numItems; };
-	EnemyStruct* GetEnemies() {
+	EnemyStruct* getEnemies() {
 
 		if (_enemies.size())
 			return &_enemies.at(0);

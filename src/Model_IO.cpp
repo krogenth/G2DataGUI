@@ -2,10 +2,10 @@
 #include <filesystem>
 #include <exception>
 
-#include ".\include\MdtStruct.h"
-#include ".\include\modelStruct.h"
-#include ".\include\io_util.h"
-#include ".\include\char_constants.h"
+#include "./include/MdtsClass.h"
+#include "./include/modelStruct.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
 
 void writeModel(std::vector<njcmStruct>& models) {
 

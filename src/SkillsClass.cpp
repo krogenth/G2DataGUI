@@ -4,14 +4,14 @@
 #include <iterator>
 #include <algorithm>
 
-#include ".\include\SkillsClass.h"
+#include "./include/SkillsClass.h"
 
-#include ".\include\common\io_util.h"
-#include ".\include\common\char_constants.h"
-#include ".\include\common\string_manip.h"
-#include ".\include\common\copypaste_obj.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
+#include "./include/common/string_manip.h"
+#include "./include/common/copypaste_obj.h"
 
-#include ".\imgui.h"
+#include "./imgui.h"
 
 void SkillsClass::write() {
 
@@ -147,7 +147,7 @@ void SkillsClass::draw() {
 void SkillsClass::outputToCSV() {
 
 	std::ofstream output;
-	output.open(".\\csv\\SK_PARAM.CSV");
+	output.open("./csv/SK_PARAM.CSV");
 
 	if (!output.is_open())
 		return;

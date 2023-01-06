@@ -4,14 +4,14 @@
 #include <iterator>
 #include <algorithm>
 
-#include ".\include\MovesClass.h"
+#include "./include/MovesClass.h"
 
-#include ".\include\common\io_util.h"
-#include ".\include\common\char_constants.h"
-#include ".\include\common\string_manip.h"
-#include ".\include\common\copypaste_obj.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
+#include "./include/common/string_manip.h"
+#include "./include/common/copypaste_obj.h"
 
-#include ".\imgui.h"
+#include "./imgui.h"
 
 void MovesClass::write() {
 
@@ -269,7 +269,7 @@ void MovesClass::draw() {
 void MovesClass::outputToCSV() {
 
 	std::ofstream output;
-	output.open(".\\csv\\MS_PARAM.CSV");
+	output.open("./csv/MS_PARAM.CSV");
 
 	if (!output.is_open())
 		return;

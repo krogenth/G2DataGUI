@@ -2,14 +2,14 @@
 #include <filesystem>
 #include <random>
 
-#include ".\include\EnemiesClass.h"
+#include "./include/EnemiesClass.h"
 
-#include ".\include\common\io_util.h"
-#include ".\include\common\char_constants.h"
-#include ".\include\common\string_manip.h"
-#include ".\include\common\copypaste_obj.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
+#include "./include/common/string_manip.h"
+#include "./include/common/copypaste_obj.h"
 
-#include ".\imgui.h"
+#include "./imgui.h"
 
 void EnemiesClass::write() {
 
@@ -78,12 +78,11 @@ void EnemiesClass::read(std::string filename) {
 	char* readByte = new char[4]{};
 	std::ifstream input;
 
-	std::string actualFilename = "";
 	uint32_t offset = 0;
 
 	for (const auto& p : std::filesystem::directory_iterator(filename + "enemy")) {
 
-		actualFilename = p.path().u8string();
+		std::string actualFilename = p.path().string();
 
 		if (!std::strstr(actualFilename.c_str(), "_0.dat"))
 			continue;
@@ -116,7 +115,7 @@ void EnemiesClass::read(std::string filename) {
 				for (size_t j = 0; j < 5; j++)
 					this->_enemies.back().ai[j] = readRaw<EnemyAIStruct>(input);
 
-				this->_enemies.back().filename = p.path().u8string();
+				this->_enemies.back().filename = actualFilename;
 
 				if (!i)
 					input.seekg(0x3C, std::ios::beg);	//	first copy move data offset is always at 0x3C
@@ -146,7 +145,7 @@ void EnemiesClass::read(std::string filename) {
 
 	for (const auto& p : std::filesystem::directory_iterator(filename + "boss")) {
 
-		actualFilename = p.path().u8string();
+		std::string actualFilename = p.path().string();
 
 		if (!std::strstr(actualFilename.c_str(), "_0.dat"))
 			continue;
@@ -175,7 +174,7 @@ void EnemiesClass::read(std::string filename) {
 
 				this->_enemies.back().stats = readRaw<EnemyStatsStruct>(input);
 
-				this->_enemies.back().filename = p.path().u8string();	//	we need the filename for writing data
+				this->_enemies.back().filename = actualFilename;	//	we need the filename for writing data
 
 				if (!i)
 					input.seekg(0x3C, std::ios::beg);	//	first copy move data offset is always at 0x3C
@@ -484,10 +483,10 @@ void EnemiesClass::draw() {
 void EnemiesClass::outputToCSV() {
 
 	std::ofstream output;
-	output.open(".\\csv\\ENEMIES.CSV");
+	output.open("./csv/ENEMIES.CSV");
 
 	std::ofstream output2;
-	output2.open(".\\csv\\ENEMY_MOVES.CSV");
+	output2.open("./csv/ENEMY_MOVES.CSV");
 
 	if (!output.is_open() || !output2.is_open())
 		return;

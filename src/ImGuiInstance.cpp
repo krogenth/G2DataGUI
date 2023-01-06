@@ -1,7 +1,7 @@
 #include <tchar.h>
 #include <filesystem>
 
-#include ".\include\ImGuiInstance.h"
+#include ".\include/ImGuiInstance.h"
 
 #include ".\imgui.h"
 #include ".\imgui_impl_win32.h"
@@ -107,7 +107,7 @@ void EndFrame() {
 
 }
 
-void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeggs, SkillsClass* skills, SkillBooksClass* skillbooks, SpecialsClass* specials, ItemsClass* items, StartStatsClass* startStats, EnemiesClass* enemies, MdtsClass* mdts) {
+void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeggs, SkillsClass* skills, SkillBooksClass* skillbooks, SpecialsClass* specials, ItemsClass* items, StartStatsClass* startStats, EnemiesClass* enemies, MdtsClass* mdts, LevelupClass* levelups) {
 
     ImGui::BeginMainMenuBar();
 
@@ -154,13 +154,14 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeg
             startStats->write();
             enemies->write();
             mdts->write();
+            levelups->write();
 
         }
 
         if (ImGui::MenuItem("Export All to CSV", "Ctrl+E")) {
 
-            if(!std::filesystem::exists(".\\csv"))
-                std::filesystem::create_directory(".\\csv");
+            if(!std::filesystem::exists("./csv"))
+                std::filesystem::create_directory("./csv");
 
             moves->outputToCSV();
             manaeggs->outputToCSV();
@@ -171,6 +172,7 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeg
             startStats->outputToCSV();
             enemies->outputToCSV();
             mdts->outputToCSV();
+            levelups->outputToCSV();
 
         }
 

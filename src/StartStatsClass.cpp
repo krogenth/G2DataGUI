@@ -2,14 +2,14 @@
 #include <filesystem>
 #include <random>
 
-#include ".\include\StartStatsClass.h"
+#include "./include/StartStatsClass.h"
 
-#include ".\include\common\io_util.h"
-#include ".\include\common\char_constants.h"
-#include ".\include\common\string_manip.h"
-#include ".\include\common\copypaste_obj.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
+#include "./include/common/string_manip.h"
+#include "./include/common/copypaste_obj.h"
 
-#include ".\imgui.h"
+#include "./imgui.h"
 
 void StartStatsClass::write() {
 
@@ -261,7 +261,7 @@ void StartStatsClass::draw() {
 void StartStatsClass::outputToCSV() {
 
 	std::ofstream output;
-	output.open(".\\csv\\PC_INIT.CSV");
+	output.open("./csv/PC_INIT.CSV");
 
 	if (!output.is_open())
 		return;
