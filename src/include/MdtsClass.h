@@ -3,11 +3,11 @@
 
 #include <vector>
 
-#include ".\BaseDataClass.h"
+#include "./BaseDataClass.h"
 
-#include ".\ItemsClass.h"
-#include ".\EnemiesClass.h"
-#include ".\ModelClass.h"
+#include "./ItemsClass.h"
+#include "./EnemiesClass.h"
+#include "./ModelClass.h"
 
 #pragma pack(1)
 struct MapEntriesStruct {		//	0x00000008 && 0x0000000C

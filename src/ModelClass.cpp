@@ -1,8 +1,8 @@
 #include <fstream>
 
-#include ".\include\ModelClass.h"
+#include "./include/ModelClass.h"
 
-#include ".\include\common\io_util.h"
+#include "./include/common/io_util.h"
 
 void ModelClass::write() {
 

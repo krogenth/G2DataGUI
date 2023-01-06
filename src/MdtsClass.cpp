@@ -2,14 +2,14 @@
 #include <filesystem>
 #include <random>
 
-#include ".\include\MdtsClass.h"
+#include "./include/MdtsClass.h"
 
-#include ".\include\common\io_util.h"
-#include ".\include\common\char_constants.h"
-#include ".\include\common\string_manip.h"
-#include ".\include\common\copypaste_obj.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
+#include "./include/common/string_manip.h"
+#include "./include/common/copypaste_obj.h"
 
-#include ".\imgui.h"
+#include "./imgui.h"
 
 void MdtsClass::write() {
 
@@ -117,7 +117,6 @@ void MdtsClass::read(std::string filepath) {
 	uint8_t readChar = 0;
 	std::ifstream input;
 
-	std::string filename = "";
 	uint32_t offset = 0;
 
 	for (const auto& p : std::filesystem::directory_iterator(filepath)) {
@@ -126,7 +125,7 @@ void MdtsClass::read(std::string filepath) {
 
 			for (const auto& q : std::filesystem::directory_iterator(p)) {
 
-				filename = q.path().u8string();
+				std::string filename = q.path().string();
 
 				if (!std::strstr(filename.c_str(), ".mdt"))
 					continue;
@@ -858,7 +857,7 @@ void MdtsClass::draw() {
 void MdtsClass::outputToCSV() {
 
 	std::ofstream output;
-	output.open(".\\csv\\MAP_NAMES.CSV");
+	output.open("./csv/MAP_NAMES.CSV");
 
 	output << "File,Map\n";
 

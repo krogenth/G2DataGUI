@@ -2,14 +2,14 @@
 #include <filesystem>
 #include <random>
 
-#include ".\include\SkillBooksClass.h"
+#include "./include/SkillBooksClass.h"
 
-#include ".\include\common\io_util.h"
-#include ".\include\common\char_constants.h"
-#include ".\include\common\string_manip.h"
-#include ".\include\common\copypaste_obj.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
+#include "./include/common/string_manip.h"
+#include "./include/common/copypaste_obj.h"
 
-#include ".\imgui.h"
+#include "./imgui.h"
 
 void SkillBooksClass::write() {
 
@@ -124,7 +124,7 @@ void SkillBooksClass::draw() {
 void SkillBooksClass::outputToCSV() {
 
 	std::ofstream output;
-	output.open(".\\csv\\TB_SKILL.CSV");
+	output.open("./csv/TB_SKILL.CSV");
 
 	if (!output.is_open())
 		return;

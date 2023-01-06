@@ -3,14 +3,14 @@
 #include <random>
 #include <unordered_map>
 
-#include ".\include\ManaEggsClass.h"
+#include "./include/ManaEggsClass.h"
 
-#include ".\include\common\io_util.h"
-#include ".\include\common\char_constants.h"
-#include ".\include\common\string_manip.h"
-#include ".\include\common\copypaste_obj.h"
+#include "./include/common/io_util.h"
+#include "./include/common/char_constants.h"
+#include "./include/common/string_manip.h"
+#include "./include/common/copypaste_obj.h"
 
-#include ".\imgui.h"
+#include "./imgui.h"
 
 void ManaEggsClass::write() {
 
@@ -132,7 +132,7 @@ void ManaEggsClass::draw() {
 void ManaEggsClass::outputToCSV() {
 
 	std::ofstream output;
-	output.open(".\\csv\\TB_MAGIC.CSV");
+	output.open("./csv/TB_MAGIC.CSV");
 
 	if (!output.is_open())
 		return;

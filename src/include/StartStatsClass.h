@@ -5,7 +5,7 @@
 
 #include "BaseDataClass.h"
 
-#include ".\include\ItemsClass.h"
+#include "./include/ItemsClass.h"
 
 struct StartStatsStruct {
 
