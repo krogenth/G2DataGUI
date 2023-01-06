@@ -69,7 +69,7 @@ void LevelupClass::draw() {
         this->write();
     }
 
-    if (ImGui::BeginCombo("Level", std::format("Level {}", this->_characterLevelupIndex).c_str())) {
+    if (ImGui::BeginCombo("Level", std::format("Level {}", this->_characterLevelupIndex + 1).c_str())) {
         for (size_t index = 0; index < maxLevel; index ++) {
             ImGui::PushID(index);
             bool is_selected = (index == this->_characterLevelupIndex);
