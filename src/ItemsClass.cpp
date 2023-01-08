@@ -260,7 +260,7 @@ void ItemsClass::draw() {
 				if (ImGui::Checkbox(statIDs[i], &EquipmentCharacterBitFlags[i])) {
 					this->_items.at(this->_itemIndex).equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[i] << i);
 				}
-				if ((i+1) % 4) {
+				if ((i+1) % 4 && (i+1) < 7) {
 					ImGui::SameLine();
 				}
 			}

@@ -70,7 +70,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     enemies.storeItems(items.getItems());
     mdts.storeItems(items.getItems());
 
-    StartImGui();
+    if (!StartImGui()) {
+        return EXIT_FAILURE;
+    }
 
     // Main loop
     MSG msg;
