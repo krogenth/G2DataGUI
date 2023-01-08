@@ -14,126 +14,107 @@
 #include "./imgui.h"
 
 void MovesClass::write() {
-
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
-	if (!output.is_open())
+	if (!output.is_open()) {
 		throw new std::exception("MS_PARAM.BIN not found to be written!");
+	}
 
 	for (size_t i = 0; i < this->_moves.size(); i++) {
-
-		this->_moves.at(i).icon++;				//	icon is offset by 1, adjust first
-		this->_moves.at(i).stats.atkMod %= 6;	//	stat changes are limited to between -5 and 5
+		this->_moves.at(i).icon++; // icon is offset by 1, adjust first
+		this->_moves.at(i).stats.atkMod %= 6; // stat changes are limited to between -5 and 5
 		this->_moves.at(i).stats.defMod %= 6;
 		this->_moves.at(i).stats.actMod %= 6;
 		this->_moves.at(i).stats.movMod %= 6;
 
 		writeRaw<uint8_t>(output, this->_moves.at(i).id);
 		writeRaw<uint8_t>(output, this->_moves.at(i).icon);
-
 		output.write((char*)this->_moves[i].name, 18);
-
 		writeRaw<MoveStatsStruct>(output, this->_moves.at(i).stats);
-
 		output.write((char*)this->_moves.at(i).description, 40);
 
 		this->_moves.at(i).icon--;
-
 	}
 
 	output.close();
-
 }
 
 void MovesClass::read(std::string filename) {
-
 	this->_filename = filename;
-
 	std::ifstream input(this->_filename, std::ios::binary);
 
-	if (!input.is_open())
+	if (!input.is_open()) {
 		throw new std::exception("MS_PARAM.BIN not found to be read!");
+	}
 
 	std::filesystem::path filePath(this->_filename);
 	size_t fileSize = std::filesystem::file_size(filePath);
-
 	this->_moves.resize(fileSize / 108);		//	entries are 108 bytes long
 
 	for (int i = 0; i < this->_moves.size(); i++) {
-
 		readRaw<uint8_t>(input);
-		this->_moves.at(i).id = i;	//	overwrite all IDs, we want them to be equal to the offset of the entry in the file
+		this->_moves.at(i).id = i; // overwrite all IDs, we want them to be equal to the offset of the entry in the file
 
 		this->_moves.at(i).icon = readRaw<uint8_t>(input);
 
+		// strings are not null terminated, we cannot read them from the file like everything else
 		input.read(&this->_moves.at(i).name[0], 18);
-		replaceNulls(this->_moves.at(i).name, 18);	//	strings are not null terminated, we cannot read them from the file like everything else
+		replaceNulls(this->_moves.at(i).name, 18);
 
 		this->_moves[i].stats = readRaw<MoveStatsStruct>(input);
 
 		input.read(&this->_moves.at(i).description[0], 40);
 		replaceNulls(this->_moves.at(i).description, 40);
 
-		if (this->_moves.at(i).icon != 0)
+		if (this->_moves.at(i).icon != 0) {
 			this->_moves.at(i).icon--;
-
+		}
 	}
 
 	input.close();
-
 }
 
 void MovesClass::draw() {
-
 	ImGui::Begin("MS_PARAM");
-
 	if (ImGui::Button("Save")) {
-
 		this->write();
-
 	}
 
 	ImGui::SameLine();
 	if (ImGui::Button("Copy")) {
-
 		copyObj(&this->_moves.at(this->_moveIndex), "Move");
-
 	}
 
 	ImGui::SameLine();
 	if (ImGui::Button("Paste")) {
-
 		if (checkObjType("Move")) {
-
 			this->_moves.at(this->_moveIndex) = *((MoveStruct*)pasteObj());
 
-			for (size_t i = 0; i < 8; i++)
+			for (size_t i = 0; i < 8; i++) {
 				AilmentBitFlags[i] = this->_moves.at(this->_moveIndex).stats.ailmentsBitflag & (1 << i);
-
+			}
 		}
-
 	}
 
 	if (ImGui::BeginCombo("Move Index", this->_moves.at(this->_moveIndex).name)) {
-
 		for (size_t i = 0; i < this->_moves.size() - 1; i++) {
-
-			ImGui::PushID(i);
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_moveIndex);
-			if (ImGui::Selectable(this->_moves.at(i).name, is_selected))
+			if (ImGui::Selectable(this->_moves.at(i).name, is_selected)) {
 				this->_moveIndex = i;
-			if (is_selected)
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
-		for (size_t i = 0; i < 8; i++)
+		for (size_t i = 0; i < 8; i++) {
 			AilmentBitFlags[i] = this->_moves.at(this->_moveIndex).stats.ailmentsBitflag & (1 << i);
+		}
 
 		ImGui::EndCombo();
-
 	}
 
 	ImGui::Combo("Icon", &this->_moves.at(this->_moveIndex).icon, moveIcons, 17);
@@ -141,115 +122,92 @@ void MovesClass::draw() {
 	ImGui::InputUShort("Cost", &this->_moves.at(this->_moveIndex).stats.cost);
 
 	if (ImGui::BeginCombo("Target Effect", targetEffects[this->_moves.at(this->_moveIndex).stats.targetEffect])) {
-		for (size_t i = 0; i < 16; i++) {
-
-			ImGui::PushID(i);
+		for (uint8_t i = 0; i < 16; i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_moves.at(this->_moveIndex).stats.targetEffect);
-			if (ImGui::Selectable(targetEffects[i], is_selected))
+			if (ImGui::Selectable(targetEffects[i], is_selected)) {
 				this->_moves.at(this->_moveIndex).stats.targetEffect = i;
-			if (is_selected)
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
 	if (ImGui::BeginCombo("Target Type", targetTypes[this->_moves.at(this->_moveIndex).stats.targetType])) {
-		for (size_t i = 0; i < 16; i++) {
-
-			ImGui::PushID(i);
+		for (uint8_t i = 0; i < 16; i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_moves.at(this->_moveIndex).stats.targetType);
-			if (ImGui::Selectable(targetTypes[i], is_selected))
+			if (ImGui::Selectable(targetTypes[i], is_selected)) {
 				this->_moves.at(this->_moveIndex).stats.targetType = i;
-			if (is_selected)
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
 	ImGui::InputUShort("Strength", &this->_moves.at(this->_moveIndex).stats.str);
 	ImGui::InputUShort("Power", &this->_moves.at(this->_moveIndex).stats.pow);
 	ImGui::InputUShort("Range", &this->_moves.at(this->_moveIndex).stats.range);
-
 	ImGui::InputUShort2("Cast Time Lv1/Lv5", &this->_moves.at(this->_moveIndex).stats.cast1);
-
 	ImGui::InputUShort("Recovery", &this->_moves.at(this->_moveIndex).stats.recovery);
 
 	if (ImGui::BeginCombo("Animation", animationIDs[this->_moves.at(this->_moveIndex).stats.animation])) {
-
 		for (size_t i = 0; i < this->_moves.size(); i++) {
-
-			ImGui::PushID(i);
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_moves.at(this->_moveIndex).stats.animation);
-			if (ImGui::Selectable(animationIDs[i], is_selected))
-				this->_moves.at(this->_moveIndex).stats.animation = i;
-			if (is_selected)
+			if (ImGui::Selectable(animationIDs[i], is_selected)) {
+				this->_moves.at(this->_moveIndex).stats.animation = (uint16_t)i;
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
 	ImGui::InputUByte("Unknown #1", &this->_moves.at(this->_moveIndex).stats.unknown1);
-	ImGui::InputUByte("Knockdown", &this->_moves.at(this->_moveIndex).stats.knockDown);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
-
+	ImGui::InputUByte("Knockdown", &this->_moves.at(this->_moveIndex).stats.knockDown);
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
 	ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_moves.at(this->_moveIndex).stats.ipStun);
-
-	ImGui::InputShort("Knockback", &this->_moves.at(this->_moveIndex).stats.knockback);               if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
+	ImGui::InputShort("Knockback", &this->_moves.at(this->_moveIndex).stats.knockback);
+	if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
 
 	if (ImGui::BeginCombo("Element", elements[this->_moves.at(this->_moveIndex).stats.element])) {
-
-		for (size_t i = 0; i < 5; i++) {
-
-			ImGui::PushID(i);
+		for (uint8_t i = 0; i < 5; i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_moves.at(this->_moveIndex).stats.element);
-			if (ImGui::Selectable(elements[i], is_selected))
+			if (ImGui::Selectable(elements[i], is_selected)) {
 				this->_moves.at(this->_moveIndex).stats.element = i;
-			if (is_selected)
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
 	ImGui::InputUByte("Element Strength", &this->_moves.at(this->_moveIndex).stats.elementStr);
 
-	if (ImGui::Checkbox("Poison", &AilmentBitFlags[0]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[0] << 0);
-	ImGui::SameLine();
-	if (ImGui::Checkbox("Sleep", &AilmentBitFlags[1]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[1] << 1);
-	ImGui::SameLine();
-	if (ImGui::Checkbox("Paralysis", &AilmentBitFlags[2]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[2] << 2);
-	ImGui::SameLine();
-	if (ImGui::Checkbox("Confusion", &AilmentBitFlags[3]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[3] << 3);
-
-	if (ImGui::Checkbox("Plague", &AilmentBitFlags[4]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[4] << 4);
-	ImGui::SameLine();
-	if (ImGui::Checkbox("Magic Block", &AilmentBitFlags[5]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[5] << 5);
-	ImGui::SameLine();
-	if (ImGui::Checkbox("Move Block", &AilmentBitFlags[6]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[6] << 6);
-	ImGui::SameLine();
-	if (ImGui::Checkbox("Death", &AilmentBitFlags[7]))
-		this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[7] << 7);
+	for (size_t i = 0; i < 8; i++) {
+		if (ImGui::Checkbox(statuses[i], &AilmentBitFlags[i])) {
+			this->_moves.at(this->_moveIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[i] << i);
+		}
+		if ((i+1) % 4) {
+			ImGui::SameLine();
+		}
+	}
 
 	ImGui::InputUByte("Ailments Chance", &this->_moves.at(this->_moveIndex).stats.ailmentsChance);
 	ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_moves.at(this->_moveIndex).stats.atkMod);
@@ -263,22 +221,20 @@ void MovesClass::draw() {
 	ImGui::InputText("Description", this->_moves.at(this->_moveIndex).description, 41);
 
 	ImGui::End();
-
 }
 
 void MovesClass::outputToCSV() {
-
 	std::ofstream output;
 	output.open("./csv/MS_PARAM.CSV");
 
-	if (!output.is_open())
+	if (!output.is_open()) {
 		return;
+	}
 
 	output  << "Index,Icon,Name,Cost,Target Effect,Target Type,Strength,Power,Range,Cast Lv1,Cast Lv5,Recovery,Animation,???,Knockdown,IP Damage,IP Cancel Damage,Knockback,Element,Element Strength,Status Effect Bitflag,"
 			<< "Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special Effect,Cost Lv1,Cost Lv2,Cost Lv3,Cost Lv4,Cost Lv5,Power Multiplier,Description\n";
 
 	for (const auto& val : this->_moves) {
-
 		output << std::to_string(val.id) << ','
 			<< std::to_string(val.icon) << ','
 			<< val.name << ','
@@ -313,9 +269,7 @@ void MovesClass::outputToCSV() {
 			<< std::to_string(val.stats.coinCost5) << ','
 			<< std::to_string(val.stats.multiplier) << ','
 			<< val.description << '\n';
-
 	}
 
 	output.close();
-
 }

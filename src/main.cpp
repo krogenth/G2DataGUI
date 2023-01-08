@@ -16,14 +16,7 @@
 
 #include "./include/ImGuiInstance.h"
 
-/*
-TODO:
-    Implement enemy groupings(from *.mdt files in /maps/), and patrolling sections(?)(from *.mdt files in /map/)
-    Include TB_LVUP.BIN
-*/
-
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPTSTR lpCmdLine, _In_ int nCmdShow) {
-
     MovesClass moves;
     ManaEggsClass manaeggs;
     SkillsClass skills;
@@ -37,10 +30,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
     bool isHDVersion = true;
 
-    if (!std::filesystem::exists("content"))
+    if (!std::filesystem::exists("content")) {
         isHDVersion = false;
+    }
 
-    //  read in data
+    // read in data
     if (isHDVersion) {
         moves.read("./content/data/afs/xls_data/MS_PARAM.BIN");
         manaeggs.read("./content/data/afs/xls_data/TB_MAGIC.BIN");
@@ -67,14 +61,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     }
 
     //  now store all needed data into relevant classes
-    manaeggs.storeMoves(moves.getMoves(), moves.getNumMoves());
-    skillbooks.storeSkills(skills.getSkills(), skills.getNumSkills());
-    specials.storeMoves(moves.getMoves(), moves.getNumMoves());
-    items.storeMoves(moves.getMoves(), moves.getNumMoves());
-    startStats.storeItems(items.getItems(), items.getNumItems());
-    enemies.storeMoves(moves.getMoves(), moves.getNumMoves());
-    enemies.storeItems(items.getItems(), items.getNumItems());
-    mdts.storeItems(items.getItems(), items.getNumItems());
+    manaeggs.storeMoves(moves.getMoves());
+    skillbooks.storeSkills(skills.getSkills());
+    specials.storeMoves(moves.getMoves());
+    items.storeMoves(moves.getMoves());
+    startStats.storeItems(items.getItems());
+    enemies.storeMoves(moves.getMoves());
+    enemies.storeItems(items.getItems());
+    mdts.storeItems(items.getItems());
 
     StartImGui();
 
@@ -83,22 +77,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     ZeroMemory(&msg, sizeof(msg));
 
     while (msg.message != WM_QUIT) {
-
         // Poll and handle messages (inputs, window resize, etc.)
         // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
         // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
         // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
         // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
         if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE)) {
-
             TranslateMessage(&msg);
             DispatchMessage(&msg);
             continue;
-
         }
 
         StartFrame();
-
         DrawMenuBar(lpCmdLine, &moves, &manaeggs, &skills, &skillbooks, &specials, &items, &startStats, &enemies, &mdts, &levelups);
 
         moves.draw();
@@ -113,11 +103,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         levelups.draw();
 
         EndFrame();
-
     }
 
     EndImGui();
 
     return EXIT_SUCCESS;
-
 }

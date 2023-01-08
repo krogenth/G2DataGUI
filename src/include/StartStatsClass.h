@@ -1,5 +1,4 @@
-#ifndef START_STATS_CLASS_H
-#define START_STATS_CLASS_H
+#pragma once
 
 #include <vector>
 
@@ -8,7 +7,6 @@
 #include "./include/ItemsClass.h"
 
 struct StartStatsStruct {
-
 	uint32_t exp = 0;
 	uint16_t weapon = 0;
 	uint16_t armour = 0;
@@ -52,11 +50,9 @@ struct StartStatsStruct {
 	uint16_t unknown21 = 0;
 	uint16_t unknown22 = 0;
 	uint16_t unknown23 = 0;
-
 };
 
 class StartStatsClass : public BaseDataClass {
-
 public:
 	StartStatsClass() {};
 	void write();
@@ -65,23 +61,13 @@ public:
 	void outputToCSV();
 	void randomize();
 
-	void storeItems(ItemStruct* items, size_t numItems) { _items = items; _numItems = numItems; };
-	StartStatsStruct* getStartStats() {
-
-		if (_startStats.size())
-			return &_startStats.at(0);
-		else
-			return nullptr;
-
-	};
+	void storeItems(const std::vector<ItemStruct>* items) { _items = items; };
+	const std::vector<StartStatsStruct>* getStartStats() { return &_startStats; };
 	size_t getNumStartStats() { return _startStats.size(); };
 
 private:
 	std::vector<StartStatsStruct> _startStats;
 	size_t _statIndex = 0;
 
-	ItemStruct* _items = nullptr;
-	size_t _numItems = 0;
+	const std::vector<ItemStruct>* _items = nullptr;
 };
-
-#endif

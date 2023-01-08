@@ -1,5 +1,4 @@
-#ifndef BASE_DATA_CLASS_H
-#define BASE_DATA_CLASS_H
+#pragma once
 
 #include <string>
 
@@ -15,5 +14,3 @@ protected:
 	std::string _filename;
 
 };
-
-#endif
