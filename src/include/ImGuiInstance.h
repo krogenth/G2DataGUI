@@ -1,5 +1,4 @@
-#ifndef IMGUI_INSTANCE_H
-#define IMGUI_INSTANCE_H
+#pragma once
 
 #include <Windows.h>
 #include <d3d12.h>
@@ -54,7 +53,3 @@ void WaitForLastSubmittedFrame();
 FrameContext* WaitForNextFrameResources();
 void ResizeSwapChain(HWND hWnd, int width, int height);
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
-
-
-#endif

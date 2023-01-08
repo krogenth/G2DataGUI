@@ -1,5 +1,4 @@
-#ifndef ENEMIES_CLASS_H
-#define ENEMIES_CLASS_H
+#pragma once
 
 #include <vector>
 
@@ -55,15 +54,12 @@ struct EnemyMoveStatsStruct {
 #pragma pack()
 
 struct EnemyMoveStruct {
-
 	char* name = new char[19]{};
 	EnemyMoveStatsStruct stats;
-
 };
 
 #pragma pack(1)
 struct EnemyStatsStruct {
-
 	uint8_t unknown = 0;
 	uint8_t unknown1 = 0;
 	uint8_t type1 = 0;
@@ -116,11 +112,9 @@ struct EnemyStruct {
 	EnemyMoveStruct moves[5]{};
 
 	std::string filename = "";
-
 };
 
 class EnemiesClass : public BaseDataClass {
-
 public:
 	EnemiesClass() {};
 	void write();
@@ -129,17 +123,9 @@ public:
 	void outputToCSV();
 	void randomize();
 
-	void storeMoves(MoveStruct* moves, size_t numMoves) { _moves = moves; _numMoves = numMoves; };
-	void storeItems(ItemStruct* items, size_t numItems) { _items = items; _numItems = numItems; };
-	EnemyStruct* getEnemies() {
-
-		if (_enemies.size())
-			return &_enemies.at(0);
-		else
-			return nullptr;
-
-	};
-	size_t getNumMoves() { return _enemies.size(); };
+	void storeMoves(const std::vector<MoveStruct>* moves) { _moves = moves; };
+	void storeItems(const std::vector<ItemStruct>* items) { _items = items; };
+	const std::vector<EnemyStruct>* getEnemies() { return &_enemies; };
 
 private:
 	std::vector<EnemyStruct> _enemies;
@@ -151,12 +137,6 @@ private:
 	size_t _moveIndex = 0;
 	size_t _aiIndex = 0;
 
-	MoveStruct* _moves = nullptr;
-	size_t _numMoves = 0;
-
-	ItemStruct* _items = nullptr;
-	size_t _numItems = 0;
-
+	const std::vector<MoveStruct>* _moves = nullptr;
+	const std::vector<ItemStruct>* _items = nullptr;
 };
-
-#endif

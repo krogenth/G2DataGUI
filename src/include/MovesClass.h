@@ -1,5 +1,4 @@
-#ifndef MOVES_CLASS_H
-#define MOVES_CLASS_H
+#pragma once
 
 #include <vector>
 
@@ -7,7 +6,6 @@
 
 #pragma pack(1)
 struct MoveStatsStruct {
-
 	uint16_t cost = 0;
 	uint8_t targetEffect = 0;
 	uint8_t targetType = 0;
@@ -38,22 +36,18 @@ struct MoveStatsStruct {
 	uint16_t coinCost4 = 0;
 	uint16_t coinCost5 = 0;
 	uint16_t multiplier = 0;
-
 };
 #pragma pack()
 
 struct MoveStruct {
-
 	uint8_t id = 0;	// overwrite this with array index, used to reference which move manaeggs and specials reference
 	uint8_t icon = 0;
 	char name[19];
 	MoveStatsStruct stats;
 	char description[41];
-
 };
 
 class MovesClass : public BaseDataClass{
-
 public:
 	MovesClass() {};
 	void write();
@@ -61,21 +55,10 @@ public:
 	void draw();
 	void outputToCSV();
 
-	MoveStruct* getMoves() {
-
-		if (_moves.size())
-			return &_moves.at(0);
-		else
-			return nullptr;
-
-	};
-	size_t getNumMoves() { return _moves.size(); };
+	const std::vector<MoveStruct>* getMoves() { return &_moves; };
 
 private:
 	std::vector<MoveStruct> _moves;
 	size_t _moveIndex = 0;
 	bool AilmentBitFlags[8] = {};
-
 };
-
-#endif

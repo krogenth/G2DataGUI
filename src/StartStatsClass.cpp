@@ -12,186 +12,166 @@
 #include "./imgui.h"
 
 void StartStatsClass::write() {
-
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
-	if (!output.is_open())
+	if (!output.is_open()) {
 		throw new std::exception("PC_INIT.BIN not found to be written!");
+	}
 
-	for (size_t i = 0; i < this->_startStats.size(); i++)
+	for (size_t i = 0; i < this->_startStats.size(); i++) {
 		writeRaw<StartStatsStruct>(output, this->_startStats.at(i));
+	}
 
 	output.close();
-
 }
 
 void StartStatsClass::read(std::string filename) {
-
-	//	Upon starting a new game, all characters gain EXP together. The EXP value displayed is what each character starts the game at
-
+	// Upon starting a new game, all characters gain EXP together.
+	// The EXP value displayed is what each character starts the game at.
 	this->_filename = filename;
 
 	std::ifstream input(this->_filename, std::ios::binary);
 
-	if (!input.is_open())
+	if (!input.is_open()) {
 		throw new std::exception("PC_INIT.BIN not found to be read!");
+	}
 
 	std::filesystem::path filePath(this->_filename);
 	size_t fileSize = std::filesystem::file_size(filePath);
+	this->_startStats.resize(fileSize / 80); // entries are 80 bytes long
 
-	this->_startStats.resize(fileSize / 80);		//	entries are 80 bytes long
-
-	for (size_t i = 0; i < this->_startStats.size(); i++)
+	for (size_t i = 0; i < this->_startStats.size(); i++) {
 		this->_startStats.at(i) = readRaw<StartStatsStruct>(input);
+	}
 
 	input.close();
-
 }
 
 void StartStatsClass::draw() {
-
 	ImGui::Begin("PC_INIT");
 
 	if (ImGui::BeginCombo("Start Stat Index", statIDs[this->_statIndex])) {
-
 		for (size_t i = 0; i < this->_startStats.size(); i++) {
-
-			ImGui::PushID(i);
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_statIndex);
 			if (ImGui::Selectable(statIDs[i], is_selected))
 				this->_statIndex = i;
 			if (is_selected)
 				ImGui::SetItemDefaultFocus();
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) {
-
 		this->write();
-
 	}
 
 	ImGui::InputUInt("EXP", &this->_startStats[this->_statIndex].exp);
 
-	if (ImGui::BeginCombo("Weapon", this->_items[this->_startStats.at(this->_statIndex).weapon].name)) {
-
-		for (size_t i = 0; i < this->_numItems; i++) {
-
-			ImGui::PushID(i);
+	if (ImGui::BeginCombo("Weapon", this->_items->at(this->_startStats.at(this->_statIndex).weapon).name)) {
+		for (size_t i = 0; i < this->_items->size(); i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_startStats.at(this->_statIndex).weapon);
-			if (ImGui::Selectable(this->_items[i].name, is_selected))
-				this->_startStats.at(this->_statIndex).weapon = i;
-			if (is_selected)
+			if (ImGui::Selectable(this->_items->at(i).name, is_selected)) {
+				this->_startStats.at(this->_statIndex).weapon = (uint16_t)i;
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
-	if (ImGui::BeginCombo("Armour", this->_items[this->_startStats.at(this->_statIndex).armour].name)) {
-
-		for (size_t i = 0; i < this->_numItems; i++) {
-
-			ImGui::PushID(i);
+	if (ImGui::BeginCombo("Armour", this->_items->at(this->_startStats.at(this->_statIndex).armour).name)) {
+		for (size_t i = 0; i < this->_items->size(); i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_startStats.at(this->_statIndex).armour);
-			if (ImGui::Selectable(this->_items[i].name, is_selected))
-				this->_startStats.at(this->_statIndex).armour = i;
-			if (is_selected)
+			if (ImGui::Selectable(this->_items->at(i).name, is_selected)) {
+				this->_startStats.at(this->_statIndex).armour = (uint16_t)i;
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
-	if (ImGui::BeginCombo("Headgear", this->_items[this->_startStats.at(this->_statIndex).headgear].name)) {
-
-		for (size_t i = 0; i < this->_numItems; i++) {
-
-			ImGui::PushID(i);
+	if (ImGui::BeginCombo("Headgear", this->_items->at(this->_startStats.at(this->_statIndex).headgear).name)) {
+		for (size_t i = 0; i < this->_items->size(); i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_startStats.at(this->_statIndex).headgear);
-			if (ImGui::Selectable(this->_items[i].name, is_selected))
-				this->_startStats.at(this->_statIndex).headgear = i;
-			if (is_selected)
+			if (ImGui::Selectable(this->_items->at(i).name, is_selected)) {
+				this->_startStats.at(this->_statIndex).headgear = (uint16_t)i;
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
-	if (ImGui::BeginCombo("Footwear", this->_items[this->_startStats.at(this->_statIndex).footwear].name)) {
-
-		for (size_t i = 0; i < this->_numItems; i++) {
-
-			ImGui::PushID(i);
+	if (ImGui::BeginCombo("Footwear", this->_items->at(this->_startStats.at(this->_statIndex).footwear).name)) {
+		for (size_t i = 0; i < this->_items->size(); i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_startStats.at(this->_statIndex).footwear);
-			if (ImGui::Selectable(this->_items[i].name, is_selected))
-				this->_startStats.at(this->_statIndex).footwear = i;
-			if (is_selected)
+			if (ImGui::Selectable(this->_items->at(i).name, is_selected)) {
+				this->_startStats.at(this->_statIndex).footwear = (uint16_t)i;
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
-	if (ImGui::BeginCombo("Accessory", this->_items[this->_startStats.at(this->_statIndex).accessory].name)) {
-
-		for (size_t i = 0; i < this->_numItems; i++) {
-
-			ImGui::PushID(i);
+	if (ImGui::BeginCombo("Accessory", this->_items->at(this->_startStats.at(this->_statIndex).accessory).name)) {
+		for (size_t i = 0; i < this->_items->size(); i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_startStats.at(this->_statIndex).accessory);
-			if (ImGui::Selectable(this->_items[i].name, is_selected))
-				this->_startStats.at(this->_statIndex).accessory = i;
-			if (is_selected)
+			if (ImGui::Selectable(this->_items->at(i).name, is_selected)) {
+				this->_startStats.at(this->_statIndex).accessory = (uint16_t)i;
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
-	if (ImGui::BeginCombo("Mana Egg", this->_items[this->_startStats.at(this->_statIndex).manaEgg].name)) {
-
-		for (size_t i = 0; i < this->_numItems; i++) {
-
-			ImGui::PushID(i);
+	if (ImGui::BeginCombo("Mana Egg", this->_items->at(this->_startStats.at(this->_statIndex).manaEgg).name)) {
+		for (size_t i = 0; i < this->_items->size(); i++) {
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_startStats.at(this->_statIndex).manaEgg);
-			if (ImGui::Selectable(this->_items[i].name, is_selected))
-				this->_startStats.at(this->_statIndex).manaEgg = i;
-			if (is_selected)
+			if (ImGui::Selectable(this->_items->at(i).name, is_selected)) {
+				this->_startStats.at(this->_statIndex).manaEgg = (uint16_t)i;
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
-
 
 	ImGui::InputShort("Stamina", &this->_startStats[this->_statIndex].stamina);
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("How long can they move without tiring?");
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("How long can they move without tiring?");
+	}
 
 	ImGui::InputUShort("Unknown #1", &this->_startStats[this->_statIndex].unknown1);
 	ImGui::InputUShort("Unknown #2", &this->_startStats[this->_statIndex].unknown2);
@@ -205,22 +185,26 @@ void StartStatsClass::draw() {
 	ImGui::InputUShort("Unknown #10", &this->_startStats[this->_statIndex].unknown10);
 
 	ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_startStats[this->_statIndex].ipStun);
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("IP Stun/IP Cancel Stun Resistance.");
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("IP Stun/IP Cancel Stun Resistance.");
+	}
 
 	ImGui::InputUByte("Combo SP Regen", &this->_startStats[this->_statIndex].comboSpRegen);
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("SP regen from combo hit.");
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("SP regen from combo hit.");
+	}
 
 	ImGui::InputUByte("Critical SP Regen", &this->_startStats[this->_statIndex].critSpRegen);
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("SP regen from critical hit.");
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("SP regen from critical hit.");
+	}
 
 	ImGui::InputUByte("Unknown #11", &this->_startStats[this->_statIndex].unknown11);
 
 	ImGui::InputUByte("Damaged SP Regen", &this->_startStats[this->_statIndex].hitSpRegen);
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("SP regen from taking damage.");
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("SP regen from taking damage.");
+	}
 
 	ImGui::InputUByte("Unknown #12", &this->_startStats[this->_statIndex].unknown12);
 
@@ -231,12 +215,14 @@ void StartStatsClass::draw() {
 	ImGui::InputUShort("Unknown #13", &this->_startStats[this->_statIndex].unknown13);
 
 	ImGui::InputShort("T_REC", &this->_startStats[this->_statIndex].TREC);
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Time to recover from status effects(lower is better).");
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("Time to recover from status effects(lower is better).");
+	}
 
 	ImGui::InputShort("T_DMG", &this->_startStats[this->_statIndex].TDMG);
-		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Time to recover from being hit(lower is better)?");
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("Time to recover from being hit(lower is better)?");
+	}
 
 	ImGui::InputUShort("Unknown #14", &this->_startStats[this->_statIndex].unknown14);
 
@@ -255,29 +241,27 @@ void StartStatsClass::draw() {
 	ImGui::InputUShort("Unknown #23", &this->_startStats[this->_statIndex].unknown23);
 
 	ImGui::End();
-
 }
 
 void StartStatsClass::outputToCSV() {
-
 	std::ofstream output;
 	output.open("./csv/PC_INIT.CSV");
 
-	if (!output.is_open())
+	if (!output.is_open()) {
 		return;
+	}
 
 	output << "EXP,weapon,armor,headgear,footwear,accessory,manaegg,stamina,???,???,???,???,???,???,???,???,???,???,hit IP Stun,cancel IP Stun,combo SP regen,crit SP regen,???,"
 		<< "hit SP regen,???,evasion,moveing evasion,R_KB,???,T_REC,T_DMG,???,T_HEAL,Size,???,???,???,???,???,???,???,???,???\n";
 
 	for (const auto& val : this->_startStats) {
-
 		output << std::to_string(val.exp) << ','
-			<< this->_items[val.weapon].name << ','
-			<< this->_items[val.armour].name << ','
-			<< this->_items[val.headgear].name << ','
-			<< this->_items[val.footwear].name << ','
-			<< this->_items[val.accessory].name << ','
-			<< this->_items[val.manaEgg].name << ','
+			<< this->_items->at(val.weapon).name << ','
+			<< this->_items->at(val.armour).name << ','
+			<< this->_items->at(val.headgear).name << ','
+			<< this->_items->at(val.footwear).name << ','
+			<< this->_items->at(val.accessory).name << ','
+			<< this->_items->at(val.manaEgg).name << ','
 			<< std::to_string(val.stamina) << ','
 			<< std::to_string(val.unknown1) << ','
 			<< std::to_string(val.unknown2) << ','
@@ -314,65 +298,45 @@ void StartStatsClass::outputToCSV() {
 			<< std::to_string(val.unknown21) << ','
 			<< std::to_string(val.unknown22) << ','
 			<< std::to_string(val.unknown23) << '\n';
-
 	}
 
 	output.close();
-
 }
 
 void StartStatsClass::randomize() {
-
 	std::random_device rd;
 	std::mt19937 g(rd());
 	size_t charIndex = 0;
 
 	for (auto& startStat : this->_startStats) {
+		do {
+			startStat.weapon = (uint16_t)(300 + (30 * charIndex) + (g() % 30));
+		} while (std::string(this->_items->at(startStat.weapon).name).find_first_not_of(' ') == std::string::npos);
 
 		do {
-
-			startStat.weapon = 300 + (30 * charIndex) + (g() % 30);
-
-		} while (std::string(this->_items[startStat.weapon].name).find_first_not_of(' ') == std::string::npos);
+			startStat.armour = (uint16_t)(500 + (g() % 70));
+		} while (std::string(this->_items->at(startStat.armour).name).find_first_not_of(' ') == std::string::npos);
 
 		do {
-
-			startStat.armour = 500 + (g() % 70);
-
-		} while (std::string(this->_items[startStat.armour].name).find_first_not_of(' ') == std::string::npos);
+			startStat.headgear = (uint16_t)(570 + (g() % 70));
+		} while (std::string(this->_items->at(startStat.headgear).name).find_first_not_of(' ') == std::string::npos);
 
 		do {
-
-			startStat.headgear = 570 + (g() % 70);
-
-		} while (std::string(this->_items[startStat.headgear].name).find_first_not_of(' ') == std::string::npos);
+			startStat.footwear = (uint16_t)(650 + (g() % 50));
+		} while (std::string(this->_items->at(startStat.footwear).name).find_first_not_of(' ') == std::string::npos);
 
 		do {
-
-			startStat.footwear = 650 + (g() % 50);
-
-		} while (std::string(this->_items[startStat.footwear].name).find_first_not_of(' ') == std::string::npos);
-
-		do {
-
-			startStat.accessory = 700 + (g() % 99);
-
-		} while (std::string(this->_items[startStat.accessory].name).find_first_not_of(' ') == std::string::npos || std::string(this->_items[startStat.accessory].name).find("Egg") != std::string::npos);
+			startStat.accessory = (uint16_t)(700 + (g() % 99));
+		} while (std::string(this->_items->at(startStat.accessory).name).find_first_not_of(' ') == std::string::npos || std::string(this->_items->at(startStat.accessory).name).find("Egg") != std::string::npos);
 
 		if (g() % 3 != 0)
 			startStat.manaEgg = 0;
 		else {
-
 			do {
-
-				startStat.manaEgg = (700 + g() % 99);
-
-			} while (std::string(this->_items[startStat.manaEgg].name).find("Egg") == std::string::npos);
-
+				startStat.manaEgg = (uint16_t)(700 + g() % 99);
+			} while (std::string(this->_items->at(startStat.manaEgg).name).find("Egg") == std::string::npos);
 		}
 
 		++charIndex;
-
 	}
-
 }

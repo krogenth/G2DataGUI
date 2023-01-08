@@ -1,5 +1,4 @@
-#ifndef SKILLS_CLASS_H
-#define SKILLS_CLASS_H
+#pragma once
 
 #include <vector>
 
@@ -7,7 +6,6 @@
 
 #pragma pack(1)
 struct SkillStatsStruct {
-
 	uint8_t cost1 = 0;
 	uint8_t cost2 = 0;
 	uint16_t baseHp = 0;
@@ -39,21 +37,16 @@ struct SkillStatsStruct {
 	uint16_t coinCost4 = 0;
 	uint16_t coinCost5 = 0;
 	uint16_t multiplier = 0;
-
 };
 #pragma pack()
 
 struct SkillStruct {
-
-public:
 	char name[19];
 	SkillStatsStruct stats;
 	char description[41];
-
 };
 
 class SkillsClass : public BaseDataClass {
-
 public:
 	SkillsClass() {};
 	void write();
@@ -61,20 +54,10 @@ public:
 	void draw();
 	void outputToCSV();
 
-	SkillStruct* getSkills() { 
-		
-		if (_skills.size()) 
-			return &_skills.at(0);
-		else 
-			return nullptr;
-	
-	};
+	const std::vector<SkillStruct>* getSkills() { return &_skills; };
 	size_t getNumSkills() { return _skills.size(); };
 
 private:
 	std::vector<SkillStruct> _skills;
 	size_t _skillIndex = 0;
-
 };
-
-#endif

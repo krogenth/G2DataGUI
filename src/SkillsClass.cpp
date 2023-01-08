@@ -14,35 +14,29 @@
 #include "./imgui.h"
 
 void SkillsClass::write() {
-
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
-	if (!output.is_open())
+	if (!output.is_open()) {
 		throw new std::exception("SK_PARAM.BIN not found to be written!");
+	}
 
 	for (size_t i = 0; i < this->_skills.size(); i++) {
-
 		output.write((char*)this->_skills.at(i).name, 18);
-
 		writeRaw<SkillStatsStruct>(output, this->_skills.at(i).stats);
-
 		output.write((char*)this->_skills.at(i).description, 40);
-
 	}
 
 	output.close();
-
 }
 
 void SkillsClass::read(std::string filename) {
-
 	this->_filename = filename;
-
 	std::ifstream input(this->_filename, std::ios::binary);
 
-	if (!input.is_open())
+	if (!input.is_open()) {
 		throw new std::exception("SK_PARAM.BIN not found to be read!");
+	}
 
 	std::filesystem::path filePath(this->_filename);
 	size_t fileSize = std::filesystem::file_size(filePath);
@@ -50,60 +44,45 @@ void SkillsClass::read(std::string filename) {
 	this->_skills.resize(fileSize / 104);		//entries are 104 bytes long
 
 	for (size_t i = 0; i < this->_skills.size(); i++) {
-
 		input.read(this->_skills.at(i).name, 18);
-
 		this->_skills.at(i).stats = readRaw<SkillStatsStruct>(input);
-
 		input.read(this->_skills.at(i).description, 40);
-
 	}
 
 	input.close();
-
 }
 
 void SkillsClass::draw() {
-
 	ImGui::Begin("SK_PARAM");
 
 	if (ImGui::Button("Save")) {
-
 		this->write();
-
 	}
 
 	ImGui::SameLine();
 	if (ImGui::Button("Copy")) {
-
 		copyObj(&this->_skills.at(this->_skillIndex), "Skill");
-
 	}
 
 	ImGui::SameLine();
-	if (ImGui::Button("Paste")) {
-
-		if (checkObjType("Skill"))
-			this->_skills.at(this->_skillIndex) = *((SkillStruct*)pasteObj());
-
+	if (ImGui::Button("Paste") && checkObjType("Skill")) {
+		this->_skills.at(this->_skillIndex) = *((SkillStruct*)pasteObj());
 	}
 
 	if (ImGui::BeginCombo("Skill Index", this->_skills.at(this->_skillIndex).name)) {
-
 		for (size_t i = 0; i < this->_skills.size(); i++) {
-
-			ImGui::PushID(i);
+			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_skillIndex);
-			if (ImGui::Selectable(this->_skills.at(i).name, is_selected))
+			if (ImGui::Selectable(this->_skills.at(i).name, is_selected)) {
 				this->_skillIndex = i;
-			if (is_selected)
+			}
+			if (is_selected) {
 				ImGui::SetItemDefaultFocus();
+			}
 			ImGui::PopID();
-
 		}
 
 		ImGui::EndCombo();
-
 	}
 
 	ImGui::InputText("Name", this->_skills.at(this->_skillIndex).name, 19);
@@ -141,22 +120,20 @@ void SkillsClass::draw() {
 	ImGui::InputText("Description", this->_skills.at(this->_skillIndex).description, 41);
 
 	ImGui::End();
-
 }
 
 void SkillsClass::outputToCSV() {
-
 	std::ofstream output;
 	output.open("./csv/SK_PARAM.CSV");
 
-	if (!output.is_open())
+	if (!output.is_open()) {
 		return;
+	}
 
 	output << "Name,Cost Type,Cost Type,Base HP Inc,Base MP Inc,Base SP Inc,Base STR Inc,Base VIT Inc,Base ACT Inc,Base MOV Inc,Base MAG Inc,Base MEN Inc,???,???,???,???,???,"
 		<< "Fire Pow Inc %,Wind Pow Inc %,Earth Pow Inc %,Blizzard Pow Inc %,Water Pow Inc %,Explosion Pow Inc %,Forest Pow Inc %,Special,Cost Lv1,Cost Lv2,Cost Lv3,Cost Lv4,Cost Lv5,Multiplier,Description\n";
 
 	for (const auto& val : this->_skills) {
-
 		output << val.name << ','
 			<< std::to_string(val.stats.cost1) << ','
 			<< std::to_string(val.stats.cost2) << ','
@@ -189,9 +166,7 @@ void SkillsClass::outputToCSV() {
 			<< std::to_string(val.stats.coinCost5) << ','
 			<< std::to_string(val.stats.multiplier) << ','
 			<< val.description << '\n';
-
 	}
 
 	output.close();
-
 }

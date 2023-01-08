@@ -26,3 +26,5 @@ static const char* animationIDs[] = { "Physical Attack", "Burn!", "Burnflame", "
 						"Dragon Rise", "Vitality March", "unknown 24", "unknown 25", "Lotus Flower", "Tornado", "Fast Dance-Whirl", "Whisper to Stars", "unknown 26", "unknown 27", "Beast-Fang Cut", "Beat-King Blast", "Beast-King Smash", "Lion's Roar", "unknown 28", "unknown 29", "Golden Hammer",
 						"Ice Prison", "True Dragon Rise", "Vitality March", "Taint of Wind", "unknown 30", "unknown 31", "unknown 32", "unknown 33", "unknown 34", "unknown 35", "unknown 36", "unknown 37", "unknown 38", "unknown 39", "unknown 40", "unknown 41", "unknown 42", "unknown 43",
 						"unknown 44", "unknown 45", "unknown 46", "unknown 47", "unknown 48", "unknown 49", "unknown 50", "unknown 51", "unknown 52", "unknown 53", "unknown 54", "unknown 55" };
+
+static const char* statuses[] = { "Poison", "Sleep", "Paralysis", "Confusion", "Plague", "Magic Block", "Move Block", "Death" };

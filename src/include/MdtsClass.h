@@ -1,5 +1,4 @@
-#ifndef MDT_CLASS_H
-#define MDT_CLASS_H
+#pragma once
 
 #include <vector>
 
@@ -26,7 +25,6 @@ struct MapEntriesStruct {		//	0x00000008 && 0x0000000C
 
 #pragma pack(1)
 struct InstancesStruct {		//	0x00000018 && 0x0000001C
-
 	uint16_t ID = 0;
 	uint16_t index = 0;
 	uint16_t unknown = 0;
@@ -40,13 +38,11 @@ struct InstancesStruct {		//	0x00000018 && 0x0000001C
 	float cx = 0.0f;
 	float cy = 0.0f;
 	float cz = 0.0f;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct HTAStruct {				//	0x00000020 && 0x00000024
-
 	uint8_t shape = 0;
 	uint8_t type = 0;
 	uint8_t trigger = 0;
@@ -66,13 +62,11 @@ struct HTAStruct {				//	0x00000020 && 0x00000024
 	uint32_t unknown7 = 0;
 	uint32_t unknown8 = 0;
 	uint32_t unknown9 = 0;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct EnemyPositionStruct {	//	0x00000038 && 0x0000003C
-
 	uint16_t index = 0;
 	uint16_t unknown = 0;
 	float xPosMin = 0.0f;
@@ -92,13 +86,11 @@ struct EnemyPositionStruct {	//	0x00000038 && 0x0000003C
 	float unknownX2 = 0.0f;
 	float unknownY2 = 0.0f;
 	float unknownZ2 = 0.0f;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct EnemyFirstUnknownStruct {
-
 	uint16_t unknown = 0;
 	uint16_t unknown1 = 0;
 	uint16_t unknown2 = 0;
@@ -109,13 +101,11 @@ struct EnemyFirstUnknownStruct {
 	uint16_t unknown7 = 0;
 	uint16_t unknown8 = 0;
 	uint16_t unknown9 = 0;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct EnemyTypeStruct {
-
 	uint16_t index = 0;			//	unsure about this
 	uint16_t numEnemy = 0;
 	uint16_t enemyOffset = 0;
@@ -123,13 +113,11 @@ struct EnemyTypeStruct {
 	uint16_t unknown1 = 0;
 	uint16_t unknown2 = 0;
 	uint16_t unknown3 = 0;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct EnemySecondUnknownStruct {
-
 	uint16_t unknown = 0;
 	uint16_t unknown1 = 0;
 	uint16_t unknown2 = 0;
@@ -150,24 +138,20 @@ struct EnemySecondUnknownStruct {
 	uint16_t unknown17 = 0;
 	uint16_t unknown18 = 0;
 	uint16_t unknown19 = 0;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct EnemyGroupStruct {		//	0x00000048 && 0x0000004C
-
 	uint16_t index = 0;
 	EnemyFirstUnknownStruct unknown;
 	EnemyTypeStruct enemies[4];
 	EnemySecondUnknownStruct unknown1;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct MOSStruct {				//	0x00000050 && 0x00000054
-
 	uint16_t ID = 0;
 	uint16_t index = 0;
 	uint32_t unknown = 0;
@@ -179,13 +163,11 @@ struct MOSStruct {				//	0x00000050 && 0x00000054
 	uint32_t unknown3 = 0;
 	uint32_t unknown4 = 0;
 	uint16_t unknown5 = 0;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct IconStruct {				//	0x00000098 && 0x0000009C
-
 	uint8_t ID = 0;
 	uint16_t unknown = 0;
 	uint8_t unknown1 = 0;
@@ -198,21 +180,17 @@ struct IconStruct {				//	0x00000098 && 0x0000009C
 	uint16_t item2 = 0;
 	uint16_t item3 = 0;
 	uint16_t flag = 0;
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct ShopItemStruct {
-
 	uint16_t item = 0;		//	offset by 0x0800
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct ShopStruct {			//	0x000000A8 && 0x000000AC
-
 	uint16_t mapID = 0;
 	uint16_t catagories = 0;
 	char weaponChar[8];
@@ -225,13 +203,11 @@ struct ShopStruct {			//	0x000000A8 && 0x000000AC
 	ShopItemStruct items[12];
 	char regionalChar[8];
 	ShopItemStruct regionals[12];
-
 };
 #pragma pack()
 
 #pragma pack(1)
 struct mdtHeader {
-
 	uint32_t headerLength = 0;
 	uint32_t unknown = 0;
 
@@ -306,12 +282,10 @@ struct mdtHeader {
 
 	uint32_t unknown27 = 0;
 	uint32_t unknown28 = 0;
-
 };
 #pragma pack()
 
 struct MdtStruct {
-
 	mdtHeader header;
 	std::vector<MapEntriesStruct> mapEntries;
 	std::vector<InstancesStruct> instances;
@@ -327,11 +301,9 @@ struct MdtStruct {
 	std::string mapname = "";
 	std::string filename = "";
 	std::string filenameChr = "";
-
 };
 
 class MdtsClass : public BaseDataClass {
-
 public:
 	MdtsClass() {};
 	void write();
@@ -340,18 +312,10 @@ public:
 	void outputToCSV();
 	void randomize();
 
-	void storeItems(ItemStruct* items, size_t numItems) { _items = items; _numItems = numItems; };
-	void storeEnemies(EnemyStruct* enemies, size_t numEnemies) { _enemies = enemies; _numEnemies = numEnemies; };
-	void storeModels(modelStruct* models, size_t numModels) { _models = models; _numModels = numModels; };
-	MdtStruct* getMdts() {
-
-		if (_mdts.size())
-			return &_mdts.at(0);
-		else
-			return nullptr;
-
-	};
-	size_t getNumMdts() { return _mdts.size(); };
+	void storeItems(const std::vector<ItemStruct>* items) { _items = items; };
+	void storeEnemies(const std::vector<EnemyStruct>* enemies) { _enemies = enemies; };
+	void storeModels(const std::vector<modelStruct>* models) { _models = models; };
+	const std::vector<MdtStruct>* getMdts() { return &_mdts; };
 
 private:
 	std::vector<MdtStruct> _mdts;
@@ -372,15 +336,7 @@ private:
 	size_t _shopItemIndex = 0;
 	size_t _shopRegionalIndex = 0;
 
-	ItemStruct* _items = nullptr;
-	size_t _numItems = 0;
-
-	EnemyStruct* _enemies = nullptr;
-	size_t _numEnemies = 0;
-
-	modelStruct* _models = nullptr;
-	size_t _numModels = 0;
-
+	const std::vector<ItemStruct>* _items = nullptr;
+	const std::vector<EnemyStruct>* _enemies = nullptr;
+	const std::vector<modelStruct>* _models = nullptr;
 };
-
-#endif
