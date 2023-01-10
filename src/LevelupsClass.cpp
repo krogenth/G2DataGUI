@@ -89,10 +89,10 @@ void Levelups::draw() {
     ImGui::InputShort("SP Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].spIncrease);
     ImGui::InputShort("STR Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].strIncrease);
     ImGui::InputShort("VIT Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].vitIncrease);
-    ImGui::InputShort("ACT Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].actIncrease);
-    ImGui::InputShort("MOV Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].movIncrease);
     ImGui::InputShort("MAG Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].magIncrease);
     ImGui::InputShort("MEN Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].menIncrease);
+    ImGui::InputShort("ACT Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].actIncrease);
+    ImGui::InputShort("MOV Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].movIncrease);
     ImGui::InputShort("Skill Slot Increase",&this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].skillSlotIncrease);
 
     ImGui::End();
