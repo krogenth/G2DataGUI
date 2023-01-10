@@ -13,102 +13,101 @@
 
 #include "./imgui.h"
 
-void ItemsClass::write() {
+void Items::write() {
 	ImU32 dataOffset = 0x0000F9B0; // 80 * 799
 	ImU32 badOffset = 0xFFFFFFFF;
 
-	std::ofstream output;
-	output.open(this->_filename, std::ios::binary);
+	std::ofstream stream;
+	stream.open(this->_filename, std::ios::binary);
 
-	if (!output.is_open()) {
+	if (!stream.is_open()) {
 		throw new std::exception("ITEM.BIN not found to be written!");
 	}
 
 	for (size_t i = 0; i < this->_items.size(); i++) {
-		output.write(this->_items.at(i).name, 18);
-		output.write(this->_items.at(i).description, 40);
+		stream.write(this->_items.at(i).name, 18);
+		stream.write(this->_items.at(i).description, 40);
 
-		writeRaw<ItemStatsStruct>(output, this->_items.at(i).stats);
+		writeRaw<ItemStatsStruct>(stream, this->_items.at(i).stats);
 
 		if (!this->_items.at(i).equipmentOffset) {
-			writeRaw<ImU32>(output, badOffset);
+			writeRaw<ImU32>(stream, badOffset);
 		}
 		else {
-			writeRaw<ImU32>(output, dataOffset);
+			writeRaw<ImU32>(stream, dataOffset);
 			dataOffset += sizeof(EquipmentStruct);
 		}
 
 		if (!this->_items.at(i).usableOffset) {
-			writeRaw<ImU32>(output, badOffset);
+			writeRaw<ImU32>(stream, badOffset);
 		}
 		else {
-			writeRaw<ImU32>(output, dataOffset);
+			writeRaw<ImU32>(stream, dataOffset);
 			dataOffset += sizeof(UsableStruct);
 		}
 
-		writeRaw<ImU32>(output, this->_items.at(i).id);
+		writeRaw<ImU32>(stream, this->_items.at(i).id);
 	}
 
 	for (size_t i = 0; i < this->_items.size(); i++) {
 		if (this->_items.at(i).equipmentOffset) {
-			writeRaw<EquipmentStruct>(output, *(this->_items.at(i).equipmentOffset));
+			writeRaw<EquipmentStruct>(stream, *(this->_items.at(i).equipmentOffset));
 		}
 		if (this->_items.at(i).usableOffset) {
-			writeRaw<UsableStruct>(output, *(this->_items.at(i).usableOffset));
+			writeRaw<UsableStruct>(stream, *(this->_items.at(i).usableOffset));
 		}
 	}
 
-	output.close();
+	stream.close();
 }
 
-void ItemsClass::read(std::string filename) {
-	this->_filename = filename;
-	std::ifstream input(this->_filename, std::ios::binary);
+void Items::read() {
+	std::ifstream stream(this->_filename, std::ios::binary);
 
-	if (!input.is_open()) {
+	if (!stream.is_open()) {
 		throw new std::exception("ITEM.BIN not found to be read!");
 	}
 
-	char* readByte = new char[4]{};
 	std::streampos pos = 0;
 	this->_items.resize(0x31F); // entries are broken down into 3 possible parts(first is always there, 80 bytes long; second is equipment, 28 bytes long; third is usables, 32 bytes long)
 
 	for (size_t i = 0; i < this->_items.size(); i++) {
-		input.read(this->_items.at(i).name, 18);
+		stream.read(this->_items.at(i).name, 18);
 		replaceNulls(this->_items.at(i).name, 18);
-		input.read(this->_items.at(i).description, 40);
+		stream.read(this->_items.at(i).description, 40);
 		replaceNulls(this->_items.at(i).description, 40);
-		this->_items.at(i).stats = readRaw<ItemStatsStruct>(input);
-		input.read(readByte, 4);
-		pos = input.tellg();
+		this->_items.at(i).stats = readRaw<ItemStatsStruct>(stream);
 
 		// check if equipment offset is available
-		if (((((int32_t)((uint8_t)readByte[3])) << 24) + (((int32_t)((uint8_t)readByte[2])) << 16) + (((int32_t)((uint8_t)readByte[1])) << 8) + (int32_t)((uint8_t)readByte[0])) > 0) {
+		int32_t equipOffset = readRaw<int32_t>(stream);
+		pos = stream.tellg();
+		if (equipOffset > 0) {
 			this->_items.at(i).equipmentOffset = new EquipmentStruct;
-			input.seekg(((((int32_t)((uint8_t)readByte[3])) << 24) + (((int32_t)((uint8_t)readByte[2])) << 16) + (((int32_t)((uint8_t)readByte[1])) << 8) + (int32_t)((uint8_t)readByte[0])), std::ios::beg);
-			*(this->_items.at(i).equipmentOffset) = readRaw<EquipmentStruct>(input);
+			stream.seekg(equipOffset, std::ios::beg);
+			*(this->_items.at(i).equipmentOffset) = readRaw<EquipmentStruct>(stream);
 		}
 
-		input.seekg(pos, std::ios::beg);
-		input.read(readByte, 4);
-		pos = input.tellg();
+		// check if usable offset is available
+		stream.seekg(pos, std::ios::beg);
 
-		if (((((int32_t)((uint8_t)readByte[3])) << 24) + (((int32_t)((uint8_t)readByte[2])) << 16) + (((int32_t)((uint8_t)readByte[1])) << 8) + (int32_t)((uint8_t)readByte[0])) > 0) {
+		int32_t usableOffset = readRaw<int32_t>(stream);
+		pos = stream.tellg();
+		if (usableOffset > 0) {
 			this->_items.at(i).usableOffset = new UsableStruct;
-			input.seekg(((((int32_t)((uint8_t)readByte[3])) << 24) + (((int32_t)((uint8_t)readByte[2])) << 16) + (((int32_t)((uint8_t)readByte[1])) << 8) + (int32_t)((uint8_t)readByte[0])), std::ios::beg);
-			*(this->_items.at(i).usableOffset) = readRaw<UsableStruct>(input);
+			stream.seekg(usableOffset, std::ios::beg);
+			*(this->_items.at(i).usableOffset) = readRaw<UsableStruct>(stream);
 		}
 
-		input.seekg(pos, std::ios::beg);
-		input.read(readByte, 4);
+		stream.seekg(pos, std::ios::beg);
+		readRaw<uint32_t>(stream); // read in last four bytes, they represent the id but can be overwritten
 		this->_items.at(i).id = (uint32_t)i;
 	}
 
-	input.close();
+	stream.close();
 }
 
-void ItemsClass::draw() {
-	ImGui::Begin("ITEM");
+void Items::draw() {
+	ImGui::Begin("ITEMS");
 
 	if (ImGui::Button("Save")) {
 		this->write();
@@ -427,6 +426,6 @@ void ItemsClass::draw() {
 	ImGui::End();
 }
 
-void ItemsClass::outputToCSV() {
+void Items::outputToCSV() {
 
 }

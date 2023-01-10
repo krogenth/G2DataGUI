@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "./common/version_check.h"
 #include "BaseDataClass.h"
 
 #pragma pack(1)
@@ -47,17 +48,28 @@ struct MoveStruct {
 	char description[41];
 };
 
-class MovesClass : public BaseDataClass{
+class Moves : public BaseDataClass{
 public:
-	MovesClass() {};
+	Moves(const Moves&) = delete;
+    Moves(const Moves&&) = delete;
+
+    static Moves& getInstance() {
+		static Moves instance;
+		return instance;
+	};
+
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 
 	const std::vector<MoveStruct>* getMoves() { return &_moves; };
 
 private:
+	Moves() {
+		this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/MS_PARAM.BIN" : "./data/afs/xls_data/MS_PARAM.BIN");
+	};
+
 	std::vector<MoveStruct> _moves;
 	size_t _moveIndex = 0;
 	bool AilmentBitFlags[8] = {};

@@ -2,8 +2,9 @@
 
 #include <vector>
 
-#include "BaseDataClass.h"
+#include "./common/version_check.h"
 
+#include "BaseDataClass.h"
 #include "./include/ItemsClass.h"
 
 struct StartStatsStruct {
@@ -34,12 +35,12 @@ struct StartStatsStruct {
 	uint8_t unknown12 = 0;
 	int8_t evasionStillRate = 0;
 	int8_t evasionMovingRate = 0;
-	int8_t ResistKnockback = 0;		// R KB from DreamCast Debug Menu
+	int8_t ResistKnockback = 0; // R KB from DreamCast Debug Menu
 	uint16_t unknown13 = 0;
-	int16_t TREC = 0;					// T REC from DreamCast Debug Menu
-	int16_t TDMG = 0;					// T DMG from DreamCast Debug Menu
+	int16_t TREC = 0; // T REC from DreamCast Debug Menu
+	int16_t TDMG = 0; // T DMG from DreamCast Debug Menu
 	uint16_t unknown14 = 0;
-	int16_t THEAL = 0;				// T HEAL from DreamCast Debug Menu
+	int16_t THEAL = 0; // T HEAL from DreamCast Debug Menu
 	int16_t size = 0;
 	uint16_t unknown15 = 0;
 	uint16_t unknown16 = 0;
@@ -52,11 +53,18 @@ struct StartStatsStruct {
 	uint16_t unknown23 = 0;
 };
 
-class StartStatsClass : public BaseDataClass {
+class StartStats : public BaseDataClass {
 public:
-	StartStatsClass() {};
+	StartStats(const StartStats&) = delete;
+    StartStats(const StartStats&&) = delete;
+
+    static StartStats& getInstance() {
+		static StartStats instance;
+		return instance;
+	};
+
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 	void randomize();
@@ -66,6 +74,10 @@ public:
 	size_t getNumStartStats() { return _startStats.size(); };
 
 private:
+	StartStats() {
+		this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/PC_INIT.BIN" : "./data/afs/xls_data/PC_INIT.BIN");
+	};
+
 	std::vector<StartStatsStruct> _startStats;
 	size_t _statIndex = 0;
 

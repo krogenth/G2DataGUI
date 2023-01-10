@@ -13,7 +13,7 @@
 
 #include "./imgui.h"
 
-void MovesClass::write() {
+void Moves::write() {
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
@@ -40,8 +40,7 @@ void MovesClass::write() {
 	output.close();
 }
 
-void MovesClass::read(std::string filename) {
-	this->_filename = filename;
+void Moves::read() {
 	std::ifstream input(this->_filename, std::ios::binary);
 
 	if (!input.is_open()) {
@@ -75,7 +74,7 @@ void MovesClass::read(std::string filename) {
 	input.close();
 }
 
-void MovesClass::draw() {
+void Moves::draw() {
 	ImGui::Begin("MS_PARAM");
 	if (ImGui::Button("Save")) {
 		this->write();
@@ -223,7 +222,7 @@ void MovesClass::draw() {
 	ImGui::End();
 }
 
-void MovesClass::outputToCSV() {
+void Moves::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/MS_PARAM.CSV");
 

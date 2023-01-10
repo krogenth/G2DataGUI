@@ -11,7 +11,7 @@
 
 #include "./imgui.h"
 
-void StartStatsClass::write() {
+void StartStats::write() {
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
@@ -26,11 +26,9 @@ void StartStatsClass::write() {
 	output.close();
 }
 
-void StartStatsClass::read(std::string filename) {
+void StartStats::read() {
 	// Upon starting a new game, all characters gain EXP together.
 	// The EXP value displayed is what each character starts the game at.
-	this->_filename = filename;
-
 	std::ifstream input(this->_filename, std::ios::binary);
 
 	if (!input.is_open()) {
@@ -48,8 +46,8 @@ void StartStatsClass::read(std::string filename) {
 	input.close();
 }
 
-void StartStatsClass::draw() {
-	ImGui::Begin("PC_INIT");
+void StartStats::draw() {
+	ImGui::Begin("STARTING STATS");
 
 	if (ImGui::BeginCombo("Start Stat Index", statIDs[this->_statIndex])) {
 		for (size_t i = 0; i < this->_startStats.size(); i++) {
@@ -243,7 +241,7 @@ void StartStatsClass::draw() {
 	ImGui::End();
 }
 
-void StartStatsClass::outputToCSV() {
+void StartStats::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/PC_INIT.CSV");
 
@@ -303,7 +301,7 @@ void StartStatsClass::outputToCSV() {
 	output.close();
 }
 
-void StartStatsClass::randomize() {
+void StartStats::randomize() {
 	std::random_device rd;
 	std::mt19937 g(rd());
 	size_t charIndex = 0;

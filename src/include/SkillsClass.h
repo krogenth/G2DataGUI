@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "./common/version_check.h"
+
 #include "./BaseDataClass.h"
 
 #pragma pack(1)
@@ -46,11 +48,18 @@ struct SkillStruct {
 	char description[41];
 };
 
-class SkillsClass : public BaseDataClass {
+class Skills : public BaseDataClass {
 public:
-	SkillsClass() {};
+	Skills(const Skills&) = delete;
+    Skills(const Skills&&) = delete;
+
+    static Skills& getInstance() {
+		static Skills instance;
+		return instance;
+	};
+	
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 
@@ -58,6 +67,10 @@ public:
 	size_t getNumSkills() { return _skills.size(); };
 
 private:
+	Skills() {
+		this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/SK_PARAM.BIN" : "./data/afs/xls_data/SK_PARAM.BIN");
+	};
+
 	std::vector<SkillStruct> _skills;
 	size_t _skillIndex = 0;
 };

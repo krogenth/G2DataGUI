@@ -12,5 +12,5 @@ public:
 
 protected:
 	std::string _filename;
-
+	std::string _directory;
 };

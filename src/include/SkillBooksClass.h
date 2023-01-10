@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "./common/version_check.h"
+
 #include "BaseDataClass.h"
 #include "SkillsClass.h"
 
@@ -16,11 +18,18 @@ struct SkillBookStruct {
 	SkillImplementationStruct skills[6];
 };
 
-class SkillBooksClass : public BaseDataClass {
+class SkillBooks : public BaseDataClass {
 public:
-	SkillBooksClass() {};
+	SkillBooks(const SkillBooks&) = delete;
+    SkillBooks(const SkillBooks&&) = delete;
+
+    static SkillBooks& getInstance() {
+		static SkillBooks instance;
+		return instance;
+	};
+	
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 	void randomize();
@@ -31,6 +40,10 @@ public:
 	
 
 private:
+	SkillBooks() {
+		this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/TB_SKILL.BIN" : "./data/afs/xls_data/TB_SKILL.BIN");
+	};
+
 	std::vector<SkillBookStruct> _skillbooks;
 	size_t _bookIndex = 0;
 	size_t _skillIndex = 0;

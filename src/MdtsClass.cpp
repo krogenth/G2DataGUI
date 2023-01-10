@@ -11,9 +11,8 @@
 
 #include "./imgui.h"
 
-void MdtsClass::write() {
+void Mdts::write() {
 	std::fstream output;
-	char* readByte = new char[4]{};
 	uint32_t offset = 0;
 
 	for (size_t i = 0; i < this->_mdts.size(); i++) {
@@ -119,13 +118,12 @@ void MdtsClass::write() {
 	}
 }
 
-void MdtsClass::read(std::string filepath) {
-	uint32_t readByte = 0;
+void Mdts::read() {
 	uint8_t readChar = 0;
 	std::ifstream input;
 	uint32_t offset = 0;
 
-	for (const auto& p : std::filesystem::directory_iterator(filepath)) {
+	for (const auto& p : std::filesystem::directory_iterator(this->_directory)) {
 		if (std::filesystem::is_directory(p)) {
 			for (const auto& q : std::filesystem::directory_iterator(p)) {
 				std::string filename = q.path().string();
@@ -277,8 +275,8 @@ void MdtsClass::read(std::string filepath) {
 	}
 }
 
-void MdtsClass::draw() {
-	ImGui::Begin("MDT");
+void Mdts::draw() {
+	ImGui::Begin("AREAS");
 
 	if (ImGui::BeginCombo("MDT Index", this->_mdts.at(this->_mdtIndex).mapname.c_str())) {
 		for (size_t i = 0; i < this->_mdts.size(); i++) {
@@ -760,7 +758,7 @@ void MdtsClass::draw() {
 
 }
 
-void MdtsClass::outputToCSV() {
+void Mdts::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/MAP_NAMES.CSV");
 	output << "File,Map\n";
@@ -772,7 +770,7 @@ void MdtsClass::outputToCSV() {
 	output.close();
 }
 
-void MdtsClass::randomize() {
+void Mdts::randomize() {
 	std::random_device rd;
 	std::mt19937 g(rd());
 

@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "./common/version_check.h"
+
 #include "./BaseDataClass.h"
 
 #include "./ItemsClass.h"
@@ -303,11 +305,19 @@ struct MdtStruct {
 	std::string filenameChr = "";
 };
 
-class MdtsClass : public BaseDataClass {
+class Mdts : public BaseDataClass {
 public:
-	MdtsClass() {};
+	Mdts(const Mdts&) = delete;
+    Mdts(const Mdts&&) = delete;
+
+    static Mdts& getInstance() {
+		static Mdts instance;
+		return instance;
+	};
+
+	
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 	void randomize();
@@ -318,6 +328,10 @@ public:
 	const std::vector<MdtStruct>* getMdts() { return &_mdts; };
 
 private:
+	Mdts() {
+		this->_directory = (Version::getInstance().isHDVersion() ? "./content/data/afs/map/" : "./data/afs/map/");
+	};
+
 	std::vector<MdtStruct> _mdts;
 	size_t _mdtIndex = 0;
 	size_t _mapEntryIndex = 0;

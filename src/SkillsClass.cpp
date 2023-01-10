@@ -13,7 +13,7 @@
 
 #include "./imgui.h"
 
-void SkillsClass::write() {
+void Skills::write() {
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
@@ -30,8 +30,7 @@ void SkillsClass::write() {
 	output.close();
 }
 
-void SkillsClass::read(std::string filename) {
-	this->_filename = filename;
+void Skills::read() {
 	std::ifstream input(this->_filename, std::ios::binary);
 
 	if (!input.is_open()) {
@@ -52,8 +51,8 @@ void SkillsClass::read(std::string filename) {
 	input.close();
 }
 
-void SkillsClass::draw() {
-	ImGui::Begin("SK_PARAM");
+void Skills::draw() {
+	ImGui::Begin("SKILLS");
 
 	if (ImGui::Button("Save")) {
 		this->write();
@@ -122,7 +121,7 @@ void SkillsClass::draw() {
 	ImGui::End();
 }
 
-void SkillsClass::outputToCSV() {
+void Skills::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/SK_PARAM.CSV");
 

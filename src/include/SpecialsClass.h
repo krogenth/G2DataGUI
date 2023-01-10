@@ -2,8 +2,9 @@
 
 #include <vector>
 
-#include "BaseDataClass.h"
+#include "./common/version_check.h"
 
+#include "BaseDataClass.h"
 #include "MovesClass.h"
 
 struct MoveImplementationStruct {
@@ -16,11 +17,18 @@ struct SpecialMoveStruct {
 	MoveImplementationStruct moves[6];
 };
 
-class SpecialsClass : public BaseDataClass {
+class Specials : public BaseDataClass {
 public:
-	SpecialsClass() {};
+	Specials(const Specials&) = delete;
+    Specials(const Specials&&) = delete;
+
+    static Specials& getInstance() {
+		static Specials instance;
+		return instance;
+	};
+	
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 
@@ -29,6 +37,10 @@ public:
 	size_t getNumSpecials() { return _specials.size(); };
 
 private:
+	Specials() {
+		this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/TB_SPCL.BIN" : "./data/afs/xls_data/TB_SPCL.BIN");
+	};
+
 	std::vector<SpecialMoveStruct> _specials;
 	size_t _specialIndex = 0;
 	size_t _moveIndex = 0;

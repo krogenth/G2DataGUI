@@ -11,7 +11,7 @@
 
 #include "./imgui.h"
 
-void SpecialsClass::write() {
+void Specials::write() {
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
@@ -28,15 +28,14 @@ void SpecialsClass::write() {
 	output.close();
 }
 
-void SpecialsClass::read(std::string filename) {
-	this->_filename = filename;
-	std::ifstream input(filename, std::ios::binary);
+void Specials::read() {
+	std::ifstream input(this->_filename, std::ios::binary);
 
 	if (!input.is_open()) {
 		throw new std::exception("TB_SPCL.BIN not found to be read!");
 	}
 
-	std::filesystem::path filePath(filename);
+	std::filesystem::path filePath(this->_filename);
 	size_t fileSize = std::filesystem::file_size(filePath);
 	this->_specials.resize(fileSize / 24); // entries are 24 bytes long(each special is 4 bytes long, 6 specials per book)
 
@@ -49,8 +48,8 @@ void SpecialsClass::read(std::string filename) {
 	input.close();
 }
 
-void SpecialsClass::draw() {
-	ImGui::Begin("TB_SPCL");
+void Specials::draw() {
+	ImGui::Begin("SPECIALS");
 
 	if (ImGui::BeginCombo("Special Index", specialIDs[this->_specialIndex])) {
 		for (size_t i = 0; i < this->_specials.size(); i++) {
@@ -111,7 +110,7 @@ void SpecialsClass::draw() {
 	ImGui::End();
 }
 
-void SpecialsClass::outputToCSV() {
+void Specials::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/TB_SPCL.CSV");
 

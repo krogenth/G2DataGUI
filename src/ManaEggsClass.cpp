@@ -12,7 +12,7 @@
 
 #include "./imgui.h"
 
-void ManaEggsClass::write() {
+void ManaEggs::write() {
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
@@ -29,19 +29,16 @@ void ManaEggsClass::write() {
 	output.close();
 }
 
-void ManaEggsClass::read(std::string filename) {
-	this->_filename = filename;
+void ManaEggs::read() {
 	std::ifstream input(this->_filename, std::ios::binary);
 
 	if (!input.is_open()) {
 		throw new std::exception("TB_MAGIC.BIN not found to be read!");
 	}
 
-	std::filesystem::path filePath(filename);
+	std::filesystem::path filePath(this->_filename);
 	size_t fileSize = std::filesystem::file_size(filePath);
 	this->_manaeggs.resize(fileSize / 72); // entries are 72 bytes long(each spell is 4 bytes long, 18 spells per egg)
-
-	char* readByte = new char[1]{};
 
 	for (size_t i = 0; i < this->_manaeggs.size(); i++) {
 		for (size_t j = 0; j < 18; j++) {
@@ -52,8 +49,8 @@ void ManaEggsClass::read(std::string filename) {
 	input.close();
 }
 
-void ManaEggsClass::draw() {
-	ImGui::Begin("TB_MAGIC");
+void ManaEggs::draw() {
+	ImGui::Begin("MANAEGGS");
 
 	// ManaEgg names are stored inside ITEMS.BIN, so until we find a way to track that, we stick with a hardcoded version
 	if (ImGui::BeginCombo("ManaEgg Index", eggIDs[this->_eggIndex])) {
@@ -116,7 +113,7 @@ void ManaEggsClass::draw() {
 	ImGui::End();
 }
 
-void ManaEggsClass::outputToCSV() {
+void ManaEggs::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/TB_MAGIC.CSV");
 
@@ -145,7 +142,7 @@ void ManaEggsClass::outputToCSV() {
 	output.close();
 }
 
-void ManaEggsClass::randomize() {
+void ManaEggs::randomize() {
 	std::random_device rd;
 	std::mt19937 g(rd());
 

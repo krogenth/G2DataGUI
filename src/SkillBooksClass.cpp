@@ -11,7 +11,7 @@
 
 #include "./imgui.h"
 
-void SkillBooksClass::write() {
+void SkillBooks::write() {
 	std::ofstream output;
 	output.open(this->_filename, std::ios::binary);
 
@@ -28,8 +28,7 @@ void SkillBooksClass::write() {
 	output.close();
 }
 
-void SkillBooksClass::read(std::string filename) {
-	this->_filename = filename;
+void SkillBooks::read() {
 	std::ifstream input(this->_filename, std::ios::binary);
 
 	if (!input.is_open()) {
@@ -50,8 +49,8 @@ void SkillBooksClass::read(std::string filename) {
 	input.close();
 }
 
-void SkillBooksClass::draw() {
-	ImGui::Begin("TB_SKILL");
+void SkillBooks::draw() {
+	ImGui::Begin("SKILLBOOKS");
 
 	if (ImGui::BeginCombo("SkillBook Index", bookIDs[this->_bookIndex])) {
 		for (size_t i = 0; i < this->_skillbooks.size(); i++) {
@@ -113,7 +112,7 @@ void SkillBooksClass::draw() {
 	ImGui::End();
 }
 
-void SkillBooksClass::outputToCSV() {
+void SkillBooks::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/TB_SKILL.CSV");
 
@@ -143,7 +142,7 @@ void SkillBooksClass::outputToCSV() {
 	output.close();
 }
 
-void SkillBooksClass::randomize() {
+void SkillBooks::randomize() {
 	std::random_device rd;
 	std::mt19937 g(rd());
 
