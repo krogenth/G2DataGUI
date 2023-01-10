@@ -11,64 +11,37 @@
 #include "./include/ItemsClass.h"
 #include "./include/StartStatsClass.h"
 #include "./include/EnemiesClass.h"
+#include "./include/BossesClass.h"
 #include "./include/MdtsClass.h"
-#include "./include/LevelupClass.h"
+#include "./include/LevelupsClass.h"
 
 #include "./include/ImGuiInstance.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPTSTR lpCmdLine, _In_ int nCmdShow) {
-    MovesClass moves;
-    ManaEggsClass manaeggs;
-    SkillsClass skills;
-    SkillBooksClass skillbooks;
-    SpecialsClass specials;
-    ItemsClass items;
-    StartStatsClass startStats;
-    EnemiesClass enemies;
-    MdtsClass mdts;
-    LevelupClass levelups;
-
-    bool isHDVersion = true;
-
-    if (!std::filesystem::exists("content")) {
-        isHDVersion = false;
-    }
-
-    // read in data
-    if (isHDVersion) {
-        moves.read("./content/data/afs/xls_data/MS_PARAM.BIN");
-        manaeggs.read("./content/data/afs/xls_data/TB_MAGIC.BIN");
-        skills.read("./content/data/afs/xls_data/SK_PARAM.BIN");
-        skillbooks.read("./content/data/afs/xls_data/TB_SKILL.BIN");
-        specials.read("./content/data/afs/xls_data/TB_SPCL.BIN");
-        items.read("./content/data/afs/xls_data/ITEM.BIN");
-        startStats.read("./content/data/afs/xls_data/PC_INIT.BIN");
-        enemies.read("./content/data/afs/");
-        mdts.read("./content/data/afs/map/");
-        levelups.read("./content/data/afs/xls_data/TB_LVUP.BIN");
-    }
-    else {
-        moves.read("./data/afs/xls_data/MS_PARAM.BIN");
-        manaeggs.read("./data/afs/xls_data/TB_MAGIC.BIN");
-        skills.read("./data/afs/xls_data/SK_PARAM.BIN");
-        skillbooks.read("./data/afs/xls_data/TB_SKILL.BIN");
-        specials.read("./data/afs/xls_data/TB_SPCL.BIN");
-        items.read("./data/afs/xls_data/ITEM.BIN");
-        startStats.read("./data/afs/xls_data/PC_INIT.BIN");
-        enemies.read("./data/afs/");
-        mdts.read("./data/afs/map/");
-        levelups.read("./data/afs/xls_data/TB_LVUP.BIN");
-    }
+    // read data
+    Moves::getInstance().read();
+    ManaEggs::getInstance().read();
+    Skills::getInstance().read();
+    SkillBooks::getInstance().read();
+    Specials::getInstance().read();
+    Items::getInstance().read();
+    StartStats::getInstance().read();
+    Enemies::getInstance().read();
+    Bosses::getInstance().read();
+    Mdts::getInstance().read();
+    Levelups::getInstance().read();
 
     //  now store all needed data into relevant classes
-    manaeggs.storeMoves(moves.getMoves());
-    skillbooks.storeSkills(skills.getSkills());
-    specials.storeMoves(moves.getMoves());
-    items.storeMoves(moves.getMoves());
-    startStats.storeItems(items.getItems());
-    enemies.storeMoves(moves.getMoves());
-    enemies.storeItems(items.getItems());
-    mdts.storeItems(items.getItems());
+    ManaEggs::getInstance().storeMoves(Moves::getInstance().getMoves());
+    SkillBooks::getInstance().storeSkills(Skills::getInstance().getSkills());
+    Specials::getInstance().storeMoves(Moves::getInstance().getMoves());
+    Items::getInstance().storeMoves(Moves::getInstance().getMoves());
+    StartStats::getInstance().storeItems(Items::getInstance().getItems());
+    Enemies::getInstance().storeMoves(Moves::getInstance().getMoves());
+    Enemies::getInstance().storeItems(Items::getInstance().getItems());
+    Bosses::getInstance().storeMoves(Moves::getInstance().getMoves());
+    Bosses::getInstance().storeItems(Items::getInstance().getItems());
+    Mdts::getInstance().storeItems(Items::getInstance().getItems());
 
     if (!StartImGui()) {
         return EXIT_FAILURE;
@@ -91,18 +64,19 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         }
 
         StartFrame();
-        DrawMenuBar(lpCmdLine, &moves, &manaeggs, &skills, &skillbooks, &specials, &items, &startStats, &enemies, &mdts, &levelups);
+        DrawMenuBar(lpCmdLine);
 
-        moves.draw();
-        manaeggs.draw();
-        skills.draw();
-        skillbooks.draw();
-        specials.draw();
-        items.draw();
-        startStats.draw();
-        enemies.draw();
-        mdts.draw();
-        levelups.draw();
+        Moves::getInstance().draw();
+        ManaEggs::getInstance().draw();
+        Skills::getInstance().draw();
+        SkillBooks::getInstance().draw();
+        Specials::getInstance().draw();
+        Items::getInstance().draw();
+        StartStats::getInstance().draw();
+        Enemies::getInstance().draw();
+        Bosses::getInstance().draw();
+        Mdts::getInstance().draw();
+        Levelups::getInstance().draw();
 
         EndFrame();
     }

@@ -7,6 +7,18 @@
 #include ".\imgui_impl_win32.h"
 #include ".\imgui_impl_dx12.h"
 
+#include "./include/MovesClass.h"
+#include "./include/ManaEggsClass.h"
+#include "./include/SkillsClass.h"
+#include "./include/SkillBooksClass.h"
+#include "./include/SpecialsClass.h"
+#include "./include/ItemsClass.h"
+#include "./include/StartStatsClass.h"
+#include "./include/EnemiesClass.h"
+#include "./include/BossesClass.h"
+#include "./include/MdtsClass.h"
+#include "./include/LevelupsClass.h"
+
 WNDCLASSEX wc;
 HWND hwnd = nullptr;
 ImVec4 clear_color = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
@@ -17,7 +29,7 @@ bool StartImGui() {
     RegisterClassEx(&wc);
     HWND hwnd = CreateWindow(wc.lpszClassName, _T("G2Data"), WS_OVERLAPPEDWINDOW, 100, 100, 1920, 1080, NULL, NULL, wc.hInstance, NULL);
 
-    // Initialize Direct3D 
+    // Initialize Direct3D
     if (!CreateDeviceD3D(hwnd)) {
         CleanupDeviceD3D();
         UnregisterClass(wc.lpszClassName, wc.hInstance);
@@ -32,7 +44,7 @@ bool StartImGui() {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
 
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
@@ -98,7 +110,9 @@ void EndFrame() {
     frameCtxt->FenceValue = fenceValue;
 }
 
-void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeggs, SkillsClass* skills, SkillBooksClass* skillbooks, SpecialsClass* specials, ItemsClass* items, StartStatsClass* startStats, EnemiesClass* enemies, MdtsClass* mdts, LevelupClass* levelups) {
+void DrawMenuBar(_In_ LPTSTR lpCmdLine) {
+    static bool readHardmode = false;
+    
     ImGui::BeginMainMenuBar();
 
     if (ImGui::BeginMenu("File")) {
@@ -130,17 +144,31 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeg
             CloseHandle(pi.hThread);
         }
 
+        if (readHardmode ) {
+            if (ImGui::MenuItem("Read Normal Mode")) {
+                readHardmode = false;
+                Enemies::getInstance().read(readHardmode);
+                Bosses::getInstance().read(readHardmode);
+            }
+            
+        } else if (ImGui::MenuItem("Read Hard Mode")) {
+            readHardmode = true;
+            Enemies::getInstance().read(readHardmode);
+            Bosses::getInstance().read(readHardmode);
+        }
+
         if (ImGui::MenuItem("Save All", "Ctrl+S")) {
-            moves->write();
-            manaeggs->write();
-            skills->write();
-            skillbooks->write();
-            specials->write();
-            items->write();
-            startStats->write();
-            enemies->write();
-            mdts->write();
-            levelups->write();
+            Moves::getInstance().write();
+            ManaEggs::getInstance().write();
+            Skills::getInstance().write();
+            SkillBooks::getInstance().write();
+            Specials::getInstance().write();
+            Items::getInstance().write();
+            StartStats::getInstance().write();
+            Enemies::getInstance().write();
+            Bosses::getInstance().write();
+            Mdts::getInstance().write();
+            Levelups::getInstance().write();
         }
 
         if (ImGui::MenuItem("Export All to CSV", "Ctrl+E")) {
@@ -148,24 +176,26 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeg
                 std::filesystem::create_directory("./csv");
             }
 
-            moves->outputToCSV();
-            manaeggs->outputToCSV();
-            skills->outputToCSV();
-            skillbooks->outputToCSV();
-            specials->outputToCSV();
-            items->outputToCSV();
-            startStats->outputToCSV();
-            enemies->outputToCSV();
-            mdts->outputToCSV();
-            levelups->outputToCSV();
+            Moves::getInstance().outputToCSV();
+            ManaEggs::getInstance().outputToCSV();
+            Skills::getInstance().outputToCSV();
+            SkillBooks::getInstance().outputToCSV();
+            Specials::getInstance().outputToCSV();
+            Items::getInstance().outputToCSV();
+            StartStats::getInstance().outputToCSV();
+            Enemies::getInstance().outputToCSV();
+            Bosses::getInstance().outputToCSV();
+            Mdts::getInstance().outputToCSV();
+            Levelups::getInstance().outputToCSV();
         }
 
         if (ImGui::MenuItem("Randomize")) {
-            manaeggs->randomize();
-            skillbooks->randomize();
-            startStats->randomize();
-            enemies->randomize();
-            mdts->randomize();
+            ManaEggs::getInstance().randomize();
+            SkillBooks::getInstance().randomize();
+            StartStats::getInstance().randomize();
+            Enemies::getInstance().randomize();
+            Bosses::getInstance().randomize();
+            Mdts::getInstance().randomize();
         }
 
         if (ImGui::MenuItem("Close", "Ctrl+W")) {

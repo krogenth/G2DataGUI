@@ -2,7 +2,7 @@
 #include <filesystem>
 #include <format>
 
-#include "./include/LevelupClass.h"
+#include "./include/LevelupsClass.h"
 
 #include "./include/common/io_util.h"
 #include "./include/common/char_constants.h"
@@ -10,7 +10,7 @@
 
 #include "./imgui.h"
 
-void LevelupClass::write() {
+void Levelups::write() {
     std::ofstream output;
     output.open(this->_filename, std::ios::binary);
 
@@ -25,8 +25,7 @@ void LevelupClass::write() {
     }
 }
 
-void LevelupClass::read(std::string filename) {
-    this->_filename = filename;
+void Levelups::read() {
     std::ifstream input(this->_filename, std::ios::binary);
     
     if (!input.is_open()) {
@@ -46,12 +45,12 @@ void LevelupClass::read(std::string filename) {
     input.close();
 }
 
-void LevelupClass::draw() {
-    ImGui::Begin("TB_LVUP");
+void Levelups::draw() {
+    ImGui::Begin("LEVEUPS");
 
     if (ImGui::BeginCombo("Character", statIDs[this->_characterIndex])) {
         for (size_t index = 0; index < this->_levelups.size(); index++) {
-            ImGui::PushID(index);
+            ImGui::PushID((int)index);
             bool is_selected = (index == this->_characterIndex);
             if (ImGui::Selectable(statIDs[index], is_selected)) {
                 this->_characterIndex = index;
@@ -71,7 +70,7 @@ void LevelupClass::draw() {
 
     if (ImGui::BeginCombo("Level", std::format("Level {}", this->_characterLevelupIndex + 1).c_str())) {
         for (size_t index = 0; index < maxLevel; index ++) {
-            ImGui::PushID(index);
+            ImGui::PushID((int)index);
             bool is_selected = (index == this->_characterLevelupIndex);
             if (ImGui::Selectable(std::format("Level {}", index + 1).c_str(), is_selected)) {
                 this->_characterLevelupIndex = index;
@@ -99,7 +98,7 @@ void LevelupClass::draw() {
     ImGui::End();
 }
 
-void LevelupClass::outputToCSV() {
+void Levelups::outputToCSV() {
     std::ofstream output;
     output.open("./csv/TB_LVUP.CSV");
 

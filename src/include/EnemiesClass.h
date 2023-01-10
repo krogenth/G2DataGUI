@@ -1,9 +1,10 @@
 #pragma once
-
 #include <vector>
+#include <fstream>
+
+#include "./common/version_check.h"
 
 #include "./BaseDataClass.h"
-
 #include "./MovesClass.h"
 #include "./ItemsClass.h"
 
@@ -105,20 +106,32 @@ struct EnemyStatsStruct {
 };
 #pragma pack()
 
+struct EnemyMovesStruct {
+	EnemyMoveStruct moves[5]{};
+};
+
 struct EnemyStruct {
 	char* name = new char[19]{};
 	EnemyStatsStruct stats;
 	EnemyAIStruct ai[6]{};
-	EnemyMoveStruct moves[5]{};
+	EnemyMovesStruct moveSet{};
+	bool isSecond = false;
 
 	std::string filename = "";
 };
 
-class EnemiesClass : public BaseDataClass {
+class Enemies : public BaseDataClass {
 public:
-	EnemiesClass() {};
+	Enemies(const Enemies&) = delete;
+    Enemies(const Enemies&&) = delete;
+
+	static Enemies& getInstance() {
+		static Enemies instance;
+		return instance;
+	};
+	
 	void write();
-	void read(std::string);
+	void read(bool isHardmode = false);
 	void draw();
 	void outputToCSV();
 	void randomize();
@@ -128,14 +141,20 @@ public:
 	const std::vector<EnemyStruct>* getEnemies() { return &_enemies; };
 
 private:
+	Enemies() {
+		this->_directory = (Version::getInstance().isHDVersion() ? "./content/data/afs/" : "./data/afs/");
+	};
+
+	void writeEnemy(std::fstream& stream, const EnemyStruct& enemy, bool isSecond = false);
+	void readEnemy(std::ifstream& stream, std::string& filename, bool isSecond = false);
+
 	std::vector<EnemyStruct> _enemies;
 	size_t _enemyIndex = 0;
 	bool AilmentBitFlags[8] = {};
-	bool _showMoves = false;
-	bool _showAI = false;
 	bool MoveAilmentBitFlags[8] = {};
 	size_t _moveIndex = 0;
 	size_t _aiIndex = 0;
+	bool isHardmode = false;
 
 	const std::vector<MoveStruct>* _moves = nullptr;
 	const std::vector<ItemStruct>* _items = nullptr;

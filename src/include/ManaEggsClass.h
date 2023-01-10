@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "./common/version_check.h"
+
 #include "BaseDataClass.h"
 #include "MovesClass.h"
 
@@ -16,11 +18,19 @@ struct ManaEggStruct {
 	SpellImplementationStruct spells[18];
 };
 
-class ManaEggsClass : public BaseDataClass {
+class ManaEggs : public BaseDataClass {
 public:
-	ManaEggsClass() {};
+	ManaEggs(const ManaEggs&) = delete;
+    ManaEggs(const ManaEggs&&) = delete;
+
+    static ManaEggs& getInstance() {
+		static ManaEggs instance;
+		return instance;
+	};
+
+	
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 	void randomize();
@@ -29,6 +39,10 @@ public:
 	const std::vector<ManaEggStruct>* getManaEggs() { return &_manaeggs; };
 
 private:
+	ManaEggs() {
+		this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/TB_MAGIC.BIN" : "./data/afs/xls_data/TB_MAGIC.BIN");
+	};
+
 	std::vector<ManaEggStruct> _manaeggs;
 	size_t _eggIndex = 0;
 	size_t _spellIndex = 0;

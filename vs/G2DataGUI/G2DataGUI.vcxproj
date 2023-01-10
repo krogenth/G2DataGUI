@@ -153,6 +153,7 @@
     <ClCompile Include="..\..\libs\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\..\libs\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\src\BossesClass.cpp" />
     <ClCompile Include="..\..\src\common\copypaste_obj.cpp" />
     <ClCompile Include="..\..\src\common\string_manip.cpp" />
     <ClCompile Include="..\..\src\EnemiesClass.cpp" />
@@ -167,7 +168,7 @@
     <ClCompile Include="..\..\src\SkillsClass.cpp" />
     <ClCompile Include="..\..\src\SpecialsClass.cpp" />
     <ClCompile Include="..\..\src\StartStatsClass.cpp" />
-    <ClCompile Include="..\..\src\LevelupClass.cpp" />
+    <ClCompile Include="..\..\src\LevelupsClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libs\imgui\backends\imgui_impl_dx12.h" />
@@ -179,10 +180,12 @@
     <ClInclude Include="..\..\libs\imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\libs\imgui\imstb_truetype.h" />
     <ClInclude Include="..\..\src\include\BaseDataClass.h" />
+    <ClInclude Include="..\..\src\include\BossesClass.h" />
     <ClInclude Include="..\..\src\include\common\char_constants.h" />
     <ClInclude Include="..\..\src\include\common\copypaste_obj.h" />
     <ClInclude Include="..\..\src\include\common\io_util.h" />
     <ClInclude Include="..\..\src\include\common\string_manip.h" />
+    <ClInclude Include="..\..\src\include\common\version_check.h" />
     <ClInclude Include="..\..\src\include\EnemiesClass.h" />
     <ClInclude Include="..\..\src\include\ImGuiInstance.h" />
     <ClInclude Include="..\..\src\include\ItemsClass.h" />
@@ -194,7 +197,7 @@
     <ClInclude Include="..\..\src\include\SkillsClass.h" />
     <ClInclude Include="..\..\src\include\SpecialsClass.h" />
     <ClInclude Include="..\..\src\include\StartStatsClass.h" />
-    <ClInclude Include="..\..\src\include\LevelupClass.h" />
+    <ClInclude Include="..\..\src\include\LevelupsClass.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

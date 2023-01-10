@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "./common/version_check.h"
+
 #include "./BaseDataClass.h"
 
 static const size_t maxLevel = 99;
@@ -26,11 +28,18 @@ struct CharacterLevelupStruct {
     LevelupStruct levelups[99];
 };
 
-class LevelupClass : public BaseDataClass {
+class Levelups : public BaseDataClass {
 public:
-    LevelupClass() {};
+    Levelups(const Levelups&) = delete;
+    Levelups(const Levelups&&) = delete;
+
+    static Levelups& getInstance() {
+		static Levelups instance;
+		return instance;
+	};
+    
     void write();
-    void read(std::string);
+    void read();
     void draw();
     void outputToCSV();
 
@@ -44,6 +53,10 @@ public:
 
     size_t getNumCharacterLevelUps() { return _levelups.size(); };
 private:
+    Levelups() {
+        this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/TB_LVUP.BIN" : "./data/afs/xls_data/TB_LVUP.BIN");
+    };
+
     std::vector<CharacterLevelupStruct> _levelups;
     size_t _characterIndex = 0;
     size_t _characterLevelupIndex = 0;

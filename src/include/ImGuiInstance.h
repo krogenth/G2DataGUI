@@ -4,17 +4,6 @@
 #include <d3d12.h>
 #include <dxgi1_4.h>
 
-#include "./include/MovesClass.h"
-#include "./include/ManaEggsClass.h"
-#include "./include/SkillsClass.h"
-#include "./include/SkillBooksClass.h"
-#include "./include/SpecialsClass.h"
-#include "./include/ItemsClass.h"
-#include "./include/StartStatsClass.h"
-#include "./include/EnemiesClass.h"
-#include "./include/MdtsClass.h"
-#include "./include/LevelupClass.h"
-
 struct FrameContext
 {
     ID3D12CommandAllocator* CommandAllocator;
@@ -43,7 +32,7 @@ bool StartImGui();
 void EndImGui();
 void StartFrame();
 void EndFrame();
-void DrawMenuBar(_In_ LPTSTR lpCmdLine, MovesClass* moves, ManaEggsClass* manaeggs, SkillsClass* skills, SkillBooksClass* skillbooks, SpecialsClass* specials, ItemsClass* items, StartStatsClass* startStats, EnemiesClass* enemies, MdtsClass* mdts, LevelupClass* levelups);
+void DrawMenuBar(_In_ LPTSTR lpCmdLine);
 
 bool CreateDeviceD3D(HWND hWnd);
 void CleanupDeviceD3D();

@@ -87,7 +87,10 @@
     <ClCompile Include="..\..\src\ModelClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\LevelupClass.cpp">
+    <ClCompile Include="..\..\src\LevelupsClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\BossesClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,7 +170,13 @@
     <ClInclude Include="..\..\src\include\ModelClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\include\LevelupClass.h">
+    <ClInclude Include="..\..\src\include\LevelupsClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\common\version_check.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\BossesClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

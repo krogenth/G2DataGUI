@@ -2,8 +2,9 @@
 
 #include <vector>
 
-#include "BaseDataClass.h"
+#include "./common/version_check.h"
 
+#include "BaseDataClass.h"
 #include "MovesClass.h"
 
 #pragma pack(1)
@@ -85,11 +86,18 @@ struct ItemStruct {
 };
 
 
-class ItemsClass : public BaseDataClass {
+class Items : public BaseDataClass {
 public:
-	ItemsClass() {};
+	Items(const Items&) = delete;
+    Items(const Items&&) = delete;
+
+	static Items& getInstance() {
+		static Items instance;
+		return instance;
+	};
+
 	void write();
-	void read(std::string);
+	void read();
 	void draw();
 	void outputToCSV();
 
@@ -97,6 +105,9 @@ public:
 	const std::vector<ItemStruct>* getItems() { return &_items; };
 
 private:
+	Items() {
+		this->_filename = (Version::getInstance().isHDVersion() ? "./content/data/afs/xls_data/ITEM.BIN" : "./data/afs/xls_data/ITEM.BIN");
+	};
 	std::vector<ItemStruct> _items;
 	size_t _itemIndex = 0;
 	bool _hasEquip = false;
