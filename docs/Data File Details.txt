@@ -706,10 +706,10 @@ TB_LVUP.BIN(24 byte entries)(Starts @ Lvl 1) {
 	2 byte SP Increase
 	2 byte STR Increase
 	2 byte VIT Increase
-	2 byte MAG Increase
-	2 byte MEN Increase
 	2 byte MOV Increase
 	2 byte ACT Increase
+	2 byte MAG Increase
+	2 byte MEN Increase
 	2 byte Skill Slot Increase
 	
 }
