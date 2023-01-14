@@ -45,13 +45,13 @@ private:
 	std::vector<BossStruct> _bosses;
 	size_t _bossIndex = 0;
 	bool AilmentBitFlags[8] = {};
-	bool _showMoves = false;
-	bool _showAI = false;
 	bool MoveAilmentBitFlags[8] = {};
     size_t _moveSetIndex = 0;
 	size_t _moveIndex = 0;
 	size_t _aiIndex = 0;
     bool isHardmode = false;
+	bool _showMoves = false;
+	bool _showAI = false;
 
 	const std::vector<MoveStruct>* _moves = nullptr;
 	const std::vector<ItemStruct>* _items = nullptr;

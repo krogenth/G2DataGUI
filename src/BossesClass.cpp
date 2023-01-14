@@ -176,7 +176,7 @@ void Bosses::draw() {
 	ImGui::InputByte("Blizzard Resist", &this->_bosses.at(this->_bossIndex).stats.blizzardResist);
 
 	for (size_t i = 0; i < 8; i++) {
-		if (ImGui::Checkbox(statuses[i], &AilmentBitFlags[0])) {
+		if (ImGui::Checkbox(statuses[i], &AilmentBitFlags[i])) {
 			this->_bosses.at(this->_bossIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[i] << i);
 		}
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
@@ -226,7 +226,15 @@ void Bosses::draw() {
 	ImGui::InputByte("Item #1 Chance", &this->_bosses.at(this->_bossIndex).stats.item1Chance);
 	ImGui::InputByte("Item #2 Chance", &this->_bosses.at(this->_bossIndex).stats.item2Chance);
 
-	if (ImGui::CollapsingHeader("Boss Moves")) {
+	ImGui::Checkbox("Moves", &this->_showMoves);
+	ImGui::SameLine();
+	ImGui::Checkbox("AI", &this->_showAI);
+	
+	ImGui::End();
+
+	if (this->_showMoves) {
+		ImGui::Begin("BOSS MOVES");
+
         if (ImGui::BeginCombo("Moveset Index", slotIDs[this->_moveSetIndex])) {
             for (size_t i = 0; i < this->_bosses.at(this->_bossIndex).moveSets.size(); i++) {
 			ImGui::PushID((int)i);
@@ -307,7 +315,7 @@ void Bosses::draw() {
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("* 10 percent of damage is this element.");
 
 		for (size_t i = 0; i < 8; i++) {
-			if (ImGui::Checkbox(statuses[i], &AilmentBitFlags[0])) {
+			if (ImGui::Checkbox(statuses[i], &MoveAilmentBitFlags[i])) {
 				this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ailmentsBitflag ^= (MoveAilmentBitFlags[i] << i);
 			}
 			if ((i+1) % 4) {
@@ -319,9 +327,12 @@ void Bosses::draw() {
 		ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.atkMod);
 		ImGui::InputUShort("Special", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.special);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("In Beta, use at your own peril.");
+
+		ImGui::End();
 	}
 
-	if (ImGui::CollapsingHeader("Enemy AI")) {
+	if (this->_showAI) {
+		ImGui::Begin("BOSS AI");
 		if (ImGui::BeginCombo("AI Index", slotIDs[this->_aiIndex])) {
 			for (size_t i = 0; i < 5; i++) {
 				ImGui::PushID((int)i);
@@ -348,9 +359,9 @@ void Bosses::draw() {
 		ImGui::InputUByte("Move #3 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move3Chance);
 		ImGui::InputUByte("Move #4 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move4Chance);
 		ImGui::InputUByte("Move #5 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move5Chance);
-	}
 
-	ImGui::End();
+		ImGui::End();
+	}
 }
 
 void Bosses::outputToCSV() {
