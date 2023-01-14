@@ -155,6 +155,8 @@ private:
 	size_t _moveIndex = 0;
 	size_t _aiIndex = 0;
 	bool isHardmode = false;
+	bool _showMoves = false;
+	bool _showAI = false;
 
 	const std::vector<MoveStruct>* _moves = nullptr;
 	const std::vector<ItemStruct>* _items = nullptr;

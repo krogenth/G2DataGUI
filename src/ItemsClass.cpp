@@ -104,6 +104,14 @@ void Items::read() {
 	}
 
 	stream.close();
+
+	// set starting states for equipment and usable
+	if (this->_items.at(0).equipmentOffset) {
+		this->_hasEquip = true;
+	}
+	if (this->_items.at(0).usableOffset) {
+		this->_hasUsable = true;
+	}
 }
 
 void Items::draw() {
@@ -253,177 +261,177 @@ void Items::draw() {
 		}
 	}
 
+	ImGui::End();
+
 	if (this->_hasEquip) {
-		if (ImGui::CollapsingHeader("Item Equipment")) {
-			for (size_t i = 0; i < 7; i++) {
-				if (ImGui::Checkbox(statIDs[i], &EquipmentCharacterBitFlags[i])) {
-					this->_items.at(this->_itemIndex).equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[i] << i);
-				}
-				if ((i+1) % 4 && (i+1) < 7) {
-					ImGui::SameLine();
-				}
+		ImGui::Begin("ITEM EQUIPMENT");
+		for (size_t i = 0; i < 7; i++) {
+			if (ImGui::Checkbox(statIDs[i], &EquipmentCharacterBitFlags[i])) {
+				this->_items.at(this->_itemIndex).equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[i] << i);
 			}
-
-			ImGui::InputShort("Strength", &this->_items.at(this->_itemIndex).equipmentOffset->str);
-			ImGui::InputShort("Vitality", &this->_items.at(this->_itemIndex).equipmentOffset->vit);
-			ImGui::InputShort("Action", &this->_items.at(this->_itemIndex).equipmentOffset->act);
-			ImGui::InputShort("Movement", &this->_items.at(this->_itemIndex).equipmentOffset->mov);
-
-			if (ImGui::BeginCombo("Effective On", effectiveOn[this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn])) {
-				for (uint8_t i = 0; i < 16; i++) {
-					bool is_selected = (i == this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn);
-					if (ImGui::Selectable(effectiveOn[i], is_selected)) {
-						this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn = i;
-					}
-					if (is_selected) {
-						ImGui::SetItemDefaultFocus();
-					}
-				}
-
-				ImGui::EndCombo();
+			if ((i+1) % 4 && (i+1) < 7) {
+				ImGui::SameLine();
 			}
-
-			ImGui::InputByte("Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->fireAffinity);
-			ImGui::InputByte("Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->windAffinity);
-			ImGui::InputByte("Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->earthAffinity);
-			ImGui::InputByte("Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->lightningAffinity);
-			ImGui::InputByte("Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->blizzardAffinity);
-
-			for (size_t i = 0; i < 8; i++) {
-				if (ImGui::Checkbox(statuses[i], &EquipmentAilmentBitFlags[0])) {
-					this->_items.at(this->_itemIndex).equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[0] << 0);
-				}
-				if ((i+1) % 4) {
-					ImGui::SameLine();
-				}
-			}
-
-			ImGui::InputUByte("Ailments Chance", &this->_items.at(this->_itemIndex).equipmentOffset->ailmentsChance);
-			ImGui::InputByte("Increase Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseFirePercent);
-			ImGui::InputByte("Increase Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWindPercent);
-			ImGui::InputByte("Increase Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseEarthPercent);
-			ImGui::InputByte("Increase Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseLightningPercent);
-			ImGui::InputByte("Increase Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseBlizzardPercent);
-			ImGui::InputByte("Increase Water %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWaterPercent);
-			ImGui::InputByte("Increase Explosion %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseExplosionPercent);
-			ImGui::InputByte("Increase Forest %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseForestPercent);
-			ImGui::InputUShort("Special", &this->_items.at(this->_itemIndex).equipmentOffset->special);
 		}
-	}
 
-	
+		ImGui::InputShort("Strength", &this->_items.at(this->_itemIndex).equipmentOffset->str);
+		ImGui::InputShort("Vitality", &this->_items.at(this->_itemIndex).equipmentOffset->vit);
+		ImGui::InputShort("Action", &this->_items.at(this->_itemIndex).equipmentOffset->act);
+		ImGui::InputShort("Movement", &this->_items.at(this->_itemIndex).equipmentOffset->mov);
+
+		if (ImGui::BeginCombo("Effective On", effectiveOn[this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn])) {
+			for (uint8_t i = 0; i < 16; i++) {
+				bool is_selected = (i == this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn);
+				if (ImGui::Selectable(effectiveOn[i], is_selected)) {
+					this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn = i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+
+			ImGui::EndCombo();
+		}
+
+		ImGui::InputByte("Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->fireAffinity);
+		ImGui::InputByte("Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->windAffinity);
+		ImGui::InputByte("Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->earthAffinity);
+		ImGui::InputByte("Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->lightningAffinity);
+		ImGui::InputByte("Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->blizzardAffinity);
+
+		for (size_t i = 0; i < 8; i++) {
+			if (ImGui::Checkbox(statuses[i], &EquipmentAilmentBitFlags[i])) {
+				this->_items.at(this->_itemIndex).equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[i] << i);
+			}
+			if ((i+1) % 4) {
+				ImGui::SameLine();
+			}
+		}
+
+		ImGui::InputUByte("Ailments Chance", &this->_items.at(this->_itemIndex).equipmentOffset->ailmentsChance);
+		ImGui::InputByte("Increase Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseFirePercent);
+		ImGui::InputByte("Increase Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWindPercent);
+		ImGui::InputByte("Increase Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseEarthPercent);
+		ImGui::InputByte("Increase Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseLightningPercent);
+		ImGui::InputByte("Increase Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseBlizzardPercent);
+		ImGui::InputByte("Increase Water %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWaterPercent);
+		ImGui::InputByte("Increase Explosion %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseExplosionPercent);
+		ImGui::InputByte("Increase Forest %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseForestPercent);
+		ImGui::InputUShort("Special", &this->_items.at(this->_itemIndex).equipmentOffset->special);
+
+		ImGui::End();
+	}
 
 	if (this->_hasUsable) {
-		if (ImGui::CollapsingHeader("Item Usable")) {
-			if (ImGui::BeginCombo("Target Effect", targetEffects[this->_items.at(this->_itemIndex).usableOffset->targetEffect])) {
-				for (uint8_t i = 0; i < 16; i++) {
-					ImGui::PushID((int)i);
-					bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->targetEffect);
-					if (ImGui::Selectable(targetEffects[i], is_selected)) {
-						this->_items.at(this->_itemIndex).usableOffset->targetEffect = i;
-					}
-					if (is_selected) {
-						ImGui::SetItemDefaultFocus();
-					}
-					ImGui::PopID();
+		ImGui::Begin("ITEM USABLE");
+		if (ImGui::BeginCombo("Target Effect", targetEffects[this->_items.at(this->_itemIndex).usableOffset->targetEffect])) {
+			for (uint8_t i = 0; i < 16; i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->targetEffect);
+				if (ImGui::Selectable(targetEffects[i], is_selected)) {
+					this->_items.at(this->_itemIndex).usableOffset->targetEffect = i;
 				}
-
-				ImGui::EndCombo();
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
 			}
 
-			if (ImGui::BeginCombo("Target Type", targetTypes[this->_items.at(this->_itemIndex).usableOffset->targetType])) {
-				for (uint8_t i = 0; i < 16; i++) {
-					ImGui::PushID((int)i);
-					bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->targetType);
-					if (ImGui::Selectable(targetTypes[i], is_selected)) {
-						this->_items.at(this->_itemIndex).usableOffset->targetType = i;
-					}
-					if (is_selected) {
-						ImGui::SetItemDefaultFocus();
-					}
-					ImGui::PopID();
-				}
-
-				ImGui::EndCombo();
-			}
-
-			ImGui::InputUShort("Power", &this->_items.at(this->_itemIndex).usableOffset->power);
-			ImGui::InputUShort("Range", &this->_items.at(this->_itemIndex).usableOffset->range);
-			ImGui::InputUShort("Cast Time", &this->_items.at(this->_itemIndex).usableOffset->castTime);
-			ImGui::InputUShort("Recovery", &this->_items.at(this->_itemIndex).usableOffset->recoveryTime);
-
-			if (ImGui::BeginCombo("Animation", animationIDs[this->_items.at(this->_itemIndex).usableOffset->animation])) {
-				for (size_t i = 0; i < this->_moves->size(); i++) {
-					ImGui::PushID((int)i);
-					bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->animation);
-					if (ImGui::Selectable(animationIDs[i], is_selected)) {
-						this->_items.at(this->_itemIndex).usableOffset->animation = (uint16_t)i;
-					}
-					if (is_selected) {
-						ImGui::SetItemDefaultFocus();
-					}
-					ImGui::PopID();
-				}
-
-				ImGui::EndCombo();
-			}
-
-			if (ImGui::BeginCombo("Effective On", effectiveOn[this->_items.at(this->_itemIndex).usableOffset->effectiveOn])) {
-				for (uint8_t i = 0; i < 16; i++) {
-					ImGui::PushID((int)i);
-					bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->effectiveOn);
-					if (ImGui::Selectable(effectiveOn[i], is_selected)) {
-						this->_items.at(this->_itemIndex).usableOffset->effectiveOn = i;
-					}
-					if (is_selected) {
-						ImGui::SetItemDefaultFocus();
-					}
-					ImGui::PopID();
-				}
-
-				ImGui::EndCombo();
-			}
-
-			ImGui::InputUByte("Unknown #1", &this->_items.at(this->_itemIndex).usableOffset->unknown1);
-			ImGui::InputShort2("IP Damage/IP Cancel Damage", &this->_items.at(this->_itemIndex).usableOffset->ipDamage);
-			ImGui::InputShort("Knockback", &this->_items.at(this->_itemIndex).usableOffset->knockback);
-
-			if (ImGui::BeginCombo("Element", elements[this->_items.at(this->_itemIndex).usableOffset->element])) {
-				for (uint8_t i = 0; i < 5; i++) {
-					ImGui::PushID((int)i);
-					bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->element);
-					if (ImGui::Selectable(elements[i], is_selected)) {
-						this->_items.at(this->_itemIndex).usableOffset->element = i;
-					}
-					if (is_selected) {
-						ImGui::SetItemDefaultFocus();
-					}
-					ImGui::PopID();
-				}
-
-				ImGui::EndCombo();
-			}
-
-			ImGui::InputUByte("Element Strength", &this->_items.at(this->_itemIndex).usableOffset->elementStr);
-
-			for (size_t i = 0; i < 8; i++) {
-				if (ImGui::Checkbox(statuses[i], &EquipmentAilmentBitFlags[0])) {
-					this->_items.at(this->_itemIndex).equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[0] << 0);
-				}
-				if ((i+1) % 4) {
-					ImGui::SameLine();
-				}
-			}
-
-			ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_items.at(this->_itemIndex).usableOffset->atkMod);
-			ImGui::InputUByte("Break Chance", &this->_items.at(this->_itemIndex).usableOffset->breakChance);
-			ImGui::InputUByte("Special", &this->_items.at(this->_itemIndex).usableOffset->special);
-			ImGui::InputUByte("Unknown #2", &this->_items.at(this->_itemIndex).usableOffset->unknown2);
-			ImGui::InputUByte("Unknown #3", &this->_items.at(this->_itemIndex).usableOffset->unknown3);
+			ImGui::EndCombo();
 		}
-	}
 
-	ImGui::End();
+		if (ImGui::BeginCombo("Target Type", targetTypes[this->_items.at(this->_itemIndex).usableOffset->targetType])) {
+			for (uint8_t i = 0; i < 16; i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->targetType);
+				if (ImGui::Selectable(targetTypes[i], is_selected)) {
+					this->_items.at(this->_itemIndex).usableOffset->targetType = i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+
+			ImGui::EndCombo();
+		}
+
+		ImGui::InputUShort("Power", &this->_items.at(this->_itemIndex).usableOffset->power);
+		ImGui::InputUShort("Range", &this->_items.at(this->_itemIndex).usableOffset->range);
+		ImGui::InputUShort("Cast Time", &this->_items.at(this->_itemIndex).usableOffset->castTime);
+		ImGui::InputUShort("Recovery", &this->_items.at(this->_itemIndex).usableOffset->recoveryTime);
+
+		if (ImGui::BeginCombo("Animation", animationIDs[this->_items.at(this->_itemIndex).usableOffset->animation])) {
+			for (size_t i = 0; i < this->_moves->size(); i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->animation);
+				if (ImGui::Selectable(animationIDs[i], is_selected)) {
+					this->_items.at(this->_itemIndex).usableOffset->animation = (uint16_t)i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+
+			ImGui::EndCombo();
+		}
+
+		if (ImGui::BeginCombo("Effective On", effectiveOn[this->_items.at(this->_itemIndex).usableOffset->effectiveOn])) {
+			for (uint8_t i = 0; i < 16; i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->effectiveOn);
+				if (ImGui::Selectable(effectiveOn[i], is_selected)) {
+					this->_items.at(this->_itemIndex).usableOffset->effectiveOn = i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+
+			ImGui::EndCombo();
+		}
+
+		ImGui::InputUByte("Unknown #1", &this->_items.at(this->_itemIndex).usableOffset->unknown1);
+		ImGui::InputShort2("IP Damage/IP Cancel Damage", &this->_items.at(this->_itemIndex).usableOffset->ipDamage);
+		ImGui::InputShort("Knockback", &this->_items.at(this->_itemIndex).usableOffset->knockback);
+
+		if (ImGui::BeginCombo("Element", elements[this->_items.at(this->_itemIndex).usableOffset->element])) {
+			for (uint8_t i = 0; i < 5; i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->element);
+				if (ImGui::Selectable(elements[i], is_selected)) {
+					this->_items.at(this->_itemIndex).usableOffset->element = i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+
+			ImGui::EndCombo();
+		}
+
+		ImGui::InputUByte("Element Strength", &this->_items.at(this->_itemIndex).usableOffset->elementStr);
+
+		for (size_t i = 0; i < 8; i++) {
+			if (ImGui::Checkbox(statuses[i], &UsableAilmentBitFlags[i])) {
+				this->_items.at(this->_itemIndex).usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[i] << i);
+			}
+			if ((i+1) % 4) {
+				ImGui::SameLine();
+			}
+		}
+
+		ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_items.at(this->_itemIndex).usableOffset->atkMod);
+		ImGui::InputUByte("Break Chance", &this->_items.at(this->_itemIndex).usableOffset->breakChance);
+		ImGui::InputUByte("Special", &this->_items.at(this->_itemIndex).usableOffset->special);
+		ImGui::InputUByte("Unknown #2", &this->_items.at(this->_itemIndex).usableOffset->unknown2);
+		ImGui::InputUByte("Unknown #3", &this->_items.at(this->_itemIndex).usableOffset->unknown3);
+
+		ImGui::End();
+	}
 }
 
 void Items::outputToCSV() {
