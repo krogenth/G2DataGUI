@@ -1,0 +1,26 @@
+{
+    "configurations": [
+    {
+        "name": "Debug Launch",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Debug/G2DataGUI.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "console": "externalTerminal"
+    },
+    {
+        "name": "Release Launch",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Release/G2DataGUI.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "console": "externalTerminal"
+    }
+    ]
+}

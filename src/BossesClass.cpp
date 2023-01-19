@@ -1,13 +1,15 @@
 #include <fstream>
 #include <filesystem>
 #include <random>
+#include <format>
 
 #include "./include/BossesClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/string_manip.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -122,10 +124,28 @@ void Bosses::read(bool isHardmode) {
 
 		stream.close();
     }
+
+	// set default starting state
+	if (this->_bosses.size()) {
+		for (size_t i = 0; i < 8; i++) {
+			this->AilmentBitFlags[i] = (this->_bosses.at(0).stats.ailmentsBitflag & (1 << i)) > 0;
+			this->MoveAilmentBitFlags[i] = (this->_bosses.at(0).moveSets.at(0).moves[0].stats.ailmentsBitflag & (1 << i)) > 0;
+		}
+	}
 }
 
 void Bosses::draw() {
 	ImGui::Begin("BOSSES");
+
+	auto statusDefs = JsonDefinitions::getInstance().getDefinitions("statuses");
+	auto targetEffectDefs = JsonDefinitions::getInstance().getDefinitions("targetEffects");
+	auto targetTypeDefs = JsonDefinitions::getInstance().getDefinitions("targetTypes");
+	auto animationDefs = JsonDefinitions::getInstance().getDefinitions("animations");
+	auto elementDefs = JsonDefinitions::getInstance().getDefinitions("elements");
+
+	if (ImGui::Button("Save")) {
+		this->write();
+	}
 
 	if (ImGui::BeginCombo("Enemy Index", this->_bosses.at(this->_bossIndex).name)) {
 		for (size_t i = 0; i < this->_bosses.size(); i++) {
@@ -140,16 +160,15 @@ void Bosses::draw() {
 			ImGui::PopID();
 		}
 
+		this->_moveSetIndex = 0;
+		this->_moveIndex = 0;
+
 		for (size_t i = 0; i < 8; i++) {
 			AilmentBitFlags[i] = this->_bosses.at(this->_bossIndex).stats.ailmentsBitflag & (1 << i);
+			MoveAilmentBitFlags[i] = this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ailmentsBitflag & (1 << i);
 		}
 
 		ImGui::EndCombo();
-	}
-
-	ImGui::SameLine();
-	if (ImGui::Button("Save")) {
-		this->write();
 	}
 
 	ImGui::InputText("Name", this->_bosses.at(this->_bossIndex).name, 19);
@@ -176,7 +195,7 @@ void Bosses::draw() {
 	ImGui::InputByte("Blizzard Resist", &this->_bosses.at(this->_bossIndex).stats.blizzardResist);
 
 	for (size_t i = 0; i < 8; i++) {
-		if (ImGui::Checkbox(statuses[i], &AilmentBitFlags[i])) {
+		if (ImGui::Checkbox(statusDefs.at(i).c_str(), &AilmentBitFlags[i])) {
 			this->_bosses.at(this->_bossIndex).stats.ailmentsBitflag ^= (AilmentBitFlags[i] << i);
 		}
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Do they resist this ailment?");
@@ -235,11 +254,11 @@ void Bosses::draw() {
 	if (this->_showMoves) {
 		ImGui::Begin("BOSS MOVES");
 
-        if (ImGui::BeginCombo("Moveset Index", slotIDs[this->_moveSetIndex])) {
+        if (ImGui::BeginCombo("Moveset Index", std::format("Moveset Index {}", this->_moveSetIndex + 1).c_str())) {
             for (size_t i = 0; i < this->_bosses.at(this->_bossIndex).moveSets.size(); i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_moveSetIndex);
-			if (ImGui::Selectable(slotIDs[i], is_selected)) {
+			if (ImGui::Selectable(std::format("Moveset Index {}", i + 1).c_str(), is_selected)) {
 				this->_moveSetIndex = i;
 			}
 			if (is_selected) {
@@ -275,11 +294,41 @@ void Bosses::draw() {
 		ImGui::InputUShort("MP Cost", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.mp);
 		ImGui::InputUShort("SP Cost", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.sp);
 		ImGui::InputUByte("Unknown #1", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.unknown);
-		ImGui::Combo("Target Effect", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect, targetEffects, 16);
+		
+		if (ImGui::BeginCombo("Target Effect", targetEffectDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect).c_str())) {
+			for (size_t i = 0; i < targetEffectDefs.size(); i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect);
+				if (ImGui::Selectable(targetEffectDefs.at(i).c_str())) {
+					this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect = (uint8_t)i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+			ImGui::EndCombo();
+		}
+		
 		ImGui::InputUShort("Strength", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.str);
 		ImGui::InputUShort("Power", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.pow);
 		ImGui::InputUShort("Damage(?)", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ad);
-		ImGui::Combo("Target Type", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetType, targetTypes, 16);
+		
+		if (ImGui::BeginCombo("Target Type", targetTypeDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect).c_str())) {
+			for (size_t i = 0; i < targetTypeDefs.size(); i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect);
+				if (ImGui::Selectable(targetTypeDefs.at(i).c_str())) {
+					this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect = (uint8_t)i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+			ImGui::EndCombo();
+		}
+		
 		ImGui::InputUByte("Unknown #2", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.normalAttackFlag);
 		ImGui::InputUShort("Distance", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.distance);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How far away to use move?");
@@ -289,11 +338,11 @@ void Bosses::draw() {
 		ImGui::InputUShort("Cast Time", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.castTime);
 		ImGui::InputUShort("Recovery", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.recovery);
 
-		if (ImGui::BeginCombo("Animation", animationIDs[this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.animation])) {
+		if (ImGui::BeginCombo("Animation", animationDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.animation).c_str())) {
 			for (size_t i = 0; i < this->_moves->size(); i++) {
 				ImGui::PushID((int)i);
 				bool is_selected = (i == this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.animation);
-				if (ImGui::Selectable(animationIDs[i], is_selected)) {
+				if (ImGui::Selectable(animationDefs.at(i).c_str(), is_selected)) {
 					this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.animation = (uint8_t)i;
 				}
 				if (is_selected) {
@@ -310,13 +359,29 @@ void Bosses::draw() {
 		ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ipStun);
 		ImGui::InputShort("Knockback", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.knockback);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
-		ImGui::Combo("Element", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.element, elements, 5);
+
+		if (ImGui::BeginCombo("Element", elementDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.element).c_str())) {
+			for (size_t i = 0; i < elementDefs.size(); i++) {
+				ImGui::PushID((int)i);
+				bool is_selected = (i == this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.element);
+				if (ImGui::Selectable(elementDefs.at(i).c_str(), is_selected)) {
+					this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.element = (uint8_t)i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+
+			ImGui::EndCombo();
+		}
+
 		ImGui::InputUByte("Element Strength", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.elementStr);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("* 10 percent of damage is this element.");
 
 		for (size_t i = 0; i < 8; i++) {
-			if (ImGui::Checkbox(statuses[i], &MoveAilmentBitFlags[i])) {
-				this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ailmentsBitflag ^= (MoveAilmentBitFlags[i] << i);
+			if (auto ret = ImGui::Checkbox(statusDefs.at(i).c_str(), &MoveAilmentBitFlags[i])) {
+				this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ailmentsBitflag ^= (1 << i);
 			}
 			if ((i+1) % 4) {
 				ImGui::SameLine();
@@ -333,11 +398,11 @@ void Bosses::draw() {
 
 	if (this->_showAI) {
 		ImGui::Begin("BOSS AI");
-		if (ImGui::BeginCombo("AI Index", slotIDs[this->_aiIndex])) {
+		if (ImGui::BeginCombo("AI Index", std::format("AI Index {}", this->_aiIndex + 1).c_str())) {
 			for (size_t i = 0; i < 5; i++) {
 				ImGui::PushID((int)i);
 				bool is_selected = (i == this->_aiIndex);
-				if (ImGui::Selectable(slotIDs[i], is_selected)) {
+				if (ImGui::Selectable(std::format("AI Index {}", i + 1).c_str(), is_selected)) {
 					this->_aiIndex = i;
 				}
 				if (is_selected) {
@@ -365,6 +430,9 @@ void Bosses::draw() {
 }
 
 void Bosses::outputToCSV() {
+	auto targetEffectDefs = JsonDefinitions::getInstance().getDefinitions("targetEffects");
+	auto targetTypeDefs = JsonDefinitions::getInstance().getDefinitions("targetTypes");
+	auto elementDefs = JsonDefinitions::getInstance().getDefinitions("elements");
 	std::ofstream stream;
 	stream.open(this->isHardmode ? "./csv/BOSS_HARDMODE.CSV" : "./csv/BOSS.CSV");
 
@@ -430,11 +498,11 @@ void Bosses::outputToCSV() {
                     << std::to_string(moveSet.moves[moveIndex].stats.mp) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.sp) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.unknown) << ','
-                    << targetEffects[moveSet.moves[moveIndex].stats.targetEffect] << ','
+                    << targetEffectDefs.at(moveSet.moves[moveIndex].stats.targetEffect) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.str) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.pow) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.ad) << ','
-                    << targetTypes[moveSet.moves[moveIndex].stats.targetType] << ','
+                    << targetTypeDefs.at(moveSet.moves[moveIndex].stats.targetType) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.normalAttackFlag) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.distance) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.accuracy) << ','
@@ -446,7 +514,7 @@ void Bosses::outputToCSV() {
                     << std::to_string(moveSet.moves[moveIndex].stats.ipStun) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.ipCancelStun) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.knockback) << ','
-                    << elements[moveSet.moves[moveIndex].stats.element] << ','
+                    << elementDefs.at(moveSet.moves[moveIndex].stats.element) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.elementStr) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.ailmentsBitflag) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.ailmentsChance) << ','

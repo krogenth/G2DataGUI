@@ -1,13 +1,15 @@
 #include <fstream>
 #include <filesystem>
 #include <random>
+#include <format>
 
 #include "./include/MdtsClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/string_manip.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -278,6 +280,10 @@ void Mdts::read() {
 void Mdts::draw() {
 	ImGui::Begin("AREAS");
 
+	if (ImGui::Button("Save")) {
+		this->write();
+	}
+
 	if (ImGui::BeginCombo("MDT Index", this->_mdts.at(this->_mdtIndex).mapname.c_str())) {
 		for (size_t i = 0; i < this->_mdts.size(); i++) {
 			ImGui::PushID((int)i);
@@ -301,11 +307,6 @@ void Mdts::draw() {
 		}
 
 		ImGui::EndCombo();
-	}
-
-	ImGui::SameLine();
-	if (ImGui::Button("Save")) {
-		this->write();
 	}
 
 	if (this->_mdts.at(this->_mdtIndex).mapEntries.size()) {
@@ -365,11 +366,11 @@ void Mdts::draw() {
 
 	if (this->_mdts.at(this->_mdtIndex).HTA.size()) {
 		if (ImGui::CollapsingHeader("HTA")) {
-			if (ImGui::BeginCombo("HTA #", slotIDs[this->_htaIndex])) {
+			if (ImGui::BeginCombo("HTA #", std::format("HTA {}", this->_htaIndex + 1).c_str())) {
 				for (size_t i = 0; i < this->_mdts.at(this->_mdtIndex).HTA.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_htaIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("HTA {}", i + 1).c_str(), is_selected)) {
 						this->_htaIndex = i;
 					}
 					if (is_selected) {
@@ -401,11 +402,11 @@ void Mdts::draw() {
 
 	if (this->_mdts.at(this->_mdtIndex).enemyPositions.size()) {
 		if (ImGui::CollapsingHeader("Enemy Positions")) {
-			if (ImGui::BeginCombo("Enemy Pos #", slotIDs[this->_ePosIndex])) {
+			if (ImGui::BeginCombo("Enemy Pos #", std::format("Enemy Position {}", this->_ePosIndex + 1).c_str())) {
 				for (size_t i = 0; i < this->_mdts.at(this->_mdtIndex).enemyPositions.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_ePosIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Enemy Position {}", i + 1).c_str(), is_selected)) {
 						this->_ePosIndex = i;
 					}
 					if (is_selected) {
@@ -433,11 +434,11 @@ void Mdts::draw() {
 
 	if (this->_mdts.at(this->_mdtIndex).enemyGroups.size()) {
 		if (ImGui::CollapsingHeader("Enemy Groups")) {
-			if (ImGui::BeginCombo("Enemy Group #", slotIDs[this->_eGroupIndex])) {
+			if (ImGui::BeginCombo("Enemy Group #", std::format("Enemy Group {}", this->_eGroupIndex + 1).c_str())) {
 				for (size_t i = 0; i < this->_mdts.at(this->_mdtIndex).enemyGroups.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_eGroupIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Enemy Group {}", i + 1).c_str(), is_selected)) {
 						this->_eGroupIndex = i;
 					}
 					if (is_selected) {
@@ -451,12 +452,12 @@ void Mdts::draw() {
 
 			ImGui::InputUShort("Group Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].index);
 
-			if (ImGui::BeginCombo("Enemy #", slotIDs[this->_eGroupPosIndex])) {
+			if (ImGui::BeginCombo("Enemy #", std::format("Enemy {}", this->_eGroupPosIndex + 1).c_str())) {
 				// there can only ever be 4 unique enemies in a group, as far as I can tell
 				for (size_t i = 0; i < 4; i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_eGroupPosIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Enemy {}", i+ 1).c_str(), is_selected)) {
 						this->_eGroupPosIndex = i;
 					}
 					if (is_selected) {
@@ -470,7 +471,8 @@ void Mdts::draw() {
 
 			ImGui::InputUShort("Enemy Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].index);
 			ImGui::InputUShort("# of Enemy", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].numEnemy);
-			ImGui::InputUShort("Enemy Offset", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].enemyOffset);			if (ImGui::IsItemHovered()) ImGui::SetTooltip("References enemy/boss.csv");
+			ImGui::InputUShort("Enemy Offset", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].enemyOffset);
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("References enemy/boss.csv");
 			ImGui::InputUShort("Unknown #1", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown);
 			ImGui::InputUShort("Unknown #2", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown1);
 			ImGui::InputUShort("Unknown #3", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown2);
@@ -480,11 +482,11 @@ void Mdts::draw() {
 
 	if (this->_mdts.at(this->_mdtIndex).MOS.size()) {
 		if (ImGui::CollapsingHeader("MOS")) {
-			if (ImGui::BeginCombo("MOS #", slotIDs[this->_mosIndex])) {
+			if (ImGui::BeginCombo("MOS #", std::format("MOS {}", this->_mosIndex + 1).c_str())) {
 				for (size_t i = 0; i < this->_mdts.at(this->_mdtIndex).MOS.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_mosIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("MOS {}", i + 1).c_str(), is_selected)) {
 						this->_mosIndex = i;
 					}
 					if (is_selected) {
@@ -510,11 +512,11 @@ void Mdts::draw() {
 
 	if (this->_mdts.at(this->_mdtIndex).icons.size()) {
 		if (ImGui::CollapsingHeader("Icons")) {
-			if (ImGui::BeginCombo("Icon #", slotIDs[this->_iconIndex])) {
+			if (ImGui::BeginCombo("Icon #", std::format("Icon {}", this->_iconIndex + 1).c_str())) {
 				for (size_t i = 0; i < this->_mdts.at(this->_mdtIndex).icons.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_iconIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Icon {}", i + 1).c_str(), is_selected)) {
 						this->_iconIndex = i;
 					}
 					if (is_selected) {
@@ -589,11 +591,11 @@ void Mdts::draw() {
 
 	if (this->_mdts.at(this->_mdtIndex).shop.size()) {
 		if (ImGui::CollapsingHeader("Shops")) {
-			if (ImGui::BeginCombo("Weapons #", slotIDs[this->_shopWeaponIndex])) {
+			if (ImGui::BeginCombo("Weapons #", std::format("Weapons {}", this->_shopWeaponIndex + 1).c_str())) {
 				for (size_t i = 0; i < 12; i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_shopWeaponIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Weapons {}", i + 1).c_str(), is_selected)) {
 						this->_shopWeaponIndex = i;
 					}
 					if (is_selected) {
@@ -621,11 +623,11 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Armors #", slotIDs[this->_shopArmorIndex])) {
+			if (ImGui::BeginCombo("Armors #", std::format("Armors {}", this->_shopArmorIndex + 1).c_str())) {
 				for (size_t i = 0; i < 12; i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_shopArmorIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Armors {}", i + 1).c_str(), is_selected)) {
 						this->_shopArmorIndex = i;
 					}
 					if (is_selected) {
@@ -653,11 +655,11 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Jewelry #", slotIDs[this->_shopJewelIndex])) {
+			if (ImGui::BeginCombo("Jewelry #", std::format("Jewelry {}", this->_shopJewelIndex + 1).c_str())) {
 				for (size_t i = 0; i < 12; i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_shopJewelIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Jewelry {}", i + 1).c_str(), is_selected)) {
 						this->_shopJewelIndex = i;
 					}
 					if (is_selected) {
@@ -685,11 +687,11 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Items #", slotIDs[this->_shopItemIndex])) {
+			if (ImGui::BeginCombo("Items #", std::format("Item {}", this->_shopItemIndex + 1).c_str())) {
 				for (size_t i = 0; i < 12; i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_shopItemIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Item {}", i + 1).c_str(), is_selected)) {
 						this->_shopItemIndex = i;
 					}
 					if (is_selected) {
@@ -717,11 +719,11 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Regionals #", slotIDs[this->_shopRegionalIndex])) {
+			if (ImGui::BeginCombo("Regionals #", std::format("Regionals {}", this->_shopRegionalIndex + 1).c_str())) {
 				for (size_t i = 0; i < 12; i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == this->_shopRegionalIndex);
-					if (ImGui::Selectable(slotIDs[i], is_selected)) {
+					if (ImGui::Selectable(std::format("Regionals {}", i + 1).c_str(), is_selected)) {
 						this->_shopRegionalIndex = i;
 					}
 					if (is_selected) {

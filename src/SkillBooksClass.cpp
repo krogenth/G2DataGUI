@@ -1,13 +1,15 @@
 #include <fstream>
 #include <filesystem>
 #include <random>
+#include <format>
 
 #include "./include/SkillBooksClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/string_manip.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -51,12 +53,18 @@ void SkillBooks::read() {
 
 void SkillBooks::draw() {
 	ImGui::Begin("SKILLBOOKS");
+	
+	auto bookDefs = JsonDefinitions::getInstance().getDefinitions("books");
 
-	if (ImGui::BeginCombo("SkillBook Index", bookIDs[this->_bookIndex])) {
+	if (ImGui::Button("Save")) {
+		this->write();
+	}
+
+	if (ImGui::BeginCombo("SkillBook Index", bookDefs.at(this->_bookIndex).c_str())) {
 		for (size_t i = 0; i < this->_skillbooks.size(); i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_bookIndex);
-			if (ImGui::Selectable(bookIDs[i], is_selected)) {
+			if (ImGui::Selectable(bookDefs.at(i).c_str(), is_selected)) {
 				this->_bookIndex = i;
 			}
 			if (is_selected) {
@@ -68,16 +76,11 @@ void SkillBooks::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::SameLine();
-	if (ImGui::Button("Save")) {
-		this->write();
-	}
-
-	if (ImGui::BeginCombo("Index", slotIDs[this->_skillIndex])) {
+	if (ImGui::BeginCombo("Index", std::format("Index {}", this->_skillIndex + 1).c_str())) {
 		for (size_t i = 0; i < 6; i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_skillIndex);
-			if (ImGui::Selectable(slotIDs[i], is_selected)) {
+			if (ImGui::Selectable(std::format("Index {}", i + 1).c_str(), is_selected)) {
 				this->_skillIndex = i;
 			}
 			if (is_selected) {
@@ -113,6 +116,7 @@ void SkillBooks::draw() {
 }
 
 void SkillBooks::outputToCSV() {
+	auto bookDefs = JsonDefinitions::getInstance().getDefinitions("books");
 	std::ofstream output;
 	output.open("./csv/TB_SKILL.CSV");
 
@@ -127,7 +131,7 @@ void SkillBooks::outputToCSV() {
 	output << '\n';
 
 	for (size_t i = 0; i < this->_skillbooks.size(); i++) {
-		output << bookIDs[i];
+		output << bookDefs.at(i);
 
 		for (size_t j = 0; j < 6; j++) {
 			output << ',' << this->_skills->at(this->_skillbooks.at(i).skills[j].skillOffset).name

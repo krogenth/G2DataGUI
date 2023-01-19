@@ -16,8 +16,8 @@ struct LevelupStruct {
     int16_t spIncrease = 0;
     int16_t strIncrease = 0;
     int16_t vitIncrease = 0;
-    int16_t movIncrease = 0;
     int16_t actIncrease = 0;
+    int16_t movIncrease = 0;
     int16_t magIncrease = 0;
     int16_t menIncrease = 0;
     int16_t skillSlotIncrease = 0;

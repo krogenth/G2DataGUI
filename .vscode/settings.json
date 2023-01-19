@@ -85,6 +85,10 @@
         "xstring": "cpp",
         "xtr1common": "cpp",
         "xtree": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "any": "cpp",
+        "clocale": "cpp",
+        "csignal": "cpp",
+        "valarray": "cpp"
     }
 }

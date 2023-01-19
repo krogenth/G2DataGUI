@@ -7,9 +7,10 @@
 #include "./include/ItemsClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/string_manip.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -108,14 +109,32 @@ void Items::read() {
 	// set starting states for equipment and usable
 	if (this->_items.at(0).equipmentOffset) {
 		this->_hasEquip = true;
+		for (size_t i = 0; i < 7; i++) {
+			this->EquipmentCharacterBitFlags[i] = (this->_items.at(0).equipmentOffset->characterBitflag & (1 << i)) > 0;
+		}
+		for (size_t i = 0; i < 8; i++) {
+			this->EquipmentAilmentBitFlags[i] = (this->_items.at(0).equipmentOffset->ailmentsBitflag & (1 << i)) > 0;
+		}
 	}
 	if (this->_items.at(0).usableOffset) {
 		this->_hasUsable = true;
+		for (size_t i = 0; i < 8; i++) {
+			this->UsableAilmentBitFlags[i] = (this->_items.at(0).usableOffset->ailmentsBitflag & (1 << i)) > 0;
+		}
 	}
 }
 
 void Items::draw() {
 	ImGui::Begin("ITEMS");
+
+	auto itemEntryDefs = JsonDefinitions::getInstance().getDefinitions("itemEntries");
+	auto characterDefs = JsonDefinitions::getInstance().getDefinitions("characters");
+	auto effectiveOnDefs = JsonDefinitions::getInstance().getDefinitions("effectiveOn");
+	auto statusDefs = JsonDefinitions::getInstance().getDefinitions("statuses");
+	auto targetEffectDefs = JsonDefinitions::getInstance().getDefinitions("targetEffects");
+	auto targetTypeDefs = JsonDefinitions::getInstance().getDefinitions("targetTypes");
+	auto animationDefs = JsonDefinitions::getInstance().getDefinitions("animations");
+	auto elementDefs = JsonDefinitions::getInstance().getDefinitions("elements");
 
 	if (ImGui::Button("Save")) {
 		this->write();
@@ -223,7 +242,23 @@ void Items::draw() {
 
 	ImGui::InputText("Name", this->_items.at(this->_itemIndex).name, 19);
 	ImGui::InputText("Description", this->_items.at(this->_itemIndex).description, 41);
-	ImGui::Combo("Entry Type", &this->_items.at(this->_itemIndex).stats.entryType, entryIDs, 16);
+
+	if (ImGui::BeginCombo("Entry Type", itemEntryDefs.at(this->_items.at(this->_itemIndex).stats.entryType).c_str())) {
+		for (size_t i = 0; i < itemEntryDefs.size(); i++) {
+			ImGui::PushID((int)i);
+			bool is_selected = (i == this->_items.at(this->_itemIndex).stats.entryType);
+			if (ImGui::Selectable(itemEntryDefs.at(i).c_str(), is_selected)) {
+				this->_items.at(this->_itemIndex).stats.entryType = (uint8_t)i;
+			}
+			if (is_selected) {
+				ImGui::SetItemDefaultFocus();
+			}
+			ImGui::PopID();
+		}
+
+		ImGui::EndCombo();
+	}
+
 	ImGui::InputUByte("Unknown #1", &this->_items.at(this->_itemIndex).stats.unknown1);
 	ImGui::InputUByte("Unknown #2", &this->_items.at(this->_itemIndex).stats.unknown2);
 	ImGui::InputUByte("Unknown #3", &this->_items.at(this->_itemIndex).stats.unknown3);
@@ -266,8 +301,8 @@ void Items::draw() {
 	if (this->_hasEquip) {
 		ImGui::Begin("ITEM EQUIPMENT");
 		for (size_t i = 0; i < 7; i++) {
-			if (ImGui::Checkbox(statIDs[i], &EquipmentCharacterBitFlags[i])) {
-				this->_items.at(this->_itemIndex).equipmentOffset->characterBitflag ^= (EquipmentCharacterBitFlags[i] << i);
+			if (ImGui::Checkbox(characterDefs.at(i).c_str(), &EquipmentCharacterBitFlags[i])) {
+				this->_items.at(this->_itemIndex).equipmentOffset->characterBitflag ^= (1 << i);
 			}
 			if ((i+1) % 4 && (i+1) < 7) {
 				ImGui::SameLine();
@@ -279,10 +314,10 @@ void Items::draw() {
 		ImGui::InputShort("Action", &this->_items.at(this->_itemIndex).equipmentOffset->act);
 		ImGui::InputShort("Movement", &this->_items.at(this->_itemIndex).equipmentOffset->mov);
 
-		if (ImGui::BeginCombo("Effective On", effectiveOn[this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn])) {
+		if (ImGui::BeginCombo("Effective On", effectiveOnDefs.at(this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn).c_str())) {
 			for (uint8_t i = 0; i < 16; i++) {
 				bool is_selected = (i == this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn);
-				if (ImGui::Selectable(effectiveOn[i], is_selected)) {
+				if (ImGui::Selectable(effectiveOnDefs.at(i).c_str(), is_selected)) {
 					this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn = i;
 				}
 				if (is_selected) {
@@ -300,7 +335,7 @@ void Items::draw() {
 		ImGui::InputByte("Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->blizzardAffinity);
 
 		for (size_t i = 0; i < 8; i++) {
-			if (ImGui::Checkbox(statuses[i], &EquipmentAilmentBitFlags[i])) {
+			if (ImGui::Checkbox(statusDefs.at(i).c_str(), &EquipmentAilmentBitFlags[i])) {
 				this->_items.at(this->_itemIndex).equipmentOffset->ailmentsBitflag ^= (EquipmentAilmentBitFlags[i] << i);
 			}
 			if ((i+1) % 4) {
@@ -324,11 +359,11 @@ void Items::draw() {
 
 	if (this->_hasUsable) {
 		ImGui::Begin("ITEM USABLE");
-		if (ImGui::BeginCombo("Target Effect", targetEffects[this->_items.at(this->_itemIndex).usableOffset->targetEffect])) {
+		if (ImGui::BeginCombo("Target Effect", targetEffectDefs.at(this->_items.at(this->_itemIndex).usableOffset->targetEffect).c_str())) {
 			for (uint8_t i = 0; i < 16; i++) {
 				ImGui::PushID((int)i);
 				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->targetEffect);
-				if (ImGui::Selectable(targetEffects[i], is_selected)) {
+				if (ImGui::Selectable(targetEffectDefs.at(i).c_str(), is_selected)) {
 					this->_items.at(this->_itemIndex).usableOffset->targetEffect = i;
 				}
 				if (is_selected) {
@@ -340,11 +375,11 @@ void Items::draw() {
 			ImGui::EndCombo();
 		}
 
-		if (ImGui::BeginCombo("Target Type", targetTypes[this->_items.at(this->_itemIndex).usableOffset->targetType])) {
+		if (ImGui::BeginCombo("Target Type", targetTypeDefs.at(this->_items.at(this->_itemIndex).usableOffset->targetType).c_str())) {
 			for (uint8_t i = 0; i < 16; i++) {
 				ImGui::PushID((int)i);
 				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->targetType);
-				if (ImGui::Selectable(targetTypes[i], is_selected)) {
+				if (ImGui::Selectable(targetTypeDefs.at(i).c_str(), is_selected)) {
 					this->_items.at(this->_itemIndex).usableOffset->targetType = i;
 				}
 				if (is_selected) {
@@ -361,11 +396,11 @@ void Items::draw() {
 		ImGui::InputUShort("Cast Time", &this->_items.at(this->_itemIndex).usableOffset->castTime);
 		ImGui::InputUShort("Recovery", &this->_items.at(this->_itemIndex).usableOffset->recoveryTime);
 
-		if (ImGui::BeginCombo("Animation", animationIDs[this->_items.at(this->_itemIndex).usableOffset->animation])) {
+		if (ImGui::BeginCombo("Animation", animationDefs.at(this->_items.at(this->_itemIndex).usableOffset->animation).c_str())) {
 			for (size_t i = 0; i < this->_moves->size(); i++) {
 				ImGui::PushID((int)i);
 				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->animation);
-				if (ImGui::Selectable(animationIDs[i], is_selected)) {
+				if (ImGui::Selectable(animationDefs.at(i).c_str(), is_selected)) {
 					this->_items.at(this->_itemIndex).usableOffset->animation = (uint16_t)i;
 				}
 				if (is_selected) {
@@ -377,11 +412,11 @@ void Items::draw() {
 			ImGui::EndCombo();
 		}
 
-		if (ImGui::BeginCombo("Effective On", effectiveOn[this->_items.at(this->_itemIndex).usableOffset->effectiveOn])) {
+		if (ImGui::BeginCombo("Effective On", effectiveOnDefs.at(this->_items.at(this->_itemIndex).usableOffset->effectiveOn).c_str())) {
 			for (uint8_t i = 0; i < 16; i++) {
 				ImGui::PushID((int)i);
 				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->effectiveOn);
-				if (ImGui::Selectable(effectiveOn[i], is_selected)) {
+				if (ImGui::Selectable(effectiveOnDefs.at(i).c_str(), is_selected)) {
 					this->_items.at(this->_itemIndex).usableOffset->effectiveOn = i;
 				}
 				if (is_selected) {
@@ -397,11 +432,11 @@ void Items::draw() {
 		ImGui::InputShort2("IP Damage/IP Cancel Damage", &this->_items.at(this->_itemIndex).usableOffset->ipDamage);
 		ImGui::InputShort("Knockback", &this->_items.at(this->_itemIndex).usableOffset->knockback);
 
-		if (ImGui::BeginCombo("Element", elements[this->_items.at(this->_itemIndex).usableOffset->element])) {
+		if (ImGui::BeginCombo("Element", elementDefs.at(this->_items.at(this->_itemIndex).usableOffset->element).c_str())) {
 			for (uint8_t i = 0; i < 5; i++) {
 				ImGui::PushID((int)i);
 				bool is_selected = (i == this->_items.at(this->_itemIndex).usableOffset->element);
-				if (ImGui::Selectable(elements[i], is_selected)) {
+				if (ImGui::Selectable(elementDefs.at(i).c_str(), is_selected)) {
 					this->_items.at(this->_itemIndex).usableOffset->element = i;
 				}
 				if (is_selected) {
@@ -416,7 +451,7 @@ void Items::draw() {
 		ImGui::InputUByte("Element Strength", &this->_items.at(this->_itemIndex).usableOffset->elementStr);
 
 		for (size_t i = 0; i < 8; i++) {
-			if (ImGui::Checkbox(statuses[i], &UsableAilmentBitFlags[i])) {
+			if (ImGui::Checkbox(statusDefs.at(i).c_str(), &UsableAilmentBitFlags[i])) {
 				this->_items.at(this->_itemIndex).usableOffset->ailmentsBitflag ^= (UsableAilmentBitFlags[i] << i);
 			}
 			if ((i+1) % 4) {

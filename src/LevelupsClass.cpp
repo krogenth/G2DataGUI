@@ -5,8 +5,9 @@
 #include "./include/LevelupsClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -48,11 +49,17 @@ void Levelups::read() {
 void Levelups::draw() {
     ImGui::Begin("LEVEUPS");
 
-    if (ImGui::BeginCombo("Character", statIDs[this->_characterIndex])) {
+    auto characterDefs = JsonDefinitions::getInstance().getDefinitions("characters");
+
+    if (ImGui::Button("Save")) {
+        this->write();
+    }
+
+    if (ImGui::BeginCombo("Character", characterDefs.at(this->_characterIndex).c_str())) {
         for (size_t index = 0; index < this->_levelups.size(); index++) {
             ImGui::PushID((int)index);
             bool is_selected = (index == this->_characterIndex);
-            if (ImGui::Selectable(statIDs[index], is_selected)) {
+            if (ImGui::Selectable(characterDefs.at(index).c_str(), is_selected)) {
                 this->_characterIndex = index;
             }
             if (is_selected) {
@@ -61,11 +68,6 @@ void Levelups::draw() {
             ImGui::PopID();
         }
         ImGui::EndCombo();
-    }
-
-    ImGui::SameLine();
-    if (ImGui::Button("Save")) {
-        this->write();
     }
 
     if (ImGui::BeginCombo("Level", std::format("Level {}", this->_characterLevelupIndex + 1).c_str())) {
@@ -99,6 +101,7 @@ void Levelups::draw() {
 }
 
 void Levelups::outputToCSV() {
+    auto characterDefs = JsonDefinitions::getInstance().getDefinitions("characters");
     std::ofstream output;
     output.open("./csv/TB_LVUP.CSV");
 
@@ -110,7 +113,7 @@ void Levelups::outputToCSV() {
 
     for (size_t characterIndex = 0; characterIndex < this->_levelups.size(); characterIndex++) {
         for (size_t characterLevelupIndex = 0; characterLevelupIndex < maxLevel; characterLevelupIndex++) {
-            output << statIDs[characterIndex] << ','
+            output << characterDefs.at(characterIndex) << ','
                 << std::to_string(this->_levelups.at(characterIndex).levelups[characterLevelupIndex].exp) << ','
                 << std::to_string(this->_levelups.at(characterIndex).levelups[characterLevelupIndex].hpIncrease) << ','
                 << std::to_string(this->_levelups.at(characterIndex).levelups[characterLevelupIndex].mpIncrease) << ','
