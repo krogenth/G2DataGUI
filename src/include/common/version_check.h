@@ -18,7 +18,6 @@ private:
         if (!std::filesystem::exists("content")) {
             isHD = false;
         }
-        std::cout << isHD << std::endl;
     };
 
     bool isHD = true;

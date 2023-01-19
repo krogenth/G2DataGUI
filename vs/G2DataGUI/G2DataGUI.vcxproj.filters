@@ -179,6 +179,9 @@
     <ClInclude Include="..\..\src\include\BossesClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\include\JsonDefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="G2DataGUI.rc">

@@ -5,7 +5,8 @@
 #include "./include/MdtsClass.h"
 #include "./include/modelStruct.h"
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
+
+#include "./include/JsonDefinitions.h"
 
 void writeModel(std::vector<njcmStruct>& models) {
 

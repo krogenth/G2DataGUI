@@ -5,9 +5,10 @@
 #include "./include/StartStatsClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/string_manip.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -48,12 +49,18 @@ void StartStats::read() {
 
 void StartStats::draw() {
 	ImGui::Begin("STARTING STATS");
+	
+	auto characterDefs = JsonDefinitions::getInstance().getDefinitions("characters");
 
-	if (ImGui::BeginCombo("Start Stat Index", statIDs[this->_statIndex])) {
+	if (ImGui::Button("Save")) {
+		this->write();
+	}
+
+	if (ImGui::BeginCombo("Start Stat Index", characterDefs.at(this->_statIndex).c_str())) {
 		for (size_t i = 0; i < this->_startStats.size(); i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_statIndex);
-			if (ImGui::Selectable(statIDs[i], is_selected))
+			if (ImGui::Selectable(characterDefs.at(i).c_str(), is_selected))
 				this->_statIndex = i;
 			if (is_selected)
 				ImGui::SetItemDefaultFocus();
@@ -61,11 +68,6 @@ void StartStats::draw() {
 		}
 
 		ImGui::EndCombo();
-	}
-
-	ImGui::SameLine();
-	if (ImGui::Button("Save")) {
-		this->write();
 	}
 
 	ImGui::InputUInt("EXP", &this->_startStats[this->_statIndex].exp);

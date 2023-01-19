@@ -1,14 +1,15 @@
 #include <fstream>
 #include <filesystem>
 #include <random>
-#include <unordered_map>
+#include <format>
 
 #include "./include/ManaEggsClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/string_manip.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -52,12 +53,18 @@ void ManaEggs::read() {
 void ManaEggs::draw() {
 	ImGui::Begin("MANAEGGS");
 
+	auto eggDefs = JsonDefinitions::getInstance().getDefinitions("eggs");
+
+	if (ImGui::Button("Save")) {
+		this->write();
+	}
+
 	// ManaEgg names are stored inside ITEMS.BIN, so until we find a way to track that, we stick with a hardcoded version
-	if (ImGui::BeginCombo("ManaEgg Index", eggIDs[this->_eggIndex])) {
+	if (ImGui::BeginCombo("ManaEgg Index", eggDefs.at(this->_eggIndex).c_str())) {
 		for (size_t i = 0; i < this->_manaeggs.size(); i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_eggIndex);
-			if (ImGui::Selectable(eggIDs[i], is_selected)) {
+			if (ImGui::Selectable(eggDefs.at(i).c_str(), is_selected)) {
 				this->_eggIndex = i;
 			}
 			if (is_selected) {
@@ -69,16 +76,11 @@ void ManaEggs::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::SameLine();
-	if (ImGui::Button("Save")) {
-		this->write();
-	}
-
-	if (ImGui::BeginCombo("Index", slotIDs[this->_spellIndex])) {
+	if (ImGui::BeginCombo("Index", std::format("Index {}", this->_spellIndex + 1).c_str())) {
 		for (size_t i = 0; i < 18; i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_spellIndex);
-			if (ImGui::Selectable(slotIDs[i], is_selected)) {
+			if (ImGui::Selectable(std::format("Index {}", i + 1).c_str(), is_selected)) {
 				this->_spellIndex = i;
 			}
 			if (is_selected) {
@@ -114,6 +116,7 @@ void ManaEggs::draw() {
 }
 
 void ManaEggs::outputToCSV() {
+	auto eggDefs = JsonDefinitions::getInstance().getDefinitions("eggs");
 	std::ofstream output;
 	output.open("./csv/TB_MAGIC.CSV");
 
@@ -128,7 +131,7 @@ void ManaEggs::outputToCSV() {
 	output << '\n';
 
 	for (size_t i = 0; i < this->_manaeggs.size(); i++) {
-		output << eggIDs[i];
+		output << eggDefs.at(i).c_str();
 		for (size_t j = 0; j < 18; j++) {
 			output << ',' << this->_moves->at(this->_manaeggs.at(i).spells[j].spellOffset).name
 				<< ',' << std::to_string(this->_manaeggs.at(i).spells[j].startingLevel)

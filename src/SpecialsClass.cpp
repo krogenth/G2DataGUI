@@ -1,13 +1,15 @@
 #include <fstream>
 #include <filesystem>
 #include <random>
+#include <format>
 
 #include "./include/SpecialsClass.h"
 
 #include "./include/common/io_util.h"
-#include "./include/common/char_constants.h"
 #include "./include/common/string_manip.h"
 #include "./include/common/copypaste_obj.h"
+
+#include "./include/JsonDefinitions.h"
 
 #include "./imgui.h"
 
@@ -50,12 +52,18 @@ void Specials::read() {
 
 void Specials::draw() {
 	ImGui::Begin("SPECIALS");
+	
+	auto specialDefs = JsonDefinitions::getInstance().getDefinitions("specials");
 
-	if (ImGui::BeginCombo("Special Index", specialIDs[this->_specialIndex])) {
+	if (ImGui::Button("Save")) {
+		this->write();
+	}
+
+	if (ImGui::BeginCombo("Special Index", specialDefs.at(this->_specialIndex).c_str())) {
 		for (size_t i = 0; i < this->_specials.size(); i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_specialIndex);
-			if (ImGui::Selectable(specialIDs[i], is_selected)) {
+			if (ImGui::Selectable(specialDefs.at(i).c_str(), is_selected)) {
 				this->_specialIndex = i;
 			}
 			if (is_selected) {
@@ -67,16 +75,11 @@ void Specials::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::SameLine();
-	if (ImGui::Button("Save")) {
-		this->write();
-	}
-
-	if (ImGui::BeginCombo("Index", slotIDs[this->_moveIndex])) {
+	if (ImGui::BeginCombo("Index", std::format("Index {}", this->_moveIndex + 1).c_str())) {
 		for (size_t i = 0; i < 6; i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == this->_moveIndex);
-			if (ImGui::Selectable(slotIDs[i], is_selected)) {
+			if (ImGui::Selectable(std::format("Index {}", i + 1).c_str(), is_selected)) {
 				this->_moveIndex = i;
 			}
 			if (is_selected) {
@@ -111,6 +114,7 @@ void Specials::draw() {
 }
 
 void Specials::outputToCSV() {
+	auto specialDefs = JsonDefinitions::getInstance().getDefinitions("specials");
 	std::ofstream output;
 	output.open("./csv/TB_SPCL.CSV");
 
@@ -125,7 +129,7 @@ void Specials::outputToCSV() {
 	output << '\n';
 
 	for (size_t i = 0; i < this->_specials.size(); i++) {
-		output << specialIDs[i];
+		output << specialDefs.at(i);
 		for (size_t j = 0; j < 6; j++) {
 			output << ',' << this->_moves->at(this->_specials.at(i).moves[j].moveOffset).name
 				<< ',' << std::to_string(this->_specials.at(i).moves[j].startingLevel)
