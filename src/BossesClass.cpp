@@ -68,6 +68,7 @@ void Bosses::readBoss(std::ifstream& stream, std::string& filename, bool isSecon
     replaceNulls(this->_bosses.back().name, 18);
     this->_bosses.back().stats = readRaw<EnemyStatsStruct>(stream);
     this->_bosses.back().filename = filename; // we need the filename for writing data
+	this->_bosses.back().isSecond = isSecond;
 
     if (isSecond) {
         stream.seekg(0x4C, std::ios::beg); // second copy move data offset is always at 0x4C
@@ -314,12 +315,12 @@ void Bosses::draw() {
 		ImGui::InputUShort("Power", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.pow);
 		ImGui::InputUShort("Damage(?)", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ad);
 		
-		if (ImGui::BeginCombo("Target Type", targetTypeDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect).c_str())) {
+		if (ImGui::BeginCombo("Target Type", targetTypeDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetType).c_str())) {
 			for (size_t i = 0; i < targetTypeDefs.size(); i++) {
 				ImGui::PushID((int)i);
-				bool is_selected = (i == this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect);
+				bool is_selected = (i == this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetType);
 				if (ImGui::Selectable(targetTypeDefs.at(i).c_str())) {
-					this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect = (uint8_t)i;
+					this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetType = (uint8_t)i;
 				}
 				if (is_selected) {
 					ImGui::SetItemDefaultFocus();
