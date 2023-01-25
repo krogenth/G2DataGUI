@@ -71,8 +71,8 @@ void Enemies::readEnemy(std::ifstream& stream, std::string& filename, bool isSec
 	this->_enemies.back().filename = filename;
 
 	// read in enemy AI data
-	for (size_t j = 0; j < 5; j++) {
-		this->_enemies.back().ai[j] = readRaw<EnemyAIStruct>(stream);
+	for (size_t aiIndex = 0; aiIndex < 5; aiIndex++) {
+		this->_enemies.back().ai[aiIndex] = readRaw<EnemyAIStruct>(stream);
 	}
 
 	if (isSecond) {
