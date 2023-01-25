@@ -70,6 +70,11 @@ void Bosses::readBoss(std::ifstream& stream, std::string& filename, bool isSecon
     this->_bosses.back().filename = filename; // we need the filename for writing data
 	this->_bosses.back().isSecond = isSecond;
 
+	// read in enemy AI data
+	for (size_t aiIndex = 0; aiIndex < 5; aiIndex++) {
+		this->_bosses.back().ai[aiIndex] = readRaw<EnemyAIStruct>(stream);
+	}
+
     if (isSecond) {
         stream.seekg(0x4C, std::ios::beg); // second copy move data offset is always at 0x4C
     }
