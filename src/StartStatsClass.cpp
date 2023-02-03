@@ -10,6 +10,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void StartStats::write() {
@@ -70,7 +71,7 @@ void StartStats::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUInt("EXP", &this->_startStats[this->_statIndex].exp);
+	drawInput("EXP", &this->_startStats[this->_statIndex].exp);
 
 	if (ImGui::BeginCombo("Weapon", this->_items->at(this->_startStats.at(this->_statIndex).weapon).name)) {
 		for (size_t i = 0; i < this->_items->size(); i++) {
@@ -168,77 +169,77 @@ void StartStats::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputShort("Stamina", &this->_startStats[this->_statIndex].stamina);
+	drawInput("Stamina", &this->_startStats[this->_statIndex].stamina);
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetTooltip("How long can they move without tiring?");
 	}
 
-	ImGui::InputUShort("Unknown #1", &this->_startStats[this->_statIndex].unknown1);
-	ImGui::InputUShort("Unknown #2", &this->_startStats[this->_statIndex].unknown2);
-	ImGui::InputUShort("Unknown #3", &this->_startStats[this->_statIndex].unknown3);
-	ImGui::InputUShort("Unknown #4", &this->_startStats[this->_statIndex].unknown4);
-	ImGui::InputUShort("Unknown #5", &this->_startStats[this->_statIndex].unknown5);
-	ImGui::InputUShort("Unknown #6", &this->_startStats[this->_statIndex].unknown6);
-	ImGui::InputUShort("Unknown #7", &this->_startStats[this->_statIndex].unknown7);
-	ImGui::InputUShort("Unknown #8", &this->_startStats[this->_statIndex].unknown8);
-	ImGui::InputUShort("Unknown #9", &this->_startStats[this->_statIndex].unknown9);
-	ImGui::InputUShort("Unknown #10", &this->_startStats[this->_statIndex].unknown10);
+	drawInput("Unknown #1", &this->_startStats[this->_statIndex].unknown1);
+	drawInput("Unknown #2", &this->_startStats[this->_statIndex].unknown2);
+	drawInput("Unknown #3", &this->_startStats[this->_statIndex].unknown3);
+	drawInput("Unknown #4", &this->_startStats[this->_statIndex].unknown4);
+	drawInput("Unknown #5", &this->_startStats[this->_statIndex].unknown5);
+	drawInput("Unknown #6", &this->_startStats[this->_statIndex].unknown6);
+	drawInput("Unknown #7", &this->_startStats[this->_statIndex].unknown7);
+	drawInput("Unknown #8", &this->_startStats[this->_statIndex].unknown8);
+	drawInput("Unknown #9", &this->_startStats[this->_statIndex].unknown9);
+	drawInput("Unknown #10", &this->_startStats[this->_statIndex].unknown10);
 
-	ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_startStats[this->_statIndex].ipStun);
+	drawInputN("IP Stun/IP Cancel Stun", &this->_startStats[this->_statIndex].ipStun, 2);
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetTooltip("IP Stun/IP Cancel Stun Resistance.");
 	}
 
-	ImGui::InputUByte("Combo SP Regen", &this->_startStats[this->_statIndex].comboSpRegen);
+	drawInput("Combo SP Regen", &this->_startStats[this->_statIndex].comboSpRegen);
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetTooltip("SP regen from combo hit.");
 	}
 
-	ImGui::InputUByte("Critical SP Regen", &this->_startStats[this->_statIndex].critSpRegen);
+	drawInput("Critical SP Regen", &this->_startStats[this->_statIndex].critSpRegen);
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetTooltip("SP regen from critical hit.");
 	}
 
-	ImGui::InputUByte("Unknown #11", &this->_startStats[this->_statIndex].unknown11);
+	drawInput("Unknown #11", &this->_startStats[this->_statIndex].unknown11);
 
-	ImGui::InputUByte("Damaged SP Regen", &this->_startStats[this->_statIndex].hitSpRegen);
+	drawInput("Damaged SP Regen", &this->_startStats[this->_statIndex].hitSpRegen);
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetTooltip("SP regen from taking damage.");
 	}
 
-	ImGui::InputUByte("Unknown #12", &this->_startStats[this->_statIndex].unknown12);
+	drawInput("Unknown #12", &this->_startStats[this->_statIndex].unknown12);
 
-	ImGui::InputByte("Still Evasion Rate", &this->_startStats[this->_statIndex].evasionStillRate);
-	ImGui::InputByte("Move Evasion Rate", &this->_startStats[this->_statIndex].evasionMovingRate);
-	ImGui::InputByte("Knockback Resist Rate", &this->_startStats[this->_statIndex].ResistKnockback);
+	drawInput("Still Evasion Rate", &this->_startStats[this->_statIndex].evasionStillRate);
+	drawInput("Move Evasion Rate", &this->_startStats[this->_statIndex].evasionMovingRate);
+	drawInput("Knockback Resist Rate", &this->_startStats[this->_statIndex].ResistKnockback);
 
-	ImGui::InputUShort("Unknown #13", &this->_startStats[this->_statIndex].unknown13);
+	drawInput("Unknown #13", &this->_startStats[this->_statIndex].unknown13);
 
-	ImGui::InputShort("T_REC", &this->_startStats[this->_statIndex].TREC);
+	drawInput("T_REC", &this->_startStats[this->_statIndex].TREC);
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetTooltip("Time to recover from status effects(lower is better).");
 	}
 
-	ImGui::InputShort("T_DMG", &this->_startStats[this->_statIndex].TDMG);
+	drawInput("T_DMG", &this->_startStats[this->_statIndex].TDMG);
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetTooltip("Time to recover from being hit(lower is better)?");
 	}
 
-	ImGui::InputUShort("Unknown #14", &this->_startStats[this->_statIndex].unknown14);
+	drawInput("Unknown #14", &this->_startStats[this->_statIndex].unknown14);
 
-	ImGui::InputShort("T_HEAL", &this->_startStats[this->_statIndex].THEAL);
+	drawInput("T_HEAL", &this->_startStats[this->_statIndex].THEAL);
 
-	ImGui::InputShort("Size", &this->_startStats[this->_statIndex].size);
+	drawInput("Size", &this->_startStats[this->_statIndex].size);
 
-	ImGui::InputUShort("Unknown #15", &this->_startStats[this->_statIndex].unknown15);
-	ImGui::InputUShort("Unknown #16", &this->_startStats[this->_statIndex].unknown16);
-	ImGui::InputUShort("Unknown #17", &this->_startStats[this->_statIndex].unknown17);
-	ImGui::InputUShort("Unknown #18", &this->_startStats[this->_statIndex].unknown18);
-	ImGui::InputUShort("Unknown #19", &this->_startStats[this->_statIndex].unknown19);
-	ImGui::InputUShort("Unknown #20", &this->_startStats[this->_statIndex].unknown20);
-	ImGui::InputUShort("Unknown #21", &this->_startStats[this->_statIndex].unknown21);
-	ImGui::InputUShort("Unknown #22", &this->_startStats[this->_statIndex].unknown22);
-	ImGui::InputUShort("Unknown #23", &this->_startStats[this->_statIndex].unknown23);
+	drawInput("Unknown #15", &this->_startStats[this->_statIndex].unknown15);
+	drawInput("Unknown #16", &this->_startStats[this->_statIndex].unknown16);
+	drawInput("Unknown #17", &this->_startStats[this->_statIndex].unknown17);
+	drawInput("Unknown #18", &this->_startStats[this->_statIndex].unknown18);
+	drawInput("Unknown #19", &this->_startStats[this->_statIndex].unknown19);
+	drawInput("Unknown #20", &this->_startStats[this->_statIndex].unknown20);
+	drawInput("Unknown #21", &this->_startStats[this->_statIndex].unknown21);
+	drawInput("Unknown #22", &this->_startStats[this->_statIndex].unknown22);
+	drawInput("Unknown #23", &this->_startStats[this->_statIndex].unknown23);
 
 	ImGui::End();
 }

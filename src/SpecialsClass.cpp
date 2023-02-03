@@ -11,6 +11,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void Specials::write() {
@@ -107,8 +108,8 @@ void Specials::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUByte("Starting Level", &this->_specials[this->_specialIndex].moves[this->_moveIndex].startingLevel);
-	ImGui::InputUShort("Story Flag", &this->_specials[this->_specialIndex].moves[this->_moveIndex].storyFlag);
+	drawInput("Starting Level", &this->_specials[this->_specialIndex].moves[this->_moveIndex].startingLevel);
+	drawInput("Story Flag", &this->_specials[this->_specialIndex].moves[this->_moveIndex].storyFlag);
 
 	ImGui::End();
 }

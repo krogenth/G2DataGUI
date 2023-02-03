@@ -11,6 +11,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void SkillBooks::write() {
@@ -108,9 +109,9 @@ void SkillBooks::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUByte("Starting Level", &this->_skillbooks[this->_bookIndex].skills[this->_skillIndex].startingLevel);
-	ImGui::InputUByte("Book Level Required", &this->_skillbooks[this->_bookIndex].skills[this->_skillIndex].bookLevelRequired);
-	ImGui::InputUByte("Unknown #1", &this->_skillbooks[this->_bookIndex].skills[this->_skillIndex].unknown1);
+	drawInput("Starting Level", &this->_skillbooks[this->_bookIndex].skills[this->_skillIndex].startingLevel);
+	drawInput("Book Level Required", &this->_skillbooks[this->_bookIndex].skills[this->_skillIndex].bookLevelRequired);
+	drawInput("Unknown #1", &this->_skillbooks[this->_bookIndex].skills[this->_skillIndex].unknown1);
 
 	ImGui::End();
 }

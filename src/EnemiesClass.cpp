@@ -11,6 +11,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void Enemies::writeEnemy(std::fstream& stream, const EnemyStruct& enemy, bool isSecond) {
@@ -175,27 +176,27 @@ void Enemies::draw() {
 	}
 
 	ImGui::InputText("Name", this->_enemies.at(this->_enemyIndex).name, 19);
-	ImGui::InputUByte("Type1", &this->_enemies.at(this->_enemyIndex).stats.type1);
-	ImGui::InputUByte("Type2", &this->_enemies.at(this->_enemyIndex).stats.type2);
-	ImGui::InputShort("Level", &this->_enemies.at(this->_enemyIndex).stats.level);
-	ImGui::InputInt("Health", &this->_enemies.at(this->_enemyIndex).stats.health);
-	ImGui::InputShort("MP", &this->_enemies.at(this->_enemyIndex).stats.mp);
-	ImGui::InputShort("SP", &this->_enemies.at(this->_enemyIndex).stats.sp);
-	ImGui::InputShort("VIT", &this->_enemies.at(this->_enemyIndex).stats.vit);
-	ImGui::InputShort("AGI", &this->_enemies.at(this->_enemyIndex).stats.agi);
-	ImGui::InputShort("SPD", &this->_enemies.at(this->_enemyIndex).stats.spd);
-	ImGui::InputShort("MEN", &this->_enemies.at(this->_enemyIndex).stats.men);
-	ImGui::InputShort("Stamina", &this->_enemies.at(this->_enemyIndex).stats.stamina);
+	drawInput("Type1", &this->_enemies.at(this->_enemyIndex).stats.type1);
+	drawInput("Type2", &this->_enemies.at(this->_enemyIndex).stats.type2);
+	drawInput("Level", &this->_enemies.at(this->_enemyIndex).stats.level);
+	drawInput("Health", &this->_enemies.at(this->_enemyIndex).stats.health);
+	drawInput("MP", &this->_enemies.at(this->_enemyIndex).stats.mp);
+	drawInput("SP", &this->_enemies.at(this->_enemyIndex).stats.sp);
+	drawInput("VIT", &this->_enemies.at(this->_enemyIndex).stats.vit);
+	drawInput("AGI", &this->_enemies.at(this->_enemyIndex).stats.agi);
+	drawInput("SPD", &this->_enemies.at(this->_enemyIndex).stats.spd);
+	drawInput("MEN", &this->_enemies.at(this->_enemyIndex).stats.men);
+	drawInput("Stamina", &this->_enemies.at(this->_enemyIndex).stats.stamina);
 	if (ImGui::IsItemHovered()) ImGui::SetTooltip("How long can they move without tiring?");
-	ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_enemies.at(this->_enemyIndex).stats.ipStun);
+	drawInputN("IP Stun/IP Cancel Stun", &this->_enemies.at(this->_enemyIndex).stats.ipStun, 2);
 	if (ImGui::IsItemHovered()) ImGui::SetTooltip("IP Stun/IP Cancel Stun Resistance.");
-	ImGui::InputByte("Still Evasion Rate", &this->_enemies.at(this->_enemyIndex).stats.evasionStillRate);
-	ImGui::InputByte("Moving Evasion Rate", &this->_enemies.at(this->_enemyIndex).stats.evasionMovingRate);
-	ImGui::InputByte("Fire Resist", &this->_enemies.at(this->_enemyIndex).stats.fireResist);
-	ImGui::InputByte("Wind Resist", &this->_enemies.at(this->_enemyIndex).stats.windResist);
-	ImGui::InputByte("Earth Resist", &this->_enemies.at(this->_enemyIndex).stats.earthResist);
-	ImGui::InputByte("Lightning Resist", &this->_enemies.at(this->_enemyIndex).stats.lightningResist);
-	ImGui::InputByte("Blizzard Resist", &this->_enemies.at(this->_enemyIndex).stats.blizzardResist);
+	drawInput("Still Evasion Rate", &this->_enemies.at(this->_enemyIndex).stats.evasionStillRate);
+	drawInput("Moving Evasion Rate", &this->_enemies.at(this->_enemyIndex).stats.evasionMovingRate);
+	drawInput("Fire Resist", &this->_enemies.at(this->_enemyIndex).stats.fireResist);
+	drawInput("Wind Resist", &this->_enemies.at(this->_enemyIndex).stats.windResist);
+	drawInput("Earth Resist", &this->_enemies.at(this->_enemyIndex).stats.earthResist);
+	drawInput("Lightning Resist", &this->_enemies.at(this->_enemyIndex).stats.lightningResist);
+	drawInput("Blizzard Resist", &this->_enemies.at(this->_enemyIndex).stats.blizzardResist);
 
 	for (size_t i = 0; i < 8; i++) {
 		if (ImGui::Checkbox(statusDefs.at(i).c_str(), &AilmentBitFlags[i])) {
@@ -207,13 +208,13 @@ void Enemies::draw() {
 		}
 	}
 
-	ImGui::InputShort("Knockback Resist Rate", &this->_enemies.at(this->_enemyIndex).stats.knockbackResist);
-	ImGui::InputShort("Size", &this->_enemies.at(this->_enemyIndex).stats.size);
-	ImGui::InputByte("No Run", &this->_enemies.at(this->_enemyIndex).stats.noRunFlag);
-	ImGui::InputInt("EXP", &this->_enemies.at(this->_enemyIndex).stats.exp);
-	ImGui::InputInt("Skill Coins", &this->_enemies.at(this->_enemyIndex).stats.skillCoins);
-	ImGui::InputInt("Magic Coins", &this->_enemies.at(this->_enemyIndex).stats.magicCoins);
-	ImGui::InputInt("Gold Coins", &this->_enemies.at(this->_enemyIndex).stats.goldCoins);
+	drawInput("Knockback Resist Rate", &this->_enemies.at(this->_enemyIndex).stats.knockbackResist);
+	drawInput("Size", &this->_enemies.at(this->_enemyIndex).stats.size);
+	drawInput("No Run", &this->_enemies.at(this->_enemyIndex).stats.noRunFlag);
+	drawInput("EXP", &this->_enemies.at(this->_enemyIndex).stats.exp);
+	drawInput("Skill Coins", &this->_enemies.at(this->_enemyIndex).stats.skillCoins);
+	drawInput("Magic Coins", &this->_enemies.at(this->_enemyIndex).stats.magicCoins);
+	drawInput("Gold Coins", &this->_enemies.at(this->_enemyIndex).stats.goldCoins);
 
 	if (ImGui::BeginCombo("Item #1", this->_items->at(this->_enemies.at(this->_enemyIndex).stats.item1).name)) {
 		for (size_t i = 0; i < this->_items->size(); i++) {
@@ -245,8 +246,8 @@ void Enemies::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputByte("Item #1 Chance", &this->_enemies.at(this->_enemyIndex).stats.item1Chance);
-	ImGui::InputByte("Item #2 Chance", &this->_enemies.at(this->_enemyIndex).stats.item2Chance);
+	drawInput("Item #1 Chance", &this->_enemies.at(this->_enemyIndex).stats.item1Chance);
+	drawInput("Item #2 Chance", &this->_enemies.at(this->_enemyIndex).stats.item2Chance);
 
 	ImGui::Checkbox("Moves", &this->_showMoves);
 	ImGui::SameLine();
@@ -277,9 +278,9 @@ void Enemies::draw() {
 		}
 
 		ImGui::InputText("Name", this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].name, 19);
-		ImGui::InputUShort("MP Cost", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.mp);
-		ImGui::InputUShort("SP Cost", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.sp);
-		ImGui::InputUByte("Unknown #1", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.unknown);
+		drawInput("MP Cost", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.mp);
+		drawInput("SP Cost", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.sp);
+		drawInput("Unknown #1", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.unknown);
 		
 		if (ImGui::BeginCombo("Target Effect", targetEffectDefs.at(this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.targetEffect).c_str())) {
 			for (size_t i = 0; i < targetEffectDefs.size(); i++) {
@@ -296,9 +297,9 @@ void Enemies::draw() {
 			ImGui::EndCombo();
 		}
 		
-		ImGui::InputUShort("Strength", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.str);
-		ImGui::InputUShort("Power", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.pow);
-		ImGui::InputUShort("Damage(?)", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.ad);
+		drawInput("Strength", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.str);
+		drawInput("Power", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.pow);
+		drawInput("Damage(?)", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.ad);
 		
 		if (ImGui::BeginCombo("Target Type", targetTypeDefs.at(this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.targetType).c_str())) {
 			for (size_t i = 0; i < targetTypeDefs.size(); i++) {
@@ -315,14 +316,14 @@ void Enemies::draw() {
 			ImGui::EndCombo();
 		}
 		
-		ImGui::InputUByte("Unknown #2", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.normalAttackFlag);
-		ImGui::InputUShort("Distance", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.distance);
+		drawInput("Unknown #2", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.normalAttackFlag);
+		drawInput("Distance", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.distance);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How far away to use move?");
-		ImGui::InputUShort("Accuracy", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.accuracy);
-		ImGui::InputUShort("Range", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.range);
+		drawInput("Accuracy", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.accuracy);
+		drawInput("Range", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.range);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How big is the move area?");
-		ImGui::InputUShort("Cast Time", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.castTime);
-		ImGui::InputUShort("Recovery", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.recovery);
+		drawInput("Cast Time", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.castTime);
+		drawInput("Recovery", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.recovery);
 
 		if (ImGui::BeginCombo("Animation", animationDefs.at(this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.animation).c_str())) {
 			for (size_t i = 0; i < this->_moves->size(); i++) {
@@ -340,10 +341,10 @@ void Enemies::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUByte("Knockdown", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.knockDown);
+		drawInput("Knockdown", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.knockDown);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
-		ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.ipStun);
-		ImGui::InputShort("Knockback", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.knockback);
+		drawInput("IP Stun/IP Cancel Stun", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.ipStun);
+		drawInput("Knockback", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.knockback);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
 		
 		if (ImGui::BeginCombo("Element", elementDefs.at(this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.element).c_str())) {
@@ -362,7 +363,7 @@ void Enemies::draw() {
 			ImGui::EndCombo();
 		}
 		
-		ImGui::InputUByte("Element Strength", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.elementStr);
+		drawInput("Element Strength", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.elementStr);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("* 10 percent of damage is this element.");
 
 		for (size_t i = 0; i < 8; i++) {
@@ -374,9 +375,9 @@ void Enemies::draw() {
 			}
 		}
 
-		ImGui::InputUByte("Ailments Chance", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.ailmentsChance);
-		ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.atkMod);
-		ImGui::InputUShort("Special", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.special);
+		drawInput("Ailments Chance", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.ailmentsChance);
+		drawInputN("Atk/Def/Act/Mov Mods", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.atkMod, 4);
+		drawInput("Special", &this->_enemies.at(this->_enemyIndex).moveSet.moves[this->_moveIndex].stats.special);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("In Beta, use at your own peril.");
 
 		ImGui::End();
@@ -400,12 +401,12 @@ void Enemies::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUByte("AI Type", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].aiType);
-		ImGui::InputUByte("Move #1 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move1Chance);
-		ImGui::InputUByte("Move #2 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move2Chance);
-		ImGui::InputUByte("Move #3 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move3Chance);
-		ImGui::InputUByte("Move #4 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move4Chance);
-		ImGui::InputUByte("Move #5 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move5Chance);
+		drawInput("AI Type", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].aiType);
+		drawInput("Move #1 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move1Chance);
+		drawInput("Move #2 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move2Chance);
+		drawInput("Move #3 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move3Chance);
+		drawInput("Move #4 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move4Chance);
+		drawInput("Move #5 Chance", &this->_enemies.at(this->_enemyIndex).ai[this->_aiIndex].move5Chance);
 		
 		ImGui::End();
 	}

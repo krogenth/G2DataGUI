@@ -12,6 +12,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void Moves::write() {
@@ -149,7 +150,7 @@ void Moves::draw() {
 	}
 
 	ImGui::InputText("Name", this->_moves.at(this->_moveIndex).name, 19);
-	ImGui::InputUShort("Cost", &this->_moves.at(this->_moveIndex).stats.cost);
+	drawInput("Cost", &this->_moves.at(this->_moveIndex).stats.cost);
 
 	if (ImGui::BeginCombo("Target Effect", targetEffectDefs.at(this->_moves.at(this->_moveIndex).stats.targetEffect).c_str())) {
 		for (uint8_t i = 0; i < 16; i++) {
@@ -183,11 +184,11 @@ void Moves::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUShort("Strength", &this->_moves.at(this->_moveIndex).stats.str);
-	ImGui::InputUShort("Power", &this->_moves.at(this->_moveIndex).stats.pow);
-	ImGui::InputUShort("Range", &this->_moves.at(this->_moveIndex).stats.range);
-	ImGui::InputUShort2("Cast Time Lv1/Lv5", &this->_moves.at(this->_moveIndex).stats.cast1);
-	ImGui::InputUShort("Recovery", &this->_moves.at(this->_moveIndex).stats.recovery);
+	drawInput("Strength", &this->_moves.at(this->_moveIndex).stats.str);
+	drawInput("Power", &this->_moves.at(this->_moveIndex).stats.pow);
+	drawInput("Range", &this->_moves.at(this->_moveIndex).stats.range);
+	drawInputN("Cast Time Lv1/Lv5", &this->_moves.at(this->_moveIndex).stats.cast1, 2);
+	drawInput("Recovery", &this->_moves.at(this->_moveIndex).stats.recovery);
 
 	if (ImGui::BeginCombo("Animation", animationDefs.at(this->_moves.at(this->_moveIndex).stats.animation).c_str())) {
 		for (size_t i = 0; i < this->_moves.size(); i++) {
@@ -205,11 +206,11 @@ void Moves::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUByte("Unknown #1", &this->_moves.at(this->_moveIndex).stats.unknown1);
-	ImGui::InputUByte("Knockdown", &this->_moves.at(this->_moveIndex).stats.knockDown);
+	drawInput("Unknown #1", &this->_moves.at(this->_moveIndex).stats.unknown1);
+	drawInput("Knockdown", &this->_moves.at(this->_moveIndex).stats.knockDown);
 	if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
-	ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_moves.at(this->_moveIndex).stats.ipStun);
-	ImGui::InputShort("Knockback", &this->_moves.at(this->_moveIndex).stats.knockback);
+	drawInputN("IP Stun/IP Cancel Stun", &this->_moves.at(this->_moveIndex).stats.ipStun, 2);
+	drawInput("Knockback", &this->_moves.at(this->_moveIndex).stats.knockback);
 	if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
 
 	if (ImGui::BeginCombo("Element", elementDefs.at(this->_moves.at(this->_moveIndex).stats.element).c_str())) {
@@ -228,7 +229,7 @@ void Moves::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUByte("Element Strength", &this->_moves.at(this->_moveIndex).stats.elementStr);
+	drawInput("Element Strength", &this->_moves.at(this->_moveIndex).stats.elementStr);
 
 	for (size_t i = 0; i < 8; i++) {
 		if (ImGui::Checkbox(statusDefs.at(i).c_str(), &AilmentBitFlags[i])) {
@@ -239,15 +240,15 @@ void Moves::draw() {
 		}
 	}
 
-	ImGui::InputUByte("Ailments Chance", &this->_moves.at(this->_moveIndex).stats.ailmentsChance);
-	ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_moves.at(this->_moveIndex).stats.atkMod);
-	ImGui::InputUShort("Special", &this->_moves.at(this->_moveIndex).stats.special);
-	ImGui::InputUShort("Coin Cost Lv1", &this->_moves.at(this->_moveIndex).stats.coinCost1);
-	ImGui::InputUShort("Coin Cost Lv2", &this->_moves.at(this->_moveIndex).stats.coinCost2);
-	ImGui::InputUShort("Coin Cost Lv3", &this->_moves.at(this->_moveIndex).stats.coinCost3);
-	ImGui::InputUShort("Coin Cost Lv4", &this->_moves.at(this->_moveIndex).stats.coinCost4);
-	ImGui::InputUShort("Coin Cost Lv5", &this->_moves.at(this->_moveIndex).stats.coinCost5);
-	ImGui::InputUShort("Multiplier", &this->_moves.at(this->_moveIndex).stats.multiplier);
+	drawInput("Ailments Chance", &this->_moves.at(this->_moveIndex).stats.ailmentsChance);
+	drawInputN("Atk/Def/Act/Mov Mods", &this->_moves.at(this->_moveIndex).stats.atkMod, 4);
+	drawInput("Special", &this->_moves.at(this->_moveIndex).stats.special);
+	drawInput("Coin Cost Lv1", &this->_moves.at(this->_moveIndex).stats.coinCost1);
+	drawInput("Coin Cost Lv2", &this->_moves.at(this->_moveIndex).stats.coinCost2);
+	drawInput("Coin Cost Lv3", &this->_moves.at(this->_moveIndex).stats.coinCost3);
+	drawInput("Coin Cost Lv4", &this->_moves.at(this->_moveIndex).stats.coinCost4);
+	drawInput("Coin Cost Lv5", &this->_moves.at(this->_moveIndex).stats.coinCost5);
+	drawInput("Multiplier", &this->_moves.at(this->_moveIndex).stats.multiplier);
 	ImGui::InputText("Description", this->_moves.at(this->_moveIndex).description, 41);
 
 	ImGui::End();
