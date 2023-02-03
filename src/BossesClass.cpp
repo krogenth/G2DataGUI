@@ -11,6 +11,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void Bosses::writeBoss(std::fstream& stream, const BossStruct& boss, bool isSecond) {
@@ -177,28 +178,30 @@ void Bosses::draw() {
 		ImGui::EndCombo();
 	}
 
+	
+
 	ImGui::InputText("Name", this->_bosses.at(this->_bossIndex).name, 19);
-	ImGui::InputUByte("Type1", &this->_bosses.at(this->_bossIndex).stats.type1);
-	ImGui::InputUByte("Type2", &this->_bosses.at(this->_bossIndex).stats.type2);
-	ImGui::InputShort("Level", &this->_bosses.at(this->_bossIndex).stats.level);
-	ImGui::InputInt("Health", &this->_bosses.at(this->_bossIndex).stats.health);
-	ImGui::InputShort("MP", &this->_bosses.at(this->_bossIndex).stats.mp);
-	ImGui::InputShort("SP", &this->_bosses.at(this->_bossIndex).stats.sp);
-	ImGui::InputShort("VIT", &this->_bosses.at(this->_bossIndex).stats.vit);
-	ImGui::InputShort("AGI", &this->_bosses.at(this->_bossIndex).stats.agi);
-	ImGui::InputShort("SPD", &this->_bosses.at(this->_bossIndex).stats.spd);
-	ImGui::InputShort("MEN", &this->_bosses.at(this->_bossIndex).stats.men);
-	ImGui::InputShort("Stamina", &this->_bosses.at(this->_bossIndex).stats.stamina);
+	drawInput("Type1", &this->_bosses.at(this->_bossIndex).stats.type1);
+	drawInput("Type2", &this->_bosses.at(this->_bossIndex).stats.type2);
+	drawInput("Level", &this->_bosses.at(this->_bossIndex).stats.level);
+	drawInput("Health", &this->_bosses.at(this->_bossIndex).stats.health);
+	drawInput("MP", &this->_bosses.at(this->_bossIndex).stats.mp);
+	drawInput("SP", &this->_bosses.at(this->_bossIndex).stats.sp);
+	drawInput("VIT", &this->_bosses.at(this->_bossIndex).stats.vit);
+	drawInput("AGI", &this->_bosses.at(this->_bossIndex).stats.agi);
+	drawInput("SPD", &this->_bosses.at(this->_bossIndex).stats.spd);
+	drawInput("MEN", &this->_bosses.at(this->_bossIndex).stats.men);
+	drawInput("Stamina", &this->_bosses.at(this->_bossIndex).stats.stamina);
 	if (ImGui::IsItemHovered()) ImGui::SetTooltip("How long can they move without tiring?");
-	ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_bosses.at(this->_bossIndex).stats.ipStun);
+	drawInputN("IP Stun/IP Cancel Stun", &this->_bosses.at(this->_bossIndex).stats.ipStun, 2);
 	if (ImGui::IsItemHovered()) ImGui::SetTooltip("IP Stun/IP Cancel Stun Resistance.");
-	ImGui::InputByte("Still Evasion Rate", &this->_bosses.at(this->_bossIndex).stats.evasionStillRate);
-	ImGui::InputByte("Moving Evasion Rate", &this->_bosses.at(this->_bossIndex).stats.evasionMovingRate);
-	ImGui::InputByte("Fire Resist", &this->_bosses.at(this->_bossIndex).stats.fireResist);
-	ImGui::InputByte("Wind Resist", &this->_bosses.at(this->_bossIndex).stats.windResist);
-	ImGui::InputByte("Earth Resist", &this->_bosses.at(this->_bossIndex).stats.earthResist);
-	ImGui::InputByte("Lightning Resist", &this->_bosses.at(this->_bossIndex).stats.lightningResist);
-	ImGui::InputByte("Blizzard Resist", &this->_bosses.at(this->_bossIndex).stats.blizzardResist);
+	drawInput("Still Evasion Rate", &this->_bosses.at(this->_bossIndex).stats.evasionStillRate);
+	drawInput("Moving Evasion Rate", &this->_bosses.at(this->_bossIndex).stats.evasionMovingRate);
+	drawInput("Fire Resist", &this->_bosses.at(this->_bossIndex).stats.fireResist);
+	drawInput("Wind Resist", &this->_bosses.at(this->_bossIndex).stats.windResist);
+	drawInput("Earth Resist", &this->_bosses.at(this->_bossIndex).stats.earthResist);
+	drawInput("Lightning Resist", &this->_bosses.at(this->_bossIndex).stats.lightningResist);
+	drawInput("Blizzard Resist", &this->_bosses.at(this->_bossIndex).stats.blizzardResist);
 
 	for (size_t i = 0; i < 8; i++) {
 		if (ImGui::Checkbox(statusDefs.at(i).c_str(), &AilmentBitFlags[i])) {
@@ -210,13 +213,13 @@ void Bosses::draw() {
 		}
 	}
 
-	ImGui::InputShort("Knockback Resist Rate", &this->_bosses.at(this->_bossIndex).stats.knockbackResist);
-	ImGui::InputShort("Size", &this->_bosses.at(this->_bossIndex).stats.size);
-	ImGui::InputByte("No Run", &this->_bosses.at(this->_bossIndex).stats.noRunFlag);
-	ImGui::InputInt("EXP", &this->_bosses.at(this->_bossIndex).stats.exp);
-	ImGui::InputInt("Skill Coins", &this->_bosses.at(this->_bossIndex).stats.skillCoins);
-	ImGui::InputInt("Magic Coins", &this->_bosses.at(this->_bossIndex).stats.magicCoins);
-	ImGui::InputInt("Gold Coins", &this->_bosses.at(this->_bossIndex).stats.goldCoins);
+	drawInput("Knockback Resist Rate", &this->_bosses.at(this->_bossIndex).stats.knockbackResist);
+	drawInput("Size", &this->_bosses.at(this->_bossIndex).stats.size);
+	drawInput("No Run", &this->_bosses.at(this->_bossIndex).stats.noRunFlag);
+	drawInput("EXP", &this->_bosses.at(this->_bossIndex).stats.exp);
+	drawInput("Skill Coins", &this->_bosses.at(this->_bossIndex).stats.skillCoins);
+	drawInput("Magic Coins", &this->_bosses.at(this->_bossIndex).stats.magicCoins);
+	drawInput("Gold Coins", &this->_bosses.at(this->_bossIndex).stats.goldCoins);
 
 	if (ImGui::BeginCombo("Item #1", this->_items->at(this->_bosses.at(this->_bossIndex).stats.item1).name)) {
 		for (size_t i = 0; i < this->_items->size(); i++) {
@@ -248,8 +251,8 @@ void Bosses::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputByte("Item #1 Chance", &this->_bosses.at(this->_bossIndex).stats.item1Chance);
-	ImGui::InputByte("Item #2 Chance", &this->_bosses.at(this->_bossIndex).stats.item2Chance);
+	drawInput("Item #1 Chance", &this->_bosses.at(this->_bossIndex).stats.item1Chance);
+	drawInput("Item #2 Chance", &this->_bosses.at(this->_bossIndex).stats.item2Chance);
 
 	ImGui::Checkbox("Moves", &this->_showMoves);
 	ImGui::SameLine();
@@ -297,9 +300,9 @@ void Bosses::draw() {
 		}
 
 		ImGui::InputText("Name", this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].name, 19);
-		ImGui::InputUShort("MP Cost", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.mp);
-		ImGui::InputUShort("SP Cost", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.sp);
-		ImGui::InputUByte("Unknown #1", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.unknown);
+		drawInput("MP Cost", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.mp);
+		drawInput("SP Cost", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.sp);
+		drawInput("Unknown #1", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.unknown);
 		
 		if (ImGui::BeginCombo("Target Effect", targetEffectDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetEffect).c_str())) {
 			for (size_t i = 0; i < targetEffectDefs.size(); i++) {
@@ -316,9 +319,9 @@ void Bosses::draw() {
 			ImGui::EndCombo();
 		}
 		
-		ImGui::InputUShort("Strength", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.str);
-		ImGui::InputUShort("Power", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.pow);
-		ImGui::InputUShort("Damage(?)", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ad);
+		drawInput("Strength", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.str);
+		drawInput("Power", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.pow);
+		drawInput("Damage(?)", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ad);
 		
 		if (ImGui::BeginCombo("Target Type", targetTypeDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.targetType).c_str())) {
 			for (size_t i = 0; i < targetTypeDefs.size(); i++) {
@@ -335,14 +338,14 @@ void Bosses::draw() {
 			ImGui::EndCombo();
 		}
 		
-		ImGui::InputUByte("Unknown #2", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.normalAttackFlag);
-		ImGui::InputUShort("Distance", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.distance);
+		drawInput("Unknown #2", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.normalAttackFlag);
+		drawInput("Distance", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.distance);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How far away to use move?");
-		ImGui::InputUShort("Accuracy", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.accuracy);
-		ImGui::InputUShort("Range", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.range);
+		drawInput("Accuracy", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.accuracy);
+		drawInput("Range", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.range);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How big is the move area?");
-		ImGui::InputUShort("Cast Time", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.castTime);
-		ImGui::InputUShort("Recovery", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.recovery);
+		drawInput("Cast Time", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.castTime);
+		drawInput("Recovery", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.recovery);
 
 		if (ImGui::BeginCombo("Animation", animationDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.animation).c_str())) {
 			for (size_t i = 0; i < this->_moves->size(); i++) {
@@ -360,10 +363,10 @@ void Bosses::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUByte("Knockdown", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.knockDown);
+		drawInput("Knockdown", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.knockDown);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will this move knockdown those hit?");
-		ImGui::InputShort2("IP Stun/IP Cancel Stun", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ipStun);
-		ImGui::InputShort("Knockback", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.knockback);
+		drawInputN("IP Stun/IP Cancel Stun", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ipStun, 2);
+		drawInput("Knockback", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.knockback);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How much move will knockback those hit.");
 
 		if (ImGui::BeginCombo("Element", elementDefs.at(this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.element).c_str())) {
@@ -382,7 +385,7 @@ void Bosses::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUByte("Element Strength", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.elementStr);
+		drawInput("Element Strength", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.elementStr);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("* 10 percent of damage is this element.");
 
 		for (size_t i = 0; i < 8; i++) {
@@ -394,9 +397,9 @@ void Bosses::draw() {
 			}
 		}
 
-		ImGui::InputUByte("Ailments Chance", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ailmentsChance);
-		ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.atkMod);
-		ImGui::InputUShort("Special", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.special);
+		drawInput("Ailments Chance", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.ailmentsChance);
+		drawInputN("Atk/Def/Act/Mov Mods", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.atkMod, 4);
+		drawInput("Special", &this->_bosses.at(this->_bossIndex).moveSets.at(_moveSetIndex).moves[this->_moveIndex].stats.special);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("In Beta, use at your own peril.");
 
 		ImGui::End();
@@ -424,12 +427,12 @@ void Bosses::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUByte("AI Type", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].aiType);
-		ImGui::InputUByte("Move #1 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move1Chance);
-		ImGui::InputUByte("Move #2 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move2Chance);
-		ImGui::InputUByte("Move #3 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move3Chance);
-		ImGui::InputUByte("Move #4 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move4Chance);
-		ImGui::InputUByte("Move #5 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move5Chance);
+		drawInput("AI Type", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].aiType);
+		drawInput("Move #1 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move1Chance);
+		drawInput("Move #2 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move2Chance);
+		drawInput("Move #3 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move3Chance);
+		drawInput("Move #4 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move4Chance);
+		drawInput("Move #5 Chance", &this->_bosses.at(this->_bossIndex).ai[this->_aiIndex].move5Chance);
 
 		ImGui::End();
 	}

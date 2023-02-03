@@ -11,6 +11,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void Mdts::write() {
@@ -327,12 +328,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUInt("Connected Map", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].ID);
-			ImGui::InputFloat3("X/Y/Z Position", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].xPos);
-			ImGui::InputFloat("Direction", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].direction);
-			ImGui::InputFloat("Unknown #1", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].unknown);
-			ImGui::InputUInt("Unknown #2", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].unknown1);
-			ImGui::InputUInt("Unknown #3", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].unknown2);
+			drawInput("Connected Map", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].ID);
+			drawInputN("X/Y/Z Position", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].xPos, 3);
+			drawInput("Direction", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].direction);
+			drawInput("Unknown #1", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].unknown);
+			drawInput("Unknown #2", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].unknown1);
+			drawInput("Unknown #3", &this->_mdts.at(this->_mdtIndex).mapEntries[this->_mapEntryIndex].unknown2);
 		}
 	}
 
@@ -354,13 +355,13 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUShort("ID", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].ID);
-			ImGui::InputUShort("Index", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].index);
-			ImGui::InputUShort("Unknown", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].unknown);
-			ImGui::InputUShort("Translation", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].translation);
-			ImGui::InputFloat3("X/Y/Z Position", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].xPos);
-			ImGui::InputFloat3("X/Y/Z Angle", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].xAngle);
-			ImGui::InputFloat3("CX/CY/CZ", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].cx);
+			drawInput("ID", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].ID);
+			drawInput("Index", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].index);
+			drawInput("Unknown", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].unknown);
+			drawInput("Translation", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].translation);
+			drawInputN("X/Y/Z Position", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].xPos, 3);
+			drawInputN("X/Y/Z Angle", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].xAngle, 3);
+			drawInputN("CX/CY/CZ", &this->_mdts.at(this->_mdtIndex).instances[this->_instanceIndex].cx, 3);
 		}
 	}
 
@@ -382,21 +383,21 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUByte("Shape", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].shape);
-			ImGui::InputUByte("Type", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].type);
-			ImGui::InputUByte("Trigger", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].trigger);
-			ImGui::InputUInt("Unknown #1", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown);
-			ImGui::InputUByte("Unknown #2", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown1);
-			ImGui::InputFloat3("X/Y/Z Min", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].xMin);
-			ImGui::InputFloat3("X/Y/Z Max", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].xMax);
-			ImGui::InputUInt("Unknown #3", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown2);
-			ImGui::InputUInt("Unknown #4", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown3);
-			ImGui::InputUInt("Unknown #5", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown4);
-			ImGui::InputUInt("Unknown #6", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown5);
-			ImGui::InputUInt("Unknown #7", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown6);
-			ImGui::InputUInt("Unknown #8", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown7);
-			ImGui::InputUInt("Unknown #9", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown8);
-			ImGui::InputUInt("Unknown #10", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown9);
+			drawInput("Shape", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].shape);
+			drawInput("Type", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].type);
+			drawInput("Trigger", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].trigger);
+			drawInput("Unknown #1", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown);
+			drawInput("Unknown #2", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown1);
+			drawInputN("X/Y/Z Min", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].xMin, 3);
+			drawInputN("X/Y/Z Max", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].xMax, 3);
+			drawInput("Unknown #3", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown2);
+			drawInput("Unknown #4", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown3);
+			drawInput("Unknown #5", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown4);
+			drawInput("Unknown #6", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown5);
+			drawInput("Unknown #7", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown6);
+			drawInput("Unknown #8", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown7);
+			drawInput("Unknown #9", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown8);
+			drawInput("Unknown #10", &this->_mdts.at(this->_mdtIndex).HTA[this->_htaIndex].unknown9);
 		}
 	}
 
@@ -418,16 +419,16 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUShort("Index", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].index);
-			ImGui::InputUShort("Unknown #1", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknown);
-			ImGui::InputFloat2("X/Z Min", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].xPosMin);
-			ImGui::InputFloat2("X/Z Max", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].xPosMax);
-			ImGui::InputFloat3("X/Y/Z Pos", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].xPos);
-			ImGui::InputFloat3("X/Y/Z #1", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknownX);
+			drawInput("Index", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].index);
+			drawInput("Unknown #1", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknown);
+			drawInputN("X/Z Min", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].xPosMin, 2);
+			drawInputN("X/Z Max", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].xPosMax, 2);
+			drawInputN("X/Y/Z Pos", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].xPos, 3);
+			drawInputN("X/Y/Z #1", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknownX, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
-			ImGui::InputFloat3("X/Y/Z #2", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknownX1);
+			drawInputN("X/Y/Z #2", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknownX1, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
-			ImGui::InputFloat3("X/Y/Z #3", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknownX2);
+			drawInputN("X/Y/Z #3", &this->_mdts.at(this->_mdtIndex).enemyPositions[this->_ePosIndex].unknownX2, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
 		}
 	}
@@ -450,7 +451,7 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUShort("Group Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].index);
+			drawInput("Group Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].index);
 
 			if (ImGui::BeginCombo("Enemy #", std::format("Enemy {}", this->_eGroupPosIndex + 1).c_str())) {
 				// there can only ever be 4 unique enemies in a group, as far as I can tell
@@ -469,14 +470,14 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUShort("Enemy Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].index);
-			ImGui::InputUShort("# of Enemy", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].numEnemy);
-			ImGui::InputUShort("Enemy Offset", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].enemyOffset);
+			drawInput("Enemy Index", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].index);
+			drawInput("# of Enemy", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].numEnemy);
+			drawInput("Enemy Offset", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].enemyOffset);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("References enemy/boss.csv");
-			ImGui::InputUShort("Unknown #1", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown);
-			ImGui::InputUShort("Unknown #2", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown1);
-			ImGui::InputUShort("Unknown #3", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown2);
-			ImGui::InputUShort("Unknown #4", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown3);
+			drawInput("Unknown #1", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown);
+			drawInput("Unknown #2", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown1);
+			drawInput("Unknown #3", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown2);
+			drawInput("Unknown #4", &this->_mdts.at(this->_mdtIndex).enemyGroups[this->_eGroupIndex].enemies[this->_eGroupPosIndex].unknown3);
 		}
 	}
 
@@ -498,15 +499,15 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUShort("ID", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].ID);
-			ImGui::InputUShort("Index", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].index);
-			ImGui::InputUInt("Unknown #1", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown);
-			ImGui::InputShort3("X/Y/Z Pos", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].xPos);
-			ImGui::InputUInt("Unknown #2", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown1);
-			ImGui::InputUInt("Unknown #3", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown2);
-			ImGui::InputUInt("Unknown #4", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown3);
-			ImGui::InputUInt("Unknown #5", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown4);
-			ImGui::InputUShort("Unknown #6", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown5);
+			drawInput("ID", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].ID);
+			drawInput("Index", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].index);
+			drawInput("Unknown #1", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown);
+			drawInputN("X/Y/Z Pos", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].xPos, 3);
+			drawInput("Unknown #2", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown1);
+			drawInput("Unknown #3", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown2);
+			drawInput("Unknown #4", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown3);
+			drawInput("Unknown #5", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown4);
+			drawInput("Unknown #6", &this->_mdts.at(this->_mdtIndex).MOS[this->_mosIndex].unknown5);
 		}
 	}
 
@@ -528,12 +529,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUByte("ID", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].ID);
-			ImGui::InputUShort("Unknown #1", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].unknown);
-			ImGui::InputUByte("Unknown #2", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].unknown1);
-			ImGui::InputFloat3("X/Y/Z Pos", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].xPos);
-			ImGui::InputFloat("Unknown #3", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].unknown2);
-			ImGui::InputFloat("Y Angle", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].yAngle);
+			drawInput("ID", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].ID);
+			drawInput("Unknown #1", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].unknown);
+			drawInput("Unknown #2", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].unknown1);
+			drawInputN("X/Y/Z Pos", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].xPos, 3);
+			drawInput("Unknown #3", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].unknown2);
+			drawInput("Y Angle", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].yAngle);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unsure");
 
 			if (ImGui::BeginCombo("Item #1", this->_items->at(this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].item1).name)) {
@@ -585,7 +586,7 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			ImGui::InputUShort("Flag", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].flag);
+			drawInput("Flag", &this->_mdts.at(this->_mdtIndex).icons[this->_iconIndex].flag);
 		}
 	}
 

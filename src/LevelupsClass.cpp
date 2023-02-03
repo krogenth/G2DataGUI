@@ -9,6 +9,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void Levelups::write() {
@@ -85,17 +86,17 @@ void Levelups::draw() {
         ImGui::EndCombo();
     }
 
-    ImGui::InputInt("EXP", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].exp);
-    ImGui::InputShort("HP Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].hpIncrease);
-    ImGui::InputShort("MP Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].mpIncrease);
-    ImGui::InputShort("SP Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].spIncrease);
-    ImGui::InputShort("STR Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].strIncrease);
-    ImGui::InputShort("VIT Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].vitIncrease);
-    ImGui::InputShort("MAG Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].magIncrease);
-    ImGui::InputShort("MEN Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].menIncrease);
-    ImGui::InputShort("ACT Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].actIncrease);
-    ImGui::InputShort("MOV Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].movIncrease);
-    ImGui::InputShort("Skill Slot Increase",&this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].skillSlotIncrease);
+    drawInput("EXP", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].exp);
+    drawInput("HP Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].hpIncrease);
+    drawInput("MP Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].mpIncrease);
+    drawInput("SP Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].spIncrease);
+    drawInput("STR Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].strIncrease);
+    drawInput("VIT Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].vitIncrease);
+    drawInput("MAG Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].magIncrease);
+    drawInput("MEN Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].menIncrease);
+    drawInput("ACT Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].actIncrease);
+    drawInput("MOV Increase", &this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].movIncrease);
+    drawInput("Skill Slot Increase",&this->_levelups.at(this->_characterIndex).levelups[this->_characterLevelupIndex].skillSlotIncrease);
 
     ImGui::End();
 }

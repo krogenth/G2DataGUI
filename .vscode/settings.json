@@ -89,6 +89,8 @@
         "any": "cpp",
         "clocale": "cpp",
         "csignal": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "compare": "cpp",
+        "format": "cpp"
     }
 }

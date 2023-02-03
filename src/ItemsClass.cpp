@@ -12,6 +12,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void Items::write() {
@@ -259,12 +260,12 @@ void Items::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUByte("Unknown #1", &this->_items.at(this->_itemIndex).stats.unknown1);
-	ImGui::InputUByte("Unknown #2", &this->_items.at(this->_itemIndex).stats.unknown2);
-	ImGui::InputUByte("Unknown #3", &this->_items.at(this->_itemIndex).stats.unknown3);
-	ImGui::InputUByte("Icon", &this->_items.at(this->_itemIndex).stats.icon);
-	ImGui::InputUByte("Unknown #5", &this->_items.at(this->_itemIndex).stats.unknown4);
-	ImGui::InputUInt("Price", &this->_items.at(this->_itemIndex).stats.price);
+	drawInput("Unknown #1", &this->_items.at(this->_itemIndex).stats.unknown1);
+	drawInput("Unknown #2", &this->_items.at(this->_itemIndex).stats.unknown2);
+	drawInput("Unknown #3", &this->_items.at(this->_itemIndex).stats.unknown3);
+	drawInput("Icon", &this->_items.at(this->_itemIndex).stats.icon);
+	drawInput("Unknown #5", &this->_items.at(this->_itemIndex).stats.unknown4);
+	drawInput("Price", &this->_items.at(this->_itemIndex).stats.price);
 	if (ImGui::IsItemHovered()) ImGui::SetTooltip("sell = price / 2");
 
 	if (ImGui::Checkbox("Equipment", &this->_hasEquip)) {
@@ -309,10 +310,10 @@ void Items::draw() {
 			}
 		}
 
-		ImGui::InputShort("Strength", &this->_items.at(this->_itemIndex).equipmentOffset->str);
-		ImGui::InputShort("Vitality", &this->_items.at(this->_itemIndex).equipmentOffset->vit);
-		ImGui::InputShort("Action", &this->_items.at(this->_itemIndex).equipmentOffset->act);
-		ImGui::InputShort("Movement", &this->_items.at(this->_itemIndex).equipmentOffset->mov);
+		drawInput("Strength", &this->_items.at(this->_itemIndex).equipmentOffset->str);
+		drawInput("Vitality", &this->_items.at(this->_itemIndex).equipmentOffset->vit);
+		drawInput("Action", &this->_items.at(this->_itemIndex).equipmentOffset->act);
+		drawInput("Movement", &this->_items.at(this->_itemIndex).equipmentOffset->mov);
 
 		if (ImGui::BeginCombo("Effective On", effectiveOnDefs.at(this->_items.at(this->_itemIndex).equipmentOffset->effectiveOn).c_str())) {
 			for (uint8_t i = 0; i < 16; i++) {
@@ -328,11 +329,11 @@ void Items::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputByte("Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->fireAffinity);
-		ImGui::InputByte("Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->windAffinity);
-		ImGui::InputByte("Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->earthAffinity);
-		ImGui::InputByte("Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->lightningAffinity);
-		ImGui::InputByte("Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->blizzardAffinity);
+		drawInput("Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->fireAffinity);
+		drawInput("Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->windAffinity);
+		drawInput("Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->earthAffinity);
+		drawInput("Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->lightningAffinity);
+		drawInput("Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->blizzardAffinity);
 
 		for (size_t i = 0; i < 8; i++) {
 			if (ImGui::Checkbox(statusDefs.at(i).c_str(), &EquipmentAilmentBitFlags[i])) {
@@ -343,16 +344,16 @@ void Items::draw() {
 			}
 		}
 
-		ImGui::InputUByte("Ailments Chance", &this->_items.at(this->_itemIndex).equipmentOffset->ailmentsChance);
-		ImGui::InputByte("Increase Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseFirePercent);
-		ImGui::InputByte("Increase Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWindPercent);
-		ImGui::InputByte("Increase Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseEarthPercent);
-		ImGui::InputByte("Increase Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseLightningPercent);
-		ImGui::InputByte("Increase Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseBlizzardPercent);
-		ImGui::InputByte("Increase Water %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWaterPercent);
-		ImGui::InputByte("Increase Explosion %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseExplosionPercent);
-		ImGui::InputByte("Increase Forest %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseForestPercent);
-		ImGui::InputUShort("Special", &this->_items.at(this->_itemIndex).equipmentOffset->special);
+		drawInput("Ailments Chance", &this->_items.at(this->_itemIndex).equipmentOffset->ailmentsChance);
+		drawInput("Increase Fire %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseFirePercent);
+		drawInput("Increase Wind %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWindPercent);
+		drawInput("Increase Earth %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseEarthPercent);
+		drawInput("Increase Lightning %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseLightningPercent);
+		drawInput("Increase Blizzard %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseBlizzardPercent);
+		drawInput("Increase Water %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseWaterPercent);
+		drawInput("Increase Explosion %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseExplosionPercent);
+		drawInput("Increase Forest %", &this->_items.at(this->_itemIndex).equipmentOffset->increaseForestPercent);
+		drawInput("Special", &this->_items.at(this->_itemIndex).equipmentOffset->special);
 
 		ImGui::End();
 	}
@@ -391,10 +392,10 @@ void Items::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUShort("Power", &this->_items.at(this->_itemIndex).usableOffset->power);
-		ImGui::InputUShort("Range", &this->_items.at(this->_itemIndex).usableOffset->range);
-		ImGui::InputUShort("Cast Time", &this->_items.at(this->_itemIndex).usableOffset->castTime);
-		ImGui::InputUShort("Recovery", &this->_items.at(this->_itemIndex).usableOffset->recoveryTime);
+		drawInput("Power", &this->_items.at(this->_itemIndex).usableOffset->power);
+		drawInput("Range", &this->_items.at(this->_itemIndex).usableOffset->range);
+		drawInput("Cast Time", &this->_items.at(this->_itemIndex).usableOffset->castTime);
+		drawInput("Recovery", &this->_items.at(this->_itemIndex).usableOffset->recoveryTime);
 
 		if (ImGui::BeginCombo("Animation", animationDefs.at(this->_items.at(this->_itemIndex).usableOffset->animation).c_str())) {
 			for (size_t i = 0; i < this->_moves->size(); i++) {
@@ -428,9 +429,9 @@ void Items::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUByte("Unknown #1", &this->_items.at(this->_itemIndex).usableOffset->unknown1);
-		ImGui::InputShort2("IP Damage/IP Cancel Damage", &this->_items.at(this->_itemIndex).usableOffset->ipDamage);
-		ImGui::InputShort("Knockback", &this->_items.at(this->_itemIndex).usableOffset->knockback);
+		drawInput("Unknown #1", &this->_items.at(this->_itemIndex).usableOffset->unknown1);
+		drawInputN("IP Damage/IP Cancel Damage", &this->_items.at(this->_itemIndex).usableOffset->ipDamage, 2);
+		drawInput("Knockback", &this->_items.at(this->_itemIndex).usableOffset->knockback);
 
 		if (ImGui::BeginCombo("Element", elementDefs.at(this->_items.at(this->_itemIndex).usableOffset->element).c_str())) {
 			for (uint8_t i = 0; i < 5; i++) {
@@ -448,7 +449,7 @@ void Items::draw() {
 			ImGui::EndCombo();
 		}
 
-		ImGui::InputUByte("Element Strength", &this->_items.at(this->_itemIndex).usableOffset->elementStr);
+		drawInput("Element Strength", &this->_items.at(this->_itemIndex).usableOffset->elementStr);
 
 		for (size_t i = 0; i < 8; i++) {
 			if (ImGui::Checkbox(statusDefs.at(i).c_str(), &UsableAilmentBitFlags[i])) {
@@ -459,11 +460,11 @@ void Items::draw() {
 			}
 		}
 
-		ImGui::InputByte4("Atk/Def/Act/Mov Mods", &this->_items.at(this->_itemIndex).usableOffset->atkMod);
-		ImGui::InputUByte("Break Chance", &this->_items.at(this->_itemIndex).usableOffset->breakChance);
-		ImGui::InputUByte("Special", &this->_items.at(this->_itemIndex).usableOffset->special);
-		ImGui::InputUByte("Unknown #2", &this->_items.at(this->_itemIndex).usableOffset->unknown2);
-		ImGui::InputUByte("Unknown #3", &this->_items.at(this->_itemIndex).usableOffset->unknown3);
+		drawInputN("Atk/Def/Act/Mov Mods", &this->_items.at(this->_itemIndex).usableOffset->atkMod, 4);
+		drawInput("Break Chance", &this->_items.at(this->_itemIndex).usableOffset->breakChance);
+		drawInput("Special", &this->_items.at(this->_itemIndex).usableOffset->special);
+		drawInput("Unknown #2", &this->_items.at(this->_itemIndex).usableOffset->unknown2);
+		drawInput("Unknown #3", &this->_items.at(this->_itemIndex).usableOffset->unknown3);
 
 		ImGui::End();
 	}

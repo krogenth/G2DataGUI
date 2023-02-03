@@ -11,6 +11,7 @@
 
 #include "./include/JsonDefinitions.h"
 
+#include "./include/common/imgui_wrappers.h"
 #include "./imgui.h"
 
 void ManaEggs::write() {
@@ -108,9 +109,9 @@ void ManaEggs::draw() {
 		ImGui::EndCombo();
 	}
 
-	ImGui::InputUByte("Starting Level", &this->_manaeggs.at(this->_eggIndex).spells[this->_spellIndex].startingLevel);
-	ImGui::InputUByte("Egg Level Required", &this->_manaeggs.at(this->_eggIndex).spells[this->_spellIndex].eggLevelRequired);
-	ImGui::InputUByte("Unknown #1", &this->_manaeggs.at(this->_eggIndex).spells[this->_spellIndex].unknown1);
+	drawInput("Starting Level", &this->_manaeggs.at(this->_eggIndex).spells[this->_spellIndex].startingLevel);
+	drawInput("Egg Level Required", &this->_manaeggs.at(this->_eggIndex).spells[this->_spellIndex].eggLevelRequired);
+	drawInput("Unknown #1", &this->_manaeggs.at(this->_eggIndex).spells[this->_spellIndex].unknown1);
 
 	ImGui::End();
 }
