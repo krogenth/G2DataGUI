@@ -1,4 +1,4 @@
-#include "..\include\common\copypaste_obj.h"
+#include "./copypaste_obj.h"
 
 void* clipboard = nullptr;
 std::string objType = "";
