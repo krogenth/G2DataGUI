@@ -18,6 +18,7 @@
 
 # ignored specific files
 /vs/G2DataGUI/*.ini
+/vs/G2DataGUI/*.json
 
 *.pdb
 *.ilk
