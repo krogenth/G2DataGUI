@@ -1,7 +1,7 @@
 Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Price,"Equipment",Characters Bitflag,Strength,Vitality,Action,Movement,Effective On,Fire Affinity,Wind Affinity,Earth Affinity,Lightning Affinity,Blizzard Affinity,Ailments Bitflag,Ailments Chance,Increase Fire %,Increase Wind %,Increase Earth %,Increase Lightning %,Increase Blizzard %,Increase Water %,Increase Explosion %,Increase Forest %,Special,"Usable",Target Effect,Target Type,Power,Range,Cast Time,Recovery Time,Animation,Effective On,Unknown #1,IP Damage,IP Cancel Damage,Knockback,Element,Element Strength,Ailments Bitflag,Ailments Chance,Attack Mod,Defense Mod,Action Mod,Movement Mod,Break Chance,Special,Unknown #2,Unknown #3
                   ,                                        ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         Date 8/16,Debug Item          ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,100,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,72,0,0
-        Debug Item,Debug Item          ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,50,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,73,0,0
+         Date 8/16,Debug Item          ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,100,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,72,0,0
+        Debug Item,Debug Item          ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,50,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,73,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -12,7 +12,7 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
       Roan's Medal,A memento of Roan's mother      ,Valuable,3,53,53,3,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
           Poff Nut,A fuzzy nut  Not edible         ,Valuable,3,44,44,44,0,50,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-          Missanga,Returns SC used on Mareg's moves ,Special,3,53,53,53,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,0,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,74,0,0
+          Missanga,Returns SC used on Mareg's moves ,Special,3,53,53,53,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,0,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,74,0,0
         Xô|óœðwñ²ñ,‹öë÷                ,Valuable,3,53,53,45,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -60,19 +60,19 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
      Book of Sages,Lets you learn magical skills      ,Skillbook,3,51,51,51,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,unknown 8,,,,,,,,,,,,,,,,,,,,,,,,,
   Book of Learning,A textbook used in tutorials       ,Skillbook,3,51,51,51,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,unknown 9,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-      Seed of Life,+10 Maximum HP                      ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,63,0,0
-    Seed of Spells,+10 Maximum MP                      ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,64,0,0
-     Seed of Moves,+10 Maximum SP                      ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,65,0,0
-     Seed of Power,+3 STR                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,66,0,0
-   Seed of Defense,+3 VIT                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,67,0,0
-     Seed of Swift,+3 AGI                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,68,0,0
-   Seed of Running,+3 SPD                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,69,0,0
-     Seed of Magic,+3 MAG                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,70,0,0
-    Seed of Psyche,+3 MEN                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,71,0,0
-   All-Around Seed,+10 Maximum HP/Maximum MP/Maximum SP ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,72,0,0
-   Omnipotent Seed,+3 STR/VIT/AGI/SPD/MAG/MEN          ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,73,0,0
-     Lore of Moves,+1000 Special Coins (SC)            ,Special,3,53,53,53,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,1000,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,61,0,0
-     Lore of Magic,+1000 Magic Coins (MC)              ,Special,3,53,53,53,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,1000,0,0,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,62,0,0
+      Seed of Life,+10 Maximum HP                      ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,63,0,0
+    Seed of Spells,+10 Maximum MP                      ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,64,0,0
+     Seed of Moves,+10 Maximum SP                      ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,65,0,0
+     Seed of Power,+3 STR                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,66,0,0
+   Seed of Defense,+3 VIT                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,67,0,0
+     Seed of Swift,+3 AGI                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,68,0,0
+   Seed of Running,+3 SPD                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,69,0,0
+     Seed of Magic,+3 MAG                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,70,0,0
+    Seed of Psyche,+3 MEN                              ,Perm. Stat Modifier(?),3,44,44,44,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,71,0,0
+   All-Around Seed,+10 Maximum HP/Maximum MP/Maximum SP ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,10,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,72,0,0
+   Omnipotent Seed,+3 STR/VIT/AGI/SPD/MAG/MEN          ,Perm. Stat Modifier(?),3,44,44,44,0,0,,,,,,,,,,,,,,,,,,,,,,,,,Special,One Ally,3,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,73,0,0
+     Lore of Moves,+1000 Special Coins (SC)            ,Special,3,53,53,53,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,1000,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,61,0,0
+     Lore of Magic,+1000 Magic Coins (MC)              ,Special,3,53,53,53,0,10000,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,1000,0,0,0,Physical Attack,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,62,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -100,84 +100,79 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-     Mystic Potion,Restores all HP     ,Item,2,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,9999,0,180,30,           Healer+,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-    Scarlet Potion,Restores 1600 HP    ,Item,1,47,47,47,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,1600,0,150,30,           Healer+,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-     Healing Fruit,Restores 1200 HP    ,Item,0,44,44,42,0,100,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,1200,0,150,30,            Healer,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-  Holy Wound Salve,Restores 800 HP     ,Item,0,47,47,47,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,800,0,120,0,            Healer,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-       Wound Salve,Restores 400 HP     ,Item,0,47,47,47,0,24,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,400,0,120,0,              Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-    Medicinal Herb,Restores 200 HP     ,Item,0,43,43,43,0,10,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,200,0,90,0,              Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+     Mystic Potion,Restores all HP     ,Item,2,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,9999,0,180,30,Healer+,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+    Scarlet Potion,Restores 1600 HP    ,Item,1,47,47,47,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,1600,0,150,30,Healer+,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+     Healing Fruit,Restores 1200 HP    ,Item,0,44,44,42,0,100,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,1200,0,150,30,Healer,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+  Holy Wound Salve,Restores 800 HP     ,Item,0,47,47,47,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,800,0,120,0,Healer,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+       Wound Salve,Restores 400 HP     ,Item,0,47,47,47,0,24,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,400,0,120,0,Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+    Medicinal Herb,Restores 200 HP     ,Item,0,43,43,43,0,10,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,200,0,90,0,Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-   Potion of Azure,Restores 1500 HP    ,Item,2,47,47,47,0,750,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,1500,0,180,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-   Healing Incense,Restores 1000 HP    ,Item,1,43,43,43,0,400,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,1000,0,150,30,          Alhealer,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-  Scroll of Alheal,Restores 500 HP     ,Item,0,53,53,45,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,500,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-      Healing Herb,Restores 250 HP     ,Item,0,43,43,43,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,250,0,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-    Miracle Elixir,Revives character |right to COM ,Item,3,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,9999,0,240,60,         Resurrect,NULL,0,0,0,0,Fire,0,128,100,0,0,0,0,100,21,0,0
-     Hero's Elixir,Revives character |+5 all levels ,Item,3,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,240,60,         Resurrect,NULL,0,0,0,0,Fire,0,128,100,5,5,5,5,100,0,0,0
-     Yomi's Elixir,Revives a fallen character             ,Item,1,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,180,30,         Resurrect,NULL,0,0,0,0,Fire,0,128,100,0,0,0,0,100,0,0,0
-           Panacea,Cures all status disorders             ,Item,1,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,150,30,            Halvah,NULL,0,0,0,0,Fire,0,127,100,0,0,0,0,100,0,0,0
-    Purifying Herb,Cures poison and paralysis             ,Item,0,43,43,43,0,40,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,120,0,              Cure,NULL,0,0,0,0,Fire,0,5,100,0,0,0,0,100,0,0,0
-   Poison Antidote,Cures poison                           ,Item,0,43,43,43,0,14,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,              Cure,NULL,0,0,0,0,Fire,0,1,100,0,0,0,0,100,0,0,0
-   Paralysis Salve,Cures paralysis                        ,Item,0,47,47,47,0,14,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,              Cure,NULL,0,0,0,0,Fire,0,4,100,0,0,0,0,100,0,0,0
-  Torte's Reedpipe,Awakens sleeping characters            ,Item,0,43,43,43,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,Area Allies,0,600,120,0,                  ,NULL,0,0,0,0,Fire,0,2,100,0,0,0,0,100,0,0,0
-         Eye Drops,Awakens sleeping characters            ,Item,0,47,47,47,0,14,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,                  ,NULL,0,0,0,0,Fire,0,2,100,0,0,0,0,100,0,0,0
-    Smelling Salts,Cures confusion                        ,Item,0,47,47,47,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,                  ,NULL,0,0,0,0,Fire,0,8,100,0,0,0,0,100,0,0,0
-   Blessing Scroll,Releases move/ |magic blocks ,Item,0,53,53,45,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,120,0,           Refresh,NULL,0,0,0,0,Fire,0,96,100,0,0,0,0,100,0,0,0
-     Move Blessing,Releases move blocks                   ,Item,0,53,53,45,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,           Refresh,NULL,0,0,0,0,Fire,0,64,100,0,0,0,0,100,0,0,0
-    Magic Blessing,Releases magic blocks                  ,Item,0,53,53,45,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,           Refresh,NULL,0,0,0,0,Fire,0,32,100,0,0,0,0,100,0,0,0
-           Vaccine,Cures plague                           ,Item,0,47,47,47,0,100,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,120,0,            Halvah,NULL,0,0,0,0,Fire,0,16,100,0,0,0,0,100,0,0,0
+   Potion of Azure,Restores 1500 HP    ,Item,2,47,47,47,0,750,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,1500,0,180,30,Alhealer,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+   Healing Incense,Restores 1000 HP    ,Item,1,43,43,43,0,400,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,1000,0,150,30,Alhealer,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+  Scroll of Alheal,Restores 500 HP     ,Item,0,53,53,45,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,500,0,150,30,Alheal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+      Healing Herb,Restores 250 HP     ,Item,0,43,43,43,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),All Allies,250,0,120,0,Alheal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-     Indigo Potion,Restores all MP                       ,Item,2,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,999,0,180,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-  Magical Medicine,Restores 100 MP                       ,Item,1,47,47,47,0,360,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,100,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-       Grail Fruit,Restores 50 MP      ,Item,0,44,44,42,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,50,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-      Lumir Flower,Restores 25 MP      ,Item,0,43,43,43,0,40,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,25,0,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-      Nut of Light,Restores all SP  Glows faintly         ,Item,2,44,44,42,0,2000,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,All Allies,9999,0,240,60,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-     Golden Potion,Restores all SP                        ,Item,2,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,999,0,180,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-      Baobab Fruit,Restores 100 SP     ,Item,1,44,44,42,0,360,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,100,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-       Butter Roll,Restores 50 SP      ,Item,0,53,53,41,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,50,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-         Blueberry,Restores 25 SP      ,Item,0,44,44,42,0,40,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,25,0,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-  Caterpillar Soup,Restores 1000 HP Cures plague ,Item,2,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),Area Allies,1000,600,180,30,                  ,NULL,0,0,0,0,Fire,0,16,100,0,0,0,0,100,0,0,0
-    Fresh Sandwich,Restores 600 HP  |Cures poison/para. ,Item,1,53,53,41,0,100,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,600,0,150,30,            Healer,NULL,0,0,0,0,Fire,0,5,100,0,0,0,0,100,0,0,0
-          Toad Oil,Restores 300 HP   +2 DEF level          ,Item,2,47,47,47,0,80,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,300,0,120,0,              Heal,NULL,0,0,0,0,Fire,0,0,0,0,2,0,0,100,0,0,0
+    Miracle Elixir,Revives character |right to COM ,Item,3,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,9999,0,240,60,Resurrect,NULL,0,0,0,0,Fire,0,128,100,0,0,0,0,100,21,0,0
+     Hero's Elixir,Revives character |+5 all levels ,Item,3,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,240,60,Resurrect,NULL,0,0,0,0,Fire,0,128,100,5,5,5,5,100,0,0,0
+     Yomi's Elixir,Revives a fallen character             ,Item,1,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,180,30,Resurrect,NULL,0,0,0,0,Fire,0,128,100,0,0,0,0,100,0,0,0
+           Panacea,Cures all status disorders             ,Item,1,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,150,30,Halvah,NULL,0,0,0,0,Fire,0,127,100,0,0,0,0,100,0,0,0
+    Purifying Herb,Cures poison and paralysis             ,Item,0,43,43,43,0,40,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,120,0,Cure,NULL,0,0,0,0,Fire,0,5,100,0,0,0,0,100,0,0,0
+   Poison Antidote,Cures poison                           ,Item,0,43,43,43,0,14,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,Cure,NULL,0,0,0,0,Fire,0,1,100,0,0,0,0,100,0,0,0
+   Paralysis Salve,Cures paralysis                        ,Item,0,47,47,47,0,14,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,Cure,NULL,0,0,0,0,Fire,0,4,100,0,0,0,0,100,0,0,0
+  Torte's Reedpipe,Awakens sleeping characters            ,Item,0,43,43,43,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,Area Allies,0,600,120,0,Glitter/Confetti,NULL,0,0,0,0,Fire,0,2,100,0,0,0,0,100,0,0,0
+         Eye Drops,Awakens sleeping characters            ,Item,0,47,47,47,0,14,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,Glitter/Confetti,NULL,0,0,0,0,Fire,0,2,100,0,0,0,0,100,0,0,0
+    Smelling Salts,Cures confusion                        ,Item,0,47,47,47,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,Glitter/Confetti,NULL,0,0,0,0,Fire,0,8,100,0,0,0,0,100,0,0,0
+   Blessing Scroll,Releases move/ |magic blocks ,Item,0,53,53,45,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,120,0,Refresh,NULL,0,0,0,0,Fire,0,96,100,0,0,0,0,100,0,0,0
+     Move Blessing,Releases move blocks                   ,Item,0,53,53,45,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,Refresh,NULL,0,0,0,0,Fire,0,64,100,0,0,0,0,100,0,0,0
+    Magic Blessing,Releases magic blocks                  ,Item,0,53,53,45,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,90,0,Refresh,NULL,0,0,0,0,Fire,0,32,100,0,0,0,0,100,0,0,0
+           Vaccine,Cures plague                           ,Item,0,47,47,47,0,100,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,0,0,120,0,Halvah,NULL,0,0,0,0,Fire,0,16,100,0,0,0,0,100,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-      Calming Harp,Restores 200 HP  Chance of breaking ,Item,2,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),Area Allies,200,600,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,25,0,0,0
-         Mana Harp,Restores 25 MP  Might break ,Item,2,53,53,50,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,25,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,30,0,0,0
-         Lion Harp,Restores 25 SP  Might break ,Item,2,53,53,50,0,800,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,25,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,30,0,0,0
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+     Indigo Potion,Restores all MP                       ,Item,2,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,999,0,180,30,Healer+(Teal),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+  Magical Medicine,Restores 100 MP                       ,Item,1,47,47,47,0,360,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,100,0,150,30,Healer+(Teal),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+       Grail Fruit,Restores 50 MP      ,Item,0,44,44,42,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,50,0,150,30,Healer(Teal),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+      Lumir Flower,Restores 25 MP      ,Item,0,43,43,43,0,40,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,25,0,120,0,Healer(Teal),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+      Nut of Light,Restores all SP  Glows faintly         ,Item,2,44,44,42,0,2000,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,All Allies,9999,0,240,60,Alhealer(Green),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+     Golden Potion,Restores all SP                        ,Item,2,47,47,47,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,999,0,180,30,Alhealer(Green),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+      Baobab Fruit,Restores 100 SP     ,Item,1,44,44,42,0,360,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,100,0,150,30,Alhealer(Green),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+       Butter Roll,Restores 50 SP      ,Item,0,53,53,41,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,50,0,150,30,Healer(Green),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+         Blueberry,Restores 25 SP      ,Item,0,44,44,42,0,40,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,25,0,120,0,Healer(Green),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+  Caterpillar Soup,Restores 1000 HP Cures plague ,Item,2,47,47,47,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),Area Allies,1000,600,180,30,Alheal,NULL,0,0,0,0,Fire,0,16,100,0,0,0,0,100,0,0,0
+    Fresh Sandwich,Restores 600 HP  |Cures poison/para. ,Item,1,53,53,41,0,100,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,600,0,150,30,Healer,NULL,0,0,0,0,Fire,0,5,100,0,0,0,0,100,0,0,0
+          Toad Oil,Restores 300 HP   +2 DEF level          ,Item,2,47,47,47,0,80,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,300,0,120,0,Heal,NULL,0,0,0,0,Fire,0,0,0,0,2,0,0,100,0,0,0
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+      Calming Harp,Restores 200 HP  Chance of breaking ,Item,2,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),Area Allies,200,600,150,30,Alheal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,25,0,0,0
+         Mana Harp,Restores 25 MP  Might break ,Item,2,53,53,50,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,25,0,150,30,Healer(Teal),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,30,0,0,0
+         Lion Harp,Restores 25 SP  Might break ,Item,2,53,53,50,0,800,,,,,,,,,,,,,,,,,,,,,,,,,Restore SP,One Ally,25,0,150,30,Healer(Green),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,30,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -197,64 +192,69 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-        Golden Nut,Restores 72 HP      ,Item,2,44,44,44,0,2000,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,72,0,90,0,              Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
-     Golden Statue,Restores 5 MP  |Statue of Granas ,Item,2,53,53,2,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,5,0,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-  Hyper Mogay Bomb,Power: 2000  Cancel effect              ,Item,3,48,48,48,0,2000,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),All Enemies,2000,0,360,120,                  ,NULL,0,9999,9999,100,Fire,0,0,0,0,0,0,0,100,0,0,0
-  Super Mogay Bomb,Power: 1000  Powerful IP damage effect  ,Item,2,48,48,48,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,1000,600,240,60,                  ,NULL,0,5000,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
-        Mogay Bomb,Power: 500  IP damage effect            ,Item,1,48,48,48,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,500,600,150,30,                  ,NULL,0,2500,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
-     Meteor Scroll,Power: 2500  Like |Meteor Strike ,Item,3,53,53,45,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,2500,0,360,120,     Meteor Strike,NULL,1,1500,0,120,Fire,0,0,0,0,0,0,0,100,0,0,0
-        Thor Stone,Power: 1500  |Lgtning-based ,Item,2,46,46,46,0,750,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),All Enemies,1500,0,300,90,           Zap All,Unknown,1,750,0,80,Lightning,10,0,0,0,0,0,0,100,0,0,0
-    Red Bird Stone,Power: 1200  Fire-based attack          ,Item,2,46,46,46,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,1200,0,210,60,        Burnstrike,NULL,1,0,0,100,Fire,10,0,0,0,0,0,0,100,0,0,0
-     Icefang Stone,Power: 1200  Blizzard-based attack      ,Item,0,46,46,46,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,1200,0,210,60,           Crackle,NULL,1,2000,0,50,Blizzard,10,0,0,0,0,0,0,100,0,0,0
-    Electrum Stone,Power: 750  Lgtning-based +Paralysys ,Item,0,46,46,46,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,750,600,210,60,              Zap!,NULL,0,500,0,50,Lightning,10,4,30,0,0,0,0,100,0,0,0
-        Gale Stone,Power: 700  Wind-based attack           ,Item,0,46,46,46,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Enemy Line,700,300,180,30,         Howlslash,NULL,1,500,0,200,Wind,10,0,0,0,0,0,0,100,0,0,0
-       Flame Stone,Power: 650  Fire-based attack           ,Item,0,46,46,46,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,650,600,180,30,         Burnflame,NULL,0,0,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
-       Quake Stone,Power: 650  Earth-based attack          ,Item,0,46,46,46,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,650,600,180,30,            Tremor,NULL,0,1000,0,50,Earth,10,0,0,0,0,0,0,100,0,0,0
-   Fireball Scroll,Power: 400  Fire-based attack           ,Item,0,53,53,45,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,400,0,120,0,             Burn!,NULL,0,0,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
-  Whirlwind Scroll,Power: 300  Wind-based attack           ,Item,0,53,53,45,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,300,600,150,30,              Howl,NULL,0,0,0,0,Wind,10,0,0,0,0,0,0,100,0,0,0
-        Serpentine,Power: 1500  Bombs launched on arrows   ,Item,2,48,48,48,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),All Enemies,1500,0,240,60,                  ,NULL,1,1000,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
-         Spiderweb,Power: 1200  -1 MOV level ,Item,2,53,53,53,0,400,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,1200,600,180,30,                  ,NULL,0,1000,0,0,Fire,0,0,0,0,0,-1,0,100,0,0,0
-          Dynamite,Power: 1000                             ,Item,1,48,48,48,0,240,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,1000,600,210,60,                  ,NULL,0,1500,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
-   Red Goblin Toad,Power: 900 Poison effect ,Item,0,40,40,40,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,900,0,180,30,                  ,NULL,0,0,0,50,Fire,0,1,80,0,0,0,0,100,0,0,0
-        Holy Ashes,Power: 700  Good |vs. undead ,Item,0,48,48,48,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,700,600,150,30,                  ,Undead,0,0,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
-  Insecticide Bomb,Power: 650  Fire-based  Good vs. bugs   ,Item,0,48,48,48,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,650,0,150,30,                  ,Bug/Crustacean,0,1000,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
-         Makibishi,Power: 600  -1 MOV level                ,Item,0,48,48,48,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,600,600,180,30,                  ,NULL,1,1250,0,0,Fire,0,0,0,0,0,0,-1,100,0,0,0
-  Sandman Whiskers,Power: 500  -1 DEF level  Expensive     ,Item,2,53,53,53,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,500,0,150,30,                  ,NULL,0,1250,0,100,Fire,0,0,0,0,-1,0,0,100,0,0,0
-    Mushroom Cloud,Power: 400  Fire-based ,Item,0,40,40,40,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,400,0,120,0,                  ,NULL,0,1250,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
-          Firebomb,Power: 300  Fire-based attack           ,Item,0,48,48,48,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,300,600,150,30,                  ,NULL,0,0,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
-      Hand Grenade,Power: 300                              ,Item,0,48,48,48,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,300,600,150,30,                  ,NULL,0,1000,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
-  Goblin Toadstool,Power: 250 Poison effect bomb ,Item,0,40,40,40,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,250,0,120,0,                  ,NULL,0,0,0,50,Fire,0,1,80,0,0,0,0,100,0,0,0
-  Platinum Feather,Greatly increases IP                 ,Item,3,53,53,49,0,2500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,All Allies,7500,0,180,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,21,0,0
-      Gold Feather,Greatly increases IP                 ,Item,3,53,53,49,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,Area Allies,7500,600,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,21,0,0
-    Silver Feather,Greatly increases IP                 ,Item,2,53,53,49,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,7500,0,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,21,0,0
-  Scattering Stone,Scatters bunched-up friends ,Item,1,46,46,46,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,0,600,120,0,                  ,NULL,0,0,0,800,Fire,0,0,0,0,0,0,0,100,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-   Battle Manicure,+5 ATK level        ,Item,2,53,53,53,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,5,0,0,0,100,0,0,0
-        Face Paint,+5 ACT level        ,Item,2,53,53,53,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,5,0,100,0,0,0
-         Demon Ash,-1 all variable levels          ,Item,2,53,53,53,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,One Enemy,0,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,-1,-1,-1,-1,100,0,0,0
-   Muscle Mushroom,+2 ATK level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,                  ,NULL,0,0,0,0,Fire,0,0,0,2,0,0,0,100,0,0,0
-    Guard Mushroom,+2 DEF level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,2,0,0,100,0,0,0
-    Speed Mushroom,+2 ACT level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,2,0,100,0,0,0
-   Runner Mushroom,+2 MOV level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,2,100,0,0,0
-       WOW! Scroll,+2 ATK level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,90,0,              WOW!,NULL,0,0,0,0,Fire,0,0,0,2,0,0,0,100,0,0,0
-    Diggin' Scroll,+1 DEF level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,All Allies,0,0,90,0,           Diggin',NULL,0,0,0,0,Fire,0,0,0,0,1,0,0,100,0,0,0
-     Speedy Scroll,+2 ACT level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,90,0,            Speedy,NULL,0,0,0,0,Fire,0,0,0,0,0,2,0,100,0,0,0
-     Runner Scroll,+1 MOV level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,All Allies,0,0,90,0,            Runner,NULL,0,0,0,0,Fire,0,0,0,0,0,0,1,100,0,0,0
-  Myriad Power Nut,+1 ATK level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,1,0,0,0,100,0,0,0
-      Patience Nut,+1 DEF level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,1,0,0,100,0,0,0
-      Sympathy Nut,+1 ACT level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,1,0,100,0,0,0
-     Swiftness Nut,+1 MOV level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,1,100,0,0,0
-     Powerless Nut,-1 ATK level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,-1,0,0,0,100,0,0,0
-      Weakness Nut,-1 DEF level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,-1,0,0,100,0,0,0
-    Exhaustion Nut,-1 ACT level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,-1,0,100,0,0,0
-      Slowpoke Nut,-1 MOV level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,-1,100,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-        Kuko Berry,Confusion effect   causes intoxication ,Item,0,44,44,44,0,10,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,One Enemy,0,0,90,0,                  ,NULL,0,0,0,0,Fire,0,8,90,0,0,0,0,100,0,0,0
-     Sleeping Harp,Sleep effect  |Might break ,Item,1,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,800,150,30,                  ,NULL,0,0,0,0,Fire,0,2,70,0,0,0,0,40,0,0,0
-      Silence Lute,Magic block effect  Chance of breaking ,Item,1,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,600,150,30,                  ,NULL,0,0,0,0,Fire,0,32,70,0,0,0,0,40,0,0,0
-      Mermaid Harp,Confusion effect  Might break ,Item,2,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,600,150,30,                  ,NULL,0,0,0,0,Fire,0,8,70,0,0,0,0,40,0,0,0
-         Bone Harp,-2 DEF level  |Might break ,Item,2,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,800,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,-2,0,0,40,0,0,0
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+        Golden Nut,Restores 72 HP      ,Item,2,44,44,44,0,2000,,,,,,,,,,,,,,,,,,,,,,,,,Restore HP(MEN),One Ally,72,0,90,0,Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,0,0,0
+     Golden Statue,Restores 5 MP  |Statue of Granas ,Item,2,53,53,2,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Restore MP,One Ally,5,0,120,0,Healer(Teal),NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,0,0,0
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+  Hyper Mogay Bomb,Power: 2000  Cancel effect              ,Item,3,48,48,48,0,2000,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),All Enemies,2000,0,360,120,Bomb,NULL,0,9999,9999,100,Fire,0,0,0,0,0,0,0,100,0,0,0
+  Super Mogay Bomb,Power: 1000  Powerful IP damage effect  ,Item,2,48,48,48,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,1000,600,240,60,Bomb,NULL,0,5000,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
+        Mogay Bomb,Power: 500  IP damage effect            ,Item,1,48,48,48,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,500,600,150,30,Bomb,NULL,0,2500,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
+     Meteor Scroll,Power: 2500  Like |Meteor Strike ,Item,3,53,53,45,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,2500,0,360,120,Meteor Strike,NULL,1,1500,0,120,Fire,0,0,0,0,0,0,0,100,0,0,0
+        Thor Stone,Power: 1500  |Lgtning-based ,Item,2,46,46,46,0,750,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),All Enemies,1500,0,300,90,Zap All,Unknown,1,750,0,80,Lightning,10,0,0,0,0,0,0,100,0,0,0
+    Red Bird Stone,Power: 1200  Fire-based attack          ,Item,2,46,46,46,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,1200,0,210,60,Burnstrike,NULL,1,0,0,100,Fire,10,0,0,0,0,0,0,100,0,0,0
+     Icefang Stone,Power: 1200  Blizzard-based attack      ,Item,0,46,46,46,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,1200,0,210,60,Crackle,NULL,1,2000,0,50,Blizzard,10,0,0,0,0,0,0,100,0,0,0
+    Electrum Stone,Power: 750  Lgtning-based +Paralysys ,Item,0,46,46,46,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,750,600,210,60,Zap!,NULL,0,500,0,50,Lightning,10,4,30,0,0,0,0,100,0,0,0
+        Gale Stone,Power: 700  Wind-based attack           ,Item,0,46,46,46,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Enemy Line,700,300,180,30,Howlslash,NULL,1,500,0,200,Wind,10,0,0,0,0,0,0,100,0,0,0
+       Flame Stone,Power: 650  Fire-based attack           ,Item,0,46,46,46,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,650,600,180,30,Burnflame,NULL,0,0,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
+       Quake Stone,Power: 650  Earth-based attack          ,Item,0,46,46,46,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,650,600,180,30,Tremor,NULL,0,1000,0,50,Earth,10,0,0,0,0,0,0,100,0,0,0
+   Fireball Scroll,Power: 400  Fire-based attack           ,Item,0,53,53,45,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),One Enemy,400,0,120,0,Burn!,NULL,0,0,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
+  Whirlwind Scroll,Power: 300  Wind-based attack           ,Item,0,53,53,45,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Magical Damage(MAG),Area Enemies,300,600,150,30,Howl,NULL,0,0,0,0,Wind,10,0,0,0,0,0,0,100,0,0,0
+        Serpentine,Power: 1500  Bombs launched on arrows   ,Item,2,48,48,48,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),All Enemies,1500,0,240,60,Bomb,NULL,1,1000,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
+         Spiderweb,Power: 1200  -1 MOV level ,Item,2,53,53,53,0,400,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,1200,600,180,30,unknown 15,NULL,0,1000,0,0,Fire,0,0,0,0,0,-1,0,100,0,0,0
+          Dynamite,Power: 1000                             ,Item,1,48,48,48,0,240,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,1000,600,210,60,Bomb,NULL,0,1500,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
+   Red Goblin Toad,Power: 900 Poison effect ,Item,0,40,40,40,0,120,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,900,0,180,30,unknown 15,NULL,0,0,0,50,Fire,0,1,80,0,0,0,0,100,0,0,0
+        Holy Ashes,Power: 700  Good |vs. undead ,Item,0,48,48,48,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,700,600,150,30,unknown 15,Undead,0,0,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
+  Insecticide Bomb,Power: 650  Fire-based  Good vs. bugs   ,Item,0,48,48,48,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,650,0,150,30,unknown 15,Bug/Crustacean,0,1000,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
+         Makibishi,Power: 600  -1 MOV level                ,Item,0,48,48,48,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,600,600,180,30,Bomb,NULL,1,1250,0,0,Fire,0,0,0,0,0,0,-1,100,0,0,0
+  Sandman Whiskers,Power: 500  -1 DEF level  Expensive     ,Item,2,53,53,53,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,500,0,150,30,unknown 15,NULL,0,1250,0,100,Fire,0,0,0,0,-1,0,0,100,0,0,0
+    Mushroom Cloud,Power: 400  Fire-based ,Item,0,40,40,40,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,400,0,120,0,Bomb,NULL,0,1250,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
+          Firebomb,Power: 300  Fire-based attack           ,Item,0,48,48,48,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,300,600,150,30,Bomb,NULL,0,0,0,50,Fire,10,0,0,0,0,0,0,100,0,0,0
+      Hand Grenade,Power: 300                              ,Item,0,48,48,48,0,60,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),Area Enemies,300,600,150,30,Bomb,NULL,0,1000,0,50,Fire,0,0,0,0,0,0,0,100,0,0,0
+  Goblin Toadstool,Power: 250 Poison effect bomb ,Item,0,40,40,40,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Physical Damage(STR),One Enemy,250,0,120,0,unknown 15,NULL,0,0,0,50,Fire,0,1,80,0,0,0,0,100,0,0,0
+  Platinum Feather,Greatly increases IP                 ,Item,3,53,53,49,0,2500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,All Allies,7500,0,180,30,unknown 1,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,21,0,0
+      Gold Feather,Greatly increases IP                 ,Item,3,53,53,49,0,1000,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,Area Allies,7500,600,150,30,unknown 1,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,21,0,0
+    Silver Feather,Greatly increases IP                 ,Item,2,53,53,49,0,500,,,,,,,,,,,,,,,,,,,,,,,,,Status Change,One Ally,7500,0,120,0,unknown 1,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,100,21,0,0
+  Scattering Stone,Scatters bunched-up friends ,Item,1,46,46,46,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Special,Unknown,0,600,120,0,unknown17,NULL,0,0,0,800,Fire,0,0,0,0,0,0,0,100,0,0,0
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+   Battle Manicure,+5 ATK level        ,Item,2,53,53,53,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,150,30,unknown 7,NULL,0,0,0,0,Fire,0,0,0,5,0,0,0,100,0,0,0
+        Face Paint,+5 ACT level        ,Item,2,53,53,53,0,150,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,150,30,unknown 7,NULL,0,0,0,0,Fire,0,0,0,0,0,5,0,100,0,0,0
+         Demon Ash,-1 all variable levels          ,Item,2,53,53,53,0,200,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,One Enemy,0,0,150,30,unknown 8,NULL,0,0,0,0,Fire,0,0,0,-1,-1,-1,-1,100,0,0,0
+   Muscle Mushroom,+2 ATK level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,2,0,0,0,100,0,0,0
+    Guard Mushroom,+2 DEF level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,0,2,0,0,100,0,0,0
+    Speed Mushroom,+2 ACT level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,0,0,2,0,100,0,0,0
+   Runner Mushroom,+2 MOV level                    ,Item,1,40,40,40,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,90,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,0,0,0,2,100,0,0,0
+       WOW! Scroll,+2 ATK level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,90,0,WOW!,NULL,0,0,0,0,Fire,0,0,0,2,0,0,0,100,0,0,0
+    Diggin' Scroll,+1 DEF level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,All Allies,0,0,90,0,Diggin',NULL,0,0,0,0,Fire,0,0,0,0,1,0,0,100,0,0,0
+     Speedy Scroll,+2 ACT level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,One Ally,0,0,90,0,Speedy,NULL,0,0,0,0,Fire,0,0,0,0,0,2,0,100,0,0,0
+     Runner Scroll,+1 MOV level                    ,Item,0,53,53,45,0,30,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,All Allies,0,0,90,0,Runner,NULL,0,0,0,0,Fire,0,0,0,0,0,0,1,100,0,0,0
+  Myriad Power Nut,+1 ATK level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,1,0,0,0,100,0,0,0
+      Patience Nut,+1 DEF level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,0,1,0,0,100,0,0,0
+      Sympathy Nut,+1 ACT level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,0,0,1,0,100,0,0,0
+     Swiftness Nut,+1 MOV level                    ,Item,0,44,44,42,0,20,,,,,,,,,,,,,,,,,,,,,,,,,Ally Buff/Debuff,Area Allies,0,500,120,0,unknown 7,NULL,0,0,0,0,Fire,0,0,0,0,0,0,1,100,0,0,0
+     Powerless Nut,-1 ATK level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,unknown 8,NULL,0,0,0,0,Fire,0,0,0,-1,0,0,0,100,0,0,0
+      Weakness Nut,-1 DEF level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,unknown 8,NULL,0,0,0,0,Fire,0,0,0,0,-1,0,0,100,0,0,0
+    Exhaustion Nut,-1 ACT level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,unknown 8,NULL,0,0,0,0,Fire,0,0,0,0,0,-1,0,100,0,0,0
+      Slowpoke Nut,-1 MOV level                    ,Item,0,44,44,42,0,50,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,500,120,0,unknown 8,NULL,0,0,0,0,Fire,0,0,0,0,0,0,-1,100,0,0,0
+         ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+        Kuko Berry,Confusion effect   causes intoxication ,Item,0,44,44,44,0,10,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,One Enemy,0,0,90,0,unknown 15,NULL,0,0,0,0,Fire,0,8,90,0,0,0,0,100,0,0,0
+     Sleeping Harp,Sleep effect  |Might break ,Item,1,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,800,150,30,Glitter/Confetti,NULL,0,0,0,0,Fire,0,2,70,0,0,0,0,40,0,0,0
+      Silence Lute,Magic block effect  Chance of breaking ,Item,1,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,600,150,30,Glitter/Confetti,NULL,0,0,0,0,Fire,0,32,70,0,0,0,0,40,0,0,0
+      Mermaid Harp,Confusion effect  Might break ,Item,2,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,600,150,30,Glitter/Confetti,NULL,0,0,0,0,Fire,0,8,70,0,0,0,0,40,0,0,0
+         Bone Harp,-2 DEF level  |Might break ,Item,2,53,53,50,0,250,,,,,,,,,,,,,,,,,,,,,,,,,Enemy Buff/Debuff,Area Enemies,0,800,150,30,unknown 8,NULL,0,0,0,0,Fire,0,0,0,0,-2,0,0,40,0,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -307,14 +307,14 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
    Holy Soul Blade,+112 ATK  Attack drops enemy's DEF lv ,Weapon,2,15,15,15,0,14000,,1,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1 DEF from hit,,,,,,,,,,,,,,,,,,,,,,,,,
      Maken Valborg,+100 ATK  Drains HP as 10% of damage    ,Weapon,3,15,15,15,0,12000,,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10% damage as HP,,,,,,,,,,,,,,,,,,,,,,,,,
      Silence Sword,+85 ATK  Magic block ability            ,Weapon,2,15,15,15,0,8500,,1,85,0,0,0,0,0,0,0,0,0,32,25,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-     Silver Freeze,+80 ATK  Blizzard-based [Freeze!] ,Weapon,3,15,15,14,0,7480,,1,80,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,NULL,,Enemy Buff/Debuff,All Enemies,0,0,150,30,           Freeze!,NULL,0,0,0,0,Fire,0,0,0,0,0,0,-1,0,0,0,0
+     Silver Freeze,+80 ATK  Blizzard-based [Freeze!] ,Weapon,3,15,15,14,0,7480,,1,80,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,NULL,,Enemy Buff/Debuff,All Enemies,0,0,150,30,Freeze!,NULL,0,0,0,0,Fire,0,0,0,0,0,0,-1,0,0,0,0
    Sword of Mikage,+77 ATK  Prized 1st-class katana        ,Weapon,2,15,15,14,0,6900,,1,77,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
    Fine Broadsword,+70 ATK  Forged by a craftsman ,Weapon,1,15,15,14,0,4500,,1,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
           Claymore,+60 ATK  Huge two-handed sword          ,Weapon,1,15,15,14,0,3600,,1,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
        Ogre Slayer,+55 ATK  Effective on humanoids         ,Weapon,3,15,15,14,0,2600,,1,55,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
    Swordfish Sword,+52 ATK  Made from a swordfish ,Weapon,1,15,15,14,0,2200,,1,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
        Shadowblade,+44 ATK  -4 MOV  Sudden death power     ,Weapon,1,15,15,14,0,4000,,1,44,0,0,-4,0,0,0,0,0,0,128,15,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-         Flamberge,+44 ATK  Fire-based sword  [Burn!] ,Weapon,3,15,15,14,0,1440,,1,44,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,400,0,180,30,             Burn!,NULL,1,0,0,50,Fire,10,0,0,0,0,0,0,0,0,0,0
+         Flamberge,+44 ATK  Fire-based sword  [Burn!] ,Weapon,3,15,15,14,0,1440,,1,44,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,400,0,180,30,Burn!,NULL,1,0,0,50,Fire,10,0,0,0,0,0,0,0,0,0,0
    Sword of Purity,+40 ATK  Effective on the undead ,Weapon,3,15,15,14,0,1200,,1,40,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
      Samurai Blade,+38 ATK  Samurai sword                  ,Weapon,1,15,15,14,0,900,,1,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
         Army Saber,+32 ATK  Sword used in the army         ,Weapon,1,15,15,14,0,750,,1,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -332,24 +332,24 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   Holy Ghost Staff,+138 ATK  Cuts MP consumption by 10%   ,Weapon,3,16,16,16,0,0,,2,138,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-10% MP consumption,,,,,,,,,,,,,,,,,,,,,,,,,
         Huge Flail,+128 ATK  -5 MOV  An enormous flail    ,Weapon,2,16,16,16,0,17000,,2,128,0,0,-5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-    Guardian Staff,+118 ATK  Earth-based [Diggin']        ,Weapon,2,16,16,16,0,15500,,2,118,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Ally Buff/Debuff,All Allies,0,0,180,30,           Diggin',NULL,0,0,0,0,Fire,0,0,0,0,1,0,0,0,0,0,0
+    Guardian Staff,+118 ATK  Earth-based [Diggin']        ,Weapon,2,16,16,16,0,15500,,2,118,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Ally Buff/Debuff,All Allies,0,0,180,30,Diggin',NULL,0,0,0,0,Fire,0,0,0,0,1,0,0,0,0,0,0
    Decalogue Staff,+108 ATK  Magic/move block effect ,Weapon,2,16,16,16,0,11800,,2,108,0,0,0,0,0,0,0,0,0,96,25,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-    Priest's Staff,+99 ATK  [Halvah]                      ,Weapon,2,16,16,16,0,12000,,2,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,240,60,            Halvah,NULL,0,0,0,0,Fire,0,127,100,0,0,0,0,0,0,0,0
+    Priest's Staff,+99 ATK  [Halvah]                      ,Weapon,2,16,16,16,0,12000,,2,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,240,60,Halvah,NULL,0,0,0,0,Fire,0,127,100,0,0,0,0,0,0,0,0
       Golden Flail,+92 ATK  -5 MOV  WAY too heavy         ,Weapon,2,16,16,16,0,8200,,2,92,0,0,-5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
       Silver Flail,+82 ATK -5 MOV      ,Weapon,2,16,16,16,0,6800,,2,82,0,0,-5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-     Aromatic Root,+75 ATK  [Refresh]  Aromatic tree root ,Weapon,1,16,16,16,0,7200,,2,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,210,30,           Refresh,NULL,0,0,0,0,Fire,0,96,100,0,0,0,0,0,0,0,0
+     Aromatic Root,+75 ATK  [Refresh]  Aromatic tree root ,Weapon,1,16,16,16,0,7200,,2,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,210,30,Refresh,NULL,0,0,0,0,Fire,0,96,100,0,0,0,0,0,0,0,0
       Buster Flail,+70 ATK  -5 MOV  |Very destructive ,Weapon,2,16,16,16,0,4400,,2,70,0,0,-5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
      Lullaby Staff,+65 ATK  Sleep effect                  ,Weapon,3,16,16,16,0,5880,,2,65,0,0,0,0,0,0,0,0,0,2,25,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-      Quarry Staff,+60 ATK  Earth-based  [Tremor]         ,Weapon,1,16,16,16,0,4200,,2,60,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Area Enemies,650,600,240,60,            Tremor,NULL,1,2000,0,50,Earth,10,0,0,0,0,0,0,0,0,0,0
-   Whirlwind Staff,+60 ATK  Wind-based  [Howlslash]       ,Weapon,1,16,16,16,0,4200,,2,60,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Enemy Line,700,250,240,60,         Howlslash,NULL,1,1000,0,200,Wind,10,0,0,0,0,0,0,0,0,0,0
-     Blazing Staff,+60 ATK  Fire-based  [Burnflame]       ,Weapon,1,16,16,16,0,4200,,2,60,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Area Enemies,650,600,240,60,         Burnflame,NULL,1,0,0,50,Fire,10,0,0,0,0,0,0,0,0,0,0
-    Sister's Staff,+55 ATK  [Cure]                        ,Weapon,1,16,16,16,0,3500,,2,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,210,60,              Cure,NULL,0,0,0,0,Fire,0,5,100,0,0,0,0,0,0,0,0
-    Oracle's Staff,+50 ATK  [Cures confusion]             ,Weapon,1,16,16,16,0,1800,,2,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,180,30,                  ,NULL,0,0,0,0,Fire,0,8,100,0,0,0,0,0,0,0,0
+      Quarry Staff,+60 ATK  Earth-based  [Tremor]         ,Weapon,1,16,16,16,0,4200,,2,60,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Area Enemies,650,600,240,60,Tremor,NULL,1,2000,0,50,Earth,10,0,0,0,0,0,0,0,0,0,0
+   Whirlwind Staff,+60 ATK  Wind-based  [Howlslash]       ,Weapon,1,16,16,16,0,4200,,2,60,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Enemy Line,700,250,240,60,Howlslash,NULL,1,1000,0,200,Wind,10,0,0,0,0,0,0,0,0,0,0
+     Blazing Staff,+60 ATK  Fire-based  [Burnflame]       ,Weapon,1,16,16,16,0,4200,,2,60,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Area Enemies,650,600,240,60,Burnflame,NULL,1,0,0,50,Fire,10,0,0,0,0,0,0,0,0,0,0
+    Sister's Staff,+55 ATK  [Cure]                        ,Weapon,1,16,16,16,0,3500,,2,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,210,60,Cure,NULL,0,0,0,0,Fire,0,5,100,0,0,0,0,0,0,0,0
+    Oracle's Staff,+50 ATK  [Cures confusion]             ,Weapon,1,16,16,16,0,1800,,2,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,180,30,Glitter/Confetti,NULL,0,0,0,0,Fire,0,8,100,0,0,0,0,0,0,0,0
         Battle Rod,+45 ATK  A light nimble combat staff ,Weapon,1,16,16,16,0,960,,2,45,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-       Flame Staff,+40 ATK  Fire-based  [Burn!]           ,Weapon,1,16,16,16,0,1250,,2,40,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,400,0,180,30,             Burn!,NULL,0,0,0,0,Fire,10,0,0,0,0,0,0,0,0,0,0
+       Flame Staff,+40 ATK  Fire-based  [Burn!]           ,Weapon,1,16,16,16,0,1250,,2,40,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,400,0,180,30,Burn!,NULL,0,0,0,0,Fire,10,0,0,0,0,0,0,0,0,0,0
           Iron Rod,+30 ATK  A heavy iron rod              ,Weapon,1,16,16,16,0,720,,2,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
       Prayer Staff,+22 ATK  An acolyte's staff ,Weapon,1,16,16,16,0,500,,2,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-       Dragon Wand,+11 ATK  Lightning-based  [DragonZap]  ,Weapon,3,16,16,16,0,15000,,2,11,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Enemy Line,2200,300,420,150,         DragonZap,NULL,1,1500,0,120,Lightning,10,4,15,0,0,0,0,0,0,0,0
+       Dragon Wand,+11 ATK  Lightning-based  [DragonZap]  ,Weapon,3,16,16,16,0,15000,,2,11,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),Enemy Line,2200,300,420,150,DragonZap,NULL,1,1500,0,120,Lightning,10,4,15,0,0,0,0,0,0,0,0
      Useless Staff,+0 ATK  Useless     ,Weapon,1,16,16,16,0,0,,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -391,7 +391,7 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
         Brave Dirk,+145 ATK  +5 SP |recov. during combat ,Weapon,3,18,18,19,0,26000,,64,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,+5 SP regen,,,,,,,,,,,,,,,,,,,,,,,,,
-              Dirk,+140 ATK  A large dagger [WOW!] ,Weapon,3,18,18,19,0,23000,,64,140,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Ally Buff/Debuff,One Ally,0,0,180,30,              WOW!,NULL,0,0,0,0,Fire,0,0,0,2,0,0,0,0,0,0,0
+              Dirk,+140 ATK  A large dagger [WOW!] ,Weapon,3,18,18,19,0,23000,,64,140,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Ally Buff/Debuff,One Ally,0,0,180,30,WOW!,NULL,0,0,0,0,Fire,0,0,0,2,0,0,0,0,0,0,0
            Gladius,+125 ATK  A royal treasure            ,Weapon,3,18,18,19,0,0,,64,125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
      Sword Breaker,+110 ATK  Attack drops enemy ATK lvl. ,Weapon,2,18,18,19,0,14500,,64,110,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1 ATK from hit,,,,,,,,,,,,,,,,,,,,,,,,,
         Soul Eater,+75 ATK  Drains HP as 10% of damage   ,Weapon,3,18,18,18,0,6800,,72,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10% damage as HP,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -452,8 +452,8 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   Leo Rex Battleax,+120 ATK  +3 SP |recov. during combat ,Weapon,3,20,20,20,0,16000,,32,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,+3 SP regen,,,,,,,,,,,,,,,,,,,,,,,,,
           Rune Axe,+107 ATK  Reduces IP slowing ,Weapon,2,20,20,20,0,13500,,32,107,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Reduce IP slowing,,,,,,,,,,,,,,,,,,,,,,,,,
-   Tundra Battleax,+101 ATK  Blizzard-based  [Crackle]     ,Weapon,3,20,20,20,0,10000,,32,101,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,1200,0,300,90,           Crackle,NULL,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0,0,0,0
-  Inferno Battleax,+98 ATK  Fire-based  [Burnstrike]       ,Weapon,3,20,20,20,0,9800,,32,98,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,1200,0,300,90,        Burnstrike,NULL,1,0,0,100,Fire,10,0,0,0,0,0,0,0,0,0,0
+   Tundra Battleax,+101 ATK  Blizzard-based  [Crackle]     ,Weapon,3,20,20,20,0,10000,,32,101,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,1200,0,300,90,Crackle,NULL,1,4000,0,50,Blizzard,10,0,0,0,0,0,0,0,0,0,0
+  Inferno Battleax,+98 ATK  Fire-based  [Burnstrike]       ,Weapon,3,20,20,20,0,9800,,32,98,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Magical Damage(MAG),One Enemy,1200,0,300,90,Burnstrike,NULL,1,0,0,100,Fire,10,0,0,0,0,0,0,0,0,0,0
           Bardiche,+86 ATK  Battleax with a long blade     ,Weapon,2,20,20,20,0,8000,,32,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
        Earthen Axe,+78 ATK  +10 DEF  Earth-based           ,Weapon,3,20,20,20,0,7500,,32,78,10,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
            Halberd,+68 ATK  Large  long-shafted axe ,Weapon,1,20,20,20,0,4400,,32,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -731,9 +731,9 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
     Mirage Earring,+10 MOV  Ups Evasion by 15%          ,Accessory,3,34,34,34,0,600,,127,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,+15% evasion,,,,,,,,,,,,,,,,,,,,,,,,,
    Reflection Ring,+10 DEF  Sometimes reflects damage   ,Accessory,3,34,34,34,0,750,,127,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Reflect damage,,,,,,,,,,,,,,,,,,,,,,,,,
        Heavy Stone,+5 DEF  -5 MOV  Nulls knock-back ,Accessory,1,53,53,53,0,120,,127,0,5,0,-5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Negate knockback,,,,,,,,,,,,,,,,,,,,,,,,,
-      Healing Ring,+5 DEF  [Heal]                       ,Accessory,1,34,34,34,0,500,,127,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Restore HP(MEN),One Ally,300,0,210,60,              Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,0,0,0
+      Healing Ring,+5 DEF  [Heal]                       ,Accessory,1,34,34,34,0,500,,127,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Restore HP(MEN),One Ally,300,0,210,60,Heal,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,0,0,0
        Revival Gem,+5 DEF  Revives |character once ,Accessory,2,34,34,34,0,5000,,127,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Revives character,,,,,,,,,,,,,,,,,,,,,,,,,
-    Bonds of Trust,+5 ACT  [Raises IP]                  ,Accessory,2,53,53,49,0,2,,127,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,5000,0,150,30,                  ,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,21,0,0
+    Bonds of Trust,+5 ACT  [Raises IP]                  ,Accessory,2,53,53,49,0,2,,127,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,5000,0,150,30,unknown 1,NULL,0,0,0,0,Fire,0,0,0,0,0,0,0,0,21,0,0
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -762,7 +762,7 @@ Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Pri
          ,                    ,NULL,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
        Mystic Veil,All status disorder resistance         ,Accessory,3,39,39,39,0,12000,,127,0,0,0,0,0,0,0,0,0,0,127,100,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
   Ring of Guarding,+5 DEF  Pois/slp/|para/conf/plag res. ,Accessory,3,34,34,34,0,5000,,127,0,5,0,0,0,0,0,0,0,0,31,100,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
-     Mars Talisman,Move/magic block resistance  [Refresh] ,Accessory,2,37,37,37,0,2000,,127,0,0,0,0,0,0,0,0,0,0,96,100,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,210,60,           Refresh,NULL,0,0,0,0,Fire,0,96,100,0,0,0,0,0,0,0,0
+     Mars Talisman,Move/magic block resistance  [Refresh] ,Accessory,2,37,37,37,0,2000,,127,0,0,0,0,0,0,0,0,0,0,96,100,0,0,0,0,0,0,0,0,NULL,,Status Change,One Ally,0,0,210,60,Refresh,NULL,0,0,0,0,Fire,0,96,100,0,0,0,0,0,0,0,0
     Coral Necklace,+10 DEF  Poison/|sleep/conf. resist. ,Accessory,2,53,53,36,0,1800,,127,0,10,0,0,0,0,0,0,0,0,11,100,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
           Talisman,+15 ATK  Poison/paralysis resistance   ,Accessory,2,34,34,34,0,1500,,127,15,0,0,0,0,0,0,0,0,0,5,100,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,
      Crescent Jade,+15 DEF  Sleep/confusion resis. ,Accessory,2,34,34,34,0,1500,,127,0,15,0,0,0,0,0,0,0,0,10,100,0,0,0,0,0,0,0,0,NULL,,,,,,,,,,,,,,,,,,,,,,,,,

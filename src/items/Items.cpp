@@ -556,7 +556,7 @@ void Items::outputToCSV() {
 				<< std::to_string(item.usableOffset->range) << ','
 				<< std::to_string(item.usableOffset->castTime) << ','
 				<< std::to_string(item.usableOffset->recoveryTime) << ','
-				<< Moves::getInstance().getMoves().at(item.usableOffset->animation).name << ','
+				<< animationDefs.at(item.usableOffset->animation) << ','
 				<< effectiveOnDefs.at(item.usableOffset->effectiveOn) << ','
 				<< std::to_string(item.usableOffset->unknown1) << ','
 				<< std::to_string(item.usableOffset->ipDamage) << ','
