@@ -3,8 +3,8 @@
 
 #pragma pack(1)
 struct EnemyStats {
-	uint8_t unknown = 0;
 	uint8_t unknown1 = 0;
+	uint8_t unknown2 = 0;
 	uint8_t type1 = 0;
 	uint8_t type2 = 0;
 	int16_t level = 0;
@@ -29,13 +29,13 @@ struct EnemyStats {
 	int16_t knockbackResist = 0;
 	int16_t T_REC = 0;
 	int16_t T_DMG = 0;
-	int16_t unknown2 = 0;
+	int16_t unknown3 = 0;
 	int16_t T_HEAL = 0;
 	int16_t size = 0;
-	int16_t unknown3 = 0;
-	int8_t unknown4 = 0;
+	int16_t unknown4 = 0;
+	int8_t unknown5 = 0;
 	int8_t noRunFlag = 0;
-	int16_t unknown5 = 0;
+	int16_t unknown6 = 0;
 	int32_t exp = 0;
 	int32_t skillCoins = 0;
 	int32_t magicCoins = 0;
@@ -44,6 +44,6 @@ struct EnemyStats {
 	uint16_t item2 = 0;
 	int8_t item1Chance = 0;
 	int8_t item2Chance = 0;
-	uint16_t unknown6 = 0;
+	uint16_t unknown7 = 0;
 };
 #pragma pack()

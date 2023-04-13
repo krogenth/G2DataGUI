@@ -203,7 +203,7 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine) {
                 StartStats::getInstance().write();
                 Enemies::getInstance().write();
                 Bosses::getInstance().write();
-                Mdts::getInstance().write();
+                Maps::getInstance().write();
                 Levelups::getInstance().write();
             }
 
@@ -221,7 +221,7 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine) {
                 StartStats::getInstance().outputToCSV();
                 Enemies::getInstance().outputToCSV();
                 Bosses::getInstance().outputToCSV();
-                Mdts::getInstance().outputToCSV();
+                Maps::getInstance().outputToCSV();
                 Levelups::getInstance().outputToCSV();
             }
 
@@ -231,7 +231,7 @@ void DrawMenuBar(_In_ LPTSTR lpCmdLine) {
                 StartStats::getInstance().randomize();
                 Enemies::getInstance().randomize();
                 Bosses::getInstance().randomize();
-                Mdts::getInstance().randomize();
+                Maps::getInstance().randomize();
             }
 
             if (ImGui::MenuItem("Close", "Ctrl+W")) {

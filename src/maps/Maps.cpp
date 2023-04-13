@@ -15,105 +15,105 @@
 #include "./imgui.h"
 #include "../ui/imgui_wrappers.h"
 
-void Mdts::write() {
+void Maps::write() {
 	std::fstream output;
 	uint32_t offset = 0;
 
-	for (size_t i = 0; i < _mdts.size(); i++) {
-		output.open(_mdts.at(i).filename, std::ios::binary | std::ios::in | std::ios::out);
+	for (size_t i = 0; i < _maps.size(); i++) {
+		output.open(_maps.at(i).filename, std::ios::binary | std::ios::in | std::ios::out);
 
 		if (!output.is_open()) {
-			throw new std::exception(_mdts.at(i).filename.c_str());
+			throw new std::exception(_maps.at(i).filename.c_str());
 		}
 
 		// write in map entries
-		output.seekg(_mdts.at(i).header.offsetMapEntries, std::ios::beg);
-		for (auto& val : _mdts.at(i).mapEntries) {
+		output.seekg(_maps.at(i).header.offsetMapEntries, std::ios::beg);
+		for (auto& val : _maps.at(i).mapEntries) {
 			writeRaw<MapEntry>(output, val);
 		}
 
 		// write in instances
-		output.seekg(_mdts.at(i).header.offsetInstances, std::ios::beg);
-		for (auto& val : _mdts.at(i).instances) {
+		output.seekg(_maps.at(i).header.offsetInstances, std::ios::beg);
+		for (auto& val : _maps.at(i).instances) {
 			writeRaw<Instance>(output, val);
 		}
 
 		// write in HTA
-		output.seekg(_mdts.at(i).header.offsetHTA, std::ios::beg);
-		for (auto& val : _mdts.at(i).HTA) {
+		output.seekg(_maps.at(i).header.offsetHTA, std::ios::beg);
+		for (auto& val : _maps.at(i).HTA) {
 			writeRaw<HTA>(output, val);
 		}
 
 		// write in enemy positions
-		output.seekg(_mdts.at(i).header.offsetEnemyPos, std::ios::beg);
-		for (auto& val : _mdts.at(i).enemyPositions) {
+		output.seekg(_maps.at(i).header.offsetEnemyPos, std::ios::beg);
+		for (auto& val : _maps.at(i).enemyPositions) {
 			writeRaw<EnemyPosition>(output, val);
 		}
 
 		// write in enemy groups
-		output.seekg(_mdts.at(i).header.offsetEnemyGroups, std::ios::beg);
-		for (auto& val : _mdts.at(i).enemyGroups) {
+		output.seekg(_maps.at(i).header.offsetEnemyGroups, std::ios::beg);
+		for (auto& val : _maps.at(i).enemyGroups) {
 			writeRaw<EnemyGroup>(output, val);
 		}
 
 		// write in MOS
-		output.seekg(_mdts.at(i).header.offsetMOS, std::ios::beg);
-		for (auto& val : _mdts.at(i).MOS) {
+		output.seekg(_maps.at(i).header.offsetMOS, std::ios::beg);
+		for (auto& val : _maps.at(i).MOS) {
 			writeRaw<MOS>(output, val);
 		}
 
 		// write in icons
-		output.seekg(_mdts.at(i).header.offsetIcons, std::ios::beg);
-		for (auto& val : _mdts.at(i).icons) {
+		output.seekg(_maps.at(i).header.offsetIcons, std::ios::beg);
+		for (auto& val : _maps.at(i).icons) {
 			writeRaw<Icon>(output, val);
 		}
 
 		// write in shop
-		if (_mdts.at(i).shop.size()) {
+		if (_maps.at(i).shop.size()) {
 			for (ImU16 j = 0; j < 12; j++) {
-				if (_mdts.at(i).shop[0].weapons.items[j].item) {
-					_mdts.at(i).shop[0].weapons.items[j].item += 0x0800;
+				if (_maps.at(i).shop[0].weapons.items[j].item) {
+					_maps.at(i).shop[0].weapons.items[j].item += 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].armors.items[j].item) {
-					_mdts.at(i).shop[0].armors.items[j].item += 0x0800;
+				if (_maps.at(i).shop[0].armors.items[j].item) {
+					_maps.at(i).shop[0].armors.items[j].item += 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].jewelry.items[j].item) {
-					_mdts.at(i).shop[0].jewelry.items[j].item += 0x0800;
+				if (_maps.at(i).shop[0].jewelry.items[j].item) {
+					_maps.at(i).shop[0].jewelry.items[j].item += 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].items.items[j].item) {
-					_mdts.at(i).shop[0].items.items[j].item += 0x0800;
+				if (_maps.at(i).shop[0].items.items[j].item) {
+					_maps.at(i).shop[0].items.items[j].item += 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].regionals.items[j].item) {
-					_mdts.at(i).shop[0].regionals.items[j].item += 0x0800;
+				if (_maps.at(i).shop[0].regionals.items[j].item) {
+					_maps.at(i).shop[0].regionals.items[j].item += 0x0800;
 				}
 			}
 
-			output.seekg(_mdts[i].header.offsetShop, std::ios::beg);
-			writeRaw<ShopStruct>(output, _mdts[i].shop[0]);
+			output.seekg(_maps[i].header.offsetShop, std::ios::beg);
+			writeRaw<ShopStruct>(output, _maps[i].shop[0]);
 
 			for (ImU16 j = 0; j < 12; j++) {
-				if (_mdts.at(i).shop[0].weapons.items[j].item) {
-					_mdts.at(i).shop[0].weapons.items[j].item -= 0x0800;
+				if (_maps.at(i).shop[0].weapons.items[j].item) {
+					_maps.at(i).shop[0].weapons.items[j].item -= 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].armors.items[j].item) {
-					_mdts.at(i).shop[0].armors.items[j].item -= 0x0800;
+				if (_maps.at(i).shop[0].armors.items[j].item) {
+					_maps.at(i).shop[0].armors.items[j].item -= 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].jewelry.items[j].item) {
-					_mdts.at(i).shop[0].jewelry.items[j].item -= 0x0800;
+				if (_maps.at(i).shop[0].jewelry.items[j].item) {
+					_maps.at(i).shop[0].jewelry.items[j].item -= 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].items.items[j].item) {
-					_mdts.at(i).shop[0].items.items[j].item -= 0x0800;
+				if (_maps.at(i).shop[0].items.items[j].item) {
+					_maps.at(i).shop[0].items.items[j].item -= 0x0800;
 				}
 
-				if (_mdts.at(i).shop[0].regionals.items[j].item) {
-					_mdts.at(i).shop[0].regionals.items[j].item -= 0x0800;
+				if (_maps.at(i).shop[0].regionals.items[j].item) {
+					_maps.at(i).shop[0].regionals.items[j].item -= 0x0800;
 				}
 			}
 		}
@@ -122,7 +122,7 @@ void Mdts::write() {
 	}
 }
 
-void Mdts::read() {
+void Maps::read() {
 	uint8_t readChar = 0;
 	std::ifstream input;
 	uint32_t offset = 0;
@@ -142,84 +142,84 @@ void Mdts::read() {
 					throw new std::exception(filename.c_str());
 				}
 
-				_mdts.emplace_back(MdtStruct());
-				_mdts.back().header = readRaw<Header>(input);
+				_maps.emplace_back(MdtStruct());
+				_maps.back().header = readRaw<Header>(input);
 
 				// read in map entries
-				_mdts.back().mapEntries.resize(_mdts.back().header.numMapEntries);
-				input.seekg(_mdts.back().header.offsetMapEntries, std::ios::beg);
-				for (size_t i = 0; i < _mdts.back().mapEntries.size(); i++) {
-					_mdts.back().mapEntries[i] = readRaw<MapEntry>(input);
+				_maps.back().mapEntries.resize(_maps.back().header.numMapEntries);
+				input.seekg(_maps.back().header.offsetMapEntries, std::ios::beg);
+				for (size_t i = 0; i < _maps.back().mapEntries.size(); i++) {
+					_maps.back().mapEntries[i] = readRaw<MapEntry>(input);
 				}
 
 				// read in instances
-				_mdts.back().instances.resize(_mdts.back().header.numInstances);
-				input.seekg(_mdts.back().header.offsetInstances, std::ios::beg);
-				for (size_t i = 0; i < _mdts.back().instances.size(); i++) {
-					_mdts.back().instances[i] = readRaw<Instance>(input);
+				_maps.back().instances.resize(_maps.back().header.numInstances);
+				input.seekg(_maps.back().header.offsetInstances, std::ios::beg);
+				for (size_t i = 0; i < _maps.back().instances.size(); i++) {
+					_maps.back().instances[i] = readRaw<Instance>(input);
 				}
 
 				// read in HTA
-				_mdts.back().HTA.resize(_mdts.back().header.numHTA);
-				input.seekg(_mdts.back().header.offsetHTA, std::ios::beg);
-				for (size_t i = 0; i < _mdts.back().HTA.size(); i++) {
-					_mdts.back().HTA[i] = readRaw<HTA>(input);
+				_maps.back().HTA.resize(_maps.back().header.numHTA);
+				input.seekg(_maps.back().header.offsetHTA, std::ios::beg);
+				for (size_t i = 0; i < _maps.back().HTA.size(); i++) {
+					_maps.back().HTA[i] = readRaw<HTA>(input);
 				}
 
 				// read in enemy positions
-				_mdts.back().enemyPositions.resize(_mdts.back().header.numEnemyPos);
-				input.seekg(_mdts.back().header.offsetEnemyPos, std::ios::beg);
-				for (size_t i = 0; i < _mdts.back().enemyPositions.size(); i++) {
-					_mdts.back().enemyPositions[i] = readRaw<EnemyPosition>(input);
+				_maps.back().enemyPositions.resize(_maps.back().header.numEnemyPos);
+				input.seekg(_maps.back().header.offsetEnemyPos, std::ios::beg);
+				for (size_t i = 0; i < _maps.back().enemyPositions.size(); i++) {
+					_maps.back().enemyPositions[i] = readRaw<EnemyPosition>(input);
 				}
 
 				// read in enemy groups
-				_mdts.back().enemyGroups.resize(_mdts.back().header.numEnemyGroups);
-				input.seekg(_mdts.back().header.offsetEnemyGroups, std::ios::beg);
-				for (size_t i = 0; i < _mdts.back().enemyGroups.size(); i++) {
-					_mdts.back().enemyGroups[i] = readRaw<EnemyGroup>(input);
+				_maps.back().enemyGroups.resize(_maps.back().header.numEnemyGroups);
+				input.seekg(_maps.back().header.offsetEnemyGroups, std::ios::beg);
+				for (size_t i = 0; i < _maps.back().enemyGroups.size(); i++) {
+					_maps.back().enemyGroups[i] = readRaw<EnemyGroup>(input);
 				}
 
 				// read in MOS
-				_mdts.back().MOS.resize(_mdts.back().header.numMOS);
-				input.seekg(_mdts.back().header.offsetMOS, std::ios::beg);
-				for (size_t i = 0; i < _mdts.back().MOS.size(); i++)
-					_mdts.back().MOS[i] = readRaw<MOS>(input);
+				_maps.back().MOS.resize(_maps.back().header.numMOS);
+				input.seekg(_maps.back().header.offsetMOS, std::ios::beg);
+				for (size_t i = 0; i < _maps.back().MOS.size(); i++)
+					_maps.back().MOS[i] = readRaw<MOS>(input);
 
 				// read in icons
-				_mdts.back().icons.resize(_mdts.back().header.numIcons);
-				input.seekg(_mdts.back().header.offsetIcons, std::ios::beg);
-				for (size_t i = 0; i < _mdts.back().icons.size(); i++) {
-					_mdts.back().icons[i] = readRaw<Icon>(input);
+				_maps.back().icons.resize(_maps.back().header.numIcons);
+				input.seekg(_maps.back().header.offsetIcons, std::ios::beg);
+				for (size_t i = 0; i < _maps.back().icons.size(); i++) {
+					_maps.back().icons[i] = readRaw<Icon>(input);
 				}
 
 
 				// read in shop
-				if (_mdts.back().header.offsetShop) {
-					_mdts.back().shop.resize(1);
-					input.seekg(_mdts.back().header.offsetShop, std::ios::beg);
+				if (_maps.back().header.offsetShop) {
+					_maps.back().shop.resize(1);
+					input.seekg(_maps.back().header.offsetShop, std::ios::beg);
 
-					_mdts.back().shop[0] = readRaw<ShopStruct>(input);
+					_maps.back().shop[0] = readRaw<ShopStruct>(input);
 
 					for (ImU16 i = 0; i < 12; i++) {
-						if (_mdts.back().shop[0].weapons.items[i].item) {
-							_mdts.back().shop[0].weapons.items[i].item -= 0x0800;
+						if (_maps.back().shop[0].weapons.items[i].item) {
+							_maps.back().shop[0].weapons.items[i].item -= 0x0800;
 						}
 
-						if (_mdts.back().shop[0].armors.items[i].item) {
-							_mdts.back().shop[0].armors.items[i].item -= 0x0800;
+						if (_maps.back().shop[0].armors.items[i].item) {
+							_maps.back().shop[0].armors.items[i].item -= 0x0800;
 						}
 
-						if (_mdts.back().shop[0].jewelry.items[i].item) {
-							_mdts.back().shop[0].jewelry.items[i].item -= 0x0800;
+						if (_maps.back().shop[0].jewelry.items[i].item) {
+							_maps.back().shop[0].jewelry.items[i].item -= 0x0800;
 						}
 
-						if (_mdts.back().shop[0].items.items[i].item) {
-							_mdts.back().shop[0].items.items[i].item -= 0x0800;
+						if (_maps.back().shop[0].items.items[i].item) {
+							_maps.back().shop[0].items.items[i].item -= 0x0800;
 						}
 
-						if (_mdts.back().shop[0].regionals.items[i].item) {
-							_mdts.back().shop[0].regionals.items[i].item -= 0x0800;
+						if (_maps.back().shop[0].regionals.items[i].item) {
+							_maps.back().shop[0].regionals.items[i].item -= 0x0800;
 						}
 					}
 				}
@@ -249,13 +249,13 @@ void Mdts::read() {
 							input.seekg(2, std::ios::cur);
 							readChar = readRaw<uint8_t>(input);
 							while (readChar != 0x17) {
-								_mdts.back().mapname.push_back(readChar);
+								_maps.back().mapname.push_back(readChar);
 								readChar = readRaw<uint8_t>(input);
 							}
 
 							// anything that contains the string "to " is not the current map name
-							if (_mdts.back().mapname.find("to ") != std::string::npos) {
-								_mdts.back().mapname.erase(_mdts.back().mapname.begin(), _mdts.back().mapname.end());
+							if (_maps.back().mapname.find("to ") != std::string::npos) {
+								_maps.back().mapname.erase(_maps.back().mapname.begin(), _maps.back().mapname.end());
 								input.seekg(sectionOffset, std::ios::beg);
 								continue;
 							}
@@ -270,8 +270,8 @@ void Mdts::read() {
 
 				}
 
-				_mdts.back().filename = filename;
-				_mdts.back().filenameChr = filename.substr(0, filename.length() - 4) + ".chr";
+				_maps.back().filename = filename;
+				_maps.back().filenameChr = filename.substr(0, filename.length() - 4) + ".chr";
 
 				input.close();
 			}
@@ -279,18 +279,18 @@ void Mdts::read() {
 	}
 }
 
-void Mdts::draw() {
+void Maps::draw() {
 	ImGui::Begin("AREAS");
 
 	if (ImGui::Button("Save")) {
 		write();
 	}
 
-	if (ImGui::BeginCombo("MDT Index", _mdts.at(_mdtIndex).mapname.c_str())) {
-		for (size_t i = 0; i < _mdts.size(); i++) {
+	if (ImGui::BeginCombo("MDT Index", _maps.at(_mdtIndex).mapname.c_str())) {
+		for (size_t i = 0; i < _maps.size(); i++) {
 			ImGui::PushID((int)i);
 			bool is_selected = (i == _mdtIndex);
-			if (ImGui::Selectable(_mdts.at(i).mapname.c_str(), is_selected)) {
+			if (ImGui::Selectable(_maps.at(i).mapname.c_str(), is_selected)) {
 				_mdtIndex = i;
 				_mapEntryIndex = 0;
 				_instanceIndex = 0;
@@ -311,13 +311,13 @@ void Mdts::draw() {
 		ImGui::EndCombo();
 	}
 
-	if (_mdts.at(_mdtIndex).mapEntries.size()) {
+	if (_maps.at(_mdtIndex).mapEntries.size()) {
 		if (ImGui::CollapsingHeader("Map Entries")) {
-			if (ImGui::BeginCombo("Map Entry #", std::to_string(_mdts.at(_mdtIndex).mapEntries.at(_mapEntryIndex).ID).c_str())) {
-				for (size_t i = 0; i < _mdts.at(_mdtIndex).mapEntries.size(); i++) {
+			if (ImGui::BeginCombo("Map Entry #", std::to_string(_maps.at(_mdtIndex).mapEntries.at(_mapEntryIndex).ID).c_str())) {
+				for (size_t i = 0; i < _maps.at(_mdtIndex).mapEntries.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == _mapEntryIndex);
-					if (ImGui::Selectable(std::to_string(_mdts.at(_mdtIndex).mapEntries[i].ID).c_str(), is_selected)) {
+					if (ImGui::Selectable(std::to_string(_maps.at(_mdtIndex).mapEntries[i].ID).c_str(), is_selected)) {
 						_mapEntryIndex = i;
 					}
 					if (is_selected) {
@@ -329,22 +329,22 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("Connected Map", &_mdts.at(_mdtIndex).mapEntries.at(_mapEntryIndex).ID);
-			drawInputN("X/Y/Z Position", (float*) & _mdts.at(_mdtIndex).mapEntries.at(_mapEntryIndex).position, 3);
-			drawInput("Direction", &_mdts.at(_mdtIndex).mapEntries.at(_mapEntryIndex).direction);
-			drawInput("Unknown #1", &_mdts.at(_mdtIndex).mapEntries.at(_mapEntryIndex).unknown1);
-			drawInput("Unknown #2", &_mdts.at(_mdtIndex).mapEntries.at(_mapEntryIndex).unknown2);
-			drawInput("Unknown #3", &_mdts.at(_mdtIndex).mapEntries.at(_mapEntryIndex).unknown3);
+			drawInput("Connected Map", &_maps.at(_mdtIndex).mapEntries.at(_mapEntryIndex).ID);
+			drawInputN("X/Y/Z Position", (float*) & _maps.at(_mdtIndex).mapEntries.at(_mapEntryIndex).position, 3);
+			drawInput("Direction", &_maps.at(_mdtIndex).mapEntries.at(_mapEntryIndex).direction);
+			drawInput("Unknown #1", &_maps.at(_mdtIndex).mapEntries.at(_mapEntryIndex).unknown1);
+			drawInput("Unknown #2", &_maps.at(_mdtIndex).mapEntries.at(_mapEntryIndex).unknown2);
+			drawInput("Unknown #3", &_maps.at(_mdtIndex).mapEntries.at(_mapEntryIndex).unknown3);
 		}
 	}
 
-	if (_mdts.at(_mdtIndex).instances.size()) {
+	if (_maps.at(_mdtIndex).instances.size()) {
 		if (ImGui::CollapsingHeader("Instances")) {
-			if (ImGui::BeginCombo("Instance #", std::to_string(_mdts.at(_mdtIndex).instances.at(_instanceIndex).ID).c_str())) {
-				for (size_t i = 0; i < _mdts.at(_mdtIndex).mapEntries.size(); i++) {
+			if (ImGui::BeginCombo("Instance #", std::format("Instance {}", _instanceIndex + 1).c_str())) {
+				for (size_t i = 0; i < _maps.at(_mdtIndex).instances.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == _instanceIndex);
-					if (ImGui::Selectable(std::to_string(_mdts.at(_mdtIndex).instances[i].ID).c_str(), is_selected)) {
+					if (ImGui::Selectable(std::format("Instance {}", i + 1).c_str(), is_selected)) {
 						_instanceIndex = i;
 					}
 					if (is_selected) {
@@ -356,20 +356,21 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("ID", &_mdts.at(_mdtIndex).instances.at(_instanceIndex).ID);
-			drawInput("Index", &_mdts.at(_mdtIndex).instances.at(_instanceIndex).index);
-			drawInput("Unknown", &_mdts.at(_mdtIndex).instances.at(_instanceIndex).unknown);
-			drawInput("Translation", &_mdts.at(_mdtIndex).instances.at(_instanceIndex).translation);
-			drawInputN("X/Y/Z Position", (float*)&_mdts.at(_mdtIndex).instances.at(_instanceIndex).position, 3);
-			drawInputN("X/Y/Z Angle", (float*)&_mdts.at(_mdtIndex).instances.at(_instanceIndex).angle, 3);
-			drawInputN("CX/CY/CZ", (float*)&_mdts.at(_mdtIndex).instances.at(_instanceIndex).c, 3);
+			drawInput("ID", &_maps.at(_mdtIndex).instances.at(_instanceIndex).ID);
+			drawInput("Index", &_maps.at(_mdtIndex).instances.at(_instanceIndex).index);
+			drawInput("Unknown #1", &_maps.at(_mdtIndex).instances.at(_instanceIndex).unknown1);
+			drawInput("Translation", &_maps.at(_mdtIndex).instances.at(_instanceIndex).translation);
+			drawInput("Unknown #2", &_maps.at(_mdtIndex).instances.at(_instanceIndex).unknown2);
+			drawInputN("X/Y/Z Position", (float*)&_maps.at(_mdtIndex).instances.at(_instanceIndex).position, 3);
+			drawInputN("X/Y/Z Angle", (float*)&_maps.at(_mdtIndex).instances.at(_instanceIndex).angle, 3);
+			drawInputN("CX/CY/CZ", (float*)&_maps.at(_mdtIndex).instances.at(_instanceIndex).c, 3);
 		}
 	}
 
-	if (_mdts.at(_mdtIndex).HTA.size()) {
+	if (_maps.at(_mdtIndex).HTA.size()) {
 		if (ImGui::CollapsingHeader("HTA")) {
 			if (ImGui::BeginCombo("HTA #", std::format("HTA {}", _htaIndex + 1).c_str())) {
-				for (size_t i = 0; i < _mdts.at(_mdtIndex).HTA.size(); i++) {
+				for (size_t i = 0; i < _maps.at(_mdtIndex).HTA.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == _htaIndex);
 					if (ImGui::Selectable(std::format("HTA {}", i + 1).c_str(), is_selected)) {
@@ -384,29 +385,29 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("Shape", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).shape);
-			drawInput("Type", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).type);
-			drawInput("Trigger", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).trigger);
-			drawInput("Unknown #1", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown1);
-			drawInput("Unknown #2", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown2);
-			drawInput("attribute", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).attribute);
-			drawInputN("X/Y/Z Min", (float*)&_mdts.at(_mdtIndex).HTA.at(_htaIndex).minimum, 3);
-			drawInputN("X/Y/Z Max", (float*)&_mdts.at(_mdtIndex).HTA.at(_htaIndex).maximum, 3);
-			drawInput("Unknown #3", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown3);
-			drawInput("Unknown #4", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown4);
-			drawInput("Unknown #5", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown5);
-			drawInput("Unknown #6", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown6);
-			drawInput("Unknown #7", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown7);
-			drawInput("Unknown #8", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown8);
-			drawInput("Unknown #9", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown9);
-			drawInput("Unknown #10", &_mdts.at(_mdtIndex).HTA.at(_htaIndex).unknown10);
+			drawInput("Shape", &_maps.at(_mdtIndex).HTA.at(_htaIndex).shape);
+			drawInput("Type", &_maps.at(_mdtIndex).HTA.at(_htaIndex).type);
+			drawInput("Trigger", &_maps.at(_mdtIndex).HTA.at(_htaIndex).trigger);
+			drawInput("Unknown #1", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown1);
+			drawInput("Unknown #2", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown2);
+			drawInput("attribute", &_maps.at(_mdtIndex).HTA.at(_htaIndex).attribute);
+			drawInputN("X/Y/Z Min", (float*)&_maps.at(_mdtIndex).HTA.at(_htaIndex).minimum, 3);
+			drawInputN("X/Y/Z Max", (float*)&_maps.at(_mdtIndex).HTA.at(_htaIndex).maximum, 3);
+			drawInput("Unknown #3", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown3);
+			drawInput("Unknown #4", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown4);
+			drawInput("Unknown #5", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown5);
+			drawInput("Unknown #6", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown6);
+			drawInput("Unknown #7", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown7);
+			drawInput("Unknown #8", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown8);
+			drawInput("Unknown #9", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown9);
+			drawInput("Unknown #10", &_maps.at(_mdtIndex).HTA.at(_htaIndex).unknown10);
 		}
 	}
 
-	if (_mdts.at(_mdtIndex).enemyPositions.size()) {
+	if (_maps.at(_mdtIndex).enemyPositions.size()) {
 		if (ImGui::CollapsingHeader("Enemy Positions")) {
 			if (ImGui::BeginCombo("Enemy Pos #", std::format("Enemy Position {}", _ePosIndex + 1).c_str())) {
-				for (size_t i = 0; i < _mdts.at(_mdtIndex).enemyPositions.size(); i++) {
+				for (size_t i = 0; i < _maps.at(_mdtIndex).enemyPositions.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == _ePosIndex);
 					if (ImGui::Selectable(std::format("Enemy Position {}", i + 1).c_str(), is_selected)) {
@@ -421,30 +422,30 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("Index", &_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).index);
-			drawInput("Unknown #1", &_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown1);
-			drawInputN("X/Z Min", (float*)& _mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).minimum, 2);
-			drawInputN("X/Z Max", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).maximum, 2);
-			drawInputN("X/Y/Z Pos", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).position, 3);
-			drawInputN("X/Y/Z #1", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown2, 3);
+			drawInput("Index", &_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).index);
+			drawInput("Unknown #1", &_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown1);
+			drawInputN("X/Z Min", (float*)& _maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).minimum, 2);
+			drawInputN("X/Z Max", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).maximum, 2);
+			drawInputN("X/Y/Z Pos", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).position, 3);
+			drawInputN("X/Y/Z #1", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown2, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
-			drawInputN("X/Y/Z #2", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown3, 3);
+			drawInputN("X/Y/Z #2", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown3, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
-			drawInputN("X/Y/Z #3", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown4, 3);
+			drawInputN("X/Y/Z #3", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown4, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
-			drawInputN("X/Y/Z #4", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown5, 3);
+			drawInputN("X/Y/Z #4", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown5, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
-			drawInputN("X/Y/Z #5", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown6, 3);
+			drawInputN("X/Y/Z #5", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown6, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
-			drawInputN("X/Y/Z #6", (float*)&_mdts.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown7, 3);
+			drawInputN("X/Y/Z #6", (float*)&_maps.at(_mdtIndex).enemyPositions.at(_ePosIndex).unknown7, 3);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unknown");
 		}
 	}
 
-	if (_mdts.at(_mdtIndex).enemyGroups.size()) {
+	if (_maps.at(_mdtIndex).enemyGroups.size()) {
 		if (ImGui::CollapsingHeader("Enemy Groups")) {
 			if (ImGui::BeginCombo("Enemy Group #", std::format("Enemy Group {}", _eGroupIndex + 1).c_str())) {
-				for (size_t i = 0; i < _mdts.at(_mdtIndex).enemyGroups.size(); i++) {
+				for (size_t i = 0; i < _maps.at(_mdtIndex).enemyGroups.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == _eGroupIndex);
 					if (ImGui::Selectable(std::format("Enemy Group {}", i + 1).c_str(), is_selected)) {
@@ -459,7 +460,7 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("Group Index", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).index);
+			drawInput("Group Index", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).index);
 
 			if (ImGui::BeginCombo("Enemy #", std::format("Enemy {}", _eGroupPosIndex + 1).c_str())) {
 				// there can only ever be 4 unique enemies in a group, as far as I can tell
@@ -478,21 +479,21 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("Enemy Index", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].index);
-			drawInput("# of Enemy", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].numEnemy);
-			drawInput("Enemy Offset", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].enemyOffset);
+			drawInput("Enemy Index", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].index);
+			drawInput("# of Enemy", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].numEnemy);
+			drawInput("Enemy Offset", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].enemyOffset);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("References enemy/boss.csv");
-			drawInput("Unknown #1", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown);
-			drawInput("Unknown #2", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown1);
-			drawInput("Unknown #3", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown2);
-			drawInput("Unknown #4", &_mdts.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown3);
+			drawInput("Unknown #1", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown1);
+			drawInput("Unknown #2", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown2);
+			drawInput("Unknown #3", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown3);
+			drawInput("Unknown #4", &_maps.at(_mdtIndex).enemyGroups.at(_eGroupIndex).enemies[_eGroupPosIndex].unknown4);
 		}
 	}
 
-	if (_mdts.at(_mdtIndex).MOS.size()) {
+	if (_maps.at(_mdtIndex).MOS.size()) {
 		if (ImGui::CollapsingHeader("MOS")) {
 			if (ImGui::BeginCombo("MOS #", std::format("MOS {}", _mosIndex + 1).c_str())) {
-				for (size_t i = 0; i < _mdts.at(_mdtIndex).MOS.size(); i++) {
+				for (size_t i = 0; i < _maps.at(_mdtIndex).MOS.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == _mosIndex);
 					if (ImGui::Selectable(std::format("MOS {}", i + 1).c_str(), is_selected)) {
@@ -507,22 +508,22 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("ID", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).ID);
-			drawInput("Index", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).index);
-			drawInput("Unknown #1", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).unknown1);
-			drawInputN("X/Y/Z Pos", (float*)&_mdts.at(_mdtIndex).MOS.at(_mosIndex).position, 3);
-			drawInput("Unknown #2", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).unknown2);
-			drawInput("Unknown #3", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).unknown3);
-			drawInput("Unknown #4", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).unknown4);
-			drawInput("Unknown #5", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).unknown5);
-			drawInput("Unknown #6", &_mdts.at(_mdtIndex).MOS.at(_mosIndex).unknown6);
+			drawInput("ID", &_maps.at(_mdtIndex).MOS.at(_mosIndex).ID);
+			drawInput("Index", &_maps.at(_mdtIndex).MOS.at(_mosIndex).index);
+			drawInput("Unknown #1", &_maps.at(_mdtIndex).MOS.at(_mosIndex).unknown1);
+			drawInputN("X/Y/Z Pos", (float*)&_maps.at(_mdtIndex).MOS.at(_mosIndex).position, 3);
+			drawInput("Unknown #2", &_maps.at(_mdtIndex).MOS.at(_mosIndex).unknown2);
+			drawInput("Unknown #3", &_maps.at(_mdtIndex).MOS.at(_mosIndex).unknown3);
+			drawInput("Unknown #4", &_maps.at(_mdtIndex).MOS.at(_mosIndex).unknown4);
+			drawInput("Unknown #5", &_maps.at(_mdtIndex).MOS.at(_mosIndex).unknown5);
+			drawInput("Unknown #6", &_maps.at(_mdtIndex).MOS.at(_mosIndex).unknown6);
 		}
 	}
 
-	if (_mdts.at(_mdtIndex).icons.size()) {
+	if (_maps.at(_mdtIndex).icons.size()) {
 		if (ImGui::CollapsingHeader("Icons")) {
 			if (ImGui::BeginCombo("Icon #", std::format("Icon {}", _iconIndex + 1).c_str())) {
-				for (size_t i = 0; i < _mdts.at(_mdtIndex).icons.size(); i++) {
+				for (size_t i = 0; i < _maps.at(_mdtIndex).icons.size(); i++) {
 					ImGui::PushID((int)i);
 					bool is_selected = (i == _iconIndex);
 					if (ImGui::Selectable(std::format("Icon {}", i + 1).c_str(), is_selected)) {
@@ -537,20 +538,20 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("ID", &_mdts.at(_mdtIndex).icons.at(_iconIndex).ID);
-			drawInput("Unknown #1", &_mdts.at(_mdtIndex).icons.at(_iconIndex).unknown);
-			drawInput("Unknown #2", &_mdts.at(_mdtIndex).icons.at(_iconIndex).unknown1);
-			drawInputN("X/Y/Z Pos", &_mdts.at(_mdtIndex).icons.at(_iconIndex).xPos, 3);
-			drawInput("Unknown #3", &_mdts.at(_mdtIndex).icons.at(_iconIndex).unknown2);
-			drawInput("Y Angle", &_mdts.at(_mdtIndex).icons.at(_iconIndex).yAngle);
+			drawInput("ID", &_maps.at(_mdtIndex).icons.at(_iconIndex).ID);
+			drawInput("Unknown #1", &_maps.at(_mdtIndex).icons.at(_iconIndex).unknown1);
+			drawInput("Unknown #2", &_maps.at(_mdtIndex).icons.at(_iconIndex).unknown2);
+			drawInputN("X/Y/Z Pos", &_maps.at(_mdtIndex).icons.at(_iconIndex).xPos, 3);
+			drawInput("Unknown #3", &_maps.at(_mdtIndex).icons.at(_iconIndex).unknown3);
+			drawInput("Y Angle", &_maps.at(_mdtIndex).icons.at(_iconIndex).yAngle);
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Unsure");
 
-			if (ImGui::BeginCombo("Item #1", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).icons.at(_iconIndex).item1).name)) {
+			if (ImGui::BeginCombo("Item #1", Items::getInstance().getItems().at(_maps.at(_mdtIndex).icons.at(_iconIndex).item1).name)) {
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).icons.at(_iconIndex).item1);
+					bool is_selected = (i == _maps.at(_mdtIndex).icons.at(_iconIndex).item1);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected)) {
-						_mdts.at(_mdtIndex).icons.at(_iconIndex).item1 = (uint16_t)i;
+						_maps.at(_mdtIndex).icons.at(_iconIndex).item1 = (uint16_t)i;
 					}
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
@@ -561,12 +562,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Item #2", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).icons.at(_iconIndex).item2).name)) {
+			if (ImGui::BeginCombo("Item #2", Items::getInstance().getItems().at(_maps.at(_mdtIndex).icons.at(_iconIndex).item2).name)) {
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).icons.at(_iconIndex).item2);
+					bool is_selected = (i == _maps.at(_mdtIndex).icons.at(_iconIndex).item2);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected))
-						_mdts.at(_mdtIndex).icons.at(_iconIndex).item2 = (uint16_t)i;
+						_maps.at(_mdtIndex).icons.at(_iconIndex).item2 = (uint16_t)i;
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
 					}
@@ -576,14 +577,14 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Item #3", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).icons.at(_iconIndex).item3).name)) {
+			if (ImGui::BeginCombo("Item #3", Items::getInstance().getItems().at(_maps.at(_mdtIndex).icons.at(_iconIndex).item3).name)) {
 
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).icons.at(_iconIndex).item3);
+					bool is_selected = (i == _maps.at(_mdtIndex).icons.at(_iconIndex).item3);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected)) {
-						_mdts.at(_mdtIndex).icons.at(_iconIndex).item3 = (uint16_t)i;
+						_maps.at(_mdtIndex).icons.at(_iconIndex).item3 = (uint16_t)i;
 					}
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
@@ -594,11 +595,11 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			drawInput("Flag", &_mdts.at(_mdtIndex).icons.at(_iconIndex).flag);
+			drawInput("Flag", &_maps.at(_mdtIndex).icons.at(_iconIndex).flag);
 		}
 	}
 
-	if (_mdts.at(_mdtIndex).shop.size()) {
+	if (_maps.at(_mdtIndex).shop.size()) {
 		if (ImGui::CollapsingHeader("Shops")) {
 			if (ImGui::BeginCombo("Weapons #", std::format("Weapons {}", _shopWeaponIndex + 1).c_str())) {
 				for (size_t i = 0; i < 12; i++) {
@@ -616,12 +617,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Weapon Item", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).shop[0].weapons.items[_shopWeaponIndex].item).name)) {
+			if (ImGui::BeginCombo("Weapon Item", Items::getInstance().getItems().at(_maps.at(_mdtIndex).shop[0].weapons.items[_shopWeaponIndex].item).name)) {
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).shop[0].weapons.items[_shopWeaponIndex].item);
+					bool is_selected = (i == _maps.at(_mdtIndex).shop[0].weapons.items[_shopWeaponIndex].item);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected)) {
-						_mdts.at(_mdtIndex).shop[0].weapons.items[_shopWeaponIndex].item = (uint16_t)i;
+						_maps.at(_mdtIndex).shop[0].weapons.items[_shopWeaponIndex].item = (uint16_t)i;
 					}
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
@@ -648,12 +649,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Armor Item", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).shop[0].armors.items[_shopArmorIndex].item).name)) {
+			if (ImGui::BeginCombo("Armor Item", Items::getInstance().getItems().at(_maps.at(_mdtIndex).shop[0].armors.items[_shopArmorIndex].item).name)) {
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).shop[0].armors.items[_shopArmorIndex].item);
+					bool is_selected = (i == _maps.at(_mdtIndex).shop[0].armors.items[_shopArmorIndex].item);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected)) {
-						_mdts.at(_mdtIndex).shop[0].armors.items[_shopArmorIndex].item = (uint16_t)i;
+						_maps.at(_mdtIndex).shop[0].armors.items[_shopArmorIndex].item = (uint16_t)i;
 					}
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
@@ -680,12 +681,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Jewelry Item", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).shop[0].jewelry.items[_shopJewelIndex].item).name)) {
+			if (ImGui::BeginCombo("Jewelry Item", Items::getInstance().getItems().at(_maps.at(_mdtIndex).shop[0].jewelry.items[_shopJewelIndex].item).name)) {
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).shop[0].jewelry.items[_shopJewelIndex].item);
+					bool is_selected = (i == _maps.at(_mdtIndex).shop[0].jewelry.items[_shopJewelIndex].item);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected)) {
-						_mdts.at(_mdtIndex).shop[0].jewelry.items[_shopJewelIndex].item = (uint16_t)i;
+						_maps.at(_mdtIndex).shop[0].jewelry.items[_shopJewelIndex].item = (uint16_t)i;
 					}
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
@@ -712,12 +713,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Item Item", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).shop[0].items.items[_shopItemIndex].item).name)) {
+			if (ImGui::BeginCombo("Item Item", Items::getInstance().getItems().at(_maps.at(_mdtIndex).shop[0].items.items[_shopItemIndex].item).name)) {
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).shop[0].items.items[_shopItemIndex].item);
+					bool is_selected = (i == _maps.at(_mdtIndex).shop[0].items.items[_shopItemIndex].item);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected)) {
-						_mdts.at(_mdtIndex).shop[0].items.items[_shopItemIndex].item = (uint16_t)i;
+						_maps.at(_mdtIndex).shop[0].items.items[_shopItemIndex].item = (uint16_t)i;
 					}
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
@@ -744,12 +745,12 @@ void Mdts::draw() {
 				ImGui::EndCombo();
 			}
 
-			if (ImGui::BeginCombo("Regional Item", Items::getInstance().getItems().at(_mdts.at(_mdtIndex).shop[0].regionals.items[_shopRegionalIndex].item).name)) {
+			if (ImGui::BeginCombo("Regional Item", Items::getInstance().getItems().at(_maps.at(_mdtIndex).shop[0].regionals.items[_shopRegionalIndex].item).name)) {
 				for (size_t i = 0; i < Items::getInstance().getItems().size(); i++) {
 					ImGui::PushID((int)i);
-					bool is_selected = (i == _mdts.at(_mdtIndex).shop[0].regionals.items[_shopRegionalIndex].item);
+					bool is_selected = (i == _maps.at(_mdtIndex).shop[0].regionals.items[_shopRegionalIndex].item);
 					if (ImGui::Selectable(Items::getInstance().getItems().at(i).name, is_selected)) {
-						_mdts.at(_mdtIndex).shop[0].regionals.items[_shopRegionalIndex].item = (uint16_t)i;
+						_maps.at(_mdtIndex).shop[0].regionals.items[_shopRegionalIndex].item = (uint16_t)i;
 					}
 					if (is_selected) {
 						ImGui::SetItemDefaultFocus();
@@ -768,23 +769,23 @@ void Mdts::draw() {
 	ImGui::End();
 }
 
-void Mdts::outputToCSV() {
+void Maps::outputToCSV() {
 	std::ofstream output;
 	output.open("./csv/MAP_NAMES.CSV");
 	output << "File,Map\n";
 
-	for (const auto& val : _mdts) {
+	for (const auto& val : _maps) {
 		output << val.filename << ",\"" << val.mapname << "\"\n";
 	}
 
 	output.close();
 }
 
-void Mdts::randomize() {
+void Maps::randomize() {
 	std::random_device rd;
 	std::mt19937 g(rd());
 
-	for (auto& mdt : _mdts) {
+	for (auto& mdt : _maps) {
 		for (auto& icon : mdt.icons) {
 			if (icon.item1) {
 				do {

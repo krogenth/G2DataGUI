@@ -184,6 +184,8 @@ void Bosses::draw() {
 	
 
 	ImGui::InputText("Name", _bosses.at(_bossIndex).name, 19);
+	drawInput("Unknown #1", &_bosses.at(_bossIndex).stats.unknown1);
+	drawInput("Unknown #2", &_bosses.at(_bossIndex).stats.unknown2);
 	drawInput("Type1", &_bosses.at(_bossIndex).stats.type1);
 	drawInput("Type2", &_bosses.at(_bossIndex).stats.type2);
 	drawInput("Level", &_bosses.at(_bossIndex).stats.level);
@@ -217,8 +219,15 @@ void Bosses::draw() {
 	}
 
 	drawInput("Knockback Resist Rate", &_bosses.at(_bossIndex).stats.knockbackResist);
+	drawInput("Status Recovery Time", &_bosses.at(_bossIndex).stats.T_REC);
+	drawInput("T_DMG", &_bosses.at(_bossIndex).stats.T_DMG);
+	drawInput("Unknown #3", &_bosses.at(_bossIndex).stats.unknown3);
+	drawInput("T_HEAL", &_bosses.at(_bossIndex).stats.T_HEAL);
 	drawInput("Size", &_bosses.at(_bossIndex).stats.size);
+	drawInput("Unknown #4", &_bosses.at(_bossIndex).stats.unknown4);
+	drawInput("Unknown #5", &_bosses.at(_bossIndex).stats.unknown5);
 	drawInput("No Run", &_bosses.at(_bossIndex).stats.noRunFlag);
+	drawInput("Unknown #6", &_bosses.at(_bossIndex).stats.unknown6);
 	drawInput("EXP", &_bosses.at(_bossIndex).stats.exp);
 	drawInput("Skill Coins", &_bosses.at(_bossIndex).stats.skillCoins);
 	drawInput("Magic Coins", &_bosses.at(_bossIndex).stats.magicCoins);
@@ -256,6 +265,7 @@ void Bosses::draw() {
 
 	drawInput("Item #1 Chance", &_bosses.at(_bossIndex).stats.item1Chance);
 	drawInput("Item #2 Chance", &_bosses.at(_bossIndex).stats.item2Chance);
+	drawInput("Unknown #7", &_bosses.at(_bossIndex).stats.unknown7);
 
 	ImGui::Checkbox("Moves", &_showMoves);
 	ImGui::SameLine();
@@ -305,7 +315,7 @@ void Bosses::draw() {
 		ImGui::InputText("Name", _bosses.at(_bossIndex).moveSets.at(_moveSetIndex).moves[_moveIndex].name, 19);
 		drawInput("MP Cost", &_bosses.at(_bossIndex).moveSets.at(_moveSetIndex).moves[_moveIndex].stats.mp);
 		drawInput("SP Cost", &_bosses.at(_bossIndex).moveSets.at(_moveSetIndex).moves[_moveIndex].stats.sp);
-		drawInput("Unknown #1", &_bosses.at(_bossIndex).moveSets.at(_moveSetIndex).moves[_moveIndex].stats.unknown);
+		drawInput("Unknown #1", &_bosses.at(_bossIndex).moveSets.at(_moveSetIndex).moves[_moveIndex].stats.unknown1);
 		
 		if (ImGui::BeginCombo("Target Effect", targetEffectDefs.at(_bosses.at(_bossIndex).moveSets.at(_moveSetIndex).moves[_moveIndex].stats.targetEffect).c_str())) {
 			for (size_t i = 0; i < targetEffectDefs.size(); i++) {
@@ -455,14 +465,16 @@ void Bosses::outputToCSV() {
 		return;
 	}
 
-	stream << "Name,Type 1,Type 2,Level,Health,MP,SP,VIT,AGI,SPD,MEN,Stamina,IP Stun,IP Cancel Stun,Evasion Still %,Evasion Moving %,Fire Resist %,Wind Resist %,Earth Resist %,Lightning Resist %,Blizzard Resist %,"
-		<< "Status Effect Resist Bitflag,Knockback Resist,Status Recovery Time,T_DMG,T_HEAL,Size,No Run,EXP,Skill Coins,Magic Coins,Gold Coins,Item 1,Item 2,Item 1 Chance,Item 2 Chance\n";
+	stream << "Name,Unknown #1,Unknown #2,Type 1,Type 2,Level,Health,MP,SP,VIT,AGI,SPD,MEN,Stamina,IP Stun,IP Cancel Stun,Evasion Still %,Evasion Moving %,Fire Resist %,Wind Resist %,Earth Resist %,Lightning Resist %,Blizzard Resist %,"
+		<< "Status Effect Resist Bitflag,Knockback Resist,Status Recovery Time,T_DMG,Unknown #3,T_HEAL,Size,Unknown #4,Unknown #5,No Run,Unknown #6,EXP,Skill Coins,Magic Coins,Gold Coins,Item 1,Item 2,Item 1 Chance,Item 2 Chance,Unknown #7\n";
 
 	stream2 << "Enemy,Move,MP,SP,???,Target Effect,STR,POW,AD,Target Type,???,Distance,Accuracy,Range,Cast Time,Recovery,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback,Element,Element Strength,Status Effect Bitflag,"
 		<< "Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special\n";
 
 	for (const auto& val : _bosses) {
 		stream << val.name << ','
+			<< std::to_string(val.stats.unknown1) << ','
+			<< std::to_string(val.stats.unknown2) << ','
 			<< std::to_string(val.stats.type1) << ','
 			<< std::to_string(val.stats.type2) << ','
 			<< std::to_string(val.stats.level) << ','
@@ -487,9 +499,13 @@ void Bosses::outputToCSV() {
 			<< std::to_string(val.stats.knockbackResist) << ','
 			<< std::to_string(val.stats.T_REC) << ','
 			<< std::to_string(val.stats.T_DMG) << ','
+			<< std::to_string(val.stats.unknown3) << ','
 			<< std::to_string(val.stats.T_HEAL) << ','
 			<< std::to_string(val.stats.size) << ','
+			<< std::to_string(val.stats.unknown4) << ','
+			<< std::to_string(val.stats.unknown5) << ','
 			<< std::to_string(val.stats.noRunFlag) << ','
+			<< std::to_string(val.stats.unknown6) << ','
 			<< std::to_string(val.stats.exp) << ','
 			<< std::to_string(val.stats.skillCoins) << ','
 			<< std::to_string(val.stats.magicCoins) << ','
@@ -497,7 +513,8 @@ void Bosses::outputToCSV() {
 			<< Items::getInstance().getItems().at(val.stats.item1).name << ','
 			<< Items::getInstance().getItems().at(val.stats.item2).name << ','
 			<< std::to_string(val.stats.item1Chance) << ','
-			<< std::to_string(val.stats.item2Chance) << '\n';
+			<< std::to_string(val.stats.item2Chance) << ','
+			<< std::to_string(val.stats.unknown7) << '\n';
 
         for (const auto& moveSet : val.moveSets) {
             for (size_t moveIndex = 0; moveIndex < 5; moveIndex++) {
@@ -509,7 +526,7 @@ void Bosses::outputToCSV() {
                     << moveSet.moves[moveIndex].name << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.mp) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.sp) << ','
-                    << std::to_string(moveSet.moves[moveIndex].stats.unknown) << ','
+                    << std::to_string(moveSet.moves[moveIndex].stats.unknown1) << ','
                     << targetEffectDefs.at(moveSet.moves[moveIndex].stats.targetEffect) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.strength) << ','
                     << std::to_string(moveSet.moves[moveIndex].stats.power) << ','

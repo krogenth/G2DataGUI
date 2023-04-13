@@ -50,7 +50,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         StartStats::getInstance().draw();
         Enemies::getInstance().draw();
         Bosses::getInstance().draw();
-        Mdts::getInstance().draw();
+        Maps::getInstance().draw();
         Levelups::getInstance().draw();
 
         EndFrame();

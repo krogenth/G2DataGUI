@@ -178,6 +178,8 @@ void Enemies::draw() {
 	}
 
 	ImGui::InputText("Name", _enemies.at(_enemyIndex).name, 19);
+	drawInput("Unknown #1", &_enemies.at(_enemyIndex).stats.unknown1);
+	drawInput("Unknown #2", &_enemies.at(_enemyIndex).stats.unknown2);
 	drawInput("Type1", &_enemies.at(_enemyIndex).stats.type1);
 	drawInput("Type2", &_enemies.at(_enemyIndex).stats.type2);
 	drawInput("Level", &_enemies.at(_enemyIndex).stats.level);
@@ -211,8 +213,15 @@ void Enemies::draw() {
 	}
 
 	drawInput("Knockback Resist Rate", &_enemies.at(_enemyIndex).stats.knockbackResist);
+	drawInput("T_REC", &_enemies.at(_enemyIndex).stats.T_REC);
+	drawInput("T_DMG", &_enemies.at(_enemyIndex).stats.T_DMG);
+	drawInput("Unknown #3", &_enemies.at(_enemyIndex).stats.unknown3);
+	drawInput("T_HEAL", &_enemies.at(_enemyIndex).stats.T_HEAL);
 	drawInput("Size", &_enemies.at(_enemyIndex).stats.size);
+	drawInput("Unknwon #4", &_enemies.at(_enemyIndex).stats.unknown4);
+	drawInput("Unknown #5", &_enemies.at(_enemyIndex).stats.unknown5);
 	drawInput("No Run", &_enemies.at(_enemyIndex).stats.noRunFlag);
+	drawInput("Unknown #6", &_enemies.at(_enemyIndex).stats.unknown6);
 	drawInput("EXP", &_enemies.at(_enemyIndex).stats.exp);
 	drawInput("Skill Coins", &_enemies.at(_enemyIndex).stats.skillCoins);
 	drawInput("Magic Coins", &_enemies.at(_enemyIndex).stats.magicCoins);
@@ -250,6 +259,7 @@ void Enemies::draw() {
 
 	drawInput("Item #1 Chance", &_enemies.at(_enemyIndex).stats.item1Chance);
 	drawInput("Item #2 Chance", &_enemies.at(_enemyIndex).stats.item2Chance);
+	drawInput("Unknown #7", &_enemies.at(_enemyIndex).stats.unknown7);
 
 	ImGui::Checkbox("Moves", &_showMoves);
 	ImGui::SameLine();
@@ -282,7 +292,7 @@ void Enemies::draw() {
 		ImGui::InputText("Name", _enemies.at(_enemyIndex).moveSet.moves[_moveIndex].name, 19);
 		drawInput("MP Cost", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.mp);
 		drawInput("SP Cost", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.sp);
-		drawInput("Unknown #1", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.unknown);
+		drawInput("Unknown #1", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.unknown1);
 		
 		if (ImGui::BeginCombo("Target Effect", targetEffectDefs.at(_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.targetEffect).c_str())) {
 			for (size_t i = 0; i < targetEffectDefs.size(); i++) {
@@ -318,7 +328,7 @@ void Enemies::draw() {
 			ImGui::EndCombo();
 		}
 		
-		drawInput("Unknown #2", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.normalAttackFlag);
+		drawInput("Is Normal Attack", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.normalAttackFlag);
 		drawInput("Distance", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.distance);
 		if (ImGui::IsItemHovered()) ImGui::SetTooltip("How far away to use move?");
 		drawInput("Accuracy", &_enemies.at(_enemyIndex).moveSet.moves[_moveIndex].stats.accuracy);
@@ -428,14 +438,16 @@ void Enemies::outputToCSV() {
 		return;
 	}
 
-	stream << "Name,Type 1,Type 2,Level,Health,MP,SP,VIT,AGI,SPD,MEN,Stamina,IP Stun,IP Cancel Stun,Evasion Still %,Evasion Moving %,Fire Resist %,Wind Resist %,Earth Resist %,Lightning Resist %,Blizzard Resist %,"
-		<< "Status Effect Resist Bitflag,Knockback Resist,Status Recovery Time,T_DMG,T_HEAL,Size,No Run,EXP,Skill Coins,Magic Coins,Gold Coins,Item 1,Item 2,Item 1 Chance,Item 2 Chance\n";
+	stream << "Name,Unknown #1,Unknown #2,Type 1,Type 2,Level,Health,MP,SP,VIT,AGI,SPD,MEN,Stamina,IP Stun,IP Cancel Stun,Evasion Still %,Evasion Moving %,Fire Resist %,Wind Resist %,Earth Resist %,Lightning Resist %,Blizzard Resist %,"
+		<< "Status Effect Resist Bitflag,Knockback Resist,Status Recovery Time,T_DMG,Unknown #3,T_HEAL,Size,Unknown #4,Unknown #5,No Run,Unknown #6,EXP,Skill Coins,Magic Coins,Gold Coins,Item 1,Item 2,Item 1 Chance,Item 2 Chance,Unknown #7\n";
 
 	output2 << "Enemy,Move,MP,SP,???,Target Effect,STR,POW,AD,Target Type,???,Distance,Accuracy,Range,Cast Time,Recovery,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback,Element,Element Strength,Status Effect Bitflag,"
 		<< "Status Effect Chance,ATK Change,DEF Change,ACT Change,MOV Change,Special\n";
 
 	for (const auto& val : _enemies) {
 		stream << val.name << ','
+			<< std::to_string(val.stats.unknown1) << ','
+			<< std::to_string(val.stats.unknown2) << ','
 			<< std::to_string(val.stats.type1) << ','
 			<< std::to_string(val.stats.type2) << ','
 			<< std::to_string(val.stats.level) << ','
@@ -460,9 +472,13 @@ void Enemies::outputToCSV() {
 			<< std::to_string(val.stats.knockbackResist) << ','
 			<< std::to_string(val.stats.T_REC) << ','
 			<< std::to_string(val.stats.T_DMG) << ','
+			<< std::to_string(val.stats.unknown3) << ','
 			<< std::to_string(val.stats.T_HEAL) << ','
 			<< std::to_string(val.stats.size) << ','
+			<< std::to_string(val.stats.unknown4) << ','
+			<< std::to_string(val.stats.unknown5) << ','
 			<< std::to_string(val.stats.noRunFlag) << ','
+			<< std::to_string(val.stats.unknown6) << ','
 			<< std::to_string(val.stats.exp) << ','
 			<< std::to_string(val.stats.skillCoins) << ','
 			<< std::to_string(val.stats.magicCoins) << ','
@@ -470,7 +486,8 @@ void Enemies::outputToCSV() {
 			<< Items::getInstance().getItems().at(val.stats.item1).name << ','
 			<< Items::getInstance().getItems().at(val.stats.item2).name << ','
 			<< std::to_string(val.stats.item1Chance) << ','
-			<< std::to_string(val.stats.item2Chance) << '\n';
+			<< std::to_string(val.stats.item2Chance) << ','
+			<< std::to_string(val.stats.unknown7) << '\n';
 
 		for (size_t i = 0; i < 5; i++) {
 			if (std::string(val.moveSet.moves[i].name).find_first_not_of(' ') == std::string::npos) {
@@ -481,7 +498,7 @@ void Enemies::outputToCSV() {
 				<< val.moveSet.moves[i].name << ','
 				<< std::to_string(val.moveSet.moves[i].stats.mp) << ','
 				<< std::to_string(val.moveSet.moves[i].stats.sp) << ','
-				<< std::to_string(val.moveSet.moves[i].stats.unknown) << ','
+				<< std::to_string(val.moveSet.moves[i].stats.unknown1) << ','
 				<< targetEffectDefs.at(val.moveSet.moves[i].stats.targetEffect) << ','
 				<< std::to_string(val.moveSet.moves[i].stats.strength) << ','
 				<< std::to_string(val.moveSet.moves[i].stats.power) << ','

@@ -34,7 +34,7 @@ private:
     void readJson() {
         std::ifstream file("definitions.json");
         if (!file.is_open()) {
-            throw std::exception("Unable to fine definitions.json!");
+            throw std::exception("Unable to find definitions.json!");
         }
 
         auto json = nlohmann::json::parse(file);

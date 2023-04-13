@@ -6,12 +6,12 @@
 #pragma pack(1)
 struct Icon {
     uint8_t ID = 0;
-	uint16_t unknown = 0;
-	uint8_t unknown1 = 0;
+	uint16_t unknown1 = 0;
+	uint8_t unknown2 = 0;
 	float xPos = 0.0f;
 	float yPos = 0.0f;
 	float zPos = 0.0f;
-	float unknown2 = 0;
+	float unknown3 = 0;
 	float yAngle = 0;
 	uint16_t item1 = 0;
 	uint16_t item2 = 0;

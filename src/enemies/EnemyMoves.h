@@ -5,7 +5,7 @@
 struct EnemyMoveStats {
 	uint16_t mp = 0;
 	uint16_t sp = 0;
-	uint8_t unknown = 0;
+	uint8_t unknown1 = 0;
 	uint8_t targetEffect = 0;
 	uint16_t strength = 0;
 	uint16_t power = 0;

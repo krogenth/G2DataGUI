@@ -2,43 +2,17 @@
 #include <vector>
 
 #include "../common/BaseDataInterface.h"
-#include "./EnemyGroup.h"
-#include "./EnemyPosition.h"
-#include "./Header.h"
-#include "./HTA.h"
-#include "./Icon.h"
-#include "./Instance.h"
-#include "./MapEntry.h"
-#include "./MOS.h"
-#include "./Shop.h"
+#include "./Map.h"
 
 #include "../common/version_check.h"
 
-struct MdtStruct {
-	Header header;
-	std::vector<MapEntry> mapEntries;
-	std::vector<Instance> instances;
-	std::vector<HTA> HTA;
-	std::vector<EnemyPosition> enemyPositions;
-	std::vector<EnemyGroup> enemyGroups;
-	std::vector<MOS> MOS;
-	std::vector<Icon> icons;
-	std::vector<ShopStruct> shop;
-
-	//std::vector<modelStruct*> models;
-
-	std::string mapname = "";
-	std::string filename = "";
-	std::string filenameChr = "";
-};
-
-class Mdts : public BaseDataInterface {
+class Maps : public BaseDataInterface {
 public:
-	Mdts(const Mdts&) = delete;
-    Mdts(const Mdts&&) = delete;
+	Maps(const Maps&) = delete;
+    Maps(const Maps&&) = delete;
 
-    static Mdts& getInstance() {
-		static Mdts instance;
+    static Maps& getInstance() {
+		static Maps instance;
 		return instance;
 	};
 
@@ -48,15 +22,15 @@ public:
 	void outputToCSV();
 	void randomize();
 
-	const std::vector<MdtStruct>& getMdts() { return _mdts; };
+	const std::vector<MdtStruct>& getMaps() { return _maps; };
 
 private:
-	Mdts() {
+	Maps() {
 		_directory = (Version::getInstance().isHDVersion() ? "./content/data/afs/map/" : "./data/afs/map/");
 		read();
 	};
 
-	std::vector<MdtStruct> _mdts;
+	std::vector<MdtStruct> _maps;
 	size_t _mdtIndex = 0;
 	size_t _mapEntryIndex = 0;
 	size_t _instanceIndex = 0;
