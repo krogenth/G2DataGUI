@@ -3,46 +3,21 @@
 #include <filesystem>
 #include <string>
 
-#include "./include/MovesClass.h"
-#include "./include/ManaEggsClass.h"
-#include "./include/SkillsClass.h"
-#include "./include/SkillBooksClass.h"
-#include "./include/SpecialsClass.h"
-#include "./include/ItemsClass.h"
-#include "./include/StartStatsClass.h"
-#include "./include/EnemiesClass.h"
-#include "./include/BossesClass.h"
-#include "./include/MdtsClass.h"
-#include "./include/LevelupsClass.h"
+#include "./moves/Moves.h"
+#include "./moves/ManaEggs.h"
+#include "./moves/Specials.h"
+#include "./skills/Skills.h"
+#include "./skills/SkillBooks.h"
+#include "./items/Items.h"
+#include "./stats/StartStats.h"
+#include "./enemies/Enemies.h"
+#include "./bosses/Bosses.h"
+#include "./maps/Maps.h"
+#include "./levelups/Levelups.h"
 
-#include "./include/ImGuiInstance.h"
+#include "./ui/ImGuiInstance.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPTSTR lpCmdLine, _In_ int nCmdShow) {
-    // read data
-    Moves::getInstance().read();
-    ManaEggs::getInstance().read();
-    Skills::getInstance().read();
-    SkillBooks::getInstance().read();
-    Specials::getInstance().read();
-    Items::getInstance().read();
-    StartStats::getInstance().read();
-    Enemies::getInstance().read();
-    Bosses::getInstance().read();
-    Mdts::getInstance().read();
-    Levelups::getInstance().read();
-
-    //  now store all needed data into relevant classes
-    ManaEggs::getInstance().storeMoves(Moves::getInstance().getMoves());
-    SkillBooks::getInstance().storeSkills(Skills::getInstance().getSkills());
-    Specials::getInstance().storeMoves(Moves::getInstance().getMoves());
-    Items::getInstance().storeMoves(Moves::getInstance().getMoves());
-    StartStats::getInstance().storeItems(Items::getInstance().getItems());
-    Enemies::getInstance().storeMoves(Moves::getInstance().getMoves());
-    Enemies::getInstance().storeItems(Items::getInstance().getItems());
-    Bosses::getInstance().storeMoves(Moves::getInstance().getMoves());
-    Bosses::getInstance().storeItems(Items::getInstance().getItems());
-    Mdts::getInstance().storeItems(Items::getInstance().getItems());
-
     if (!StartImGui()) {
         return EXIT_FAILURE;
     }
@@ -75,7 +50,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         StartStats::getInstance().draw();
         Enemies::getInstance().draw();
         Bosses::getInstance().draw();
-        Mdts::getInstance().draw();
+        Maps::getInstance().draw();
         Levelups::getInstance().draw();
 
         EndFrame();
