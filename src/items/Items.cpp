@@ -137,6 +137,7 @@ void Items::draw() {
 	auto targetTypeDefs = JsonDefinitions::getInstance().getDefinitions("targetTypes");
 	auto animationDefs = JsonDefinitions::getInstance().getDefinitions("animations");
 	auto elementDefs = JsonDefinitions::getInstance().getDefinitions("elements");
+	auto equipmentSpecialDefs = JsonDefinitions::getInstance().getDefinitions("equipmentSpecials");
 
 	if (ImGui::Button("Save")) {
 		write();
@@ -354,7 +355,20 @@ void Items::draw() {
 		drawInput("Increase Water %", &_items.at(_itemIndex).equipmentOffset->increaseWaterPercent);
 		drawInput("Increase Explosion %", &_items.at(_itemIndex).equipmentOffset->increaseExplosionPercent);
 		drawInput("Increase Forest %", &_items.at(_itemIndex).equipmentOffset->increaseForestPercent);
-		drawInput("Special", &_items.at(_itemIndex).equipmentOffset->special);
+
+		if (ImGui::BeginCombo("Special", equipmentSpecialDefs.at(_items.at(_itemIndex).equipmentOffset->special).c_str())) {
+			for (uint8_t i = 0; i < equipmentSpecialDefs.size(); i++) {
+				bool is_selected = (i == _items.at(_itemIndex).equipmentOffset->special);
+				if (ImGui::Selectable(equipmentSpecialDefs.at(i).c_str(), is_selected)) {
+					_items.at(_itemIndex).equipmentOffset->special = i;
+				}
+				if (is_selected) {
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+		}
+
+		//drawInput("Special", &_items.at(_itemIndex).equipmentOffset->special);
 
 		ImGui::End();
 	}
@@ -472,5 +486,99 @@ void Items::draw() {
 }
 
 void Items::outputToCSV() {
+	auto itemEntryDefs = JsonDefinitions::getInstance().getDefinitions("itemEntries");
+	auto characterDefs = JsonDefinitions::getInstance().getDefinitions("characters");
+	auto effectiveOnDefs = JsonDefinitions::getInstance().getDefinitions("effectiveOn");
+	auto statusDefs = JsonDefinitions::getInstance().getDefinitions("statuses");
+	auto targetEffectDefs = JsonDefinitions::getInstance().getDefinitions("targetEffects");
+	auto targetTypeDefs = JsonDefinitions::getInstance().getDefinitions("targetTypes");
+	auto animationDefs = JsonDefinitions::getInstance().getDefinitions("animations");
+	auto elementDefs = JsonDefinitions::getInstance().getDefinitions("elements");
+	auto equipmentSpecialDefs = JsonDefinitions::getInstance().getDefinitions("equipmentSpecials");
 
+	std::ofstream output;
+	output.open("./csv/ITEMS.CSV");
+
+	if (!output.is_open()) {
+		return;
+	}
+
+	output << "Name,Description,Entry Type,Unknown #1,Unknown #2,Unknown #3,Icon,Unknown #4,Price,"
+		<< "\"Equipment\",Characters Bitflag,Strength,Vitality,Action,Movement,Effective On,"
+		<< "Fire Affinity,Wind Affinity,Earth Affinity,Lightning Affinity,Blizzard Affinity,"
+		<< "Ailments Bitflag,Ailments Chance,Increase Fire %,Increase Wind %,Increase Earth %,Increase Lightning %,Increase Blizzard %,Increase Water %,Increase Explosion %,Increase Forest %,Special,"
+		<< "\"Usable\",Target Effect,Target Type,Power,Range,Cast Time,Recovery Time,Animation,Effective On,Unknown #1,IP Damage,IP Cancel Damage,Knockback,"
+		<< "Element,Element Strength,Ailments Bitflag,Ailments Chance,Attack Mod,Defense Mod,Action Mod,Movement Mod,Break Chance,Special,Unknown #2,Unknown #3\n";
+
+	for (const auto& item : _items) {
+		output << item.name << ','
+			<< item.description << ','
+			<< itemEntryDefs.at(item.stats.entryType) << ','
+			<< std::to_string(item.stats.unknown1) << ','
+			<< std::to_string(item.stats.unknown2) << ','
+			<< std::to_string(item.stats.unknown3) << ','
+			<< std::to_string(item.stats.icon) << ','
+			<< std::to_string(item.stats.unknown4) << ','
+			<< std::to_string(item.stats.price) << ',';
+
+		if (item.equipmentOffset) {
+			output << ',' << std::to_string(item.equipmentOffset->characterBitflag) << ','
+				<< std::to_string(item.equipmentOffset->str) << ','
+				<< std::to_string(item.equipmentOffset->vit) << ','
+				<< std::to_string(item.equipmentOffset->act) << ','
+				<< std::to_string(item.equipmentOffset->mov) << ','
+				<< std::to_string(item.equipmentOffset->effectiveOn) << ','
+				<< std::to_string(item.equipmentOffset->fireAffinity) << ','
+				<< std::to_string(item.equipmentOffset->windAffinity) << ','
+				<< std::to_string(item.equipmentOffset->earthAffinity) << ','
+				<< std::to_string(item.equipmentOffset->lightningAffinity) << ','
+				<< std::to_string(item.equipmentOffset->blizzardAffinity) << ','
+				<< std::to_string(item.equipmentOffset->ailmentsBitflag) << ','
+				<< std::to_string(item.equipmentOffset->ailmentsChance) << ','
+				<< std::to_string(item.equipmentOffset->increaseFirePercent) << ','
+				<< std::to_string(item.equipmentOffset->increaseWindPercent) << ','
+				<< std::to_string(item.equipmentOffset->increaseEarthPercent) << ','
+				<< std::to_string(item.equipmentOffset->increaseLightningPercent) << ','
+				<< std::to_string(item.equipmentOffset->increaseBlizzardPercent) << ','
+				<< std::to_string(item.equipmentOffset->increaseWaterPercent) << ','
+				<< std::to_string(item.equipmentOffset->increaseExplosionPercent) << ','
+				<< std::to_string(item.equipmentOffset->increaseForestPercent) << ','
+				<< equipmentSpecialDefs.at(item.equipmentOffset->special) << ',';
+		}
+		else {
+			output << ",,,,,,,,,,,,,,,,,,,,,,,";
+		}
+
+		if (item.usableOffset) {
+			output << ',' << targetEffectDefs.at(item.usableOffset->targetEffect) << ','
+				<< targetTypeDefs.at(item.usableOffset->targetType) << ','
+				<< std::to_string(item.usableOffset->power) << ','
+				<< std::to_string(item.usableOffset->range) << ','
+				<< std::to_string(item.usableOffset->castTime) << ','
+				<< std::to_string(item.usableOffset->recoveryTime) << ','
+				<< Moves::getInstance().getMoves().at(item.usableOffset->animation).name << ','
+				<< effectiveOnDefs.at(item.usableOffset->effectiveOn) << ','
+				<< std::to_string(item.usableOffset->unknown1) << ','
+				<< std::to_string(item.usableOffset->ipDamage) << ','
+				<< std::to_string(item.usableOffset->ipCancelDamage) << ','
+				<< std::to_string(item.usableOffset->knockback) << ','
+				<< elementDefs.at(item.usableOffset->element) << ','
+				<< std::to_string(item.usableOffset->elementStr) << ','
+				<< std::to_string(item.usableOffset->ailmentsBitflag) << ','
+				<< std::to_string(item.usableOffset->ailmentsChance) << ','
+				<< std::to_string(item.usableOffset->atkMod) << ','
+				<< std::to_string(item.usableOffset->defMod) << ','
+				<< std::to_string(item.usableOffset->actMod) << ','
+				<< std::to_string(item.usableOffset->movMod) << ','
+				<< std::to_string(item.usableOffset->breakChance) << ','
+				<< std::to_string(item.usableOffset->special) << ','
+				<< std::to_string(item.usableOffset->unknown2) << ','
+				<< std::to_string(item.usableOffset->unknown3) << '\n';
+		}
+		else {
+			output << ",,,,,,,,,,,,,,,,,,,,,,,,\n";
+		}
+	}
+
+	output.close();
 }

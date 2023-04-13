@@ -57,7 +57,7 @@ void Specials::read() {
 void Specials::draw() {
 	ImGui::Begin("SPECIALS");
 	
-	auto specialDefs = JsonDefinitions::getInstance().getDefinitions("specials");
+	auto specialDefs = JsonDefinitions::getInstance().getDefinitions("specialChars");
 
 	if (ImGui::Button("Save")) {
 		write();
@@ -118,7 +118,7 @@ void Specials::draw() {
 }
 
 void Specials::outputToCSV() {
-	auto specialDefs = JsonDefinitions::getInstance().getDefinitions("specials");
+	auto specialDefs = JsonDefinitions::getInstance().getDefinitions("specialChars");
 	std::ofstream output;
 	output.open("./csv/TB_SPCL.CSV");
 
