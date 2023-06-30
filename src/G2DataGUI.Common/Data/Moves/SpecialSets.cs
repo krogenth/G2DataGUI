@@ -9,6 +9,7 @@ public class SpecialSets
     public static SpecialSets Instance { get; } = new();
     private ObservableCollection<SpecialSet> _specialSets = new();
     public event EventHandler CollectionRefreshed;
+    public static int NumberOfSpecialSets = 0x0E;
 
     private SpecialSets()
     {
@@ -28,7 +29,7 @@ public class SpecialSets
     private void ReadSpecialSets()
     {
         _specialSets.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Specials, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.Open))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -44,7 +45,7 @@ public class SpecialSets
 
     private void WriteSpecialSets()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Specials, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.OpenOrCreate))
         {
             foreach (SpecialSet specialSet in _specialSets)
             {

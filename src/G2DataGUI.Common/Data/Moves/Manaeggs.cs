@@ -9,6 +9,7 @@ public class Manaeggs
     public static Manaeggs Instance { get; } = new();
     private ObservableCollection<Manaegg> _manaeggs = new();
     public event EventHandler CollectionRefreshed;
+    public static int NumberOfManaeggs = 0x0B;
 
     private Manaeggs()
     {
@@ -28,7 +29,7 @@ public class Manaeggs
     private void ReadManaeggs()
     {
         _manaeggs.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Manaeggs, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ManaeggsPath, FileMode.Open))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -44,7 +45,7 @@ public class Manaeggs
 
     private void WriteManaeggs()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Manaeggs, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ManaeggsPath, FileMode.OpenOrCreate))
         {
             foreach (Manaegg manaegg in _manaeggs)
             {

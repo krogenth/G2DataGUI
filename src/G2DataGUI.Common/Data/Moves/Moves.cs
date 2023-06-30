@@ -9,6 +9,7 @@ public class Moves
     public static Moves Instance { get; } = new();
     private ObservableCollection<Move> _moves = new();
     public event EventHandler CollectionRefreshed;
+    public static int NumberOfMoves { get; } = 0x80;
 
     private Moves()
     {
@@ -28,7 +29,7 @@ public class Moves
     private void ReadMoves()
     {
         _moves.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Moves, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.Open))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -48,7 +49,7 @@ public class Moves
 
     private void WriteMoves()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Moves, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.OpenOrCreate))
         {
             foreach (Move move in _moves)
             {

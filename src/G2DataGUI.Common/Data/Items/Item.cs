@@ -64,7 +64,7 @@ public class Item : BaseContainer
         if (Equipment != null)
         {
             writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += (uint)Marshal.SizeOf(typeof(Equipment));
+            ptrOffset += Equipment.Size;
         }
         else
         {
@@ -74,7 +74,7 @@ public class Item : BaseContainer
         if (Usable != null)
         {
             writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += (uint)Marshal.SizeOf(typeof(Usable));
+            ptrOffset += Usable.Size;
         }
         else
         {

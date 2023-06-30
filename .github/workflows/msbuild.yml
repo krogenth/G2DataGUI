@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         dotnet-version: [ '7.0.x' ]
+        configuration: [ Debug, Release ]
     
     steps:
       - uses: actions/checkout@v3
@@ -25,4 +26,4 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configure Release --no-restore
+        run: dotnet build -c ${{ matrix.configuration }}

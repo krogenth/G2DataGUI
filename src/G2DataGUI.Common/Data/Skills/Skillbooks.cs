@@ -9,6 +9,7 @@ public class Skillbooks
     public static Skillbooks Instance { get; } = new();
     public ObservableCollection<Skillbook> _skillbooks = new();
     public event EventHandler CollectionRefreshed;
+    public static int NumberOfSkillbooks = 0x0A;
 
     private Skillbooks()
     {
@@ -28,7 +29,7 @@ public class Skillbooks
     private void ReadSkillbooks()
     {
         _skillbooks.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Skillbooks, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.Open))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -44,7 +45,7 @@ public class Skillbooks
 
     private void WriteSkillbooks()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Skillbooks, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.OpenOrCreate))
         {
             foreach (Skillbook skillbook in _skillbooks)
             {

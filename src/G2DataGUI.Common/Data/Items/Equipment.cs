@@ -166,6 +166,8 @@ public class Equipment
         }
     }
 
+    public static uint Size { get => 0x1C; }
+
     public static Equipment ReadEquipmentStats(Stream reader)
     {
         Equipment stats = new Equipment();

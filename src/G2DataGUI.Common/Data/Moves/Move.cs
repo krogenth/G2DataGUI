@@ -1,7 +1,5 @@
 ﻿using System.IO;
-using System.Security.Cryptography;
 using G2DataGUI.Common.Data.Common;
-using G2DataGUI.Common.Data.Maps;
 using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Moves;

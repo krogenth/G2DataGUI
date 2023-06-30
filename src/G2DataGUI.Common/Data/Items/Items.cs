@@ -29,7 +29,7 @@ public class Items
     private void ReadItems()
     {
         _items.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Items, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.Open))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -48,7 +48,7 @@ public class Items
 
     private void WriteItems()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Items, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.OpenOrCreate))
         {
             uint pointer = 0;
             foreach (var item in _items)

@@ -104,6 +104,8 @@ public class Usable
         }
     }
 
+    public static uint Size { get => 0x20; } 
+
     public static Usable ReadUsableStats(Stream reader)
     {
         Usable stats = new Usable();

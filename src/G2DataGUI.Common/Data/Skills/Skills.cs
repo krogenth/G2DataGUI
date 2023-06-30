@@ -9,6 +9,7 @@ public class Skills
     public static Skills Instance { get; } = new();
     private ObservableCollection<Skill> _skills = new();
     public event EventHandler CollectionRefreshed;
+    public static int NumberOfSkills = 0x80;
 
     private Skills()
     {
@@ -28,7 +29,7 @@ public class Skills
     private void ReadSkills()
     {
         _skills.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Skills, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillsPath, FileMode.Open))
         using(MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -48,7 +49,7 @@ public class Skills
 
     private void WriteSkills()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.Skills, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillsPath, FileMode.OpenOrCreate))
         {
             foreach (Skill skill in _skills)
             {

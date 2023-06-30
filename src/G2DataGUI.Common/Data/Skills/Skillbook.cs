@@ -1,5 +1,4 @@
 ﻿using G2DataGUI.Common.Data.Common;
-using G2DataGUI.IO.Streams;
 using System.IO;
 
 namespace G2DataGUI.Common.Data.Skills;
