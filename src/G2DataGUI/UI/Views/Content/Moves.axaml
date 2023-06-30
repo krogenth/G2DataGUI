@@ -71,7 +71,7 @@
 										Margin="4">
 								<TextBlock Text="Animation:" />
 								<ComboBox HorizontalAlignment="Stretch"
-										  SelectedIndex="{Binding SelectedMoveItem.Animation}"
+										  SelectedIndex="{Binding SelectedMoveItem.Stats.Animation}"
 										  Items="{locale:Locale Animations}" />
 							</StackPanel>
 							<StackPanel Grid.Column="1"
@@ -96,12 +96,12 @@
 								<StackPanel Margin="4">
 									<TextBlock Text="Target Effect:" />
 									<ComboBox HorizontalAlignment="Stretch"
-										  SelectedIndex="{Binding SelectedMoveItem.TargetEffect}"
+										  SelectedIndex="{Binding SelectedMoveItem.Stats.TargetEffect}"
 										  Items="{locale:Locale TargetEffects}" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Range:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Range}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Range}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
@@ -112,7 +112,7 @@
 								<StackPanel Margin="4">
 									<TextBlock Text="Target Type:" />
 									<ComboBox HorizontalAlignment="Stretch"
-											  SelectedIndex="{Binding SelectedMoveItem.TargetType}"
+											  SelectedIndex="{Binding SelectedMoveItem.Stats.TargetType}"
 											  Items="{locale:Locale TargetTypes}" />
 								</StackPanel>
 							</StackPanel>
@@ -130,45 +130,45 @@
 							<StackPanel Grid.Column="0"
 										Margin="4">
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.PoisonBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.PoisonBitflag}">
 									Poison
 								</CheckBox>
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.SleepBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.SleepBitflag}">
 									Sleep
 								</CheckBox>
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.ParalysisBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.ParalysisBitflag}">
 									Paralysis
 								</CheckBox>
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.ConfusionBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.ConfusionBitflag}">
 									Confusion
 								</CheckBox>
 							</StackPanel>
 							<StackPanel Grid.Column="1"
 										Margin="4">
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.PlagueBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.PlagueBitflag}">
 									Plague
 								</CheckBox>
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.Magic_BlockBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.Magic_BlockBitflag}">
 									Magic Block
 								</CheckBox>
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.Move_BlockBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.Move_BlockBitflag}">
 									Move Block
 								</CheckBox>
 								<CheckBox IsThreeState="False"
-										  IsChecked="{Binding SelectedMoveItem.DeathBitflag}">
+										  IsChecked="{Binding SelectedMoveItem.Stats.DeathBitflag}">
 									Death
 								</CheckBox>
 							</StackPanel>
 						</Grid>
 						<StackPanel Margin="4">
 							<TextBlock Text="Ailments Chance:" />
-							<NumericUpDown Value="{Binding SelectedMoveItem.AilmentsChance}"
+							<NumericUpDown Value="{Binding SelectedMoveItem.Stats.AilmentsChance}"
 										   Increment="1"
 										   Minimum="0"
 										   Maximum="100" />
@@ -191,28 +191,28 @@
 										Grid.Column="0">
 								<StackPanel Margin="4">
 									<TextBlock Text="Cost:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Cost}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cost}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Power:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Power}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Power}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Cast Time Level 1:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Cast1Time}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cast1Time}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="IP Damage:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.IpDamage}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.IpDamage}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
@@ -220,19 +220,19 @@
 								<StackPanel Margin="4">
 									<TextBlock Text="Element:" />
 									<ComboBox HorizontalAlignment="Stretch"
-											  SelectedIndex="{Binding SelectedMoveItem.Element}"
+											  SelectedIndex="{Binding SelectedMoveItem.Stats.Element}"
 											  Items="{locale:Locale Elements}" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Knockdown:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Knockdown}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Knockdown}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="1" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Unknown #1" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Unknown1}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Unknown1}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="256" />
@@ -242,49 +242,49 @@
 										Grid.Column="1">
 								<StackPanel Margin="4">
 									<TextBlock Text="Strength:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Strength}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Strength}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Recovery Time:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.RecoveryTime}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.RecoveryTime}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Cast Time Level 5:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Cast5Time}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cast5Time}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="IP Cancel Damage:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.IpCancelDamage}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.IpCancelDamage}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Element Strength:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.ElementStrength}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.ElementStrength}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="10" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Knockback:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Knockback}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Knockback}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Multiplier:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Multiplier}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Multiplier}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
@@ -308,14 +308,14 @@
 										Grid.Column="0">
 								<StackPanel Margin="4">
 									<TextBlock Text="Attack Modifier:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.AttackModifier}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.AttackModifier}"
 												   Increment="1"
 												   Minimum="-5"
 												   Maximum="5" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Defense Modifier:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.DefenseModifier}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.DefenseModifier}"
 												   Increment="1"
 												   Minimum="-5"
 												   Maximum="5" />
@@ -325,14 +325,14 @@
 										Grid.Column="1">
 								<StackPanel Margin="4">
 									<TextBlock Text="Action Modifier:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.ActionModifier}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.ActionModifier}"
 												   Increment="1"
 												   Minimum="-5"
 												   Maximum="5" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Movement Modifier:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.MovementModifier}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.MovementModifier}"
 												   Increment="1"
 												   Minimum="-5"
 												   Maximum="5" />
@@ -352,21 +352,21 @@
 							<StackPanel Grid.Column="0">
 								<StackPanel Margin="4">
 									<TextBlock Text="Level 1:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.CoinCost1}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.CoinCost1}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Level 3:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.CoinCost3}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.CoinCost3}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Level 5:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.CoinCost5}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.CoinCost5}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
@@ -375,14 +375,14 @@
 							<StackPanel Grid.Column="1">
 								<StackPanel Margin="4">
 									<TextBlock Text="Level 2:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.CoinCost2}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.CoinCost2}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Level 4:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.CoinCost4}"
+									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.CoinCost4}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="65536" />

@@ -26,7 +26,6 @@ public struct FixedLengthName
     [FieldOffset(0x0F)] private byte char16;
     [FieldOffset(0x10)] private byte char17;
     [FieldOffset(0x11)] private byte char18;
-
     
     public string Name
     {

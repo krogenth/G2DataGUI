@@ -4,116 +4,162 @@ using System.IO;
 
 namespace G2DataGUI.Common.Data.Items;
 
-public class Usable : BaseContainer
+public class Usable
 {
-    private UsableStats _stats = new UsableStats();
+    public byte TargetEffect { get; set; }
+    public byte TargetType { get; set; }
+    public short Power { get; set; }
+    public short Range { get; set; }
+    public short CastTime { get; set; }
+    public short RecoveryTime { get; set; }
+    public ushort Animation { get; set; }
+    public byte EffectiveOn { get; set; }
+    public byte Unknown1 { get; set; }
+    public short IpDamage { get; set; }
+    public short IpCancelDamage { get; set; }
+    public short Knockback { get; set; }
+    public byte Element { get; set; }
+    public byte ElementStrength { get; set; }
+    public byte AilmentsBitflag { get; set; }
+    public byte AilmentsChance { get; set; }
+    public sbyte AttackModifier { get; set; }
+    public sbyte DefenseModifier { get; set; }
+    public sbyte ActionModifier { get; set; }
+    public sbyte MovementModifier { get; set; }
+    public byte BreakChance { get; set; }
+    public byte Special { get; set; }
+    public byte Unknown2 { get; set; }
+    public byte Unknown3 { get; set; }
 
-    public static Usable ReadUsable(Stream reader)
-    {
-        Usable usable = new Usable();
-        UsableStats? stats = reader.ReadStruct<UsableStats>();
-        if (stats == null) return null;
-        usable._stats = stats.Value;
-        return usable;
-    }
-
-    public void WriteUsable(Stream writer)
-    {
-        writer.WriteStruct(_stats);
-    }
-    public byte TargetEffect { get => _stats.TargetEffect; set => _stats.TargetEffect = value; }
-    public byte TargetType { get => _stats.TargetType; set => _stats.TargetType = value; }
-    public short Power { get => _stats.Power; set => _stats.Power = value; }
-    public short Range { get => _stats.Range; set => _stats.Range = value; }
-    public short CastTime { get => _stats.CastTime; set => _stats.CastTime = value; }
-    public short RecoveryTime { get => _stats.RecoveryTime; set => _stats.RecoveryTime = value; }
-    public ushort Animation { get => _stats.Animation; set => _stats.Animation = value; }
-    public byte EffectiveOn { get => _stats.EffectiveOn; set => _stats.EffectiveOn = value; }
-    public byte Unknown1 { get => _stats.Unknown1; set => _stats.Unknown1 = value; }
-    public short IpDamage { get => _stats.IpDamage;  set => _stats.IpDamage = value; }
-    public short IpCancelDamage { get => _stats.IpCancelDamage; set => _stats.IpCancelDamage = value; }
-    public short Knockback { get => _stats.Knockback; set => _stats.Knockback = value; }
-    public byte Element { get => _stats.Element; set => _stats.Element = value; }
-    public byte ElementStrength { get => _stats.ElementStrength; set => _stats.ElementStrength = value; }
     public bool PoisonBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
         }
     }
     public bool SleepBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
         }
     }
     public bool ParalysisBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
         }
     }
     public bool ConfusionBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
         }
     }
     public bool PlagueBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
         }
     }
     public bool Magic_BlockBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
         }
     }
     public bool Move_BlockBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
         }
     }
     public bool DeathBitflag
     {
-        get => (_stats.AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
         set
         {
-            if (value) _stats.AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
-            else _stats.AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
         }
     }
-    public byte AilmentsChance { get => _stats.AilmentsChance; set => _stats.AilmentsChance = value; }
-    public sbyte AttackModifier { get => _stats.AttackModifier; set => _stats.AttackModifier = value; }
-    public sbyte DefenseModifier { get => _stats.DefenseModifier; set => _stats.DefenseModifier = value; }
-    public sbyte ActionModifier { get => _stats.ActionModifier; set => _stats.ActionModifier = value; }
-    public sbyte MovementModifier { get => _stats.MovementModifier; set => _stats.MovementModifier = value; }
-    public byte BreakChance { get => _stats.BreakChance; set => _stats.BreakChance = value; }
-    public byte Special { get => _stats.Special; set => _stats.Special = value; }
-    public byte Unknown2 { get => _stats.Unknown2; set => _stats.Unknown2 = value; }
-    public byte Unknown3 { get => _stats.Unknown3; set => _stats.Unknown3 = value; }
+
+    public static Usable ReadUsableStats(Stream reader)
+    {
+        Usable stats = new Usable();
+        stats.TargetEffect = reader.ReadRawByte();
+        stats.TargetType = reader.ReadRawByte();
+        stats.Power = reader.ReadRawShort();
+        stats.Range = reader.ReadRawShort();
+        stats.CastTime = reader.ReadRawShort();
+        stats.RecoveryTime = reader.ReadRawShort();
+        stats.Animation = reader.ReadRawUShort();
+        stats.EffectiveOn = reader.ReadRawByte();
+        stats.Unknown1 = reader.ReadRawByte();
+        stats.IpDamage = reader.ReadRawShort();
+        stats.IpCancelDamage = reader.ReadRawShort();
+        stats.Knockback = reader.ReadRawShort();
+        stats.Element = reader.ReadRawByte();
+        stats.ElementStrength = reader.ReadRawByte();
+        stats.AilmentsBitflag = reader.ReadRawByte();
+        stats.AilmentsChance = reader.ReadRawByte();
+        stats.AttackModifier = reader.ReadRawSByte();
+        stats.DefenseModifier = reader.ReadRawSByte();
+        stats.ActionModifier = reader.ReadRawSByte();
+        stats.MovementModifier = reader.ReadRawSByte();
+        stats.BreakChance = reader.ReadRawByte();
+        stats.Special = reader.ReadRawByte();
+        stats.Unknown2 = reader.ReadRawByte();
+        stats.Unknown3 = reader.ReadRawByte();
+
+        return stats;
+    }
+
+    public void WriteUsableStats(Stream writer)
+    {
+        writer.WriteRawByte(TargetEffect);
+        writer.WriteRawByte(TargetType);
+        writer.WriteRawShort(Power);
+        writer.WriteRawShort(Range);
+        writer.WriteRawShort(CastTime);
+        writer.WriteRawShort(RecoveryTime);
+        writer.WriteRawUShort(Animation);
+        writer.WriteRawByte(EffectiveOn);
+        writer.WriteRawByte(Unknown1);
+        writer.WriteRawShort(IpDamage);
+        writer.WriteRawShort(IpCancelDamage);
+        writer.WriteRawShort(Knockback);
+        writer.WriteRawByte(Element);
+        writer.WriteRawByte(ElementStrength);
+        writer.WriteRawByte(AilmentsBitflag);
+        writer.WriteRawByte(AilmentsChance);
+        writer.WriteRawSByte(AttackModifier);
+        writer.WriteRawSByte(DefenseModifier);
+        writer.WriteRawSByte(ActionModifier);
+        writer.WriteRawSByte(MovementModifier);
+        writer.WriteRawByte(BreakChance);
+        writer.WriteRawByte(Special);
+        writer.WriteRawByte(Unknown2);
+        writer.WriteRawByte(Unknown3);
+    }
 }

@@ -1,11 +1,28 @@
-﻿using System.Runtime.InteropServices;
+﻿using G2DataGUI.IO.Streams;
+using System.IO;
 
 namespace G2DataGUI.Common.Data.Moves;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x04)]
-public struct SpecialMove
+public class SpecialMove
 {
-    [FieldOffset(0x00)] public byte MoveOffset;
-    [FieldOffset(0x01)] public byte StartingLevel;
-    [FieldOffset(0x02)] public ushort StoryFlag;
+    public byte MoveOffset { get; set; }
+    public byte StartingLevel { get; set; }
+    public ushort StoryFlag { get; set; }
+
+    public static SpecialMove ReadSpecialMove(Stream reader)
+    {
+        SpecialMove specialMove = new SpecialMove();
+        specialMove.MoveOffset = reader.ReadRawByte();
+        specialMove.StartingLevel = reader.ReadRawByte();
+        specialMove.StoryFlag = reader.ReadRawUShort();
+
+        return specialMove;
+    }
+
+    public void WriteSpecialMove(Stream writer)
+    {
+        writer.WriteRawByte(MoveOffset);
+        writer.WriteRawByte(StartingLevel);
+        writer.WriteRawUShort(StoryFlag);
+    }
 }

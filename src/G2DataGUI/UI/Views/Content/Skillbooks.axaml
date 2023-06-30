@@ -64,7 +64,7 @@
 					<StackPanel Margin="4">
 						<TextBlock Text="Skill:" />
 						<ComboBox HorizontalAlignment="Stretch"
-								SelectedIndex="{Binding SelectedSkillbookItem.Skill1Offset}"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill1.SkillOffset}"
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -75,14 +75,14 @@
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Starting Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill1StartingLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill1.StartingLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="5" />
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Required Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill1RequiredLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill1.RequiredLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="255" />
@@ -97,7 +97,7 @@
 					<StackPanel Margin="4">
 						<TextBlock Text="Skill:" />
 						<ComboBox HorizontalAlignment="Stretch"
-								SelectedIndex="{Binding SelectedSkillbookItem.Skill2Offset}"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill2.SkillOffset}"
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -108,14 +108,14 @@
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Starting Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill2StartingLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill2.StartingLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="5" />
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Required Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill2RequiredLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill2.RequiredLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="255" />
@@ -130,7 +130,7 @@
 					<StackPanel Margin="4">
 						<TextBlock Text="Skill:" />
 						<ComboBox HorizontalAlignment="Stretch"
-								SelectedIndex="{Binding SelectedSkillbookItem.Skill3Offset}"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill3.SkillOffset}"
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -141,14 +141,14 @@
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Starting Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill3StartingLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill3.StartingLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="5" />
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Required Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill3RequiredLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill3.RequiredLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="255" />
@@ -163,7 +163,7 @@
 					<StackPanel Margin="4">
 						<TextBlock Text="Skill:" />
 						<ComboBox HorizontalAlignment="Stretch"
-								SelectedIndex="{Binding SelectedSkillbookItem.Skill4Offset}"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill4.SkillOffset}"
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -174,14 +174,14 @@
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Starting Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill4StartingLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill4.StartingLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="5" />
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Required Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill4RequiredLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill4.RequiredLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="255" />
@@ -196,7 +196,7 @@
 					<StackPanel Margin="4">
 						<TextBlock Text="Skill:" />
 						<ComboBox HorizontalAlignment="Stretch"
-								SelectedIndex="{Binding SelectedSkillbookItem.Skill5Offset}"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill5.SkillOffset}"
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -207,14 +207,14 @@
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Starting Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill5StartingLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill5.StartingLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="5" />
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Required Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill5RequiredLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill5.RequiredLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="255" />
@@ -229,7 +229,7 @@
 					<StackPanel Margin="4">
 						<TextBlock Text="Skill:" />
 						<ComboBox HorizontalAlignment="Stretch"
-								SelectedIndex="{Binding SelectedSkillbookItem.Skill6Offset}"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill6.SkillOffset}"
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -240,14 +240,14 @@
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Starting Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill6StartingLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill6.StartingLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="5" />
 					</StackPanel>
 					<StackPanel Margin="4">
 						<TextBlock Text="Required Level:" />
-						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill6RequiredLevel}"
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill6.RequiredLevel}"
 									   Increment="1"
 									   Minimum="0"
 									   Maximum="255" />

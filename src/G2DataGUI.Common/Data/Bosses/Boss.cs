@@ -37,8 +37,7 @@ public class Boss
         FixedLengthName? name = binReader.BaseStream.ReadStruct<FixedLengthName>();
         if (name != null) boss.name = (FixedLengthName)name;
 
-        EnemyAISection? ai = EnemyAISection.ReadEnemyAISection(binReader.BaseStream);
-        if (ai != null) boss.AIs = ai.Value;
+        boss.AIs = EnemyAISection.ReadEnemyAISection(binReader.BaseStream);
 
         // first boss moveset instance offset is always 0x3C
         // second boss moveset instance offset is always 0x4C
@@ -46,8 +45,7 @@ public class Boss
         else binReader.BaseStream.Seek(0x3C, SeekOrigin.Begin);
         binReader.BaseStream.Seek(binReader.ReadInt32(), SeekOrigin.Begin);
 
-        EnemyMoveset? moveset = EnemyMoveset.ReadEnemyMoveset(binReader.BaseStream);
-        if (moveset != null) boss.movesets.Add(moveset.Value);
+        boss.movesets.Add(EnemyMoveset.ReadEnemyMoveset(binReader.BaseStream));
 
         return boss;
     }

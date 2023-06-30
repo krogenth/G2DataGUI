@@ -1,12 +1,31 @@
-﻿using System.Runtime.InteropServices;
+﻿using G2DataGUI.IO.Streams;
+using System.IO;
 
 namespace G2DataGUI.Common.Data.Moves;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x04)]
-public struct ManaeggSpell
+public class ManaeggSpell
 {
-    [FieldOffset(0x00)] public byte SpellOffset;
-    [FieldOffset(0x01)] public byte StartingLevel;
-    [FieldOffset(0x02)] public byte RequiredLevel;
-    [FieldOffset(0x03)] public byte Unknown1;
+    public byte SpellOffset { get; set; }
+    public byte StartingLevel { get; set; }
+    public byte RequiredLevel { get; set; }
+    public byte Unknown1 { get; set; }
+
+    public static ManaeggSpell ReadManaeggSpell(Stream reader)
+    {
+        ManaeggSpell spell = new ManaeggSpell();
+        spell.SpellOffset = reader.ReadRawByte();
+        spell.StartingLevel = reader.ReadRawByte();
+        spell.RequiredLevel = reader.ReadRawByte();
+        spell.Unknown1 = reader.ReadRawByte();
+
+        return spell;
+    }
+
+    public void WriteManaeggSpell(Stream writer)
+    {
+        writer.WriteRawByte(SpellOffset);
+        writer.WriteRawByte(StartingLevel);
+        writer.WriteRawByte(RequiredLevel);
+        writer.WriteRawByte(Unknown1);
+    }
 }

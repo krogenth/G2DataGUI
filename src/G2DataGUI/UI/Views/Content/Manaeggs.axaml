@@ -75,7 +75,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell1Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell1.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -92,7 +92,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell1StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell1.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -101,7 +101,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell1RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell1.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -116,7 +116,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell2Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell2.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -133,7 +133,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell2StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell2.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -142,7 +142,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell2RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell2.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -157,7 +157,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell3Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell3.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -174,7 +174,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell3StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell3.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -183,7 +183,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell3RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell3.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -198,7 +198,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell4Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell4.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -215,7 +215,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell4StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell4.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -224,7 +224,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell4RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell4.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -239,7 +239,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell5Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell5.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -256,7 +256,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell5StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell5.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -265,7 +265,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell5RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell5.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -280,7 +280,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell6Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell6.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -297,7 +297,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell6StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell6.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -306,7 +306,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell6RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell6.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -341,7 +341,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell7Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell7.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -358,7 +358,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell7StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell7.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -367,7 +367,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell7RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell7.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -382,7 +382,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell8Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell8.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -399,7 +399,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell8StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell8.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -408,7 +408,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell8RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell8.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -423,7 +423,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell9Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell9.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -440,7 +440,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell9StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell9.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -449,7 +449,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell9RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell9.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -464,7 +464,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell10Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell10.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -481,7 +481,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell10StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell10.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -490,7 +490,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell10RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell10.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -505,7 +505,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell11Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell11.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -522,7 +522,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell11StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell11.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -531,7 +531,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell11RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell11.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -546,7 +546,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell12Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell12.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -563,7 +563,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell12StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell12.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -572,7 +572,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell12RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell12.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -607,7 +607,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell13Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell13.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -624,7 +624,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell13StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell13.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -633,7 +633,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell13RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell13.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -648,7 +648,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell14Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell14.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -665,7 +665,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell14StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell14.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -674,7 +674,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell14RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell14.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -689,7 +689,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell15Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell15.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -706,7 +706,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell15StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell15.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -715,7 +715,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell15RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell15.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -730,7 +730,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell16Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell16.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -747,7 +747,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell16StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell16.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -756,7 +756,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell16RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell16.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -771,7 +771,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell17Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell17.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -788,7 +788,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell17StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell17.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -797,7 +797,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell17RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell17.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -812,7 +812,7 @@
 							<StackPanel Margin="4">
 								<TextBlock Text="Spell:" />
 								<ComboBox HorizontalAlignment="Stretch"
-									SelectedIndex="{Binding SelectedManaeggItem.Spell18Offset}"
+									SelectedIndex="{Binding SelectedManaeggItem.Spell18.SpellOffset}"
 									Items="{Binding GameMoves}">
 									<ComboBox.ItemTemplate>
 										<DataTemplate>
@@ -829,7 +829,7 @@
 								<StackPanel Margin="4"
 											Grid.Column="0">
 									<TextBlock Text="Starting Level:" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell18StartingLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell18.StartingLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />
@@ -838,7 +838,7 @@
 											Grid.Column="1">
 									<TextBlock Text="Required Level:"
 											   ToolTip.Tip="Required Egg Level to unlock" />
-									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell18RequiredLevel}"
+									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell18.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="5" />

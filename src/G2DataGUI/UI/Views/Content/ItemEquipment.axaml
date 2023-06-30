@@ -1,0 +1,173 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.ItemEquipment"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.Locale"
+             mc:Ignorable="d"
+			 Focusable="True"
+			 x:CompileBindings="True"
+			 x:DataType="vm:ItemEquipmentViewModel">
+	<StackPanel Margin="0,0,10,0"
+				IsVisible="{Binding HasEquipment}">
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.RyudoBitflag}">
+			Ryudo
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.ElenaBitflag}">
+			Elena
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.MilleniaBitflag}">
+			Millenia
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.RoanBitflag}">
+			Roan
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.TioBitflag}">
+			Tio
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.MaregBitflag}">
+			Mareg
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.PrinceRoanBitflag}">
+			Prince Roan
+		</CheckBox>
+		<TextBlock Text="Strength:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.Strength}"
+					   Increment="1"
+					   Minimum="-32768"
+					   Maximum="32767" />
+		<TextBlock Text="Vitality:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.Vitality}"
+					   Increment="1"
+					   Minimum="-32768"
+					   Maximum="32767" />
+		<TextBlock Text="Action:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.Action}"
+					   Increment="1"
+					   Minimum="-32768"
+					   Maximum="32767" />
+		<TextBlock Text="Movement:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.Movement}"
+					   Increment="1"
+					   Minimum="-32768"
+					   Maximum="32767" />
+		<TextBlock Text="Effective On:" />
+		<ComboBox SelectedIndex="{Binding SelectedItemEquipment.EffectiveOn}"
+				  Items="{locale:Locale EffectiveOn}" />
+		<TextBlock Text="Fire Affinity:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.FireAffinity}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Wind Affinity:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.WindAffinity}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Earth Affinity:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.EarthAffinity}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Lightning Affinity:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.LightningAffinity}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Blizzard Affinity:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.BlizzardAffinity}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+
+		<!-- Ailments checkboxes -->
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.PoisonBitflag}">
+			Poison
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.SleepBitflag}">
+			Sleep
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.ParalysisBitflag}">
+			Paralysis
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.ConfusionBitflag}">
+			Confusion
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.PlagueBitflag}">
+			Plague
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.Magic_BlockBitflag}">
+			Magic Block
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.Move_BlockBitflag}">
+			Move Block
+		</CheckBox>
+		<CheckBox IsThreeState="False"
+				  IsChecked="{Binding SelectedItemEquipment.DeathBitflag}">
+			Death
+		</CheckBox>
+		<TextBlock Text="Ailments Chance:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.AilmentsChance}"
+					   Increment="1"
+					   Minimum="0"
+					   Maximum="100" />
+
+		<TextBlock Text="Increase Fire Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseFirePercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Increase Wind Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseWindPercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Increase Earth Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseEarthPercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Increase Lightning Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseLightningPercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Increase Blizzard Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseBlizzardPercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Increase Water Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseWaterPercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Increase Explosion Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseExplosionPercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+		<TextBlock Text="Increase Forest Percent:" />
+		<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseForestPercent}"
+					   Increment="1"
+					   Minimum="-128"
+					   Maximum="127" />
+
+		<!-- Special -->
+	</StackPanel>
+</UserControl>

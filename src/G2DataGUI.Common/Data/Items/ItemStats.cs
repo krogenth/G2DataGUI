@@ -1,17 +1,40 @@
 ﻿using G2DataGUI.IO.Streams;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace G2DataGUI.Common.Data.Items;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x0A)]
-public struct ItemStats
+public class ItemStats
 {
-    [FieldOffset(0x00)] public byte EntryType;
-    [FieldOffset(0x01)] public byte Unknown1;
-    [FieldOffset(0x02)] public byte Unknown2;
-    [FieldOffset(0x03)] public byte Unknown3;
-    [FieldOffset(0x04)] public byte Icon;
-    [FieldOffset(0x05)] public byte Unknown4;
-    [FieldOffset(0x06)] public int Price;
+    public byte EntryType { get; set; }
+    public byte Unknown1 { get; set; }
+    public byte Unknown2 { get; set; }
+    public byte Unknown3 { get; set; }
+    public byte Icon { get; set; }
+    public byte Unknown4 { get; set; }
+    public int Price { get; set; }
+
+    public static ItemStats ReadItemStats(Stream reader)
+    {
+        ItemStats stats = new ItemStats();
+        stats.EntryType = reader.ReadRawByte();
+        stats.Unknown1 = reader.ReadRawByte();
+        stats.Unknown2 = reader.ReadRawByte();
+        stats.Unknown3 = reader.ReadRawByte();
+        stats.Icon = reader.ReadRawByte();
+        stats.Unknown4 = reader.ReadRawByte();
+        stats.Price = reader.ReadRawInt();
+
+        return stats;
+    }
+
+    public void WriteItemStats(Stream writer)
+    {
+        writer.WriteRawByte(EntryType);
+        writer.WriteRawByte(Unknown1);
+        writer.WriteRawByte(Unknown2);
+        writer.WriteRawByte(Unknown3);
+        writer.WriteRawByte(Icon);
+        writer.WriteRawByte(Unknown4);
+        writer.WriteRawInt(Price);
+    }
 }

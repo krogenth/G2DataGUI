@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Buffers.Binary;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace G2DataGUI.IO.Streams;
@@ -52,17 +51,17 @@ public static class StreamExtensions
         }
     }
 
-    public static sbyte ReadSByte(this Stream stream) => (sbyte)(stream.InternalRead(1)[0]);
-    public static byte ReadByte(this Stream stream) => stream.InternalRead(1)[0];
-    public static short ReadShort(this Stream stream) => BinaryPrimitives.ReadInt16LittleEndian(stream.InternalRead(2));
-    public static ushort ReadUShort(this Stream stream) => BinaryPrimitives.ReadUInt16LittleEndian(stream.InternalRead(2));
-    public static int ReadInt(this Stream stream) => BinaryPrimitives.ReadInt32LittleEndian(stream.InternalRead(4));
-    public static uint ReadUInt(this Stream stream) => BinaryPrimitives.ReadUInt32LittleEndian(stream.InternalRead(4));
-    public static long ReadLong(this Stream stream) => BinaryPrimitives.ReadInt64LittleEndian(stream.InternalRead(4));
-    public static ulong ReadULong(this Stream stream) => BinaryPrimitives.ReadUInt64LittleEndian(stream.InternalRead(4));
-    public static Half ReadHald(this Stream stream) => BinaryPrimitives.ReadHalfLittleEndian(stream.InternalRead(2));
-    public static float ReadFloat(this Stream stream) => BitConverter.Int32BitsToSingle(stream.ReadInt());
-    public static double ReadDouble(this Stream stream) => BitConverter.Int64BitsToDouble(stream.ReadInt());
+    public static sbyte ReadRawSByte(this Stream stream) => (sbyte)stream.InternalRead(1)[0];
+    public static byte ReadRawByte(this Stream stream) => stream.InternalRead(1)[0];
+    public static short ReadRawShort(this Stream stream) => BinaryPrimitives.ReadInt16LittleEndian(stream.InternalRead(2));
+    public static ushort ReadRawUShort(this Stream stream) => BinaryPrimitives.ReadUInt16LittleEndian(stream.InternalRead(2));
+    public static int ReadRawInt(this Stream stream) => BinaryPrimitives.ReadInt32LittleEndian(stream.InternalRead(4));
+    public static uint ReadRawUInt(this Stream stream) => BinaryPrimitives.ReadUInt32LittleEndian(stream.InternalRead(4));
+    public static long ReadRawLong(this Stream stream) => BinaryPrimitives.ReadInt64LittleEndian(stream.InternalRead(4));
+    public static ulong ReadRawULong(this Stream stream) => BinaryPrimitives.ReadUInt64LittleEndian(stream.InternalRead(4));
+    public static Half ReadRawHalf(this Stream stream) => BinaryPrimitives.ReadHalfLittleEndian(stream.InternalRead(2));
+    public static float ReadRawFloat(this Stream stream) => BitConverter.Int32BitsToSingle(stream.ReadRawInt());
+    public static double ReadRawDouble(this Stream stream) => BitConverter.Int64BitsToDouble(stream.ReadRawInt());
 
     private static Span<byte> InternalRead(this Stream stream, int numBytes)
     {
@@ -71,57 +70,59 @@ public static class StreamExtensions
         return buffer;
     }
 
-    public static void WriteUShort(this Stream stream, short value)
+    public static void WriteRawByte(this Stream stream, byte value) => stream.WriteByte(value);
+    public static void WriteRawSByte(this Stream stream, sbyte value) => stream.WriteByte((byte)value);
+    public static void WriteRawShort(this Stream stream, short value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(short)];
         BinaryPrimitives.WriteInt16LittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteUShort(this Stream stream, ushort value)
+    public static void WriteRawUShort(this Stream stream, ushort value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(ushort)];
         BinaryPrimitives.WriteUInt16LittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteInt(this Stream stream, int value)
+    public static void WriteRawInt(this Stream stream, int value)
     {
         Span<byte> buffer = stackalloc byte[sizeof(int)];
         BinaryPrimitives.WriteInt32LittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteUInt(this Stream stream, uint value)
+    public static void WriteRawUInt(this Stream stream, uint value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(uint)];
         BinaryPrimitives.WriteUInt32LittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteLong(this Stream stream, long value)
+    public static void WriteRawLong(this Stream stream, long value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(long)];
         BinaryPrimitives.WriteInt64LittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteULong(this Stream stream, ulong value)
+    public static void WriteRawULong(this Stream stream, ulong value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(ulong)];
         BinaryPrimitives.WriteUInt64LittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteHalf(this Stream stream, Half value)
+    public static void WriteRawHalf(this Stream stream, Half value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(short)];
         BinaryPrimitives.WriteHalfLittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteFloat(this Stream stream, float value)
+    public static void WriteRawFloat(this Stream stream, float value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(float)];
         BinaryPrimitives.WriteSingleLittleEndian(buffer, value);
         stream.Write(buffer);
     }
-    public static void WriteDouble(this Stream stream, double value)
+    public static void WriteRawDouble(this Stream stream, double value)
     {
-        Span<byte> buffer = stackalloc byte[sizeof(int)];
+        Span<byte> buffer = stackalloc byte[sizeof(double)];
         BinaryPrimitives.WriteDoubleLittleEndian(buffer, value);
         stream.Write(buffer);
     }

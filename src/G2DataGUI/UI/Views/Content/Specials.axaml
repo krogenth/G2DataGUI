@@ -63,7 +63,7 @@
 				<StackPanel Margin="4">
 					<TextBlock Text="Move:" />
 					<ComboBox HorizontalAlignment="Stretch"
-					          SelectedIndex="{Binding SelectedSpecialSetItem.Special1Offset}"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special1.MoveOffset}"
 					          Items="{Binding GameMoves}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
@@ -74,7 +74,7 @@
 				</StackPanel>
 				<StackPanel Margin="4">
 					<TextBlock Text="Starting Level:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special1StartingLevel}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special1.StartingLevel}"
 								   Increment="1"
 								   Minimum="0"
 								   Maximum="5" />
@@ -82,7 +82,7 @@
 				<StackPanel Grid.Column="2"
 							Margin="4">
 					<TextBlock Text="Story Flag:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special1StoryFlag}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special1.StoryFlag}"
 								   Increment="1"
 								   Minimum="0"
 								   Maximum="65535" />
@@ -97,7 +97,7 @@
 				<StackPanel Margin="4">
 					<TextBlock Text="Move:" />
 					<ComboBox HorizontalAlignment="Stretch"
-					          SelectedIndex="{Binding SelectedSpecialSetItem.Special2Offset}"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special2.MoveOffset}"
 					          Items="{Binding GameMoves}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
@@ -108,7 +108,7 @@
 				</StackPanel>
 				<StackPanel Margin="4">
 					<TextBlock Text="Starting Level:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special2StartingLevel}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special2.StartingLevel}"
 								   Increment="1"
 								   Minimum="0"
 								   Maximum="5" />
@@ -116,7 +116,7 @@
 				<StackPanel Grid.Column="2"
 							Margin="4">
 					<TextBlock Text="Story Flag:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special2StoryFlag}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special2.StoryFlag}"
 								   Increment="1"
 							       Minimum="0"
 							       Maximum="65535" />
@@ -131,7 +131,7 @@
 				<StackPanel Margin="4">
 					<TextBlock Text="Move:" />
 					<ComboBox HorizontalAlignment="Stretch"
-					          SelectedIndex="{Binding SelectedSpecialSetItem.Special3Offset}"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special3.MoveOffset}"
 					          Items="{Binding GameMoves}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
@@ -142,7 +142,7 @@
 				</StackPanel>
 				<StackPanel Margin="4">
 					<TextBlock Text="Starting Level:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special3StartingLevel}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special3.StartingLevel}"
 								   Increment="1"
 								   Minimum="0"
 								   Maximum="5" />
@@ -150,7 +150,7 @@
 				<StackPanel Grid.Column="2"
 							Margin="4">
 					<TextBlock Text="Story Flag:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special3StoryFlag}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special3.StoryFlag}"
 								   Increment="1"
 							       Minimum="0"
 							       Maximum="65535" />
@@ -165,7 +165,7 @@
 				<StackPanel Margin="4">
 					<TextBlock Text="Move:" />
 					<ComboBox HorizontalAlignment="Stretch"
-					          SelectedIndex="{Binding SelectedSpecialSetItem.Special4Offset}"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special4.MoveOffset}"
 					          Items="{Binding GameMoves}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
@@ -176,7 +176,7 @@
 				</StackPanel>
 				<StackPanel Margin="4">
 					<TextBlock Text="Starting Level:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special4StartingLevel}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special4.StartingLevel}"
 								   Increment="1"
 							       Minimum="0"
 							       Maximum="65535" />
@@ -184,7 +184,7 @@
 				<StackPanel Grid.Column="2"
 							Margin="4">
 					<TextBlock Text="Story Flag:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special4StoryFlag}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special4.StoryFlag}"
 								   Increment="1"
 							       Minimum="0"
 							       Maximum="65535" />
@@ -199,7 +199,7 @@
 				<StackPanel Margin="4">
 					<TextBlock Text="Move:" />
 					<ComboBox HorizontalAlignment="Stretch"
-					          SelectedIndex="{Binding SelectedSpecialSetItem.Special5Offset}"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special5.MoveOffset}"
 					          Items="{Binding GameMoves}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
@@ -210,7 +210,7 @@
 				</StackPanel>
 				<StackPanel Margin="4">
 					<TextBlock Text="Starting Level:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special5StartingLevel}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special5.StartingLevel}"
 								   Increment="1"
 								   Minimum="0"
 								   Maximum="5" />
@@ -218,7 +218,7 @@
 				<StackPanel Grid.Column="2"
 							Margin="4">
 					<TextBlock Text="Story Flag:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special5StoryFlag}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special5.StoryFlag}"
 								   Increment="1"
 							       Minimum="0"
 							       Maximum="65535" />
@@ -233,7 +233,7 @@
 				<StackPanel Margin="4">
 					<TextBlock Text="Move:" />
 					<ComboBox HorizontalAlignment="Stretch"
-					          SelectedIndex="{Binding SelectedSpecialSetItem.Special6Offset}"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special6.MoveOffset}"
 					          Items="{Binding GameMoves}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
@@ -244,7 +244,7 @@
 				</StackPanel>
 				<StackPanel Margin="4">
 					<TextBlock Text="Starting Level:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special6StartingLevel}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special6.StartingLevel}"
 								   Increment="1"
 								   Minimum="0"
 								   Maximum="5" />
@@ -252,7 +252,7 @@
 				<StackPanel Grid.Column="2"
 							Margin="4">
 					<TextBlock Text="Story Flag:" />
-					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special6StoryFlag}"
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special6.StoryFlag}"
 								   Increment="1"
 							       Minimum="0"
 							       Maximum="65535" />

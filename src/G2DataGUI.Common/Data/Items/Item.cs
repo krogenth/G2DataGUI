@@ -9,18 +9,18 @@ internal class ItemData
 {
     private static readonly uint ItemObjectByteSize = 0x50;
     public static readonly uint ItemPointerOffset = Items.NumberOfItems * ItemObjectByteSize;
-    public static readonly uint BadOffset = 0xFFFFFFFF;
+    public static readonly uint InvalidOffset = 0xFFFFFFFF;
 }
 
 public class Item : BaseContainer
 {
     private FixedLengthName _name;
     private FixedLengthDescription _description;
-    private ItemStats _stats;
+    public ItemStats Stats { get; private set; }
     private ItemOffsets _offsets;
-    private Equipment _equipment = null;
-    private Usable _usable = null;
-    private uint _id;
+    public Equipment Equipment { get; set; } = null;
+    public Usable Usable { get; set; } = null;
+    public uint ID { get; set; }
 
     public static Item ReadItem(Stream reader)
     {
@@ -32,24 +32,23 @@ public class Item : BaseContainer
         FixedLengthDescription? description = reader.ReadStruct<FixedLengthDescription>();
         if (description != null) item._description = description.Value;
 
-        ItemStats? stats = reader.ReadStruct<ItemStats>();
-        if (stats != null) item._stats = stats.Value;
+        item.Stats = ItemStats.ReadItemStats(reader);
 
         ItemOffsets? offsets = reader.ReadStruct<ItemOffsets>();
         if (offsets != null) item._offsets = offsets.Value;
 
-        item._id = reader.ReadUInt();
+        item.ID = reader.ReadRawUInt();
 
         var currentPos = reader.Position;
         if (item._offsets.EquipmentOffset > 0)
         {
             reader.Seek(item._offsets.EquipmentOffset, SeekOrigin.Begin);
-            item._equipment = Equipment.ReadEquipment(reader);
+            item.Equipment = Equipment.ReadEquipmentStats(reader);
         }
         if (item._offsets.UsableOffset > 0)
         {
             reader.Seek(item._offsets.UsableOffset, SeekOrigin.Begin);
-            item._usable = Usable.ReadUsable(reader);
+            item.Usable = Usable.ReadUsableStats(reader);
         }
         reader.Seek(currentPos, SeekOrigin.Begin);
 
@@ -60,40 +59,40 @@ public class Item : BaseContainer
     {
         writer.WriteStruct(_name);
         writer.WriteStruct(_description);
-        writer.WriteStruct(_stats);
+        Stats.WriteItemStats(writer);
 
-        if (_equipment != null)
+        if (Equipment != null)
         {
-            writer.WriteUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += (uint)Marshal.SizeOf(typeof(EquipmentStats));
+            writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
+            ptrOffset += (uint)Marshal.SizeOf(typeof(Equipment));
         }
         else
         {
-            writer.WriteUInt(ItemData.BadOffset);
+            writer.WriteRawUInt(ItemData.InvalidOffset);
         }
 
-        if (_usable != null)
+        if (Usable != null)
         {
-            writer.WriteUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += (uint)Marshal.SizeOf(typeof(UsableStats));
+            writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
+            ptrOffset += (uint)Marshal.SizeOf(typeof(Usable));
         }
         else
         {
-            writer.WriteUInt(ItemData.BadOffset);
+            writer.WriteRawUInt(ItemData.InvalidOffset);
         }
 
-        writer.WriteUInt(_id);
+        writer.WriteRawUInt(ID);
     }
 
     public void WriteEquipmentAndUsable(Stream writer)
     {
-        if (_equipment != null)
+        if (Equipment != null)
         {
-            _equipment.WriteEquipment(writer);
+            Equipment.WriteEquipmentStats(writer);
         }
-        if (_usable != null)
+        if (Usable != null)
         {
-            _usable.WriteUsable(writer);
+            Usable.WriteUsableStats(writer);
         }
     }
 
@@ -101,34 +100,24 @@ public class Item : BaseContainer
     public int MaxNameLength { get => _name.MaxLength; }
     public string Description { get => _description.Description; set => _description.Description = value; }
     public int MaxDescriptionLength { get => _description.MaxLength; }
-    public byte EntryType { get => _stats.EntryType; set => _stats.EntryType = value; }
-    public byte StatsUnknown1 { get => _stats.Unknown1; set => _stats.Unknown1 = value; }
-    public byte StatsUnknown2 { get => _stats.Unknown2; set => _stats.Unknown2 = value; }
-    public byte StatsUnknown3 { get => _stats.Unknown3; set => _stats.Unknown3 = value; }
-    public byte Icon { get => _stats.Icon; set => _stats.Icon = value; }
-    public byte StatsUnknown4 { get => _stats.Unknown4; set => _stats.Unknown4 = value; }
-    public int Price { get => _stats.Price; set => _stats.Price = value; }
     public bool HasEquipment
     {
-        get => _equipment != null;
+        get => Equipment != null;
         set
         {
-            if (value && _equipment == null) _equipment = new Equipment();
-            else if (!value && _equipment != null) _equipment = null;
+            if (value && Equipment == null) Equipment = new Equipment();
+            else if (!value && Equipment != null) Equipment = null;
             NotifyPropertyChanged(nameof(HasEquipment));
         }
     }
-    public Equipment EquipmentObject { get => _equipment; }
     public bool HasUsable
     {
-        get => _usable != null;
+        get => Usable != null;
         set
         {
-            if (value && _usable == null) _usable = new Usable();
-            else if (!value && _usable != null) _usable = null;
+            if (value && Usable == null) Usable = new Usable();
+            else if (!value && Usable != null) Usable = null;
             NotifyPropertyChanged(nameof(HasUsable));
         }
     }
-    public Usable UsableObject { get => _usable; }
-    public uint ID { get => _id; set => _id = value; }
 }

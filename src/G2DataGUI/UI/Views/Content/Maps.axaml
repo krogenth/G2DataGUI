@@ -18,7 +18,7 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         ClipToBounds="True" >
-					<TextBlock Text="{Binding fileLocation}" />
+					<TextBlock Text="{Binding FileLocation}" />
 				</Border>
 			</DataTemplate>
 		</ListBox.ItemTemplate>
