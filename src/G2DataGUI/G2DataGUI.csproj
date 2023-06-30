@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<OutputType>WinExe</OutputType>
+	<TargetFramework>net7.0</TargetFramework>
+	<Nullable>disable</Nullable>
+	<PublishSingleFile>True</PublishSingleFile>
+	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+	<AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+	<BaseOutputPath>..\..\build</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>9999</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TrimmerRootAssembly Include="Avalonia.Themes.Fluent" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+	<PackageReference Include="Avalonia.Desktop" />
+	<PackageReference Include="FluentAvaloniaUI" />
+	<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+	<PackageReference Include="Avalonia.Diagnostics" Condition="'$(Configuration)' == 'Debug'" />
+	<PackageReference Include="XamlNameReferenceGenerator" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\G2DataGUI.Common\G2DataGUI.Common.csproj" />
+    <ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
+    <ProjectReference Include="..\G2DataGUI.LocaleGenerator\G2DataGUI.LocaleGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\G2DataGUI.UI.Common\G2DataGUI.UI.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Ui\**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\Fonts\SegoeFluentIcons.ttf" />
+    <AvaloniaResource Include="Assets\Styles\BaseLight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\Styles\BaseDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\Styles\Styles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Locales\en_US.json" />
+	<None Remove="Assets\Styles\BaseDark.xaml" />
+	<None Remove="Assets\Styles\BaseLight.xaml" />
+	<None Remove="Assets\Styles\Styles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<EmbeddedResource Include="Assets\Locales\en_US.json" />
+	<EmbeddedResource Include="Assets\Styles\Styles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Assets\Locales\en_US.json" />
+  </ItemGroup>
+
+</Project>

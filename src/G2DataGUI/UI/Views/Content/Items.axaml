@@ -1,0 +1,416 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.Items"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.Locale"
+             mc:Ignorable="d"
+			 Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:ItemsViewModel">
+	<Grid Name="ItemsPage"
+		  Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="ItemsList"
+				 Items="{Binding GameItems}"
+				 SelectedIndex="{Binding SelectedItemIndex}"
+				 Grid.Row="0"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Name, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Row="0"
+				      Grid.Column="1">
+			<Grid x:Name="ItemDataGrid"
+				  Margin="20,10">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="0,0,10,0">
+					<TextBlock Text="Name:" />
+					<TextBox Text="{Binding SelectedItemItem.Name}"
+							 MaxLength="{Binding SelectedItemItem.MaxNameLength}" />
+					<TextBlock Text="Description:" />
+					<TextBox Text="{Binding SelectedItemItem.Description}"
+							 MaxLength="{Binding SelectedItemItem.MaxDescriptionLength}" />
+					<TextBlock Text="Entry Type:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemItem.EntryType}"
+							  Items="{locale:Locale ItemEntries}" />
+					<TextBlock Text="Unknown #1:" />
+					<NumericUpDown Value="{Binding SelectedItemItem.StatsUnknown1}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="255"/>
+					<TextBlock Text="Unknown #2:" />
+					<NumericUpDown Value="{Binding SelectedItemItem.StatsUnknown2}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="255"/>
+					<TextBlock Text="Unknown #3:" />
+					<NumericUpDown Value="{Binding SelectedItemItem.StatsUnknown3}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="255"/>
+					<TextBlock Text="Icon:" />
+					<NumericUpDown Value="{Binding SelectedItemItem.Icon}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="255"/>
+					<TextBlock Text="Unknown #4:" />
+					<NumericUpDown Value="{Binding SelectedItemItem.StatsUnknown4}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="255"/>
+					<TextBlock Text="Price:" />
+					<NumericUpDown Value="{Binding SelectedItemItem.Price}"
+								   Increment="1"
+								   Minimum="-2147483648"
+								   Maximum="2147483647"/>
+					<CheckBox Name="HasEquipment"
+							  IsThreeState="False"
+							  IsChecked="{Binding SelectedItemItem.HasEquipment}">
+						Has Equipment?
+					</CheckBox>
+					<CheckBox Name="HasUsable"
+								IsThreeState="False"
+								IsChecked="{Binding SelectedItemItem.HasUsable}">
+						Has Usable?
+					</CheckBox>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="0,0,10,0"
+							IsVisible="{Binding SelectedItemItem.HasEquipment}">
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.RyudoBitflag}">
+						Ryudo
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.ElenaBitflag}">
+						Elena
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.MilleniaBitflag}">
+						Millenia
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.RoanBitflag}">
+						Roan
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.TioBitflag}">
+						Tio
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.MaregBitflag}">
+						Mareg
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.PrinceRoanBitflag}">
+						Prince Roan
+					</CheckBox>
+					<TextBlock Text="Strength:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.Strength}"
+							       Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Vitality:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.Vitality}"
+							       Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Action:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.Action}"
+							       Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Movement:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.Movement}"
+							       Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Effective On:" />
+					<ComboBox SelectedIndex="{Binding SelectedItemEquipment.EffectiveOn}"
+							  Items="{locale:Locale EffectiveOn}" />
+					<TextBlock Text="Fire Affinity:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.FireAffinity}"
+							       Increment="1"
+							       Minimum="-128"
+							       Maximum="127" />
+					<TextBlock Text="Wind Affinity:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.WindAffinity}"
+							       Increment="1"
+							       Minimum="-128"
+							       Maximum="127" />
+					<TextBlock Text="Earth Affinity:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.EarthAffinity}"
+							       Increment="1"
+							       Minimum="-128"
+							       Maximum="127" />
+					<TextBlock Text="Lightning Affinity:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.LightningAffinity}"
+							       Increment="1"
+							       Minimum="-128"
+							       Maximum="127" />
+					<TextBlock Text="Blizzard Affinity:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.BlizzardAffinity}"
+							       Increment="1"
+							       Minimum="-128"
+							       Maximum="127" />
+
+					<!-- Ailments checkboxes -->
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.PoisonBitflag}">
+						Poison
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.SleepBitflag}">
+						Sleep
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.ParalysisBitflag}">
+						Paralysis
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.ConfusionBitflag}">
+						Confusion
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.PlagueBitflag}">
+						Plague
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.Magic_BlockBitflag}">
+						Magic Block
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.Move_BlockBitflag}">
+						Move Block
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemEquipment.DeathBitflag}">
+						Death
+					</CheckBox>
+					<TextBlock Text="Ailments Chance:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.AilmentsChance}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="100" />
+
+					<TextBlock Text="Increase Fire Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseFirePercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+					<TextBlock Text="Increase Wind Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseWindPercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+					<TextBlock Text="Increase Earth Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseEarthPercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+					<TextBlock Text="Increase Lightning Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseLightningPercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+					<TextBlock Text="Increase Blizzard Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseBlizzardPercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+					<TextBlock Text="Increase Water Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseWaterPercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+					<TextBlock Text="Increase Explosion Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseExplosionPercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+					<TextBlock Text="Increase Forest Percent:" />
+					<NumericUpDown Value="{Binding SelectedItemEquipment.IncreaseForestPercent}"
+								   Increment="1"
+								   Minimum="-128"
+								   Maximum="127" />
+
+					<!-- Special -->
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="0,0,10,0"
+							IsVisible="{Binding SelectedItemItem.HasUsable}">
+					<TextBlock Text="Target Effect:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.TargetEffect}"
+							  Items="{locale:Locale TargetEffects}" />
+					<TextBlock Text="Target Type:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.TargetType}"
+							  Items="{locale:Locale TargetTypes}" />
+					<TextBlock Text="Power:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Power}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="65536" />
+					<TextBlock Text="Range:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Range}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="65536" />
+					<TextBlock Text="Cast Time:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.CastTime}"
+								   Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Recovery Time:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.RecoveryTime}"
+								   Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Animation:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.Animation}"
+							  Items="{locale:Locale Animations}" />
+					<TextBlock Text="Unknown #1" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Unknown1}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="256" />
+					<TextBlock Text="IP Stun:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.IpDamage}"
+								   Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="IP cancel Stun:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.IpCancelDamage}"
+								   Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Knockback:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Knockback}"
+								   Increment="1"
+							       Minimum="-32768"
+							       Maximum="32767" />
+					<TextBlock Text="Element:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.Element}"
+							  Items="{locale:Locale Elements}" />
+					<TextBlock Text="Element Strength:"
+							   ToolTip.Tip="Multiply by 10 for percentage" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.ElementStrength}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="10" />
+
+					<!-- Ailments checkboxes -->
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.PoisonBitflag}">
+						Poison
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.SleepBitflag}">
+						Sleep
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.ParalysisBitflag}">
+						Paralysis
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.ConfusionBitflag}">
+						Confusion
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.PlagueBitflag}">
+						Plague
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.Magic_BlockBitflag}">
+						Magic Block
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.Move_BlockBitflag}">
+						Move Block
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.DeathBitflag}">
+						Death
+					</CheckBox>
+					<TextBlock Text="Ailments Chance:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.AilmentsChance}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="100" />
+					
+					<TextBlock Text="Attack Modifier:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.AttackModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+					<TextBlock Text="Defense Modifier:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.DefenseModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+					<TextBlock Text="Action Modifier:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.ActionModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+					<TextBlock Text="Movement Modifier:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.MovementModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+					<TextBlock Text="Break Chance:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.BreakChance}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="100" />
+
+					<!-- Specials -->
+
+					<TextBlock Text="Unknown #2" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Unknown2}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="256" />
+					<TextBlock Text="Unknown #3" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Unknown3}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="256" />
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>
