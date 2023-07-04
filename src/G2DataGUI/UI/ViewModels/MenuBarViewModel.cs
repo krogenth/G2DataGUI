@@ -46,6 +46,12 @@ public sealed class MenuBarViewModel : BaseViewModel
         Window?.Close();
     }
 
+    public void OpenDDSViewer()
+    {
+        DDSViewerWindow dDSViewerWindow = new DDSViewerWindow();
+        dDSViewerWindow.Show();
+    }
+
     public string SelectedStyle
     {
         get => _selectedStyle;

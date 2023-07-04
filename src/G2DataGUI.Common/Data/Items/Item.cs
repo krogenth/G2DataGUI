@@ -22,6 +22,31 @@ public class Item : BaseContainer
     public Usable Usable { get; set; } = null;
     public uint ID { get; set; }
 
+    public string Name { get => _name.Name; set { _name.Name = value; NotifyPropertyChanged(nameof(Name)); } }
+    public int MaxNameLength { get => _name.MaxLength; }
+    public string Description { get => _description.Description; set => _description.Description = value; }
+    public int MaxDescriptionLength { get => _description.MaxLength; }
+    public bool HasEquipment
+    {
+        get => Equipment != null;
+        set
+        {
+            if (value && Equipment == null) Equipment = new Equipment();
+            else if (!value && Equipment != null) Equipment = null;
+            NotifyPropertyChanged(nameof(HasEquipment));
+        }
+    }
+    public bool HasUsable
+    {
+        get => Usable != null;
+        set
+        {
+            if (value && Usable == null) Usable = new Usable();
+            else if (!value && Usable != null) Usable = null;
+            NotifyPropertyChanged(nameof(HasUsable));
+        }
+    }
+
     public static Item ReadItem(Stream reader)
     {
         Item item = new Item();
@@ -64,7 +89,7 @@ public class Item : BaseContainer
         if (Equipment != null)
         {
             writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += Equipment.Size;
+            ptrOffset += Equipment.ByteSize;
         }
         else
         {
@@ -74,7 +99,7 @@ public class Item : BaseContainer
         if (Usable != null)
         {
             writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += Usable.Size;
+            ptrOffset += Usable.ByteSize;
         }
         else
         {
@@ -93,31 +118,6 @@ public class Item : BaseContainer
         if (Usable != null)
         {
             Usable.WriteUsableStats(writer);
-        }
-    }
-
-    public string Name { get => _name.Name; set { _name.Name = value; NotifyPropertyChanged(nameof(Name)); } }
-    public int MaxNameLength { get => _name.MaxLength; }
-    public string Description { get => _description.Description; set => _description.Description = value; }
-    public int MaxDescriptionLength { get => _description.MaxLength; }
-    public bool HasEquipment
-    {
-        get => Equipment != null;
-        set
-        {
-            if (value && Equipment == null) Equipment = new Equipment();
-            else if (!value && Equipment != null) Equipment = null;
-            NotifyPropertyChanged(nameof(HasEquipment));
-        }
-    }
-    public bool HasUsable
-    {
-        get => Usable != null;
-        set
-        {
-            if (value && Usable == null) Usable = new Usable();
-            else if (!value && Usable != null) Usable = null;
-            NotifyPropertyChanged(nameof(HasUsable));
         }
     }
 }

@@ -18,46 +18,47 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<ContentPresenter x:Name="ContentPresenter"
-						  Grid.Row="1"
-						  IsVisible="False"
-						  KeyboardNavigation.IsTabStop="False" />
+							Grid.Row="1"
+							IsVisible="False"
+							KeyboardNavigation.IsTabStop="False" />
 		<Grid Name="Pages"
-			  IsVisible="False"
-			  Grid.Row="2">
+				IsVisible="False"
+				Grid.Row="2">
 			<content:Moves Name="MovesPage" />
 			<content:Skills Name="SkillsPage" />
 			<content:Manaeggs Name="ManaeggsPage" />
 			<content:Skillbooks Name="SkillbooksPage" />
 			<content:Specials Name="SpecialsPage" />
 			<content:Items Name="ItemsPage" />
+			<content:Enemies Name="EnemiesPage" />
 		</Grid>
 		<controls:NavigationView Grid.Row="1"
-						         IsSettingsVisible="False"
-						         Name="NavPanel"
-						         IsBackEnabled="False"
-						         PaneDisplayMode="Left"
-						         Margin="0,10,10,10"
-						         OpenPaneLength="150">
+									IsSettingsVisible="False"
+									Name="NavPanel"
+									IsBackEnabled="False"
+									PaneDisplayMode="Left"
+									Margin="0,10,10,10"
+									OpenPaneLength="150">
 			<controls:NavigationView.MenuItems>
 				<controls:NavigationViewItem IsSelected="True"
-									         Content="Moves"
-									         Tag="MovesPage" />
+												Content="Moves"
+												Tag="MovesPage" />
 				<controls:NavigationViewItem Content="Skills"
-									         Tag="SkillsPage" />
+												Tag="SkillsPage" />
 				<controls:NavigationViewItem Content="Manaeggs"
-									         Tag="ManaeggsPage" />
+												Tag="ManaeggsPage" />
 				<controls:NavigationViewItem Content="Skillbooks"
-									         Tag="SkillbooksPage" />
+												Tag="SkillbooksPage" />
 				<controls:NavigationViewItem Content="Specials"
-									         Tag="SpecialsPage" />
+												Tag="SpecialsPage" />
 				<controls:NavigationViewItem Content="Items"
-									         Tag="ItemsPage" />
+												Tag="ItemsPage" />
 				<controls:NavigationViewItem Content="Enemies"
-									         Tag="EnemiesPage" />
+												Tag="EnemiesPage" />
 				<controls:NavigationViewItem Content="Bosses"
-									         Tag="BossesPage" />
+												Tag="BossesPage" />
 				<controls:NavigationViewItem Content="Maps"
-									         Tag="MapsPage" />
+												Tag="MapsPage" />
 			</controls:NavigationView.MenuItems>
 		</controls:NavigationView>
 	</Grid>

@@ -29,7 +29,7 @@ public class Skills
     private void ReadSkills()
     {
         _skills.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillsPath, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillsPath, FileMode.Open, FileAccess.Read))
         using(MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -49,7 +49,7 @@ public class Skills
 
     private void WriteSkills()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillsPath, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
         {
             foreach (Skill skill in _skills)
             {

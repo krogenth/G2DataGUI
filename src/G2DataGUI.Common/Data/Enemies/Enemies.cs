@@ -6,11 +6,21 @@ namespace G2DataGUI.Common.Data.Enemies
 {
     public class Enemies
     {
-        public static  Enemies Instance { get; } = new Enemies();
+        public static Enemies Instance { get; } = new Enemies();
         private ObservableCollection<Enemy> _enemies = new();
         public event EventHandler CollectionRefreshed;
 
         private Enemies()
+        {
+            ReadEnemies();
+        }
+
+        public void Save()
+        {
+            WriteEnemies();
+        }
+
+        public void Reload()
         {
             ReadEnemies();
         }
@@ -20,7 +30,7 @@ namespace G2DataGUI.Common.Data.Enemies
             _enemies.Clear();
             foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "enemy", "*_0.dat", SearchOption.AllDirectories))
             {
-                using (FileStream reader = File.Open(file, FileMode.Open))
+                using (FileStream reader = File.Open(file, FileMode.Open, FileAccess.Read))
                 using (MemoryStream memReader = new MemoryStream())
                 {
                     reader.CopyTo(memReader);
@@ -33,6 +43,14 @@ namespace G2DataGUI.Common.Data.Enemies
                 }
             }
             CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void WriteEnemies()
+        {
+            foreach (var enemy in _enemies)
+            {
+                enemy.WriteEnemy();
+            }
         }
 
         public ObservableCollection<Enemy> GetEnemies() { return _enemies; }

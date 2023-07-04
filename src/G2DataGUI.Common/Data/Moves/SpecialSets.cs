@@ -29,7 +29,7 @@ public class SpecialSets
     private void ReadSpecialSets()
     {
         _specialSets.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.Open, FileAccess.Read))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -45,7 +45,7 @@ public class SpecialSets
 
     private void WriteSpecialSets()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
         {
             foreach (SpecialSet specialSet in _specialSets)
             {

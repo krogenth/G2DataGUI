@@ -22,7 +22,7 @@ public sealed class SpecialsViewModel : BaseViewModel
 
     private void SpecialSetCollectionRefreshed(object sender, EventArgs _)
     {
-        SelectedSpecialSetItem = GameSpecialSets.ElementAt(SelectedSpecialSetIndex);
+        SelectedSpecialSetItem = GameSpecialSets[SelectedSpecialSetIndex];
     }
 
     public int SelectedSpecialSetIndex
@@ -33,7 +33,7 @@ public sealed class SpecialsViewModel : BaseViewModel
             if (value < 0) value = 0;
             if (value >= GameSpecialSets.Count) return;
             _selectedSpecialSetIndex = value;
-            SelectedSpecialSetItem = GameSpecialSets.ElementAt(value);
+            SelectedSpecialSetItem = GameSpecialSets[value];
             OnPropertyChanged(nameof(SelectedSpecialSetIndex));
         }
     }

@@ -10,6 +10,11 @@ public class Skill : BaseContainer
     public SkillStats Stats { get; private set; }
     private FixedLengthDescription _description;
 
+    public string Name { get => _name.Name; set { _name.Name = value; NotifyPropertyChanged(nameof(Name)); } }
+    public int MaxNameLength { get => _name.MaxLength; }
+    public string Description { get => _description.Description; set { _description.Description = value; NotifyPropertyChanged(nameof(Description)); } }
+    public int MaxDescriptionLength { get => _description.MaxLength; }
+
     public static Skill ReadSkill(Stream reader)
     {
         Skill skill = new Skill();
@@ -32,9 +37,4 @@ public class Skill : BaseContainer
         Stats.WriteSkillStats(writer);
         writer.WriteStruct(_description);
     }
-
-    public string Name { get => _name.Name; set { _name.Name = value; NotifyPropertyChanged(nameof(Name)); } }
-    public int MaxNameLength { get => _name.MaxLength; }
-    public string Description { get => _description.Description; set {  _description.Description = value; NotifyPropertyChanged(nameof(Description)); } }
-    public int MaxDescriptionLength { get => _description.MaxLength; }
 }

@@ -13,16 +13,4 @@ public sealed partial class MenuBar : UserControl
         DataContext = MenuBarViewModel.Instance;
         InitializeComponent();
     }
-
-    /*protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnAttachedToVisualTree(e);
-
-        if (VisualRoot is MainWindow window)
-        {
-            ;
-            MenuBarViewModel.Instance.Window = window;
-            MenuBarViewModel.Instance.StyleThemeChanged += window.OnStyleThemeChange;
-        }
-    }*/
 }

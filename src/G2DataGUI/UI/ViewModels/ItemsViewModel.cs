@@ -39,7 +39,7 @@ public sealed class ItemsViewModel : BaseViewModel
             if (value < 0) value = 0;
             if (value >= GameItems.Count) return;
             _selectedItemIndex = value;
-            SelectedItemItem = GameItems.ElementAt(value);
+            SelectedItemItem = GameItems[value];
             OnPropertyChanged(nameof(SelectedItemItem));
         }
     }

@@ -29,7 +29,7 @@ public class Manaeggs
     private void ReadManaeggs()
     {
         _manaeggs.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ManaeggsPath, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ManaeggsPath, FileMode.Open, FileAccess.Read))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -45,7 +45,7 @@ public class Manaeggs
 
     private void WriteManaeggs()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ManaeggsPath, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ManaeggsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
         {
             foreach (Manaegg manaegg in _manaeggs)
             {

@@ -22,7 +22,7 @@ public sealed class ManaeggsViewModel : BaseViewModel
 
     private void ManaeggCollectionRefreshed(object sender, EventArgs _)
     {
-        SelectedManaeggItem = GameManaeggs.ElementAt(SelectedManaeggIndex);
+        SelectedManaeggItem = GameManaeggs[SelectedManaeggIndex];
     }
 
     public int SelectedManaeggIndex
@@ -33,7 +33,7 @@ public sealed class ManaeggsViewModel : BaseViewModel
             if (value < 0) value = 0;
             if (value >= GameManaeggs.Count) return;
             _selectedManaeggIndex = value;
-            SelectedManaeggItem = GameManaeggs.ElementAt(value);
+            SelectedManaeggItem = GameManaeggs[value];
             OnPropertyChanged(nameof(SelectedManaeggIndex));
         }
     }

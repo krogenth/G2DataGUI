@@ -51,6 +51,7 @@ public static class StreamExtensions
         }
     }
 
+    public static bool ReadRawBool(this Stream stream) => Convert.ToBoolean(stream.InternalRead(1)[0]);
     public static sbyte ReadRawSByte(this Stream stream) => (sbyte)stream.InternalRead(1)[0];
     public static byte ReadRawByte(this Stream stream) => stream.InternalRead(1)[0];
     public static short ReadRawShort(this Stream stream) => BinaryPrimitives.ReadInt16LittleEndian(stream.InternalRead(2));
@@ -62,6 +63,16 @@ public static class StreamExtensions
     public static Half ReadRawHalf(this Stream stream) => BinaryPrimitives.ReadHalfLittleEndian(stream.InternalRead(2));
     public static float ReadRawFloat(this Stream stream) => BitConverter.Int32BitsToSingle(stream.ReadRawInt());
     public static double ReadRawDouble(this Stream stream) => BitConverter.Int64BitsToDouble(stream.ReadRawInt());
+    public static byte[] ReadRawByteArray(this Stream stream, int numBytes) => stream.InternalRead(numBytes).ToArray();
+    public static int[] ReadRawIntArray(this Stream stream, int numInts)
+    {
+        int[] arr = new int[numInts];
+        for (int index = 0; index < arr.Length; index++)
+        {
+            arr[index] = stream.ReadRawInt();
+        }
+        return arr;
+    }
 
     private static Span<byte> InternalRead(this Stream stream, int numBytes)
     {
@@ -70,6 +81,7 @@ public static class StreamExtensions
         return buffer;
     }
 
+    public static void WriteRawBool(this Stream stream, bool value) => stream.WriteByte(Convert.ToByte(value));
     public static void WriteRawByte(this Stream stream, byte value) => stream.WriteByte(value);
     public static void WriteRawSByte(this Stream stream, sbyte value) => stream.WriteByte((byte)value);
     public static void WriteRawShort(this Stream stream, short value)
@@ -125,5 +137,13 @@ public static class StreamExtensions
         Span<byte> buffer = stackalloc byte[sizeof(double)];
         BinaryPrimitives.WriteDoubleLittleEndian(buffer, value);
         stream.Write(buffer);
+    }
+    public static void WriteRawByteArray(this Stream stream, byte[] value) => stream.Write(value.AsSpan());
+    public static void WriteRawIntArray(this Stream stream, int[] value)
+    {
+        foreach (var item in value)
+        {
+            stream.WriteRawInt(item);
+        }
     }
 }

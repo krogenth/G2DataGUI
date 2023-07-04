@@ -29,7 +29,7 @@ public class Skillbooks
     private void ReadSkillbooks()
     {
         _skillbooks.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.Open, FileAccess.Read))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -45,7 +45,7 @@ public class Skillbooks
 
     private void WriteSkillbooks()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
         {
             foreach (Skillbook skillbook in _skillbooks)
             {

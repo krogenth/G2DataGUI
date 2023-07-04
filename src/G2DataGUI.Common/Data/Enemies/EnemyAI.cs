@@ -1,14 +1,37 @@
-﻿using System.Runtime.InteropServices;
+﻿using G2DataGUI.IO.Streams;
+using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x06)]
-public struct EnemyAI
+public class EnemyAI
 {
-    [FieldOffset(0x00)] public byte aiType;
-    [FieldOffset(0x01)] public byte move1Chance;
-    [FieldOffset(0x02)] public byte move2Chance;
-    [FieldOffset(0x03)] public byte move3Chance;
-    [FieldOffset(0x04)] public byte move4Chance;
-    [FieldOffset(0x05)] public byte move5Chance;
+    public byte Condition { get; set; }
+    public byte Move1Chance { get; set; }
+    public byte Move2Chance { get; set; }
+    public byte Move3Chance { get; set; }
+    public byte Move4Chance { get; set; }
+    public byte Move5Chance { get; set; }
+
+    public static EnemyAI ReadEnemyAI(Stream reader)
+    {
+        EnemyAI ai = new EnemyAI();
+        ai.Condition = reader.ReadRawByte();
+        ai.Move1Chance = reader.ReadRawByte();
+        ai.Move2Chance = reader.ReadRawByte();
+        ai.Move3Chance = reader.ReadRawByte();
+        ai.Move4Chance = reader.ReadRawByte();
+        ai.Move5Chance = reader.ReadRawByte();
+
+        return ai;
+    }
+
+    public void WriteEnemyAI(Stream writer)
+    {
+        writer.WriteRawByte(Condition);
+        writer.WriteRawByte(Move1Chance);
+        writer.WriteRawByte(Move2Chance);
+        writer.WriteRawByte(Move3Chance);
+        writer.WriteRawByte(Move4Chance);
+        writer.WriteRawByte(Move5Chance);
+    }
 }

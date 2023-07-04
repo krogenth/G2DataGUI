@@ -29,7 +29,7 @@ public class Moves
     private void ReadMoves()
     {
         _moves.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.Open, FileAccess.Read))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -49,7 +49,7 @@ public class Moves
 
     private void WriteMoves()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
         {
             foreach (Move move in _moves)
             {

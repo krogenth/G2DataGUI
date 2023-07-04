@@ -31,7 +31,7 @@ public sealed class SkillsViewModel : BaseViewModel
             if (value < 0) value = 0;
             if (value >= GameSkills.Count) return;
             _selectedSkillIndex = value;
-            SelectedSkillItem = GameSkills.ElementAt(value);
+            SelectedSkillItem = GameSkills[value];
             OnPropertyChanged(nameof(SelectedSkillIndex));
         }
     }

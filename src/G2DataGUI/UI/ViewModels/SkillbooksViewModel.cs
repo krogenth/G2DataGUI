@@ -22,7 +22,7 @@ public class SkillbooksViewModel : BaseViewModel
 
     private void SkillbookCollectionRefreshed(object sender, EventArgs _)
     {
-        SelectedSkillbookItem = GameSkillbooks.ElementAt(SelectedSkillbookIndex);
+        SelectedSkillbookItem = GameSkillbooks[SelectedSkillbookIndex];
     }
 
     public int SelectedSkillbookIndex
@@ -33,7 +33,7 @@ public class SkillbooksViewModel : BaseViewModel
             if (value < 0) value = 0;
             if (value >= GameSkillbooks.Count) return;
             _selectedSkillbookIndex = value;
-            SelectedSkillbookItem = GameSkillbooks.ElementAt(value);
+            SelectedSkillbookItem = GameSkillbooks[value];
             OnPropertyChanged(nameof(SelectedSkillbookIndex));
         }
     }

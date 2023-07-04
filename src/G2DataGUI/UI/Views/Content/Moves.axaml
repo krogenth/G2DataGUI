@@ -18,7 +18,6 @@
 		<ListBox x:Name="MovesList"
 				 Items="{Binding GameMoves}"
 				 SelectedIndex="{Binding SelectedMoveIndex}"
-				 Grid.Row="0"
 				 Grid.Column="0">
 			<ListBox.Styles>
 				<Style Selector="ListBoxItem">
@@ -39,8 +38,7 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<ScrollViewer Grid.Row="0"
-			          Grid.Column="1">
+		<ScrollViewer Grid.Column="1">
 			<Grid x:Name="MoveDataGrid"
 			      Margin="20,10"
 			      VerticalAlignment="Stretch">

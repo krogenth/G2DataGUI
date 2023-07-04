@@ -1,22 +1,33 @@
-﻿using G2DataGUI.IO.Streams;
-using System.IO;
+﻿using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
 
 public class EnemyMoveset
 {
-    public EnemyMove[] Moves = new EnemyMove[5];
+    public EnemyMove Move1 { get; set; }
+    public EnemyMove Move2 { get; set; }
+    public EnemyMove Move3 { get; set; }
+    public EnemyMove Move4 { get; set; }
+    public EnemyMove Move5 { get; set; }
 
     public static EnemyMoveset ReadEnemyMoveset(Stream reader)
     {
-        EnemyMoveset enemyMoveset = new EnemyMoveset();
-        for (int index = 0; index < enemyMoveset.Moves.Length; index++)
-        {
-            EnemyMove? move = reader.ReadStruct<EnemyMove>();
-            if (move == null) return null;
-            enemyMoveset.Moves[index] = move.Value;
-        }
+        EnemyMoveset moveset = new EnemyMoveset();
+        moveset.Move1 = EnemyMove.ReadEnemyMove(reader);
+        moveset.Move2 = EnemyMove.ReadEnemyMove(reader);
+        moveset.Move3 = EnemyMove.ReadEnemyMove(reader);
+        moveset.Move4 = EnemyMove.ReadEnemyMove(reader);
+        moveset.Move5 = EnemyMove.ReadEnemyMove(reader);
 
-        return enemyMoveset;
+        return moveset;
+    }
+
+    public void WriteEnemyMoveset(Stream writer)
+    {
+        Move1.WriteEnemyMove(writer);
+        Move2.WriteEnemyMove(writer);
+        Move3.WriteEnemyMove(writer);
+        Move4.WriteEnemyMove(writer);
+        Move5.WriteEnemyMove(writer);
     }
 }

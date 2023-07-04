@@ -23,8 +23,8 @@
 			<MenuItem VerticalAlignment="Center"
 					  Header="File">
 				<MenuItem Command="{ReflectionBinding SaveAll}"
-					  VerticalAlignment="Center"
-					  Header="Save All" />
+					      VerticalAlignment="Center"
+					      Header="Save All" />
 				<MenuItem Command="{ReflectionBinding LaunchGame}"
 						  VerticalAlignment="Center"
 						  Header="Launch Game" />
@@ -34,6 +34,12 @@
 				<MenuItem Command="{ReflectionBinding Exit}"
 						  VerticalAlignment="Center"
 						  Header="Exit" />
+			</MenuItem>
+			<MenuItem VerticalAlignment="Center"
+					  Header="Windows">
+				<MenuItem Command="{ReflectionBinding OpenDDSViewer}"
+						  VerticalAlignment="Center"
+						  Header="DDS Viewer"/>
 			</MenuItem>
 		</Menu>
 		<ComboBox HorizontalAlignment="Right"

@@ -166,7 +166,7 @@ public class Equipment
         }
     }
 
-    public static uint Size { get => 0x1C; }
+    public static uint ByteSize { get => 0x1C; }
 
     public static Equipment ReadEquipmentStats(Stream reader)
     {

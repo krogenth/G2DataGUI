@@ -3,11 +3,11 @@ using G2DataGUI.UI.ViewModels;
 
 namespace G2DataGUI.UI.Views.Content;
 
-public partial class Enemies : UserControl
+public partial class EnemyAISection : UserControl
 {
-    public Enemies()
+    public EnemyAISection()
     {
-        DataContext = EnemiesViewModel.Instance;
+        DataContext = EnemyAISectionViewModel.Instance;
         InitializeComponent();
     }
 }

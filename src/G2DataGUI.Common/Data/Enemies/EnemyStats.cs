@@ -1,50 +1,219 @@
-﻿using System.Runtime.InteropServices;
+﻿using G2DataGUI.Common.Data.Common;
+using G2DataGUI.IO.Streams;
+using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x4E)]
-public struct EnemyStats
+public class EnemyStats
 {
-    [FieldOffset(0x00)] public byte Unknown1;
-    [FieldOffset(0x01)] public byte Unknown2;
-    [FieldOffset(0x02)] public byte Type1;
-    [FieldOffset(0x03)] public byte Type2;
-    [FieldOffset(0x04)] public short Level;
-    [FieldOffset(0x06)] public int Health;
-    [FieldOffset(0x0A)] public short Mp;
-    [FieldOffset(0x0C)] public short Sp;
-    [FieldOffset(0x0E)] public short Vitality;
-    [FieldOffset(0x10)] public short Agility;
-    [FieldOffset(0x12)] public short Speed;
-    [FieldOffset(0x14)] public short Mentality;
-    [FieldOffset(0x16)] public short Stamina;
-    [FieldOffset(0x18)] public short IpStunResist;
-    [FieldOffset(0x1A)] public short IpCancelStunResist;
-    [FieldOffset(0x1C)] public byte EvasionStillRate;
-    [FieldOffset(0x1D)] public byte EvasionMovingRate;
-    [FieldOffset(0x1E)] public byte FireResist;
-    [FieldOffset(0x1F)] public byte WindResist;
-    [FieldOffset(0x20)] public byte EarthResist;
-    [FieldOffset(0x21)] public byte LightningResist;
-    [FieldOffset(0x22)] public byte BlizzardResist;
-    [FieldOffset(0x23)] public byte AilmentsBitflag;
-    [FieldOffset(0x24)] public short KnockbackResist;
-    [FieldOffset(0x26)] public short T_REC;
-    [FieldOffset(0x28)] public short T_DMG;
-    [FieldOffset(0x2A)] public short Unknown3;
-    [FieldOffset(0x2C)] public short T_HEAL;
-    [FieldOffset(0x2E)] public short Size;
-    [FieldOffset(0x30)] public short Unknown4;
-    [FieldOffset(0x32)] public byte Unknown5;
-    [FieldOffset(0x33)] public byte NoRunFlag;
-    [FieldOffset(0x34)] public short Unknown6;
-    [FieldOffset(0x36)] public int Experience;
-    [FieldOffset(0x3A)] public int SkillCoins;
-    [FieldOffset(0x3E)] public int MagicCoins;
-    [FieldOffset(0x42)] public int GoldCoins;
-    [FieldOffset(0x46)] public short Item1Offset;
-    [FieldOffset(0x48)] public short Item2Offset;
-    [FieldOffset(0x4A)] public byte Item1Chance;
-    [FieldOffset(0x4B)] public byte Item2Chance;
-    [FieldOffset(0x4C)] public short Unknown7;
+    public byte Unknown1 { get; set; }
+    public byte Unknown2 { get; set; }
+    public byte Type1 { get; set; }
+    public byte Type2 { get; set; }
+    public short Level { get; set; }
+    public int Health { get; set; }
+    public short MP { get; set; }
+    public short SP { get; set; }
+    public short Vitality { get; set; }
+    public short Agility { get; set; }
+    public short Speed { get; set; }
+    public short Mentality { get; set; }
+    public short Stamina { get; set; }
+    public short IpStunDuration { get; set; }
+    public short IpCancelStunDuration { get; set; }
+    public byte EvasionStillRate { get; set; }
+    public byte EvasionMovingRate { get; set; }
+    public sbyte FireResist { get; set; }
+    public sbyte WindResist { get; set; }
+    public sbyte EarthResist { get; set; }
+    public sbyte LightningResist { get; set; }
+    public sbyte BlizzardResist { get; set; }
+    public byte AilmentsBitflag { get; set; }
+    public short KnockbackResist { get; set; }
+    public short StatusRecoveryTime { get; set; }
+    public short T_DMG { get; set; }
+    public short Unknown3 { get; set; }
+    public short T_HEAL { get; set; }
+    public short Size { get; set; }
+    public short Unknown4 { get; set; }
+    public byte Unknown5 { get; set; }
+    public bool NoRunFlag { get; set; }
+    public short Unknown6 { get; set; }
+    public int Experience { get; set; }
+    public int SkillCoins { get; set; }
+    public int MagicCoins { get; set; }
+    public int GoldCoins { get; set; }
+    public short Item1Offset { get; set; }
+    public short Item2Offset { get; set; }
+    public byte Item1Chance { get; set; }
+    public byte Item2Chance { get; set; }
+    public short Unknown7 { get; set; }
+
+    public bool PoisonBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+        }
+    }
+    public bool SleepBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+        }
+    }
+    public bool ParalysisBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+        }
+    }
+    public bool ConfusionBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+        }
+    }
+    public bool PlagueBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+        }
+    }
+    public bool Magic_BlockBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+        }
+    }
+    public bool Move_BlockBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+        }
+    }
+    public bool DeathBitflag
+    {
+        get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
+        set
+        {
+            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
+            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+        }
+    }
+
+    public static EnemyStats ReadEnemyStats(Stream reader)
+    {
+        EnemyStats stats = new EnemyStats();
+        stats.Unknown1 = reader.ReadRawByte();
+        stats.Unknown2 = reader.ReadRawByte();
+        stats.Type1 = reader.ReadRawByte();
+        stats.Type2 = reader.ReadRawByte();
+        stats.Level = reader.ReadRawShort();
+        stats.Health = reader.ReadRawInt();
+        stats.MP = reader.ReadRawShort();
+        stats.SP = reader.ReadRawShort();
+        stats.Vitality = reader.ReadRawShort();
+        stats.Agility = reader.ReadRawShort();
+        stats.Speed = reader.ReadRawShort();
+        stats.Mentality = reader.ReadRawShort();
+        stats.Stamina = reader.ReadRawShort();
+        stats.IpStunDuration = reader.ReadRawShort();
+        stats.IpCancelStunDuration = reader.ReadRawShort();
+        stats.EvasionStillRate = reader.ReadRawByte();
+        stats.EvasionMovingRate = reader.ReadRawByte();
+        stats.FireResist = reader.ReadRawSByte();
+        stats.WindResist = reader.ReadRawSByte();
+        stats.EarthResist = reader.ReadRawSByte();
+        stats.LightningResist = reader.ReadRawSByte();
+        stats.BlizzardResist = reader.ReadRawSByte();
+        stats.AilmentsBitflag = reader.ReadRawByte();
+        stats.KnockbackResist = reader.ReadRawShort();
+        stats.StatusRecoveryTime = reader.ReadRawShort();
+        stats.T_DMG = reader.ReadRawShort();
+        stats.Unknown3 = reader.ReadRawShort();
+        stats.T_HEAL = reader.ReadRawShort();
+        stats.Size = reader.ReadRawShort();
+        stats.Unknown4 = reader.ReadRawShort();
+        stats.Unknown5 = reader.ReadRawByte();
+        stats.NoRunFlag = reader.ReadRawBool();
+        stats.Unknown6 = reader.ReadRawShort();
+        stats.Experience = reader.ReadRawInt();
+        stats.SkillCoins = reader.ReadRawInt();
+        stats.MagicCoins = reader.ReadRawInt();
+        stats.GoldCoins = reader.ReadRawInt();
+        stats.Item1Offset = reader.ReadRawShort();
+        stats.Item2Offset = reader.ReadRawShort();
+        stats.Item1Chance = reader.ReadRawByte();
+        stats.Item2Chance = reader.ReadRawByte();
+        stats.Unknown7 = reader.ReadRawShort();
+
+        return stats;
+    }
+
+    public void WriteEnemyStats(Stream writer)
+    {
+        writer.WriteRawByte(Unknown1);
+        writer.WriteRawByte(Unknown2);
+        writer.WriteRawByte(Type1);
+        writer.WriteRawByte(Type2);
+        writer.WriteRawShort(Level);
+        writer.WriteRawInt(Health);
+        writer.WriteRawShort(MP);
+        writer.WriteRawShort(SP);
+        writer.WriteRawShort(Vitality);
+        writer.WriteRawShort(Agility);
+        writer.WriteRawShort(Speed);
+        writer.WriteRawShort(Mentality);
+        writer.WriteRawShort(Stamina);
+        writer.WriteRawShort(IpStunDuration);
+        writer.WriteRawShort(IpCancelStunDuration);
+        writer.WriteRawByte(EvasionStillRate);
+        writer.WriteRawByte(EvasionMovingRate);
+        writer.WriteRawSByte(FireResist);
+        writer.WriteRawSByte(WindResist);
+        writer.WriteRawSByte(EarthResist);
+        writer.WriteRawSByte(LightningResist);
+        writer.WriteRawSByte(BlizzardResist);
+        writer.WriteRawByte(AilmentsBitflag);
+        writer.WriteRawShort(KnockbackResist);
+        writer.WriteRawShort(StatusRecoveryTime);
+        writer.WriteRawShort(T_DMG);
+        writer.WriteRawShort(Unknown3);
+        writer.WriteRawShort(T_HEAL);
+        writer.WriteRawShort(Size);
+        writer.WriteRawShort(Unknown4);
+        writer.WriteRawByte(Unknown5);
+        writer.WriteRawBool(NoRunFlag);
+        writer.WriteRawShort(Unknown6);
+        writer.WriteRawInt(Experience);
+        writer.WriteRawInt(SkillCoins);
+        writer.WriteRawInt(MagicCoins);
+        writer.WriteRawInt(GoldCoins);
+        writer.WriteRawShort(Item1Offset);
+        writer.WriteRawShort(Item2Offset);
+        writer.WriteRawByte(Item1Chance);
+        writer.WriteRawByte(Item2Chance);
+        writer.WriteRawShort(Unknown7);
+    }
 }

@@ -5,4 +5,8 @@
     <BaseOutputPath>..\..\build</BaseOutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Pfim" />
+  </ItemGroup>
+
 </Project>

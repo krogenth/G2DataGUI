@@ -29,7 +29,7 @@ public class Items
     private void ReadItems()
     {
         _items.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.Open))
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.Open, FileAccess.Read))
         using (MemoryStream memReader = new MemoryStream())
         {
             reader.CopyTo(memReader);
@@ -44,11 +44,12 @@ public class Items
                 }
             }
         }
+        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
     private void WriteItems()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.OpenOrCreate))
+        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
         {
             uint pointer = 0;
             foreach (var item in _items)

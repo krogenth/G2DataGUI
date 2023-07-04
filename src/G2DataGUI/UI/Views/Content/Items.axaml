@@ -19,7 +19,6 @@
 		<ListBox x:Name="ItemsList"
 				 Items="{Binding GameItems}"
 				 SelectedIndex="{Binding SelectedItemIndex}"
-				 Grid.Row="0"
 				 Grid.Column="0">
 			<ListBox.Styles>
 				<Style Selector="ListBoxItem">
@@ -40,8 +39,7 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<ScrollViewer Grid.Row="0"
-				      Grid.Column="1">
+		<ScrollViewer Grid.Column="1">
 			<Grid x:Name="ItemDataGrid"
 				  Margin="20,10">
 				<Grid.ColumnDefinitions>
@@ -49,11 +47,8 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
 				<StackPanel Grid.Column="0"
-							Margin="0,0,10,0">
+							Margin="8">
 					<TextBlock Text="Name:" />
 					<TextBox Text="{Binding SelectedItemItem.Name}"
 							 MaxLength="{Binding SelectedItemItem.MaxNameLength}" />

@@ -14,12 +14,20 @@ public class ItemEquipmentViewModel : BaseViewModel
         get => _selectedItemEquipment;
         set
         {
-            if (value == null)_selectedItemEquipment = new Equipment();
+            if (value == null) _selectedItemEquipment = new Equipment();
             else _selectedItemEquipment = value;
             HasEquipment = value != null;
             OnPropertyChanged(nameof(SelectedItemEquipment));
         }
     }
 
-    public bool HasEquipment { get => _hasEquipment; set { _hasEquipment = value; OnPropertyChanged(nameof(HasEquipment)); } }
+    public bool HasEquipment
+    {
+        get => _hasEquipment;
+        set
+        {
+            _hasEquipment = value;
+            OnPropertyChanged(nameof(HasEquipment));
+        }
+    }
 }
