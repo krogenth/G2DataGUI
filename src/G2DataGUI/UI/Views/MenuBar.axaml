@@ -13,7 +13,8 @@
 		<Menu Name="MainMenuBar"
 			  Height="35"
 			  Margin="0"
-			  HorizontalAlignment="Left">
+			  HorizontalAlignment="Left"
+			  DockPanel.Dock="Left">
 			<Menu.ItemsPanel>
 				<ItemsPanelTemplate>
 					<DockPanel Margin="0"
@@ -42,7 +43,8 @@
 						  Header="DDS Viewer"/>
 			</MenuItem>
 		</Menu>
-		<ComboBox HorizontalAlignment="Right"
+		<ComboBox DockPanel.Dock="Right"
+				  HorizontalAlignment="Right"
 				  SelectedItem="{Binding SelectedStyle}"
 				  Items="{locale:Locale StyleThemes}"
 				  Margin="0,10,10,0" />

@@ -1,4 +1,5 @@
 ﻿using G2DataGUI.Common.Data.DDS;
+using G2DataGUI.Events;
 using G2DataGUI.IO.DDS;
 using Pfim;
 using System;
@@ -13,6 +14,10 @@ public class DDSViewerViewModel : BaseViewModel
     private int _imageHeight = 0;
     private int _selectedDDSFileIndex = 0;
     private IImage _image = null;
+    public int ListWidth { get; } = 300;
+    private int _minimumImageWidth = 700;
+    private int _minimumViewWidth = 1000;
+    public event EventHandler<ImageEventArgs> ImageChanged;
 
     public static DDSViewerViewModel Instance { get; private set; } = new();
 
@@ -77,7 +82,20 @@ public class DDSViewerViewModel : BaseViewModel
         set
         {
             _image = value;
+            ImageChanged?.Invoke(this, new ImageEventArgs(value));
             OnPropertyChanged(nameof(Image));
+            OnPropertyChanged(nameof(ViewWidth));
+            OnPropertyChanged(nameof(ImagePaneWidth));
         }
+    }
+
+    public int ViewWidth
+    {
+        get => 16 + (Image.Width > _minimumImageWidth ? Image.Width + ListWidth : _minimumViewWidth);
+    }
+
+    public int ImagePaneWidth
+    {
+        get => 16 + (ImageWidth > _minimumImageWidth ? Image.Width : _minimumImageWidth);
     }
 }

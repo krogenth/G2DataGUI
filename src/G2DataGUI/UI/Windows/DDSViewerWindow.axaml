@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:vm="using:G2DataGUI.UI.ViewModels"
 		xmlns:views="using:G2DataGUI.UI.Views"
-		Title="DDS Viewer"
-		Width="1000"
+		Width="{Binding WindowWidth}"
 		Height="1000"
+		Title="DDS Viewer"
         mc:Ignorable="d">
 	<views:DDSViewerView />
 </Window>

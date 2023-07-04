@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
 			 xmlns:converters="using:G2DataGUI.Converters"
+			 Width="{Binding ViewWidth}"
              mc:Ignorable="d"
 			 Focusable="True"
 			 x:CompileBindings="True"
@@ -12,12 +13,11 @@
 	<UserControl.Resources>
 		<converters:BitmapConverter x:Key="BitmapConverter" />
 	</UserControl.Resources>
-	<!-- Since we are using a string array with DataTemplate we cannot do CompileBindings -->
 	<Grid Name="DDSViewerPage"
 		  Margin="4">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="{Binding ImagePaneWidth}" />
 		</Grid.ColumnDefinitions>
 		<ListBox x:Name="DDSList"
 				 Items="{Binding GameDDSFiles}"
@@ -42,9 +42,65 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
+		<StackPanel Grid.Column="1" VerticalAlignment="Top">
+			<Expander VerticalAlignment="Top">
+				<Expander.Header>
+					Information
+				</Expander.Header>
+				<StackPanel Margin="4">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<TextBlock Text="Width: " Margin="4" Grid.Row="0" Grid.Column="0" />
+						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+							<TextBlock Text="{Binding Image.Width}" />
+							<TextBlock Text="px" />
+						</StackPanel>
+
+						<TextBlock Text="Height: " Margin="4" Grid.Row="1" Grid.Column="0" />
+						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+							<TextBlock Text="{Binding Image.Height}" />
+							<TextBlock Text="px" />
+						</StackPanel>
+
+						<TextBlock Text="Stride: " Margin="4" Grid.Row="2" Grid.Column="0" />
+						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+							<TextBlock Text="{Binding Image.Stride}" />
+						</StackPanel>
+
+						<TextBlock Text="Bits per Pixel: " Margin="4" Grid.Row="3" Grid.Column="0" />
+						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+							<TextBlock Text="{Binding Image.BitsPerPixel}" />
+						</StackPanel>
+
+						<TextBlock Text="Format: " Margin="4" Grid.Row="4" Grid.Column="0" />
+						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+							<TextBlock Text="{Binding Image.Format}" />
+						</StackPanel>
+
+						<TextBlock Text="Compressed: " Margin="4" Grid.Row="5" Grid.Column="0" />
+						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+							<TextBlock Text="{Binding Image.Compressed}" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+			</Expander>
+		</StackPanel>
 		<Image Width="{Binding ImageWidth}"
-			   Height="{Binding ImageHeight}"
-			   Source="{Binding Image, Converter={StaticResource BitmapConverter}}"
-			   Grid.Column="1" />
+				   Height="{Binding ImageHeight}"
+				   Source="{Binding Image, Converter={StaticResource BitmapConverter}}"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   Grid.Column="1" />
 	</Grid>
 </UserControl>
