@@ -19,88 +19,78 @@
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="{Binding ImagePaneWidth}" />
 		</Grid.ColumnDefinitions>
-		<ListBox x:Name="DDSList"
-				 Items="{Binding GameDDSFiles}"
-				 SelectedIndex="{Binding SelectedDDSFileIndex}"
-				 Grid.Column="0">
-			<ListBox.Styles>
-				<Style Selector="ListBoxItem">
-					<Setter Property="Width" Value="300" />
-					<Setter Property="HorizontalAlignment" Value="Right" />
-				</Style>
-			</ListBox.Styles>
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<Border CornerRadius="4"
-							Margin="0"
-							Padding="10"
-							HorizontalAlignment="Stretch"
-							VerticalAlignment="Stretch"
-							ClipToBounds="True">
-						<TextBlock Text="{Binding Name, Mode=OneWay}" />
-					</Border>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
-		<StackPanel Grid.Column="1" VerticalAlignment="Top">
-			<Expander VerticalAlignment="Top">
-				<Expander.Header>
-					Information
-				</Expander.Header>
-				<StackPanel Margin="4">
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" />
-							<ColumnDefinition Width="*" />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-						</Grid.RowDefinitions>
-						<TextBlock Text="Width: " Margin="4" Grid.Row="0" Grid.Column="0" />
-						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-							<TextBlock Text="{Binding Image.Width}" />
-							<TextBlock Text="px" />
-						</StackPanel>
+		<TreeView Name="DDSFileTree"
+				  Grid.Column="0"
+				  Items="{Binding GameDirectoryDDSFiles}"
+				  SelectedItem="{Binding SelectedDDSFile}"
+				  Width="{Binding TreeViewWidth}"
+				  VerticalAlignment="Stretch"
+				  HorizontalAlignment="Left">
+			<TreeView.ItemTemplate>
+				<TreeDataTemplate ItemsSource="{Binding Children}">
+					<TextBlock Text="{Binding Title}" />
+				</TreeDataTemplate>
+			</TreeView.ItemTemplate>
+		</TreeView>
+		<Expander Grid.Column="1"
+				  VerticalAlignment="Top"
+				  IsVisible="{Binding ShowInformation}">
+			<Expander.Header>
+				Information
+			</Expander.Header>
+			<StackPanel Margin="4">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<TextBlock Text="Width: " Margin="4" Grid.Row="0" Grid.Column="0" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+						<TextBlock Text="{Binding Image.Width}" />
+						<TextBlock Text="px" />
+					</StackPanel>
 
-						<TextBlock Text="Height: " Margin="4" Grid.Row="1" Grid.Column="0" />
-						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-							<TextBlock Text="{Binding Image.Height}" />
-							<TextBlock Text="px" />
-						</StackPanel>
+					<TextBlock Text="Height: " Margin="4" Grid.Row="1" Grid.Column="0" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+						<TextBlock Text="{Binding Image.Height}" />
+						<TextBlock Text="px" />
+					</StackPanel>
 
-						<TextBlock Text="Stride: " Margin="4" Grid.Row="2" Grid.Column="0" />
-						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-							<TextBlock Text="{Binding Image.Stride}" />
-						</StackPanel>
+					<TextBlock Text="Stride: " Margin="4" Grid.Row="2" Grid.Column="0" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+						<TextBlock Text="{Binding Image.Stride}" />
+					</StackPanel>
 
-						<TextBlock Text="Bits per Pixel: " Margin="4" Grid.Row="3" Grid.Column="0" />
-						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-							<TextBlock Text="{Binding Image.BitsPerPixel}" />
-						</StackPanel>
+					<TextBlock Text="Bits per Pixel: " Margin="4" Grid.Row="3" Grid.Column="0" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+						<TextBlock Text="{Binding Image.BitsPerPixel}" />
+					</StackPanel>
 
-						<TextBlock Text="Format: " Margin="4" Grid.Row="4" Grid.Column="0" />
-						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
-							<TextBlock Text="{Binding Image.Format}" />
-						</StackPanel>
+					<TextBlock Text="Format: " Margin="4" Grid.Row="4" Grid.Column="0" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+						<TextBlock Text="{Binding Image.Format}" />
+					</StackPanel>
 
-						<TextBlock Text="Compressed: " Margin="4" Grid.Row="5" Grid.Column="0" />
-						<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
-							<TextBlock Text="{Binding Image.Compressed}" />
-						</StackPanel>
-					</Grid>
-				</StackPanel>
-			</Expander>
-		</StackPanel>
+					<TextBlock Text="Compressed: " Margin="4" Grid.Row="5" Grid.Column="0" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+						<TextBlock Text="{Binding Image.Compressed}" />
+					</StackPanel>
+				</Grid>
+			</StackPanel>
+		</Expander>
 		<Image Width="{Binding ImageWidth}"
-				   Height="{Binding ImageHeight}"
-				   Source="{Binding Image, Converter={StaticResource BitmapConverter}}"
-				   HorizontalAlignment="Center"
-				   VerticalAlignment="Center"
-				   Grid.Column="1" />
+			   Height="{Binding ImageHeight}"
+			   Source="{Binding Image, Converter={StaticResource BitmapConverter}}"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   Grid.Column="1" />
 	</Grid>
 </UserControl>

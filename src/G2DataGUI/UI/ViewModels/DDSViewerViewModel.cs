@@ -9,14 +9,14 @@ namespace G2DataGUI.UI.ViewModels;
 
 public class DDSViewerViewModel : BaseViewModel
 {
-    public ObservableCollection<DDSFile> GameDDSFiles { get; private set; } = DDSFiles.Instance.GetDDSFiles();
+    public ObservableCollection<DDSNode> GameDirectoryDDSFiles { get; private set; } = DDSFiles.Instance.DirectoryDDSFiles;
     private int _imageWidth = 0;
     private int _imageHeight = 0;
-    private int _selectedDDSFileIndex = 0;
+    private DDSNode _selectedDDSFile = null;
     private IImage _image = null;
-    public int ListWidth { get; } = 300;
+    public int TreeViewWidth { get; } = 200;
     private int _minimumImageWidth = 700;
-    private int _minimumViewWidth = 1000;
+    private int _minimumViewWidth = 900;
     public event EventHandler<ImageEventArgs> ImageChanged;
 
     public static DDSViewerViewModel Instance { get; private set; } = new();
@@ -24,25 +24,22 @@ public class DDSViewerViewModel : BaseViewModel
     private DDSViewerViewModel()
     {
         DDSFiles.Instance.CollectionRefreshed += DDSFileCollectionRefreshed;
-        if (GameDDSFiles.Count > 0)
-        {
-            LoadDDSFile();
-        }
     }
 
     private void DDSFileCollectionRefreshed(object sender, EventArgs args)
     {
-        if (GameDDSFiles.Count > 0)
-        {
-            LoadDDSFile();
-        }
+        Image = null;
     }
 
     private void LoadDDSFile()
-    {
-        Image = DDSLoader.LoadDDSFile(GameDDSFiles[SelectedDDSFileIndex].Path);
-        ImageHeight = Image.Height;
-        ImageWidth = Image.Width;
+    {   if (SelectedDDSFile == null || !SelectedDDSFile.IsFile)
+        {
+            Image = null;
+        }
+        else
+        {
+            Image = DDSLoader.LoadDDSFile(SelectedDDSFile.Path);
+        }
     }
 
     public int ImageWidth
@@ -52,6 +49,8 @@ public class DDSViewerViewModel : BaseViewModel
         {
             _imageWidth = value;
             OnPropertyChanged(nameof(ImageWidth));
+            OnPropertyChanged(nameof(ViewWidth));
+            OnPropertyChanged(nameof(ImagePaneWidth));
         }
     }
 
@@ -65,14 +64,17 @@ public class DDSViewerViewModel : BaseViewModel
         }
     }
 
-    public int SelectedDDSFileIndex
+    public DDSNode SelectedDDSFile
     {
-        get => _selectedDDSFileIndex;
+        get => _selectedDDSFile;
         set
         {
-            _selectedDDSFileIndex = value;
-            LoadDDSFile();
-            OnPropertyChanged(nameof(SelectedDDSFileIndex));
+            if (value.IsFile)
+            {
+                _selectedDDSFile = value;
+                LoadDDSFile();
+                OnPropertyChanged(nameof(SelectedDDSFile));
+            }
         }
     }
 
@@ -82,20 +84,23 @@ public class DDSViewerViewModel : BaseViewModel
         set
         {
             _image = value;
-            ImageChanged?.Invoke(this, new ImageEventArgs(value));
+            ImageWidth = value != null ? value.Width : 0;
+            ImageHeight = value != null ? value.Height : 0;
             OnPropertyChanged(nameof(Image));
-            OnPropertyChanged(nameof(ViewWidth));
-            OnPropertyChanged(nameof(ImagePaneWidth));
+            OnPropertyChanged(nameof(ShowInformation));
+            ImageChanged?.Invoke(this, new ImageEventArgs(value));
         }
     }
 
+    public bool ShowInformation { get => Image != null; }
+
     public int ViewWidth
     {
-        get => 16 + (Image.Width > _minimumImageWidth ? Image.Width + ListWidth : _minimumViewWidth);
+        get => 16 + (ImageWidth > _minimumImageWidth ? ImageWidth + TreeViewWidth : _minimumViewWidth);
     }
 
     public int ImagePaneWidth
     {
-        get => 16 + (ImageWidth > _minimumImageWidth ? Image.Width : _minimumImageWidth);
+        get => 16 + (ImageWidth > _minimumImageWidth ? ImageWidth : _minimumImageWidth);
     }
 }

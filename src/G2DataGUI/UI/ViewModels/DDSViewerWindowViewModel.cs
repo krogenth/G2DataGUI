@@ -11,15 +11,15 @@ public class DDSViewerWindowViewModel : BaseViewModel
     private DDSViewerWindowViewModel()
     {
         DDSViewerViewModel.Instance.ImageChanged += OnImageChange;
-        CalculateWindowWidth(DDSViewerViewModel.Instance.Image.Width);
+        CalculateWindowWidth();
     }
 
     public void OnImageChange(object sender, ImageEventArgs e)
     {
-        CalculateWindowWidth(e.Image.Width);
+        CalculateWindowWidth();
     }
 
-    private void CalculateWindowWidth(int imageWidth)
+    private void CalculateWindowWidth()
     {
         WindowWidth = DDSViewerViewModel.Instance.ViewWidth;
     }

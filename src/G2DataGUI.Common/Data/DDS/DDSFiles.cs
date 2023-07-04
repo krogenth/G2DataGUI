@@ -1,34 +1,52 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 
 namespace G2DataGUI.Common.Data.DDS;
 
 public class DDSFiles
 {
     public static DDSFiles Instance { get; private set; } = new();
-    private ObservableCollection<DDSFile> _ddsFiles = new();
+    public ObservableCollection<DDSNode> DirectoryDDSFiles { get; private set; } = new();
     public event EventHandler CollectionRefreshed;
 
     private DDSFiles()
     {
-        ReadDDSFiles();
+        ReadDDSFileSystemStructure();
     }
 
     public void Reload()
     {
-        ReadDDSFiles();
+        ReadDDSFileSystemStructure();
     }
 
-    private void ReadDDSFiles()
+    private void ReadDDSFileSystemStructure()
     {
-        _ddsFiles.Clear();
-        foreach (string file in Directory.EnumerateFiles(Version.Instance.RootDataDirectory, "*.dds", SearchOption.AllDirectories))
+        DirectoryDDSFiles.Clear();
+        foreach (var node in RecursiveDirectoryCrawl(Version.Instance.RootDataDirectory))
         {
-            _ddsFiles.Add(new DDSFile() { Name = file.Split("afs\\")[1], Path = file });
+            DirectoryDDSFiles.Add(node);
         }
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
-    public ObservableCollection<DDSFile> GetDDSFiles() { return _ddsFiles; }
+    public ObservableCollection<DDSNode> RecursiveDirectoryCrawl(string directory)
+    {
+        ObservableCollection<DDSNode> node = new ObservableCollection<DDSNode>();
+
+        foreach (string dir in Directory.GetDirectories(directory))
+        {
+            var child = new DDSNode(new DirectoryInfo(dir).Name, dir, false, RecursiveDirectoryCrawl(dir));
+            node.Add(child);
+        }
+
+        foreach (string file in Directory.GetFiles(directory, "*.dds"))
+        {
+            var child = new DDSNode(new DirectoryInfo(file).Name, file, true);
+            node.Add(child);
+        }
+
+        return node;
+    }
 }
