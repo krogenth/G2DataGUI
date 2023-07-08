@@ -27,18 +27,15 @@ public partial class MainWindow : Window
         UpdateStyleTheme(MenuBarViewModel.Instance.SelectedStyle);
     }
 
-    public void OnStyleThemeChange(object sender, StyleThemeEventArgs e)
-    {
-        UpdateStyleTheme(e.Style);
-    }
+	public void OnStyleThemeChange(object sender, StyleThemeEventArgs e) => UpdateStyleTheme(e.Style);
 
-    private void UpdateStyleTheme(string style)
+	private void UpdateStyleTheme(string style)
     {
         var theme = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
         theme.RequestedTheme = style;
 
-        string BaseStyleUri = "avares://G2DataGUI/Assets/Styles/Base{0}.xaml";
-        Uri stylesUri = new Uri(string.Format(BaseStyleUri, style), UriKind.Absolute);
+        string baseStyleUri = "avares://G2DataGUI/Assets/Styles/Base{0}.xaml";
+        Uri stylesUri = new(string.Format(baseStyleUri, style), UriKind.Absolute);
         IStyle styles = AvaloniaXamlLoader.Load(stylesUri) as Styles;
         Styles.Clear();
         Styles.Add(styles);

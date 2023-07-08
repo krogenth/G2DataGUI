@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Items;
 
 public class Items
 {
     public static Items Instance { get; } = new();
-    private ObservableCollection<Item> _items = new();
+    public ObservableCollection<Item> GameItems { get; private set; } = new();
     public event EventHandler CollectionRefreshed;
     public const uint NumberOfItems = 0x31F;
 
@@ -16,53 +17,48 @@ public class Items
         ReadItems();
     }
 
-    public void Save()
-    {
-        WriteItems();
-    }
+	public void Save() => WriteItems();
 
-    public void Reload()
-    {
-        ReadItems();
-    }
+	public void Reload() => ReadItems();
 
-    private void ReadItems()
+	private void ReadItems()
     {
-        _items.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.Open, FileAccess.Read))
-        using (MemoryStream memReader = new MemoryStream())
+        GameItems.Clear();
+        using FileStream reader = File.Open(
+            Version.Instance.RootDataDirectory + GamePaths.ItemsPath,
+            FileMode.Open,
+            FileAccess.Read);
+        using MemoryStream memReader = new();
+        reader.CopyTo(memReader);
+        memReader.Seek(0, SeekOrigin.Begin);
+        for (uint index = 0; index < NumberOfItems; index++)
         {
-            reader.CopyTo(memReader);
-            memReader.Seek(0, SeekOrigin.Begin);
-            for (uint index = 0; index < NumberOfItems; index++)
+            Item item = Item.ReadItem(memReader);
+            if (item != null)
             {
-                Item item = Item.ReadItem(memReader);
-                if (item != null)
-                {
-                    item.ID = index;
-                    _items.Add(item);
-                }
+                item.ID = index;
+                GameItems.Add(item);
             }
         }
+
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
     private void WriteItems()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.ItemsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+        using FileStream writer = File.Open(
+            Version.Instance.RootDataDirectory + GamePaths.ItemsPath,
+            FileMode.OpenOrCreate,
+            FileAccess.ReadWrite);
+        uint pointer = 0;
+        foreach (var item in GameItems)
         {
-            uint pointer = 0;
-            foreach (var item in _items)
-            {
-                item.WriteItem(writer, ref pointer);
-            }
+            item.WriteItem(writer, ref pointer);
+        }
 
-            foreach (var item in _items)
-            {
-                item.WriteEquipmentAndUsable(writer);
-            }
+        foreach (var item in GameItems)
+        {
+            item.WriteEquipmentAndUsable(writer);
         }
     }
-
-    public ObservableCollection<Item> GetItems() { return _items; }
 }

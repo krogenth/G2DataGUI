@@ -34,63 +34,105 @@ public class Equipment
         get => (CharacterBitflag & (ushort)Characters.CharacterTypes.Ryudo) > 0;
         set
         {
-            if (value) CharacterBitflag |= (ushort)Characters.CharacterTypes.Ryudo;
-            else CharacterBitflag &= (ushort)~Characters.CharacterTypes.Ryudo;
-        }
+            if (value)
+			{
+				CharacterBitflag |= (ushort)Characters.CharacterTypes.Ryudo;
+			}
+			else
+			{
+				CharacterBitflag &= (ushort)~Characters.CharacterTypes.Ryudo;
+			}
+		}
     }
     public bool ElenaBitflag
     {
         get => (CharacterBitflag & (ushort)Characters.CharacterTypes.Elena) > 0;
         set
         {
-            if (value) CharacterBitflag |= (ushort)Characters.CharacterTypes.Elena;
-            else CharacterBitflag &= (ushort)~Characters.CharacterTypes.Elena;
-        }
+            if (value)
+			{
+				CharacterBitflag |= (ushort)Characters.CharacterTypes.Elena;
+			}
+			else
+			{
+				CharacterBitflag &= (ushort)~Characters.CharacterTypes.Elena;
+			}
+		}
     }
     public bool MilleniaBitflag
     {
         get => (CharacterBitflag & (ushort)Characters.CharacterTypes.Millenia) > 0;
         set
         {
-            if (value) CharacterBitflag |= (ushort)Characters.CharacterTypes.Millenia;
-            else CharacterBitflag &= (ushort)~Characters.CharacterTypes.Millenia;
-        }
+            if (value)
+			{
+				CharacterBitflag |= (ushort)Characters.CharacterTypes.Millenia;
+			}
+			else
+			{
+				CharacterBitflag &= (ushort)~Characters.CharacterTypes.Millenia;
+			}
+		}
     }
     public bool RoanBitflag
     {
         get => (CharacterBitflag & (ushort)Characters.CharacterTypes.Roan) > 0;
         set
         {
-            if (value) CharacterBitflag |= (ushort)Characters.CharacterTypes.Roan;
-            else CharacterBitflag &= (ushort)~Characters.CharacterTypes.Roan;
-        }
+            if (value)
+			{
+				CharacterBitflag |= (ushort)Characters.CharacterTypes.Roan;
+			}
+			else
+			{
+				CharacterBitflag &= (ushort)~Characters.CharacterTypes.Roan;
+			}
+		}
     }
     public bool TioBitflag
     {
         get => (CharacterBitflag & (ushort)Characters.CharacterTypes.Tio) > 0;
         set
         {
-            if (value) CharacterBitflag |= (ushort)Characters.CharacterTypes.Tio;
-            else CharacterBitflag &= (ushort)~Characters.CharacterTypes.Tio;
-        }
+            if (value)
+			{
+				CharacterBitflag |= (ushort)Characters.CharacterTypes.Tio;
+			}
+			else
+			{
+				CharacterBitflag &= (ushort)~Characters.CharacterTypes.Tio;
+			}
+		}
     }
     public bool MaregBitflag
     {
         get => (CharacterBitflag & (ushort)Characters.CharacterTypes.Mareg) > 0;
         set
         {
-            if (value) CharacterBitflag |= (ushort)Characters.CharacterTypes.Mareg;
-            else CharacterBitflag &= (ushort)~Characters.CharacterTypes.Mareg;
-        }
+            if (value)
+			{
+				CharacterBitflag |= (ushort)Characters.CharacterTypes.Mareg;
+			}
+			else
+			{
+				CharacterBitflag &= (ushort)~Characters.CharacterTypes.Mareg;
+			}
+		}
     }
     public bool PrinceRoanBitflag
     {
         get => (CharacterBitflag & (ushort)Characters.CharacterTypes.PrinceRoan) > 0;
         set
         {
-            if (value) CharacterBitflag |= (ushort)Characters.CharacterTypes.PrinceRoan;
-            else CharacterBitflag &= (ushort)~Characters.CharacterTypes.PrinceRoan;
-        }
+            if (value)
+			{
+				CharacterBitflag |= (ushort)Characters.CharacterTypes.PrinceRoan;
+			}
+			else
+			{
+				CharacterBitflag &= (ushort)~Characters.CharacterTypes.PrinceRoan;
+			}
+		}
     }
 
     public bool PoisonBitflag
@@ -98,8 +140,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+            }
         }
     }
     public bool SleepBitflag
@@ -107,8 +155,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+            }
         }
     }
     public bool ParalysisBitflag
@@ -116,8 +170,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+            }
         }
     }
     public bool ConfusionBitflag
@@ -125,8 +185,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+            }
         }
     }
     public bool PlagueBitflag
@@ -134,8 +200,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+            }
         }
     }
     public bool Magic_BlockBitflag
@@ -143,8 +215,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+            }
         }
     }
     public bool Move_BlockBitflag
@@ -152,8 +230,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+            }
         }
     }
     public bool DeathBitflag
@@ -161,8 +245,14 @@ public class Equipment
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+            }
         }
     }
 
@@ -170,31 +260,33 @@ public class Equipment
 
     public static Equipment ReadEquipmentStats(Stream reader)
     {
-        Equipment stats = new Equipment();
-        stats.CharacterBitflag = reader.ReadRawUShort();
-        stats.Strength = reader.ReadRawShort();
-        stats.Vitality = reader.ReadRawShort();
-        stats.Action = reader.ReadRawShort();
-        stats.Movement = reader.ReadRawShort();
-        stats.EffectiveOn = reader.ReadRawByte();
-        stats.FireAffinity = reader.ReadRawSByte();
-        stats.WindAffinity = reader.ReadRawSByte();
-        stats.EarthAffinity = reader.ReadRawSByte();
-        stats.LightningAffinity = reader.ReadRawSByte();
-        stats.BlizzardAffinity = reader.ReadRawSByte();
-        stats.AilmentsBitflag = reader.ReadRawByte();
-        stats.AilmentsChance = reader.ReadRawByte();
-        stats.IncreaseFirePercent = reader.ReadRawSByte();
-        stats.IncreaseWindPercent = reader.ReadRawSByte();
-        stats.IncreaseEarthPercent = reader.ReadRawSByte();
-        stats.IncreaseLightningPercent = reader.ReadRawSByte();
-        stats.IncreaseBlizzardPercent = reader.ReadRawSByte();
-        stats.IncreaseWaterPercent = reader.ReadRawSByte();
-        stats.IncreaseExplosionPercent = reader.ReadRawSByte();
-        stats.IncreaseForestPercent = reader.ReadRawSByte();
-        stats.Special = reader.ReadRawShort();
+		Equipment stats = new()
+		{
+			CharacterBitflag = reader.ReadRawUShort(),
+			Strength = reader.ReadRawShort(),
+			Vitality = reader.ReadRawShort(),
+			Action = reader.ReadRawShort(),
+			Movement = reader.ReadRawShort(),
+			EffectiveOn = reader.ReadRawByte(),
+			FireAffinity = reader.ReadRawSByte(),
+			WindAffinity = reader.ReadRawSByte(),
+			EarthAffinity = reader.ReadRawSByte(),
+			LightningAffinity = reader.ReadRawSByte(),
+			BlizzardAffinity = reader.ReadRawSByte(),
+			AilmentsBitflag = reader.ReadRawByte(),
+			AilmentsChance = reader.ReadRawByte(),
+			IncreaseFirePercent = reader.ReadRawSByte(),
+			IncreaseWindPercent = reader.ReadRawSByte(),
+			IncreaseEarthPercent = reader.ReadRawSByte(),
+			IncreaseLightningPercent = reader.ReadRawSByte(),
+			IncreaseBlizzardPercent = reader.ReadRawSByte(),
+			IncreaseWaterPercent = reader.ReadRawSByte(),
+			IncreaseExplosionPercent = reader.ReadRawSByte(),
+			IncreaseForestPercent = reader.ReadRawSByte(),
+			Special = reader.ReadRawShort()
+		};
 
-        return stats;
+		return stats;
     }
 
     public void WriteEquipmentStats(Stream writer)

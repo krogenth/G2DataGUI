@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using G2DataGUI.Common.Paths;
+using G2DataGUI.UI.Common.Locale;
 
 namespace G2DataGUI.Common.Data.Skills;
 
 public class Skillbooks
 {
     public static Skillbooks Instance { get; } = new();
-    public ObservableCollection<Skillbook> _skillbooks = new();
+    public ObservableCollection<Skillbook> GameSkillbooks { get; private set; } = new();
     public event EventHandler CollectionRefreshed;
     public static int NumberOfSkillbooks = 0x0A;
 
@@ -16,43 +18,48 @@ public class Skillbooks
         ReadSkillbooks();
     }
 
-    public void Save()
-    {
-        WriteSkillbooks();
-    }
+	public void Save() => WriteSkillbooks();
 
-    public void Reload()
-    {
-        ReadSkillbooks();
-    }
+	public void Reload() => ReadSkillbooks();
 
-    private void ReadSkillbooks()
+	private void ReadSkillbooks()
     {
-        _skillbooks.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.Open, FileAccess.Read))
-        using (MemoryStream memReader = new MemoryStream())
+        GameSkillbooks.Clear();
+        using FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SkillbooksPath, FileMode.Open, FileAccess.Read);
+        using MemoryStream memReader = new();
+        reader.CopyTo(memReader);
+        memReader.Seek(0, SeekOrigin.Begin);
+        while (memReader.Position < memReader.Length)
         {
-            reader.CopyTo(memReader);
-            memReader.Seek(0, SeekOrigin.Begin);
-            while (memReader.Position < memReader.Length)
+            Skillbook skillbook = Skillbook.ReadSkillbook(memReader);
+            if (skillbook != null)
             {
-                Skillbook skillbook = Skillbook.ReadSkillbook(memReader);
-                if (skillbook != null) _skillbooks.Add(skillbook);
+                GameSkillbooks.Add(skillbook);
             }
         }
+
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
     private void WriteSkillbooks()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SkillbooksPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+        using FileStream writer = File.Open(Version.Instance.RootDataDirectory + GamePaths.SkillbooksPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        foreach (Skillbook skillbook in GameSkillbooks)
         {
-            foreach (Skillbook skillbook in _skillbooks)
-            {
-                skillbook.WriteSkillbook(writer);
-            }
+            skillbook.WriteSkillbook(writer);
         }
     }
 
-    public ObservableCollection<Skillbook> GetSkillbooks() { return _skillbooks; }
+	public void GenerateCSV()
+	{
+		using FileStream stream = File.Open(ProjectPaths.SkillbooksCSVFile, FileMode.Create, FileAccess.Write);
+		using StreamWriter writer = new(stream);
+		writer.Write("Skillbook,");
+		writer.WriteLine(Skillbook.CSVHeader);
+		for (int index = 0; index < GameSkillbooks.Count; index++)
+		{
+			writer.Write($"{LocaleManager.Instance[LocaleKeys.Books][index]},");
+			GameSkillbooks[index].GenerateCSV(writer);
+		}
+	}
 }

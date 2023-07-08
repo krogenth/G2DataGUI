@@ -12,14 +12,16 @@ public class EnemyMoveset
 
     public static EnemyMoveset ReadEnemyMoveset(Stream reader)
     {
-        EnemyMoveset moveset = new EnemyMoveset();
-        moveset.Move1 = EnemyMove.ReadEnemyMove(reader);
-        moveset.Move2 = EnemyMove.ReadEnemyMove(reader);
-        moveset.Move3 = EnemyMove.ReadEnemyMove(reader);
-        moveset.Move4 = EnemyMove.ReadEnemyMove(reader);
-        moveset.Move5 = EnemyMove.ReadEnemyMove(reader);
+		EnemyMoveset moveset = new()
+		{
+			Move1 = EnemyMove.ReadEnemyMove(reader),
+			Move2 = EnemyMove.ReadEnemyMove(reader),
+			Move3 = EnemyMove.ReadEnemyMove(reader),
+			Move4 = EnemyMove.ReadEnemyMove(reader),
+			Move5 = EnemyMove.ReadEnemyMove(reader)
+		};
 
-        return moveset;
+		return moveset;
     }
 
     public void WriteEnemyMoveset(Stream writer)

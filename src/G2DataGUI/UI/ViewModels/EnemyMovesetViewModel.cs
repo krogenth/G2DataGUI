@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
 
 public class EnemyMovesetViewModel : BaseViewModel
 {
-    private EnemyMoveset _selectedEnemyMoveset = new EnemyMoveset();
+    private EnemyMoveset _selectedEnemyMoveset = new();
 
     public static EnemyMovesetViewModel Instance { get; } = new();
 
@@ -18,9 +19,8 @@ public class EnemyMovesetViewModel : BaseViewModel
         get => _selectedEnemyMoveset;
         set
         {
-            if (value == null) _selectedEnemyMoveset = new EnemyMoveset();
-            else _selectedEnemyMoveset = value;
-            OnPropertyChanged(nameof(SelectedEnemyMoveset));
+            _selectedEnemyMoveset = value == null ? new EnemyMoveset() : value;
+			OnPropertyChanged(nameof(SelectedEnemyMoveset));
         }
     }
 }

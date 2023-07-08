@@ -1,5 +1,6 @@
 ﻿using G2DataGUI.Common.Data.Common;
 using G2DataGUI.IO.Streams;
+using G2DataGUI.UI.Common.Locale;
 using System.IO;
 
 namespace G2DataGUI.Common.Data.Moves;
@@ -42,8 +43,14 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+            }
         }
     }
     public bool SleepBitflag
@@ -51,8 +58,14 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+            }
         }
     }
     public bool ParalysisBitflag
@@ -60,8 +73,14 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+            }
         }
     }
     public bool ConfusionBitflag
@@ -69,8 +88,14 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+            }
         }
     }
     public bool PlagueBitflag
@@ -78,8 +103,14 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+            }
         }
     }
     public bool Magic_BlockBitflag
@@ -87,8 +118,14 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+            }
         }
     }
     public bool Move_BlockBitflag
@@ -96,8 +133,14 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+            }
         }
     }
     public bool DeathBitflag
@@ -105,44 +148,58 @@ public class MoveStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+            }
         }
     }
 
+    public static string CSVHeader =>
+        "Cost,Target Effect,Target Type,Strength,Power,Range,Cast 1 Time,Cast 5 Time,Recovery Time," +
+        "Animation,Unknown #1,Knockdown,IP Damage,IP Cancel Damage,Knockback,Element,Element Strength," +
+        "Ailments,Ailments Chance,Attack Modifier,Defense Modifier,Action Modifier,Move Modifier," +
+        "Special,Coin Cost Lv1,Coin Cost Lv2,Coin Cost Lv3,Coin Cost Lv4,Coin Cost Lv5,Multiplier";
+
     public static MoveStats ReadMoveStats(Stream reader)
     {
-        MoveStats stats = new MoveStats();
-        stats.Cost = reader.ReadRawShort();
-        stats.TargetEffect = reader.ReadRawByte();
-        stats.TargetType = reader.ReadRawByte();
-        stats.Strength = reader.ReadRawShort();
-        stats.Power = reader.ReadRawShort();
-        stats.Range = reader.ReadRawShort();
-        stats.Cast1Time = reader.ReadRawShort();
-        stats.Cast5Time = reader.ReadRawShort();
-        stats.RecoveryTime = reader.ReadRawShort();
-        stats.Animation = reader.ReadRawShort();
-        stats.Unknown1 = reader.ReadRawByte();
-        stats.Knockdown = reader.ReadRawByte();
-        stats.IpDamage = reader.ReadRawShort();
-        stats.IpCancelDamage = reader.ReadRawShort();
-        stats.Knockback = reader.ReadRawShort();
-        stats.Element = reader.ReadRawByte();
-        stats.ElementStrength = reader.ReadRawByte();
-        stats.AilmentsBitflag = reader.ReadRawByte();
-        stats.AilmentsChance = reader.ReadRawByte();
-        stats.AttackModifier = reader.ReadRawSByte();
-        stats.DefenseModifier = reader.ReadRawSByte();
-        stats.ActionModifier = reader.ReadRawSByte();
-        stats.MovementModifier = reader.ReadRawSByte();
-        stats.Special = reader.ReadRawShort();
-        stats.CoinCost1 = reader.ReadRawShort();
-        stats.CoinCost2 = reader.ReadRawShort();
-        stats.CoinCost3 = reader.ReadRawShort();
-        stats.CoinCost4 = reader.ReadRawShort();
-        stats.CoinCost5 = reader.ReadRawShort();
-        stats.Multiplier = reader.ReadRawShort();
+        MoveStats stats = new()
+        {
+            Cost = reader.ReadRawShort(),
+            TargetEffect = reader.ReadRawByte(),
+            TargetType = reader.ReadRawByte(),
+            Strength = reader.ReadRawShort(),
+            Power = reader.ReadRawShort(),
+            Range = reader.ReadRawShort(),
+            Cast1Time = reader.ReadRawShort(),
+            Cast5Time = reader.ReadRawShort(),
+            RecoveryTime = reader.ReadRawShort(),
+            Animation = reader.ReadRawShort(),
+            Unknown1 = reader.ReadRawByte(),
+            Knockdown = reader.ReadRawByte(),
+            IpDamage = reader.ReadRawShort(),
+            IpCancelDamage = reader.ReadRawShort(),
+            Knockback = reader.ReadRawShort(),
+            Element = reader.ReadRawByte(),
+            ElementStrength = reader.ReadRawByte(),
+            AilmentsBitflag = reader.ReadRawByte(),
+            AilmentsChance = reader.ReadRawByte(),
+            AttackModifier = reader.ReadRawSByte(),
+            DefenseModifier = reader.ReadRawSByte(),
+            ActionModifier = reader.ReadRawSByte(),
+            MovementModifier = reader.ReadRawSByte(),
+            Special = reader.ReadRawShort(),
+            CoinCost1 = reader.ReadRawShort(),
+            CoinCost2 = reader.ReadRawShort(),
+            CoinCost3 = reader.ReadRawShort(),
+            CoinCost4 = reader.ReadRawShort(),
+            CoinCost5 = reader.ReadRawShort(),
+            Multiplier = reader.ReadRawShort()
+        };
 
         return stats;
     }
@@ -179,5 +236,40 @@ public class MoveStats
         writer.WriteRawShort(CoinCost4);
         writer.WriteRawShort(CoinCost5);
         writer.WriteRawShort(Multiplier);
+    }
+
+    public void GenerateCSV(StreamWriter writer)
+    {
+        writer.Write(
+            $"{Cost}," +
+            $"{LocaleManager.Instance[LocaleKeys.TargetEffects][TargetEffect]}," +
+            $"{LocaleManager.Instance[LocaleKeys.TargetTypes][TargetType]}," +
+            $"{Strength}," +
+            $"{Power}," +
+            $"{Range}," +
+            $"{Cast1Time}," +
+            $"{Cast5Time}," +
+            $"{RecoveryTime}," +
+            $"{LocaleManager.Instance[LocaleKeys.Animations][Animation]}," +
+            $"{Unknown1}," +
+            $"{Knockdown}," +
+            $"{IpDamage}," +
+            $"{IpCancelDamage}," +
+            $"{Knockback}," +
+            $"{LocaleManager.Instance[LocaleKeys.Elements][Element]}," +
+            $"{ElementStrength}," +
+            $"{AilmentsBitflag}," +
+            $"{AilmentsChance}," +
+            $"{AttackModifier}," +
+            $"{DefenseModifier}," +
+            $"{ActionModifier}," +
+            $"{MovementModifier}," +
+            $"{Special}," +
+            $"{CoinCost1}," +
+            $"{CoinCost2}," +
+            $"{CoinCost3}," +
+            $"{CoinCost4}," +
+            $"{CoinCost5}," +
+            $"{Multiplier}");
     }
 }

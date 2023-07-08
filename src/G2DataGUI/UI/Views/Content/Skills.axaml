@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
-			 xmlns:locale="using:G2DataGUI.Locale"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
              mc:Ignorable="d"
 			 Focusable="True"
 			 x:CompileBindings="True"
@@ -78,18 +78,16 @@
 							<StackPanel Margin="4"
 										Grid.Column="0">
 								<TextBlock Text="Cost Type 1:" />
-								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.CostType1}"
-												Increment="1"
-												Minimum="0"
-												Maximum="255"/>
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedSkillItem.Stats.CostType1}"
+										  Items="{locale:Locale CoinCostTypes}" />
 							</StackPanel>
 							<StackPanel Margin="4"
 										Grid.Column="1">
 								<TextBlock Text="Cost Type 2:" />
-								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.CostType2}"
-												Increment="1"
-												Minimum="0"
-												Maximum="255"/>
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedSkillItem.Stats.CostType2}"
+										  Items="{locale:Locale CoinCostTypes}" />
 							</StackPanel>
 						</Grid>
 					</StackPanel>

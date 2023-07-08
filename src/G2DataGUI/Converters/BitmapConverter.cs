@@ -12,7 +12,7 @@ namespace G2DataGUI.Converters;
 /// </summary>
 public class BitmapConverter : IValueConverter
 {
-    public static BitmapConverter Instance = new BitmapConverter();
+    public static BitmapConverter Instance = new();
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -52,8 +52,6 @@ public class BitmapConverter : IValueConverter
         return bitmap;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
+	public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
         throw new NotImplementedException();
-    }
 }

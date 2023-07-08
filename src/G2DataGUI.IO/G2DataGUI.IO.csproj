@@ -3,10 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <BaseOutputPath>..\..\build</BaseOutputPath>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Pfim" />
+	<PackageReference Include="Microsoft.Toolkit.Diagnostics" />
   </ItemGroup>
 
 </Project>

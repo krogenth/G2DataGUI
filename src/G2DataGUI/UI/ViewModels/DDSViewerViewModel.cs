@@ -4,6 +4,7 @@ using G2DataGUI.IO.DDS;
 using Pfim;
 using System;
 using System.Collections.ObjectModel;
+using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -15,8 +16,8 @@ public class DDSViewerViewModel : BaseViewModel
     private DDSNode _selectedDDSFile = null;
     private IImage _image = null;
     public int TreeViewWidth { get; } = 200;
-    private int _minimumImageWidth = 700;
-    private int _minimumViewWidth = 900;
+    private readonly int _minimumImageWidth = 700;
+    private readonly int _minimumViewWidth = 900;
     public event EventHandler<ImageEventArgs> ImageChanged;
 
     public static DDSViewerViewModel Instance { get; private set; } = new();
@@ -26,23 +27,12 @@ public class DDSViewerViewModel : BaseViewModel
         DDSFiles.Instance.CollectionRefreshed += DDSFileCollectionRefreshed;
     }
 
-    private void DDSFileCollectionRefreshed(object sender, EventArgs args)
-    {
-        Image = null;
-    }
+	private void DDSFileCollectionRefreshed(object sender, EventArgs args) => Image = null;
 
-    private void LoadDDSFile()
-    {   if (SelectedDDSFile == null || !SelectedDDSFile.IsFile)
-        {
-            Image = null;
-        }
-        else
-        {
-            Image = DDSLoader.LoadDDSFile(SelectedDDSFile.Path);
-        }
-    }
+	private void LoadDDSFile() =>
+        Image = SelectedDDSFile == null || !SelectedDDSFile.IsFile ? null : DDSLoader.LoadDDSFile(SelectedDDSFile.Path);
 
-    public int ImageWidth
+	public int ImageWidth
     {
         get => _imageWidth;
         set

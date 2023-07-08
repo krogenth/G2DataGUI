@@ -3,16 +3,17 @@ using G2DataGUI.Common.Data.Items;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
 
 public sealed class ItemsViewModel : BaseViewModel
 {
-    public ObservableCollection<Item> GameItems { get; private set; } = Items.Instance.GetItems();
+    public ObservableCollection<Item> GameItems { get; private set; } = Items.Instance.GameItems;
     private int _selectedItemIndex = 0;
     private Item _selectedItemItem;
-    private ItemEquipmentViewModel _itemEquipmentViewModel = ItemEquipmentViewModel.Instance;
-    private ItemUsableViewModel _itemUsableViewModel = ItemUsableViewModel.Instance;
+    private readonly ItemEquipmentViewModel _itemEquipmentViewModel = ItemEquipmentViewModel.Instance;
+    private readonly ItemUsableViewModel _itemUsableViewModel = ItemUsableViewModel.Instance;
 
     public static ItemsViewModel Instance { get; } = new();
 
@@ -36,9 +37,17 @@ public sealed class ItemsViewModel : BaseViewModel
         get => _selectedItemIndex;
         set
         {
-            if (value < 0) value = 0;
-            if (value >= GameItems.Count) return;
-            _selectedItemIndex = value;
+            if (value < 0)
+			{
+				value = 0;
+			}
+
+			if (value >= GameItems.Count)
+			{
+				return;
+			}
+
+			_selectedItemIndex = value;
             SelectedItemItem = GameItems[value];
             OnPropertyChanged(nameof(SelectedItemItem));
         }

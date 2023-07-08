@@ -1,10 +1,21 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.IO;
+
+using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Items;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x08)]
-internal struct ItemOffsets
+internal class ItemOffsets
 {
-    [FieldOffset(0x00)] public int EquipmentOffset;
-    [FieldOffset(0x04)] public int UsableOffset;
+    public int EquipmentOffset;
+    public int UsableOffset;
+
+    public static ItemOffsets ReadItemOffsets(Stream reader)
+    {
+        ItemOffsets offsets = new()
+        {
+             EquipmentOffset = reader.ReadRawInt(),
+             UsableOffset = reader.ReadRawInt(),
+        };
+        return offsets;
+    }
 }

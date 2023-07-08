@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
-			 xmlns:locale="using:G2DataGUI.Locale"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
 			 xmlns:content="using:G2DataGUI.UI.Views.Content"
              mc:Ignorable="d"
              Focusable="True"
@@ -444,7 +444,7 @@
 							<StackPanel Grid.Column="1"
 										Margin="4">
 								<TextBlock Text="T_DMG:" />
-								<NumericUpDown Value="{Binding SelectedEnemyItem.Stats.T_DMG}"
+								<NumericUpDown Value="{Binding SelectedEnemyItem.Stats.TDMG}"
 											   Increment="1"
 											   Minimum="-32768"
 											   Maximum="32767" />
@@ -466,7 +466,7 @@
 							<StackPanel Grid.Column="1"
 										Margin="4">
 								<TextBlock Text="T_HEAL:" />
-								<NumericUpDown Value="{Binding SelectedEnemyItem.Stats.T_HEAL}"
+								<NumericUpDown Value="{Binding SelectedEnemyItem.Stats.THEAL}"
 											   Increment="1"
 											   Minimum="-32768"
 											   Maximum="32767" />

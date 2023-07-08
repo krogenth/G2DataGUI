@@ -1,4 +1,4 @@
-﻿using G2DataGUI.Common;
+﻿using G2DataGUI.Common.Paths;
 using G2DataGUI.Common.Data.Skills;
 using G2DataGUI.Tests.Common;
 using G2DataGUI.Tests.Common.Helpers;
@@ -10,8 +10,8 @@ namespace G2DataGUI.Tests.Integration;
 public class SkillbookCollectionTests
 {
     Skillbooks books;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GameFilePaths.SkillbooksFile}";
-    static string SkillbooksFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GameFilePaths.SkillbooksPath}";
+    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.SkillbooksFile}";
+    static string SkillbooksFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.SkillbooksPath}";
 
     [SetUp]
     public void Setup()
@@ -24,7 +24,7 @@ public class SkillbookCollectionTests
     [Test]
     public void VerifyAllSkillbooksRead()
     {
-        Assert.That(books.GetSkillbooks().Count, Is.EqualTo(Skillbooks.NumberOfSkillbooks));
+        Assert.That(books.GameSkillbooks.Count, Is.EqualTo(Skillbooks.NumberOfSkillbooks));
     }
 
     [Test]

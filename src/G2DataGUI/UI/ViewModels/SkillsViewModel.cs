@@ -2,12 +2,13 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
 
 public sealed class SkillsViewModel : BaseViewModel
 {
-    public ObservableCollection<Skill> GameSkills { get; private set; } = Skills.Instance.GetSkills();
+    public ObservableCollection<Skill> GameSkills { get; private set; } = Skills.Instance.GameSkills;
     private int _selectedSkillIndex = 0;
     private Skill _selectedSkillItem;
 
@@ -18,19 +19,25 @@ public sealed class SkillsViewModel : BaseViewModel
         _selectedSkillItem = GameSkills.First();
     }
 
-    private void SkillsCollectionRefreshed(object sender, EventArgs _)
-    {
-        
-    }
+	private void SkillsCollectionRefreshed(object sender, EventArgs _) =>
+        SelectedSkillItem = GameSkills[SelectedSkillIndex];
 
-    public int SelectedSkillIndex
+	public int SelectedSkillIndex
     {
         get => _selectedSkillIndex;
         set
         {
-            if (value < 0) value = 0;
-            if (value >= GameSkills.Count) return;
-            _selectedSkillIndex = value;
+            if (value < 0)
+			{
+				value = 0;
+			}
+
+			if (value >= GameSkills.Count)
+			{
+				return;
+			}
+
+			_selectedSkillIndex = value;
             SelectedSkillItem = GameSkills[value];
             OnPropertyChanged(nameof(SelectedSkillIndex));
         }

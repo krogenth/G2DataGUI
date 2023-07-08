@@ -1,4 +1,4 @@
-﻿using G2DataGUI.Common;
+﻿using G2DataGUI.Common.Paths;
 using G2DataGUI.Common.Data.Moves;
 using G2DataGUI.Tests.Common;
 using G2DataGUI.Tests.Common.Helpers;
@@ -10,8 +10,8 @@ namespace G2DataGUI.Tests.Integration;
 public class SpecialSetCollectionTests
 {
     SpecialSets specialSets;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GameFilePaths.SpecialsFile}";
-    static string SpecialSetsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GameFilePaths.SpecialsPath}";
+    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.SpecialsFile}";
+    static string SpecialSetsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.SpecialsPath}";
 
     [SetUp]
     public void Setup()
@@ -24,7 +24,7 @@ public class SpecialSetCollectionTests
     [Test]
     public void VerifyAllSpecialSetsRead()
     {
-        Assert.That(specialSets.GetSpecialsSets().Count, Is.EqualTo(SpecialSets.NumberOfSpecialSets));
+        Assert.That(specialSets.GameSpecialSets.Count, Is.EqualTo(SpecialSets.NumberOfSpecialSets));
     }
 
     [Test]

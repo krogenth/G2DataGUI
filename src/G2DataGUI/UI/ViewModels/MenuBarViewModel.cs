@@ -6,6 +6,8 @@ using G2DataGUI.UI.Windows;
 using System;
 using System.Diagnostics;
 using System.IO;
+using G2DataGUI.UI.Common.ViewModels;
+using G2DataGUI.Common;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -28,8 +30,11 @@ public sealed class MenuBarViewModel : BaseViewModel
 
     public void LaunchGame()
     {
-        if (File.Exists("./Grandia2.exe")) Process.Start("./Grandia2.exe");
-    }
+        if (File.Exists("./Grandia2.exe"))
+		{
+			Process.Start("./Grandia2.exe");
+		}
+	}
 
     public void Reload()
     {
@@ -41,15 +46,26 @@ public sealed class MenuBarViewModel : BaseViewModel
         Items.Instance.Reload();
     }
 
-    public void Exit()
+    public void GenerateCSVFiles()
     {
-        Window?.Close();
+        if (!Directory.Exists(ProjectPaths.DocumentationDirectory))
+        {
+            Directory.CreateDirectory(ProjectPaths.DocumentationDirectory);
+        }
+
+        Moves.Instance.GenerateCSV();
+        Skills.Instance.GenerateCSV();
+        Manaeggs.Instance.GenerateCSV();
+        Skillbooks.Instance.GenerateCSV();
+        SpecialSets.Instance.GenerateCSV();
     }
 
-    public void OpenDDSViewer()
+	public void Exit() => Window?.Close();
+
+	public void OpenDDSViewer()
     {
-        DDSViewerWindow dDSViewerWindow = new DDSViewerWindow();
-        dDSViewerWindow.Show();
+        DDSViewerWindow ddsViewerWindow = new();
+        ddsViewerWindow.Show();
     }
 
     public string SelectedStyle

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Moves;
 
 public class Moves
 {
     public static Moves Instance { get; } = new();
-    private ObservableCollection<Move> _moves = new();
+    public ObservableCollection<Move> GameMoves { get; private set; } = new();
     public event EventHandler CollectionRefreshed;
     public static int NumberOfMoves { get; } = 0x80;
 
@@ -16,47 +17,53 @@ public class Moves
         ReadMoves();
     }
 
-    public void Save()
-    {
-        WriteMoves();
-    }
+	public void Save() => WriteMoves();
 
-    public void Reload()
-    {
-        ReadMoves();
-    }
+	public void Reload() => ReadMoves();
 
-    private void ReadMoves()
+	private void ReadMoves()
     {
-        _moves.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.Open, FileAccess.Read))
-        using (MemoryStream memReader = new MemoryStream())
+        GameMoves.Clear();
+        using FileStream reader = File.Open(
+            Version.Instance.RootDataDirectory + GamePaths.MovesPath,
+            FileMode.Open,
+            FileAccess.Read);
+        using MemoryStream memReader = new();
+        reader.CopyTo(memReader);
+        memReader.Seek(0, SeekOrigin.Begin);
+        while (memReader.Position < memReader.Length)
         {
-            reader.CopyTo(memReader);
-            memReader.Seek(0, SeekOrigin.Begin);
-            while (memReader.Position < memReader.Length)
+            Move move = Move.ReadMove(memReader);
+            if (move != null)
             {
-                Move move = Move.ReadMove(memReader);
-                if (move != null)
-                {
-                    move.ID = Convert.ToByte(_moves.Count);
-                    _moves.Add(move);
-                }
+                move.ID = Convert.ToByte(GameMoves.Count);
+                GameMoves.Add(move);
             }
         }
+
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
     private void WriteMoves()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.MovesPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+        using FileStream writer = File.Open(
+            Version.Instance.RootDataDirectory + GamePaths.MovesPath,
+            FileMode.OpenOrCreate,
+            FileAccess.ReadWrite);
+        foreach (Move move in GameMoves)
         {
-            foreach (Move move in _moves)
-            {
-                move.WriteMove(writer);
-            }
+            move.WriteMove(writer);
         }
     }
 
-    public ObservableCollection<Move> GetMoves() { return _moves; }
+    public void GenerateCSV()
+    {
+        using FileStream stream = File.Open(ProjectPaths.MovesCSVFile, FileMode.Create, FileAccess.Write);
+        using StreamWriter writer = new(stream);
+        writer.WriteLine(Move.CSVHeader);
+        foreach (Move move in GameMoves)
+        {
+            move.GenerateCSV(writer);
+        }
+    }
 }

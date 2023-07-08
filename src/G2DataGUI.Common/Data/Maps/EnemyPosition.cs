@@ -1,10 +1,8 @@
-﻿using G2DataGUI.IO.Streams;
-using G2DataGUI.Common.Data.Common;
-using System.IO;
+﻿using G2DataGUI.Common.Data.Common;
 using System.Runtime.InteropServices;
 
-namespace G2DataGUI.Common.Data.Maps
-{
+namespace G2DataGUI.Common.Data.Maps;
+
     [StructLayout(LayoutKind.Explicit, Size = 0x68)]
     public struct EnemyPosition
     {
@@ -22,4 +20,3 @@ namespace G2DataGUI.Common.Data.Maps
         [FieldOffset(0x50)] public Vector3 Unknown6;
         [FieldOffset(0x5C)] public Vector3 Unknown7;
     }
-}

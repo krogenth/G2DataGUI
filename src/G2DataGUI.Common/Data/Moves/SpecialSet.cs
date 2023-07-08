@@ -11,15 +11,21 @@ public class SpecialSet
     public SpecialMove Special5 { get; set; }
     public SpecialMove Special6 { get; set; }
 
+	public static string CSVHeader =>
+		$"{SpecialMove.CSVHeader},{SpecialMove.CSVHeader},{SpecialMove.CSVHeader}," +
+		$"{SpecialMove.CSVHeader},{SpecialMove.CSVHeader},{SpecialMove.CSVHeader}";
+
     public static SpecialSet ReadSpecialSet(Stream reader)
     {
-        SpecialSet specialSet = new SpecialSet();
-        specialSet.Special1 = SpecialMove.ReadSpecialMove(reader);
-        specialSet.Special2 = SpecialMove.ReadSpecialMove(reader);
-        specialSet.Special3 = SpecialMove.ReadSpecialMove(reader);
-        specialSet.Special4 = SpecialMove.ReadSpecialMove(reader);
-        specialSet.Special5 = SpecialMove.ReadSpecialMove(reader);
-        specialSet.Special6 = SpecialMove.ReadSpecialMove(reader);
+        SpecialSet specialSet = new()
+        {
+            Special1 = SpecialMove.ReadSpecialMove(reader),
+            Special2 = SpecialMove.ReadSpecialMove(reader),
+            Special3 = SpecialMove.ReadSpecialMove(reader),
+            Special4 = SpecialMove.ReadSpecialMove(reader),
+            Special5 = SpecialMove.ReadSpecialMove(reader),
+            Special6 = SpecialMove.ReadSpecialMove(reader),
+        };
 
         return specialSet;
     }
@@ -32,5 +38,21 @@ public class SpecialSet
         Special4.WriteSpecialMove(writer);
         Special5.WriteSpecialMove(writer);
         Special6.WriteSpecialMove(writer);
+    }
+
+    public void GenerateCSV(StreamWriter writer)
+    {
+        Special1.GenerageCSV(writer);
+        writer.Write(',');
+        Special2.GenerageCSV(writer);
+        writer.Write(',');
+        Special3.GenerageCSV(writer);
+        writer.Write(',');
+        Special4.GenerageCSV(writer);
+        writer.Write(',');
+        Special5.GenerageCSV(writer);
+        writer.Write(',');
+        Special6.GenerageCSV(writer);
+        writer.WriteLine();
     }
 }

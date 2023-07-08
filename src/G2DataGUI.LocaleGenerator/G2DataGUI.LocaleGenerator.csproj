@@ -7,6 +7,7 @@
 	<LangVersion>latest</LangVersion>
 	<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	<BaseOutputPath>..\..\build</BaseOutputPath>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>

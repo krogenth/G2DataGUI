@@ -1,17 +1,17 @@
 ﻿using G2DataGUI.IO.Json;
 using G2DataGUI.IO.Resources;
-using G2DataGUI.UI.ViewModels;
+using G2DataGUI.UI.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace G2DataGUI.Locale;
+namespace G2DataGUI.UI.Common.Locale;
 
-class LocaleManager : BaseViewModel
+public class LocaleManager : BaseViewModel
 {
     private const string DefaultLanguageCode = "en_US";
 
-    private Dictionary<LocaleKeys, List<string>> _localeStringLists = new();
+    private readonly Dictionary<LocaleKeys, List<string>> _localeStringLists = new();
     private Dictionary<LocaleKeys, List<string>> _defaultLocaleStringLists = new();
 
     public static LocaleManager Instance { get; } = new();
@@ -44,7 +44,7 @@ class LocaleManager : BaseViewModel
     private Dictionary<LocaleKeys, List<string>> LoadJsonLanguage(string languageCode = DefaultLanguageCode)
     {
         Dictionary<LocaleKeys, List<string>> localeStringLists = new();
-        string jsonData = EmbeddedResources.ReadAllText($"G2DataGUI/Assets/Locales/{languageCode}.json");
+        string jsonData = EmbeddedResources.ReadAllText($"G2DataGUI.UI.Common/Assets/Locales/{languageCode}.json");
         var parsed = JsonHelper.Deserialize(jsonData, JsonContext.Default.StringListDictionary);
 
         foreach (var item in parsed)

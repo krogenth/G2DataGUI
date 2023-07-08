@@ -31,9 +31,9 @@ public class EnemyStats
     public byte AilmentsBitflag { get; set; }
     public short KnockbackResist { get; set; }
     public short StatusRecoveryTime { get; set; }
-    public short T_DMG { get; set; }
+    public short TDMG { get; set; }
     public short Unknown3 { get; set; }
-    public short T_HEAL { get; set; }
+    public short THEAL { get; set; }
     public short Size { get; set; }
     public short Unknown4 { get; set; }
     public byte Unknown5 { get; set; }
@@ -54,8 +54,14 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+            }
         }
     }
     public bool SleepBitflag
@@ -63,8 +69,14 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+            }
         }
     }
     public bool ParalysisBitflag
@@ -72,8 +84,14 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+            }
         }
     }
     public bool ConfusionBitflag
@@ -81,8 +99,14 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+            }
         }
     }
     public bool PlagueBitflag
@@ -90,8 +114,14 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+            }
         }
     }
     public bool Magic_BlockBitflag
@@ -99,8 +129,14 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+            }
         }
     }
     public bool Move_BlockBitflag
@@ -108,8 +144,14 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+            }
         }
     }
     public bool DeathBitflag
@@ -117,58 +159,66 @@ public class EnemyStats
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+            if (value)
+            {
+                AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
+            }
+            else
+            {
+                AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+            }
         }
     }
 
     public static EnemyStats ReadEnemyStats(Stream reader)
     {
-        EnemyStats stats = new EnemyStats();
-        stats.Unknown1 = reader.ReadRawByte();
-        stats.Unknown2 = reader.ReadRawByte();
-        stats.Type1 = reader.ReadRawByte();
-        stats.Type2 = reader.ReadRawByte();
-        stats.Level = reader.ReadRawShort();
-        stats.Health = reader.ReadRawInt();
-        stats.MP = reader.ReadRawShort();
-        stats.SP = reader.ReadRawShort();
-        stats.Vitality = reader.ReadRawShort();
-        stats.Agility = reader.ReadRawShort();
-        stats.Speed = reader.ReadRawShort();
-        stats.Mentality = reader.ReadRawShort();
-        stats.Stamina = reader.ReadRawShort();
-        stats.IpStunDuration = reader.ReadRawShort();
-        stats.IpCancelStunDuration = reader.ReadRawShort();
-        stats.EvasionStillRate = reader.ReadRawByte();
-        stats.EvasionMovingRate = reader.ReadRawByte();
-        stats.FireResist = reader.ReadRawSByte();
-        stats.WindResist = reader.ReadRawSByte();
-        stats.EarthResist = reader.ReadRawSByte();
-        stats.LightningResist = reader.ReadRawSByte();
-        stats.BlizzardResist = reader.ReadRawSByte();
-        stats.AilmentsBitflag = reader.ReadRawByte();
-        stats.KnockbackResist = reader.ReadRawShort();
-        stats.StatusRecoveryTime = reader.ReadRawShort();
-        stats.T_DMG = reader.ReadRawShort();
-        stats.Unknown3 = reader.ReadRawShort();
-        stats.T_HEAL = reader.ReadRawShort();
-        stats.Size = reader.ReadRawShort();
-        stats.Unknown4 = reader.ReadRawShort();
-        stats.Unknown5 = reader.ReadRawByte();
-        stats.NoRunFlag = reader.ReadRawBool();
-        stats.Unknown6 = reader.ReadRawShort();
-        stats.Experience = reader.ReadRawInt();
-        stats.SkillCoins = reader.ReadRawInt();
-        stats.MagicCoins = reader.ReadRawInt();
-        stats.GoldCoins = reader.ReadRawInt();
-        stats.Item1Offset = reader.ReadRawShort();
-        stats.Item2Offset = reader.ReadRawShort();
-        stats.Item1Chance = reader.ReadRawByte();
-        stats.Item2Chance = reader.ReadRawByte();
-        stats.Unknown7 = reader.ReadRawShort();
+		EnemyStats stats = new()
+		{
+			Unknown1 = reader.ReadRawByte(),
+			Unknown2 = reader.ReadRawByte(),
+			Type1 = reader.ReadRawByte(),
+			Type2 = reader.ReadRawByte(),
+			Level = reader.ReadRawShort(),
+			Health = reader.ReadRawInt(),
+			MP = reader.ReadRawShort(),
+			SP = reader.ReadRawShort(),
+			Vitality = reader.ReadRawShort(),
+			Agility = reader.ReadRawShort(),
+			Speed = reader.ReadRawShort(),
+			Mentality = reader.ReadRawShort(),
+			Stamina = reader.ReadRawShort(),
+			IpStunDuration = reader.ReadRawShort(),
+			IpCancelStunDuration = reader.ReadRawShort(),
+			EvasionStillRate = reader.ReadRawByte(),
+			EvasionMovingRate = reader.ReadRawByte(),
+			FireResist = reader.ReadRawSByte(),
+			WindResist = reader.ReadRawSByte(),
+			EarthResist = reader.ReadRawSByte(),
+			LightningResist = reader.ReadRawSByte(),
+			BlizzardResist = reader.ReadRawSByte(),
+			AilmentsBitflag = reader.ReadRawByte(),
+			KnockbackResist = reader.ReadRawShort(),
+			StatusRecoveryTime = reader.ReadRawShort(),
+			TDMG = reader.ReadRawShort(),
+			Unknown3 = reader.ReadRawShort(),
+			THEAL = reader.ReadRawShort(),
+			Size = reader.ReadRawShort(),
+			Unknown4 = reader.ReadRawShort(),
+			Unknown5 = reader.ReadRawByte(),
+			NoRunFlag = reader.ReadRawBool(),
+			Unknown6 = reader.ReadRawShort(),
+			Experience = reader.ReadRawInt(),
+			SkillCoins = reader.ReadRawInt(),
+			MagicCoins = reader.ReadRawInt(),
+			GoldCoins = reader.ReadRawInt(),
+			Item1Offset = reader.ReadRawShort(),
+			Item2Offset = reader.ReadRawShort(),
+			Item1Chance = reader.ReadRawByte(),
+			Item2Chance = reader.ReadRawByte(),
+			Unknown7 = reader.ReadRawShort()
+		};
 
-        return stats;
+		return stats;
     }
 
     public void WriteEnemyStats(Stream writer)
@@ -198,9 +248,9 @@ public class EnemyStats
         writer.WriteRawByte(AilmentsBitflag);
         writer.WriteRawShort(KnockbackResist);
         writer.WriteRawShort(StatusRecoveryTime);
-        writer.WriteRawShort(T_DMG);
+        writer.WriteRawShort(TDMG);
         writer.WriteRawShort(Unknown3);
-        writer.WriteRawShort(T_HEAL);
+        writer.WriteRawShort(THEAL);
         writer.WriteRawShort(Size);
         writer.WriteRawShort(Unknown4);
         writer.WriteRawByte(Unknown5);

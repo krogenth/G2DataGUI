@@ -14,15 +14,17 @@ public class EnemyAI
 
     public static EnemyAI ReadEnemyAI(Stream reader)
     {
-        EnemyAI ai = new EnemyAI();
-        ai.Condition = reader.ReadRawByte();
-        ai.Move1Chance = reader.ReadRawByte();
-        ai.Move2Chance = reader.ReadRawByte();
-        ai.Move3Chance = reader.ReadRawByte();
-        ai.Move4Chance = reader.ReadRawByte();
-        ai.Move5Chance = reader.ReadRawByte();
+		EnemyAI ai = new()
+		{
+			Condition = reader.ReadRawByte(),
+			Move1Chance = reader.ReadRawByte(),
+			Move2Chance = reader.ReadRawByte(),
+			Move3Chance = reader.ReadRawByte(),
+			Move4Chance = reader.ReadRawByte(),
+			Move5Chance = reader.ReadRawByte()
+		};
 
-        return ai;
+		return ai;
     }
 
     public void WriteEnemyAI(Stream writer)

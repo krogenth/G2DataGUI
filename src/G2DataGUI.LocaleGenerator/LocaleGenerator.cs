@@ -14,12 +14,13 @@ public class LocaleGenerator : IIncrementalGenerator
         context.RegisterSourceOutput(contents, (spc, content) =>
         {
             var lines = content.Split('\n').Where(x => x.Trim().StartsWith("\"") && x.Trim().Contains(":")).Select(x => x.Split(':').First().Trim().Replace("\"", ""));
-            string enumSource = "namespace G2DataGUI.Locale;\n\n";
-            enumSource += "internal enum LocaleKeys\n{\n";
+            string enumSource = "namespace G2DataGUI.UI.Common.Locale;\n\n";
+            enumSource += "public enum LocaleKeys\n{\n";
             foreach (var line in lines)
             {
                 enumSource += $"    {line},\n";
             }
+
             enumSource += "}";
 
             spc.AddSource("LocaleKeys", enumSource);

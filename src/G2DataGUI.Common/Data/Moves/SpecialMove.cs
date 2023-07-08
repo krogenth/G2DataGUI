@@ -9,12 +9,17 @@ public class SpecialMove
     public byte StartingLevel { get; set; }
     public ushort StoryFlag { get; set; }
 
+	public static string CSVHeader =>
+		$"Special,Starting Level,Story Flag";
+
     public static SpecialMove ReadSpecialMove(Stream reader)
     {
-        SpecialMove specialMove = new SpecialMove();
-        specialMove.MoveOffset = reader.ReadRawByte();
-        specialMove.StartingLevel = reader.ReadRawByte();
-        specialMove.StoryFlag = reader.ReadRawUShort();
+        SpecialMove specialMove = new()
+        {
+            MoveOffset = reader.ReadRawByte(),
+            StartingLevel = reader.ReadRawByte(),
+            StoryFlag = reader.ReadRawUShort()
+        };
 
         return specialMove;
     }
@@ -24,5 +29,13 @@ public class SpecialMove
         writer.WriteRawByte(MoveOffset);
         writer.WriteRawByte(StartingLevel);
         writer.WriteRawUShort(StoryFlag);
+    }
+
+    public void GenerageCSV(StreamWriter writer)
+    {
+        writer.Write(
+			$"{Moves.Instance.GameMoves[MoveOffset].Name}," +
+			$"{StartingLevel}," +
+			$"{StoryFlag}");
     }
 }

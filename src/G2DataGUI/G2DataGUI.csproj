@@ -8,6 +8,7 @@
 	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 	<AllowUnsafeBlocks>False</AllowUnsafeBlocks>
 	<BaseOutputPath>..\..\build</BaseOutputPath>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -51,19 +52,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Locales\en_US.json" />
-	<None Remove="Assets\Styles\BaseDark.xaml" />
-	<None Remove="Assets\Styles\BaseLight.xaml" />
-	<None Remove="Assets\Styles\Styles.xaml" />
+    <None Remove="Assets\Styles\BaseDark.xaml" />
+    <None Remove="Assets\Styles\BaseLight.xaml" />
+    <None Remove="Assets\Styles\Styles.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-	<EmbeddedResource Include="Assets\Locales\en_US.json" />
-	<EmbeddedResource Include="Assets\Styles\Styles.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="Assets\Locales\en_US.json" />
+    <EmbeddedResource Include="Assets\Styles\Styles.xaml" />
   </ItemGroup>
 
 </Project>

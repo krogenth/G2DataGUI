@@ -13,9 +13,12 @@ public class FileComparison
         FileStream stream1;
         FileStream stream2;
 
-        if (file1 == file2) return true;
+        if (file1 == file2)
+		{
+			return true;
+		}
 
-        stream1 = new FileStream(file1, FileMode.Open, FileAccess.Read);
+		stream1 = new FileStream(file1, FileMode.Open, FileAccess.Read);
         stream2 = new FileStream(file2, FileMode.Open, FileAccess.Read);
 
         if (stream1.Length != stream2.Length)

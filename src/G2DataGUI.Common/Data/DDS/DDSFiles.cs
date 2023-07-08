@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 
 namespace G2DataGUI.Common.Data.DDS;
 
@@ -28,12 +27,13 @@ public class DDSFiles
         {
             DirectoryDDSFiles.Add(node);
         }
+
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
-    public ObservableCollection<DDSNode> RecursiveDirectoryCrawl(string directory)
+    private ObservableCollection<DDSNode> RecursiveDirectoryCrawl(string directory)
     {
-        ObservableCollection<DDSNode> node = new ObservableCollection<DDSNode>();
+        ObservableCollection<DDSNode> node = new();
 
         foreach (string dir in Directory.GetDirectories(directory))
         {

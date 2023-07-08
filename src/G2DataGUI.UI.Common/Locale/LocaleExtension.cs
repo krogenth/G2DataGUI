@@ -2,9 +2,9 @@
 using Avalonia.Markup.Xaml.MarkupExtensions;
 using System;
 
-namespace G2DataGUI.Locale;
+namespace G2DataGUI.UI.Common.Locale;
 
-internal class LocaleExtension : MarkupExtension
+public class LocaleExtension : MarkupExtension
 {
     public LocaleExtension(LocaleKeys key)
     {

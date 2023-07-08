@@ -36,37 +36,39 @@ public class EnemyMoveStats
 
     public static EnemyMoveStats ReadEnemyMoveStats(Stream reader)
     {
-        EnemyMoveStats stats = new EnemyMoveStats();
-        stats.MP = reader.ReadRawShort();
-        stats.SP = reader.ReadRawShort();
-        stats.Unknown1 = reader.ReadRawByte();
-        stats.TargetEffect = reader.ReadRawByte();
-        stats.Strength = reader.ReadRawShort();
-        stats.Power = reader.ReadRawShort();
-        stats.AD = reader.ReadRawShort();
-        stats.TargetType = reader.ReadRawByte();
-        stats.NormalAttackFlag = reader.ReadRawBool();
-        stats.Distance = reader.ReadRawShort();
-        stats.Accuracy = reader.ReadRawShort();
-        stats.Range = reader.ReadRawShort();
-        stats.CastTime = reader.ReadRawShort();
-        stats.RecoveryTime = reader.ReadRawShort();
-        stats.Animation = reader.ReadRawByte();
-        stats.Knockdown = reader.ReadRawByte();
-        stats.IpStun = reader.ReadRawShort();
-        stats.IpCancelStun = reader.ReadRawShort();
-        stats.Knockback = reader.ReadRawShort();
-        stats.Element = reader.ReadRawByte();
-        stats.ElementStrength = reader.ReadRawByte();
-        stats.AilmentsBitflag = reader.ReadRawByte();
-        stats.AilmentsChance = reader.ReadRawByte();
-        stats.AttackModifier = reader.ReadRawByte();
-        stats.DefenseModifier = reader.ReadRawByte();
-        stats.ActionModifier = reader.ReadRawByte();
-        stats.MovementModifier = reader.ReadRawByte();
-        stats.Special = reader.ReadRawShort();
+		EnemyMoveStats stats = new()
+		{
+			MP = reader.ReadRawShort(),
+			SP = reader.ReadRawShort(),
+			Unknown1 = reader.ReadRawByte(),
+			TargetEffect = reader.ReadRawByte(),
+			Strength = reader.ReadRawShort(),
+			Power = reader.ReadRawShort(),
+			AD = reader.ReadRawShort(),
+			TargetType = reader.ReadRawByte(),
+			NormalAttackFlag = reader.ReadRawBool(),
+			Distance = reader.ReadRawShort(),
+			Accuracy = reader.ReadRawShort(),
+			Range = reader.ReadRawShort(),
+			CastTime = reader.ReadRawShort(),
+			RecoveryTime = reader.ReadRawShort(),
+			Animation = reader.ReadRawByte(),
+			Knockdown = reader.ReadRawByte(),
+			IpStun = reader.ReadRawShort(),
+			IpCancelStun = reader.ReadRawShort(),
+			Knockback = reader.ReadRawShort(),
+			Element = reader.ReadRawByte(),
+			ElementStrength = reader.ReadRawByte(),
+			AilmentsBitflag = reader.ReadRawByte(),
+			AilmentsChance = reader.ReadRawByte(),
+			AttackModifier = reader.ReadRawByte(),
+			DefenseModifier = reader.ReadRawByte(),
+			ActionModifier = reader.ReadRawByte(),
+			MovementModifier = reader.ReadRawByte(),
+			Special = reader.ReadRawShort()
+		};
 
-        return stats;
+		return stats;
     }
 
     public void WriteEnemyMoveStats(Stream writer)

@@ -3,13 +3,15 @@ using System.Buffers.Binary;
 using System.IO;
 using System.Runtime.InteropServices;
 
+using Microsoft.Toolkit.Diagnostics;
+
 namespace G2DataGUI.IO.Streams;
 
 public static class StreamExtensions
 {
     public static T? ReadStruct<T>(this Stream stream) where T : struct
     {
-        if (stream == null) return null;
+        Guard.IsNotNull(stream, nameof(stream));
 
         int size = Marshal.SizeOf(typeof(T));
         byte[] bytes = new byte[size];
@@ -32,7 +34,7 @@ public static class StreamExtensions
 
     public static void WriteStruct<T>(this Stream stream, T obj) where T : struct
     {
-        if (stream == null) return;
+        Guard.IsNotNull(stream, nameof(stream));
         int length = Marshal.SizeOf(obj);
         byte[] objByteArr = new byte[length];
         IntPtr ptr = Marshal.AllocHGlobal(length);
@@ -44,11 +46,9 @@ public static class StreamExtensions
 
     public static byte[] StreamToBytesArray(this Stream stream)
     {
-        using (MemoryStream mStream = new MemoryStream())
-        {
-            stream.CopyTo(mStream);
-            return mStream.ToArray();
-        }
+        using MemoryStream memStream = new();
+        stream.CopyTo(memStream);
+        return memStream.ToArray();
     }
 
     public static bool ReadRawBool(this Stream stream) => Convert.ToBoolean(stream.InternalRead(1)[0]);
@@ -71,6 +71,7 @@ public static class StreamExtensions
         {
             arr[index] = stream.ReadRawInt();
         }
+
         return arr;
     }
 

@@ -1,11 +1,30 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.IO;
+
+using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Common;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x0C)]
-public struct Vector3
+public class Vector3
 {
-    [FieldOffset(0x00)] public float x;
-    [FieldOffset(0x04)] public float y;
-    [FieldOffset(0x08)] public float z;
+    public float X;
+    public float Y;
+    public float Z;
+
+    public static Vector3 ReadVector3(Stream reader)
+    {
+        Vector3 vector3 = new()
+        {
+            X = reader.ReadRawFloat(),
+            Y = reader.ReadRawFloat(),
+            Z = reader.ReadRawFloat(),
+        };
+        return vector3;
+    }
+
+    public void WriteVector3(Stream writer)
+    {
+        writer.WriteRawFloat(X);
+        writer.WriteRawFloat(Y);
+        writer.WriteRawFloat(Z);
+    }
 }

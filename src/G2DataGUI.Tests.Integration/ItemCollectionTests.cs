@@ -1,4 +1,4 @@
-﻿using G2DataGUI.Common;
+﻿using G2DataGUI.Common.Paths;
 using G2DataGUI.Common.Data.Items;
 using G2DataGUI.Tests.Common;
 using G2DataGUI.Tests.Common.Helpers;
@@ -10,8 +10,8 @@ namespace G2DataGUI.Tests.Integration;
 public class ItemCollectionTests
 {
     Items items;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GameFilePaths.ItemsFile}";
-    static string ItemsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GameFilePaths.ItemsPath}";
+    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.ItemsFile}";
+    static string ItemsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.ItemsPath}";
 
     [SetUp]
     public void Setup()
@@ -24,7 +24,7 @@ public class ItemCollectionTests
     [Test]
     public void VerifyAllItemsRead()
     {
-        Assert.That(items.GetItems().Count, Is.EqualTo(Items.NumberOfItems));
+        Assert.That(items.GameItems.Count, Is.EqualTo(Items.NumberOfItems));
     }
 
     [Test]

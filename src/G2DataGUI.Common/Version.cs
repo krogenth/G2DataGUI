@@ -4,7 +4,7 @@ namespace G2DataGUI.Common;
 
 public class Version
 {
-    public static Version Instance { get; } = new Version();
+    public static Version Instance { get; } = new();
     public bool IsHDVersion { get; private set; } = true;
 
     private Version()

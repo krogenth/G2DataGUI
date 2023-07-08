@@ -1,4 +1,5 @@
 ﻿using G2DataGUI.Events;
+using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -14,17 +15,11 @@ public class DDSViewerWindowViewModel : BaseViewModel
         CalculateWindowWidth();
     }
 
-    public void OnImageChange(object sender, ImageEventArgs e)
-    {
-        CalculateWindowWidth();
-    }
+	public void OnImageChange(object sender, ImageEventArgs e) => CalculateWindowWidth();
 
-    private void CalculateWindowWidth()
-    {
-        WindowWidth = DDSViewerViewModel.Instance.ViewWidth;
-    }
+	private void CalculateWindowWidth() => WindowWidth = DDSViewerViewModel.Instance.ViewWidth;
 
-    public int WindowWidth
+	public int WindowWidth
     {
         get => _windowWidth;
         set

@@ -1,4 +1,4 @@
-using G2DataGUI.Common;
+using G2DataGUI.Common.Paths;
 using G2DataGUI.Common.Data.Moves;
 using G2DataGUI.Tests.Common;
 using G2DataGUI.Tests.Common.Helpers;
@@ -10,8 +10,8 @@ namespace G2DataGUI.Tests.Integration;
 public class MoveCollectionTests
 {
     Moves moves;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GameFilePaths.MovesFile}";
-    static string MovesFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GameFilePaths.MovesPath}";
+    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.MovesFile}";
+    static string MovesFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.MovesPath}";
 
     [SetUp]
     public void Setup()
@@ -24,7 +24,7 @@ public class MoveCollectionTests
     [Test]
     public void VerifyAllMovesRead()
     {
-        Assert.That(moves.GetMoves().Count, Is.EqualTo(Moves.NumberOfMoves));
+        Assert.That(moves.GameMoves.Count, Is.EqualTo(Moves.NumberOfMoves));
     }
 
     [Test]

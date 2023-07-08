@@ -36,105 +36,155 @@ public class Usable
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+			}
+		}
     }
     public bool SleepBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+			}
+		}
     }
     public bool ParalysisBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+			}
+		}
     }
     public bool ConfusionBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+			}
+		}
     }
     public bool PlagueBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+			}
+		}
     }
     public bool Magic_BlockBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+			}
+		}
     }
     public bool Move_BlockBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+			}
+		}
     }
     public bool DeathBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
         set
         {
-            if (value) AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
-            else AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
-        }
+            if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+			}
+		}
     }
 
     public static uint ByteSize { get => 0x20; } 
 
     public static Usable ReadUsableStats(Stream reader)
     {
-        Usable stats = new Usable();
-        stats.TargetEffect = reader.ReadRawByte();
-        stats.TargetType = reader.ReadRawByte();
-        stats.Power = reader.ReadRawShort();
-        stats.Range = reader.ReadRawShort();
-        stats.CastTime = reader.ReadRawShort();
-        stats.RecoveryTime = reader.ReadRawShort();
-        stats.Animation = reader.ReadRawUShort();
-        stats.EffectiveOn = reader.ReadRawByte();
-        stats.Unknown1 = reader.ReadRawByte();
-        stats.IpDamage = reader.ReadRawShort();
-        stats.IpCancelDamage = reader.ReadRawShort();
-        stats.Knockback = reader.ReadRawShort();
-        stats.Element = reader.ReadRawByte();
-        stats.ElementStrength = reader.ReadRawByte();
-        stats.AilmentsBitflag = reader.ReadRawByte();
-        stats.AilmentsChance = reader.ReadRawByte();
-        stats.AttackModifier = reader.ReadRawSByte();
-        stats.DefenseModifier = reader.ReadRawSByte();
-        stats.ActionModifier = reader.ReadRawSByte();
-        stats.MovementModifier = reader.ReadRawSByte();
-        stats.BreakChance = reader.ReadRawByte();
-        stats.Special = reader.ReadRawByte();
-        stats.Unknown2 = reader.ReadRawByte();
-        stats.Unknown3 = reader.ReadRawByte();
+		Usable stats = new()
+		{
+			TargetEffect = reader.ReadRawByte(),
+			TargetType = reader.ReadRawByte(),
+			Power = reader.ReadRawShort(),
+			Range = reader.ReadRawShort(),
+			CastTime = reader.ReadRawShort(),
+			RecoveryTime = reader.ReadRawShort(),
+			Animation = reader.ReadRawUShort(),
+			EffectiveOn = reader.ReadRawByte(),
+			Unknown1 = reader.ReadRawByte(),
+			IpDamage = reader.ReadRawShort(),
+			IpCancelDamage = reader.ReadRawShort(),
+			Knockback = reader.ReadRawShort(),
+			Element = reader.ReadRawByte(),
+			ElementStrength = reader.ReadRawByte(),
+			AilmentsBitflag = reader.ReadRawByte(),
+			AilmentsChance = reader.ReadRawByte(),
+			AttackModifier = reader.ReadRawSByte(),
+			DefenseModifier = reader.ReadRawSByte(),
+			ActionModifier = reader.ReadRawSByte(),
+			MovementModifier = reader.ReadRawSByte(),
+			BreakChance = reader.ReadRawByte(),
+			Special = reader.ReadRawByte(),
+			Unknown2 = reader.ReadRawByte(),
+			Unknown3 = reader.ReadRawByte()
+		};
 
-        return stats;
+		return stats;
     }
 
     public void WriteUsableStats(Stream writer)

@@ -10,13 +10,18 @@ public class SkillbookSkill
     public byte RequiredLevel { get; set; }
     public byte Unknown1 { get; set; }
 
+	public static string CSVHeader =>
+		$"Skill,Starting Level,Required Level,Unknown #1";
+
     public static SkillbookSkill ReadSkillbookSkill(Stream reader)
     {
-        SkillbookSkill skill = new SkillbookSkill();
-        skill.SkillOffset = reader.ReadRawByte();
-        skill.StartingLevel = reader.ReadRawByte();
-        skill.RequiredLevel = reader.ReadRawByte();
-        skill.Unknown1 = reader.ReadRawByte();
+        SkillbookSkill skill = new()
+        {
+            SkillOffset = reader.ReadRawByte(),
+            StartingLevel = reader.ReadRawByte(),
+            RequiredLevel = reader.ReadRawByte(),
+            Unknown1 = reader.ReadRawByte(),
+        };
 
         return skill;
     }
@@ -28,4 +33,13 @@ public class SkillbookSkill
         writer.WriteRawByte(RequiredLevel);
         writer.WriteRawByte(Unknown1);
     }
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write(
+			$"{Skills.Instance.GameSkills[SkillOffset].Name}," +
+			$"{StartingLevel}," +
+			$"{RequiredLevel}," +
+			$"{Unknown1}");
+	}
 }

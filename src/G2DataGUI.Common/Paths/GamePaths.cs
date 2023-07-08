@@ -1,11 +1,8 @@
-﻿using System.Reflection.Metadata;
+﻿namespace G2DataGUI.Common.Paths;
 
-namespace G2DataGUI.Common;
-
-public class GameFilePaths
+public class GamePaths
 {
     private const string XLS_DATA = "xls_data";
-
     public const string MovesFile = "MS_PARAM.BIN";
     public const string SkillsFile = "SK_PARAM.BIN";
     public const string InitialFile = "PC_INIT.BIN";
@@ -23,4 +20,6 @@ public class GameFilePaths
     public const string SkillbooksPath = $"{XLS_DATA}\\{SkillbooksFile}";
     public const string SpecialsPath = $"{XLS_DATA}\\{SpecialsFile}";
     public const string ItemsPath = $"{XLS_DATA}\\{ItemsFile}";
+
+    public const string EnemyDirectory = "enemy";
 }

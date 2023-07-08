@@ -1,58 +1,49 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using G2DataGUI.Common.Paths;
 
-namespace G2DataGUI.Common.Data.Enemies
+namespace G2DataGUI.Common.Data.Enemies;
+
+public class Enemies
 {
-    public class Enemies
+    public static Enemies Instance { get; } = new Enemies();
+    public ObservableCollection<Enemy> GameEnemies = new();
+    public event EventHandler CollectionRefreshed;
+
+    private Enemies()
     {
-        public static Enemies Instance { get; } = new Enemies();
-        private ObservableCollection<Enemy> _enemies = new();
-        public event EventHandler CollectionRefreshed;
+        ReadEnemies();
+    }
 
-        private Enemies()
-        {
-            ReadEnemies();
-        }
+	public void Save() => WriteEnemies();
 
-        public void Save()
-        {
-            WriteEnemies();
-        }
+	public void Reload() => ReadEnemies();
 
-        public void Reload()
+	private void ReadEnemies()
+    {
+        GameEnemies.Clear();
+        foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + GamePaths.EnemyDirectory, "*_0.dat", SearchOption.AllDirectories))
         {
-            ReadEnemies();
-        }
+            using FileStream reader = File.Open(file, FileMode.Open, FileAccess.Read);
+            using MemoryStream memReader = new();
+            reader.CopyTo(memReader);
+            GameEnemies.Add(Enemy.ReadEnemy(memReader, file));
 
-        private void ReadEnemies()
-        {
-            _enemies.Clear();
-            foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "enemy", "*_0.dat", SearchOption.AllDirectories))
+            if (Enemy.FileHasSecondEnemy(memReader))
             {
-                using (FileStream reader = File.Open(file, FileMode.Open, FileAccess.Read))
-                using (MemoryStream memReader = new MemoryStream())
-                {
-                    reader.CopyTo(memReader);
-                    _enemies.Add(Enemy.ReadEnemy(memReader, file));
-
-                    if (Enemy.FileHasSecondEnemy(memReader))
-                    {
-                        _enemies.Add(Enemy.ReadEnemy(memReader, file, true));
-                    }
-                }
-            }
-            CollectionRefreshed?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void WriteEnemies()
-        {
-            foreach (var enemy in _enemies)
-            {
-                enemy.WriteEnemy();
+                GameEnemies.Add(Enemy.ReadEnemy(memReader, file, true));
             }
         }
 
-        public ObservableCollection<Enemy> GetEnemies() { return _enemies; }
+        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void WriteEnemies()
+    {
+        foreach (var enemy in GameEnemies)
+        {
+            enemy.WriteEnemy();
+        }
     }
 }

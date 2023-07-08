@@ -3,17 +3,18 @@ using G2DataGUI.Common.Data.Items;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
 
 public class EnemiesViewModel : BaseViewModel
 {
-    public ObservableCollection<Enemy> GameEnemies { get; private set; } = Enemies.Instance.GetEnemies();
-    public ObservableCollection<Item> GameItems { get; private set; } = Items.Instance.GetItems();
+    public ObservableCollection<Enemy> GameEnemies { get; private set; } = Enemies.Instance.GameEnemies;
+    public ObservableCollection<Item> GameItems { get; private set; } = Items.Instance.GameItems;
     private int _selectedEnemyIndex = 0;
     private Enemy _selectedEnemyItem;
-    private EnemyAISectionViewModel _enemyAISectionViewModel = EnemyAISectionViewModel.Instance;
-    private EnemyMovesetViewModel _enemyMovesetViewModel = EnemyMovesetViewModel.Instance;
+    private readonly EnemyAISectionViewModel _enemyAISectionViewModel = EnemyAISectionViewModel.Instance;
+    private readonly EnemyMovesetViewModel _enemyMovesetViewModel = EnemyMovesetViewModel.Instance;
 
     public static EnemiesViewModel Instance { get; private set; } = new();
 
@@ -37,9 +38,17 @@ public class EnemiesViewModel : BaseViewModel
         get => _selectedEnemyIndex;
         set
         {
-            if (value < 0) value = 0;
-            if (value >= GameEnemies.Count) return;
-            _selectedEnemyIndex = value;
+            if (value < 0)
+			{
+				value = 0;
+			}
+
+			if (value >= GameEnemies.Count)
+			{
+				return;
+			}
+
+			_selectedEnemyIndex = value;
             SelectedEnemyItem = GameEnemies[value];
             OnPropertyChanged(nameof(SelectedEnemyIndex));
         }

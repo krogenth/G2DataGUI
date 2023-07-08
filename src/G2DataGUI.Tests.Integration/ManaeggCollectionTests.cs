@@ -1,4 +1,4 @@
-﻿using G2DataGUI.Common;
+﻿using G2DataGUI.Common.Paths;
 using G2DataGUI.Common.Data.Moves;
 using G2DataGUI.Tests.Common;
 using G2DataGUI.Tests.Common.Helpers;
@@ -10,8 +10,8 @@ namespace G2DataGUI.Tests.Integration;
 public class ManaeggCollectionTests
 {
     Manaeggs eggs;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GameFilePaths.ManaeggsFile}";
-    static string ManaeggsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GameFilePaths.ManaeggsPath}";
+    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.ManaeggsFile}";
+    static string ManaeggsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.ManaeggsPath}";
 
     [SetUp]
     public void Setup()
@@ -24,7 +24,7 @@ public class ManaeggCollectionTests
     [Test]
     public void VerifyAllManaeggsRead()
     {
-        Assert.That(eggs.GetManaeggs().Count, Is.EqualTo(Manaeggs.NumberOfManaeggs));
+        Assert.That(eggs.GameManaeggs.Count, Is.EqualTo(Manaeggs.NumberOfManaeggs));
     }
 
     [Test]

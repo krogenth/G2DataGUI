@@ -10,6 +10,9 @@ public class ManaeggSpell
     public byte RequiredLevel { get; set; }
     public byte Unknown1 { get; set; }
 
+    public static string CSVHeader =>
+        $"Spell,Starting Level,Required Level,Unknown #1";
+
     public static ManaeggSpell ReadManaeggSpell(Stream reader)
     {
         ManaeggSpell spell = new ManaeggSpell();
@@ -27,5 +30,10 @@ public class ManaeggSpell
         writer.WriteRawByte(StartingLevel);
         writer.WriteRawByte(RequiredLevel);
         writer.WriteRawByte(Unknown1);
+    }
+
+    public void GenerateCSV(StreamWriter writer)
+    {
+        writer.Write($"{Moves.Instance.GameMoves[SpellOffset].Name},{StartingLevel},{RequiredLevel},{Unknown1}");
     }
 }

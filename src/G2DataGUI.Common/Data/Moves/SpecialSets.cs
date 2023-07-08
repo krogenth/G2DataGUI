@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using G2DataGUI.Common.Paths;
+using G2DataGUI.UI.Common.Locale;
 
 namespace G2DataGUI.Common.Data.Moves;
 
 public class SpecialSets
 {
     public static SpecialSets Instance { get; } = new();
-    private ObservableCollection<SpecialSet> _specialSets = new();
+    public ObservableCollection<SpecialSet> GameSpecialSets { get; private set; } = new();
     public event EventHandler CollectionRefreshed;
     public static int NumberOfSpecialSets = 0x0E;
 
@@ -16,43 +18,50 @@ public class SpecialSets
         ReadSpecialSets();
     }
 
-    public void Save()
-    {
-        WriteSpecialSets();
-    }
+	public void Save() => WriteSpecialSets();
 
-    public void Reload()
-    {
-        ReadSpecialSets();
-    }
+	public void Reload() => ReadSpecialSets();
 
-    private void ReadSpecialSets()
+	private void ReadSpecialSets()
     {
-        _specialSets.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.Open, FileAccess.Read))
-        using (MemoryStream memReader = new MemoryStream())
+        GameSpecialSets.Clear();
+        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SpecialsPath, FileMode.Open, FileAccess.Read))
+        using (MemoryStream memReader = new())
         {
             reader.CopyTo(memReader);
             memReader.Seek(0, SeekOrigin.Begin);
             while (memReader.Position < memReader.Length)
             {
                 SpecialSet specialset = SpecialSet.ReadSpecialSet(memReader);
-                if (specialset != null) _specialSets.Add(specialset);
+                if (specialset != null)
+                {
+                    GameSpecialSets.Add(specialset);
+                }
             }
         }
+
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
     private void WriteSpecialSets()
     {
-        using (FileStream writer = File.Open(Version.Instance.RootDataDirectory + GameFilePaths.SpecialsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+        using FileStream writer = File.Open(Version.Instance.RootDataDirectory + GamePaths.SpecialsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        foreach (SpecialSet specialSet in GameSpecialSets)
         {
-            foreach (SpecialSet specialSet in _specialSets)
-            {
-                specialSet.WriteSpecialSet(writer);
-            }
+            specialSet.WriteSpecialSet(writer);
         }
     }
 
-    public ObservableCollection<SpecialSet> GetSpecialsSets() { return _specialSets; }
+    public void GenerateCSV()
+    {
+        using FileStream stream = File.Open(ProjectPaths.SpecialsCSVFile, FileMode.Create, FileAccess.Write);
+        using StreamWriter writer = new(stream);
+		writer.Write("Character,");
+        writer.WriteLine(SpecialSet.CSVHeader);
+        for (int index = 0; index < GameSpecialSets.Count; index++)
+        {
+            writer.Write($"{LocaleManager.Instance[LocaleKeys.SpecialChars][index]},");
+            GameSpecialSets[index].GenerateCSV(writer);
+        }
+    }
 }

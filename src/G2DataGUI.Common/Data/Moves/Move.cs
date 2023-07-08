@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using G2DataGUI.Common.Data.Common;
 using G2DataGUI.IO.Streams;
+using G2DataGUI.UI.Common.Locale;
 
 namespace G2DataGUI.Common.Data.Moves;
 
@@ -12,26 +13,30 @@ public sealed class Move : BaseContainer
     public MoveStats Stats { get; private set; }
     private FixedLengthDescription _description;
 
-    public string Name { get => _name.Name; set { _name.Name = value; NotifyPropertyChanged(nameof(Name)); } }
-    public int MaxNameLength { get => _name.MaxLength; }
+    public string Name {
+        get => _name.Name;
+        set {
+            _name.Name = value;
+            NotifyPropertyChanged(nameof(Name));
+        }
+    }
+    public int MaxNameLength { get => FixedLengthName.MaxLength; }
     public string Description { get => _description.Description; set => _description.Description = value; }
-    public int MaxDescriptionLength { get => _description.MaxLength; }
+    public int MaxDescriptionLength { get => FixedLengthDescription.MaxLength; }
+
+    public static string CSVHeader =>
+        $"ID,Icon,Name,{MoveStats.CSVHeader},Description";
 
     public static Move ReadMove(Stream reader)
     {
-        Move move = new Move();
-        move.ID = (byte)reader.ReadByte();
-        move.Icon = (byte)reader.ReadByte();
-
-        FixedLengthName? name = reader.ReadStruct<FixedLengthName>();
-        if (name == null) return null;
-        move._name = name.Value;
-
-        move.Stats = MoveStats.ReadMoveStats(reader);
-
-        FixedLengthDescription? description = reader.ReadStruct<FixedLengthDescription>();
-        if (description == null) return null;
-        move._description = description.Value;
+        Move move = new()
+        {
+            ID = (byte)reader.ReadByte(),
+            Icon = (byte)reader.ReadByte(),
+            _name = FixedLengthName.ReadFixedLengthName(reader),
+            Stats = MoveStats.ReadMoveStats(reader),
+            _description = FixedLengthDescription.ReadFixedLengthDescription(reader),
+        };
 
         return move;
     }
@@ -40,8 +45,18 @@ public sealed class Move : BaseContainer
     {
         writer.WriteRawByte(ID);
         writer.WriteRawByte(Icon);
-        writer.WriteStruct(_name);
+        _name.WriteFixedLengthName(writer);
         Stats.WriteMoveStats(writer);
-        writer.WriteStruct(_description);
+        _description.WriteFixedLengthDescription(writer);
+    }
+
+    public void GenerateCSV(StreamWriter writer)
+    {
+        writer.Write(
+            $"{ID}," +
+            $"{LocaleManager.Instance[LocaleKeys.Icons][Icon]}," +
+            $"{Name},");
+        Stats.GenerateCSV(writer);
+        writer.WriteLine($",{Description}");
     }
 }

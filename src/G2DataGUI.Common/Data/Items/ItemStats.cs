@@ -15,16 +15,18 @@ public class ItemStats
 
     public static ItemStats ReadItemStats(Stream reader)
     {
-        ItemStats stats = new ItemStats();
-        stats.EntryType = reader.ReadRawByte();
-        stats.Unknown1 = reader.ReadRawByte();
-        stats.Unknown2 = reader.ReadRawByte();
-        stats.Unknown3 = reader.ReadRawByte();
-        stats.Icon = reader.ReadRawByte();
-        stats.Unknown4 = reader.ReadRawByte();
-        stats.Price = reader.ReadRawInt();
+		ItemStats stats = new()
+		{
+			EntryType = reader.ReadRawByte(),
+			Unknown1 = reader.ReadRawByte(),
+			Unknown2 = reader.ReadRawByte(),
+			Unknown3 = reader.ReadRawByte(),
+			Icon = reader.ReadRawByte(),
+			Unknown4 = reader.ReadRawByte(),
+			Price = reader.ReadRawInt()
+		};
 
-        return stats;
+		return stats;
     }
 
     public void WriteItemStats(Stream writer)

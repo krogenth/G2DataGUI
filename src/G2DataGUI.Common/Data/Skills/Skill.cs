@@ -1,5 +1,4 @@
 ﻿using G2DataGUI.Common.Data.Common;
-using G2DataGUI.IO.Streams;
 using System.IO;
 
 namespace G2DataGUI.Common.Data.Skills;
@@ -10,31 +9,51 @@ public class Skill : BaseContainer
     public SkillStats Stats { get; private set; }
     private FixedLengthDescription _description;
 
-    public string Name { get => _name.Name; set { _name.Name = value; NotifyPropertyChanged(nameof(Name)); } }
-    public int MaxNameLength { get => _name.MaxLength; }
-    public string Description { get => _description.Description; set { _description.Description = value; NotifyPropertyChanged(nameof(Description)); } }
-    public int MaxDescriptionLength { get => _description.MaxLength; }
+    public string Name
+    {
+        get => _name.Name;
+        set {
+            _name.Name = value;
+            NotifyPropertyChanged(nameof(Name));
+        }
+    }
+    public int MaxNameLength { get => FixedLengthName.MaxLength; }
+    public string Description
+    {
+        get => _description.Description;
+        set {
+            _description.Description = value;
+            NotifyPropertyChanged(nameof(Description));
+        }
+    }
+    public int MaxDescriptionLength { get => FixedLengthDescription.MaxLength; }
+
+	public static string CSVHeader =>
+		$"Name,{SkillStats.CSVHeader},Description";
 
     public static Skill ReadSkill(Stream reader)
     {
-        Skill skill = new Skill();
-        FixedLengthName? name = reader.ReadStruct<FixedLengthName>();
-        if (name == null) return null;
-        skill._name = name.Value;
-
-        skill.Stats = SkillStats.ReadSkillStats(reader);
-
-        FixedLengthDescription? description = reader.ReadStruct<FixedLengthDescription>();
-        if (description == null) return null;
-        skill._description = description.Value;
+        Skill skill = new()
+        {
+            _name = FixedLengthName.ReadFixedLengthName(reader),
+            Stats = SkillStats.ReadSkillStats(reader),
+            _description = FixedLengthDescription.ReadFixedLengthDescription(reader),
+        };
 
         return skill;
     }
 
     public void WriteSkill(Stream writer)
     {
-        writer.WriteStruct(_name);
+        _name.WriteFixedLengthName(writer);
         Stats.WriteSkillStats(writer);
-        writer.WriteStruct(_description);
+        _description.WriteFixedLengthDescription(writer);
     }
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write($"{Name},");
+		Stats.GenerateCSV(writer);
+		writer.WriteLine($",{Description}");
+	}
 }

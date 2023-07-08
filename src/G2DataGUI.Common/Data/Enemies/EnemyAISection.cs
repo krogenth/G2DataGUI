@@ -12,14 +12,16 @@ public class EnemyAISection
 
     public static EnemyAISection ReadEnemyAISection(Stream reader)
     {
-        EnemyAISection section = new EnemyAISection();
-        section.AI1 = EnemyAI.ReadEnemyAI(reader);
-        section.AI2 = EnemyAI.ReadEnemyAI(reader);
-        section.AI3 = EnemyAI.ReadEnemyAI(reader);
-        section.AI4 = EnemyAI.ReadEnemyAI(reader);
-        section.AI5 = EnemyAI.ReadEnemyAI(reader);
+		EnemyAISection section = new()
+		{
+			AI1 = EnemyAI.ReadEnemyAI(reader),
+			AI2 = EnemyAI.ReadEnemyAI(reader),
+			AI3 = EnemyAI.ReadEnemyAI(reader),
+			AI4 = EnemyAI.ReadEnemyAI(reader),
+			AI5 = EnemyAI.ReadEnemyAI(reader)
+		};
 
-        return section;
+		return section;
     }
 
     public void WriteEnemyAISection(Stream writer)
