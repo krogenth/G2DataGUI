@@ -9,42 +9,32 @@ namespace G2DataGUI.Tests.Integration;
 [Category("Integration")]
 public class ItemCollectionTests
 {
-    Items items;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.ItemsFile}";
-    static string ItemsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.ItemsPath}";
+	private Items _items;
+	private static readonly string _testBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.ItemsFile}";
+	private static readonly string _itemsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.ItemsPath}";
 
-    [SetUp]
-    public void Setup()
+	[OneTimeSetUp]
+    public void SetUp()
     {
-        items = Items.Instance;
-        Directory.CreateDirectory(Constants.TestBackupDirectory);
-        File.Copy(ItemsFile, TestBackupFile, true);
+		_items = Items.Instance;
+		Directory.CreateDirectory(Constants.TestBackupDirectory);
+        File.Copy(_itemsFile, _testBackupFile, true);
     }
 
-    [Test]
-    public void VerifyAllItemsRead()
-    {
-        Assert.That(items.GameItems.Count, Is.EqualTo(Items.NumberOfItems));
-    }
+	[Test]
+	public void VerifyAllItemsRead() => Assert.That(_items.GameItems.Count, Is.EqualTo(Items.NumberOfItems));
 
-    [Test]
-    public void WritesAllItems()
-    {
-        items.Save();
-    }
+	[Test]
+	public void WritesAllItems() => _items.Save();
 
-    [Test]
+	[Test]
     [Ignore("Data is scrambled, files will not match currently")]
     public void ItemDataIsSameAfterSave()
     {
-        bool result = FileComparison.FileCompare(ItemsFile, TestBackupFile);
+        bool result = FileComparison.FileCompare(_itemsFile, _testBackupFile);
         Assert.That(result, Is.True);
     }
 
-    [TearDown]
-    [Ignore("Data scrambled, do not overwrite original")]
-    public void TearDown()
-    {
-        File.Copy(TestBackupFile, ItemsFile, true);
-    }
+	[OneTimeTearDown]
+	public void TearDown() => File.Copy(_testBackupFile, _itemsFile, true);
 }

@@ -14,16 +14,23 @@ public class Enemies
     private Enemies()
     {
         ReadEnemies();
-    }
+		DifficultyMode.Instance.DifficultyChanged += OnDifficultyChange;
+	}
 
 	public void Save() => WriteEnemies();
 
 	public void Reload() => ReadEnemies();
 
+	private void OnDifficultyChange(object sender, EventArgs e) => ReadEnemies();
+
 	private void ReadEnemies()
     {
         GameEnemies.Clear();
-        foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + GamePaths.EnemyDirectory, "*_0.dat", SearchOption.AllDirectories))
+		var directory =
+			DifficultyMode.Instance.IsHardMode ?
+			Version.Instance.RootDataDirectory + GamePaths.EnemyHardmodeDirectory :
+			Version.Instance.RootDataDirectory + GamePaths.EnemyDirectory;
+		foreach (var file in Directory.GetFiles(directory, "*_0.dat", SearchOption.AllDirectories))
         {
             using FileStream reader = File.Open(file, FileMode.Open, FileAccess.Read);
             using MemoryStream memReader = new();
@@ -46,4 +53,22 @@ public class Enemies
             enemy.WriteEnemy();
         }
     }
+
+	public void GenerateCSV()
+	{
+		GenerateEnemiesCSV();
+		GenerateEnemyMovesCSV();
+	}
+
+	private void GenerateEnemiesCSV()
+	{
+		using FileStream stream = File.Open(ProjectPaths.EnemiesCSVFile, FileMode.Create, FileAccess.Write);
+		using StreamWriter writer = new(stream);
+	}
+
+	private void GenerateEnemyMovesCSV()
+	{
+		using FileStream stream = File.Open(ProjectPaths.EnemyMovesCSVFile, FileMode.Create, FileAccess.Write);
+		using StreamWriter writer = new(stream);
+	}
 }

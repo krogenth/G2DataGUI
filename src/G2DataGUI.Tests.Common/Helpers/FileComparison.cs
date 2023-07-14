@@ -1,10 +1,8 @@
-﻿
-
-using System.IO;
+﻿using System.IO;
 
 namespace G2DataGUI.Tests.Common.Helpers;
 
-public class FileComparison
+public static class FileComparison
 {
     public static bool FileCompare(string file1, string file2)
     {

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Pfim" />
-	<PackageReference Include="Microsoft.Toolkit.Diagnostics" />
+	<PackageReference Include="CommunityToolkit.Diagnostics" />
   </ItemGroup>
 
 </Project>

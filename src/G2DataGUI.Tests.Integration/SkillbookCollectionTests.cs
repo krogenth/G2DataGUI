@@ -9,40 +9,32 @@ namespace G2DataGUI.Tests.Integration;
 [Category("Integration")]
 public class SkillbookCollectionTests
 {
-    Skillbooks books;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.SkillbooksFile}";
-    static string SkillbooksFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.SkillbooksPath}";
+    private Skillbooks _books;
+    private static readonly string _testBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.SkillbooksFile}";
+    private static readonly string _skillbooksFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.SkillbooksPath}";
 
-    [SetUp]
-    public void Setup()
+    [OneTimeSetUp]
+    public void SetUp()
     {
-        books = Skillbooks.Instance;
+		_books = Skillbooks.Instance;
         Directory.CreateDirectory(Constants.TestBackupDirectory);
-        File.Copy(SkillbooksFile, TestBackupFile, true);
+        File.Copy(_skillbooksFile, _testBackupFile, true);
     }
 
-    [Test]
-    public void VerifyAllSkillbooksRead()
-    {
-        Assert.That(books.GameSkillbooks.Count, Is.EqualTo(Skillbooks.NumberOfSkillbooks));
-    }
+	[Test]
+	public void VerifyAllSkillbooksRead() =>
+		Assert.That(_books.GameSkillbooks.Count, Is.EqualTo(Skillbooks.NumberOfSkillbooks));
 
-    [Test]
-    public void WritesAllSkillbooks()
-    {
-        books.Save();
-    }
+	[Test]
+	public void WritesAllSkillbooks() => _books.Save();
 
-    [Test]
+	[Test]
     public void SkillbookDataIsSameAfterSave()
     {
-        bool result = FileComparison.FileCompare(SkillbooksFile, TestBackupFile);
+        bool result = FileComparison.FileCompare(_skillbooksFile, _testBackupFile);
         Assert.That(result, Is.True);
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        File.Copy(TestBackupFile, SkillbooksFile, true);
-    }
+	[OneTimeTearDown]
+	public void TearDown() => File.Copy(_testBackupFile, _skillbooksFile, true);
 }

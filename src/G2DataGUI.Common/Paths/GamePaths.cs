@@ -22,4 +22,7 @@ public class GamePaths
     public const string ItemsPath = $"{XLS_DATA}\\{ItemsFile}";
 
     public const string EnemyDirectory = "enemy";
+	public const string EnemyHardmodeDirectory = "enemy_hardmode";
+	public const string BossDirectory = "boss";
+	public const string BossHardmodeDirectory = "boss_hardmode";
 }

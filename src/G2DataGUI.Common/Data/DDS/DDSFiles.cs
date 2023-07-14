@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using G2DataGUI.IO.DDS;
 
 namespace G2DataGUI.Common.Data.DDS;
 
@@ -15,15 +16,12 @@ public class DDSFiles
         ReadDDSFileSystemStructure();
     }
 
-    public void Reload()
-    {
-        ReadDDSFileSystemStructure();
-    }
+	public void Reload() => ReadDDSFileSystemStructure();
 
-    private void ReadDDSFileSystemStructure()
+	private void ReadDDSFileSystemStructure()
     {
         DirectoryDDSFiles.Clear();
-        foreach (var node in RecursiveDirectoryCrawl(Version.Instance.RootDataDirectory))
+		foreach (var node in RecursiveDirectoryCrawl(Version.Instance.RootDataDirectory))
         {
             DirectoryDDSFiles.Add(node);
         }
@@ -37,15 +35,18 @@ public class DDSFiles
 
         foreach (string dir in Directory.GetDirectories(directory))
         {
-            var child = new DDSNode(new DirectoryInfo(dir).Name, dir, false, RecursiveDirectoryCrawl(dir));
+            var child = new DDSNode(new DirectoryInfo(dir).Name, dir, 0, false, RecursiveDirectoryCrawl(dir));
             node.Add(child);
         }
 
         foreach (string file in Directory.GetFiles(directory, "*.dds"))
         {
-            var child = new DDSNode(new DirectoryInfo(file).Name, file, true);
+			using FileStream stream = File.Open(file, FileMode.Open, FileAccess.Read);
+			var guid = DDSLoader.GetGuid(stream);
+
+			DDSNode child = new(new DirectoryInfo(file).Name, file, guid, true);
             node.Add(child);
-        }
+		}
 
         return node;
     }

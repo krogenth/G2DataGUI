@@ -2,8 +2,7 @@
 using System.Buffers.Binary;
 using System.IO;
 using System.Runtime.InteropServices;
-
-using Microsoft.Toolkit.Diagnostics;
+using CommunityToolkit.Diagnostics;
 
 namespace G2DataGUI.IO.Streams;
 

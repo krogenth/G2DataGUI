@@ -9,40 +9,32 @@ namespace G2DataGUI.Tests.Integration;
 [Category("Integration")]
 public class MoveCollectionTests
 {
-    Moves moves;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.MovesFile}";
-    static string MovesFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.MovesPath}";
+    private Moves _moves;
+    private static readonly string _testBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.MovesFile}";
+    private static readonly string _movesFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.MovesPath}";
 
-    [SetUp]
-    public void Setup()
+    [OneTimeSetUp]
+    public void SetUp()
     {
-        moves = Moves.Instance;
+		_moves = Moves.Instance;
         Directory.CreateDirectory(Constants.TestBackupDirectory);
-        File.Copy(MovesFile, TestBackupFile, true);
+        File.Copy(_movesFile, _testBackupFile, true);
     }
 
-    [Test]
-    public void VerifyAllMovesRead()
-    {
-        Assert.That(moves.GameMoves.Count, Is.EqualTo(Moves.NumberOfMoves));
-    }
+	[Test]
+	public void VerifyAllMovesRead() =>
+		Assert.That(_moves.GameMoves.Count, Is.EqualTo(Moves.NumberOfMoves));
 
-    [Test]
-    public void WritesAllMoves()
-    {
-        moves.Save();
-    }
+	[Test]
+	public void WritesAllMoves() => _moves.Save();
 
-    [Test]
+	[Test]
     public void MoveDataIsSameAfterSave()
     {
-        bool result = FileComparison.FileCompare(MovesFile, TestBackupFile);
+        bool result = FileComparison.FileCompare(_movesFile, _testBackupFile);
         Assert.That(result, Is.True);
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        File.Copy(TestBackupFile, MovesFile, true);
-    }
+	[OneTimeTearDown]
+	public void TearDown() => File.Copy(_testBackupFile, _movesFile, true);
 }

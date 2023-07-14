@@ -8,19 +8,18 @@ public class DDSNode
     public string Title { get; }
     public string Path { get; }
     public bool IsFile { get; }
+	public uint Guid { get; }
 
-    public DDSNode(string title, string path, bool isFile) : this(title, path, isFile, new ObservableCollection<DDSNode>()) { }
+    public DDSNode(string title, string path, uint guid, bool isFile) : this(title, path, guid, isFile, new ObservableCollection<DDSNode>()) { }
 
-    public DDSNode(string title, string path, bool isFile, ObservableCollection<DDSNode> children)
+    public DDSNode(string title, string path, uint guid, bool isFile, ObservableCollection<DDSNode> children)
     {
         Title = title;
         Path = path;
+		Guid = guid;
         IsFile = isFile;
         Children = children;
     }
 
-    public void AddChild(DDSNode child)
-    {
-        Children.Add(child);
-    }
+	public void AddChild(DDSNode child) => Children.Add(child);
 }

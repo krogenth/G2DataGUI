@@ -2,17 +2,18 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using CommunityToolkit.Diagnostics;
 using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.IO.Resources;
 
 public static class EmbeddedResources
 {
-    private readonly static Assembly ResourceAssembly;
+    private readonly static Assembly _resourceAssembly;
 
     static EmbeddedResources()
     {
-        ResourceAssembly = Assembly.GetAssembly(typeof(EmbeddedResources));
+		_resourceAssembly = Assembly.GetAssembly(typeof(EmbeddedResources));
     }
 
     public static byte[] Read(string filename)
@@ -24,44 +25,28 @@ public static class EmbeddedResources
 
     public static byte[] Read(Assembly assembly, string filename)
     {
-        using (var stream = GetStream(assembly, filename))
-        {
-            if (stream == null)
-            {
-                return null;
-            }
-
-            return stream.StreamToBytesArray();
-        }
+		using var stream = GetStream(assembly, filename);
+        Guard.IsNotNull(stream);
+        return stream.StreamToBytesArray();
     }
 
     public static string ReadAllText(string filename)
     {
         var (assembly, path) = ResolveManifestPath(filename);
-
         return ReadAllText(assembly, path);
     }
 
     public static string ReadAllText(Assembly assembly, string filename)
     {
-        using (var stream = GetStream(assembly, filename))
-        {
-            if (stream == null)
-            {
-                return null;
-            }
-
-            using (var reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
-        }
+		using var stream = GetStream(assembly, filename);
+        Guard.IsNotNull(stream);
+		using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
     }
 
     public static Stream GetStream(string filename)
     {
         var (assembly, path) = ResolveManifestPath(filename);
-
         return GetStream(assembly, path);
     }
 
@@ -69,9 +54,7 @@ public static class EmbeddedResources
     {
         var namespace_ = assembly.GetName().Name;
         var manifestUri = namespace_ + "." + filename.Replace('/', '.');
-
         var stream = assembly.GetManifestResourceStream(manifestUri);
-
         return stream;
     }
 
@@ -97,6 +80,6 @@ public static class EmbeddedResources
             }
         }
 
-        return (ResourceAssembly, filename);
+        return (_resourceAssembly, filename);
     }
 }

@@ -9,40 +9,32 @@ namespace G2DataGUI.Tests.Integration;
 [Category("Integration")]
 public class SpecialSetCollectionTests
 {
-    SpecialSets specialSets;
-    static string TestBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.SpecialsFile}";
-    static string SpecialSetsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.SpecialsPath}";
+    private SpecialSets _specialSets;
+    private static readonly string _testBackupFile = $"{Constants.TestBackupDirectory}{GamePaths.SpecialsFile}";
+    private static readonly string _specialSetsFile = $"{G2DataGUI.Common.Version.Instance.RootDataDirectory}{GamePaths.SpecialsPath}";
 
-    [SetUp]
-    public void Setup()
+    [OneTimeSetUp]
+    public void SetUp()
     {
-        specialSets = SpecialSets.Instance;
+		_specialSets = SpecialSets.Instance;
         Directory.CreateDirectory(Constants.TestBackupDirectory);
-        File.Copy(SpecialSetsFile, TestBackupFile, true);
+        File.Copy(_specialSetsFile, _testBackupFile, true);
     }
 
-    [Test]
-    public void VerifyAllSpecialSetsRead()
-    {
-        Assert.That(specialSets.GameSpecialSets.Count, Is.EqualTo(SpecialSets.NumberOfSpecialSets));
-    }
+	[Test]
+	public void VerifyAllSpecialSetsRead() =>
+		Assert.That(_specialSets.GameSpecialSets.Count, Is.EqualTo(SpecialSets.NumberOfSpecialSets));
 
-    [Test]
-    public void WritesAllSpecialSets()
-    {
-        specialSets.Save();
-    }
+	[Test]
+	public void WritesAllSpecialSets() => _specialSets.Save();
 
-    [Test]
+	[Test]
     public void SpecialSetDataIsSameAfterSave()
     {
-        bool result = FileComparison.FileCompare(SpecialSetsFile, TestBackupFile);
+        bool result = FileComparison.FileCompare(_specialSetsFile, _testBackupFile);
         Assert.That(result, Is.True);
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        File.Copy(TestBackupFile, SpecialSetsFile, true);
-    }
+	[OneTimeTearDown]
+	public void TearDown() => File.Copy(_testBackupFile, _specialSetsFile, true);
 }

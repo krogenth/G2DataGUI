@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.IO;
 using G2DataGUI.UI.Common.ViewModels;
 using G2DataGUI.Common;
+using G2DataGUI.Common.Data.Enemies;
+using G2DataGUI.Common.Data.Bosses;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -18,6 +20,23 @@ public sealed class MenuBarViewModel : BaseViewModel
     private string _selectedStyle = "Dark";
     public event EventHandler<StyleThemeEventArgs> StyleThemeChanged;
 
+    public string SelectedStyle
+    {
+        get => _selectedStyle;
+        set
+        {
+            _selectedStyle = value;
+            StyleThemeChanged?.Invoke(this, new StyleThemeEventArgs(_selectedStyle));
+            OnPropertyChanged(nameof(SelectedStyle));
+        }
+    }
+
+    public bool IsHardMode
+    {
+        get => DifficultyMode.Instance.IsHardMode;
+        set => DifficultyMode.Instance.IsHardMode = value;
+    }
+
     public void SaveAll()
     {
         Moves.Instance.Save();
@@ -26,6 +45,8 @@ public sealed class MenuBarViewModel : BaseViewModel
         Skillbooks.Instance.Save();
         SpecialSets.Instance.Save();
         Items.Instance.Save();
+		Enemies.Instance.Save();
+		Bosses.Instance.Save();
     }
 
     public void LaunchGame()
@@ -44,6 +65,8 @@ public sealed class MenuBarViewModel : BaseViewModel
         Skillbooks.Instance.Reload();
         SpecialSets.Instance.Reload();
         Items.Instance.Reload();
+		Enemies.Instance.Reload();
+		Bosses.Instance.Reload();
     }
 
     public void GenerateCSVFiles()
@@ -58,6 +81,8 @@ public sealed class MenuBarViewModel : BaseViewModel
         Manaeggs.Instance.GenerateCSV();
         Skillbooks.Instance.GenerateCSV();
         SpecialSets.Instance.GenerateCSV();
+		Enemies.Instance.GenerateCSV();
+		Bosses.Instance.GenerateCSV();
     }
 
 	public void Exit() => Window?.Close();
@@ -66,16 +91,5 @@ public sealed class MenuBarViewModel : BaseViewModel
     {
         DDSViewerWindow ddsViewerWindow = new();
         ddsViewerWindow.Show();
-    }
-
-    public string SelectedStyle
-    {
-        get => _selectedStyle;
-        set
-        {
-            _selectedStyle = value;
-            StyleThemeChanged?.Invoke(this, new StyleThemeEventArgs(_selectedStyle));
-            OnPropertyChanged(nameof(SelectedStyle));
-        }
     }
 }

@@ -254,7 +254,7 @@
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
     </Style>
     <Style Selector="CheckBox TextBlock">
-        <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="Margin" Value="0,2,0,0" />
     </Style>
     <Style Selector="ContextMenu">
         <Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutPresenterBorderBrush}" />

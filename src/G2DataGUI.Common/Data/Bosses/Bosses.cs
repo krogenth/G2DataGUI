@@ -1,35 +1,70 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
+
+using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Bosses;
 
 public class Bosses
 {
-    private readonly ObservableCollection<Boss> _bosses = new();
+	public static Bosses Instance { get; } = new();
+	public ObservableCollection<Boss> GameBosses = new();
 
     private Bosses()
     {
         ReadBosses();
+		DifficultyMode.Instance.DifficultyChanged += OnDifficultyChange;
     }
 
-    public static Bosses Instance { get; } = new();
+	public void Save() => WriteBosses();
+
+	public void Reload() => ReadBosses();
+
+	private void OnDifficultyChange(object sender, EventArgs eventArgs) => ReadBosses();
 
     private void ReadBosses()
     {
-        _bosses.Clear();
-
-        foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "boss", "*_0.dat", SearchOption.AllDirectories))
+		GameBosses.Clear();
+		var directory =
+			DifficultyMode.Instance.IsHardMode ?
+			Version.Instance.RootDataDirectory + GamePaths.BossHardmodeDirectory :
+			Version.Instance.RootDataDirectory + GamePaths.BossDirectory;
+        foreach (var file in Directory.GetFiles(directory, "*_0.dat", SearchOption.AllDirectories))
         {
             using FileStream reader = File.Open(file, FileMode.Open);
-            using BinaryReader binReader = new(reader);
-            _bosses.Add(Boss.ReadBoss(binReader, file));
+			GameBosses.Add(Boss.ReadBoss(reader, file));
 
-            if (Boss.FileHasSecondBoss(binReader))
+            if (Boss.FileHasSecondBoss(reader))
             {
-                _bosses.Add(Boss.ReadBoss(binReader, file, true));
+				GameBosses.Add(Boss.ReadBoss(reader, file, true));
             }
         }
     }
 
-    public ObservableCollection<Boss> GetBosses() { return _bosses; }
+	private void WriteBosses()
+	{
+		foreach (var boss in GameBosses)
+		{
+			boss.WriteBoss();
+		}
+	}
+
+	public void GenerateCSV()
+	{
+		GenerateBossesCSV();
+		GenerateBossMovesCSV();
+	}
+
+	private void GenerateBossesCSV()
+	{
+		using FileStream stream = File.Open(ProjectPaths.EnemiesCSVFile, FileMode.Create, FileAccess.Write);
+		using StreamWriter writer = new(stream);
+	}
+
+	private void GenerateBossMovesCSV()
+	{
+		using FileStream stream = File.Open(ProjectPaths.EnemyMovesCSVFile, FileMode.Create, FileAccess.Write);
+		using StreamWriter writer = new(stream);
+	}
 }

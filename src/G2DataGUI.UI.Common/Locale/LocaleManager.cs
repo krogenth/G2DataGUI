@@ -36,12 +36,9 @@ public class LocaleManager : BaseViewModel
         }
     }
 
-    private void LoadDefaultLanguage()
-    {
-        _defaultLocaleStringLists = LoadJsonLanguage();
-    }
+	private void LoadDefaultLanguage() => _defaultLocaleStringLists = LoadJsonLanguage();
 
-    private Dictionary<LocaleKeys, List<string>> LoadJsonLanguage(string languageCode = DefaultLanguageCode)
+	private Dictionary<LocaleKeys, List<string>> LoadJsonLanguage(string languageCode = DefaultLanguageCode)
     {
         Dictionary<LocaleKeys, List<string>> localeStringLists = new();
         string jsonData = EmbeddedResources.ReadAllText($"G2DataGUI.UI.Common/Assets/Locales/{languageCode}.json");

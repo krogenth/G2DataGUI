@@ -12,7 +12,7 @@ public class Enemy : BaseContainer
     public EnemyMoveset Moveset { get; private set; }
 
     public bool IsSecond { get; set; }
-    public string Filename { get; set; } = "";
+    public string Filename { get; set; }
 
     public string Name
     {
@@ -34,7 +34,6 @@ public class Enemy : BaseContainer
         // first enemy instance offset is always 0x34
         // second enemy instance offset is always 0x44
         reader.Seek(isSecond ? SecondStatsPointerOffset : FirstStatsPointerOffset, SeekOrigin.Begin);
-
         reader.Seek(reader.ReadRawInt(), SeekOrigin.Begin);
 
         Enemy enemy = new()
@@ -50,7 +49,6 @@ public class Enemy : BaseContainer
         // second enemy moveset instance offset is always 0x4C
         reader.Seek(isSecond ? SecondMovesPointerOffset : FirstMovesPointerOffset, SeekOrigin.Begin);
         reader.Seek(reader.ReadRawInt(), SeekOrigin.Begin);
-
         enemy.Moveset = EnemyMoveset.ReadEnemyMoveset(reader);
 
         return enemy;
