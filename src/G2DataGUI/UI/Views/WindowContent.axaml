@@ -31,6 +31,7 @@
 			<content:Specials Name="SpecialsPage" />
 			<content:Items Name="ItemsPage" />
 			<content:Enemies Name="EnemiesPage" />
+			<content:Bosses Name="BossesPage" />
 		</Grid>
 		<controls:NavigationView Grid.Row="1"
 									IsSettingsVisible="False"

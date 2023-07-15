@@ -4,8 +4,9 @@ using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
 
-public class EnemyStats
+public class EnemyStats : BaseContainer
 {
+	private FixedLengthName _name;
     public byte Unknown1 { get; set; }
     public byte Unknown2 { get; set; }
     public byte Type1 { get; set; }
@@ -49,7 +50,18 @@ public class EnemyStats
     public byte Item2Chance { get; set; }
     public short Unknown7 { get; set; }
 
-    public bool PoisonBitflag
+	public string Name
+	{
+		get => _name.Name;
+		set
+		{
+			_name.Name = value;
+			NotifyPropertyChanged(nameof(Name));
+		}
+	}
+	public int MaxNameLength { get => FixedLengthName.MaxLength; }
+
+	public bool PoisonBitflag
     {
         get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
         set
@@ -174,6 +186,7 @@ public class EnemyStats
     {
 		EnemyStats stats = new()
 		{
+			_name = FixedLengthName.ReadFixedLengthName(reader),
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
 			Type1 = reader.ReadRawByte(),
@@ -223,6 +236,7 @@ public class EnemyStats
 
     public void WriteEnemyStats(Stream writer)
     {
+		_name.WriteFixedLengthName(writer);
         writer.WriteRawByte(Unknown1);
         writer.WriteRawByte(Unknown2);
         writer.WriteRawByte(Type1);

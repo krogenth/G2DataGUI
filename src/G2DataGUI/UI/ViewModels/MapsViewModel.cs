@@ -11,10 +11,12 @@ public sealed class MapsViewModel : BaseViewModel
     public ObservableCollection<Map> MdtMaps { get; } = Maps.Instance.GetMaps();
     private int _selectedMapIndex = 0;
 
-    public ObservableCollection<Boss> GameBosses { get; } = Bosses.Instance.GetBosses();
+    public ObservableCollection<Boss> GameBosses { get; } = Bosses.Instance.GameBosses;
     public ObservableCollection<Enemy> GameEnemies { get; } = Enemies.Instance.GameEnemies;
 
-    public MapsViewModel() { }
+	public static MapsViewModel Instance { get; private set; } = new();
+
+    private MapsViewModel() { }
 
     public int MapSelectedIndex
     {

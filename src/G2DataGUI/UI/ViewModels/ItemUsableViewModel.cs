@@ -10,6 +10,8 @@ public class ItemUsableViewModel : BaseViewModel
 
     public static ItemUsableViewModel Instance { get; } = new();
 
+	private ItemUsableViewModel() { }
+
     public Usable SelectedItemUsable
     {
         get => _selectedItemUsable;

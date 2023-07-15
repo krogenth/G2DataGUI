@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using G2DataGUI.Common.Paths;
 using G2DataGUI.UI.Common.Locale;
 
@@ -22,7 +23,7 @@ public class SpecialSets
 
 	public void Reload() => ReadSpecialSets();
 
-	private void ReadSpecialSets()
+	private async Task ReadSpecialSets()
     {
         GameSpecialSets.Clear();
         using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SpecialsPath, FileMode.Open, FileAccess.Read))

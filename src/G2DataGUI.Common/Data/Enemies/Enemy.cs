@@ -6,23 +6,12 @@ namespace G2DataGUI.Common.Data.Enemies;
 
 public class Enemy : BaseContainer
 {
-    private FixedLengthName _name;
     public EnemyStats Stats { get; private set; }
     public EnemyAISection AISection { get; private set; }
     public EnemyMoveset Moveset { get; private set; }
 
     public bool IsSecond { get; set; }
     public string Filename { get; set; }
-
-    public string Name
-    {
-        get => _name.Name;
-        set {
-            _name.Name = value;
-            NotifyPropertyChanged(nameof(Name));
-        }
-    }
-    public int MaxNameLength { get => FixedLengthName.MaxLength; }
 
     public static int FirstStatsPointerOffset { get; } = 0x34;
     public static int SecondStatsPointerOffset { get; } = 0x44;
@@ -38,7 +27,6 @@ public class Enemy : BaseContainer
 
         Enemy enemy = new()
         {
-            _name = FixedLengthName.ReadFixedLengthName(reader),
             Stats = EnemyStats.ReadEnemyStats(reader),
             AISection = EnemyAISection.ReadEnemyAISection(reader),
             IsSecond = isSecond,
@@ -69,7 +57,6 @@ public class Enemy : BaseContainer
         writer.Seek(IsSecond ? SecondStatsPointerOffset : FirstStatsPointerOffset, SeekOrigin.Begin);
         writer.Seek(writer.ReadRawInt(), SeekOrigin.Begin);
 
-        _name.WriteFixedLengthName(writer);
         Stats.WriteEnemyStats(writer);
         AISection.WriteEnemyAISection(writer);
 

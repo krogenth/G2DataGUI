@@ -1,0 +1,574 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.BossStats"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+             mc:Ignorable="d"
+             Focusable="True"
+			 x:CompileBindings="True"
+			 x:DataType="vm:BossStatsViewModel">
+	<ScrollViewer>
+		<Grid x:Name="BossStatsGrid"
+			  Margin="20,10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<StackPanel Grid.Column="0"
+						Margin="8">
+				<StackPanel Margin="24,14">
+					<StackPanel Margin="4">
+						<TextBlock Text="Name:" />
+						<TextBox Text="{Binding SelectedBossStats.Name}"
+								 MaxLength="{Binding SelectedBossStats.MaxNameLength}" />
+					</StackPanel>
+					<StackPanel Margin="4">
+						<CheckBox IsThreeState="False"
+								  IsChecked="{Binding SelectedBossStats.NoRunFlag}">
+							Can't Run From
+						</CheckBox>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Types"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<ComboBox HorizontalAlignment="Stretch"
+									  SelectedIndex="{Binding SelectedBossStats.Type1}"
+									  Items="{locale:Locale EnemyTypes}" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<ComboBox HorizontalAlignment="Stretch"
+									  SelectedIndex="{Binding SelectedBossStats.Type2}"
+									  Items="{locale:Locale EnemyTypes}" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Item Drops"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<StackPanel Margin="4">
+								<TextBlock Text="Item #1:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedBossStats.Item1Offset}"
+										  Items="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Margin="4">
+								<TextBlock Text="Chance:" />
+								<NumericUpDown Value="{Binding SelectedBossStats.Item1Chance}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<StackPanel Margin="4">
+								<TextBlock Text="Item #2:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedBossStats.Item2Offset}"
+										  Items="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Margin="4">
+								<TextBlock Text="Chance:" />
+								<NumericUpDown Value="{Binding SelectedBossStats.Item2Chance}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Ailment Resistences"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.PoisonBitflag}">
+								Poison
+							</CheckBox>
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.SleepBitflag}">
+								Sleep
+							</CheckBox>
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.ParalysisBitflag}">
+								Paralysis
+							</CheckBox>
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.ConfusionBitflag}">
+								Confusion
+							</CheckBox>
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.PlagueBitflag}">
+								Plague
+							</CheckBox>
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.Magic_BlockBitflag}">
+								Magic Block
+							</CheckBox>
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.Move_BlockBitflag}">
+								Move Block
+							</CheckBox>
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedBossStats.DeathBitflag}">
+								Death
+							</CheckBox>
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Element Resistences"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0">
+							<StackPanel Margin="4">
+								<TextBlock Text="Fire:" />
+								<NumericUpDown Value="{Binding SelectedBossStats.FireResist}"
+											   Increment="1"
+											   Minimum="-10"
+											   Maximum="10" />
+							</StackPanel>
+							<StackPanel Margin="4">
+								<TextBlock Text="Wind:" />
+								<NumericUpDown Value="{Binding SelectedBossStats.WindResist}"
+											   Increment="1"
+											   Minimum="-10"
+											   Maximum="10" />
+							</StackPanel>
+							<StackPanel Margin="4">
+								<TextBlock Text="Earth:" />
+								<NumericUpDown Value="{Binding SelectedBossStats.EarthResist}"
+											   Increment="1"
+											   Minimum="-10"
+											   Maximum="10" />
+							</StackPanel>
+						</StackPanel>
+						<StackPanel Grid.Column="1">
+							<StackPanel Margin="4">
+								<TextBlock Text="Lightning:" />
+								<NumericUpDown Value="{Binding SelectedBossStats.LightningResist}"
+											   Increment="1"
+											   Minimum="-10"
+											   Maximum="10" />
+							</StackPanel>
+							<StackPanel Margin="4">
+								<TextBlock Text="Blizzard:" />
+								<NumericUpDown Value="{Binding SelectedBossStats.BlizzardResist}"
+											   Increment="1"
+											   Minimum="-10"
+											   Maximum="10" />
+							</StackPanel>
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Grid.Column="1"
+						Margin="8">
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Stats"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Level:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Level}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Health:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Health}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="MP:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.MP}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="SP:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.SP}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Vitality:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Vitality}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Agility:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Agility}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Speed:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Speed}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Mentality:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Mentality}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Stamina:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Stamina}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Size:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Size}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Evasion"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Still:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.EvasionStillRate}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="255" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Moving:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.EvasionMovingRate}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="255" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Recovery"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Knockback Resistence:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.KnockbackResist}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Status Recovery Time:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.StatusRecoveryTime}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="IP"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Stun Duration:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.IpStunDuration}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Cancel Stun Duration:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.IpCancelStunDuration}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Grid.Column="2"
+						Margin="8">
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Loot"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Experience:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Experience}"
+										   Increment="1"
+										   Minimum="-2147483648"
+										   Maximum="2147483647" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Gold Coins:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.GoldCoins}"
+										   Increment="1"
+										   Minimum="-2147483648"
+										   Maximum="2147483647" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Skill Coins:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.SkillCoins}"
+										   Increment="1"
+										   Minimum="-2147483648"
+										   Maximum="2147483647" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Magic Coins:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.MagicCoins}"
+										   Increment="1"
+										   Minimum="-2147483648"
+										   Maximum="2147483647" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+				<StackPanel Margin="24,14">
+					<TextBlock Text="Unknowns"
+							   HorizontalAlignment="Center"
+							   Classes="h2" />
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="T_DMG:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.TDMG}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="T_HEAL:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.THEAL}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Unknown #1:"
+									   ToolTip.Tip="Seems to match filename" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Unknown1}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="256" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Unknown #2:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Unknown2}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="256" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Unknown #3:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Unknown3}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Unknown #4:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Unknown4}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Unknown #5:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Unknown5}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="256" />
+						</StackPanel>
+						<StackPanel Grid.Column="1"
+									Margin="4">
+							<TextBlock Text="Unknown #6:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Unknown6}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"
+									Margin="4">
+							<TextBlock Text="Unknown #7:" />
+							<NumericUpDown Value="{Binding SelectedBossStats.Unknown7}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</ScrollViewer>
+</UserControl>

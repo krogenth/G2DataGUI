@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Skills;
@@ -21,7 +22,7 @@ public class Skills
 
 	public void Reload() => ReadSkills();
 
-	private void ReadSkills()
+	private async Task ReadSkills()
     {
         GameSkills.Clear();
         using FileStream reader = File.Open(

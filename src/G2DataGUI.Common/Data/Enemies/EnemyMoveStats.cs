@@ -1,4 +1,5 @@
-﻿using G2DataGUI.IO.Streams;
+﻿using G2DataGUI.Common.Data.Common;
+using G2DataGUI.IO.Streams;
 using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
@@ -20,7 +21,7 @@ public class EnemyMoveStats
     public short CastTime { get; set; }
     public short RecoveryTime { get; set; }
     public byte Animation { get; set; }
-    public byte Knockdown { get; set; }
+    public bool Knockdown { get; set; }
     public short IpStun { get; set; }
     public short IpCancelStun { get; set; }
     public short Knockback { get; set; }
@@ -28,13 +29,134 @@ public class EnemyMoveStats
     public byte ElementStrength { get; set; }
     public byte AilmentsBitflag { get; set; }
     public byte AilmentsChance { get; set; }
-    public byte AttackModifier { get; set; }
-    public byte DefenseModifier { get; set; }
-    public byte ActionModifier { get; set; }
-    public byte MovementModifier { get; set; }
+    public sbyte AttackModifier { get; set; }
+    public sbyte DefenseModifier { get; set; }
+    public sbyte ActionModifier { get; set; }
+    public sbyte MovementModifier { get; set; }
     public short Special { get; set; }
 
-    public static EnemyMoveStats ReadEnemyMoveStats(Stream reader)
+	public bool PoisonBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Poison) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Poison;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Poison;
+			}
+		}
+	}
+	public bool SleepBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Sleep) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Sleep;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Sleep;
+			}
+		}
+	}
+	public bool ParalysisBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Paralysis) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Paralysis;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Paralysis;
+			}
+		}
+	}
+	public bool ConfusionBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Confusion) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Confusion;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Confusion;
+			}
+		}
+	}
+	public bool PlagueBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Plague) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Plague;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Plague;
+			}
+		}
+	}
+	public bool Magic_BlockBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Magic_Block) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Magic_Block;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Magic_Block;
+			}
+		}
+	}
+	public bool Move_BlockBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Move_Block) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Move_Block;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Move_Block;
+			}
+		}
+	}
+	public bool DeathBitflag
+	{
+		get => (AilmentsBitflag & (byte)Ailments.AilmentTypes.Death) > 0;
+		set
+		{
+			if (value)
+			{
+				AilmentsBitflag |= (byte)Ailments.AilmentTypes.Death;
+			}
+			else
+			{
+				AilmentsBitflag &= (byte)~Ailments.AilmentTypes.Death;
+			}
+		}
+	}
+
+	public static EnemyMoveStats ReadEnemyMoveStats(Stream reader)
     {
 		EnemyMoveStats stats = new()
 		{
@@ -53,7 +175,7 @@ public class EnemyMoveStats
 			CastTime = reader.ReadRawShort(),
 			RecoveryTime = reader.ReadRawShort(),
 			Animation = reader.ReadRawByte(),
-			Knockdown = reader.ReadRawByte(),
+			Knockdown = reader.ReadRawBool(),
 			IpStun = reader.ReadRawShort(),
 			IpCancelStun = reader.ReadRawShort(),
 			Knockback = reader.ReadRawShort(),
@@ -61,10 +183,10 @@ public class EnemyMoveStats
 			ElementStrength = reader.ReadRawByte(),
 			AilmentsBitflag = reader.ReadRawByte(),
 			AilmentsChance = reader.ReadRawByte(),
-			AttackModifier = reader.ReadRawByte(),
-			DefenseModifier = reader.ReadRawByte(),
-			ActionModifier = reader.ReadRawByte(),
-			MovementModifier = reader.ReadRawByte(),
+			AttackModifier = reader.ReadRawSByte(),
+			DefenseModifier = reader.ReadRawSByte(),
+			ActionModifier = reader.ReadRawSByte(),
+			MovementModifier = reader.ReadRawSByte(),
 			Special = reader.ReadRawShort()
 		};
 
@@ -88,16 +210,16 @@ public class EnemyMoveStats
         writer.WriteRawShort(CastTime);
         writer.WriteRawShort(RecoveryTime);
         writer.WriteRawByte(Animation);
-        writer.WriteRawByte(Knockdown);
+        writer.WriteRawBool(Knockdown);
         writer.WriteRawShort(IpStun);
         writer.WriteRawShort(IpCancelStun);
         writer.WriteRawShort(Knockback);
         writer.WriteRawByte(Element);
         writer.WriteRawByte(ElementStrength);
-        writer.WriteRawByte(AttackModifier);
-        writer.WriteRawByte(DefenseModifier);
-        writer.WriteRawByte(ActionModifier);
-        writer.WriteRawByte(MovementModifier);
+        writer.WriteRawSByte(AttackModifier);
+        writer.WriteRawSByte(DefenseModifier);
+        writer.WriteRawSByte(ActionModifier);
+        writer.WriteRawSByte(MovementModifier);
         writer.WriteRawShort(Special);
     }
 }

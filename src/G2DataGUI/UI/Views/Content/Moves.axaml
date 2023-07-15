@@ -50,27 +50,16 @@
 				<StackPanel Grid.Column="0"
 						    Margin="8">
 					<StackPanel Margin="24,14">
-						<StackPanel Margin="4">
-							<TextBlock Text="Name:" />
-							<TextBox Text="{Binding SelectedMoveItem.Name}"
-									 MaxLength="{Binding SelectedMoveItem.MaxNameLength}" />
-						</StackPanel>
-						<StackPanel Margin="4">
-							<TextBlock Text="Description:" />
-							<TextBox Text="{Binding SelectedMoveItem.Description}"
-									 MaxLength="{Binding SelectedMoveItem.MaxDescriptionLength}" />
-						</StackPanel>
 						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
-							<StackPanel Grid.Column="0"
-										Margin="4">
-								<TextBlock Text="Animation:" />
-								<ComboBox HorizontalAlignment="Stretch"
-										  SelectedIndex="{Binding SelectedMoveItem.Stats.Animation}"
-										  Items="{locale:Locale Animations}" />
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Name:" />
+								<TextBox Text="{Binding SelectedMoveItem.Name}"
+										 MaxLength="{Binding SelectedMoveItem.MaxNameLength}" />
 							</StackPanel>
 							<StackPanel Grid.Column="1"
 										Margin="4">
@@ -80,6 +69,17 @@
 										  Items="{locale:Locale Icons}" />
 							</StackPanel>
 						</Grid>
+						<StackPanel Margin="4">
+							<TextBlock Text="Description:" />
+							<TextBox Text="{Binding SelectedMoveItem.Description}"
+									 MaxLength="{Binding SelectedMoveItem.MaxDescriptionLength}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<CheckBox IsThreeState="False"
+									  IsChecked="{Binding SelectedMoveItem.Stats.Knockdown}">
+								Does Knockdown?
+							</CheckBox>
+						</StackPanel>
 					</StackPanel>
 					<StackPanel Margin="24,14">
 						<TextBlock Text="Targetting"
@@ -90,29 +90,168 @@
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
-							<StackPanel Grid.Column="0">
-								<StackPanel Margin="4">
-									<TextBlock Text="Target Effect:" />
-									<ComboBox HorizontalAlignment="Stretch"
-										  SelectedIndex="{Binding SelectedMoveItem.Stats.TargetEffect}"
-										  Items="{locale:Locale TargetEffects}" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Range:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Range}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Target Effect:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										SelectedIndex="{Binding SelectedMoveItem.Stats.TargetEffect}"
+										Items="{locale:Locale TargetEffects}" />
 							</StackPanel>
-							<StackPanel Grid.Column="1">
-								<StackPanel Margin="4">
-									<TextBlock Text="Target Type:" />
-									<ComboBox HorizontalAlignment="Stretch"
-											  SelectedIndex="{Binding SelectedMoveItem.Stats.TargetType}"
-											  Items="{locale:Locale TargetTypes}" />
-								</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Target Type:" />
+								<ComboBox HorizontalAlignment="Stretch"
+											SelectedIndex="{Binding SelectedMoveItem.Stats.TargetType}"
+											Items="{locale:Locale TargetTypes}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Range:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Range}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+									Grid.Column="1">
+								<TextBlock Text="Knockback:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Knockback}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Casting"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Cast Time Level 1:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cast1Time}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Cast Time Level 5:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cast5Time}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Recovery Time:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.RecoveryTime}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Animation:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedMoveItem.Stats.Animation}"
+										  Items="{locale:Locale Animations}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Stats"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Cost:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cost}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Multiplier:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Multiplier}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Power:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Power}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Strength:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Strength}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="IP"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Damage:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.IpDamage}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Cancel Damage:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.IpCancelDamage}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
 							</StackPanel>
 						</Grid>
 					</StackPanel>
@@ -173,131 +312,39 @@
 						</StackPanel>
 					</StackPanel>
 				</StackPanel>
-				<StackPanel Grid.Column="1"
+				<StackPanel Grid.Column="2"
 							Margin="8">
-					<StackPanel Margin="4">
-						<TextBlock Text="Stats"
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Element Affinity"
 								   HorizontalAlignment="Center"
 								   Classes="h2" />
-						<Grid Margin="20,10"
-							  VerticalAlignment="Stretch">
+						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
 							<StackPanel Margin="4"
 										Grid.Column="0">
-								<StackPanel Margin="4">
-									<TextBlock Text="Cost:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cost}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Power:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Power}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Cast Time Level 1:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cast1Time}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="IP Damage:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.IpDamage}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Element:" />
-									<ComboBox HorizontalAlignment="Stretch"
-											  SelectedIndex="{Binding SelectedMoveItem.Stats.Element}"
-											  Items="{locale:Locale Elements}" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Knockdown:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Knockdown}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="1" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Unknown #1" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Unknown1}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="256" />
-								</StackPanel>
+								<TextBlock Text="Element:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedMoveItem.Stats.Element}"
+										  Items="{locale:Locale Elements}" />
 							</StackPanel>
 							<StackPanel Margin="4"
 										Grid.Column="1">
-								<StackPanel Margin="4">
-									<TextBlock Text="Strength:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Strength}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Recovery Time:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.RecoveryTime}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Cast Time Level 5:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Cast5Time}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="IP Cancel Damage:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.IpCancelDamage}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Element Strength:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.ElementStrength}"
+								<TextBlock Text="Element Strength:" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.ElementStrength}"
 												   Increment="1"
 												   Minimum="0"
 												   Maximum="10" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Knockback:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Knockback}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
-								<StackPanel Margin="4">
-									<TextBlock Text="Multiplier:" />
-									<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Multiplier}"
-												   Increment="1"
-												   Minimum="0"
-												   Maximum="65536" />
-								</StackPanel>
 							</StackPanel>
 						</Grid>
 					</StackPanel>
-				</StackPanel>
-				<StackPanel Grid.Column="2"
-							Margin="8">
-					<StackPanel Margin="4">
+					<StackPanel Margin="24,14">
 						<TextBlock Text="Modifiers"
 								   HorizontalAlignment="Center"
 								   Classes="h2" />
-						<Grid Margin="20,10">
+						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="*" />
@@ -338,11 +385,11 @@
 							</StackPanel>
 						</Grid>
 					</StackPanel>
-					<StackPanel Margin="4">
+					<StackPanel Margin="24,14">
 						<TextBlock Text="Coin Costs"
 								   HorizontalAlignment="Center"
 								   Classes="h2" />
-						<Grid Margin="20,10">
+						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="*" />
@@ -385,6 +432,39 @@
 												   Minimum="0"
 												   Maximum="65536" />
 								</StackPanel>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #1" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Unknown1}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Special"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<StackPanel>
+								<TextBlock Text="Special" />
+								<NumericUpDown Value="{Binding SelectedMoveItem.Stats.Special}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
 							</StackPanel>
 						</Grid>
 					</StackPanel>

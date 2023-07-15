@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace G2DataGUI.Common.Data.Maps;
 
@@ -15,7 +16,7 @@ public class Maps
         ReadMaps();
     }
 
-    private void ReadMaps()
+    private async Task ReadMaps()
     {
         _maps.Clear();
         foreach(var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))

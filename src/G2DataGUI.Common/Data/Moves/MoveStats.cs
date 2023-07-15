@@ -18,7 +18,7 @@ public class MoveStats
     public short RecoveryTime { get; set; }
     public short Animation { get; set; }
     public byte Unknown1 { get; set; }
-    public byte Knockdown { get; set; }
+    public bool Knockdown { get; set; }
     public short IpDamage { get; set; }
     public short IpCancelDamage { get; set; }
     public short Knockback { get; set; }
@@ -180,7 +180,7 @@ public class MoveStats
             RecoveryTime = reader.ReadRawShort(),
             Animation = reader.ReadRawShort(),
             Unknown1 = reader.ReadRawByte(),
-            Knockdown = reader.ReadRawByte(),
+            Knockdown = reader.ReadRawBool(),
             IpDamage = reader.ReadRawShort(),
             IpCancelDamage = reader.ReadRawShort(),
             Knockback = reader.ReadRawShort(),
@@ -217,7 +217,7 @@ public class MoveStats
         writer.WriteRawShort(RecoveryTime);
         writer.WriteRawShort(Animation);
         writer.WriteRawByte(Unknown1);
-        writer.WriteRawByte(Knockdown);
+        writer.WriteRawBool(Knockdown);
         writer.WriteRawShort(IpDamage);
         writer.WriteRawShort(IpCancelDamage);
         writer.WriteRawShort(Knockback);

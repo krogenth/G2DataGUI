@@ -9,6 +9,8 @@ public class EnemyAISectionViewModel : BaseViewModel
 
     public static EnemyAISectionViewModel Instance { get; } = new();
 
+	private EnemyAISectionViewModel() { }
+
     public EnemyAISection SelectedEnemyAISection
     {
         get => _selectedEnemyAISection;

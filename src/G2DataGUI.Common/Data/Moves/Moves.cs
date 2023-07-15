@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Moves;
@@ -21,7 +22,7 @@ public class Moves
 
 	public void Reload() => ReadMoves();
 
-	private void ReadMoves()
+	private async Task ReadMoves()
     {
         GameMoves.Clear();
         using FileStream reader = File.Open(

@@ -1,8 +1,6 @@
 ﻿using G2DataGUI.Common.Data.Enemies;
-using G2DataGUI.Common.Data.Items;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
@@ -10,9 +8,9 @@ namespace G2DataGUI.UI.ViewModels;
 public class EnemiesViewModel : BaseViewModel
 {
     public ObservableCollection<Enemy> GameEnemies { get; private set; } = Enemies.Instance.GameEnemies;
-    public ObservableCollection<Item> GameItems { get; private set; } = Items.Instance.GameItems;
-    private int _selectedEnemyIndex = 0;
+    private int _selectedEnemyIndex;
     private Enemy _selectedEnemyItem;
+	private readonly EnemyStatsViewModel _enemyStatsViewModel = EnemyStatsViewModel.Instance;
     private readonly EnemyAISectionViewModel _enemyAISectionViewModel = EnemyAISectionViewModel.Instance;
     private readonly EnemyMovesetViewModel _enemyMovesetViewModel = EnemyMovesetViewModel.Instance;
 
@@ -20,20 +18,14 @@ public class EnemiesViewModel : BaseViewModel
 
     private EnemiesViewModel()
     {
-        SelectedEnemyItem = GameEnemies.First();
-        _enemyAISectionViewModel.SelectedEnemyAISection = GameEnemies[SelectedEnemyIndex].AISection;
-        _enemyMovesetViewModel.SelectedEnemyMoveset = GameEnemies[SelectedEnemyIndex].Moveset;
+		SelectedEnemyIndex = 0;
         Enemies.Instance.CollectionRefreshed += EnemiesCollectionRefreshed;
     }
 
-    private void EnemiesCollectionRefreshed(object sender, EventArgs _)
-    {
-        SelectedEnemyItem = GameEnemies[SelectedEnemyIndex];
-        _enemyAISectionViewModel.SelectedEnemyAISection = GameEnemies[SelectedEnemyIndex].AISection;
-        _enemyMovesetViewModel.SelectedEnemyMoveset = GameEnemies[SelectedEnemyIndex].Moveset;
-    }
+	private void EnemiesCollectionRefreshed(object sender, EventArgs _) =>
+		SelectedEnemyItem = GameEnemies[SelectedEnemyIndex];
 
-    public int SelectedEnemyIndex
+	public int SelectedEnemyIndex
     {
         get => _selectedEnemyIndex;
         set
@@ -60,8 +52,9 @@ public class EnemiesViewModel : BaseViewModel
         set
         {
             _selectedEnemyItem = value;
-            _enemyAISectionViewModel.SelectedEnemyAISection = value.AISection;
-            _enemyMovesetViewModel.SelectedEnemyMoveset = value.Moveset;
+			_enemyStatsViewModel.SelectedEnemyStats = value.Stats;
+			_enemyAISectionViewModel.SelectedEnemyAISection = value.AISection;
+            _enemyMovesetViewModel.SelectedEnemyMoves = value.Moveset.Moves;
             OnPropertyChanged(nameof(SelectedEnemyItem));
         }
     }

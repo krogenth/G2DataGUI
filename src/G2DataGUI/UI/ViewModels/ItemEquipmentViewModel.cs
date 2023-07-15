@@ -10,6 +10,8 @@ public class ItemEquipmentViewModel : BaseViewModel
 
     public static ItemEquipmentViewModel Instance { get; } = new();
 
+	private ItemEquipmentViewModel() { }
+
     public Equipment SelectedItemEquipment
     {
         get => _selectedItemEquipment;

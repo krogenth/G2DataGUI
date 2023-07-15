@@ -20,6 +20,8 @@ public sealed class MenuBarViewModel : BaseViewModel
     private string _selectedStyle = "Dark";
     public event EventHandler<StyleThemeEventArgs> StyleThemeChanged;
 
+	private MenuBarViewModel() { }
+
     public string SelectedStyle
     {
         get => _selectedStyle;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using G2DataGUI.Common.Paths;
 using G2DataGUI.UI.Common.Locale;
 
@@ -22,7 +23,7 @@ public class Manaeggs
 
 	public void Reload() => ReadManaeggs();
 
-	private void ReadManaeggs()
+	private async Task ReadManaeggs()
     {
         GameManaeggs.Clear();
         using FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.ManaeggsPath, FileMode.Open, FileAccess.Read);

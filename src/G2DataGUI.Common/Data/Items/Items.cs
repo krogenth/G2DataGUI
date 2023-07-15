@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Items;
@@ -21,7 +22,7 @@ public class Items
 
 	public void Reload() => ReadItems();
 
-	private void ReadItems()
+	private async Task ReadItems()
     {
         GameItems.Clear();
         using FileStream reader = File.Open(

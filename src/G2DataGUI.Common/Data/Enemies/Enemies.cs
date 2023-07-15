@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Enemies;
@@ -23,7 +24,7 @@ public class Enemies
 
 	private void OnDifficultyChange(object sender, EventArgs e) => ReadEnemies();
 
-	private void ReadEnemies()
+	private async Task ReadEnemies()
     {
         GameEnemies.Clear();
 		var directory =

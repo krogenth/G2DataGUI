@@ -1,33 +1,28 @@
 ﻿using G2DataGUI.Common.Data.Common;
 using G2DataGUI.Common.Data.Enemies;
 using G2DataGUI.IO.Streams;
-
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 
 namespace G2DataGUI.Common.Data.Bosses;
 
+/// <summary>
+/// Defines explicit boss instance within the game(non-overworld enemies or field bosses)
+/// bosses follow similar rules to enemies, but have an additional zXX_act.dat file
+/// which defines additional movesets for the boss.
+/// </summary>
 public class Boss : BaseContainer
 {
-	private FixedLengthName _name;
-    public EnemyStats Stats;
-    public EnemyAISection AISection;
-    public List<EnemyMoveset> Movesets = new();
+    public EnemyStats Stats { get; private set; }
+    public EnemyAISection AISection { get; private set; }
+	/// <summary>
+	/// Additional movesets defined in corresponding _act.dat file
+	/// </summary>
+	public ObservableCollection<EnemyMoveset> Movesets { get; private set; } = new();
 
 	public bool IsSecond { get; set; }
 	public string Filename { get; set; }
-
-	public string Name
-	{
-		get => _name.Name;
-		set
-		{
-			_name.Name = value;
-			NotifyPropertyChanged(nameof(Name));
-		}
-	}
-	public int MaxNameLength { get => FixedLengthName.MaxLength; }
 
 	public static int FirstStatsPointerOffset { get; } = 0x34;
 	public static int SecondStatsPointerOffset { get; } = 0x44;
@@ -43,7 +38,6 @@ public class Boss : BaseContainer
 
         Boss boss = new()
         {
-            _name = FixedLengthName.ReadFixedLengthName(reader),
 			Stats = EnemyStats.ReadEnemyStats(reader),
             AISection = EnemyAISection.ReadEnemyAISection(reader),
 			IsSecond = isSecond,
@@ -74,7 +68,6 @@ public class Boss : BaseContainer
 		writer.Seek(IsSecond ? SecondStatsPointerOffset : FirstStatsPointerOffset, SeekOrigin.Begin);
 		writer.Seek(writer.ReadRawInt(), SeekOrigin.Begin);
 
-		_name.WriteFixedLengthName(writer);
 		Stats.WriteEnemyStats(writer);
 		AISection.WriteEnemyAISection(writer);
 

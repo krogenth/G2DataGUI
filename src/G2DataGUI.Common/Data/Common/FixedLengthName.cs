@@ -15,7 +15,7 @@ public class FixedLengthName
             string name = "";
             foreach (var character in _characters)
             {
-                name += Convert.ToChar(character);
+                name += character > 0 ? Convert.ToChar(character) : ' ';
             }
 
             return name.TrimStart();
