@@ -4,14 +4,16 @@ on:
   push:
     branches: [ switch-to-dotnet ]
 
+concurrency: release
+
 env:
   SOLUTION_FILE_PATH: .
+  BASE_VERSION: 1.0
 
 jobs:
   tag:
     name: Create Release Tag
     runs-on: ubuntu-latest
-    environment: Release
     steps:
       - name: Get Version Info
         id: version_info
@@ -32,7 +34,6 @@ jobs:
 
   release:
     runs-on: ${{ matrix.os }}
-    environment: Release
     strategy:
       matrix:
         dotnet-version: [ '7.0.x' ]
