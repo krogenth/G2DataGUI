@@ -22,6 +22,7 @@ indent_size = 2
 
 # Other markup files
 [*.{json,toml,xml,yml,yaml}]
+indent_style = space
 indent_size = 2
 
 # Markdown files

@@ -1,5 +1,4 @@
 using Avalonia.Controls;
-
 using FluentAvalonia.Core;
 using FluentAvalonia.UI.Controls;
 

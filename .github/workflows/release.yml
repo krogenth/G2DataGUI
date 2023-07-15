@@ -1,0 +1,97 @@
+name: Release Job
+
+on:
+  push:
+    branches: [ switch-to-dotnet ]
+
+env:
+  SOLUTION_FILE_PATH: .
+
+jobs:
+  tag:
+    name: Create Release Tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Version Info
+        id: version_info
+        run: |
+          echo "build_version=${{ env.BASE_VERSION }}.${{ github.run_number }}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Create Tag
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'ref/tags/${{ steps.version_info.outputs.build_version }}',
+              sha: context.sha
+            })
+
+  release:
+    runs-on: ${{ matrix.os }}
+    environment: Release
+    strategy:
+      matrix:
+        dotnet-version: [ '7.0.x' ]
+        configuration: [ Release ]
+        os: [ ubuntu-latest, windows-latest ]
+        include:
+          - os: ubuntu-latest
+            OS_NAME: Linux x64
+            DOTNET_RUNTIME_IDENTIFIER: linux-x64
+            RELEASE_ZIP_OS_NAME: linux_x64
+
+          - os: windows-latest
+            OS_NAME: Windows x64
+            DOTNET_RUNTIME_IDENTIFIER: win10-x64
+            RELEASE_ZIP_OS_NAME: win_x64
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Get Version Info
+        id: version_info
+        run: |
+          echo "build_version=${{ env.BASE_VERSION }}.${{ github.run_number }}" >> $GITHUB_OUTPUT
+          echo "git_short_hash=$(git rev-parse --short "${{ github.sha }}")" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Create Output Directory
+        run: mkdir release_output
+
+      - name: Run Publish
+        run: |
+          dotnet publish -c Release -r "${{ matrix.DOTNET_RUNTIME_IDENTIFIER }}" -o ./publish -p:Version="${{ steps.version_info.output.build_version }}" -p:SourceRevisionId="${{ steps.version_info.output.git_short_hash }}" -p:DebugType=embedded src/G2DataGUI --self-contained true
+
+      - name: Pack Windows Build
+        if : matrix.os == 'windows-latest'
+        run: |
+          pushd publish
+          7z a ../release_output/G2DataGUI-${{ steps.version_info.outputs.build_version }}-win_x64.zip publish
+          popd
+        shell: bash
+
+      - name: Pack Linux Build
+        if : matrix.os == 'ubuntu-latest'
+        run: |
+          pushd publish
+          tar -czvf ../release_output/G2DataGUI-${{ steps.version_info.outputs.build_version }}-linux_x64.tar.gz publish
+          popd
+        shell: bash
+
+      - name: Push Release
+        uses: ncipollo/release-action@v1
+        with:
+          name: ${{ steps.version_info.outputs.build_version }}
+          artifacts: "release_output/*.tar.gz,release_output/*.zip"
+          tag: ${{ steps.version_info.outputs.build_version }}
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          replacesArtifacts: true
