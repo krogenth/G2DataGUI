@@ -11,6 +11,7 @@ jobs:
   tag:
     name: Create Release Tag
     runs-on: ubuntu-latest
+    environment: Release
     steps:
       - name: Get Version Info
         id: version_info
