@@ -87,9 +87,7 @@ jobs:
       - name: Pack Windows Build
         if : matrix.os == 'windows-latest'
         run: |
-          pushd ./${{ env.PUBLISH_DIRECTORY }}
-          7z a ../${{ env.RELEASE_DIRECTORY }}/G2DataGUI-${{ steps.version_info.outputs.build_version }}-win_x64.zip publish
-          popd
+          7z a ./${{ env.RELEASE_DIRECTORY }}/G2DataGUI-${{ steps.version_info.outputs.build_version }}-win_x64.zip ./${{ env.PUBLISH_DIRECTORY }}
         shell: bash
 
       - name: Push Release
