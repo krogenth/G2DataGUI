@@ -3,12 +3,6 @@ name: Release Job
 on:
   push:
     branches: [ switch-to-dotnet ]
-    paths-ignore:
-      - '.github/**'
-      - '*.yml'
-      - '*.json'
-      - '*.config'
-      - 'README.md'
 
 concurrency: release
 
