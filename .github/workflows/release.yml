@@ -3,6 +3,12 @@ name: Release Job
 on:
   push:
     branches: [ switch-to-dotnet ]
+    paths-ignore:
+      - '.github/**'
+      - '*.yml'
+      - '*.json'
+      - '*.config'
+      - 'README.md'
 
 concurrency: release
 
@@ -57,6 +63,9 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Install Dependencies
+        run: dotnet restore
 
       - name: Get Version Info
         id: version_info
