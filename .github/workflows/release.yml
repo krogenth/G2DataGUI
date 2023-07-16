@@ -67,7 +67,7 @@ jobs:
 
       - name: Run Publish
         run: |
-          dotnet publish -c Release -r "${{ matrix.DOTNET_RUNTIME_IDENTIFIER }}" -o ./${{ env.PUBLISH_DIRECTORY }} -p:Version="${{ steps.version_info.outputs.build_version }}" -p:SourceRevisionId="${{ steps.version_info.output.git_short_hash }}" -p:DebugType=embedded src/G2DataGUI --self-contained true
+          dotnet publish -c Release -r "${{ matrix.DOTNET_RUNTIME_IDENTIFIER }}" -o ./${{ env.PUBLISH_DIRECTORY }} -p:Version="${{ steps.version_info.outputs.build_version }}" -p:SourceRevisionId="${{ steps.version_info.outputs.git_short_hash }}" -p:DebugType=embedded src/G2DataGUI --self-contained true
 
       - name: Debug root Directory Contents
         run: |
@@ -87,7 +87,7 @@ jobs:
       - name: Pack Windows Build
         if : matrix.os == 'windows-latest'
         run: |
-          pushd ./${{ env.PUBLISH_DIRECTORY }})
+          pushd ./${{ env.PUBLISH_DIRECTORY }}
           7z a ../${{ env.RELEASE_DIRECTORY }}/G2DataGUI-${{ steps.version_info.outputs.build_version }}-win_x64.zip publish
           popd
         shell: bash
