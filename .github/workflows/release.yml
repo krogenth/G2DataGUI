@@ -38,7 +38,7 @@ jobs:
       matrix:
         dotnet-version: [ '7.0.x' ]
         configuration: [ Release ]
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ windows-latest ]
         include:
           - os: ubuntu-latest
             OS_NAME: Linux x64
@@ -80,14 +80,6 @@ jobs:
         run: |
           pushd publish
           7z a ../release_output/G2DataGUI-${{ steps.version_info.outputs.build_version }}-win_x64.zip publish
-          popd
-        shell: bash
-
-      - name: Pack Linux Build
-        if : matrix.os == 'ubuntu-latest'
-        run: |
-          pushd publish
-          tar -czvf ../release_output/G2DataGUI-${{ steps.version_info.outputs.build_version }}-linux_x64.tar.gz publish
           popd
         shell: bash
 
