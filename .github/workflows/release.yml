@@ -40,11 +40,6 @@ jobs:
         configuration: [ Release ]
         os: [ windows-latest ]
         include:
-          - os: ubuntu-latest
-            OS_NAME: Linux x64
-            DOTNET_RUNTIME_IDENTIFIER: linux-x64
-            RELEASE_ZIP_OS_NAME: linux_x64
-
           - os: windows-latest
             OS_NAME: Windows x64
             DOTNET_RUNTIME_IDENTIFIER: win10-x64
@@ -69,7 +64,7 @@ jobs:
         shell: bash
 
       - name: Create Output Directory
-        run: mkdir release_output
+        run: "mkdir release_output"
 
       - name: Run Publish
         run: |
