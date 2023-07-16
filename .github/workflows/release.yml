@@ -54,9 +54,6 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
-      - name: Install Dependencies
-        run: dotnet restore
-
       - name: Get Version Info
         id: version_info
         run: |
@@ -71,9 +68,14 @@ jobs:
         run: |
           dotnet publish -c Release -r "${{ matrix.DOTNET_RUNTIME_IDENTIFIER }}" -o ./publish -p:Version="${{ steps.version_info.outputs.build_version }}" -p:SourceRevisionId="${{ steps.version_info.output.git_short_hash }}" -p:DebugType=embedded src/G2DataGUI --self-contained true
 
+      - name: Debug root Directory Contents
+        run: |
+          echo "$(ls ./)"
+        shell: bash
+
       - name: Debug ${{ env.RELEASE_DIRECTORY }} Directory Contents
         run: |
-          echo "$(ls ../${{ env.RELEASE_DIRECTORY }})"
+          echo "$(ls ./${{ env.RELEASE_DIRECTORY }})"
         shell: bash
 
       - name: Debug publish Directory Contents

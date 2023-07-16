@@ -13,7 +13,7 @@ jobs:
       matrix:
         dotnet-version: [ '7.0.x' ]
         configuration: [ Debug, Release ]
-    
+
     steps:
       - uses: actions/checkout@v3
 
