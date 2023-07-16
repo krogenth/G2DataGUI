@@ -7,8 +7,6 @@
 			 xmlns:content="using:G2DataGUI.UI.Views.Content"
 			 xmlns:controls="using:FluentAvalonia.UI.Controls"
              mc:Ignorable="d"
-			 d:DesignWidth="1280"
-			 d:DesignHeight="720"
 			 x:CompileBindings="True"
 			 x:DataType="vm:WindowContentViewModel">
 	<Grid>
@@ -32,6 +30,7 @@
 			<content:Items Name="ItemsPage" />
 			<content:Enemies Name="EnemiesPage" />
 			<content:Bosses Name="BossesPage" />
+			<content:Maps Name="MapsPage" />
 		</Grid>
 		<controls:NavigationView Grid.Row="1"
 									IsSettingsVisible="False"

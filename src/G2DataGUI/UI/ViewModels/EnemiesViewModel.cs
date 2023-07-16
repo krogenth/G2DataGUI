@@ -23,7 +23,7 @@ public class EnemiesViewModel : BaseViewModel
     }
 
 	private void EnemiesCollectionRefreshed(object sender, EventArgs _) =>
-		SelectedEnemyItem = GameEnemies[SelectedEnemyIndex];
+		SelectedEnemyIndex = SelectedEnemyIndex;
 
 	public int SelectedEnemyIndex
     {

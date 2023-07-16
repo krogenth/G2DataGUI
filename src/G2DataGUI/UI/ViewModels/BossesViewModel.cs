@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-
 using G2DataGUI.Common.Data.Bosses;
-using G2DataGUI.Common.Data.Items;
 using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
@@ -25,7 +23,7 @@ public class BossesViewModel : BaseViewModel
 	}
 
 	private void BossesCollectionRefreshed(object sender, EventArgs _) =>
-		SelectedBossItem = GameBosses[SelectedBossIndex];
+        SelectedBossIndex = SelectedBossIndex;
 
 	public int SelectedBossIndex
 	{
@@ -57,7 +55,7 @@ public class BossesViewModel : BaseViewModel
 			_bossStatsViewModel.SelectedBossStats = value.Stats;
 			_bossAISectionViewModel.SelectedBossAISection = value.AISection;
 			_bossMovesetsViewModel.SelectedBossMoves = value.Movesets.First()?.Moves;
-			OnPropertyChanged(nameof(SelectedBossIndex));
+			OnPropertyChanged(nameof(SelectedBossItem));
 		}
 	}
 }

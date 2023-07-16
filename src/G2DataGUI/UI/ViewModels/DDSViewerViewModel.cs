@@ -5,6 +5,7 @@ using Pfim;
 using System;
 using System.Collections.ObjectModel;
 using G2DataGUI.UI.Common.ViewModels;
+using G2DataGUI.Common.Extensions;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -78,8 +79,14 @@ public class DDSViewerViewModel : BaseViewModel
             ImageHeight = value != null ? value.Height : 0;
             OnPropertyChanged(nameof(Image));
             OnPropertyChanged(nameof(ShowInformation));
+            OnPropertyChanged(nameof(ImageGUID));
             ImageChanged?.Invoke(this, new ImageEventArgs(value));
         }
+    }
+
+    public uint ImageGUID
+    {
+        get => Image?.GUID() ?? 0;
     }
 
     public bool ShowInformation { get => Image != null; }

@@ -43,10 +43,10 @@
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
@@ -74,14 +74,19 @@
 						<TextBlock Text="{Binding Image.BitsPerPixel}" />
 					</StackPanel>
 
-					<TextBlock Text="Format: " Margin="4" Grid.Row="4" Grid.Column="0" />
-					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+					<TextBlock Text="Format: " Margin="4" Grid.Row="0" Grid.Column="2" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="0" Grid.Column="3">
 						<TextBlock Text="{Binding Image.Format}" />
 					</StackPanel>
 
-					<TextBlock Text="Compressed: " Margin="4" Grid.Row="5" Grid.Column="0" />
-					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+					<TextBlock Text="Compressed: " Margin="4" Grid.Row="1" Grid.Column="2" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
 						<TextBlock Text="{Binding Image.Compressed}" />
+					</StackPanel>
+
+					<TextBlock Text="GUID: " Margin="4" Grid.Row="2" Grid.Column="2" ToolTip.Tip="Used to link with model" />
+					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="2" Grid.Column="3">
+						<TextBlock Text="{Binding ImageGUID}" />
 					</StackPanel>
 				</Grid>
 			</StackPanel>

@@ -50,8 +50,11 @@ public partial class WindowContent : UserControl
 					break;
 				case "BossesPage":
 					NavPanel.Content = BossesPage;
-					break;
-			}
-		}
+                    break;
+                case "MapsPage":
+                    NavPanel.Content = MapsPage;
+                    break;
+            }
+        }
     }
 }
