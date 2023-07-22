@@ -21,7 +21,7 @@ public class FixedLengthTitle
 		}
 		set
 		{
-			value = value.PadRight(MaxLength, ' ');
+			value = value.PadRight((int)MaxLength, ' ');
 			for (int index = 0; index < MaxLength; index++)
 			{
 				_characters[index] = Convert.ToByte(value[index]);
@@ -41,5 +41,5 @@ public class FixedLengthTitle
 	public void WriteFixedLengthTitle(Stream writer) =>
 		writer.WriteRawByteArray(_characters);
 
-	public static int MaxLength { get => 8; }
+	public static uint MaxLength { get => 8; }
 }

@@ -5,7 +5,7 @@ namespace G2DataGUI.Common.Data.Maps;
 
 public class MapShop
 {
-    public ushort MapID { get; set; }
+    public ushort MapId { get; set; }
     public ushort Categories { get; set; }
 	public MapShopSection Weapons { get; set; }
 	public MapShopSection Armors { get; set; }
@@ -17,7 +17,7 @@ public class MapShop
 	{
 		MapShop shop = new()
 		{
-			MapID = reader.ReadRawUShort(),
+			MapId = reader.ReadRawUShort(),
 			Categories = reader.ReadRawUShort(),
 			Weapons = MapShopSection.ReadMapShopSection(reader),
 			Armors = MapShopSection.ReadMapShopSection(reader),
@@ -30,7 +30,7 @@ public class MapShop
 
 	public void WriteMapShop(Stream writer)
 	{
-		writer.WriteRawUShort(MapID);
+		writer.WriteRawUShort(MapId);
 		writer.WriteRawUShort(Categories);
 		Weapons.WriteMapShopSection(writer);
 		Armors.WriteMapShopSection(writer);

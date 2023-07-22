@@ -17,7 +17,7 @@ public class Skill : BaseContainer
             NotifyPropertyChanged(nameof(Name));
         }
     }
-    public int MaxNameLength { get => FixedLengthName.MaxLength; }
+    public uint MaxNameLength { get => FixedLengthName.MaxLength; }
     public string Description
     {
         get => _description.Description;
@@ -26,7 +26,7 @@ public class Skill : BaseContainer
             NotifyPropertyChanged(nameof(Description));
         }
     }
-    public int MaxDescriptionLength { get => FixedLengthDescription.MaxLength; }
+    public uint MaxDescriptionLength { get => FixedLengthDescription.MaxLength; }
 
 	public static string CSVHeader =>
 		$"Name,{SkillStats.CSVHeader},Description";

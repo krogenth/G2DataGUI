@@ -6,10 +6,10 @@ namespace G2DataGUI.Common.Data.Common;
 
 public class Vector2
 {
-    public float X;
-    public float Z;
+    public float X { get; set; }
+    public float Z { get; set; }
 
-    public static Vector2 ReadVector2(Stream reader)
+	public static Vector2 ReadVector2(Stream reader)
     {
         Vector2 vector2 = new()
         {

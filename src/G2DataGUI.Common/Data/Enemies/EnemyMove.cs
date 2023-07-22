@@ -17,7 +17,7 @@ public class EnemyMove : BaseContainer
             NotifyPropertyChanged(nameof(Name));
         }
     }
-	public int MaxNameLength { get => FixedLengthName.MaxLength; }
+	public uint MaxNameLength { get => FixedLengthName.MaxLength; }
 
     public static EnemyMove ReadEnemyMove(Stream reader)
     {

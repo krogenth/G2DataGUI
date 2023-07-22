@@ -8,7 +8,7 @@ namespace G2DataGUI.Common.Data.Maps;
 public class Maps
 {
     public static Maps Instance { get; private set; } = new Maps();
-    private readonly ObservableCollection<Map> _maps = new();
+    public ObservableCollection<Map> GameMaps { get; private set; } = new();
     public event EventHandler CollectionRefreshed;
 
     private Maps()
@@ -16,21 +16,31 @@ public class Maps
         ReadMaps();
     }
 
+	public void Save() => WriteMaps();
+
+	public void Reload() => ReadMaps();
+
     private async Task ReadMaps()
     {
-        _maps.Clear();
+		GameMaps.Clear();
         foreach(var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))
         {
             using FileStream reader = File.Open(file, FileMode.Open);
             Map map = Map.ReadMap(reader, file);
             if (map != null)
             {
-                _maps.Add(map);
+				GameMaps.Add(map);
             }
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 
-    public ObservableCollection<Map> GetMaps() { return _maps; }
+	private void WriteMaps()
+	{
+		foreach (var map in GameMaps)
+		{
+			map.WriteMap();
+		}
+	}
 }

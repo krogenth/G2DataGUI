@@ -1,38 +1,28 @@
-## A Graphical version of [G2Data](https://github.com/krogenth/G2Data) using [Dear ImGui](https://github.com/ocornut/imgui)
+## G2DataGUI
 
-Grandia 2 Data reading/writing
- - Programming by [krogenth](http://steamcommunity.com/profiles/76561198163774445)
- - Thanks to [woog](http://steamcommunity.com/profiles/76561198008094982/) for providing most data entries
+## What this does
 
-## What this does:
+The goal is to allow the modification of all data used by the game in virtually any possible situation.
 
-This is a C++ GUI program(MSVC 2019) using DX12. Currently supports:
+Current support is limited to:
+1. Moves
+2. Manaeggs
+3. Specials
+4. Skills
+5. Skillbooks
+6. Enemies(normal or hardmode)
+7. Bosses(normal or hardmode)
+8. Items
 
-MS_PARAM.BIN
+## How to use
 
-SK_PARAM.BIN
-
-TB_MAGIC.BIN
-
-TB_SKILL.BIN
-
-TB_SPCL.BIN
-
-ITEM.BIN
-
-PC_INIT.BIN
-
-Enemy Data Files(excluding boss move tables)
-
-## How to use:
-
-1. Move the program to the game root directory, right where grandia2.exe is(steamapps/common/Grandia II Anniversary Edition).
+1. Move the program to the game root directory, where `grandia2.exe` is(steamapps/common/Grandia II Anniversary Edition).
 2. Back-up the content/data/ in case anything gets messed up
 3. Run the program
 4. Edit values as desired
 5. Save
 
-## Other information:
+## Other information
 	
 For those seeking information on files not handled yet(particularly \*.pvp, \*.nj, \*.dat, etc.) check out [this Github repo](https://github.com/bogglez/Ninja-Lib/tree/master/documentation).
 

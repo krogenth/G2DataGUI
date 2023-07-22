@@ -30,9 +30,9 @@ public class Item : BaseContainer
             NotifyPropertyChanged(nameof(Name));
         }
     }
-    public int MaxNameLength { get => FixedLengthName.MaxLength; }
+    public uint MaxNameLength { get => FixedLengthName.MaxLength; }
     public string Description { get => _description.Description; set => _description.Description = value; }
-    public int MaxDescriptionLength { get => FixedLengthDescription.MaxLength; }
+    public uint MaxDescriptionLength { get => FixedLengthDescription.MaxLength; }
     public bool HasEquipment
     {
         get => Equipment != null;

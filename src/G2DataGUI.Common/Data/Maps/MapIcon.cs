@@ -12,9 +12,9 @@ public class MapIcon
 	public Vector3 Position { get; set; }
 	public float Unknown3 { get; set; }
 	public float YAngle { get; set; }
-	public short Item1 { get; set; }
-	public short Item2 { get; set; }
-	public short Item3 { get; set; }
+	public short Item1Offset { get; set; }
+	public short Item2Offset { get; set; }
+	public short Item3Offset { get; set; }
 	public short Flag { get; set; }
 
 	public static MapIcon ReadMapIcon(Stream reader)
@@ -27,9 +27,9 @@ public class MapIcon
 			Position = Vector3.ReadVector3(reader),
 			Unknown3 = reader.ReadRawFloat(),
 			YAngle = reader.ReadRawFloat(),
-			Item1 = reader.ReadRawShort(),
-			Item2 = reader.ReadRawShort(),
-			Item3 = reader.ReadRawShort(),
+			Item1Offset = reader.ReadRawShort(),
+			Item2Offset = reader.ReadRawShort(),
+			Item3Offset = reader.ReadRawShort(),
 			Flag = reader.ReadRawShort(),
 		};
 
@@ -44,9 +44,9 @@ public class MapIcon
 		Position.WriteVector3(writer);
 		writer.WriteRawFloat(Unknown3);
 		writer.WriteRawFloat(YAngle);
-		writer.WriteRawShort(Item1);
-		writer.WriteRawShort(Item2);
-		writer.WriteRawShort(Item3);
+		writer.WriteRawShort(Item1Offset);
+		writer.WriteRawShort(Item2Offset);
+		writer.WriteRawShort(Item3Offset);
 		writer.WriteRawShort(Flag);
 	}
 }

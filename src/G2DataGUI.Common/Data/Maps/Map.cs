@@ -1,31 +1,34 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
+using System.Text;
 
 namespace G2DataGUI.Common.Data.Maps;
 
 public class Map
 {
-    public MapHeader Header;
-    public ObservableCollection<MapEntry> Entries { get; set; } = new();
-    public ObservableCollection<MapInstance> Instances { get; set; } = new();
-    public ObservableCollection<MapHTA> HTAs { get; set; } = new();
-    public ObservableCollection<MapEnemyPosition> EnemyPositions { get; set; } = new();
-    public ObservableCollection<MapEnemyGroup> EnemyGroups { get; set; } = new();
-    public ObservableCollection<MapMOS> MOSs { get; set; } = new();
-    public ObservableCollection<MapIcon> Icons { get; set; } = new();
-    public MapShop Shop { get; set; } = null;
+    public MapHeader Header { get; set; } = new();
+	public List<MapEntry> Entries { get; set; } = new();
+    public List<MapInstance> Instances { get; set; } = new();
+    public List<MapHTA> HTAs { get; set; } = new();
+    public List<MapEnemyPosition> EnemyPositions { get; set; } = new();
+    public List<MapEnemyGroup> EnemyGroups { get; set; } = new();
+    public List<MapMOS> MOSs { get; set; } = new();
+	public MapDialogue Dialogue { get; set; } = new();
+    public List<MapIcon> Icons { get; set; } = new();
+	public MapShop Shop { get; set; } = null;
 
     public string MapName { get; set; } = "";
     public string FileLocation { get; set; } = "";
+	public string Filename { get; set; } = "";
 
-    public static Map ReadMap(FileStream reader, string file)
+    public static Map ReadMap(FileStream reader, string filepath)
     {
 		Map map = new()
 		{
 			Header = MapHeader.ReadMapHeader(reader),
-			FileLocation = file
-		};
+			FileLocation = filepath,
+			Filename = Path.GetFileNameWithoutExtension(filepath),
+        };
 
 		reader.Seek(map.Header.OffsetMapEntries, SeekOrigin.Begin);
 		for (var index = 0; index < map.Header.NumMapEntries; index++)
@@ -39,7 +42,7 @@ public class Map
 			map.Instances.Add(MapInstance.ReadMapInstance(reader));
 		}
 
-		reader.Seek(map.Header.OffsetInstances, SeekOrigin.Begin);
+		reader.Seek(map.Header.OffsetHTA, SeekOrigin.Begin);
 		for (var index = 0; index < map.Header.NumHTA; index++)
 		{
 			map.HTAs.Add(MapHTA.ReadMapHTA(reader));
@@ -63,6 +66,13 @@ public class Map
 			map.MOSs.Add(MapMOS.ReadMapMOS(reader));
 		}
 
+		reader.Seek(map.Header.OffsetDialogue, SeekOrigin.Begin);
+		if (map.Header.DialogueLength > 0)
+		{
+			map.Dialogue = MapDialogue.ReadMapDialogue(reader, map.Header.DialogueLength);
+			map.ReadMapName();
+		}
+
 		reader.Seek(map.Header.OffsetIcons, SeekOrigin.Begin);
 		for (var index = 0; index < map.Header.NumIcons; index++)
 		{
@@ -77,4 +87,73 @@ public class Map
 
         return map;
     }
+
+	public void WriteMap()
+	{
+		// we need the file to write to
+		if (Filename.Length <= 0)
+		{
+			return;
+		}
+
+		using FileStream writer = File.Open(Filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
+		writer.Seek(Header.OffsetMapEntries, SeekOrigin.Begin);
+		foreach (var entry in Entries)
+		{
+			entry.WriteMapEntry(writer);
+		}
+
+		writer.Seek(Header.OffsetInstances, SeekOrigin.Begin);
+		foreach (var instance in Instances)
+		{
+			instance.WriteMapInstance(writer);
+		}
+
+		writer.Seek(Header.OffsetHTA, SeekOrigin.Begin);
+		foreach (var hta in HTAs)
+		{
+			hta.WriteMapHTA(writer);
+		}
+
+		writer.Seek(Header.OffsetEnemyPos, SeekOrigin.Begin);
+		foreach (var position in EnemyPositions)
+		{
+			position.WriteMapEnemyPosition(writer);
+		}
+	}
+
+	/// <summary>
+	/// Reads from Dialogue section of a map's mdt file.
+	/// This assumes that the dialogue section is not empty
+	/// </summary>
+	/// <param name="reader"></param>
+	private void ReadMapName()
+	{
+		foreach (var section in Dialogue.DialogueSections)
+		{
+			if (section.Length <= 0)
+			{
+				continue;
+			}
+
+			if (section[0] != 0x17 || section[1] != 0x80)
+			{
+				continue;
+			}
+
+			List<byte> bytes = new();
+			for (var index = 4; index < section.Length && section[index] != 0x17; index++)
+			{
+				bytes.Add(section[index]);
+			}
+
+			var text = Encoding.UTF8.GetString(bytes.ToArray());
+			if (!text.Contains("to "))
+			{
+				MapName = text;
+				break;
+			}
+		}
+	}
 }

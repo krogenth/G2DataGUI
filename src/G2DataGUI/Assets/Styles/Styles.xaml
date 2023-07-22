@@ -237,6 +237,13 @@
 		<Setter Property="FontSize" Value="{DynamicResource FontSize}" />
 		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
 	</Style>
+	<Style Selector="TextBlock.h3">
+		<Setter Property="Margin" Value="{DynamicResource TextMargin}" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="FontWeight" Value="Normal" />
+		<Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
+	</Style>
     <Style Selector="Separator">
         <Setter Property="Background" Value="{DynamicResource ThemeControlBorderColor}" />
         <Setter Property="Foreground" Value="{DynamicResource ThemeControlBorderColor}" />

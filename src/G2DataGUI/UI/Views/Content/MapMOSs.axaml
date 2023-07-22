@@ -1,0 +1,185 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.MapMOSs"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+             mc:Ignorable="d"
+             Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:MapMOSsViewModel">
+	<Grid Name="MapMOSsPage"
+		  Margin="20,10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="MapEntriesList"
+				 Items="{Binding SelectedMapMOSs}"
+				 SelectedIndex="{Binding SelectedMapMOSIndex}"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Id, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Column="1"
+					  IsVisible="{Binding HasMapMOSs}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<StackPanel Margin="4">
+							<TextBlock Text="ID:" />
+							<NumericUpDown Value="{Binding SelectedMapMOSItem.Id}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="65536" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Index:" />
+							<NumericUpDown Value="{Binding SelectedMapMOSItem.Index}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="65536" />
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Position"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="X:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Position.X}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Y:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Position.Y}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Z:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Position.Z}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #1:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown1}"
+											   Increment="1"
+											   Minimum="-2147483648"
+											   Maximum="2147483647" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #2:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown2}"
+											   Increment="1"
+											   Minimum="-2147483648"
+											   Maximum="2147483647" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #3:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown3}"
+											   Increment="1"
+											   Minimum="-2147483648"
+											   Maximum="2147483647" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #4:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown4}"
+											   Increment="1"
+											   Minimum="-2147483648"
+											   Maximum="2147483647" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #5:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown5}"
+											   Increment="1"
+											   Minimum="-2147483648"
+											   Maximum="2147483647" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #6:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown6}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

@@ -62,11 +62,11 @@ public static class StreamExtensions
     public static Half ReadRawHalf(this Stream stream) => BinaryPrimitives.ReadHalfLittleEndian(stream.InternalRead(2));
     public static float ReadRawFloat(this Stream stream) => BitConverter.Int32BitsToSingle(stream.ReadRawInt());
     public static double ReadRawDouble(this Stream stream) => BitConverter.Int64BitsToDouble(stream.ReadRawInt());
-    public static byte[] ReadRawByteArray(this Stream stream, int numBytes) => stream.InternalRead(numBytes).ToArray();
-    public static int[] ReadRawIntArray(this Stream stream, int numInts)
+    public static byte[] ReadRawByteArray(this Stream stream, uint numBytes) => stream.InternalRead(numBytes).ToArray();
+    public static int[] ReadRawIntArray(this Stream stream, uint numInts)
     {
         int[] arr = new int[numInts];
-        for (int index = 0; index < arr.Length; index++)
+        for (uint index = 0; index < arr.Length; index++)
         {
             arr[index] = stream.ReadRawInt();
         }
@@ -74,10 +74,10 @@ public static class StreamExtensions
         return arr;
     }
 
-    private static Span<byte> InternalRead(this Stream stream, int numBytes)
+    private static Span<byte> InternalRead(this Stream stream, uint numBytes)
     {
         var buffer = new byte[numBytes];
-        stream.ReadExactly(buffer.AsSpan(0, numBytes));
+        stream.ReadExactly(buffer, 0, (int)numBytes);
         return buffer;
     }
 

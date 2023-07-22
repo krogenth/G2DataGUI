@@ -14,15 +14,15 @@ public class MapHTA
 	public byte Attribute { get; set; }
 	public byte Unknown3 { get; set; }
 	public short Unknown4 { get; set; }
-	public int Unknown5 { get; set; }
+	public float Unknown5 { get; set; }
 	public Vector3 Minimum { get; set; }
 	public Vector3 Maximum { get; set; }
 	public Vector3 Unknown6 { get; set; }
 	public int Unknown7 { get; set; }
-	public int Unknown8 { get; set; }
-	public int Unknown9 { get; set; }
-	public int Unknown10 { get; set; }
-	public int Unknown11 { get; set; }
+	public float Unknown8 { get; set; }
+	public float Unknown9 { get; set; }
+	public float Unknown10 { get; set; }
+	public float Unknown11 { get; set; }
 
 	public static MapHTA ReadMapHTA(Stream reader)
 	{
@@ -36,15 +36,15 @@ public class MapHTA
 			Attribute = reader.ReadRawByte(),
 			Unknown3 = reader.ReadRawByte(),
 			Unknown4 = reader.ReadRawShort(),
-			Unknown5 = reader.ReadRawInt(),
+			Unknown5 = reader.ReadRawFloat(),
 			Minimum = Vector3.ReadVector3(reader),
 			Maximum = Vector3.ReadVector3(reader),
 			Unknown6 = Vector3.ReadVector3(reader),
 			Unknown7 = reader.ReadRawInt(),
-			Unknown8 = reader.ReadRawInt(),
-			Unknown9 = reader.ReadRawInt(),
-			Unknown10 = reader.ReadRawInt(),
-			Unknown11 = reader.ReadRawInt(),
+			Unknown8 = reader.ReadRawFloat(),
+			Unknown9 = reader.ReadRawFloat(),
+			Unknown10 = reader.ReadRawFloat(),
+			Unknown11 = reader.ReadRawFloat(),
 		};
 
 		return hta;
@@ -59,14 +59,14 @@ public class MapHTA
 		writer.WriteRawInt(Unknown2);
 		writer.WriteRawByte(Attribute);
 		writer.WriteRawByte(Unknown3);
-		writer.WriteRawInt(Unknown5);
+		writer.WriteRawFloat(Unknown5);
 		Minimum.WriteVector3(writer);
 		Maximum.WriteVector3(writer);
 		Unknown6.WriteVector3(writer);
 		writer.WriteRawInt(Unknown7);
-		writer.WriteRawInt(Unknown8);
-		writer.WriteRawInt(Unknown9);
-		writer.WriteRawInt(Unknown10);
-		writer.WriteRawInt(Unknown11);
+		writer.WriteRawFloat(Unknown8);
+		writer.WriteRawFloat(Unknown9);
+		writer.WriteRawFloat(Unknown10);
+		writer.WriteRawFloat(Unknown11);
 	}
 }

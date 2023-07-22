@@ -22,7 +22,7 @@ public class FixedLengthDescription
 		}
 		set
 		{
-            value = value.PadRight(MaxLength, ' ');
+            value = value.PadRight((int)MaxLength, ' ');
 			for (int index = 0; index < MaxLength; index++)
 			{
                 _characters[index] = Convert.ToByte(_characters[index]);
@@ -39,10 +39,8 @@ public class FixedLengthDescription
 		return description;
 	}
 
-	public void WriteFixedLengthDescription(Stream writer)
-	{
+	public void WriteFixedLengthDescription(Stream writer) =>
 		writer.WriteRawByteArray(_characters);
-	}
 
-    public static int MaxLength { get => 40; }
+	public static uint MaxLength { get => 40; }
 }

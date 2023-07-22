@@ -10,6 +10,7 @@ using G2DataGUI.UI.Common.ViewModels;
 using G2DataGUI.Common;
 using G2DataGUI.Common.Data.Enemies;
 using G2DataGUI.Common.Data.Bosses;
+using G2DataGUI.Common.Data.Maps;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -49,6 +50,7 @@ public sealed class MenuBarViewModel : BaseViewModel
         Items.Instance.Save();
 		Enemies.Instance.Save();
 		Bosses.Instance.Save();
+		Maps.Instance.Save();
     }
 
     public void LaunchGame()

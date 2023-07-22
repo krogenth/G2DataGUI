@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
-			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
 			 xmlns:content="using:G2DataGUI.UI.Views.Content"
 			 xmlns:controls="using:FluentAvalonia.UI.Controls"
              mc:Ignorable="d"
