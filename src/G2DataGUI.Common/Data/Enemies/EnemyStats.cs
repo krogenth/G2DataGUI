@@ -1,5 +1,7 @@
 ﻿using G2DataGUI.Common.Data.Common;
 using G2DataGUI.IO.Streams;
+using G2DataGUI.UI.Common.Locale;
+
 using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
@@ -182,6 +184,14 @@ public class EnemyStats : BaseContainer
         }
     }
 
+	public static string CSVHeader =>
+		$"Name,Unknown #1,Unknown #2,Type #1,Type #2,Level,Health,MP,SP,Vitality,Agility,Speed," +
+		$"Mentality,Stamina,IP Stun Duration,IP Cancel Stun Duration,Still Evasion Rate,Moving Evasion Rate," +
+		$"Fire Resist,Wind Resist,Earth Resist,Lightning Resist,Blizzard Resist,Ailments," +
+		$"Knockback Resist,Status Recovery Time,TDMG,Unknown #3,THEAL,Size,Unknown #4,Unknown #5,No Run Flag," +
+		$"Unknown #6,Experience,Skill Coins,Magic Coins,Gold Coins,Item #1,Item #2,Item #1 Chance,Item #2 Chance," +
+		$"Unknown #7";
+
     public static EnemyStats ReadEnemyStats(Stream reader)
     {
 		EnemyStats stats = new()
@@ -280,4 +290,52 @@ public class EnemyStats : BaseContainer
         writer.WriteRawByte(Item2Chance);
         writer.WriteRawShort(Unknown7);
     }
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write(
+			$"{Name}," +
+			$"{Unknown1}," +
+			$"{Unknown2}," +
+			$"{LocaleManager.Instance[LocaleKeys.EnemyTypes][Type1]}," +
+			$"{LocaleManager.Instance[LocaleKeys.EnemyTypes][Type2]}," +
+			$"{Level}," +
+			$"{Health}," +
+			$"{MP}," +
+			$"{SP}," +
+			$"{Vitality}," +
+			$"{Agility}," +
+			$"{Speed}," +
+			$"{Mentality}," +
+			$"{Stamina}," +
+			$"{IpStunDuration}," +
+			$"{IpCancelStunDuration}," +
+			$"{EvasionStillRate}," +
+			$"{EvasionMovingRate}," +
+			$"{FireResist}," +
+			$"{WindResist}," +
+			$"{EarthResist}," +
+			$"{LightningResist}," +
+			$"{BlizzardResist}," +
+			$"{AilmentsBitflag}," +
+			$"{KnockbackResist}," +
+			$"{StatusRecoveryTime}," +
+			$"{TDMG}," +
+			$"{Unknown3}," +
+			$"{THEAL}," +
+			$"{Size}," +
+			$"{Unknown4}," +
+			$"{Unknown5}," +
+			$"{NoRunFlag}," +
+			$"{Unknown6}," +
+			$"{Experience}," +
+			$"{SkillCoins}," +
+			$"{MagicCoins}," +
+			$"{GoldCoins}," +
+			$"{Items.Items.Instance.GameItems[Item1Offset].Name}," +
+			$"{Items.Items.Instance.GameItems[Item2Offset].Name}," +
+			$"{Item1Chance}," +
+			$"{Item2Chance}," +
+			$"{Unknown7}");
+	}
 }

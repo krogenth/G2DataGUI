@@ -13,12 +13,15 @@ public class DDSFiles
 
     private DDSFiles()
     {
-        ReadDDSFileSystemStructure();
+		ReadDDSFileSystemStructureAsync();
     }
 
-	public void Reload() => ReadDDSFileSystemStructure();
+	public void Reload() => ReadDDSFileSystemStructureAsync();
 
-	private async Task ReadDDSFileSystemStructure()
+	private async Task ReadDDSFileSystemStructureAsync() =>
+		await Task.Run(() => ReadDDSFileSystemStructure()).ConfigureAwait(false);
+
+	private void ReadDDSFileSystemStructure()
     {
         DirectoryDDSFiles.Clear();
 		foreach (var node in RecursiveDirectoryCrawl(Version.Instance.RootDataDirectory))

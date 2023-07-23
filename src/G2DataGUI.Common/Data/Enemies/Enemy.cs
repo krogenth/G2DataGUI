@@ -18,6 +18,12 @@ public class Enemy : BaseContainer
     public static int FirstMovesPointerOffset { get; } = 0x3C;
     public static int SecondMovesPointerOffset { get; } = 0x4C;
 
+	public static string EnemyCSVHeader =>
+		$"{EnemyStats.CSVHeader},{EnemyAISection.CSVHeader}";
+
+	public static string MovesetCSVHeader =>
+		$"{EnemyMoveset.CSVHeader}";
+
     public static Enemy ReadEnemy(Stream reader, string file, bool isSecond = false)
     {
         // first enemy instance offset is always 0x34
@@ -77,4 +83,14 @@ public class Enemy : BaseContainer
         reader.Seek(position, SeekOrigin.Begin);
         return hasSecond;
     }
+
+	public void GenerateEnemyCSV(StreamWriter writer)
+	{
+		Stats.GenerateCSV(writer);
+		writer.Write(',');
+		AISection.GenerateCSV(writer);
+		writer.WriteLine();
+	}
+
+	public void GenerateMovesetCSV(StreamWriter writer) => Moveset.GenerateCSV(writer);
 }

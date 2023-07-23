@@ -12,6 +12,9 @@ public class EnemyAI
     public byte Move4Chance { get; set; }
     public byte Move5Chance { get; set; }
 
+	public static string CSVHeader =>
+		$"Condition,Move #1 Chance,Move #2 Chance,Move #3 Chance,Move #4 Chance,Move #5 Chance";
+
     public static EnemyAI ReadEnemyAI(Stream reader)
     {
 		EnemyAI ai = new()
@@ -36,4 +39,15 @@ public class EnemyAI
         writer.WriteRawByte(Move4Chance);
         writer.WriteRawByte(Move5Chance);
     }
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write(
+			$"{Condition}," +
+			$"{Move1Chance}," +
+			$"{Move2Chance}," +
+			$"{Move3Chance}," +
+			$"{Move4Chance}," +
+			$"{Move5Chance}");
+	}
 }

@@ -19,6 +19,9 @@ public class EnemyMove : BaseContainer
     }
 	public uint MaxNameLength { get => FixedLengthName.MaxLength; }
 
+	public static string CSVHeader =>
+		$"Name,{EnemyMoveStats.CSVHeader}";
+
     public static EnemyMove ReadEnemyMove(Stream reader)
     {
         EnemyMove move = new()
@@ -34,4 +37,10 @@ public class EnemyMove : BaseContainer
         _name.WriteFixedLengthName(writer);
         Stats.WriteEnemyMoveStats(writer);
     }
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write($"{Name},");
+		Stats.GenerateCSV(writer);
+	}
 }

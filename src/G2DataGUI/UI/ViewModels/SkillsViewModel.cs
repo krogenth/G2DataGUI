@@ -16,11 +16,12 @@ public sealed class SkillsViewModel : BaseViewModel
 
     private SkillsViewModel()
     {
-        _selectedSkillItem = GameSkills.First();
-    }
+		SelectedSkillIndex = 0;
+		Skills.Instance.CollectionRefreshed += SkillsCollectionRefreshed;
+	}
 
 	private void SkillsCollectionRefreshed(object sender, EventArgs _) =>
-        SelectedSkillItem = GameSkills[SelectedSkillIndex];
+        SelectedSkillIndex = SelectedSkillIndex;
 
 	public int SelectedSkillIndex
     {

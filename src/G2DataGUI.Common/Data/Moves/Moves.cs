@@ -15,14 +15,17 @@ public class Moves
 
     private Moves()
     {
-        ReadMoves();
+		ReadMovesAsync();
     }
 
 	public void Save() => WriteMoves();
 
-	public void Reload() => ReadMoves();
+	public void Reload() => ReadMovesAsync();
 
-	private async Task ReadMoves()
+	private async Task ReadMovesAsync() =>
+		await Task.Run(() => ReadMoves()).ConfigureAwait(false);
+
+	private void ReadMoves()
     {
         GameMoves.Clear();
         using FileStream reader = File.Open(

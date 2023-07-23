@@ -137,7 +137,7 @@
     "Dragon Egg"
   ],
   "SpecialChars": [
-    "NULL",
+    "None",
     "Ryudo",
     "Elena",
     "Millenia",
@@ -145,12 +145,12 @@
     "Tio",
     "Mareg",
     "Prince Roan",
-    "NULL",
-    "NULL",
-    "NULL",
-    "NULL",
-    "NULL",
-    "NULL"
+    "Ryudo",
+    "Ryudo",
+    "Ryudo",
+    "Ryudo",
+    "Ryudo",
+    "Ryudo"
   ],
   "Characters": [
     "Ryudo",
@@ -160,12 +160,12 @@
     "Tio",
     "Mareg",
     "Prince Roan",
-    "NULL",
-    "NULL",
-    "NULL",
-    "NULL",
-    "NULL",
-    "NULL"
+    "Ryudo",
+    "Ryudo",
+    "Ryudo",
+    "Ryudo",
+    "Ryudo",
+    "Ryudo"
   ],
   "Statuses": [
     "Poison",
@@ -308,7 +308,7 @@
     "unknown 55"
   ],
   "EquipmentSpecials": [
-    "NULL",
+    "None",
     "unknown 1",
     "unknown 2",
     "unknown 3",
@@ -511,6 +511,7 @@
     "Unknown #50",
     "Unknown #51",
     "Unknown #52",
-    "Unknown #53"
+    "Unknown #53",
+    "Unknown #54"
   ]
 }

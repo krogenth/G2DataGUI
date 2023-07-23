@@ -17,12 +17,12 @@ public sealed class ManaeggsViewModel : BaseViewModel
 
     private ManaeggsViewModel()
     {
-        _selectedManaeggItem = GameManaeggs.First();
-        Manaeggs.Instance.CollectionRefreshed += ManaeggCollectionRefreshed;
+		SelectedManaeggIndex = 0;
+		Manaeggs.Instance.CollectionRefreshed += ManaeggCollectionRefreshed;
     }
 
 	private void ManaeggCollectionRefreshed(object sender, EventArgs _) =>
-        SelectedManaeggItem = GameManaeggs[SelectedManaeggIndex];
+		SelectedManaeggIndex = SelectedManaeggIndex;
 
 	public int SelectedManaeggIndex
     {

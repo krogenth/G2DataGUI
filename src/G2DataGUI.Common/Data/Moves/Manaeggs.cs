@@ -16,14 +16,17 @@ public class Manaeggs
 
     private Manaeggs()
     {
-        ReadManaeggs();
+		ReadManaeggsAsync();
     }
 
 	public void Save() => WriteManaeggs();
 
-	public void Reload() => ReadManaeggs();
+	public void Reload() => ReadManaeggsAsync();
 
-	private async Task ReadManaeggs()
+	private async Task ReadManaeggsAsync() =>
+		await Task.Run(() => ReadManaeggs()).ConfigureAwait(false);
+
+	private void ReadManaeggs()
     {
         GameManaeggs.Clear();
         using FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.ManaeggsPath, FileMode.Open, FileAccess.Read);

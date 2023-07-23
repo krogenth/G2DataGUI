@@ -1,18 +1,51 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.IO;
+using G2DataGUI.Common.Data.Common;
+using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Levelups;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x16)]
-public class LevelupStats
+public class LevelupStats : BaseContainer
 {
-    [FieldOffset(0x00)] public int experience;
-    [FieldOffset(0x04)] public short increaseHP;
-    [FieldOffset(0x06)] public short increaseMP;
-    [FieldOffset(0x08)] public short increaseSP;
-    [FieldOffset(0x0A)] public short increaseStrength;
-    [FieldOffset(0x0C)] public short increaseAction;
-    [FieldOffset(0x0E)] public short increaseMovement;
-    [FieldOffset(0x10)] public short increaseMagic;
-    [FieldOffset(0x12)] public short increaseMentality;
-    [FieldOffset(0x14)] public short increaseSkillSlot;
+    public int Experience { get; set; }
+	public short IncreaseHP { get; set; }
+	public short IncreaseMP { get; set; }
+	public short IncreaseSP { get; set; }
+	public short IncreaseStrength { get; set; }
+	public short IncreaseAction { get; set; }
+	public short IncreaseMovement { get; set; }
+	public short IncreaseMagic { get; set; }
+	public short IncreaseMentality { get; set; }
+	public short IncreaseSkillSlot { get; set; }
+
+	public static LevelupStats ReadLevelupStats(Stream reader)
+	{
+		LevelupStats stats = new()
+		{
+			Experience = reader.ReadRawInt(),
+			IncreaseHP = reader.ReadRawShort(),
+			IncreaseMP = reader.ReadRawShort(),
+			IncreaseSP = reader.ReadRawShort(),
+			IncreaseStrength = reader.ReadRawShort(),
+			IncreaseAction = reader.ReadRawShort(),
+			IncreaseMovement = reader.ReadRawShort(),
+			IncreaseMagic = reader.ReadRawShort(),
+			IncreaseMentality = reader.ReadRawShort(),
+			IncreaseSkillSlot = reader.ReadRawShort(),
+		};
+		return stats;
+	}
+
+	public void WriteLevelupStats(Stream writer)
+	{
+		writer.WriteRawInt(Experience);
+		writer.WriteRawShort(IncreaseHP);
+		writer.WriteRawShort(IncreaseMP);
+		writer.WriteRawShort(IncreaseSP);
+		writer.WriteRawShort(IncreaseStrength);
+		writer.WriteRawShort(IncreaseAction);
+		writer.WriteRawShort(IncreaseMovement);
+		writer.WriteRawShort(IncreaseMagic);
+		writer.WriteRawShort(IncreaseMentality);
+		writer.WriteRawShort(IncreaseSkillSlot);
+	}
 }

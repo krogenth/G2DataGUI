@@ -10,6 +10,9 @@ public class EnemyAISection
     public EnemyAI AI4 { get; set; }
     public EnemyAI AI5 { get; set; }
 
+	public static string CSVHeader =>
+		$"{EnemyAI.CSVHeader},{EnemyAI.CSVHeader},{EnemyAI.CSVHeader},{EnemyAI.CSVHeader},{EnemyAI.CSVHeader}";
+
     public static EnemyAISection ReadEnemyAISection(Stream reader)
     {
 		EnemyAISection section = new()
@@ -32,4 +35,17 @@ public class EnemyAISection
         AI4.WriteEnemyAI(writer);
         AI5.WriteEnemyAI(writer);
     }
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		AI1.GenerateCSV(writer);
+		writer.Write(',');
+		AI2.GenerateCSV(writer);
+		writer.Write(',');
+		AI3.GenerateCSV(writer);
+		writer.Write(',');
+		AI4.GenerateCSV(writer);
+		writer.Write(',');
+		AI5.GenerateCSV(writer);
+	}
 }

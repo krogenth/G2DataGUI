@@ -21,5 +21,5 @@ public class ProjectPaths
     public const string BossesCSVFile = $"{DocumentationDirectory}\\BOSSES.CSV";
     public const string BossesHardmodeCSVFile = $"{DocumentationDirectory}\\BOSSES_HARDMODE.CSV";
     public const string BossMovesCSVFile = $"{DocumentationDirectory}\\BOSS_MOVES.CSV";
-    public const string BossHardmodeMovesCSVFIle = $"{DocumentationDirectory}\\BOSS_HARDMODE_MOVES.CSV";
+    public const string BossHardmodeMovesCSVFile = $"{DocumentationDirectory}\\BOSS_HARDMODE_MOVES.CSV";
 }

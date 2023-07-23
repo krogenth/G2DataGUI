@@ -17,12 +17,12 @@ public class SkillbooksViewModel : BaseViewModel
 
     private SkillbooksViewModel()
     {
-        _selectedSkillbookItem = GameSkillbooks.First();
-        Skillbooks.Instance.CollectionRefreshed += SkillbookCollectionRefreshed;
+		SelectedSkillbookIndex = 0;
+		Skillbooks.Instance.CollectionRefreshed += SkillbookCollectionRefreshed;
     }
 
 	private void SkillbookCollectionRefreshed(object sender, EventArgs _) =>
-        SelectedSkillbookItem = GameSkillbooks[SelectedSkillbookIndex];
+        SelectedSkillbookIndex = SelectedSkillbookIndex;
 
 	public int SelectedSkillbookIndex
     {

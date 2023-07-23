@@ -15,14 +15,17 @@ public class Skills
 
     private Skills()
     {
-        ReadSkills();
+		ReadSkillsAsync();
     }
 
 	public void Save() => WriteSkills();
 
-	public void Reload() => ReadSkills();
+	public void Reload() => ReadSkillsAsync();
 
-	private async Task ReadSkills()
+	private async Task ReadSkillsAsync() =>
+		await Task.Run(() => ReadSkills()).ConfigureAwait(false);
+
+	private void ReadSkills()
     {
         GameSkills.Clear();
         using FileStream reader = File.Open(

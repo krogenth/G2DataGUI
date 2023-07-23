@@ -1,5 +1,7 @@
 ﻿using G2DataGUI.Common.Data.Common;
 using G2DataGUI.IO.Streams;
+using G2DataGUI.UI.Common.Locale;
+
 using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
@@ -156,6 +158,12 @@ public class EnemyMoveStats
 		}
 	}
 
+	public static string CSVHeader =>
+		$"MP,SP,Unknown #1,Target Effect,Strength,Power,AD,Target Type,Normal Attack Flag,Distance," +
+		$"Accuracy,Range,Cast Time,Recovery Time,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback," +
+		$"Element,Element Strength,Ailments,Ailments Chance,Attack Modifier,Defense Modifier,Action Modifier," +
+		$"Movement Modifier,Special";
+
 	public static EnemyMoveStats ReadEnemyMoveStats(Stream reader)
     {
 		EnemyMoveStats stats = new()
@@ -216,10 +224,44 @@ public class EnemyMoveStats
         writer.WriteRawShort(Knockback);
         writer.WriteRawByte(Element);
         writer.WriteRawByte(ElementStrength);
+		writer.WriteRawByte(AilmentsBitflag);
+		writer.WriteRawByte(AilmentsChance);
         writer.WriteRawSByte(AttackModifier);
         writer.WriteRawSByte(DefenseModifier);
         writer.WriteRawSByte(ActionModifier);
         writer.WriteRawSByte(MovementModifier);
         writer.WriteRawShort(Special);
     }
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write(
+			$"{MP}," +
+			$"{SP}," +
+			$"{Unknown1}," +
+			$"{LocaleManager.Instance[LocaleKeys.TargetEffects][TargetEffect]}," +
+			$"{Strength}," +
+			$"{Power}," +
+			$"{AD}," +
+			$"{LocaleManager.Instance[LocaleKeys.TargetTypes][TargetType]}," +
+			$"{Distance}," +
+			$"{Accuracy}," +
+			$"{Range}," +
+			$"{CastTime}," +
+			$"{RecoveryTime}," +
+			$"{LocaleManager.Instance[LocaleKeys.Animations][Animation]}," +
+			$"{Knockdown}," +
+			$"{IpStun}," +
+			$"{IpCancelStun}," +
+			$"{Knockback}," +
+			$"{LocaleManager.Instance[LocaleKeys.Elements][Element]}," +
+			$"{ElementStrength}," +
+			$"{AilmentsBitflag}," +
+			$"{AilmentsChance}," +
+			$"{AttackModifier}," +
+			$"{DefenseModifier}," +
+			$"{ActionModifier}," +
+			$"{MovementModifier}," +
+			$"{Special}");
+	}
 }

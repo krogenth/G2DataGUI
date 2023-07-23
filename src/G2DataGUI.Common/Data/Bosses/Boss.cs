@@ -29,6 +29,12 @@ public class Boss : BaseContainer
 	public static int FirstMovesPointerOffset { get; } = 0x3C;
 	public static int SecondMovesPointerOffset { get; } = 0x4C;
 
+	public static string BossCSVHeader =>
+		$"{EnemyStats.CSVHeader},{EnemyAISection.CSVHeader}";
+
+	public static string MovesetCSVHeader =>
+		$"{EnemyMoveset.CSVHeader}";
+
 	public static Boss ReadBoss(Stream reader, string file, bool isSecond = false)
     {
 		// first boss instance offset is always 0x34
@@ -85,5 +91,20 @@ public class Boss : BaseContainer
 		bool hasSecond = reader.ReadRawInt() > 0;
 		reader.Seek(position, SeekOrigin.Begin);
 		return hasSecond;
+	}
+
+	public void GenerateBossCSV(StreamWriter writer)
+	{
+		Stats.GenerateCSV(writer);
+		AISection.GenerateCSV(writer);
+		writer.WriteLine();
+	}
+
+	public void GenerateMovesetCSV(StreamWriter writer)
+	{
+		foreach (var moveset in Movesets)
+		{
+			moveset.GenerateCSV(writer);
+		}
 	}
 }

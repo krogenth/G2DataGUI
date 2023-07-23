@@ -19,20 +19,14 @@ public sealed class ItemsViewModel : BaseViewModel
 
     private ItemsViewModel()
     {
-        _selectedItemItem = GameItems.First();
-        _itemEquipmentViewModel.SelectedItemEquipment = _selectedItemItem.Equipment;
-        _itemUsableViewModel.SelectedItemUsable = _selectedItemItem.Usable;
-        Items.Instance.CollectionRefreshed += ItemsCollectionRefreshed;
+		SelectedItemIndex = 0;
+		Items.Instance.CollectionRefreshed += ItemsCollectionRefreshed;
     }
 
-    private void ItemsCollectionRefreshed(object sender, EventArgs _)
-    {
-        SelectedItemItem = GameItems[SelectedItemIndex];
-        _itemEquipmentViewModel.SelectedItemEquipment = GameItems[SelectedItemIndex].Equipment;
-        _itemUsableViewModel.SelectedItemUsable = GameItems[SelectedItemIndex].Usable;
-    }
+	private void ItemsCollectionRefreshed(object sender, EventArgs _) =>
+		SelectedItemIndex = SelectedItemIndex;
 
-    public int SelectedItemIndex
+	public int SelectedItemIndex
     {
         get => _selectedItemIndex;
         set

@@ -16,14 +16,17 @@ public class Skillbooks
 
     private Skillbooks()
     {
-        ReadSkillbooks();
+		ReadSkillbooksAsync();
     }
 
 	public void Save() => WriteSkillbooks();
 
-	public void Reload() => ReadSkillbooks();
+	public void Reload() => ReadSkillbooksAsync();
 
-	private async Task ReadSkillbooks()
+	private async Task ReadSkillbooksAsync() =>
+		await Task.Run(() => ReadSkillbooks()).ConfigureAwait(false);
+
+	private void ReadSkillbooks()
     {
         GameSkillbooks.Clear();
         using FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SkillbooksPath, FileMode.Open, FileAccess.Read);

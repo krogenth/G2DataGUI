@@ -17,12 +17,12 @@ public sealed class SpecialsViewModel : BaseViewModel
 
     private SpecialsViewModel()
     {
-        _selectedSpecialSetItem = GameSpecialSets.First();
+		SelectedSpecialSetIndex = 0;
         SpecialSets.Instance.CollectionRefreshed += SpecialSetCollectionRefreshed;
     }
 
 	private void SpecialSetCollectionRefreshed(object sender, EventArgs _) =>
-        SelectedSpecialSetItem = GameSpecialSets[SelectedSpecialSetIndex];
+        SelectedSpecialSetIndex = SelectedSpecialSetIndex;
 
 	public int SelectedSpecialSetIndex
     {

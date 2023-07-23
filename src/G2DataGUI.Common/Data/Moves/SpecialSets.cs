@@ -16,14 +16,17 @@ public class SpecialSets
 
     private SpecialSets()
     {
-        ReadSpecialSets();
+		ReadSpecialSetsAsync();
     }
 
 	public void Save() => WriteSpecialSets();
 
-	public void Reload() => ReadSpecialSets();
+	public void Reload() => ReadSpecialSetsAsync();
 
-	private async Task ReadSpecialSets()
+	private async Task ReadSpecialSetsAsync() =>
+		await Task.Run(() => ReadSpecialSets()).ConfigureAwait(false);
+
+	private void ReadSpecialSets()
     {
         GameSpecialSets.Clear();
         using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SpecialsPath, FileMode.Open, FileAccess.Read))

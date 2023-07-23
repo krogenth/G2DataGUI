@@ -14,17 +14,20 @@ public class Bosses
 
 	private Bosses()
     {
-        ReadBosses();
+		ReadBossesAsync();
 		DifficultyMode.Instance.DifficultyChanged += OnDifficultyChange;
     }
 
 	public void Save() => WriteBosses();
 
-	public void Reload() => ReadBosses();
+	public void Reload() => ReadBossesAsync();
 
 	private void OnDifficultyChange(object sender, EventArgs eventArgs) => ReadBosses();
 
-    private async Task ReadBosses()
+	private async Task ReadBossesAsync() =>
+		await Task.Run(() => ReadBosses()).ConfigureAwait(false);
+
+    private void ReadBosses()
     {
 		GameBosses.Clear();
 		var directory =
@@ -60,13 +63,33 @@ public class Bosses
 
 	private void GenerateBossesCSV()
 	{
-		using FileStream stream = File.Open(ProjectPaths.EnemiesCSVFile, FileMode.Create, FileAccess.Write);
+		using FileStream stream = File.Open(
+			DifficultyMode.Instance.IsHardMode ?
+			ProjectPaths.BossesHardmodeCSVFile :
+			ProjectPaths.BossesCSVFile,
+			FileMode.Create,
+			FileAccess.Write);
 		using StreamWriter writer = new(stream);
+		writer.WriteLine(Boss.BossCSVHeader);
+		foreach (var boss in GameBosses)
+		{
+			boss.GenerateBossCSV(writer);
+		}
 	}
 
 	private void GenerateBossMovesCSV()
 	{
-		using FileStream stream = File.Open(ProjectPaths.EnemyMovesCSVFile, FileMode.Create, FileAccess.Write);
+		using FileStream stream = File.Open(
+			DifficultyMode.Instance.IsHardMode ?
+			ProjectPaths.BossHardmodeMovesCSVFile :
+			ProjectPaths.BossMovesCSVFile,
+			FileMode.Create,
+			FileAccess.Write);
 		using StreamWriter writer = new(stream);
+		writer.WriteLine(Boss.MovesetCSVHeader);
+		foreach (var boss in GameBosses)
+		{
+			boss.GenerateMovesetCSV(writer);
+		}
 	}
 }

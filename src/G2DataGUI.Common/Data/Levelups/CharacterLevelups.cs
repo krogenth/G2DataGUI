@@ -1,9 +1,28 @@
-﻿using System.Runtime.InteropServices;
-
+﻿using System.IO;
 namespace G2DataGUI.Common.Data.Levelups;
 
-[StructLayout(LayoutKind.Explicit, Size = 0x882)]
 public class CharacterLevelups
 {
-    [FieldOffset(0x00)] public LevelupStats[] levelups = new LevelupStats[99];
+	public static int LevelupsPerCharacter { get; } = 99;
+
+    public LevelupStats[] Levelups { get; set; } = new LevelupStats[LevelupsPerCharacter];
+
+	public static CharacterLevelups ReadCharacterLevelups(Stream reader)
+	{
+		CharacterLevelups levelups = new();
+		for (int index = 0; index < LevelupsPerCharacter; index++)
+		{
+			levelups.Levelups[index] = LevelupStats.ReadLevelupStats(reader);
+		}
+
+		return levelups;
+	}
+
+	public void WriteCharacterLevelups(Stream writer)
+	{
+		foreach (var levelups in Levelups)
+		{
+			levelups.WriteLevelupStats(writer);
+		}
+	}
 }

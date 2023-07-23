@@ -13,14 +13,17 @@ public class Maps
 
     private Maps()
     {
-        ReadMaps();
+		ReadMapsAsync();
     }
 
 	public void Save() => WriteMaps();
 
-	public void Reload() => ReadMaps();
+	public void Reload() => ReadMapsAsync();
 
-    private async Task ReadMaps()
+	private async Task ReadMapsAsync() =>
+		await Task.Run(() => ReadMaps()).ConfigureAwait(false);
+
+    private void ReadMaps()
     {
 		GameMaps.Clear();
         foreach(var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))

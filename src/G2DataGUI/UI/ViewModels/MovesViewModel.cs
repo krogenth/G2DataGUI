@@ -1,7 +1,6 @@
 ﻿using G2DataGUI.Common.Data.Moves;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
@@ -9,19 +8,19 @@ namespace G2DataGUI.UI.ViewModels;
 public sealed class MovesViewModel : BaseViewModel
 {
     public ObservableCollection<Move> GameMoves { get; private set; } = Moves.Instance.GameMoves;
-    private int _selectedMoveIndex = 0;
+    private int _selectedMoveIndex;
     private Move _selectedMoveItem;
 
     public static MovesViewModel Instance { get; private set; } = new();
 
     private MovesViewModel()
     {
-        _selectedMoveItem = GameMoves.First();
-        Moves.Instance.CollectionRefreshed += MovesCollectionRefreshed;
+		SelectedMoveIndex = 0;
+		Moves.Instance.CollectionRefreshed += MovesCollectionRefreshed;
     }
 
 	private void MovesCollectionRefreshed(object sender, EventArgs _) =>
-        SelectedMoveItem = GameMoves[SelectedMoveIndex];
+		SelectedMoveIndex = SelectedMoveIndex;
 
 	public int SelectedMoveIndex
     {

@@ -14,17 +14,20 @@ public class Enemies
 
     private Enemies()
     {
-        ReadEnemies();
+		ReadEnemiesAsync();
 		DifficultyMode.Instance.DifficultyChanged += OnDifficultyChange;
 	}
 
 	public void Save() => WriteEnemies();
 
-	public void Reload() => ReadEnemies();
+	public void Reload() => ReadEnemiesAsync();
 
 	private void OnDifficultyChange(object sender, EventArgs e) => ReadEnemies();
 
-	private async Task ReadEnemies()
+	private async Task ReadEnemiesAsync() =>
+		await Task.Run(() => ReadEnemies()).ConfigureAwait(false);
+
+	private void ReadEnemies()
     {
         GameEnemies.Clear();
 		var directory =
@@ -63,13 +66,33 @@ public class Enemies
 
 	private void GenerateEnemiesCSV()
 	{
-		using FileStream stream = File.Open(ProjectPaths.EnemiesCSVFile, FileMode.Create, FileAccess.Write);
+		using FileStream stream = File.Open(
+			DifficultyMode.Instance.IsHardMode ?
+			ProjectPaths.EnemiesHardmodeCSVFile :
+			ProjectPaths.EnemiesCSVFile,
+			FileMode.Create,
+			FileAccess.Write);
 		using StreamWriter writer = new(stream);
+		writer.WriteLine(Enemy.EnemyCSVHeader);
+		foreach (var enemy in GameEnemies)
+		{
+			enemy.GenerateEnemyCSV(writer);
+		}
 	}
 
 	private void GenerateEnemyMovesCSV()
 	{
-		using FileStream stream = File.Open(ProjectPaths.EnemyMovesCSVFile, FileMode.Create, FileAccess.Write);
+		using FileStream stream = File.Open(
+			DifficultyMode.Instance.IsHardMode ?
+			ProjectPaths.EnemyHardmodeMovesCSVFile :
+			ProjectPaths.EnemyMovesCSVFile,
+			FileMode.Create,
+			FileAccess.Write);
 		using StreamWriter writer = new(stream);
+		writer.WriteLine(Enemy.MovesetCSVHeader);
+		foreach (var enemy in GameEnemies)
+		{
+			enemy.GenerateMovesetCSV(writer);
+		}
 	}
 }

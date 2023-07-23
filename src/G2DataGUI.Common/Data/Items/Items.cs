@@ -15,14 +15,17 @@ public class Items
 
     private Items()
     {
-        ReadItems();
+		ReadItemsAsync();
     }
 
 	public void Save() => WriteItems();
 
-	public void Reload() => ReadItems();
+	public void Reload() => ReadItemsAsync();
 
-	private async Task ReadItems()
+	private async Task ReadItemsAsync() =>
+		await Task.Run(() => ReadItems()).ConfigureAwait(false);
+
+	private void ReadItems()
     {
         GameItems.Clear();
         using FileStream reader = File.Open(

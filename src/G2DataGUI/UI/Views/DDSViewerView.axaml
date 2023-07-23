@@ -54,39 +54,39 @@
 					</Grid.RowDefinitions>
 					<TextBlock Text="Width: " Margin="4" Grid.Row="0" Grid.Column="0" />
 					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-						<TextBlock Text="{Binding Image.Width}" />
+						<TextBlock Text="{Binding Image.Width, Mode=OneWay}" />
 						<TextBlock Text="px" />
 					</StackPanel>
 
 					<TextBlock Text="Height: " Margin="4" Grid.Row="1" Grid.Column="0" />
 					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-						<TextBlock Text="{Binding Image.Height}" />
+						<TextBlock Text="{Binding Image.Height, Mode=OneWay}" />
 						<TextBlock Text="px" />
 					</StackPanel>
 
 					<TextBlock Text="Stride: " Margin="4" Grid.Row="2" Grid.Column="0" />
 					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-						<TextBlock Text="{Binding Image.Stride}" />
+						<TextBlock Text="{Binding Image.Stride, Mode=OneWay}" />
 					</StackPanel>
 
 					<TextBlock Text="Bits per Pixel: " Margin="4" Grid.Row="3" Grid.Column="0" />
 					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-						<TextBlock Text="{Binding Image.BitsPerPixel}" />
+						<TextBlock Text="{Binding Image.BitsPerPixel, Mode=OneWay}" />
 					</StackPanel>
 
 					<TextBlock Text="Format: " Margin="4" Grid.Row="0" Grid.Column="2" />
 					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="0" Grid.Column="3">
-						<TextBlock Text="{Binding Image.Format}" />
+						<TextBlock Text="{Binding Image.Format, Mode=OneWay}" />
 					</StackPanel>
 
 					<TextBlock Text="Compressed: " Margin="4" Grid.Row="1" Grid.Column="2" />
 					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
-						<TextBlock Text="{Binding Image.Compressed}" />
+						<TextBlock Text="{Binding Image.Compressed, Mode=OneWay}" />
 					</StackPanel>
 
 					<TextBlock Text="GUID: " Margin="4" Grid.Row="2" Grid.Column="2" ToolTip.Tip="Used to link with model" />
 					<StackPanel Margin="4" Orientation="Horizontal" Grid.Row="2" Grid.Column="3">
-						<TextBlock Text="{Binding ImageGUID}" />
+						<TextBlock Text="{Binding ImageGUID, Mode=OneWay, StringFormat={}{0:x}}" />
 					</StackPanel>
 				</Grid>
 			</StackPanel>
