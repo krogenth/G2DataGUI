@@ -24,7 +24,7 @@ public class SpecialSets
 	public void Reload() => ReadSpecialSetsAsync();
 
 	private async Task ReadSpecialSetsAsync() =>
-		await Task.Run(() => ReadSpecialSets()).ConfigureAwait(false);
+		await Task.Run(ReadSpecialSets).ConfigureAwait(false);
 
 	private void ReadSpecialSets()
     {

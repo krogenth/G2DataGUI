@@ -25,7 +25,7 @@ public class Enemies
 	private void OnDifficultyChange(object sender, EventArgs e) => ReadEnemies();
 
 	private async Task ReadEnemiesAsync() =>
-		await Task.Run(() => ReadEnemies()).ConfigureAwait(false);
+		await Task.Run(ReadEnemies).ConfigureAwait(false);
 
 	private void ReadEnemies()
     {

@@ -29,7 +29,7 @@ public class MapInstancesViewModel : BaseViewModel
 		}
 	}
 
-	public bool HasMapInstances { get => SelectedMapInstances.Count > 0; }
+	public bool HasMapInstances => SelectedMapInstances.Count > 0;
 
 	public int SelectedMapInstanceIndex
 	{

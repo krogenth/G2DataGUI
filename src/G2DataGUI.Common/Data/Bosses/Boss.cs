@@ -24,10 +24,10 @@ public class Boss : BaseContainer
 	public bool IsSecond { get; set; }
 	public string Filename { get; set; }
 
-	public static int FirstStatsPointerOffset { get; } = 0x34;
-	public static int SecondStatsPointerOffset { get; } = 0x44;
-	public static int FirstMovesPointerOffset { get; } = 0x3C;
-	public static int SecondMovesPointerOffset { get; } = 0x4C;
+	public static int FirstStatsPointerOffset => 0x34;
+	public static int SecondStatsPointerOffset => 0x44;
+	public static int FirstMovesPointerOffset => 0x3C;
+	public static int SecondMovesPointerOffset => 0x4C;
 
 	public static string BossCSVHeader =>
 		$"{EnemyStats.CSVHeader},{EnemyAISection.CSVHeader}";

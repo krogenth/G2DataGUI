@@ -25,7 +25,7 @@ public class Bosses
 	private void OnDifficultyChange(object sender, EventArgs eventArgs) => ReadBosses();
 
 	private async Task ReadBossesAsync() =>
-		await Task.Run(() => ReadBosses()).ConfigureAwait(false);
+		await Task.Run(ReadBosses).ConfigureAwait(false);
 
     private void ReadBosses()
     {
@@ -44,6 +44,7 @@ public class Bosses
 				GameBosses.Add(Boss.ReadBoss(reader, file, true));
             }
         }
+
 		CollectionRefreshed?.Invoke(this, EventArgs.Empty);
     }
 

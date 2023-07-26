@@ -29,7 +29,7 @@ public class MapHTAsViewModel : BaseViewModel
 		}
 	}
 
-	public bool HasMapHTAs { get => SelectedMapHTAs.Count > 0; }
+	public bool HasMapHTAs => SelectedMapHTAs.Count > 0;
 
 	public int SelectedMapHTAIndex
 	{

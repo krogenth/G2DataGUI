@@ -23,7 +23,7 @@ public class Moves
 	public void Reload() => ReadMovesAsync();
 
 	private async Task ReadMovesAsync() =>
-		await Task.Run(() => ReadMoves()).ConfigureAwait(false);
+		await Task.Run(ReadMoves).ConfigureAwait(false);
 
 	private void ReadMoves()
     {

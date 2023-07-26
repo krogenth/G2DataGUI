@@ -23,7 +23,7 @@ public class Skills
 	public void Reload() => ReadSkillsAsync();
 
 	private async Task ReadSkillsAsync() =>
-		await Task.Run(() => ReadSkills()).ConfigureAwait(false);
+		await Task.Run(ReadSkills).ConfigureAwait(false);
 
 	private void ReadSkills()
     {

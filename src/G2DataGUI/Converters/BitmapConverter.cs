@@ -1,5 +1,4 @@
 ﻿using Avalonia.Data.Converters;
-using System.Drawing.Imaging;
 using System;
 using System.Globalization;
 using System.Runtime.InteropServices;

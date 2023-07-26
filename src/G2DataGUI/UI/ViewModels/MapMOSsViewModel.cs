@@ -29,7 +29,7 @@ public class MapMOSsViewModel : BaseViewModel
 		}
 	}
 
-	public bool HasMapMOSs { get => SelectedMapMOSs.Count > 0; }
+	public bool HasMapMOSs => SelectedMapMOSs.Count > 0;
 
 	public int SelectedMapMOSIndex
 	{

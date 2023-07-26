@@ -24,7 +24,7 @@ public class Skillbooks
 	public void Reload() => ReadSkillbooksAsync();
 
 	private async Task ReadSkillbooksAsync() =>
-		await Task.Run(() => ReadSkillbooks()).ConfigureAwait(false);
+		await Task.Run(ReadSkillbooks).ConfigureAwait(false);
 
 	private void ReadSkillbooks()
     {

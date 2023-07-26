@@ -21,7 +21,7 @@ public class Maps
 	public void Reload() => ReadMapsAsync();
 
 	private async Task ReadMapsAsync() =>
-		await Task.Run(() => ReadMaps()).ConfigureAwait(false);
+		await Task.Run(ReadMaps).ConfigureAwait(false);
 
     private void ReadMaps()
     {

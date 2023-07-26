@@ -18,7 +18,6 @@ public class ItemUsableViewModel : BaseViewModel
         set
         {
             _selectedItemUsable = value == null ? new Usable() : value;
-
 			HasUsable = value != null;
             OnPropertyChanged(nameof(SelectedItemUsable));
         }

@@ -33,7 +33,6 @@
   <ItemGroup>
     <ProjectReference Include="..\G2DataGUI.Common\G2DataGUI.Common.csproj" />
     <ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
-    <ProjectReference Include="..\G2DataGUI.LocaleGenerator\G2DataGUI.LocaleGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\G2DataGUI.UI.Common\G2DataGUI.UI.Common.csproj" />
   </ItemGroup>
 

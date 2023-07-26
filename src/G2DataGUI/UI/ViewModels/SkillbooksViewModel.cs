@@ -1,7 +1,6 @@
 ﻿using G2DataGUI.Common.Data.Skills;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;
@@ -10,7 +9,7 @@ public class SkillbooksViewModel : BaseViewModel
 {
     public ObservableCollection<Skillbook> GameSkillbooks { get; private set; } = Skillbooks.Instance.GameSkillbooks;
     public ObservableCollection<Skill> GameSkills { get; private set; } = Skills.Instance.GameSkills;
-    private int _selectedSkillbookIndex = 0;
+    private int _selectedSkillbookIndex;
     private Skillbook _selectedSkillbookItem;
 
     public static SkillbooksViewModel Instance { get; private set; } = new();

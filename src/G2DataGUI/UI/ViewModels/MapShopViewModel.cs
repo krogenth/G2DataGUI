@@ -32,5 +32,5 @@ public class MapShopViewModel : BaseViewModel
 		}
 	}
 
-	public bool HasMapShop { get => _selectedMapShop != null; }
+	public bool HasMapShop => _selectedMapShop != null;
 }

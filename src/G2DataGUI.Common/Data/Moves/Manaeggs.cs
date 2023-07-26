@@ -24,7 +24,7 @@ public class Manaeggs
 	public void Reload() => ReadManaeggsAsync();
 
 	private async Task ReadManaeggsAsync() =>
-		await Task.Run(() => ReadManaeggs()).ConfigureAwait(false);
+		await Task.Run(ReadManaeggs).ConfigureAwait(false);
 
 	private void ReadManaeggs()
     {

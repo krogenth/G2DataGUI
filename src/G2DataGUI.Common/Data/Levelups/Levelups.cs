@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
-
 using G2DataGUI.Common.Data.Common;
 using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Levelups;
+
 public class Levelups : BaseContainer
 {
 	public static Levelups Instance { get; private set; } = new();
@@ -22,7 +22,8 @@ public class Levelups : BaseContainer
 
 	public void Reload() => ReadLevelupsAsync();
 
-	private async Task ReadLevelupsAsync() => await Task.Run(() => ReadLevelups()).ConfigureAwait(false);
+	private async Task ReadLevelupsAsync() =>
+		await Task.Run(ReadLevelups).ConfigureAwait(false);
 
 	private void ReadLevelups()
 	{

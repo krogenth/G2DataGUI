@@ -1,7 +1,6 @@
 ﻿using G2DataGUI.Common.Data.Skills;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.UI.ViewModels;

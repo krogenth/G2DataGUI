@@ -37,7 +37,7 @@ public class MapIconsViewModel : BaseViewModel
 		}
 	}
 
-	public bool HasMapIcons { get => SelectedMapIcons.Count > 0; }
+	public bool HasMapIcons => SelectedMapIcons.Count > 0;
 
 	public int SelectedMapIconIndex
 	{

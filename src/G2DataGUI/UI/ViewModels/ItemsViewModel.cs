@@ -10,7 +10,7 @@ namespace G2DataGUI.UI.ViewModels;
 public sealed class ItemsViewModel : BaseViewModel
 {
     public ObservableCollection<Item> GameItems { get; private set; } = Items.Instance.GameItems;
-    private int _selectedItemIndex = 0;
+    private int _selectedItemIndex;
     private Item _selectedItemItem;
     private readonly ItemEquipmentViewModel _itemEquipmentViewModel = ItemEquipmentViewModel.Instance;
     private readonly ItemUsableViewModel _itemUsableViewModel = ItemUsableViewModel.Instance;

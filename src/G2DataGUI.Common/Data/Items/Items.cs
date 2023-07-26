@@ -23,7 +23,7 @@ public class Items
 	public void Reload() => ReadItemsAsync();
 
 	private async Task ReadItemsAsync() =>
-		await Task.Run(() => ReadItems()).ConfigureAwait(false);
+		await Task.Run(ReadItems).ConfigureAwait(false);
 
 	private void ReadItems()
     {
