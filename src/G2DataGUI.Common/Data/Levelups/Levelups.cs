@@ -15,12 +15,12 @@ public class Levelups : BaseContainer
 
 	private Levelups()
 	{
-		ReadLevelupsAsync();
+        _ = ReadLevelupsAsync();
 	}
 
 	public void Save() => WriteLevelups();
 
-	public void Reload() => ReadLevelupsAsync();
+	public void Reload() => _ = ReadLevelupsAsync();
 
 	private async Task ReadLevelupsAsync() =>
 		await Task.Run(ReadLevelups).ConfigureAwait(false);

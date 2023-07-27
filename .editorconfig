@@ -44,7 +44,7 @@ indent_size = 4
 [*.{cs,vb}]
 
 # Organize usings
-dotnet_separate_import_directive_groups = true
+dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first     = true
 
 # this. and Me. preferences

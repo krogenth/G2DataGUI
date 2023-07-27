@@ -15,12 +15,12 @@ public class Skills
 
     private Skills()
     {
-		ReadSkillsAsync();
+        _ = ReadSkillsAsync();
     }
 
 	public void Save() => WriteSkills();
 
-	public void Reload() => ReadSkillsAsync();
+	public void Reload() => _ = ReadSkillsAsync();
 
 	private async Task ReadSkillsAsync() =>
 		await Task.Run(ReadSkills).ConfigureAwait(false);
@@ -37,11 +37,7 @@ public class Skills
         memReader.Seek(0, SeekOrigin.Begin);
         while (memReader.Position < memReader.Length)
         {
-            Skill skill = Skill.ReadSkill(memReader);
-            if (skill != null)
-            {
-                GameSkills.Add(skill);
-            }
+            GameSkills.Add(Skill.ReadSkill(memReader));
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);

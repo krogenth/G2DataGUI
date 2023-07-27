@@ -15,12 +15,12 @@ public class Moves
 
     private Moves()
     {
-		ReadMovesAsync();
+		_ = ReadMovesAsync();
     }
 
 	public void Save() => WriteMoves();
 
-	public void Reload() => ReadMovesAsync();
+	public void Reload() => _ = ReadMovesAsync();
 
 	private async Task ReadMovesAsync() =>
 		await Task.Run(ReadMoves).ConfigureAwait(false);
@@ -38,11 +38,8 @@ public class Moves
         while (memReader.Position < memReader.Length)
         {
             Move move = Move.ReadMove(memReader);
-            if (move != null)
-            {
-                move.ID = Convert.ToByte(GameMoves.Count);
-                GameMoves.Add(move);
-            }
+            move.ID = Convert.ToByte(GameMoves.Count);
+            GameMoves.Add(move);
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);

@@ -28,6 +28,7 @@
 			<content:Skillbooks Name="SkillbooksPage" />
 			<content:Specials Name="SpecialsPage" />
 			<content:Items Name="ItemsPage" />
+			<content:StartingStats Name="StartingStatsPage" />
 			<content:Enemies Name="EnemiesPage" />
 			<content:Bosses Name="BossesPage" />
 			<content:Maps Name="MapsPage" />
@@ -53,6 +54,8 @@
 												Tag="SpecialsPage" />
 				<controls:NavigationViewItem Content="Items"
 												Tag="ItemsPage" />
+				<controls:NavigationViewItem Content="Starting Stats"
+												Tag="StartingStatsPage" />
 				<controls:NavigationViewItem Content="Enemies"
 												Tag="EnemiesPage" />
 				<controls:NavigationViewItem Content="Bosses"

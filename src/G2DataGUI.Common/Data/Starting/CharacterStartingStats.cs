@@ -6,7 +6,10 @@ namespace G2DataGUI.Common.Data.Starting;
 
 public class CharacterStartingStats : BaseContainer
 {
-	public uint Experience { get; set; }
+	// used for UI list for specifying who these stats are for
+    public string CharacterName { get; private set; }
+
+    public uint Experience { get; set; }
 	public short Weapon { get; set; }
 	public short Armor { get; set; }
 	public short Headgear { get; set; }
@@ -50,11 +53,12 @@ public class CharacterStartingStats : BaseContainer
 	public short Unknown22 { get; set; }
 	public short Unknown23 { get; set; }
 
-	public static CharacterStartingStats ReadCharacterStartingStats(Stream reader)
+	public static CharacterStartingStats ReadCharacterStartingStats(Stream reader, string characterName)
 	{
 		CharacterStartingStats stats = new()
 		{
-			Experience = reader.ReadRawUInt(),
+            CharacterName = characterName,
+            Experience = reader.ReadRawUInt(),
 			Weapon = reader.ReadRawShort(),
 			Armor = reader.ReadRawShort(),
 			Headgear = reader.ReadRawShort(),

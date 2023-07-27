@@ -45,6 +45,9 @@ public partial class WindowContent : UserControl
                 case "ItemsPage":
                     NavPanel.Content = ItemsPage;
                     break;
+                case "StartingStatsPage":
+                    NavPanel.Content = StartingStatsPage;
+                    break;
                 case "EnemiesPage":
                     NavPanel.Content = EnemiesPage;
 					break;

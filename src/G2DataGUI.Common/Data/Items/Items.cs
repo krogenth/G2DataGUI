@@ -15,12 +15,12 @@ public class Items
 
     private Items()
     {
-		ReadItemsAsync();
+		_ = ReadItemsAsync();
     }
 
 	public void Save() => WriteItems();
 
-	public void Reload() => ReadItemsAsync();
+	public void Reload() => _ = ReadItemsAsync();
 
 	private async Task ReadItemsAsync() =>
 		await Task.Run(ReadItems).ConfigureAwait(false);
@@ -38,11 +38,8 @@ public class Items
         for (uint index = 0; index < NumberOfItems; index++)
         {
             Item item = Item.ReadItem(memReader);
-            if (item != null)
-            {
-                item.ID = index;
-                GameItems.Add(item);
-            }
+            item.ID = index;
+            GameItems.Add(item);
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);

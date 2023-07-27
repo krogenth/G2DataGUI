@@ -14,17 +14,17 @@ public class Enemies
 
     private Enemies()
     {
-		ReadEnemiesAsync();
+        _ = ReadEnemiesAsync();
 		DifficultyMode.Instance.DifficultyChanged += OnDifficultyChange;
 	}
 
 	public void Save() => WriteEnemies();
 
-	public void Reload() => ReadEnemiesAsync();
+	public void Reload() => _ = ReadEnemiesAsync();
 
-	private void OnDifficultyChange(object sender, EventArgs e) => ReadEnemies();
+	private void OnDifficultyChange(object sender, EventArgs e) => _ = ReadEnemiesAsync();
 
-	private async Task ReadEnemiesAsync() =>
+    private async Task ReadEnemiesAsync() =>
 		await Task.Run(ReadEnemies).ConfigureAwait(false);
 
 	private void ReadEnemies()

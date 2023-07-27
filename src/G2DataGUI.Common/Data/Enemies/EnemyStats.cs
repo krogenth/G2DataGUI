@@ -1,14 +1,13 @@
 ﻿using G2DataGUI.Common.Data.Common;
 using G2DataGUI.IO.Streams;
 using G2DataGUI.UI.Common.Locale;
-
 using System.IO;
 
 namespace G2DataGUI.Common.Data.Enemies;
 
 public class EnemyStats : BaseContainer
 {
-	private FixedLengthName _name;
+	private FixedLengthName _name = new();
     public byte Unknown1 { get; set; }
     public byte Unknown2 { get; set; }
     public byte Type1 { get; set; }

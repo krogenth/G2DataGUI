@@ -16,12 +16,12 @@ public class Manaeggs
 
     private Manaeggs()
     {
-		ReadManaeggsAsync();
+        _ = ReadManaeggsAsync();
     }
 
 	public void Save() => WriteManaeggs();
 
-	public void Reload() => ReadManaeggsAsync();
+	public void Reload() => _ = ReadManaeggsAsync();
 
 	private async Task ReadManaeggsAsync() =>
 		await Task.Run(ReadManaeggs).ConfigureAwait(false);
@@ -35,11 +35,7 @@ public class Manaeggs
         memReader.Seek(0, SeekOrigin.Begin);
         while (memReader.Position < memReader.Length)
         {
-            Manaegg manaegg = Manaegg.ReadManaegg(memReader);
-            if (manaegg != null)
-            {
-                GameManaeggs.Add(manaegg);
-            }
+            GameManaeggs.Add(Manaegg.ReadManaegg(memReader));
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);

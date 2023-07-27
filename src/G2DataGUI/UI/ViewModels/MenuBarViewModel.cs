@@ -11,6 +11,7 @@ using G2DataGUI.Common;
 using G2DataGUI.Common.Data.Enemies;
 using G2DataGUI.Common.Data.Bosses;
 using G2DataGUI.Common.Data.Maps;
+using G2DataGUI.Common.Data.Starting;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -48,6 +49,7 @@ public sealed class MenuBarViewModel : BaseViewModel
         Skillbooks.Instance.Save();
         SpecialSets.Instance.Save();
         Items.Instance.Save();
+        StartingStats.Instance.Save();
 		Enemies.Instance.Save();
 		Bosses.Instance.Save();
 		Maps.Instance.Save();
@@ -69,6 +71,7 @@ public sealed class MenuBarViewModel : BaseViewModel
         Skillbooks.Instance.Reload();
         SpecialSets.Instance.Reload();
         Items.Instance.Reload();
+        StartingStats.Instance.Reload();
 		Enemies.Instance.Reload();
 		Bosses.Instance.Reload();
     }

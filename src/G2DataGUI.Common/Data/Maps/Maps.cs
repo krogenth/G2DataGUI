@@ -13,12 +13,12 @@ public class Maps
 
     private Maps()
     {
-		ReadMapsAsync();
+		_ = ReadMapsAsync();
     }
 
 	public void Save() => WriteMaps();
 
-	public void Reload() => ReadMapsAsync();
+	public void Reload() => _ = ReadMapsAsync();
 
 	private async Task ReadMapsAsync() =>
 		await Task.Run(ReadMaps).ConfigureAwait(false);
@@ -29,11 +29,7 @@ public class Maps
         foreach(var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))
         {
             using FileStream reader = File.Open(file, FileMode.Open);
-            Map map = Map.ReadMap(reader, file);
-            if (map != null)
-            {
-				GameMaps.Add(map);
-            }
+            GameMaps.Add(Map.ReadMap(reader, file));
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);

@@ -16,12 +16,12 @@ public class Skillbooks
 
     private Skillbooks()
     {
-		ReadSkillbooksAsync();
+		_ = ReadSkillbooksAsync();
     }
 
 	public void Save() => WriteSkillbooks();
 
-	public void Reload() => ReadSkillbooksAsync();
+	public void Reload() => _ = ReadSkillbooksAsync();
 
 	private async Task ReadSkillbooksAsync() =>
 		await Task.Run(ReadSkillbooks).ConfigureAwait(false);
@@ -35,11 +35,7 @@ public class Skillbooks
         memReader.Seek(0, SeekOrigin.Begin);
         while (memReader.Position < memReader.Length)
         {
-            Skillbook skillbook = Skillbook.ReadSkillbook(memReader);
-            if (skillbook != null)
-            {
-                GameSkillbooks.Add(skillbook);
-            }
+            GameSkillbooks.Add(Skillbook.ReadSkillbook(memReader));
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);

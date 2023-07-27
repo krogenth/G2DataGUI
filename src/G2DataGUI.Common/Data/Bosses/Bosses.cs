@@ -14,15 +14,15 @@ public class Bosses
 
 	private Bosses()
     {
-		ReadBossesAsync();
+		_ = ReadBossesAsync();
 		DifficultyMode.Instance.DifficultyChanged += OnDifficultyChange;
     }
 
 	public void Save() => WriteBosses();
 
-	public void Reload() => ReadBossesAsync();
+	public void Reload() => _ = ReadBossesAsync();
 
-	private void OnDifficultyChange(object sender, EventArgs eventArgs) => ReadBosses();
+	private void OnDifficultyChange(object sender, EventArgs eventArgs) => _ = ReadBossesAsync();
 
 	private async Task ReadBossesAsync() =>
 		await Task.Run(ReadBosses).ConfigureAwait(false);

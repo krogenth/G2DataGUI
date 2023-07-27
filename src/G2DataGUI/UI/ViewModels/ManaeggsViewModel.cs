@@ -9,7 +9,7 @@ public sealed class ManaeggsViewModel : BaseViewModel
 {
     public ObservableCollection<Manaegg> GameManaeggs { get; private set; } = Manaeggs.Instance.GameManaeggs;
     public ObservableCollection<Move> GameMoves { get; private set; } = Moves.Instance.GameMoves;
-    private int _selectedManaeggIndex = 0;
+    private int _selectedManaeggIndex;
     private Manaegg _selectedManaeggItem;
 
     public static ManaeggsViewModel Instance { get; private set; } = new();

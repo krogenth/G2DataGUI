@@ -16,12 +16,12 @@ public class SpecialSets
 
     private SpecialSets()
     {
-		ReadSpecialSetsAsync();
+        _ = ReadSpecialSetsAsync();
     }
 
 	public void Save() => WriteSpecialSets();
 
-	public void Reload() => ReadSpecialSetsAsync();
+	public void Reload() => _ = ReadSpecialSetsAsync();
 
 	private async Task ReadSpecialSetsAsync() =>
 		await Task.Run(ReadSpecialSets).ConfigureAwait(false);
@@ -36,11 +36,7 @@ public class SpecialSets
             memReader.Seek(0, SeekOrigin.Begin);
             while (memReader.Position < memReader.Length)
             {
-                SpecialSet specialset = SpecialSet.ReadSpecialSet(memReader);
-                if (specialset != null)
-                {
-                    GameSpecialSets.Add(specialset);
-                }
+                GameSpecialSets.Add(SpecialSet.ReadSpecialSet(memReader));
             }
         }
 

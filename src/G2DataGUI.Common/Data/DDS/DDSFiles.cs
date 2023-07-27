@@ -13,10 +13,10 @@ public class DDSFiles
 
     private DDSFiles()
     {
-		ReadDDSFileSystemStructureAsync();
+        _ = ReadDDSFileSystemStructureAsync();
     }
 
-	public void Reload() => ReadDDSFileSystemStructureAsync();
+	public void Reload() => _ = ReadDDSFileSystemStructureAsync();
 
 	private async Task ReadDDSFileSystemStructureAsync() =>
 		await Task.Run(() => ReadDDSFileSystemStructure()).ConfigureAwait(false);

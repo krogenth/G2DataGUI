@@ -13,11 +13,12 @@ Current support is limited to:
 6. Enemies(normal or hardmode)
 7. Bosses(normal or hardmode)
 8. Items
+9. Starting Stats/Equipment
 
 ## How to use
 
-1. Move the program to the game root directory, where `grandia2.exe` is(steamapps/common/Grandia II Anniversary Edition).
-2. Back-up the content/data/ in case anything gets messed up
+1. Move the contents of the `publish` folder to the game root directory, where `grandia2.exe` is(steamapps/common/Grandia II Anniversary Edition).
+2. Back-up the `content/data/` directory in case anything gets messed up
 3. Run the program
 4. Edit values as desired
 5. Save
