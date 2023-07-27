@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using G2DataGUI.Common.Data.Common;
+using G2DataGUI.Common.Data.Items;
 using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Starting;
@@ -52,6 +53,14 @@ public class CharacterStartingStats : BaseContainer
 	public short Unknown21 { get; set; }
 	public short Unknown22 { get; set; }
 	public short Unknown23 { get; set; }
+
+	public static string CSVHeader =>
+		$"Character,Experience,Weapon,Armor,Headgear,Footwear,Accessory,Manaegg,Stamina,Unknown #1," +
+		$"Unknown #2,Unknown #3,Unknown #4,Unknown #5,Unknown #6,Unknown #7,Unknown #8,Unknown #9," +
+		$"Unknown #10,IP Stun,IP Cancel Stun,Combo SP Regen,Crit SP Regen,Unknown #11,Hit SP Regen," +
+		$"Unknown #12,Still Evasion Rate,Moving Evasion Rate,Knockback Resist,Unknown #13,Status Recovery Time," +
+		$"TDMG,Unknown #14,THEAL,Size,Unknown #15,Unknown #16,Unknown #17,Unknown #18,Unknown #19,Unknown #20," +
+		$"Unknown #21,Unknown #22,Unknown #23";
 
 	public static CharacterStartingStats ReadCharacterStartingStats(Stream reader, string characterName)
 	{
@@ -150,5 +159,54 @@ public class CharacterStartingStats : BaseContainer
 		writer.WriteRawShort(Unknown21);
 		writer.WriteRawShort(Unknown22);
 		writer.WriteRawShort(Unknown23);
+	}
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write(
+			$"{CharacterName}," +
+			$"{Experience}," +
+			$"{Items.Items.Instance.GameItems[Weapon].Name}," +
+			$"{Items.Items.Instance.GameItems[Armor].Name}," +
+			$"{Items.Items.Instance.GameItems[Headgear].Name}," +
+			$"{Items.Items.Instance.GameItems[Footwear].Name}," +
+			$"{Items.Items.Instance.GameItems[Accessory].Name}," +
+			$"{Items.Items.Instance.GameItems[Manaegg].Name}," +
+			$"{Stamina}," +
+			$"{Unknown1}," +
+			$"{Unknown2}," +
+			$"{Unknown3}," +
+			$"{Unknown4}," +
+			$"{Unknown5}," +
+			$"{Unknown6}," +
+			$"{Unknown7}," +
+			$"{Unknown8}," +
+			$"{Unknown9}," +
+			$"{Unknown10}," +
+			$"{IpStun}," +
+			$"{IpCancelStun}," +
+			$"{ComboSpRegen}," +
+			$"{CritSpRegen}," +
+			$"{Unknown11}," +
+			$"{HitSpRegen}," +
+			$"{Unknown12}," +
+			$"{EvasionStillRate}," +
+			$"{EvasionMovingRate}," +
+			$"{KnockbackResist}," +
+			$"{Unknown13}," +
+			$"{StatusRecoveryTime}," +
+			$"{TDMG}," +
+			$"{Unknown14}," +
+			$"{THEAL}," +
+			$"{Size}," +
+			$"{Unknown15}," +
+			$"{Unknown16}," +
+			$"{Unknown17}," +
+			$"{Unknown18}," +
+			$"{Unknown19}," +
+			$"{Unknown20}," +
+			$"{Unknown21}," +
+			$"{Unknown22}," +
+			$"{Unknown23},");
 	}
 }

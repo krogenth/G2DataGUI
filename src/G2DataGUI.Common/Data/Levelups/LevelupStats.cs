@@ -21,6 +21,10 @@ public class LevelupStats : BaseContainer
 	public short IncreaseMentality { get; set; }
 	public short IncreaseSkillSlot { get; set; }
 
+	public static string CSVHeader =>
+		$"Experience,HP Increase,MP Increase,SP Increase,Strength Increase,Vitality Increase,Action Increase," +
+		$"Movement Increase,Magic Increase,Mentality Increase,Skillslot Increase";
+
 	public static LevelupStats ReadLevelupStats(Stream reader, int index)
 	{
 		LevelupStats stats = new()
@@ -54,5 +58,21 @@ public class LevelupStats : BaseContainer
 		writer.WriteRawShort(IncreaseMagic);
 		writer.WriteRawShort(IncreaseMentality);
 		writer.WriteRawShort(IncreaseSkillSlot);
+	}
+
+	public void GenerateCSV(StreamWriter writer)
+	{
+		writer.Write(
+			$"{Experience}," +
+			$"{IncreaseHP}," +
+			$"{IncreaseMP}," +
+			$"{IncreaseSP}," +
+			$"{IncreaseStrength}," +
+			$"{IncreaseVitality}," +
+			$"{IncreaseAction}," +
+			$"{IncreaseMovement}," +
+			$"{IncreaseMagic}," +
+			$"{IncreaseMentality}," +
+			$"{IncreaseSkillSlot}");
 	}
 }

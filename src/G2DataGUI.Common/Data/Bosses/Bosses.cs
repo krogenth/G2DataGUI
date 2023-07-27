@@ -66,8 +66,8 @@ public class Bosses
 	{
 		using FileStream stream = File.Open(
 			DifficultyMode.Instance.IsHardMode ?
-			ProjectPaths.BossesHardmodeCSVFile :
-			ProjectPaths.BossesCSVFile,
+			ProjectPaths.BossesHardmodeCSVPath :
+			ProjectPaths.BossesCSVPath,
 			FileMode.Create,
 			FileAccess.Write);
 		using StreamWriter writer = new(stream);
@@ -82,8 +82,8 @@ public class Bosses
 	{
 		using FileStream stream = File.Open(
 			DifficultyMode.Instance.IsHardMode ?
-			ProjectPaths.BossHardmodeMovesCSVFile :
-			ProjectPaths.BossMovesCSVFile,
+			ProjectPaths.BossHardmodeMovesCSVPath :
+			ProjectPaths.BossMovesCSVPath,
 			FileMode.Create,
 			FileAccess.Write);
 		using StreamWriter writer = new(stream);

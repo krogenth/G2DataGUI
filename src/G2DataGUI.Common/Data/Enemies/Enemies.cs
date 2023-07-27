@@ -68,8 +68,8 @@ public class Enemies
 	{
 		using FileStream stream = File.Open(
 			DifficultyMode.Instance.IsHardMode ?
-			ProjectPaths.EnemiesHardmodeCSVFile :
-			ProjectPaths.EnemiesCSVFile,
+			ProjectPaths.EnemiesHardmodeCSVPath :
+			ProjectPaths.EnemiesCSVPath,
 			FileMode.Create,
 			FileAccess.Write);
 		using StreamWriter writer = new(stream);
@@ -84,8 +84,8 @@ public class Enemies
 	{
 		using FileStream stream = File.Open(
 			DifficultyMode.Instance.IsHardMode ?
-			ProjectPaths.EnemyHardmodeMovesCSVFile :
-			ProjectPaths.EnemyMovesCSVFile,
+			ProjectPaths.EnemyHardmodeMovesCSVPath :
+			ProjectPaths.EnemyMovesCSVPath,
 			FileMode.Create,
 			FileAccess.Write);
 		using StreamWriter writer = new(stream);

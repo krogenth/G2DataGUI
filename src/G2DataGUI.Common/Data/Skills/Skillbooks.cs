@@ -52,7 +52,7 @@ public class Skillbooks
 
 	public void GenerateCSV()
 	{
-		using FileStream stream = File.Open(ProjectPaths.SkillbooksCSVFile, FileMode.Create, FileAccess.Write);
+		using FileStream stream = File.Open(ProjectPaths.SkillbooksCSVPath, FileMode.Create, FileAccess.Write);
 		using StreamWriter writer = new(stream);
 		writer.Write("Skillbook,");
 		writer.WriteLine(Skillbook.CSVHeader);

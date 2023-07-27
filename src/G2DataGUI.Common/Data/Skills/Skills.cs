@@ -57,7 +57,7 @@ public class Skills
 
 	public void GenerateCSV()
 	{
-		using FileStream stream = File.Open(ProjectPaths.SkillsCSVFile, FileMode.Create, FileAccess.Write);
+		using FileStream stream = File.Open(ProjectPaths.SkillsCSVPath, FileMode.Create, FileAccess.Write);
 		using StreamWriter writer = new(stream);
 		writer.WriteLine($"{Skill.CSVHeader}");
 		foreach (var skill in  GameSkills)

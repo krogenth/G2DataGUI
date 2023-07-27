@@ -59,4 +59,19 @@ public class StartingStats : BaseContainer
             stats.WriteCharacterStartingStats(writer);
         }
     }
+
+	public void GenerateCSV()
+	{
+		using FileStream stream = File.Open(
+			ProjectPaths.InitialCSVPath,
+			FileMode.Create,
+			FileAccess.Write);
+		using StreamWriter writer = new(stream);
+		writer.WriteLine(CharacterStartingStats.CSVHeader);
+		foreach (var startingStats in GameStartingStats)
+		{
+			startingStats.GenerateCSV(writer);
+			writer.WriteLine();
+		}
+	}
 }

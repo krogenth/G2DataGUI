@@ -52,7 +52,7 @@ public class Manaeggs
 
     public void GenerateCSV()
     {
-        using FileStream stream = File.Open(ProjectPaths.ManaeggsCSVFile, FileMode.Create, FileAccess.Write);
+        using FileStream stream = File.Open(ProjectPaths.ManaeggsCSVPath, FileMode.Create, FileAccess.Write);
         using StreamWriter writer = new(stream);
 		writer.Write("Manaegg,");
         writer.WriteLine(Manaegg.CSVHeader);

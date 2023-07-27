@@ -54,7 +54,7 @@ public class SpecialSets
 
     public void GenerateCSV()
     {
-        using FileStream stream = File.Open(ProjectPaths.SpecialsCSVFile, FileMode.Create, FileAccess.Write);
+        using FileStream stream = File.Open(ProjectPaths.SpecialsCSVPath, FileMode.Create, FileAccess.Write);
         using StreamWriter writer = new(stream);
 		writer.Write("Character,");
         writer.WriteLine(SpecialSet.CSVHeader);

@@ -59,4 +59,18 @@ public class Levelups : BaseContainer
 			levelups.WriteCharacterLevelups(writer);
 		}
 	}
+
+	public void GenerateCSV()
+	{
+		using FileStream stream = File.Open(
+			ProjectPaths.LevelupsCSVPath,
+			FileMode.Create,
+			FileAccess.Write);
+		using StreamWriter writer = new(stream);
+		writer.WriteLine(CharacterLevelups.CSVHeader);
+		foreach (var levelups in GameLevelups)
+		{
+			levelups.GenerateCSV(writer);
+		}
+	}
 }

@@ -1,17 +1,18 @@
-﻿using G2DataGUI.Common.Data.Items;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using G2DataGUI.Common.Data.Items;
 using G2DataGUI.Common.Data.Moves;
 using G2DataGUI.Common.Data.Skills;
 using G2DataGUI.Events;
 using G2DataGUI.UI.Windows;
-using System;
-using System.Diagnostics;
-using System.IO;
 using G2DataGUI.UI.Common.ViewModels;
 using G2DataGUI.Common;
 using G2DataGUI.Common.Data.Enemies;
 using G2DataGUI.Common.Data.Bosses;
 using G2DataGUI.Common.Data.Maps;
 using G2DataGUI.Common.Data.Starting;
+using G2DataGUI.Common.Data.Levelups;
 
 namespace G2DataGUI.UI.ViewModels;
 
@@ -50,6 +51,7 @@ public sealed class MenuBarViewModel : BaseViewModel
         SpecialSets.Instance.Save();
         Items.Instance.Save();
         StartingStats.Instance.Save();
+		Levelups.Instance.Save();
 		Enemies.Instance.Save();
 		Bosses.Instance.Save();
 		Maps.Instance.Save();
@@ -72,6 +74,7 @@ public sealed class MenuBarViewModel : BaseViewModel
         SpecialSets.Instance.Reload();
         Items.Instance.Reload();
         StartingStats.Instance.Reload();
+		Levelups.Instance.Reload();
 		Enemies.Instance.Reload();
 		Bosses.Instance.Reload();
     }
@@ -88,6 +91,8 @@ public sealed class MenuBarViewModel : BaseViewModel
         Manaeggs.Instance.GenerateCSV();
         Skillbooks.Instance.GenerateCSV();
         SpecialSets.Instance.GenerateCSV();
+		StartingStats.Instance.GenerateCSV();
+		Levelups.Instance.GenerateCSV();
 		Enemies.Instance.GenerateCSV();
 		Bosses.Instance.GenerateCSV();
     }

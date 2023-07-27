@@ -59,7 +59,10 @@ public class Moves
 
     public void GenerateCSV()
     {
-        using FileStream stream = File.Open(ProjectPaths.MovesCSVFile, FileMode.Create, FileAccess.Write);
+        using FileStream stream = File.Open(
+			ProjectPaths.MovesCSVPath,
+			FileMode.Create,
+			FileAccess.Write);
         using StreamWriter writer = new(stream);
         writer.WriteLine(Move.CSVHeader);
         foreach (Move move in GameMoves)

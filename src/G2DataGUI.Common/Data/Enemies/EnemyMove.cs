@@ -5,7 +5,7 @@ namespace G2DataGUI.Common.Data.Enemies;
 
 public class EnemyMove : BaseContainer
 {
-    private FixedLengthName _name;
+    private FixedLengthName _name = new();
     public EnemyMoveStats Stats { get; private set; }
 
     public string Name
