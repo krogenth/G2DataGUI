@@ -69,21 +69,6 @@ jobs:
         run: |
           dotnet publish -c Release -r "${{ matrix.DOTNET_RUNTIME_IDENTIFIER }}" -o ./${{ env.PUBLISH_DIRECTORY }} -p:Version="${{ steps.version_info.outputs.build_version }}" -p:SourceRevisionId="${{ steps.version_info.outputs.git_short_hash }}" -p:DebugType=embedded -p:PublishTrimmed=true src/G2DataGUI --self-contained true
 
-      - name: Debug root Directory Contents
-        run: |
-          echo "$(ls ./)"
-        shell: bash
-
-      - name: Debug ${{ env.RELEASE_DIRECTORY }} Directory Contents
-        run: |
-          echo "$(ls ./${{ env.RELEASE_DIRECTORY }})"
-        shell: bash
-
-      - name: Debug ${{ env.PUBLISH_DIRECTORY }} Directory Contents
-        run: |
-          echo "$(ls ./${{ env.PUBLISH_DIRECTORY }})"
-        shell: bash
-
       - name: Pack Windows Build
         if : matrix.os == 'windows-latest'
         run: |
