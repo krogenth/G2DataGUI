@@ -1,0 +1,11 @@
+Skillbook,Skill,Starting Level,Required Level,Unknown #1,Skill,Starting Level,Required Level,Unknown #1,Skill,Starting Level,Required Level,Unknown #1,Skill,Starting Level,Required Level,Unknown #1,Skill,Starting Level,Required Level,Unknown #1,Skill,Starting Level,Required Level,Unknown #1
+None,,0,0,0,,0,0,0,,0,0,0,,0,0,0,,0,0,0,,0,0,0
+Adventure Book,Life Up,0,0,0,Strength,0,0,0,Toughness,0,0,0,Dash,0,0,0,Skilled Item Use,0,0,0,Pirate's Ring,0,15,0
+Book of Wizards,Magic Power,0,0,0,Intelligence,0,0,0,Zapfire Chant,0,0,0,Boomflame Chant,0,0,0,Quakeblast Chant,0,0,0,Magic Recover,0,15,0
+Book of Warriors,Life Up,0,0,0,Toughness,0,0,0,Speed,0,0,0,Abandonment,0,0,0,Defensive,0,0,0,Item Recover,0,15,0
+Book of Priests,Life Up,0,0,0,Mentality,0,0,0,Leafwater Chant,0,0,0,Glacier Chant,0,0,0,Woodland Chant,0,0,0,Absorb Magic,0,15,0
+Book of Gales,Dash,0,0,0,Stormcloud Chant,0,0,0,Northwind Chant,0,0,0,Aim for Counter,0,0,0,Skilled Item Use,0,0,0,Decoy,0,15,0
+Book of Swords,Special Power,0,0,0,Strength,0,0,0,Abandonment,0,0,0,Defensive,0,0,0,Fighting Spirit,0,0,0,Move Recover,0,15,0
+Book of War,Life Up,0,0,0,Special Power,0,0,0,Speed,0,0,0,Aim for Counter,0,0,0,Fighting Spirit,0,0,0,Full-Body Blow,0,15,0
+Book of Sages,Magic Power,0,0,0,Intelligence,0,0,0,Mentality,0,0,0,Wizardry Chant,0,0,0,Mystic Chant,0,0,0,Magica Esoterica,0,15,0
+Book of Learning,Life Up,0,0,0,Toughness,0,0,0,Dash,0,0,0,Intelligence,1,0,0,Mentality,0,0,0,Magica Esoterica,0,15,0

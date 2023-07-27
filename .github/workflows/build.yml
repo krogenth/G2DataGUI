@@ -1,0 +1,29 @@
+name: Build Job
+
+on: [pull_request, push]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: .
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '7.0.x' ]
+        configuration: [ Debug, Release ]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Install Dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c ${{ matrix.configuration }}

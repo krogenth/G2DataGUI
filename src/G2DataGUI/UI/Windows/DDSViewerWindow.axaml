@@ -1,0 +1,13 @@
+<Window x:Class="G2DataGUI.UI.Windows.DDSViewerWindow"
+		xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:vm="using:G2DataGUI.UI.ViewModels"
+		xmlns:views="using:G2DataGUI.UI.Views"
+		Width="{Binding WindowWidth}"
+		Height="1000"
+		Title="DDS Viewer"
+        mc:Ignorable="d">
+	<views:DDSViewerView />
+</Window>

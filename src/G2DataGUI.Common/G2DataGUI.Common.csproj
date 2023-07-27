@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <BaseOutputPath>..\..\build</BaseOutputPath>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
+    <ProjectReference Include="..\G2DataGUI.UI.Common\G2DataGUI.UI.Common.csproj" />
+  </ItemGroup>
+
+</Project>

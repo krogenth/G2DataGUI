@@ -1,0 +1,220 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.MapIcons"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:G2DataGUI.UI.ViewModels"
+             mc:Ignorable="d"
+             Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:MapIconsViewModel">
+	<Grid Name="MapIconsPage"
+		  Margin="20,10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="MapIconsList"
+				 Items="{Binding SelectedMapIcons}"
+				 SelectedIndex="{Binding SelectedMapIconIndex}"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Id, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Column="1"
+					  IsVisible="{Binding HasMapIcons}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<StackPanel Margin="4">
+							<TextBlock Text="ID:" />
+							<TextBox Text="{Binding SelectedMapIconItem.Id, Mode=TwoWay}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Flag" />
+							<NumericUpDown Value="{Binding SelectedMapIconItem.Flag}"
+										   Increment="1"
+										   Minimum="-32768"
+										   Maximum="32767" />
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Position"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="X:" />
+								<NumericUpDown Value="{Binding SelectedMapIconItem.Position.X}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Y:" />
+								<NumericUpDown Value="{Binding SelectedMapIconItem.Position.Y}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Z:" />
+								<NumericUpDown Value="{Binding SelectedMapIconItem.Position.Z}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="YAngle:" />
+								<NumericUpDown Value="{Binding SelectedMapIconItem.YAngle}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Items"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Item #1:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedMapIconItem.Item1Offset}"
+										  Items="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Item #2:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedMapIconItem.Item2Offset}"
+										  Items="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Item #3:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedMapIconItem.Item3Offset}"
+										  Items="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #1:" />
+								<NumericUpDown Value="{Binding SelectedMapIconItem.Unknown1}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #2:" />
+								<NumericUpDown Value="{Binding SelectedMapIconItem.Unknown1}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #3:" />
+								<NumericUpDown Value="{Binding SelectedMapIconItem.Unknown3}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

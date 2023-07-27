@@ -1,0 +1,341 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.MapHTAs"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:G2DataGUI.UI.ViewModels"
+             mc:Ignorable="d"
+             Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:MapHTAsViewModel">
+	<Grid Name="MapHTAsPage"
+		  Margin="20,10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="MapHTAsList"
+				 Items="{Binding SelectedMapHTAs}"
+				 SelectedIndex="{Binding SelectedMapHTAIndex}"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Shape, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Column="1"
+						IsVisible="{Binding HasMapHTAs}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="8"
+							Grid.Column="0">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="HTA Type"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Shape:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Shape}"
+												Increment="1"
+												Minimum="0"
+												Maximum="256" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Type:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Type}"
+												Increment="1"
+												Minimum="0"
+												Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Trigger:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Trigger}"
+												Increment="1"
+												Minimum="0"
+												Maximum="256" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Attribute:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Attribute}"
+												Increment="1"
+												Minimum="0"
+												Maximum="256" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Margin="8"
+							Grid.Column="1">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Minimum"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="X:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Minimum.X}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Y:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Minimum.Y}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Z:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Minimum.Z}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Maximum"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="X:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Maximum.X}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Y:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Maximum.Y}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Z:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Maximum.Z}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Margin="8"
+							Grid.Column="2">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #1:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown1}"
+												Increment="1"
+												Minimum="0"
+												Maximum="256" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #2:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown2}"
+												Increment="1"
+												Minimum="-2147483648"
+												Maximum="2147483647" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #3:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown3}"
+												Increment="1"
+												Minimum="0"
+												Maximum="256" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #4:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown4}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #5:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown5}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+
+						<StackPanel Margin="4">
+							<TextBlock Text="Unknown #6"
+										HorizontalAlignment="Center"
+										Classes="h3" />
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<StackPanel Margin="4"
+											Grid.Column="0">
+									<TextBlock Text="X:" />
+									<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown6.X}"
+													Increment="0.01"
+													FormatString="{}{0:#0.00}" />
+								</StackPanel>
+								<StackPanel Margin="4"
+											Grid.Column="1">
+									<TextBlock Text="Y:" />
+									<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown6.Y}"
+													Increment="0.01"
+													FormatString="{}{0:#0.00}" />
+								</StackPanel>
+							</Grid>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<StackPanel Margin="4"
+											Grid.Column="0">
+									<TextBlock Text="Z:" />
+									<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown6.Z}"
+													Increment="0.01"
+													FormatString="{}{0:#0.00}" />
+								</StackPanel>
+							</Grid>
+						</StackPanel>
+
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #7:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown7}"
+												Increment="1"
+												Minimum="-2147483648"
+												Maximum="2147483647" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #8:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown8}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #9:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown9}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #10:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown10}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #11:" />
+								<NumericUpDown Value="{Binding SelectedMapHTAItem.Unknown11}"
+												Increment="0.01"
+												FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <BaseOutputPath>..\..\build</BaseOutputPath>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Locales\en_US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Assets\Locales\en_US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Ui\**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="FluentAvaloniaUI" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
+    <ProjectReference Include="..\G2DataGUI.LocaleGenerator\G2DataGUI.LocaleGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Locales\en_US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Locales\en_US.json" />
+  </ItemGroup>
+
+</Project>

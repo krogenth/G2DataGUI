@@ -1,0 +1,259 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.Skillbooks"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+             mc:Ignorable="d">
+	<!-- Since we are using a string array with DataTemplate we cannot do CompileBindings -->
+	<Grid Name="SkillbooksPage"
+		  Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="SkillbooksList"
+					Items="{locale:Locale Books}"
+					SelectedIndex="{Binding SelectedSkillbookIndex}"
+					Grid.Row="0"
+					Grid.Column="0"
+					VerticalAlignment="Stretch">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Row="0"
+					  Grid.Column="1">
+			<Grid x:Name="SkillbookDataGrid"
+				Grid.Row="0"
+				Grid.Column="1"
+				Margin="20,10"
+				VerticalAlignment="Stretch">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="4">
+					<TextBlock Text="Slot 1"
+							   HorizontalAlignment="Center"
+							   Classes="h1" />
+					<StackPanel Margin="4">
+						<TextBlock Text="Skill:" />
+						<ComboBox HorizontalAlignment="Stretch"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill1.SkillOffset}"
+								Items="{Binding GameSkills}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text = "{Binding Name}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Starting Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill1.StartingLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="5" />
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Required Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill1.RequiredLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="255" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Grid.Column="1"
+							Margin="4">
+					<TextBlock Text="Slot 2"
+							   HorizontalAlignment="Center"
+							   Classes="h1" />
+					<StackPanel Margin="4">
+						<TextBlock Text="Skill:" />
+						<ComboBox HorizontalAlignment="Stretch"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill2.SkillOffset}"
+								Items="{Binding GameSkills}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text = "{Binding Name}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Starting Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill2.StartingLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="5" />
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Required Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill2.RequiredLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="255" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Grid.Column="2"
+							Margin="4">
+					<TextBlock Text="Slot 1"
+							   HorizontalAlignment="Center"
+							   Classes="h1" />
+					<StackPanel Margin="4">
+						<TextBlock Text="Skill:" />
+						<ComboBox HorizontalAlignment="Stretch"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill3.SkillOffset}"
+								Items="{Binding GameSkills}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text = "{Binding Name}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Starting Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill3.StartingLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="5" />
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Required Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill3.RequiredLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="255" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Grid.Column="3"
+							Margin="4">
+					<TextBlock Text="Slot 1"
+							   HorizontalAlignment="Center"
+							   Classes="h1" />
+					<StackPanel Margin="4">
+						<TextBlock Text="Skill:" />
+						<ComboBox HorizontalAlignment="Stretch"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill4.SkillOffset}"
+								Items="{Binding GameSkills}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text = "{Binding Name}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Starting Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill4.StartingLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="5" />
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Required Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill4.RequiredLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="255" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Grid.Column="4"
+							Margin="4">
+					<TextBlock Text="Slot 1"
+							   HorizontalAlignment="Center"
+							   Classes="h1" />
+					<StackPanel Margin="4">
+						<TextBlock Text="Skill:" />
+						<ComboBox HorizontalAlignment="Stretch"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill5.SkillOffset}"
+								Items="{Binding GameSkills}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text = "{Binding Name}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Starting Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill5.StartingLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="5" />
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Required Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill5.RequiredLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="255" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Grid.Column="5"
+							Margin="4">
+					<TextBlock Text="Slot 1"
+							   HorizontalAlignment="Center"
+							   Classes="h1" />
+					<StackPanel Margin="4">
+						<TextBlock Text="Skill:" />
+						<ComboBox HorizontalAlignment="Stretch"
+								SelectedIndex="{Binding SelectedSkillbookItem.Skill6.SkillOffset}"
+								Items="{Binding GameSkills}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text = "{Binding Name}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Starting Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill6.StartingLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="5" />
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Required Level:" />
+						<NumericUpDown Value="{Binding SelectedSkillbookItem.Skill6.RequiredLevel}"
+									   Increment="1"
+									   Minimum="0"
+									   Maximum="255" />
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

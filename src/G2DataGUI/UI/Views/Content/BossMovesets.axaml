@@ -1,0 +1,433 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.BossMovesets"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+			 xmlns:enemies="using:G2DataGUI.Common.Data.Enemies"
+             mc:Ignorable="d"
+             Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:BossMovesetsViewModel">
+	<Grid Name="BossMovesetGrid"
+			Margin="20,10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="BossMoveList"
+					Items="{Binding SelectedBossMoves}"
+					SelectedIndex="{Binding SelectedBossMoveIndex}"
+					Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate DataType="enemies:EnemyMove">
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Name, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Column="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<StackPanel Margin="4">
+							<TextBlock Text="Name:" />
+							<TextBox Text="{Binding SelectedBossMoveItem.Name}"
+										MaxLength="{Binding SelectedBossMoveItem.MaxNameLength}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<CheckBox IsThreeState="False"
+										IsChecked="{Binding SelectedBossMoveItem.Stats.NormalAttackFlag}">
+								Is Normal Attack?
+							</CheckBox>
+						</StackPanel>
+						<StackPanel Margin="4">
+							<CheckBox IsThreeState="False"
+										IsChecked="{Binding SelectedBossMoveItem.Stats.Knockdown}">
+								Does Knockdown?
+							</CheckBox>
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Targetting"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0">
+								<StackPanel Margin="4">
+									<TextBlock Text="Target Effect:" />
+									<ComboBox HorizontalAlignment="Stretch"
+												SelectedIndex="{Binding SelectedBossMoveItem.Stats.TargetEffect}"
+												Items="{locale:Locale TargetEffects}" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Range:" />
+									<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Range}"
+													Increment="1"
+													Minimum="-32768"
+													Maximum="32767" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Distance:" />
+									<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Distance}"
+													Increment="1"
+													Minimum="-32768"
+													Maximum="32767" />
+								</StackPanel>
+							</StackPanel>
+							<StackPanel Grid.Column="1">
+								<StackPanel Margin="4">
+									<TextBlock Text="Target Type:" />
+									<ComboBox HorizontalAlignment="Stretch"
+												SelectedIndex="{Binding SelectedBossMoveItem.Stats.TargetType}"
+												Items="{locale:Locale TargetTypes}" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Accuracy:" />
+									<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Accuracy}"
+													Increment="1"
+													Minimum="-32768"
+													Maximum="32767" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Knockback:" />
+									<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Knockback}"
+													Increment="1"
+													Minimum="-32768"
+													Maximum="32767" />
+								</StackPanel>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Casting"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Cast Time:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.CastTime}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Recovery Time:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.RecoveryTime}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Animation:" />
+								<ComboBox HorizontalAlignment="Stretch"
+											SelectedIndex="{Binding SelectedBossMoveItem.Stats.Animation}"
+											Items="{locale:Locale Animations}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Stats"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="MP:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.MP}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="SP:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.SP}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Strength:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Strength}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Power:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Power}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="AD:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.AD}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="IP"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Stun:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.IpStun}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32768" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Cancel Stun:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.IpCancelStun}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32768" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Ailments"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.PoisonBitflag}">
+									Poison
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.SleepBitflag}">
+									Sleep
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.ParalysisBitflag}">
+									Paralysis
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.ConfusionBitflag}">
+									Confusion
+								</CheckBox>
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.PlagueBitflag}">
+									Plague
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.Magic_BlockBitflag}">
+									Magic Block
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.Move_BlockBitflag}">
+									Move Block
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+											IsChecked="{Binding SelectedBossMoveItem.Stats.DeathBitflag}">
+									Death
+								</CheckBox>
+							</StackPanel>
+						</Grid>
+						<StackPanel Margin="4">
+							<TextBlock Text="Ailments Chance:" />
+							<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.AilmentsChance}"
+											Increment="1"
+											Minimum="0"
+											Maximum="100" />
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Element Affinity"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Element:" />
+								<ComboBox HorizontalAlignment="Stretch"
+											SelectedIndex="{Binding SelectedBossMoveItem.Stats.Element}"
+											Items="{locale:Locale Elements}" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Element Strength:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.ElementStrength}"
+													Increment="1"
+													Minimum="0"
+													Maximum="10" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Modifiers"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Attack:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.AttackModifier}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Defense:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.DefenseModifier}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Action:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.ActionModifier}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Movement:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.MovementModifier}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Special"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4">
+								<TextBlock Text="Special:" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Special}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #1" />
+								<NumericUpDown Value="{Binding SelectedBossMoveItem.Stats.Unknown1}"
+												Increment="1"
+												Minimum="0"
+												Maximum="255" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

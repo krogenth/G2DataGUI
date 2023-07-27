@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <BaseOutputPath>..\..\build</BaseOutputPath>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pfim" />
+	<PackageReference Include="CommunityToolkit.Diagnostics" />
+  </ItemGroup>
+
+</Project>

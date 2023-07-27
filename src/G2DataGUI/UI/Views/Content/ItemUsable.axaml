@@ -1,0 +1,351 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.ItemUsable"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+             mc:Ignorable="d"
+			 Focusable="True"
+			 x:CompileBindings="True"
+			 x:DataType="vm:ItemUsableViewModel">
+	<StackPanel Margin="8"
+				IsVisible="{Binding HasUsable}">
+		<TextBlock Text="Item Usable"
+				   HorizontalAlignment="Center"
+				   Classes="h1" />
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Targetting"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Target Effect:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.TargetEffect}"
+							  Items="{locale:Locale TargetEffects}" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Target Type:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.TargetType}"
+							  Items="{locale:Locale TargetTypes}" />
+				</StackPanel>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Range:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Range}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="65536" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Knockback:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Knockback}"
+								   Increment="1"
+								   Minimum="-32768"
+								   Maximum="32767" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Casting"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Cast Time:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.CastTime}"
+								   Increment="1"
+								   Minimum="-32768"
+								   Maximum="32767" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Recovery Time:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.RecoveryTime}"
+								   Increment="1"
+								   Minimum="-32768"
+								   Maximum="32767" />
+				</StackPanel>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Animation:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.Animation}"
+							  Items="{locale:Locale Animations}" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Stats"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Power:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Power}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="65536" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="IP"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Damage:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.IpDamage}"
+								   Increment="1"
+								   Minimum="-32768"
+								   Maximum="32767" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="IP cancel Stun:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.IpCancelDamage}"
+								   Increment="1"
+								   Minimum="-32768"
+								   Maximum="32767" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Ailments"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.PoisonBitflag}">
+						Poison
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.SleepBitflag}">
+						Sleep
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.ParalysisBitflag}">
+						Paralysis
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.ConfusionBitflag}">
+						Confusion
+					</CheckBox>
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.PlagueBitflag}">
+						Plague
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.Magic_BlockBitflag}">
+						Magic Block
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.Move_BlockBitflag}">
+						Move Block
+					</CheckBox>
+					<CheckBox IsThreeState="False"
+							  IsChecked="{Binding SelectedItemUsable.DeathBitflag}">
+						Death
+					</CheckBox>
+				</StackPanel>
+			</Grid>
+			<StackPanel Margin="4">
+				<TextBlock Text="Ailments Chance:" />
+				<NumericUpDown Value="{Binding SelectedItemUsable.AilmentsChance}"
+							   Increment="1"
+							   Minimum="0"
+							   Maximum="100" />
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Modifiers"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Attack:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.AttackModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Defense:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.DefenseModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+				</StackPanel>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Action:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.ActionModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Movement:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.MovementModifier}"
+								   Increment="1"
+								   Minimum="-5"
+								   Maximum="5" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Element Affinity"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Element:" />
+					<ComboBox HorizontalAlignment="Stretch"
+							  SelectedIndex="{Binding SelectedItemUsable.Element}"
+							  Items="{locale:Locale Elements}" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Element Strength:"
+							   ToolTip.Tip="Multiply by 10 for percentage" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.ElementStrength}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="10" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Misc."
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Break Chance:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.BreakChance}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="100" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Special:" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Special}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="255" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<StackPanel Margin="24,14">
+			<TextBlock Text="Unknowns"
+					   HorizontalAlignment="Center"
+					   Classes="h2" />
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Unknown #1" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Unknown1}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="256" />
+				</StackPanel>
+				<StackPanel Margin="4"
+							Grid.Column="1">
+					<TextBlock Text="Unknown #2" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Unknown2}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="256" />
+				</StackPanel>
+			</Grid>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4"
+							Grid.Column="0">
+					<TextBlock Text="Unknown #3" />
+					<NumericUpDown Value="{Binding SelectedItemUsable.Unknown3}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="256" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+	</StackPanel>
+</UserControl>
