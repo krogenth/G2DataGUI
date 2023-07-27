@@ -51,7 +51,7 @@ public class StartingStats : BaseContainer
     private void WriteStartingStats()
     {
         using FileStream writer = File.Open(
-            Version.Instance.RootDataDirectory + GamePaths.InitialFile,
+            Version.Instance.RootDataDirectory + GamePaths.InitialPath,
             FileMode.Open,
             FileAccess.Write);
         foreach (var stats in GameStartingStats)

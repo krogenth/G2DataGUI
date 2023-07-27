@@ -51,7 +51,7 @@ public class Levelups : BaseContainer
 	private void WriteLevelups()
 	{
 		using FileStream writer = File.Open(
-			Version.Instance.RootDataDirectory + GamePaths.LevelupsFile,
+			Version.Instance.RootDataDirectory + GamePaths.LevelupsPath,
 			FileMode.OpenOrCreate,
 			FileAccess.Write);
 		foreach (var levelups in GameLevelups)
