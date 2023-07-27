@@ -40,8 +40,9 @@ public class StartingStats : BaseContainer
         while (memReader.Position < memReader.Length)
         {
             GameStartingStats.Add(
-                CharacterStartingStats.ReadCharacterStartingStats(memReader,
-                LocaleManager.Instance[LocaleKeys.Characters][index++]));
+                CharacterStartingStats.ReadCharacterStartingStats(
+                    memReader,
+                    LocaleManager.Instance[LocaleKeys.Characters][index++]));
         }
 
         CollectionRefreshed?.Invoke(this, EventArgs.Empty);

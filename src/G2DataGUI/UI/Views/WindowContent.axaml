@@ -29,6 +29,7 @@
 			<content:Specials Name="SpecialsPage" />
 			<content:Items Name="ItemsPage" />
 			<content:StartingStats Name="StartingStatsPage" />
+			<content:Levelups Name="LevelupsPage" />
 			<content:Enemies Name="EnemiesPage" />
 			<content:Bosses Name="BossesPage" />
 			<content:Maps Name="MapsPage" />
@@ -56,6 +57,8 @@
 												Tag="ItemsPage" />
 				<controls:NavigationViewItem Content="Starting Stats"
 												Tag="StartingStatsPage" />
+				<controls:NavigationViewItem Content="Levelups"
+												Tag="LevelupsPage" />
 				<controls:NavigationViewItem Content="Enemies"
 												Tag="EnemiesPage" />
 				<controls:NavigationViewItem Content="Bosses"
