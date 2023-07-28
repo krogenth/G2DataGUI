@@ -67,7 +67,7 @@ jobs:
 
       - name: Run Publish
         run: |
-          dotnet publish -c Release -r "${{ matrix.DOTNET_RUNTIME_IDENTIFIER }}" -o ./${{ env.PUBLISH_DIRECTORY }} -p:Version="${{ steps.version_info.outputs.build_version }}" -p:SourceRevisionId="${{ steps.version_info.outputs.git_short_hash }}" -p:DebugType=embedded -p:PublishTrimmed=true src/G2DataGUI --self-contained true
+          dotnet publish -c Release -r "${{ matrix.DOTNET_RUNTIME_IDENTIFIER }}" -o ./${{ env.PUBLISH_DIRECTORY }} -p:Version="${{ steps.version_info.outputs.build_version }}" -p:SourceRevisionId="${{ steps.version_info.outputs.git_short_hash }}" -p:DebugType=embedded src/G2DataGUI --self-contained true
 
       - name: Pack Windows Build
         if : matrix.os == 'windows-latest'
