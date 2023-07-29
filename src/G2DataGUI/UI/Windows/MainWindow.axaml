@@ -28,7 +28,6 @@
 		
 		<views:WindowContent Grid.Row="1" />
 
-		<views:Errors DockPanel.Dock="Right"
-					  Grid.Row="1" />
+		<views:Errors Grid.Row="1" />
 	</Grid>
 </Window>
