@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using G2DataGUI.Common.Data.Common;
 using G2DataGUI.Common.Paths;
 using G2DataGUI.UI.Common.Locale;
+using G2DataGUI.Common.Data.Errors;
 
 namespace G2DataGUI.Common.Data.Starting;
 
@@ -28,24 +29,31 @@ public class StartingStats : BaseContainer
 
     private void ReadStartingStats()
     {
-        GameStartingStats.Clear();
-        using FileStream reader = File.Open(
-            Version.Instance.RootDataDirectory + GamePaths.InitialPath,
-            FileMode.Open,
-            FileAccess.Read);
-        using MemoryStream memReader = new();
-        reader.CopyTo(memReader);
-        memReader.Seek(0, SeekOrigin.Begin);
-        int index = 0;
-        while (memReader.Position < memReader.Length)
-        {
-            GameStartingStats.Add(
-                CharacterStartingStats.ReadCharacterStartingStats(
-                    memReader,
-                    LocaleManager.Instance[LocaleKeys.Characters][index++]));
-        }
+		try
+		{
+			GameStartingStats.Clear();
+			using FileStream reader = File.Open(
+				Version.Instance.RootDataDirectory + GamePaths.InitialPath,
+				FileMode.Open,
+				FileAccess.Read);
+			using MemoryStream memReader = new();
+			reader.CopyTo(memReader);
+			memReader.Seek(0, SeekOrigin.Begin);
+			int index = 0;
+			while (memReader.Position < memReader.Length)
+			{
+				GameStartingStats.Add(
+					CharacterStartingStats.ReadCharacterStartingStats(
+						memReader,
+						LocaleManager.Instance[LocaleKeys.Characters][index++]));
+			}
 
-        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+        catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError(new Error("Starting Stats", ex.Message));
+		}
     }
 
     private void WriteStartingStats()
