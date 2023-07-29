@@ -36,6 +36,9 @@ public sealed partial class Maps : UserControl
 				case "MapHTAsPage":
 					MapNavPanel.Content = MapHTAsPage;
 					break;
+				case "MapScriptsPage":
+					MapNavPanel.Content = MapScriptsPage;
+					break;
 				case "MapEnemyPositionsPage":
 					MapNavPanel.Content = MapEnemyPositionsPage;
 					break;

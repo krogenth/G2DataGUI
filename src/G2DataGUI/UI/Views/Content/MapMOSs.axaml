@@ -121,16 +121,16 @@
 								<TextBlock Text="Unknown #1:" />
 								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown1}"
 											   Increment="1"
-											   Minimum="-2147483648"
-											   Maximum="2147483647" />
+											   Minimum="0"
+											   Maximum="256" />
 							</StackPanel>
 							<StackPanel Grid.Column="1"
 										Margin="4">
 								<TextBlock Text="Unknown #2:" />
 								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown2}"
 											   Increment="1"
-											   Minimum="-2147483648"
-											   Maximum="2147483647" />
+											   Minimum="0"
+											   Maximum="256" />
 							</StackPanel>
 						</Grid>
 						<Grid>
@@ -143,16 +143,16 @@
 								<TextBlock Text="Unknown #3:" />
 								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown3}"
 											   Increment="1"
-											   Minimum="-2147483648"
-											   Maximum="2147483647" />
+											   Minimum="0"
+											   Maximum="256" />
 							</StackPanel>
 							<StackPanel Grid.Column="1"
 										Margin="4">
 								<TextBlock Text="Unknown #4:" />
 								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown4}"
 											   Increment="1"
-											   Minimum="-2147483648"
-											   Maximum="2147483647" />
+											   Minimum="0"
+											   Maximum="256" />
 							</StackPanel>
 						</Grid>
 						<Grid>
@@ -165,13 +165,57 @@
 								<TextBlock Text="Unknown #5:" />
 								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown5}"
 											   Increment="1"
-											   Minimum="-2147483648"
-											   Maximum="2147483647" />
+											   Minimum="-32768"
+											   Maximum="32767" />
 							</StackPanel>
 							<StackPanel Grid.Column="1"
 										Margin="4">
 								<TextBlock Text="Unknown #6:" />
 								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown6}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #7:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown7}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #8:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown8}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #9:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown9}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #10:" />
+								<NumericUpDown Value="{Binding SelectedMapMOSItem.Unknown10}"
 											   Increment="1"
 											   Minimum="-32768"
 											   Maximum="32767" />
