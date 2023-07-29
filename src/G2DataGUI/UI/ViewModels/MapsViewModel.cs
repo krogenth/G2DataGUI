@@ -13,6 +13,7 @@ public sealed class MapsViewModel : BaseViewModel
 	private readonly MapEntriesViewModel _entriesViewModel = MapEntriesViewModel.Instance;
 	private readonly MapInstancesViewModel _instancesViewModel = MapInstancesViewModel.Instance;
 	private readonly MapHTAsViewModel _htaViewModel = MapHTAsViewModel.Instance;
+	private readonly MapScriptsViewModel _scriptsViewModel = MapScriptsViewModel.Instance;
 	private readonly MapEnemyPositionsViewModel _enemyPositionsViewModel = MapEnemyPositionsViewModel.Instance;
 	private readonly MapEnemyGroupsViewModel _enemyGroupsViewModel = MapEnemyGroupsViewModel.Instance;
 	private readonly MapMOSsViewModel _mosViewModel = MapMOSsViewModel.Instance;
@@ -60,6 +61,7 @@ public sealed class MapsViewModel : BaseViewModel
 			_entriesViewModel.SelectedMapEntries = value.Entries;
 			_instancesViewModel.SelectedMapInstances = value.Instances;
 			_htaViewModel.SelectedMapHTAs = value.HTAs;
+			_scriptsViewModel.SelectedMapScripts = value.Scripts;
 			_enemyPositionsViewModel.SelectedMapEnemyPositions = value.EnemyPositions;
 			_enemyGroupsViewModel.SelectedMapEnemyGroups = value.EnemyGroups;
 			_mosViewModel.SelectedMapMOSs = value.MOSs;

@@ -10,6 +10,7 @@ public class Map
 	public List<MapEntry> Entries { get; set; } = new();
     public List<MapInstance> Instances { get; set; } = new();
     public List<MapHTA> HTAs { get; set; } = new();
+	public List<MapScript> Scripts { get; set; } = new();
     public List<MapEnemyPosition> EnemyPositions { get; set; } = new();
     public List<MapEnemyGroup> EnemyGroups { get; set; } = new();
     public List<MapMOS> MOSs { get; set; } = new();
@@ -46,6 +47,12 @@ public class Map
 		for (var index = 0; index < map.Header.NumHTA; index++)
 		{
 			map.HTAs.Add(MapHTA.ReadMapHTA(reader));
+		}
+
+		reader.Seek(map.Header.OffsetScripts, SeekOrigin.Begin);
+		for (var index = 0; index < map.Header.NumScripts; index++)
+		{
+			map.Scripts.Add(MapScript.ReadMapScript(reader, index));
 		}
 
 		reader.Seek(map.Header.OffsetEnemyPos, SeekOrigin.Begin);
@@ -116,10 +123,40 @@ public class Map
 			hta.WriteMapHTA(writer);
 		}
 
+		writer.Seek(Header.OffsetScripts, SeekOrigin.Begin);
+		foreach (var script in Scripts)
+		{
+			script.WriteMapScript(writer);
+		}
+
 		writer.Seek(Header.OffsetEnemyPos, SeekOrigin.Begin);
 		foreach (var position in EnemyPositions)
 		{
 			position.WriteMapEnemyPosition(writer);
+		}
+
+		writer.Seek(Header.OffsetEnemyGroups, SeekOrigin.Begin);
+		foreach (var group in EnemyGroups)
+		{
+			group.WriteMapEnemyGroup(writer);
+		}
+
+		writer.Seek(Header.OffsetMOS, SeekOrigin.Begin);
+		foreach (var mos in MOSs)
+		{
+			mos.WriteMapMOS(writer);
+		}
+
+		writer.Seek(Header.OffsetIcons, SeekOrigin.Begin);
+		foreach (var icon in Icons)
+		{
+			icon.WriteMapIcon(writer);
+		}
+
+		writer.Seek(Header.OffsetShop, SeekOrigin.Begin);
+		if (Shop != null)
+		{
+			Shop.WriteMapShop(writer);
 		}
 	}
 

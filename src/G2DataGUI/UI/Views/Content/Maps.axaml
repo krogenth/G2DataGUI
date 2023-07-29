@@ -55,6 +55,7 @@
 				<content:MapEntries Name="MapEntriesPage" />
 				<content:MapInstances Name="MapInstancesPage" />
 				<content:MapHTAs Name="MapHTAsPage" />
+				<content:MapScripts Name="MapScriptsPage" />
 				<content:MapEnemyPositions Name="MapEnemyPositionsPage" />
 				<content:MapEnemyGroups Name="MapEnemyGroupsPage" />
 				<content:MapMOSs Name="MapMOSsPage" />
@@ -76,6 +77,8 @@
 												 Tag="MapInstancesPage" />
 					<controls:NavigationViewItem Content="HTAs"
 												 Tag="MapHTAsPage" />
+					<controls:NavigationViewItem Content="Scripts"
+												 Tag="MapScriptsPage" />
 					<controls:NavigationViewItem Content="Enemy Positions"
 												 Tag="MapEnemyPositionsPage" />
 					<controls:NavigationViewItem Content="Enemy Groups"
