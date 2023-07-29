@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using G2DataGUI.Common.Data.Common;
+using G2DataGUI.Common.Data.Errors;
 using G2DataGUI.Common.Paths;
 using G2DataGUI.UI.Common.Locale;
 
@@ -28,24 +29,31 @@ public class Levelups : BaseContainer
 
 	private void ReadLevelups()
 	{
-		GameLevelups.Clear();
-		using FileStream reader = File.Open(
-			Version.Instance.RootDataDirectory + GamePaths.LevelupsPath,
-			FileMode.Open,
-			FileAccess.Read);
-		using MemoryStream memReader = new();
-		reader.CopyTo(memReader);
-		memReader.Seek(0, SeekOrigin.Begin);
-		int index = 0;
-		while (memReader.Position < memReader.Length)
+		try
 		{
-			GameLevelups.Add(
-				CharacterLevelups.ReadCharacterLevelups(
-					memReader,
-					LocaleManager.Instance[LocaleKeys.Characters][index++]));
-		}
+			GameLevelups.Clear();
+			using FileStream reader = File.Open(
+				Version.Instance.RootDataDirectory + GamePaths.LevelupsPath,
+				FileMode.Open,
+				FileAccess.Read);
+			using MemoryStream memReader = new();
+			reader.CopyTo(memReader);
+			memReader.Seek(0, SeekOrigin.Begin);
+			int index = 0;
+			while (memReader.Position < memReader.Length)
+			{
+				GameLevelups.Add(
+					CharacterLevelups.ReadCharacterLevelups(
+						memReader,
+						LocaleManager.Instance[LocaleKeys.Characters][index++]));
+			}
 
-		CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+		catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError(new Error("Levelups", ex.Message));
+		}
 	}
 
 	private void WriteLevelups()

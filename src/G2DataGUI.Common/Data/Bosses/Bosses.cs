@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using G2DataGUI.Common.Data.Errors;
 using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Bosses;
@@ -29,23 +30,30 @@ public class Bosses
 
     private void ReadBosses()
     {
-		GameBosses.Clear();
-		var directory =
-			DifficultyMode.Instance.IsHardMode ?
-			Version.Instance.RootDataDirectory + GamePaths.BossHardmodeDirectory :
-			Version.Instance.RootDataDirectory + GamePaths.BossDirectory;
-        foreach (var file in Directory.GetFiles(directory, "*_0.dat", SearchOption.AllDirectories))
-        {
-            using FileStream reader = File.Open(file, FileMode.Open);
-			GameBosses.Add(Boss.ReadBoss(reader, file));
+		try
+		{
+			GameBosses.Clear();
+			var directory =
+				DifficultyMode.Instance.IsHardMode ?
+				Version.Instance.RootDataDirectory + GamePaths.BossHardmodeDirectory :
+				Version.Instance.RootDataDirectory + GamePaths.BossDirectory;
+			foreach (var file in Directory.GetFiles(directory, "*_0.dat", SearchOption.AllDirectories))
+			{
+				using FileStream reader = File.Open(file, FileMode.Open);
+				GameBosses.Add(Boss.ReadBoss(reader, file));
 
-            if (Boss.FileHasSecondBoss(reader))
-            {
-				GameBosses.Add(Boss.ReadBoss(reader, file, true));
-            }
-        }
+				if (Boss.FileHasSecondBoss(reader))
+				{
+					GameBosses.Add(Boss.ReadBoss(reader, file, true));
+				}
+			}
 
-		CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+		catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError(new Error("Bosses", ex.Message));
+		}
     }
 
 	private void WriteBosses()

@@ -74,6 +74,7 @@
 			</Animation>
 		</Style.Animations>
 	</Style>
+	
 	<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource ListBoxItemHoverColor}" />
 	</Style>
@@ -194,9 +195,6 @@
         <Setter Property="BorderThickness" Value="0,1,0,0" />
         <Setter Property="Background" Value="{DynamicResource ThemeBackgroundColor}" />
         <Setter Property="BorderBrush" Value="{DynamicResource HighlightBrush}" />
-    </Style>
-    <Style Selector="Button">
-        <Setter Property="MinWidth" Value="80" />
     </Style>
     <Style Selector="ProgressBar /template/ Border#ProgressBarTrack">
         <Setter Property="IsVisible" Value="False" />

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using G2DataGUI.Common.Data.Errors;
 using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Enemies;
@@ -29,25 +30,32 @@ public class Enemies
 
 	private void ReadEnemies()
     {
-        GameEnemies.Clear();
-		var directory =
-			DifficultyMode.Instance.IsHardMode ?
-			Version.Instance.RootDataDirectory + GamePaths.EnemyHardmodeDirectory :
-			Version.Instance.RootDataDirectory + GamePaths.EnemyDirectory;
-		foreach (var file in Directory.GetFiles(directory, "*_0.dat", SearchOption.AllDirectories))
-        {
-            using FileStream reader = File.Open(file, FileMode.Open, FileAccess.Read);
-            using MemoryStream memReader = new();
-            reader.CopyTo(memReader);
-            GameEnemies.Add(Enemy.ReadEnemy(memReader, file));
+		try
+		{
+			GameEnemies.Clear();
+			var directory =
+				DifficultyMode.Instance.IsHardMode ?
+				Version.Instance.RootDataDirectory + GamePaths.EnemyHardmodeDirectory :
+				Version.Instance.RootDataDirectory + GamePaths.EnemyDirectory;
+			foreach (var file in Directory.GetFiles(directory, "*_0.dat", SearchOption.AllDirectories))
+			{
+				using FileStream reader = File.Open(file, FileMode.Open, FileAccess.Read);
+				using MemoryStream memReader = new();
+				reader.CopyTo(memReader);
+				GameEnemies.Add(Enemy.ReadEnemy(memReader, file));
 
-            if (Enemy.FileHasSecondEnemy(memReader))
-            {
-                GameEnemies.Add(Enemy.ReadEnemy(memReader, file, true));
-            }
-        }
+				if (Enemy.FileHasSecondEnemy(memReader))
+				{
+					GameEnemies.Add(Enemy.ReadEnemy(memReader, file, true));
+				}
+			}
 
-        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+        catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError(new Error("Enemies", ex.Message));
+		}
     }
 
     private void WriteEnemies()

@@ -27,20 +27,27 @@ public class Skills
 
 	private void ReadSkills()
     {
-        GameSkills.Clear();
-        using FileStream reader = File.Open(
-            Version.Instance.RootDataDirectory + GamePaths.SkillsPath,
-            FileMode.Open,
-            FileAccess.Read);
-        using MemoryStream memReader = new();
-        reader.CopyTo(memReader);
-        memReader.Seek(0, SeekOrigin.Begin);
-        while (memReader.Position < memReader.Length)
-        {
-            GameSkills.Add(Skill.ReadSkill(memReader));
-        }
+		try
+		{
+			GameSkills.Clear();
+			using FileStream reader = File.Open(
+				Version.Instance.RootDataDirectory + GamePaths.SkillsPath,
+				FileMode.Open,
+				FileAccess.Read);
+			using MemoryStream memReader = new();
+			reader.CopyTo(memReader);
+			memReader.Seek(0, SeekOrigin.Begin);
+			while (memReader.Position < memReader.Length)
+			{
+				GameSkills.Add(Skill.ReadSkill(memReader));
+			}
 
-        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+        catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError("Skills", ex.Message);
+		}
     }
 
     private void WriteSkills()

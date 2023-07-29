@@ -28,17 +28,24 @@ public class Skillbooks
 
 	private void ReadSkillbooks()
     {
-        GameSkillbooks.Clear();
-        using FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SkillbooksPath, FileMode.Open, FileAccess.Read);
-        using MemoryStream memReader = new();
-        reader.CopyTo(memReader);
-        memReader.Seek(0, SeekOrigin.Begin);
-        while (memReader.Position < memReader.Length)
-        {
-            GameSkillbooks.Add(Skillbook.ReadSkillbook(memReader));
-        }
+		try
+		{
+			GameSkillbooks.Clear();
+			using FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SkillbooksPath, FileMode.Open, FileAccess.Read);
+			using MemoryStream memReader = new();
+			reader.CopyTo(memReader);
+			memReader.Seek(0, SeekOrigin.Begin);
+			while (memReader.Position < memReader.Length)
+			{
+				GameSkillbooks.Add(Skillbook.ReadSkillbook(memReader));
+			}
 
-        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+        catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError("Skillbooks", ex.Message);
+		}
     }
 
     private void WriteSkillbooks()

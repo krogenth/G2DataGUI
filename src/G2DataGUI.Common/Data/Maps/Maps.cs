@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using G2DataGUI.Common.Data.Errors;
 
 namespace G2DataGUI.Common.Data.Maps;
 
@@ -25,14 +26,21 @@ public class Maps
 
     private void ReadMaps()
     {
-		GameMaps.Clear();
-        foreach(var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))
-        {
-            using FileStream reader = File.Open(file, FileMode.Open);
-            GameMaps.Add(Map.ReadMap(reader, file));
-        }
+		try
+		{
+			GameMaps.Clear();
+			foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))
+			{
+				using FileStream reader = File.Open(file, FileMode.Open);
+				GameMaps.Add(Map.ReadMap(reader, file));
+			}
 
-        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+		catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError(new Error("Maps", ex.Message));
+		}
     }
 
 	private void WriteMaps()

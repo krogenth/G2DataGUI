@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using G2DataGUI.Common.Data.Errors;
 using G2DataGUI.Common.Paths;
 using G2DataGUI.UI.Common.Locale;
 
@@ -28,19 +29,26 @@ public class SpecialSets
 
 	private void ReadSpecialSets()
     {
-        GameSpecialSets.Clear();
-        using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SpecialsPath, FileMode.Open, FileAccess.Read))
-        using (MemoryStream memReader = new())
-        {
-            reader.CopyTo(memReader);
-            memReader.Seek(0, SeekOrigin.Begin);
-            while (memReader.Position < memReader.Length)
-            {
-                GameSpecialSets.Add(SpecialSet.ReadSpecialSet(memReader));
-            }
-        }
+		try
+		{
+			GameSpecialSets.Clear();
+			using (FileStream reader = File.Open(Version.Instance.RootDataDirectory + GamePaths.SpecialsPath, FileMode.Open, FileAccess.Read))
+			using (MemoryStream memReader = new())
+			{
+				reader.CopyTo(memReader);
+				memReader.Seek(0, SeekOrigin.Begin);
+				while (memReader.Position < memReader.Length)
+				{
+					GameSpecialSets.Add(SpecialSet.ReadSpecialSet(memReader));
+				}
+			}
 
-        CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+		}
+        catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError(new Error("Specials", ex.Message));
+		}
     }
 
     private void WriteSpecialSets()
