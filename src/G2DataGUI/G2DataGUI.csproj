@@ -60,4 +60,15 @@
     <EmbeddedResource Include="Assets\Styles\Styles.xaml" />
   </ItemGroup>
 
+  <ItemGroup>
+	<Content Include="..\..\LICENSE">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <TargetPath>LICENSE</TargetPath>
+	</Content>
+	<Content Include="..\..\README.md">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  <TargetPath>README.md</TargetPath>
+    </Content>
+  </ItemGroup>
+
 </Project>
