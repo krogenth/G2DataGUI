@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using G2DataGUI.Common.Data.Errors;
+using G2DataGUI.Common.Data.Models;
 
 namespace G2DataGUI.Common.Data.Maps;
 
@@ -36,6 +37,12 @@ public class Maps
 			}
 
 			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
+
+			using var modelFile = File.Open(
+					"F:\\programming\\languages\\c#\\programs\\G2DataGUI\\build\\Debug\\net7.0\\models\\2a00.chr_model_1.nj",
+					FileMode.Open,
+					FileAccess.Read);
+			NJCM model = NJCM.ReadNJCM(modelFile, 0);
 		}
 		catch (Exception ex)
 		{
