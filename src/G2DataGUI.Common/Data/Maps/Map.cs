@@ -20,7 +20,7 @@ public class Map
 
     public string MapName { get; set; } = "";
     public string FileLocation { get; set; } = "";
-	public string Filename { get; set; } = "";
+	public string FileName { get; set; } = "";
 
     public static Map ReadMap(FileStream reader, string filepath)
     {
@@ -28,7 +28,7 @@ public class Map
 		{
 			Header = MapHeader.ReadMapHeader(reader),
 			FileLocation = filepath,
-			Filename = Path.GetFileNameWithoutExtension(filepath),
+			FileName = Path.GetFileNameWithoutExtension(filepath),
         };
 
 		reader.Seek(map.Header.OffsetMapEntries, SeekOrigin.Begin);
@@ -76,7 +76,7 @@ public class Map
 		reader.Seek(map.Header.OffsetDialogue, SeekOrigin.Begin);
 		if (map.Header.DialogueLength > 0)
 		{
-			map.Dialogue = MapDialogue.ReadMapDialogue(reader, map.Header.DialogueLength);
+			map.Dialogue = MapDialogue.ReadMapDialogue(reader, map.Header.DialogueLength, map.FileName);
 			map.ReadMapName();
 		}
 
@@ -98,12 +98,12 @@ public class Map
 	public void WriteMap()
 	{
 		// we need the file to write to
-		if (Filename.Length <= 0)
+		if (FileName.Length <= 0)
 		{
 			return;
 		}
 
-		using FileStream writer = File.Open(Filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+		using FileStream writer = File.Open(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
 		writer.Seek(Header.OffsetMapEntries, SeekOrigin.Begin);
 		foreach (var entry in Entries)
