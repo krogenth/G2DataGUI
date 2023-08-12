@@ -1,23 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 using G2DataGUI.Common.Extensions;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
 
 public interface ITextBoxOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 {
-	TextBoxOptions Option { get; set; }
+	TextBoxOption Option { get; set; }
 	public IList<IMapDialogueOpcode> NestedOpcodes { get; set; }
 
 	public static new IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
 		var option = reader.ReadRawByte();
-		return option.ToEnum<TextBoxOptions>() switch
+		return option.ToEnum<TextBoxOption>() switch
 		{
-			TextBoxOptions.RemoveTextBox => RemoveTextBoxOpcode.ReadOpcode(reader),
-			TextBoxOptions.CreateTextBox => CreateTextBoxOpcode.ReadOpcode(reader),
-			TextBoxOptions.CreateOverworldTextBox => CreateOverworldTextBoxOpcode.ReadOpcode(reader),
+			TextBoxOption.RemoveTextBox => RemoveTextBoxOpcode.ReadOpcode(reader),
+			TextBoxOption.CreateTextBox => CreateTextBoxOpcode.ReadOpcode(reader),
+			TextBoxOption.Unknown1 => RemoveTextBoxOpcode.ReadOpcode(reader),
+			TextBoxOption.CreateSubTextBox => CreateSubTextBoxOpcode.ReadOpcode(reader),
+			TextBoxOption.CreateOptionsTextBox => CreateOptionsTextBoxOpcode.ReadOpcode(reader),
+			TextBoxOption.CreateOverworldTextBox => CreateOverworldTextBoxOpcode.ReadOpcode(reader),
 			_ => null,
 		};
 	}

@@ -17,6 +17,6 @@ public static class EnumExtensions
 			return (T)(object)enumValue;
 		}
 
-		throw new ArgumentOutOfRangeException(nameof(enumValue));
+		throw new ArgumentOutOfRangeException(enumValue.ToString());
 	}
 }

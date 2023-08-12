@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
 
 public class CharacterPortaitOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 {
-	public DialogueOpcodes Opcode { get; set; } = DialogueOpcodes.CharacterPortait;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.CharacterPortait;
 
 	/// <summary>
 	/// Appears to always be 0x00

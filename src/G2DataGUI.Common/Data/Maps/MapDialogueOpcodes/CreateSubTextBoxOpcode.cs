@@ -1,34 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using G2DataGUI.Common.Extensions;
 using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
 
-public class CreateTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
+/// <summary>
+/// Defines a sub textbox that appears during dialogue.
+/// Sub textboxes appear overlapping the primary textbox
+/// in the top-right of the primary textbox.
+/// </summary>
+internal class CreateSubTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcode
 {
 	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.TextBox;
-	public TextBoxOption Option { get; set; } = TextBoxOption.CreateTextBox;
+	public TextBoxOption Option { get; set; } = TextBoxOption.CreateSubTextBox;
+	public byte Unknown1 { get; set; }
+	public byte TextBoxHeight { get; set; }
 	public IList<IMapDialogueOpcode> NestedOpcodes { get; set; } = new List<IMapDialogueOpcode>();
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		CreateTextBoxOpcode opcode = new();
+		CreateSubTextBoxOpcode opcode = new()
+		{
+			Unknown1 = reader.ReadRawByte(),
+			TextBoxHeight = reader.ReadRawByte(),
+		};
 
-		// create textbox should always have some text in it
-		opcode.NestedOpcodes.Add(TextOpcode.ReadOpcode(reader));
-
-		byte data;
 		do
 		{
-			data = reader.ReadRawByte();
+			byte data = reader.ReadRawByte();
 			if (data.EnumExists<DialogueOpcode>())
 			{
 				switch (data.ToEnum<DialogueOpcode>())
 				{
-					case DialogueOpcode.Unknown1:
-						opcode.NestedOpcodes.Add(Unknown1Opcode.ReadOpcode(reader));
-						break;
 					case DialogueOpcode.ScriptCall:
 						opcode.NestedOpcodes.Add(ScriptCallOpcode.ReadOpcode(reader));
 						break;

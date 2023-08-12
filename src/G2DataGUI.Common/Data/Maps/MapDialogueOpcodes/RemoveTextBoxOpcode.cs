@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
 
 public class RemoveTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
 {
-	public DialogueOpcodes Opcode { get; set; } = DialogueOpcodes.TextBox;
-	public TextBoxOptions Option { get; set; } = TextBoxOptions.RemoveTextBox;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.TextBox;
+	public TextBoxOption Option { get; set; } = TextBoxOption.RemoveTextBox;
 	public IList<IMapDialogueOpcode> NestedOpcodes { get; set; } = new List<IMapDialogueOpcode>();
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)

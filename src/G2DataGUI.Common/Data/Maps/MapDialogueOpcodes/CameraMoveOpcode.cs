@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
 
 public class CameraMoveOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 {
-	public DialogueOpcodes Opcode { get; set; } = DialogueOpcodes.CameraMove;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.CameraMove;
 	public byte Unknown1 { get; set; }
 	public byte Unknown2 { get; set; }
 

@@ -1,10 +1,10 @@
 ﻿using System.IO;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
 
 public class NextLineOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 {
-	public DialogueOpcodes Opcode { get; set; } = DialogueOpcodes.NextLine;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.NextLine;
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{

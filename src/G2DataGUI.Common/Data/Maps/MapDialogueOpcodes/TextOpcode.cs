@@ -3,25 +3,33 @@ using System.IO;
 using G2DataGUI.Common.Extensions;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
 
 public class TextOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 {
-	public DialogueOpcodes Opcode { get; set; } = DialogueOpcodes.Text;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Text;
 	public string Text { get; set; }
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
+		
 		TextOpcode opcode = new();
 
-		var data = reader.ReadRawByte();
-		while (!data.EnumExists<DialogueOpcodes>())
+		try
 		{
-			_ = opcode.Text += Convert.ToChar(data);
-			data = reader.ReadRawByte();
-		}
+			var data = reader.ReadRawByte();
+			while (!data.EnumExists<DialogueOpcode>())
+			{
+				_ = opcode.Text += Convert.ToChar(data);
+				data = reader.ReadRawByte();
+			}
 
-		reader.Seek(-1, SeekOrigin.Current);
+			reader.Seek(-1, SeekOrigin.Current);
+		}
+		catch (Exception ex)
+		{
+			Errors.Errors.Instance.AddError(new Errors.Error("Maps", ex.Message));
+		}
 
 		return opcode;
 	}
