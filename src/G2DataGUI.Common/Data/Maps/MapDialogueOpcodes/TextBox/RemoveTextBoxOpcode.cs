@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox;
 
 public class RemoveTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
 {

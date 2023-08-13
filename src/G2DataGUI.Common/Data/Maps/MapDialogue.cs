@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
+using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 using G2DataGUI.IO.Streams;
 using G2DataGUI.Common.Extensions;
 using System.Linq;

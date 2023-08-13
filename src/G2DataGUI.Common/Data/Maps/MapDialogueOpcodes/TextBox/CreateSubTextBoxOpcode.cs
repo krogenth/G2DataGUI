@@ -3,31 +3,32 @@ using System.IO;
 using G2DataGUI.Common.Extensions;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox;
 
-public class CreateOverworldTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
+/// <summary>
+/// Defines a sub textbox that appears during dialogue.
+/// Sub textboxes appear overlapping the primary textbox
+/// in the top-right of the primary textbox.
+/// </summary>
+internal class CreateSubTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcode
 {
 	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.TextBox;
-	public TextBoxOption Option { get; set; } = TextBoxOption.CreateOverworldTextBox;
-	public byte TextBoxLength { get; set; }
+	public TextBoxOption Option { get; set; } = TextBoxOption.CreateSubTextBox;
+	public byte Unknown1 { get; set; }
 	public byte TextBoxHeight { get; set; }
 	public IList<IMapDialogueOpcode> NestedOpcodes { get; set; } = new List<IMapDialogueOpcode>();
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		CreateOverworldTextBoxOpcode opcode = new()
+		CreateSubTextBoxOpcode opcode = new()
 		{
-			TextBoxLength = reader.ReadRawByte(),
+			Unknown1 = reader.ReadRawByte(),
 			TextBoxHeight = reader.ReadRawByte(),
 		};
 
-		// create overworld textbox should always have some text in it
-		opcode.NestedOpcodes.Add(TextOpcode.ReadOpcode(reader));
-
-		byte data;
 		do
 		{
-			data = reader.ReadRawByte();
+			byte data = reader.ReadRawByte();
 			if (data.EnumExists<DialogueOpcode>())
 			{
 				switch (data.ToEnum<DialogueOpcode>())

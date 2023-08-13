@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using G2DataGUI.Common.Extensions;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox;
 
 /// <summary>
-/// Defines a sub textbox that appears during dialogue.
-/// Sub textboxes appear overlapping the primary textbox
-/// in the top-right of the primary textbox.
+/// Creates a textbox in the top-left of the screen
+/// that displays a list of options for the palyer to choose from.
 /// </summary>
-internal class CreateSubTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcode
+public class CreateOptionsTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcode
 {
 	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.TextBox;
-	public TextBoxOption Option { get; set; } = TextBoxOption.CreateSubTextBox;
-	public byte Unknown1 { get; set; }
+	public TextBoxOption Option { get; set; } = TextBoxOption.CreateOptionsTextBox;
+	public byte TextBoxLength { get; set; }
 	public byte TextBoxHeight { get; set; }
 	public IList<IMapDialogueOpcode> NestedOpcodes { get; set; } = new List<IMapDialogueOpcode>();
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		CreateSubTextBoxOpcode opcode = new()
+		CreateOptionsTextBoxOpcode opcode = new()
 		{
-			Unknown1 = reader.ReadRawByte(),
+			TextBoxLength = reader.ReadRawByte(),
 			TextBoxHeight = reader.ReadRawByte(),
 		};
 

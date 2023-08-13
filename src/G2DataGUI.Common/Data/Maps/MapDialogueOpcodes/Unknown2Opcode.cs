@@ -3,18 +3,16 @@ using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 
-public class ItemAcquireOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
+public class Unknown2Opcode : IMapDialogueOpcode
 {
-	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.ItemAquire;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Unknown2;
 	public byte Unknown1 { get; set; }
-	public byte Item1Offset { get; set; }
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		ItemAcquireOpcode opcode = new()
+		Unknown2Opcode opcode = new()
 		{
 			Unknown1 = reader.ReadRawByte(),
-			Item1Offset = reader.ReadRawByte(),
 		};
 		return opcode;
 	}

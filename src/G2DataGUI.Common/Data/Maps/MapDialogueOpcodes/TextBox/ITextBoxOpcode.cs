@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 using G2DataGUI.Common.Extensions;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox;
 
 public interface ITextBoxOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 {

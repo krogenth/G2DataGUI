@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcode;
+﻿namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 
 public enum DialogueOpcode : byte
 {
@@ -48,16 +46,16 @@ public enum DialogueOpcode : byte
 	Unknown6 = 0x09,
 
 	/// <summary>
+	/// Seems to deal with camera movement
+	/// </summary>
+	CameraMove = 0x0B,
+
+	/// <summary>
 	/// Completely unknown, no clue on parameters(1 parameter?).
 	/// See Map 1000, section 8, offset 0x24.
 	/// Also see Map 1000, section 10, offset 0x1F.
 	/// </summary>
 	Unknown7 = 0x10,
-
-	/// <summary>
-	/// Seems to deal with camera movement
-	/// </summary>
-	CameraMove = 0x0B,
 
 	/// <summary>
 	/// Adds items to inventory
@@ -98,14 +96,4 @@ public enum DialogueOpcode : byte
 	/// Moves text rendering to next line
 	/// </summary>
 	NextLine = 0x1F,
-}
-
-public enum TextBoxOption : byte
-{
-	RemoveTextBox          = 0x00,
-	CreateTextBox          = 0x01,
-	Unknown1               = 0x02,
-	CreateSubTextBox       = 0x20,
-	CreateOptionsTextBox   = 0x40,
-	CreateOverworldTextBox = 0x80,
 }
