@@ -16,7 +16,7 @@ public class CreateTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
 		CreateTextBoxOpcode opcode = new();
 
 		// create textbox should always have some text in it
-		opcode.NestedOpcodes.Add(TextOpcode.ReadOpcode(reader));
+		// opcode.NestedOpcodes.Add(TextOpcode.ReadOpcode(reader));
 
 		byte data;
 		do
@@ -24,37 +24,12 @@ public class CreateTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
 			data = reader.ReadRawByte();
 			if (data.EnumExists<DialogueOpcode>())
 			{
-				switch (data.ToEnum<DialogueOpcode>())
+				var nestedOpcode = ParseDialogueOpcode.ParseNextOpcode(reader, data);
+				opcode.NestedOpcodes.Add(nestedOpcode);
+
+				if (nestedOpcode is ITextBoxOpcode _)
 				{
-					case DialogueOpcode.Unknown1:
-						opcode.NestedOpcodes.Add(Unknown1Opcode.ReadOpcode(reader));
-						break;
-					case DialogueOpcode.ScriptCall:
-						opcode.NestedOpcodes.Add(ScriptCallOpcode.ReadOpcode(reader));
-						break;
-					case DialogueOpcode.CameraMove:
-						opcode.NestedOpcodes.Add(CameraMoveOpcode.ReadOpcode(reader));
-						break;
-					case DialogueOpcode.ItemAquire:
-						opcode.NestedOpcodes.Add(ItemAcquireOpcode.ReadOpcode(reader));
-						break;
-					case DialogueOpcode.CharacterPortait:
-						opcode.NestedOpcodes.Add(CharacterPortaitOpcode.ReadOpcode(reader));
-						break;
-					case DialogueOpcode.NextPage:
-						opcode.NestedOpcodes.Add(NextPageOpcode.ReadOpcode(reader));
-						break;
-					case DialogueOpcode.Pause:
-						opcode.NestedOpcodes.Add(PauseOpcode.ReadOpcode(reader));
-						break;
-					case DialogueOpcode.NextLine:
-						opcode.NestedOpcodes.Add(NextLineOpcode.ReadOpcode(reader));
-						break;
-					// textbox removal should be the only thing that returns the textbox
-					// should verify it isn't a textbox within a textbox(is that even possible?)
-					case DialogueOpcode.TextBox:
-						opcode.NestedOpcodes.Add(ITextBoxOpcode.ReadOpcode(reader));
-						return opcode;
+					return opcode;
 				}
 			}
 			else

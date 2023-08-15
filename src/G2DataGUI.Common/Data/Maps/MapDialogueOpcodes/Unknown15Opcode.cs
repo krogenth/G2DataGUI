@@ -3,9 +3,9 @@ using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 
-public class Unknown3Opcode : IMapDialogueOpcode
+public class Unknown15Opcode : IMapDialogueOpcode
 {
-	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Unknown3;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Unknown15;
 	public byte Unknown1 { get; set; }
 	public byte Unknown2 { get; set; }
 	public byte Unknown3 { get; set; }
@@ -13,7 +13,7 @@ public class Unknown3Opcode : IMapDialogueOpcode
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		Unknown3Opcode opcode = new()
+		Unknown15Opcode opcode = new()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),

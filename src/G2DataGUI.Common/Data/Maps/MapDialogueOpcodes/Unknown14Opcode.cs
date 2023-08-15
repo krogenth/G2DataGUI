@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using G2DataGUI.IO.Streams;
 
-namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Unknown7;
-public class Unknown7Unknown1Opcode : IUnknown7Opcode
+namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+
+public class Unknown14Opcode : IMapDialogueOpcode
 {
-	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Unknown7;
-	public Unknown7Option Option { get; set; } = Unknown7Option.Unknown1;
+	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Unknown14;
 	public byte Unknown1 { get; set; }
 	public byte Unknown2 { get; set; }
 	public byte Unknown3 { get; set; }
@@ -14,7 +14,7 @@ public class Unknown7Unknown1Opcode : IUnknown7Opcode
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		Unknown7Unknown1Opcode opcode = new()
+		Unknown14Opcode opcode = new()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
