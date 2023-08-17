@@ -2,9 +2,7 @@
 using System.IO;
 using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 using G2DataGUI.IO.Streams;
-using G2DataGUI.Common.Extensions;
 using System.Linq;
-using System;
 
 namespace G2DataGUI.Common.Data.Maps;
 public class MapDialogue
@@ -13,7 +11,7 @@ public class MapDialogue
     public List<byte[]> DialogueSections { get; set; } = new();
 	public List<List<IMapDialogueOpcode>> DialogueSectionOpcodes { get; set; } = new();
 
-    public static MapDialogue ReadMapDialogue(Stream reader, uint dialogueSectionLength, string mapname)
+    public static MapDialogue ReadMapDialogue(Stream reader, uint dialogueSectionLength)
     {
         MapDialogue dialogue = new()
         {
@@ -34,29 +32,12 @@ public class MapDialogue
 			memReader.Seek(0, SeekOrigin.Begin);
 			while (memReader.Position < memReader.Length)
 			{
-				try
+				var opcode = IMapDialogueOpcode.ParseNextOpcode(memReader);
+				if (opcode != null)
 				{
-					var opcode = IMapDialogueOpcode.ParseNextOpcode(memReader);
-					if (opcode != null)
-					{
-						dialogue.DialogueSectionOpcodes.Last().Add(opcode);
-					}
-				}
-				catch (Exception ex)
-				{
-					throw ex;
+					dialogue.DialogueSectionOpcodes.Last().Add(opcode);
 				}
 			}
-		}
-
-		if (!Directory.Exists("dialogue_sections"))
-		{
-			Directory.CreateDirectory("dialogue_sections");
-		}
-
-		if (!Directory.Exists($"dialogue_sections/{mapname}"))
-		{
-			Directory.CreateDirectory($"dialogue_sections/{mapname}");
 		}
 
 		//var dialogueStartPosition = reader.Position;
@@ -64,13 +45,11 @@ public class MapDialogue
 		//var dialogueStartPosition = reader.Position;
 		for (var index = 1; index < dialogue.Header.Offsets.Count; index++)
 		{
-			// using var file = File.Open($"dialogue_sections/{mapname}/{index}.dlg", FileMode.OpenOrCreate, FileAccess.Write);
 			var length = (index == dialogue.Header.Offsets.Count - 1) ?
 				(dialogueSectionLength - dialogue.Header.HeaderLength - (dialogue.Header.Offsets[index - 1].Offset * 8)) :
 				(dialogue.Header.Offsets[index].Offset - dialogue.Header.Offsets[index - 1].Offset) * 8;
 			reader.Seek(dialogueStartPosition + (dialogue.Header.Offsets[index - 1].Offset * 8), SeekOrigin.Begin);
 			dialogue.DialogueSections.Add(reader.ReadRawByteArray((uint)length));
-			// file.WriteRawByteArray(dialogue.DialogueSections.Last());
 		}
 
 		return dialogue;

@@ -76,7 +76,7 @@ public class Map
 		reader.Seek(map.Header.OffsetDialogue, SeekOrigin.Begin);
 		if (map.Header.DialogueLength > 0)
 		{
-			map.Dialogue = MapDialogue.ReadMapDialogue(reader, map.Header.DialogueLength, map.FileName);
+			map.Dialogue = MapDialogue.ReadMapDialogue(reader, map.Header.DialogueLength);
 			map.ReadMapName();
 		}
 

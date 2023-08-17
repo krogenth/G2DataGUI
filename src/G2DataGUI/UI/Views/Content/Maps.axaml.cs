@@ -54,6 +54,9 @@ public sealed partial class Maps : UserControl
 				case "MapShopPage":
 					MapNavPanel.Content = MapShopPage;
 					break;
+				case "MapDialoguePage":
+					MapNavPanel.Content = MapDialoguePage;
+					break;
 			}
 		}
 	}

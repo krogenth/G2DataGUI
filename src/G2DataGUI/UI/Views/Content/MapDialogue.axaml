@@ -1,0 +1,102 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.MapDialogue"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:content="using:G2DataGUI.UI.Views.Content"
+			 xmlns:opcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes"
+			 xmlns:selectors="using:G2DataGUI.UI.Selectors"
+             mc:Ignorable="d"
+             Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:MapDialogueViewModel">
+	<Grid Name="MapDialoguePage"
+		  Margin="20,10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<ListBox x:Name="MapDialogueOpcodeList"
+				 Items="{Binding SelectedMapDialogueOpcodes}"
+				 SelectedIndex="{Binding SelectedMapDialogueOpcodeIndex}"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+		</ListBox>
+		<ItemsRepeater Grid.Column="1"
+					  Items="{Binding SelectedMapDialogueOpcodeItem}">
+			<ItemsRepeater.DataTemplates>
+				<selectors:MapOpcodeSelector>
+					<DataTemplate x:Key="CameraMoveOpcode"
+								  DataType="{x:Type opcodes:CameraMoveOpcode}">
+						<StackPanel>
+							<TextBlock Text="Opcode:" />
+							<TextBox Text="{Binding Opcode}" />
+							<TextBlock Text="Unknown1:" />
+							<TextBox Text="{Binding Unknown1}" />
+							<TextBlock Text="Unknown2:" />
+							<TextBox Text="{Binding Unknown2}" />
+						</StackPanel>
+					</DataTemplate>
+
+					<DataTemplate x:Key="CharacterPortaitOpcode"
+								  DataType="{x:Type opcodes:CharacterPortaitOpcode}">
+						<StackPanel>
+							<TextBlock Text="Opcode:" />
+							<TextBox Text="{Binding Opcode}" />
+							<TextBlock Text="Unknown1:" />
+							<TextBox Text="{Binding Unknown1}" />
+							<TextBlock Text="PortaitOffset:" />
+							<TextBox Text="{Binding PortaitOffset}" />
+						</StackPanel>
+					</DataTemplate>
+
+					<DataTemplate x:Key="ItemAcquireOpcode"
+								  DataType="{x:Type opcodes:ItemAcquireOpcode}">
+						<StackPanel>
+							<TextBlock Text="Opcode:" />
+							<TextBox Text="{Binding Opcode}" />
+							<TextBlock Text="Unknown1:" />
+							<TextBox Text="{Binding Unknown1}" />
+							<TextBlock Text="Item1Offset:" />
+							<TextBox Text="{Binding Item1Offset}" />
+						</StackPanel>
+					</DataTemplate>
+
+					<DataTemplate x:Key="NextLineOpcode"
+								  DataType="{x:Type opcodes:NextLineOpcode}">
+						<StackPanel>
+							<TextBlock Text="Opcode:" />
+							<TextBox Text="{Binding Opcode}" />
+						</StackPanel>
+					</DataTemplate>
+
+					<DataTemplate x:Key="NextPageOpcode"
+								  DataType="{x:Type opcodes:NextPageOpcode}">
+						<StackPanel>
+							<TextBlock Text="Opcode:" />
+							<TextBox Text="{Binding Opcode}" />
+						</StackPanel>
+					</DataTemplate>
+
+					<DataTemplate x:Key="ScriptCallOpcode"
+								  DataType="{x:Type opcodes:ScriptCallOpcode}">
+						<StackPanel>
+							<TextBlock Text="Opcode:" />
+							<TextBox Text="{Binding Opcode}" />
+							<TextBlock Text="ScriptId:" />
+							<TextBox Text="{Binding ScriptId}" />
+							<TextBlock Text="CharacterId:" />
+							<TextBox Text="{Binding CharacterId}" />
+						</StackPanel>
+					</DataTemplate>
+				</selectors:MapOpcodeSelector>
+			</ItemsRepeater.DataTemplates>
+		</ItemsRepeater>
+	</Grid>
+</UserControl>
