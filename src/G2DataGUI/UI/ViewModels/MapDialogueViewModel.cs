@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 using G2DataGUI.UI.Common.ViewModels;
 
@@ -6,9 +6,9 @@ namespace G2DataGUI.UI.ViewModels;
 
 public class MapDialogueViewModel : BaseViewModel
 {
-	private List<List<IMapDialogueOpcode>> _selectedMapDialogueOpcodes = new();
+	private ObservableCollection<ObservableCollection<IMapDialogueOpcode>> _selectedMapDialogueOpcodes = new();
 	private int _selectedMapDialogueOpcodeIndex;
-	private List<IMapDialogueOpcode> _selectedMapDialogueOpcodeItem;
+	private ObservableCollection<IMapDialogueOpcode> _selectedMapDialogueOpcodeItem;
 
 	public static MapDialogueViewModel Instance { get; private set; } = new();
 
@@ -17,12 +17,12 @@ public class MapDialogueViewModel : BaseViewModel
 		SelectedMapDialogueOpcodeIndex = 0;
 	}
 
-	public List<List<IMapDialogueOpcode>> SelectedMapDialogueOpcodes
+	public ObservableCollection<ObservableCollection<IMapDialogueOpcode>> SelectedMapDialogueOpcodes
 	{
 		get => _selectedMapDialogueOpcodes;
 		set
 		{
-			_selectedMapDialogueOpcodes = value == null ? new List<List<IMapDialogueOpcode>>() : value;
+			_selectedMapDialogueOpcodes = value == null ? new ObservableCollection<ObservableCollection<IMapDialogueOpcode>>() : value;
 			SelectedMapDialogueOpcodeIndex = 0;
 			OnPropertyChanged(nameof(SelectedMapDialogueOpcodes));
 			OnPropertyChanged(nameof(HasDialogueOpcodes));
@@ -52,7 +52,7 @@ public class MapDialogueViewModel : BaseViewModel
 		}
 	}
 
-	public List<IMapDialogueOpcode> SelectedMapDialogueOpcodeItem
+	public ObservableCollection<IMapDialogueOpcode> SelectedMapDialogueOpcodeItem
 	{
 		get => _selectedMapDialogueOpcodeItem;
 		set

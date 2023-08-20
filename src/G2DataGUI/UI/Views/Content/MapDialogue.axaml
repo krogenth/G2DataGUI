@@ -4,19 +4,364 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:G2DataGUI.UI.ViewModels"
-			 xmlns:content="using:G2DataGUI.UI.Views.Content"
-			 xmlns:opcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes"
 			 xmlns:selectors="using:G2DataGUI.UI.Selectors"
+			 xmlns:opcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes"
+			 xmlns:pauseOpcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Pause"
+			 xmlns:textboxOpcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox"
+			 xmlns:unknown10Opcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Unknown10"
              mc:Ignorable="d"
              Focusable="True"
-             x:CompileBindings="True"
 			 x:DataType="vm:MapDialogueViewModel">
+	<UserControl.Resources>
+		<selectors:MapOpcodeSelector x:Key="OpcodeTemplate">
+			<TreeDataTemplate x:Key="CameraMoveOpcode"
+						      DataType="{x:Type opcodes:CameraMoveOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="CharacterPortaitOpcode"
+						      DataType="{x:Type opcodes:CharacterPortaitOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="PortaitOffset:" />
+					<TextBox Text="{Binding PortaitOffset}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="ItemAcquireOpcode"
+						      DataType="{x:Type opcodes:ItemAcquireOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Item1Offset:" />
+					<TextBox Text="{Binding Item1Offset}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="NextLineOpcode"
+						      DataType="{x:Type opcodes:NextLineOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="NextPageOpcode"
+						      DataType="{x:Type opcodes:NextPageOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="ScriptCallOpcode"
+						      DataType="{x:Type opcodes:ScriptCallOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="ScriptId:" />
+					<TextBox Text="{Binding ScriptId}" />
+					<TextBlock Text="CharacterId:" />
+					<TextBox Text="{Binding CharacterId}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="TextOpcode"
+						      DataType="{x:Type opcodes:TextOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Text:" />
+					<TextBox Text="{Binding Text}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="PauseUnknown1Opcode"
+						      DataType="{x:Type pauseOpcodes:PauseUnknown1Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="PauseUnknown2Opcode"
+						      DataType="{x:Type pauseOpcodes:PauseUnknown2Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="CreateOptionsTextBoxOpcode"
+						      DataType="{x:Type textboxOpcodes:CreateOptionsTextBoxOpcode}"
+							  ItemsSource="{Binding NestedOpcodes}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+					<TextBlock Text="Box Length:" />
+					<TextBox Text="{Binding TextBoxLength}" />
+					<TextBlock Text="Box Height:" />
+					<TextBox Text="{Binding TextBoxHeight}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="CreateSubTextBoxOpcode"
+							  DataType="{x:Type textboxOpcodes:CreateSubTextBoxOpcode}"
+							  ItemsSource="{Binding NestedOpcodes}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+					<TextBlock Text="Box Height:" />
+					<TextBox Text="{Binding TextBoxHeight}" />
+					
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="CreateTextBoxOpcode"
+						      DataType="{x:Type textboxOpcodes:CreateTextBoxOpcode}"
+							  ItemsSource="{Binding NestedOpcodes}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="RemoveTextBoxOpcode"
+						      DataType="{x:Type textboxOpcodes:RemoveTextBoxOpcode}"
+							  ItemsSource="{Binding NestedOpcodes}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="CreateOverworldTextBoxOpcode"
+						      DataType="{x:Type textboxOpcodes:CreateOverworldTextBoxOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+					<TextBlock Text="Box Length:" />
+					<TextBox Text="{Binding TextBoxLength}" />
+					<TextBlock Text="Box Height:" />
+					<TextBox Text="{Binding TextBoxHeight}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown10Unknown1Opcode"
+						      DataType="{x:Type unknown10Opcodes:Unknown10Unknown1Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+					<TextBlock Text="Unknown3:" />
+					<TextBox Text="{Binding Unknown3}" />
+					<TextBlock Text="Unknown4:" />
+					<TextBox Text="{Binding Unknown4}" />
+					<TextBlock Text="Unknown5:" />
+					<TextBox Text="{Binding Unknown5}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown10Unknown2Opcode"
+						      DataType="{x:Type unknown10Opcodes:Unknown10Unknown2Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Option:" />
+					<TextBox Text="{Binding Option}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown03Opcode"
+						      DataType="{x:Type opcodes:Unknown03Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+					<TextBlock Text="Unknown3:" />
+					<TextBox Text="{Binding Unknown3}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown04Opcode"
+						      DataType="{x:Type opcodes:Unknown04Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown06Opcode"
+						      DataType="{x:Type opcodes:Unknown06Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+					<TextBlock Text="Unknown3:" />
+					<TextBox Text="{Binding Unknown3}" />
+					<TextBlock Text="Unknown4:" />
+					<TextBox Text="{Binding Unknown4}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown07Opcode"
+						      DataType="{x:Type opcodes:Unknown07Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown08Opcode"
+						      DataType="{x:Type opcodes:Unknown08Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+					<TextBlock Text="Unknown3:" />
+					<TextBox Text="{Binding Unknown3}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown09Opcode"
+						      DataType="{x:Type opcodes:Unknown09Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+					<TextBlock Text="Unknown3:" />
+					<TextBox Text="{Binding Unknown3}" />
+					<TextBlock Text="Unknown4:" />
+					<TextBox Text="{Binding Unknown4}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown0COpcode"
+						      DataType="{x:Type opcodes:Unknown0COpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown0DOpcode"
+						      DataType="{x:Type opcodes:Unknown0DOpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown14Opcode"
+						      DataType="{x:Type opcodes:Unknown14Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+					<TextBlock Text="Unknown3:" />
+					<TextBox Text="{Binding Unknown3}" />
+					<TextBlock Text="Unknown4:" />
+					<TextBox Text="{Binding Unknown4}" />
+					<TextBlock Text="Unknown5:" />
+					<TextBox Text="{Binding Unknown5}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown15Opcode"
+						      DataType="{x:Type opcodes:Unknown15Opcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+					<TextBlock Text="Unknown2:" />
+					<TextBox Text="{Binding Unknown2}" />
+					<TextBlock Text="Unknown3:" />
+					<TextBox Text="{Binding Unknown3}" />
+					<TextBlock Text="Unknown4:" />
+					<TextBox Text="{Binding Unknown4}" />
+				</StackPanel>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="Unknown1COpcode"
+						      DataType="{x:Type opcodes:Unknown1COpcode}">
+				<StackPanel>
+					<TextBlock Text="Opcode:" />
+					<TextBox Text="{Binding Opcode}" />
+					<TextBlock Text="Unknown1:" />
+					<TextBox Text="{Binding Unknown1}" />
+				</StackPanel>
+			</TreeDataTemplate>
+		</selectors:MapOpcodeSelector>
+	</UserControl.Resources>
 	<Grid Name="MapDialoguePage"
 		  Margin="20,10">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
 		<ListBox x:Name="MapDialogueOpcodeList"
 				 Items="{Binding SelectedMapDialogueOpcodes}"
 				 SelectedIndex="{Binding SelectedMapDialogueOpcodeIndex}"
@@ -28,75 +373,8 @@
 				</Style>
 			</ListBox.Styles>
 		</ListBox>
-		<ItemsRepeater Grid.Column="1"
-					  Items="{Binding SelectedMapDialogueOpcodeItem}">
-			<ItemsRepeater.DataTemplates>
-				<selectors:MapOpcodeSelector>
-					<DataTemplate x:Key="CameraMoveOpcode"
-								  DataType="{x:Type opcodes:CameraMoveOpcode}">
-						<StackPanel>
-							<TextBlock Text="Opcode:" />
-							<TextBox Text="{Binding Opcode}" />
-							<TextBlock Text="Unknown1:" />
-							<TextBox Text="{Binding Unknown1}" />
-							<TextBlock Text="Unknown2:" />
-							<TextBox Text="{Binding Unknown2}" />
-						</StackPanel>
-					</DataTemplate>
-
-					<DataTemplate x:Key="CharacterPortaitOpcode"
-								  DataType="{x:Type opcodes:CharacterPortaitOpcode}">
-						<StackPanel>
-							<TextBlock Text="Opcode:" />
-							<TextBox Text="{Binding Opcode}" />
-							<TextBlock Text="Unknown1:" />
-							<TextBox Text="{Binding Unknown1}" />
-							<TextBlock Text="PortaitOffset:" />
-							<TextBox Text="{Binding PortaitOffset}" />
-						</StackPanel>
-					</DataTemplate>
-
-					<DataTemplate x:Key="ItemAcquireOpcode"
-								  DataType="{x:Type opcodes:ItemAcquireOpcode}">
-						<StackPanel>
-							<TextBlock Text="Opcode:" />
-							<TextBox Text="{Binding Opcode}" />
-							<TextBlock Text="Unknown1:" />
-							<TextBox Text="{Binding Unknown1}" />
-							<TextBlock Text="Item1Offset:" />
-							<TextBox Text="{Binding Item1Offset}" />
-						</StackPanel>
-					</DataTemplate>
-
-					<DataTemplate x:Key="NextLineOpcode"
-								  DataType="{x:Type opcodes:NextLineOpcode}">
-						<StackPanel>
-							<TextBlock Text="Opcode:" />
-							<TextBox Text="{Binding Opcode}" />
-						</StackPanel>
-					</DataTemplate>
-
-					<DataTemplate x:Key="NextPageOpcode"
-								  DataType="{x:Type opcodes:NextPageOpcode}">
-						<StackPanel>
-							<TextBlock Text="Opcode:" />
-							<TextBox Text="{Binding Opcode}" />
-						</StackPanel>
-					</DataTemplate>
-
-					<DataTemplate x:Key="ScriptCallOpcode"
-								  DataType="{x:Type opcodes:ScriptCallOpcode}">
-						<StackPanel>
-							<TextBlock Text="Opcode:" />
-							<TextBox Text="{Binding Opcode}" />
-							<TextBlock Text="ScriptId:" />
-							<TextBox Text="{Binding ScriptId}" />
-							<TextBlock Text="CharacterId:" />
-							<TextBox Text="{Binding CharacterId}" />
-						</StackPanel>
-					</DataTemplate>
-				</selectors:MapOpcodeSelector>
-			</ItemsRepeater.DataTemplates>
-		</ItemsRepeater>
+		<TreeView Grid.Column="1"
+				  Items="{Binding SelectedMapDialogueOpcodeItem}"
+				  ItemTemplate="{DynamicResource OpcodeTemplate}" />
 	</Grid>
 </UserControl>

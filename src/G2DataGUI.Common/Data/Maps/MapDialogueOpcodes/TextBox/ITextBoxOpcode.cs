@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using G2DataGUI.Common.Extensions;
 using G2DataGUI.IO.Streams;
@@ -8,7 +8,7 @@ namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox;
 public interface ITextBoxOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 {
 	TextBoxOption Option { get; set; }
-	public IList<IMapDialogueOpcode> NestedOpcodes { get; set; }
+	public ObservableCollection<IMapDialogueOpcode> NestedOpcodes { get; set; }
 
 	public static new IMapDialogueOpcode ReadOpcode(Stream reader)
 	{

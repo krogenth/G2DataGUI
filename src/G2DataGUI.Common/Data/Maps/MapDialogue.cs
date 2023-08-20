@@ -3,13 +3,14 @@ using System.IO;
 using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
 using G2DataGUI.IO.Streams;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace G2DataGUI.Common.Data.Maps;
 public class MapDialogue
 {
     public MapDialogueHeader Header { get; set; }
     public List<byte[]> DialogueSections { get; set; } = new();
-	public List<List<IMapDialogueOpcode>> DialogueSectionOpcodes { get; set; } = new();
+	public ObservableCollection<ObservableCollection<IMapDialogueOpcode>> DialogueSectionOpcodes { get; set; } = new();
 
     public static MapDialogue ReadMapDialogue(Stream reader, uint dialogueSectionLength)
     {
@@ -21,7 +22,7 @@ public class MapDialogue
 		var dialogueStartPosition = reader.Position;
 		for (var index = 1; index < dialogue.Header.Offsets.Count; index++)
 		{
-			dialogue.DialogueSectionOpcodes.Add(new List<IMapDialogueOpcode>());
+			dialogue.DialogueSectionOpcodes.Add(new ObservableCollection<IMapDialogueOpcode>());
 			var length = (index == dialogue.Header.Offsets.Count - 1) ?
 				(dialogueSectionLength - dialogue.Header.HeaderLength - (dialogue.Header.Offsets[index - 1].Offset * 8)) :
 				(dialogue.Header.Offsets[index].Offset - dialogue.Header.Offsets[index - 1].Offset) * 8;
@@ -40,9 +41,7 @@ public class MapDialogue
 			}
 		}
 
-		//var dialogueStartPosition = reader.Position;
 		reader.Seek(dialogueStartPosition, SeekOrigin.Begin);
-		//var dialogueStartPosition = reader.Position;
 		for (var index = 1; index < dialogue.Header.Offsets.Count; index++)
 		{
 			var length = (index == dialogue.Header.Offsets.Count - 1) ?
