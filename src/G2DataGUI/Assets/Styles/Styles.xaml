@@ -84,7 +84,43 @@
 	<Style Selector="ItemsRepeater.NavigationViewItem:selected /template/ ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource NavigationViewItemSelectedColor}" />
 	</Style>
+	
+	<Style Selector="TextBlock">
+		<Setter Property="Margin" Value="{DynamicResource TextMargin}" />
+		<Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
+	</Style>
+	<Style Selector="TextBlock.h1">
+		<Setter Property="Margin" Value="{DynamicResource TextMargin}" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
+		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
+	</Style>
+	<Style Selector="TextBlock.h2">
+		<Setter Property="Margin" Value="{DynamicResource TextMargin}" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
+	</Style>
+	<Style Selector="TextBlock.h3">
+		<Setter Property="Margin" Value="{DynamicResource TextMargin}" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="FontWeight" Value="Normal" />
+		<Setter Property="FontSize" Value="{DynamicResource FontSize}" />
+		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
+	</Style>
 
+	<Style Selector="Border.BorderedGrid">
+		<Setter Property="BorderBrush" Value="{DynamicResource BorderBrushColor}" />
+		<Setter Property="Background" Value="{DynamicResource BorderBackgroundColor}" />
+		<Setter Property="BorderThickness" Value="1" />
+	</Style>
+	<Style Selector="Border.LightCurve">
+		<Setter Property="CornerRadius" Value="5" />
+	</Style>
 
 
 
@@ -215,33 +251,6 @@
         <Setter Property="Background" Value="{DynamicResource HighlightColor}" />
         <Setter Property="Foreground" Value="{DynamicResource ThemeBackgroundColor}" />
     </Style>
-    <Style Selector="TextBlock">
-        <Setter Property="Margin" Value="{DynamicResource TextMargin}" />
-        <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
-    </Style>
-    <Style Selector="TextBlock.h1">
-        <Setter Property="Margin" Value="{DynamicResource TextMargin}" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
-        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
-    </Style>
-	<Style Selector="TextBlock.h2">
-		<Setter Property="Margin" Value="{DynamicResource TextMargin}" />
-		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="FontWeight" Value="Bold" />
-		<Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
-	</Style>
-	<Style Selector="TextBlock.h3">
-		<Setter Property="Margin" Value="{DynamicResource TextMargin}" />
-		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="FontWeight" Value="Normal" />
-		<Setter Property="FontSize" Value="{DynamicResource FontSize}" />
-		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
-	</Style>
     <Style Selector="Separator">
         <Setter Property="Background" Value="{DynamicResource ThemeControlBorderColor}" />
         <Setter Property="Foreground" Value="{DynamicResource ThemeControlBorderColor}" />
@@ -309,7 +318,8 @@
 		<Color x:Key="ListBoxItemSelectedColor">#FF009999</Color>
 		<Color x:Key="ListBoxItemHoverColor">#1EFFFFFF</Color>
 		<Color x:Key="NavigationViewItemSelectedColor">#FF800000</Color>
-		
+		<Color x:Key="BorderBrushColor">#FF000000</Color>
+		<Color x:Key="BorderBackgroundColor">#FF333333</Color>
 		
         <Color x:Key="MenuFlyoutPresenterBorderColor">#00000000</Color>
         <Color x:Key="SystemAccentColor">#FF00C3E3</Color>

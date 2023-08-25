@@ -29,8 +29,8 @@ public static class ParseDialogueOpcode
 			DialogueOpcode.CharacterPortait => CharacterPortaitOpcode.ReadOpcode(reader),
 			DialogueOpcode.NextPage => NextPageOpcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown1C => Unknown1COpcode.ReadOpcode(reader),
-			DialogueOpcode.Pause => IPauseOpcode.ReadOpcode(reader), // PauseOpcode.ReadOpcode(reader),
-			DialogueOpcode.NextLine => NextPageOpcode.ReadOpcode(reader),
+			DialogueOpcode.Pause => IPauseOpcode.ReadOpcode(reader),
+			DialogueOpcode.NextLine => NextLineOpcode.ReadOpcode(reader),
 			_ => null,
 		};
 	}
