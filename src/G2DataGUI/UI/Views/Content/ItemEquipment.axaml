@@ -334,7 +334,13 @@
 					<TextBlock Text="Effective On:" />
 					<ComboBox HorizontalAlignment="Stretch"
 							  SelectedIndex="{Binding SelectedItemEquipment.EffectiveOn}"
-							  Items="{locale:Locale EffectiveOn}" />
+							  Items="{locale:Locale EffectiveOn}">
+						<ComboBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel />
+							</ItemsPanelTemplate>
+						</ComboBox.ItemsPanel>
+					</ComboBox>
 				</StackPanel>
 				<StackPanel Margin="4"
 							Grid.Column="1">

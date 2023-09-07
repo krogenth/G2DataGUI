@@ -28,14 +28,26 @@
 					<TextBlock Text="Target Effect:" />
 					<ComboBox HorizontalAlignment="Stretch"
 							  SelectedIndex="{Binding SelectedItemUsable.TargetEffect}"
-							  Items="{locale:Locale TargetEffects}" />
+							  Items="{locale:Locale TargetEffects}">
+						<ComboBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel />
+							</ItemsPanelTemplate>
+						</ComboBox.ItemsPanel>
+					</ComboBox>
 				</StackPanel>
 				<StackPanel Margin="4"
 							Grid.Column="1">
 					<TextBlock Text="Target Type:" />
 					<ComboBox HorizontalAlignment="Stretch"
 							  SelectedIndex="{Binding SelectedItemUsable.TargetType}"
-							  Items="{locale:Locale TargetTypes}" />
+							  Items="{locale:Locale TargetTypes}">
+						<ComboBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel />
+							</ItemsPanelTemplate>
+						</ComboBox.ItemsPanel>
+					</ComboBox>
 				</StackPanel>
 			</Grid>
 			<Grid>
@@ -97,7 +109,13 @@
 					<TextBlock Text="Animation:" />
 					<ComboBox HorizontalAlignment="Stretch"
 							  SelectedIndex="{Binding SelectedItemUsable.Animation}"
-							  Items="{locale:Locale Animations}" />
+							  Items="{locale:Locale Animations}">
+						<ComboBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel />
+							</ItemsPanelTemplate>
+						</ComboBox.ItemsPanel>
+					</ComboBox>
 				</StackPanel>
 			</Grid>
 		</StackPanel>
@@ -266,7 +284,13 @@
 					<TextBlock Text="Element:" />
 					<ComboBox HorizontalAlignment="Stretch"
 							  SelectedIndex="{Binding SelectedItemUsable.Element}"
-							  Items="{locale:Locale Elements}" />
+							  Items="{locale:Locale Elements}">
+						<ComboBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel />
+							</ItemsPanelTemplate>
+						</ComboBox.ItemsPanel>
+					</ComboBox>
 				</StackPanel>
 				<StackPanel Margin="4"
 							Grid.Column="1">

@@ -107,7 +107,13 @@
 								<TextBlock Text="Screen Transition:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										  SelectedIndex="{Binding SelectedMapScriptItem.TransitionEffect}"
-										  Items="{locale:Locale ScreenTransitions}" />
+										  Items="{locale:Locale ScreenTransitions}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 						</Grid>
 					</StackPanel>

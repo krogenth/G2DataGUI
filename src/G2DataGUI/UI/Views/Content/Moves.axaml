@@ -66,7 +66,13 @@
 								<TextBlock Text="Icon:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										  SelectedIndex="{Binding SelectedMoveItem.Icon}"
-										  Items="{locale:Locale Icons}" />
+										  Items="{locale:Locale Icons}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 						</Grid>
 						<StackPanel Margin="4">
@@ -95,14 +101,26 @@
 								<TextBlock Text="Target Effect:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										SelectedIndex="{Binding SelectedMoveItem.Stats.TargetEffect}"
-										Items="{locale:Locale TargetEffects}" />
+										Items="{locale:Locale TargetEffects}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 							<StackPanel Grid.Column="1"
 										Margin="4">
 								<TextBlock Text="Target Type:" />
 								<ComboBox HorizontalAlignment="Stretch"
 											SelectedIndex="{Binding SelectedMoveItem.Stats.TargetType}"
-											Items="{locale:Locale TargetTypes}" />
+											Items="{locale:Locale TargetTypes}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 						</Grid>
 						<Grid>
@@ -172,7 +190,13 @@
 								<TextBlock Text="Animation:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										  SelectedIndex="{Binding SelectedMoveItem.Stats.Animation}"
-										  Items="{locale:Locale Animations}" />
+										  Items="{locale:Locale Animations}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 						</Grid>
 					</StackPanel>

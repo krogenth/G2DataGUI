@@ -4,6 +4,10 @@ using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Models;
 
+/// <summary>
+/// Defines the njcm_object_t structure from the
+/// Dreamcast Katana SDK's Ninja library specifies.
+/// </summary>
 public class NJSBone
 {
 	public uint Flags { get; set; }

@@ -81,7 +81,13 @@
 									<TextBlock Text="Target Effect:" />
 									<ComboBox HorizontalAlignment="Stretch"
 											  SelectedIndex="{Binding SelectedEnemyMoveItem.Stats.TargetEffect}"
-											  Items="{locale:Locale TargetEffects}" />
+											  Items="{locale:Locale TargetEffects}">
+										<ComboBox.ItemsPanel>
+											<ItemsPanelTemplate>
+												<VirtualizingStackPanel />
+											</ItemsPanelTemplate>
+										</ComboBox.ItemsPanel>
+									</ComboBox>
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Range:" />
@@ -103,7 +109,13 @@
 									<TextBlock Text="Target Type:" />
 									<ComboBox HorizontalAlignment="Stretch"
 											  SelectedIndex="{Binding SelectedEnemyMoveItem.Stats.TargetType}"
-											  Items="{locale:Locale TargetTypes}" />
+											  Items="{locale:Locale TargetTypes}">
+										<ComboBox.ItemsPanel>
+											<ItemsPanelTemplate>
+												<VirtualizingStackPanel />
+											</ItemsPanelTemplate>
+										</ComboBox.ItemsPanel>
+									</ComboBox>
 								</StackPanel>
 								<StackPanel Margin="4">
 									<TextBlock Text="Accuracy:" />
@@ -158,7 +170,13 @@
 								<TextBlock Text="Animation:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										  SelectedIndex="{Binding SelectedEnemyMoveItem.Stats.Animation}"
-										  Items="{locale:Locale Animations}" />
+										  Items="{locale:Locale Animations}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 						</Grid>
 					</StackPanel>
@@ -328,7 +346,13 @@
 								<TextBlock Text="Element:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										  SelectedIndex="{Binding SelectedEnemyMoveItem.Stats.Element}"
-										  Items="{locale:Locale Elements}" />
+										  Items="{locale:Locale Elements}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 							<StackPanel Margin="4"
 										Grid.Column="1">

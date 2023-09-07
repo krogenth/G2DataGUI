@@ -4,6 +4,10 @@ using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Models;
 
+/// <summary>
+/// Defines the NJCM file strcture based
+/// on the in-game files.
+/// </summary>
 public class NJCM
 {
 	public uint ByteLength { get; private set; }
@@ -24,6 +28,7 @@ public class NJCM
 		var identifier = reader.ReadRawByteArray((uint)Identifier.Length);
 		if (!Identifier.SequenceEqual(identifier))
 		{
+			reader.Seek(-Identifier.Length, SeekOrigin.Current);
 			return null;
 		}
 

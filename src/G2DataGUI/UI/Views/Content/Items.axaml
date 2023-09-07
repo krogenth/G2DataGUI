@@ -58,7 +58,13 @@
 					<TextBlock Text="Entry Type:" />
 					<ComboBox HorizontalAlignment="Stretch"
 							  SelectedIndex="{Binding SelectedItemItem.Stats.EntryType}"
-							  Items="{locale:Locale ItemEntries}" />
+							  Items="{locale:Locale ItemEntries}">
+						<ComboBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel />
+							</ItemsPanelTemplate>
+						</ComboBox.ItemsPanel>
+					</ComboBox>
 					<TextBlock Text="Unknown #1:" />
 					<NumericUpDown Value="{Binding SelectedItemItem.Stats.Unknown1}"
 								   Increment="1"

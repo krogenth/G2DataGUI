@@ -58,8 +58,13 @@
 			<ComboBox HorizontalAlignment="Right"
 				      SelectedItem="{Binding SelectedStyle}"
 					  Items="{locale:Locale StyleThemes}"
-				      Margin="0,5,5,0" />
+				      Margin="0,5,5,0">
+				<ComboBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<VirtualizingStackPanel />
+					</ItemsPanelTemplate>
+				</ComboBox.ItemsPanel>
+			</ComboBox>
 		</StackPanel>
-
 	</DockPanel>
 </UserControl>

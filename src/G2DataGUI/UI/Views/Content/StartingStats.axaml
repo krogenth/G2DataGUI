@@ -118,6 +118,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 							<StackPanel Margin="4"
@@ -131,6 +136,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 						</Grid>
@@ -150,6 +160,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 							<StackPanel Margin="4"
@@ -163,6 +178,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 						</Grid>
@@ -182,6 +202,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 							<StackPanel Margin="4"
@@ -195,6 +220,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 						</Grid>

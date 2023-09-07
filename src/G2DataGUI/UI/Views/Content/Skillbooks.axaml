@@ -68,9 +68,14 @@
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
-									<TextBlock Text = "{Binding Name}" />
+									<TextBlock Text="{Binding Name}" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>
+							<ComboBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ComboBox.ItemsPanel>
 						</ComboBox>
 					</StackPanel>
 					<StackPanel Margin="4">
@@ -101,9 +106,14 @@
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
-									<TextBlock Text = "{Binding Name}" />
+									<TextBlock Text="{Binding Name}" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>
+							<ComboBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ComboBox.ItemsPanel>
 						</ComboBox>
 					</StackPanel>
 					<StackPanel Margin="4">
@@ -134,9 +144,14 @@
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
-									<TextBlock Text = "{Binding Name}" />
+									<TextBlock Text="{Binding Name}" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>
+							<ComboBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ComboBox.ItemsPanel>
 						</ComboBox>
 					</StackPanel>
 					<StackPanel Margin="4">
@@ -167,9 +182,14 @@
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
-									<TextBlock Text = "{Binding Name}" />
+									<TextBlock Text="{Binding Name}" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>
+							<ComboBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ComboBox.ItemsPanel>
 						</ComboBox>
 					</StackPanel>
 					<StackPanel Margin="4">
@@ -200,9 +220,14 @@
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
-									<TextBlock Text = "{Binding Name}" />
+									<TextBlock Text="{Binding Name}" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>
+							<ComboBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ComboBox.ItemsPanel>
 						</ComboBox>
 					</StackPanel>
 					<StackPanel Margin="4">
@@ -233,9 +258,14 @@
 								Items="{Binding GameSkills}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
-									<TextBlock Text = "{Binding Name}" />
+									<TextBlock Text="{Binding Name}" />
 								</DataTemplate>
 							</ComboBox.ItemTemplate>
+							<ComboBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ComboBox.ItemsPanel>
 						</ComboBox>
 					</StackPanel>
 					<StackPanel Margin="4">

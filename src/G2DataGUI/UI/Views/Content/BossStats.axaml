@@ -45,13 +45,25 @@
 									Margin="4">
 							<ComboBox HorizontalAlignment="Stretch"
 									  SelectedIndex="{Binding SelectedBossStats.Type1}"
-									  Items="{locale:Locale EnemyTypes}" />
+									  Items="{locale:Locale EnemyTypes}">
+								<ComboBox.ItemsPanel>
+									<ItemsPanelTemplate>
+										<VirtualizingStackPanel />
+									</ItemsPanelTemplate>
+								</ComboBox.ItemsPanel>
+							</ComboBox>
 						</StackPanel>
 						<StackPanel Grid.Column="1"
 									Margin="4">
 							<ComboBox HorizontalAlignment="Stretch"
 									  SelectedIndex="{Binding SelectedBossStats.Type2}"
-									  Items="{locale:Locale EnemyTypes}" />
+									  Items="{locale:Locale EnemyTypes}">
+								<ComboBox.ItemsPanel>
+									<ItemsPanelTemplate>
+										<VirtualizingStackPanel />
+									</ItemsPanelTemplate>
+								</ComboBox.ItemsPanel>
+							</ComboBox>
 						</StackPanel>
 					</Grid>
 				</StackPanel>
@@ -76,6 +88,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 							<StackPanel Margin="4">
@@ -98,6 +115,11 @@
 											<TextBlock Text="{Binding Name}" />
 										</DataTemplate>
 									</ComboBox.ItemTemplate>
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
 								</ComboBox>
 							</StackPanel>
 							<StackPanel Margin="4">

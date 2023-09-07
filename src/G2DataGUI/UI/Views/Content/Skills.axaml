@@ -79,14 +79,26 @@
 								<TextBlock Text="Cost Type 1:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										  SelectedIndex="{Binding SelectedSkillItem.Stats.CostType1}"
-										  Items="{locale:Locale CoinCostTypes}" />
+										  Items="{locale:Locale CoinCostTypes}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 							<StackPanel Margin="4"
 										Grid.Column="1">
 								<TextBlock Text="Cost Type 2:" />
 								<ComboBox HorizontalAlignment="Stretch"
 										  SelectedIndex="{Binding SelectedSkillItem.Stats.CostType2}"
-										  Items="{locale:Locale CoinCostTypes}" />
+										  Items="{locale:Locale CoinCostTypes}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
 							</StackPanel>
 						</Grid>
 					</StackPanel>
