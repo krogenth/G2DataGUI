@@ -9,6 +9,7 @@
 			 xmlns:pauseOpcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Pause"
 			 xmlns:textboxOpcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox"
 			 xmlns:unknown10Opcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Unknown10"
+			 xmlns:highlightOpcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Highlight"
              mc:Ignorable="d"
              Focusable="True"
 			 x:DataType="vm:MapDialogueViewModel">
@@ -427,7 +428,6 @@
 								<TextBlock Text="Option:" />
 								<TextBox Text="{Binding Option}" />
 							</StackPanel>
-							
 						</Grid>
 						<Grid Margin="0,5">
 							<Grid.ColumnDefinitions>
@@ -443,6 +443,55 @@
 										Margin="5,0">
 								<TextBlock Text="Box Height:" />
 								<TextBox Text="{Binding TextBoxHeight}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</Border>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="HighlightStartOpcode"
+							  DataType="{x:Type highlightOpcodes:HighlightStartOpcode}"
+							  ItemsSource="{Binding NestedOpcodes}">
+				<Border Classes="BorderedGrid LightCurve">
+					<StackPanel>
+						<Grid Margin="0,5">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="5,0">
+								<TextBlock Text="Opcode:" />
+								<TextBox Text="{Binding Opcode}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="5,0">
+								<TextBlock Text="Option:" />
+								<TextBox Text="{Binding Option}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</Border>
+			</TreeDataTemplate>
+
+			<TreeDataTemplate x:Key="HighlightEndOpcode"
+							  DataType="{x:Type highlightOpcodes:HighlightEndOpcode}">
+				<Border Classes="BorderedGrid LightCurve">
+					<StackPanel>
+						<Grid Margin="0,5">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="5,0">
+								<TextBlock Text="Opcode:" />
+								<TextBox Text="{Binding Opcode}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="5,0">
+								<TextBlock Text="Option:" />
+								<TextBox Text="{Binding Option}" />
 							</StackPanel>
 						</Grid>
 					</StackPanel>
@@ -902,6 +951,58 @@
 				</Border>
 			</TreeDataTemplate>
 
+			<TreeDataTemplate x:Key="Unknown16Opcode"
+							  DataType="{x:Type opcodes:Unknown16Opcode}">
+				<Border Classes="BorderedGrid LightCurve">
+					<StackPanel>
+						<Grid Margin="0,5">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="5,0">
+								<TextBlock Text="Opcode:" />
+								<TextBox Text="{Binding Opcode}" />
+							</StackPanel>
+						</Grid>
+						<Grid Margin="0,5">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="5,0">
+								<TextBlock Text="Unknown #1:" />
+								<TextBox Text="{Binding Unknown1}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="5,0">
+								<TextBlock Text="Unknown #2:" />
+								<TextBox Text="{Binding Unknown2}" />
+							</StackPanel>
+							<StackPanel Grid.Column="2"
+										Margin="5,0">
+								<TextBlock Text="Unknown #3:" />
+								<TextBox Text="{Binding Unknown3}" />
+							</StackPanel>
+							<StackPanel Grid.Column="3"
+										Margin="5,0">
+								<TextBlock Text="Unknown #4:" />
+								<TextBox Text="{Binding Unknown4}" />
+							</StackPanel>
+							<StackPanel Grid.Column="3"
+										Margin="5,0">
+								<TextBlock Text="Unknown #5:" />
+								<TextBox Text="{Binding Unknown5}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</Border>
+			</TreeDataTemplate>
+
 			<TreeDataTemplate x:Key="Unknown1COpcode"
 						      DataType="{x:Type opcodes:Unknown1COpcode}">
 				<Border Classes="BorderedGrid LightCurve">
@@ -944,6 +1045,12 @@
 		</ListBox>
 		<TreeView Grid.Column="1"
 				  Items="{Binding SelectedMapDialogueOpcodeItem}"
-				  ItemTemplate="{DynamicResource OpcodeTemplate}" />
+				  ItemTemplate="{DynamicResource OpcodeTemplate}">
+			<TreeView.ItemsPanel>
+				<ItemsPanelTemplate>
+					<VirtualizingStackPanel />
+				</ItemsPanelTemplate>
+			</TreeView.ItemsPanel>
+		</TreeView>
 	</Grid>
 </UserControl>

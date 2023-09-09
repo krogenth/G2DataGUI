@@ -1,10 +1,12 @@
 ﻿using System.IO;
+using G2DataGUI.Common.Extensions;
 using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox;
 using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Unknown10;
 using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Pause;
-using G2DataGUI.Common.Extensions;
+using G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Highlight;
 
 namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes;
+
 public static class ParseDialogueOpcode
 {
 	public static IMapDialogueOpcode ParseNextOpcode(Stream reader, byte opcode)
@@ -25,11 +27,13 @@ public static class ParseDialogueOpcode
 			DialogueOpcode.ItemAquire => ItemAcquireOpcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown14 => Unknown14Opcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown15 => Unknown15Opcode.ReadOpcode(reader),
+			DialogueOpcode.Unknown16 => Unknown16Opcode.ReadOpcode(reader),
 			DialogueOpcode.TextBox => ITextBoxOpcode.ReadOpcode(reader),
 			DialogueOpcode.CharacterPortait => CharacterPortaitOpcode.ReadOpcode(reader),
 			DialogueOpcode.NextPage => NextPageOpcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown1C => Unknown1COpcode.ReadOpcode(reader),
 			DialogueOpcode.Pause => IPauseOpcode.ReadOpcode(reader),
+			DialogueOpcode.Highlight => IHighlightOpcode.ReadOpcode(reader),
 			DialogueOpcode.NextLine => NextLineOpcode.ReadOpcode(reader),
 			_ => null,
 		};

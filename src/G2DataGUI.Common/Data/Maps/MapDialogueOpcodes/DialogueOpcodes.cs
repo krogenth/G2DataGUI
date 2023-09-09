@@ -83,6 +83,11 @@ public enum DialogueOpcode : byte
 	Unknown15 = 0x15,
 
 	/// <summary>
+	/// Completely unknown, exists with tutorial guy dialogue...
+	/// </summary>
+	Unknown16 = 0x16,
+
+	/// <summary>
 	/// Defines a action around textboxes
 	/// </summary>
 	TextBox = 0x17,
@@ -106,6 +111,11 @@ public enum DialogueOpcode : byte
 	/// Pauses text rendering for a time(tick based?)
 	/// </summary>
 	Pause = 0x1D,
+
+	/// <summary>
+	/// Creates a highlighted section of text
+	/// </summary>
+	Highlight = 0x1E,
 
 	/// <summary>
 	/// Moves text rendering to next line
