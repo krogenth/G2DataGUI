@@ -9,7 +9,7 @@
     <PackageVersion Include="Avalonia.Diagnostics" Version="0.10.19" />
     <PackageVersion Include="Avalonia.Markup.Xaml.Loader" Version="0.10.19" />
     <PackageVersion Include="Avalonia.ReactiveUI" Version="0.10.21" />
-    <PackageVersion Include="FluentAvaloniaUI" Version="1.4.5" />
+    <PackageVersion Include="FluentAvaloniaUI" Version="2.0.4" />
     <PackageVersion Include="XamlNameReferenceGenerator" Version="1.6.1" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />
