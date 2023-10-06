@@ -9,17 +9,14 @@ public class Unknown06Opcode : IMapDialogueOpcode
 	public byte Unknown1 { get; set; }
 	public byte Unknown2 { get; set; }
 	public byte Unknown3 { get; set; }
-	public byte Unknown4 { get; set; }
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		Unknown06Opcode opcode = new()
+		return new Unknown06Opcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
 			Unknown3 = reader.ReadRawByte(),
-			//Unknown4 = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

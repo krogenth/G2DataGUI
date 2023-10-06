@@ -8,7 +8,6 @@ public class NextLineOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		NextLineOpcode opcode = new();
-		return opcode;
+		return new NextLineOpcode();
 	}
 }

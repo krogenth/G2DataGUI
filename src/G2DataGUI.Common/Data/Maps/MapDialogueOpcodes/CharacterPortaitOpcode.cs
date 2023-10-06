@@ -16,11 +16,10 @@ public class CharacterPortaitOpcode : IMapDialogueOpcode, IMapDialogueOpcodeRead
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		CharacterPortaitOpcode opcode = new()
+		return new CharacterPortaitOpcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			PortaitOffset = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

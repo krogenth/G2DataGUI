@@ -15,9 +15,6 @@ public class CreateTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
 	{
 		CreateTextBoxOpcode opcode = new();
 
-		// create textbox should always have some text in it
-		// opcode.NestedOpcodes.Add(TextOpcode.ReadOpcode(reader));
-
 		byte data;
 		do
 		{

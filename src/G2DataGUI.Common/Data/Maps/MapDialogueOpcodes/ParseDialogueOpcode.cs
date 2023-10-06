@@ -31,6 +31,7 @@ public static class ParseDialogueOpcode
 			DialogueOpcode.TextBox => ITextBoxOpcode.ReadOpcode(reader),
 			DialogueOpcode.CharacterPortait => CharacterPortaitOpcode.ReadOpcode(reader),
 			DialogueOpcode.NextPage => NextPageOpcode.ReadOpcode(reader),
+			DialogueOpcode.Unknown1B => Unknown1BOpcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown1C => Unknown1COpcode.ReadOpcode(reader),
 			DialogueOpcode.Pause => IPauseOpcode.ReadOpcode(reader),
 			DialogueOpcode.Highlight => IHighlightOpcode.ReadOpcode(reader),

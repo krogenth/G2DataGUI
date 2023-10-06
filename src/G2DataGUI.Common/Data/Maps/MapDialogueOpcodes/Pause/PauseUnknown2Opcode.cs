@@ -11,10 +11,9 @@ public class PauseUnknown2Opcode : IPauseOpcode
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		PauseUnknown2Opcode opcode = new()
+		return new PauseUnknown2Opcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

@@ -9,9 +9,5 @@ public class RemoveTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
 	public TextBoxOption Option { get; set; } = TextBoxOption.RemoveTextBox;
 	public ObservableCollection<IMapDialogueOpcode> NestedOpcodes { get; set; } = new();
 
-	public static IMapDialogueOpcode ReadOpcode(Stream reader)
-	{
-		RemoveTextBoxOpcode opcode = new();
-		return opcode;
-	}
+	public static IMapDialogueOpcode ReadOpcode(Stream reader) => new RemoveTextBoxOpcode();
 }

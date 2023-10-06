@@ -11,8 +11,6 @@ public class HighlightEndOpcode : IHighlightOpcode
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		HighlightEndOpcode opcode = new();
-
-		return opcode;
+		return new HighlightEndOpcode();
 	}
 }

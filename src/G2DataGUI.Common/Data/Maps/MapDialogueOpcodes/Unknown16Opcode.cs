@@ -14,7 +14,7 @@ public class Unknown16Opcode : IMapDialogueOpcode
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		Unknown16Opcode opcode = new()
+		return new Unknown16Opcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
@@ -22,6 +22,5 @@ public class Unknown16Opcode : IMapDialogueOpcode
 			Unknown4 = reader.ReadRawByte(),
 			Unknown5 = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

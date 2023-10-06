@@ -5,6 +5,11 @@ using G2DataGUI.IO.Streams;
 
 namespace G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox;
 
+/// <summary>
+/// Creates a textbox at the top center of the screen,
+/// generally used for screen transition labels.
+/// i.e. - to Carbo Village
+/// </summary>
 public class CreateOverworldTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeReader
 {
 	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.TextBox;
@@ -20,9 +25,6 @@ public class CreateOverworldTextBoxOpcode : ITextBoxOpcode, IMapDialogueOpcodeRe
 			TextBoxLength = reader.ReadRawByte(),
 			TextBoxHeight = reader.ReadRawByte(),
 		};
-
-		// create overworld textbox should always have some text in it
-		// opcode.NestedOpcodes.Add(TextOpcode.ReadOpcode(reader));
 
 		byte data;
 		do

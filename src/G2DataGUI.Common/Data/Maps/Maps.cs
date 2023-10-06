@@ -9,6 +9,7 @@ namespace G2DataGUI.Common.Data.Maps;
 public class Maps
 {
     public static Maps Instance { get; private set; } = new Maps();
+	public ObservableCollection<ushort> GameMapIDs { get; private set; } = new();
     public ObservableCollection<Map> GameMaps { get; private set; } = new();
     public event EventHandler CollectionRefreshed;
 
@@ -29,10 +30,13 @@ public class Maps
 		try
 		{
 			GameMaps.Clear();
+			GameMapIDs.Clear();
 			foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))
 			{
 				using FileStream reader = File.Open(file, FileMode.Open);
 				GameMaps.Add(Map.ReadMap(reader, file));
+				var name = new DirectoryInfo(Path.GetDirectoryName(file)).Name;
+				GameMapIDs.Add(Convert.ToUInt16(name, 16));
 			}
 
 			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
@@ -41,7 +45,10 @@ public class Maps
 		{
 			Errors.Errors.Instance.AddError(new Error("Maps", ex.Message));
 		}
-    }
+
+		using var vorbis = new NVorbis.VorbisReader("F:\\Steam\\steamapps\\common\\Grandia II Anniversary Edition\\content\\data\\sound\\staffrollus.ogg");
+		var channels = vorbis.Channels;
+	}
 
 	private void WriteMaps()
 	{

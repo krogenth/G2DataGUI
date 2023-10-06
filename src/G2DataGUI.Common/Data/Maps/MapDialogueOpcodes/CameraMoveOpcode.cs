@@ -11,11 +11,10 @@ public class CameraMoveOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		CameraMoveOpcode opcode = new()
+		return new CameraMoveOpcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

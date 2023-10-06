@@ -11,11 +11,10 @@ public class ItemAcquireOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		ItemAcquireOpcode opcode = new()
+		return new ItemAcquireOpcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Item1Offset = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

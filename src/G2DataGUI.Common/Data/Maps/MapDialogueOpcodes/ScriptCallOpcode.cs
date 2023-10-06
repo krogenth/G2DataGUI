@@ -11,11 +11,10 @@ public class ScriptCallOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		ScriptCallOpcode opcode = new()
+		return new ScriptCallOpcode()
 		{
 			ScriptId = reader.ReadRawByte(),
 			CharacterId = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

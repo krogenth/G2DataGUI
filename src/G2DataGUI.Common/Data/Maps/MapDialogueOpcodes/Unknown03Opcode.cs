@@ -12,12 +12,11 @@ public class Unknown03Opcode : IMapDialogueOpcode
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		Unknown03Opcode opcode = new()
+		return new Unknown03Opcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
 			Unknown3 = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

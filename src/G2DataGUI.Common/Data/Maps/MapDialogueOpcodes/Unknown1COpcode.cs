@@ -10,10 +10,9 @@ public class Unknown1COpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
-		Unknown1COpcode opcode = new()
+		return new Unknown1COpcode()
 		{
 			Unknown1 = reader.ReadRawByte(),
 		};
-		return opcode;
 	}
 }

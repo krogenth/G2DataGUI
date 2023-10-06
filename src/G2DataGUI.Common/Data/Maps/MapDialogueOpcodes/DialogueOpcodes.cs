@@ -103,6 +103,11 @@ public enum DialogueOpcode : byte
 	NextPage = 0x1A,
 
 	/// <summary>
+	/// Completely unknown, appears to have no parameters
+	/// </summary>
+	Unknown1B = 0x1B,
+
+	/// <summary>
 	/// Completely unknown, seems to have 1 parameter
 	/// </summary>
 	Unknown1C = 0x1C,

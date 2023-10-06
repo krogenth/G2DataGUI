@@ -18,9 +18,11 @@ public class TextOpcode : IMapDialogueOpcode, IMapDialogueOpcodeReader
 		try
 		{
 			var data = reader.ReadRawByte();
-			while (!data.EnumExists<DialogueOpcode>())
+			while (!data.EnumExists<DialogueOpcode>() || data.ToEnum<DialogueOpcode>() == DialogueOpcode.NextLine)
 			{
-				_ = opcode.Text += Convert.ToChar(data);
+				opcode.Text += data == (byte)DialogueOpcode.NextLine ?
+					"\n" :
+					Convert.ToChar(data);
 				data = reader.ReadRawByte();
 			}
 
