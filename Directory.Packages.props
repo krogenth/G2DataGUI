@@ -16,7 +16,7 @@
     <PackageVersion Include="CommunityToolkit.Diagnostics" Version="8.2.1" />
 		<PackageVersion Include="Pfim" Version="0.11.2" />
 		
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageVersion Include="NUnit" Version="3.13.3" />
     <PackageVersion Include="NUnit3TestAdapter" Version="4.4.2" />
     <PackageVersion Include="NUnit.Analyzers" Version="3.6.1" />
