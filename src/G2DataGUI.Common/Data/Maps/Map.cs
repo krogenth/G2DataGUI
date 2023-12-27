@@ -98,12 +98,12 @@ public class Map
 	public void WriteMap()
 	{
 		// we need the file to write to
-		if (Filename.Length <= 0)
+		if (FileLocation.Length <= 0)
 		{
 			return;
 		}
 
-		using FileStream writer = File.Open(Filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+		using FileStream writer = File.Open(FileLocation, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
 		writer.Seek(Header.OffsetMapEntries, SeekOrigin.Begin);
 		foreach (var entry in Entries)
