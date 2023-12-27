@@ -15,7 +15,7 @@ public class FixedLengthDescription
 			string description = "";
 			foreach (var character in _characters)
 			{
-				description += Convert.ToChar(character);
+				description += character > 0 ? Convert.ToChar(character) : ' ';
 			}
 
 			return description.TrimEnd();
@@ -25,7 +25,7 @@ public class FixedLengthDescription
             value = value.PadRight((int)MaxLength, ' ');
 			for (int index = 0; index < MaxLength; index++)
 			{
-                _characters[index] = Convert.ToByte(_characters[index]);
+                _characters[index] = Convert.ToByte(value[index]);
 			}
         }
 	}
