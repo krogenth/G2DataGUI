@@ -244,6 +244,7 @@ public class EnemyMoveStats
 			$"{Power}," +
 			$"{AD}," +
 			$"{LocaleManager.Instance[LocaleKeys.TargetTypes][TargetType]}," +
+			$"{NormalAttackFlag}" +
 			$"{Distance}," +
 			$"{Accuracy}," +
 			$"{Range}," +
