@@ -154,10 +154,7 @@ public class Map
 		}
 
 		writer.Seek(Header.OffsetShop, SeekOrigin.Begin);
-		if (Shop != null)
-		{
-			Shop.WriteMapShop(writer);
-		}
+		Shop?.WriteMapShop(writer);
 	}
 
 	/// <summary>
