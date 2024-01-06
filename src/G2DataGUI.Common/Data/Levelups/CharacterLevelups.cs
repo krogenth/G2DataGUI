@@ -44,4 +44,15 @@ public class CharacterLevelups
 			writer.WriteLine();
 		}
 	}
+
+	public void GenerateSumCSV(StreamWriter writer)
+	{
+		LevelupStats levelSum = new();
+		foreach (var levelup in Levelups)
+		{
+			writer.Write($"{CharacterName},");
+			levelup.GenerateSumCSV(writer, ref levelSum);
+			writer.WriteLine();
+		}
+	}
 }
