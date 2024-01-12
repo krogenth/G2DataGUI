@@ -9,8 +9,8 @@ public class Unknown10Unknown1Opcode : IUnknown10Opcode
 	public Unknown10Option Option { get; set; } = Unknown10Option.Unknown1;
 	public byte Unknown1 { get; set; }
 	public byte Unknown2 { get; set; }
-	public byte Unknown3 { get; set; }
 	public short MapID { get; set; }
+	public byte Unknown3 { get; set; }
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
@@ -18,8 +18,8 @@ public class Unknown10Unknown1Opcode : IUnknown10Opcode
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
-			Unknown3 = reader.ReadRawByte(),
 			MapID = reader.ReadRawShort(),
+			Unknown3 = reader.ReadRawByte(),
 		};
 	}
 }

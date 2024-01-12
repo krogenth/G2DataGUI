@@ -816,9 +816,6 @@
 										Margin="5,0">
 								<TextBlock Text="Map ID:" />
 								<TextBox Text="{Binding MapID}" />
-								<NumericUpDown Value="{Binding MapID}"
-											Increment="0.01"
-											FormatString="{}{0:x}" />
 							</StackPanel>
 						</Grid>
 					</StackPanel>
