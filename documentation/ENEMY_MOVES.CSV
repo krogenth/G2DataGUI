@@ -1,326 +1,316 @@
 Name,MP,SP,Unknown #1,Target Effect,Strength,Power,AD,Target Type,Normal Attack Flag,Distance,Accuracy,Range,Cast Time,Recovery Time,Animation,Knockdown,IP Stun,IP Cancel Stun,Knockback,Element,Element Strength,Ailments,Ailments Chance,Attack Modifier,Defense Modifier,Action Modifier,Movement Modifier,Special
-Attack,0,0,1,Physical Damage,85,200,85,One Enemy,150,100,0,60,9999,Physical Attack,False,0,0,120,Blizzard,9,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,20,Physical Damage,90,150,90,One Enemy,50,300,0,30,9999,Physical Attack,False,0,0,30,Earth,10,1,20,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,110,170,160,One Enemy,91,100,0,60,9999,Physical Attack,False,0,0,60,Fire,0,1,15,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,4,Physical Damage,190,500,200,One Enemy,130,120,0,30,9999,Physical Attack,False,2000,3000,130,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,55,125,70,One Enemy,197,100,0,60,9999,Physical Attack,False,0,0,150,Blizzard,8,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,100,150,70,One Enemy,200,130,0,60,9999,Physical Attack,False,0,0,120,Fire,0,0,0,0,0,0,0,0
-Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,165,230,150,One Enemy,84,100,0,60,9999,Physical Attack,False,0,0,70,Fire,0,0,0,0,0,0,0,0
-Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,165,270,100,One Enemy,10,110,0,30,9999,Physical Attack,False,500,0,120,Fire,9,0,0,0,0,0,0,0
-Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,55,140,70,One Enemy,400,100,0,60,9999,Physical Attack,False,1000,0,50,Earth,8,1,10,0,0,0,0,0
-Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,95,210,70,One Enemy,100,110,0,60,9999,Physical Attack,False,0,0,80,Lightning,5,0,0,0,0,0,0,0
-Giga Spread,0,36,13,Physical Damage,95,270,70,All Enemies,0,0,600,210,13000,Physical Attack,False,2000,3000,130,Lightning,9,4,30,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,4,Physical Damage,90,120,100,One Enemy,80,120,0,30,9999,Physical Attack,False,0,0,200,Earth,7,0,0,0,0,0,0,0
-Tornado Horn,0,24,1,Physical Damage,90,170,150,One Enemy,0,0,0,240,15000,Physical Attack,True,4000,5000,0,Earth,9,8,75,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,55,140,60,One Enemy,120,100,0,60,9999,Physical Attack,False,0,0,50,Blizzard,7,0,0,0,0,0,0,0
-Sleep Spawn,0,16,36,Physical Damage,55,150,100,One Enemy,0,0,0,300,12000,Physical Attack,False,2000,0,0,Fire,0,2,80,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,95,210,90,One Enemy,163,100,0,60,9999,Physical Attack,False,0,0,50,Earth,8,0,0,0,0,0,0,0
-Throw Buddy,0,26,6,Physical Damage,95,250,100,One Enemy,0,0,0,180,12000,Physical Attack,True,1000,3000,150,Earth,8,0,0,0,-1,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,125,210,100,One Enemy,116,100,0,60,9999,Physical Attack,False,0,0,80,Wind,3,0,0,0,0,0,0,0
-Air Slash,0,42,7,Physical Damage,125,180,100,Area Enemies,0,0,400,210,13000,Physical Attack,False,500,0,150,Wind,9,0,0,0,0,0,0,0
-Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,50,115,50,One Enemy,20,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
-Web Trap,0,12,4,Physical Damage,50,120,100,One Enemy,0,0,0,420,12000,Physical Attack,False,1500,3000,0,Fire,0,0,0,0,0,0,-1,0
-Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,150,280,100,One Enemy,50,100,0,60,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
-Apple Hurl,0,20,5,Physical Damage,150,390,200,One Enemy,0,0,0,180,15000,Physical Attack,True,3000,5000,130,Fire,0,0,0,0,0,0,0,0
-Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,140,210,100,One Enemy,59,100,0,60,9999,Physical Attack,False,0,0,50,Earth,5,0,0,0,0,0,0,0
-Move Block Step,0,22,31,Physical Damage,140,250,180,One Enemy,0,0,0,210,13000,Physical Attack,False,2000,2000,0,Earth,7,64,70,0,0,0,0,0
-Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,120,190,130,One Enemy,100,100,0,30,9999,Physical Attack,False,0,0,120,Wind,7,0,0,0,0,0,0,0
-Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,400,180,13000,Shhh!,False,0,0,0,Fire,0,32,30,0,0,0,0,0
-Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,0,0,0,90,11000,Runner,False,0,0,0,Fire,0,0,0,0,0,0,2,0
-Howl,9,0,5,Magical Damage,120,160,70,Area Enemies,0,0,600,150,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,70,135,50,One Enemy,44,120,0,60,9999,Physical Attack,False,0,0,50,Earth,5,0,0,0,0,0,0,0
-Sand Spray,0,12,1,Physical Damage,70,130,60,One Enemy,0,0,0,180,12000,Physical Attack,False,1000,0,30,Earth,10,0,0,0,0,0,-1,0
-Earth Break,0,24,6,Physical Damage,70,140,150,One Enemy,0,0,0,300,13000,Physical Attack,True,3000,5000,120,Earth,8,0,0,0,0,0,0,0
-Howl,9,0,5,Magical Damage,120,160,70,Area Enemies,0,0,600,150,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,165,250,170,One Enemy,80,120,0,30,9000,Physical Attack,False,0,0,80,Earth,5,0,0,0,0,0,0,0
-Scissors Storm,0,32,9,Physical Damage,165,430,230,One Enemy,0,0,0,150,15000,Physical Attack,True,4000,5000,250,Earth,7,4,75,0,0,0,0,0
-Phantom Echo,0,46,7,Physical Damage,165,320,180,Area Enemies,0,0,500,120,12000,Physical Attack,False,1500,0,120,Earth,10,0,0,0,-1,0,0,0
-Howl,9,0,5,Magical Damage,120,160,70,Area Enemies,0,0,600,150,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,125,180,100,One Enemy,140,100,0,60,9999,Physical Attack,False,0,0,80,Blizzard,5,0,0,0,0,0,0,0
-Bloodsucking,0,22,9,Physical Damage,125,330,120,One Enemy,0,0,0,210,15000,Physical Attack,True,3000,3000,40,Blizzard,8,0,0,0,0,0,0,40
-Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,400,150,12000,Fiora,False,0,0,0,Fire,0,64,50,0,0,0,0,0
-Poizn,15,0,20,Magical Damage,125,70,100,Area Enemies,0,0,600,180,13000,Poizn,False,0,0,0,Fire,0,1,60,0,0,0,0,0
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,150,200,100,One Enemy,2,150,0,60,9999,Physical Attack,False,0,0,50,Earth,6,0,0,0,0,0,0,0
-Feather Needle,0,33,1,Physical Damage,150,290,240,All Enemies,0,0,0,210,15000,Physical Attack,False,1000,3000,100,Earth,8,0,0,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,150,170,150,Area Enemies,0,0,600,150,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,120,11000,Def-Loss,False,0,0,0,Fire,0,0,0,0,-1,0,0,0
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,9,Physical Damage,65,200,100,One Enemy,30,100,0,30,9999,Physical Attack,False,0,0,80,Fire,7,0,0,0,0,0,0,0
-Burnflame,16,0,5,Magical Damage,105,130,110,Area Enemies,0,0,600,210,12000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0
-WOW!,5,0,3,Ally Buff/Debuff,0,0,0,One Ally,0,0,0,120,11000,WOW!,False,0,0,0,Fire,0,0,0,2,0,0,0,0
-Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,120,11000,Def-Loss,False,0,0,0,Fire,0,0,0,0,-1,0,0,0
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,75,140,85,One Enemy,500,100,0,60,9999,Physical Attack,False,0,0,30,Blizzard,4,0,0,0,0,0,0,0
-Power Drain,0,28,9,Physical Damage,75,220,85,One Enemy,0,0,0,240,15000,Physical Attack,False,3000,5000,40,Blizzard,6,0,0,0,0,0,0,40
-Ice Prickle,0,34,7,Physical Damage,75,160,85,Area Enemies,0,0,400,180,13000,Physical Attack,True,1000,3000,70,Blizzard,7,0,0,0,0,0,0,0
-Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,800,150,12000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,185,180,170,One Enemy,50,110,0,60,9999,Physical Attack,False,0,0,30,Wind,6,0,0,0,0,0,0,0
-Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,400,120,11000,Shhh!,False,0,0,0,Fire,0,32,60,0,0,0,0,0
-Howlslash,14,0,4,Magical Damage,185,150,150,Enemy Line,0,0,300,150,12000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Howlnado,45,0,2,Magical Damage,185,380,210,All Enemies,0,0,0,210,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,50,140,50,One Enemy,8,180,0,60,9999,Physical Attack,False,0,0,120,Wind,7,0,0,0,0,0,0,0
-Howl,9,0,9,Magical Damage,50,110,100,Area Enemies,0,0,600,300,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
-Howlslash,14,0,9,Magical Damage,50,160,100,Enemy Line,0,0,300,360,14000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Howlnado,45,0,2,Magical Damage,185,380,210,All Enemies,0,0,0,210,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,120,160,100,One Enemy,130,120,0,60,9999,Physical Attack,False,0,0,100,Fire,0,0,0,0,0,0,0,0
-Fireball,0,16,6,Physical Damage,120,300,100,One Enemy,0,0,0,210,15000,Physical Attack,True,3000,5000,200,Fire,8,0,0,0,-2,0,0,0
-Burnflame,16,0,7,Magical Damage,120,150,100,Area Enemies,0,0,600,180,13000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0
-Howlnado,45,0,2,Magical Damage,185,380,210,All Enemies,0,0,0,210,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
-Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,215,280,140,One Enemy,80,120,0,30,8500,Physical Attack,False,0,0,50,Blizzard,6,0,0,0,0,0,0,0
-Freezing Eye,0,32,25,Physical Damage,215,400,260,Enemy Line,0,0,150,180,15000,Physical Attack,False,3500,0,80,Blizzard,10,0,0,0,0,-2,-2,0
-Blizzard Edge,0,26,1,Physical Damage,215,350,200,Area Around Self,0,0,700,120,13000,Physical Attack,False,1000,3000,250,Blizzard,8,0,0,0,0,0,0,0
-Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,400,90,12000,Fiora,False,0,0,0,Fire,0,64,60,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,225,280,160,One Enemy,200,160,0,30,9999,Physical Attack,False,0,0,120,Fire,0,0,0,0,0,0,0,0
-Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,225,290,100,One Enemy,200,100,0,60,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
-Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,200,320,200,One Enemy,150,100,0,60,9999,Physical Attack,False,0,0,150,Earth,8,0,0,0,0,0,0,0
-Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,180,230,180,One Enemy,50,300,0,30,9999,Physical Attack,False,0,0,30,Fire,10,1,10,0,0,0,0,0
-Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,190,240,140,One Enemy,91,100,0,60,9999,Physical Attack,False,0,0,50,Fire,7,16,10,0,0,0,0,0
-Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,20,Physical Damage,140,230,100,One Enemy,197,100,0,60,9999,Physical Attack,False,0,0,60,Fire,6,1,10,0,0,0,0,0
-Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,180,200,260,One Enemy,200,130,0,60,9999,Physical Attack,False,0,0,50,Lightning,4,0,0,0,0,0,0,0
-Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,70,130,60,One Enemy,84,100,0,60,9999,Physical Attack,False,0,0,60,Wind,7,0,0,0,0,0,0,0
-Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,50,130,30,One Enemy,10,110,0,60,9999,Physical Attack,False,0,0,120,Blizzard,7,0,0,0,0,0,0,0
-Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,150,230,100,One Enemy,400,100,0,30,9999,Physical Attack,False,0,0,80,Fire,0,4,15,0,0,0,0,0
-Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,185,270,170,One Enemy,100,110,0,60,9999,Physical Attack,True,0,0,150,Blizzard,5,0,0,0,0,0,0,0
-Freezing Breath,0,36,1,Physical Damage,185,400,240,All Enemies,0,0,600,180,13000,Physical Attack,False,3500,5000,120,Blizzard,9,0,0,0,0,-1,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,215,300,200,One Enemy,80,120,0,30,8000,Physical Attack,False,0,0,60,Fire,6,0,0,0,0,0,0,0
-Buster Horn,0,56,31,Physical Damage,215,400,350,One Enemy,0,0,0,180,13000,Physical Attack,True,4000,7000,0,Fire,9,64,70,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,145,240,120,One Enemy,120,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
-Lunacy Egg,0,38,27,Physical Damage,145,210,210,One Enemy,0,0,0,210,13000,Physical Attack,False,1500,3000,30,Fire,0,8,50,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,190,230,190,One Enemy,163,100,0,60,9999,Physical Attack,False,0,0,50,Fire,8,0,0,0,0,0,0,0
-Burning Sun,0,22,32,Physical Damage,190,370,240,One Enemy,0,0,0,210,13000,Physical Attack,True,2500,4000,150,Fire,8,0,0,0,0,0,0,0
-Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,200,250,270,One Enemy,116,100,0,60,9999,Physical Attack,False,0,0,60,Fire,5,0,0,0,0,0,0,0
-Beat Spiral,0,33,30,Physical Damage,200,430,260,Area Enemies,0,0,400,150,13000,Physical Attack,True,500,0,100,Fire,8,0,0,0,0,0,0,0
-Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,180,240,140,One Enemy,20,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
-Plague Net,0,22,4,Physical Damage,180,250,290,One Enemy,0,0,0,180,13000,Physical Attack,False,1000,3000,0,Fire,0,16,80,0,0,0,-2,0
-Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,215,280,260,One Enemy,50,100,0,60,9999,Physical Attack,False,0,0,60,Fire,6,0,0,0,0,0,0,0
-Napalm Fruit,0,39,6,Physical Damage,215,400,300,Area Enemies,0,0,500,150,13000,Physical Attack,False,1000,0,50,Fire,8,0,0,0,0,0,0,0
-Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,90,170,100,One Enemy,59,100,0,60,9999,Physical Attack,False,0,0,50,Earth,7,0,0,0,0,0,0,0
-Sleep Dance,0,18,36,Physical Damage,90,210,100,One Enemy,0,0,0,210,13000,Physical Attack,True,1000,3000,0,Earth,8,2,75,0,0,0,0,0
-Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
-Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,215,280,180,One Enemy,100,100,0,30,9999,Physical Attack,False,0,0,80,Blizzard,7,0,0,0,0,0,0,0
-Crackle,16,0,6,Magical Damage,215,350,170,One Enemy,0,0,0,180,13000,Crackle,True,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
-Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,120,11000,Freeze!,False,0,0,0,Fire,0,0,0,0,0,0,-1,0
-Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,170,250,200,One Enemy,44,120,0,60,9999,Physical Attack,False,0,0,60,Earth,4,0,0,0,0,0,0,0
-Acid Spray,0,27,23,Physical Damage,170,230,150,One Enemy,0,0,0,150,12000,Physical Attack,False,1000,0,30,Earth,9,16,50,0,0,0,0,0
-Terra Break,0,45,24,Physical Damage,170,300,300,One Enemy,0,0,0,180,15000,Physical Attack,True,3500,7000,300,Earth,7,0,0,0,0,0,0,0
-Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,230,340,280,One Enemy,80,120,0,30,8000,Physical Attack,True,0,0,120,Blizzard,5,0,0,0,0,0,0,0
-Freeze Down,0,33,1,Physical Damage,230,510,360,One Enemy,0,0,0,120,14000,Physical Attack,False,2000,4000,50,Blizzard,6,2,80,0,0,0,0,0
-Blizzard Rise,0,44,8,Physical Damage,230,750,140,Area Enemies,0,0,800,90,12000,Physical Attack,False,1000,0,30,Blizzard,8,0,0,0,0,-1,0,0
-Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,195,230,220,One Enemy,140,100,0,60,9999,Physical Attack,False,0,0,50,Lightning,6,0,0,0,0,0,0,0
-Block Needle,0,31,31,Physical Damage,195,300,360,One Enemy,0,0,0,150,14000,Physical Attack,True,2000,3000,30,Fire,0,64,30,0,0,0,0,0
-Zap!,24,0,34,Magical Damage,195,140,270,Area Enemies,0,0,600,120,12000,Zap!,False,1000,0,50,Lightning,10,4,15,0,0,0,0,0
-Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,200,370,120,One Enemy,2,150,0,60,9999,Physical Attack,False,0,0,50,Blizzard,5,0,0,0,0,0,0,0
-Snowflakes,0,36,27,Physical Damage,200,460,240,All Enemies,0,0,0,180,15000,Physical Attack,False,1500,3000,100,Blizzard,9,0,0,0,0,0,-2,0
-Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,400,120,12000,Fiora,False,0,0,0,Fire,0,64,60,0,0,0,0,0
-Crackle,16,0,1,Magical Damage,200,430,275,One Enemy,0,0,0,150,13000,Crackle,True,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
-Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Attack,0,0,1,Physical Damage,200,270,160,One Enemy,30,100,0,60,9999,Physical Attack,False,0,0,50,Wind,6,0,0,0,0,0,0,0
-Shhh!,10,0,7,Enemy Buff/Debuff,0,0,0,Area Enemies,0,0,400,90,11000,Shhh!,False,0,0,0,Fire,0,32,60,0,0,0,0,0
-Howlslash,14,0,4,Magical Damage,200,230,225,Enemy Line,0,0,300,150,13000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
-Howlnado,45,0,2,Magical Damage,200,360,225,All Enemies,0,0,0,180,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
-Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Attack,0,0,1,Physical Damage,215,280,200,One Enemy,500,100,0,60,9999,Physical Attack,False,0,0,100,Lightning,5,4,10,0,0,0,0,0
-Mana Capture,0,26,41,Magical Damage,215,250,10,One Enemy,0,0,0,150,13000,Physical Attack,False,2500,0,120,Fire,0,0,0,0,0,0,0,50
-Spark Spine,0,37,7,Physical Damage,215,390,400,Area Enemies,0,0,400,180,15000,Physical Attack,False,1500,2000,50,Lightning,8,4,30,0,0,0,0,0
-Zap All,36,0,2,Magical Damage,215,230,300,All Enemies,0,0,0,120,12000,Zap All,True,1000,0,80,Lightning,10,4,15,0,0,0,0,0
-Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Attack,0,0,1,Physical Damage,130,150,70,One Enemy,50,110,0,60,9999,Physical Attack,False,0,0,30,Lightning,6,0,0,0,0,0,0,0
-Stram,6,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,120,12000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
-Zap!,24,0,34,Magical Damage,130,100,150,Area Enemies,0,0,600,180,13000,Zap!,False,1000,0,50,Lightning,10,4,15,0,0,0,0,0
-Zap All,36,0,2,Magical Damage,215,230,300,All Enemies,0,0,0,120,12000,Zap All,True,1000,0,80,Lightning,10,4,15,0,0,0,0,0
-Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
-Attack,0,0,1,Physical Damage,200,320,250,One Enemy,8,200,0,30,9999,Physical Attack,False,2500,5000,50,Fire,6,0,0,0,0,0,0,0
-Burnflame,16,0,1,Magical Damage,200,280,250,Area Enemies,0,0,600,120,12000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0
-Burnstrike,20,0,1,Magical Damage,200,560,250,One Enemy,0,0,0,180,15000,Burnstrike,False,0,0,80,Fire,10,0,0,0,0,0,0,0
-BOOM!,22,0,1,Magical Damage,200,450,200,Area Enemies,0,0,600,150,13000,BOOM!,True,2000,0,120,Fire,0,0,0,0,0,0,0,0
-BA-BOOM!,75,0,2,Magical Damage,200,2170,200,All Enemies,0,0,0,180,17000,BA-BOOM!,True,2000,0,150,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,195,270,250,One Enemy,130,120,0,30,9999,Physical Attack,False,0,0,50,Lightning,5,0,0,0,0,0,0,0
-Lightning Ball,0,42,34,Physical Damage,195,510,200,Area Enemies,0,0,400,150,15000,Physical Attack,True,2000,4000,180,Lightning,8,4,25,0,0,0,0,0
-Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,90,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
-DragonZap,58,0,1,Magical Damage,195,420,350,Enemy Line,0,0,300,210,14000,DragonZap,True,1500,0,120,Lightning,10,4,20,0,0,0,0,0
-BA-BOOM!,75,0,2,Magical Damage,200,2170,200,All Enemies,0,0,0,180,17000,BA-BOOM!,True,2000,0,150,Fire,0,0,0,0,0,0,0,0
-Attack,0,0,1,Physical Damage,235,340,120,One Enemy,80,120,0,30,8000,Physical Attack,False,0,0,50,Lightning,4,0,0,0,0,0,0,0
-Killer Voltage,0,38,4,Physical Damage,235,520,150,Enemy Line,0,0,150,150,14000,Physical Attack,True,2500,5000,120,Lightning,10,4,25,-1,-1,-1,-1,0
-Spark Slice,0,46,1,Physical Damage,235,410,290,Area Around Self,0,0,600,90,12000,Physical Attack,False,1000,3000,100,Lightning,7,4,20,0,0,0,0,0
-Snooze,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,120,13000,Snooze,False,0,0,0,Fire,0,2,40,0,0,0,0,0
-Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
-Attack,0,0,1,Physical Damage,240,500,150,One Enemy,250,180,0,30,9999,Physical Attack,False,0,0,120,Fire,0,0,0,0,0,0,0,0
-Magna Boring,0,70,1,Physical Damage,240,430,270,One Enemy,0,0,0,180,15000,Physical Attack,True,4000,0,150,Fire,0,96,65,0,0,0,0,0
-Magna Ripper,0,50,1,Physical Damage,240,350,600,One Enemy,0,0,0,150,13000,Physical Attack,False,3000,5000,80,Fire,0,0,0,0,0,0,0,0
-BOOM!,22,0,1,Magical Damage,240,450,200,Area Enemies,0,0,600,90,12000,BOOM!,True,2000,0,120,Fire,0,0,0,0,0,0,0,0
-Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
-Attack,0,0,1,Physical Damage,240,600,100,One Enemy,200,100,0,30,9999,Physical Attack,False,0,0,150,Fire,0,0,0,0,0,0,0,0
-Magna Boring,0,70,1,Physical Damage,240,430,270,One Enemy,0,0,0,180,15000,Physical Attack,True,4000,0,150,Fire,0,96,65,0,0,0,0,0
-Magna Ripper,0,50,1,Physical Damage,240,350,600,One Enemy,0,0,0,150,13000,Physical Attack,False,3000,5000,80,Fire,0,0,0,0,0,0,0,0
-BOOM!,22,0,1,Magical Damage,240,450,200,Area Enemies,0,0,600,90,12000,BOOM!,True,2000,0,120,Fire,0,0,0,0,0,0,0,0
-Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
-Attack,0,0,1,Physical Damage,50,115,50,One Enemy,20,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
-Web Trap,0,12,4,Physical Damage,50,120,100,One Enemy,0,0,0,420,12000,Physical Attack,False,1500,3000,0,Fire,0,0,0,0,0,0,-1,0
-Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-,0,0,0,None,0,0,0,None,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
-Combo,0,0,37,Physical Damage,55,120,60,One Enemy,50,110,0,30,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
-Burn!,6,0,37,Magical Damage,55,110,100,One Enemy,0,0,0,75,12000,Burn!,False,0,0,80,Fire,10,0,0,0,0,0,0,0
-Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,65,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
-Zap!,24,0,37,Magical Damage,55,110,150,Area Enemies,0,0,600,125,13000,Zap!,False,1000,0,50,Lightning,10,4,100,0,0,0,0,0
-Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
-Combo,0,0,37,Physical Damage,80,180,100,One Enemy,170,120,0,30,9999,Physical Attack,False,0,0,100,Fire,0,0,0,0,0,0,0,0
-Beast-Fang Cut,0,26,37,Physical Damage,80,230,200,One Enemy,0,0,0,240,13000,Physical Attack,True,3000,6000,150,Fire,0,0,0,0,0,0,0,0
-Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,65,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
-Zap!,24,0,37,Magical Damage,55,110,150,Area Enemies,0,0,600,125,13000,Zap!,False,1000,0,50,Lightning,10,4,100,0,0,0,0,0
-Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
-Attack,0,0,5,Physical Damage,150,190,80,One Enemy,100,100,0,60,9999,Physical Attack,False,0,0,100,Fire,0,0,0,0,0,0,0,0
-Delta Burst,0,37,1,Physical Damage,150,270,150,One Enemy,0,0,0,270,13000,Physical Attack,False,1000,3000,0,Fire,0,0,0,0,0,0,0,0
-Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,0,0,0,65,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
-Zap!,24,0,37,Magical Damage,55,110,150,Area Enemies,0,0,600,125,13000,Zap!,False,1000,0,50,Lightning,10,4,100,0,0,0,0,0
-Gravity,8,0,1,Special,0,0,0,Area Enemies,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
-Combo,0,0,9,Physical Damage,215,260,100,One Enemy,60,110,0,30,9999,Physical Attack,False,0,0,70,Fire,0,0,0,0,0,0,0,0
-Lotus Flower,0,28,5,Physical Damage,215,260,400,Enemy Line,0,0,200,60,13000,Physical Attack,True,1500,3000,150,Fire,0,0,0,0,0,0,0,0
-Tornado,0,48,2,Magical Damage,215,260,350,All Enemies,0,0,0,120,14000,Physical Attack,True,1500,0,0,Wind,8,0,0,0,0,0,0,0
-Gale,9,0,7,Magical Damage,215,190,225,Area Enemies,0,0,500,60,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
-Silence,0,20,2,Enemy Buff/Debuff,0,0,0,All Enemies,0,0,0,90,11000,Shhh!,False,0,0,0,Fire,0,32,50,0,0,0,0,0
-Combo,0,0,1,Physical Damage,240,290,100,One Enemy,50,110,0,30,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
-Fallen Wings,0,75,2,Magical Damage,240,200,450,All Enemies,0,0,0,180,15000,Physical Attack,True,3000,0,80,Fire,0,0,0,0,0,0,0,0
-Vanish,0,16,2,Status Change,0,0,0,Unknown,0,0,0,120,15000,Vanish,False,0,0,0,Fire,0,0,0,0,0,0,0,22
-DragonZap,58,0,9,Magical Damage,240,200,300,Enemy Line,0,0,300,150,15000,DragonZap,True,1500,0,120,Lightning,10,4,15,0,0,0,0,0
-Burnflame,16,0,7,Magical Damage,240,170,250,Area Enemies,0,0,600,120,13000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,85,200,85,One Enemy,True,150,100,0,60,9999,Physical Attack,False,0,0,120,Blizzard,9,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,20,Physical Damage,90,150,90,One Enemy,True,50,300,0,30,9999,Physical Attack,False,0,0,30,Earth,10,1,20,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,110,170,160,One Enemy,True,91,100,0,60,9999,Physical Attack,False,0,0,60,Fire,0,1,15,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,4,Physical Damage,190,500,200,One Enemy,True,130,120,0,30,9999,Physical Attack,False,2000,3000,130,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,55,125,70,One Enemy,True,197,100,0,60,9999,Physical Attack,False,0,0,150,Blizzard,8,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,100,150,70,One Enemy,True,200,130,0,60,9999,Physical Attack,False,0,0,120,Fire,0,0,0,0,0,0,0,0
+Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,False,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,165,230,150,One Enemy,True,84,100,0,60,9999,Physical Attack,False,0,0,70,Fire,0,0,0,0,0,0,0,0
+Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,False,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,165,270,100,One Enemy,True,10,110,0,30,9999,Physical Attack,False,500,0,120,Fire,9,0,0,0,0,0,0,0
+Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,False,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,55,140,70,One Enemy,True,400,100,0,60,9999,Physical Attack,False,1000,0,50,Earth,8,1,10,0,0,0,0,0
+Power Press,0,16,9,Physical Damage,100,260,70,One Enemy,False,0,0,0,270,13000,Physical Attack,True,2500,3000,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,95,210,70,One Enemy,True,100,110,0,60,9999,Physical Attack,False,0,0,80,Lightning,5,0,0,0,0,0,0,0
+Giga Spread,0,36,13,Physical Damage,95,270,70,All Enemies,False,0,0,600,210,13000,Physical Attack,False,2000,3000,130,Lightning,9,4,30,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,4,Physical Damage,90,120,100,One Enemy,True,80,120,0,30,9999,Physical Attack,False,0,0,200,Earth,7,0,0,0,0,0,0,0
+Tornado Horn,0,24,1,Physical Damage,90,170,150,One Enemy,False,0,0,0,240,15000,Physical Attack,True,4000,5000,0,Earth,9,8,75,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,55,140,60,One Enemy,True,120,100,0,60,9999,Physical Attack,False,0,0,50,Blizzard,7,0,0,0,0,0,0,0
+Sleep Spawn,0,16,36,Physical Damage,55,150,100,One Enemy,False,0,0,0,300,12000,Physical Attack,False,2000,0,0,Fire,0,2,80,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,95,210,90,One Enemy,True,163,100,0,60,9999,Physical Attack,False,0,0,50,Earth,8,0,0,0,0,0,0,0
+Throw Buddy,0,26,6,Physical Damage,95,250,100,One Enemy,False,0,0,0,180,12000,Physical Attack,True,1000,3000,150,Earth,8,0,0,0,-1,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,125,210,100,One Enemy,True,116,100,0,60,9999,Physical Attack,False,0,0,80,Wind,3,0,0,0,0,0,0,0
+Air Slash,0,42,7,Physical Damage,125,180,100,Area Enemies,False,0,0,400,210,13000,Physical Attack,False,500,0,150,Wind,9,0,0,0,0,0,0,0
+Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,False,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,50,115,50,One Enemy,True,20,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
+Web Trap,0,12,4,Physical Damage,50,120,100,One Enemy,False,0,0,0,420,12000,Physical Attack,False,1500,3000,0,Fire,0,0,0,0,0,0,-1,0
+Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,False,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,150,280,100,One Enemy,True,50,100,0,60,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
+Apple Hurl,0,20,5,Physical Damage,150,390,200,One Enemy,False,0,0,0,180,15000,Physical Attack,True,3000,5000,130,Fire,0,0,0,0,0,0,0,0
+Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,False,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,140,210,100,One Enemy,True,59,100,0,60,9999,Physical Attack,False,0,0,50,Earth,5,0,0,0,0,0,0,0
+Move Block Step,0,22,31,Physical Damage,140,250,180,One Enemy,False,0,0,0,210,13000,Physical Attack,False,2000,2000,0,Earth,7,64,70,0,0,0,0,0
+Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,False,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,120,190,130,One Enemy,True,100,100,0,30,9999,Physical Attack,False,0,0,120,Wind,7,0,0,0,0,0,0,0
+Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,False,0,0,400,180,13000,Shhh!,False,0,0,0,Fire,0,32,30,0,0,0,0,0
+Runner,3,0,2,Ally Buff/Debuff,0,0,0,All Allies,False,0,0,0,90,11000,Runner,False,0,0,0,Fire,0,0,0,0,0,0,2,0
+Howl,9,0,5,Magical Damage,120,160,70,Area Enemies,False,0,0,600,150,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,70,135,50,One Enemy,True,44,120,0,60,9999,Physical Attack,False,0,0,50,Earth,5,0,0,0,0,0,0,0
+Sand Spray,0,12,1,Physical Damage,70,130,60,One Enemy,False,0,0,0,180,12000,Physical Attack,False,1000,0,30,Earth,10,0,0,0,0,0,-1,0
+Earth Break,0,24,6,Physical Damage,70,140,150,One Enemy,False,0,0,0,300,13000,Physical Attack,True,3000,5000,120,Earth,8,0,0,0,0,0,0,0
+Howl,9,0,5,Magical Damage,120,160,70,Area Enemies,False,0,0,600,150,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,165,250,170,One Enemy,True,80,120,0,30,9000,Physical Attack,False,0,0,80,Earth,5,0,0,0,0,0,0,0
+Scissors Storm,0,32,9,Physical Damage,165,430,230,One Enemy,False,0,0,0,150,15000,Physical Attack,True,4000,5000,250,Earth,7,4,75,0,0,0,0,0
+Phantom Echo,0,46,7,Physical Damage,165,320,180,Area Enemies,False,0,0,500,120,12000,Physical Attack,False,1500,0,120,Earth,10,0,0,0,-1,0,0,0
+Howl,9,0,5,Magical Damage,120,160,70,Area Enemies,False,0,0,600,150,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,125,180,100,One Enemy,True,140,100,0,60,9999,Physical Attack,False,0,0,80,Blizzard,5,0,0,0,0,0,0,0
+Bloodsucking,0,22,9,Physical Damage,125,330,120,One Enemy,False,0,0,0,210,15000,Physical Attack,True,3000,3000,40,Blizzard,8,0,0,0,0,0,0,40
+Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,False,0,0,400,150,12000,Fiora,False,0,0,0,Fire,0,64,50,0,0,0,0,0
+Poizn,15,0,20,Magical Damage,125,70,100,Area Enemies,False,0,0,600,180,13000,Poizn,False,0,0,0,Fire,0,1,60,0,0,0,0,0
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,150,200,100,One Enemy,True,2,150,0,60,9999,Physical Attack,False,0,0,50,Earth,6,0,0,0,0,0,0,0
+Feather Needle,0,33,1,Physical Damage,150,290,240,All Enemies,False,0,0,0,210,15000,Physical Attack,False,1000,3000,100,Earth,8,0,0,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,150,170,150,Area Enemies,False,0,0,600,150,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,False,0,0,0,120,11000,Def-Loss,False,0,0,0,Fire,0,0,0,0,-1,0,0,0
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,9,Physical Damage,65,200,100,One Enemy,True,30,100,0,30,9999,Physical Attack,False,0,0,80,Fire,7,0,0,0,0,0,0,0
+Burnflame,16,0,5,Magical Damage,105,130,110,Area Enemies,False,0,0,600,210,12000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0
+WOW!,5,0,3,Ally Buff/Debuff,0,0,0,One Ally,False,0,0,0,120,11000,WOW!,False,0,0,0,Fire,0,0,0,2,0,0,0,0
+Def-Loss,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,False,0,0,0,120,11000,Def-Loss,False,0,0,0,Fire,0,0,0,0,-1,0,0,0
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,75,140,85,One Enemy,True,500,100,0,60,9999,Physical Attack,False,0,0,30,Blizzard,4,0,0,0,0,0,0,0
+Power Drain,0,28,9,Physical Damage,75,220,85,One Enemy,False,0,0,0,240,15000,Physical Attack,False,3000,5000,40,Blizzard,6,0,0,0,0,0,0,40
+Ice Prickle,0,34,7,Physical Damage,75,160,85,Area Enemies,False,0,0,400,180,13000,Physical Attack,True,1000,3000,70,Blizzard,7,0,0,0,0,0,0,0
+Gravity,8,0,1,Special,0,0,0,Area Enemies,False,0,0,800,150,12000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,185,180,170,One Enemy,True,50,110,0,60,9999,Physical Attack,False,0,0,30,Wind,6,0,0,0,0,0,0,0
+Shhh!,10,0,32,Enemy Buff/Debuff,0,0,0,Area Enemies,False,0,0,400,120,11000,Shhh!,False,0,0,0,Fire,0,32,60,0,0,0,0,0
+Howlslash,14,0,4,Magical Damage,185,150,150,Enemy Line,False,0,0,300,150,12000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Howlnado,45,0,2,Magical Damage,185,380,210,All Enemies,False,0,0,0,210,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,50,140,50,One Enemy,True,8,180,0,60,9999,Physical Attack,False,0,0,120,Wind,7,0,0,0,0,0,0,0
+Howl,9,0,9,Magical Damage,50,110,100,Area Enemies,False,0,0,600,300,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
+Howlslash,14,0,9,Magical Damage,50,160,100,Enemy Line,False,0,0,300,360,14000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Howlnado,45,0,2,Magical Damage,185,380,210,All Enemies,False,0,0,0,210,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,120,160,100,One Enemy,True,130,120,0,60,9999,Physical Attack,False,0,0,100,Fire,0,0,0,0,0,0,0,0
+Fireball,0,16,6,Physical Damage,120,300,100,One Enemy,False,0,0,0,210,15000,Physical Attack,True,3000,5000,200,Fire,8,0,0,0,-2,0,0,0
+Burnflame,16,0,7,Magical Damage,120,150,100,Area Enemies,False,0,0,600,180,13000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0
+Howlnado,45,0,2,Magical Damage,185,380,210,All Enemies,False,0,0,0,210,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
+Howlslash,14,0,7,Magical Damage,120,160,120,Enemy Line,False,0,0,300,210,15000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,215,280,140,One Enemy,True,80,120,0,30,8500,Physical Attack,False,0,0,50,Blizzard,6,0,0,0,0,0,0,0
+Freezing Eye,0,32,25,Physical Damage,215,400,260,Enemy Line,False,0,0,150,180,15000,Physical Attack,False,3500,0,80,Blizzard,10,0,0,0,0,-2,-2,0
+Blizzard Edge,0,26,1,Physical Damage,215,350,200,Area Around Self,False,0,0,700,120,13000,Physical Attack,False,1000,3000,250,Blizzard,8,0,0,0,0,0,0,0
+Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,False,0,0,400,90,12000,Fiora,False,0,0,0,Fire,0,64,60,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,225,280,160,One Enemy,True,200,160,0,30,9999,Physical Attack,False,0,0,120,Fire,0,0,0,0,0,0,0,0
+Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,False,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,225,290,100,One Enemy,True,200,100,0,60,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
+Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,False,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,200,320,200,One Enemy,True,150,100,0,60,9999,Physical Attack,False,0,0,150,Earth,8,0,0,0,0,0,0,0
+Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,False,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,20,Physical Damage,140,230,100,One Enemy,True,197,100,0,60,9999,Physical Attack,False,0,0,60,Fire,6,1,10,0,0,0,0,0
+Leg Drill,0,36,5,Physical Damage,225,360,300,One Enemy,False,0,0,0,150,13000,Physical Attack,False,1500,3500,0,Fire,0,0,0,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,180,200,260,One Enemy,True,200,130,0,60,9999,Physical Attack,False,0,0,50,Lightning,4,0,0,0,0,0,0,0
+Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,False,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,70,130,60,One Enemy,True,84,100,0,60,9999,Physical Attack,False,0,0,60,Wind,7,0,0,0,0,0,0,0
+Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,False,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,50,130,30,One Enemy,True,10,110,0,60,9999,Physical Attack,False,0,0,120,Blizzard,7,0,0,0,0,0,0,0
+Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,False,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,150,230,100,One Enemy,True,400,100,0,30,9999,Physical Attack,False,0,0,80,Fire,0,4,15,0,0,0,0,0
+Spark Press,0,25,34,Physical Damage,180,300,300,One Enemy,False,0,0,0,180,13000,Physical Attack,True,2000,4000,0,Lightning,8,4,50,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,185,270,170,One Enemy,True,100,110,0,60,9999,Physical Attack,True,0,0,150,Blizzard,5,0,0,0,0,0,0,0
+Freezing Breath,0,36,1,Physical Damage,185,400,240,All Enemies,False,0,0,600,180,13000,Physical Attack,False,3500,5000,120,Blizzard,9,0,0,0,0,-1,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,215,300,200,One Enemy,True,80,120,0,30,8000,Physical Attack,False,0,0,60,Fire,6,0,0,0,0,0,0,0
+Buster Horn,0,56,31,Physical Damage,215,400,350,One Enemy,False,0,0,0,180,13000,Physical Attack,True,4000,7000,0,Fire,9,64,70,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,145,240,120,One Enemy,True,120,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
+Lunacy Egg,0,38,27,Physical Damage,145,210,210,One Enemy,False,0,0,0,210,13000,Physical Attack,False,1500,3000,30,Fire,0,8,50,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,190,230,190,One Enemy,True,163,100,0,60,9999,Physical Attack,False,0,0,50,Fire,8,0,0,0,0,0,0,0
+Burning Sun,0,22,32,Physical Damage,190,370,240,One Enemy,False,0,0,0,210,13000,Physical Attack,True,2500,4000,150,Fire,8,0,0,0,0,0,0,0
+Berserk Launch,0,40,4,Physical Damage,225,300,200,One Enemy,False,0,0,0,180,14000,Physical Attack,True,1000,0,80,Fire,0,24,50,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,200,250,270,One Enemy,True,116,100,0,60,9999,Physical Attack,False,0,0,60,Fire,5,0,0,0,0,0,0,0
+Beat Spiral,0,33,30,Physical Damage,200,430,260,Area Enemies,False,0,0,400,150,13000,Physical Attack,True,500,0,100,Fire,8,0,0,0,0,0,0,0
+Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,False,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,180,240,140,One Enemy,True,20,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
+Plague Net,0,22,4,Physical Damage,180,250,290,One Enemy,False,0,0,0,180,13000,Physical Attack,False,1000,3000,0,Fire,0,16,80,0,0,0,-2,0
+Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,False,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,215,280,260,One Enemy,True,50,100,0,60,9999,Physical Attack,False,0,0,60,Fire,6,0,0,0,0,0,0,0
+Napalm Fruit,0,39,6,Physical Damage,215,400,300,Area Enemies,False,0,0,500,150,13000,Physical Attack,False,1000,0,50,Fire,8,0,0,0,0,0,0,0
+Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,False,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,90,170,100,One Enemy,True,59,100,0,60,9999,Physical Attack,False,0,0,50,Earth,7,0,0,0,0,0,0,0
+Sleep Dance,0,18,36,Physical Damage,90,210,100,One Enemy,False,0,0,0,210,13000,Physical Attack,True,1000,3000,0,Earth,8,2,75,0,0,0,0,0
+Hyper Buster,0,45,8,Physical Damage,200,600,230,One Enemy,False,0,0,0,120,15000,Physical Attack,False,3000,7500,1000,Fire,5,0,0,0,0,0,0,0
+Tremor,15,0,1,Magical Damage,225,260,150,Area Enemies,False,0,0,600,120,12000,Tremor,False,2000,0,50,Earth,10,0,0,0,0,0,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,215,280,180,One Enemy,True,100,100,0,30,9999,Physical Attack,False,0,0,80,Blizzard,7,0,0,0,0,0,0,0
+Crackle,16,0,6,Magical Damage,215,350,170,One Enemy,False,0,0,0,180,13000,Crackle,True,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+Freeze!,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,False,0,0,0,120,11000,Freeze!,False,0,0,0,Fire,0,0,0,0,0,0,-1,0
+Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,170,250,200,One Enemy,True,44,120,0,60,9999,Physical Attack,False,0,0,60,Earth,4,0,0,0,0,0,0,0
+Acid Spray,0,27,23,Physical Damage,170,230,150,One Enemy,False,0,0,0,150,12000,Physical Attack,False,1000,0,30,Earth,9,16,50,0,0,0,0,0
+Terra Break,0,45,24,Physical Damage,170,300,300,One Enemy,False,0,0,0,180,15000,Physical Attack,True,3500,7000,300,Earth,7,0,0,0,0,0,0,0
+Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,230,340,280,One Enemy,True,80,120,0,30,8000,Physical Attack,True,0,0,120,Blizzard,5,0,0,0,0,0,0,0
+Freeze Down,0,33,1,Physical Damage,230,510,360,One Enemy,False,0,0,0,120,14000,Physical Attack,False,2000,4000,50,Blizzard,6,2,80,0,0,0,0,0
+Blizzard Rise,0,44,8,Physical Damage,230,750,140,Area Enemies,False,0,0,800,90,12000,Physical Attack,False,1000,0,30,Blizzard,8,0,0,0,0,-1,0,0
+Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,195,230,220,One Enemy,True,140,100,0,60,9999,Physical Attack,False,0,0,50,Lightning,6,0,0,0,0,0,0,0
+Block Needle,0,31,31,Physical Damage,195,300,360,One Enemy,False,0,0,0,150,14000,Physical Attack,True,2000,3000,30,Fire,0,64,30,0,0,0,0,0
+Zap!,24,0,34,Magical Damage,195,140,270,Area Enemies,False,0,0,600,120,12000,Zap!,False,1000,0,50,Lightning,10,4,15,0,0,0,0,0
+Cold,8,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,150,12000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Alhealer,18,0,2,Restore HP(MEN),0,4000,100,All Allies,False,0,0,0,150,11000,Alhealer,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,200,370,120,One Enemy,True,2,150,0,60,9999,Physical Attack,False,0,0,50,Blizzard,5,0,0,0,0,0,0,0
+Snowflakes,0,36,27,Physical Damage,200,460,240,All Enemies,False,0,0,0,180,15000,Physical Attack,False,1500,3000,100,Blizzard,9,0,0,0,0,0,-2,0
+Fiora,12,0,31,Enemy Buff/Debuff,0,0,0,Area Enemies,False,0,0,400,120,12000,Fiora,False,0,0,0,Fire,0,64,60,0,0,0,0,0
+Crackle,16,0,1,Magical Damage,200,430,275,One Enemy,False,0,0,0,150,13000,Crackle,True,4000,0,50,Blizzard,10,0,0,0,0,0,0,0
+Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Attack,0,0,1,Physical Damage,200,270,160,One Enemy,True,30,100,0,60,9999,Physical Attack,False,0,0,50,Wind,6,0,0,0,0,0,0,0
+Shhh!,10,0,7,Enemy Buff/Debuff,0,0,0,Area Enemies,False,0,0,400,90,11000,Shhh!,False,0,0,0,Fire,0,32,60,0,0,0,0,0
+Howlslash,14,0,4,Magical Damage,200,230,225,Enemy Line,False,0,0,300,150,13000,Howlslash,True,1500,0,200,Wind,10,0,0,0,0,0,0,0
+Howlnado,45,0,2,Magical Damage,200,360,225,All Enemies,False,0,0,0,180,15000,Howlnado,True,1000,0,0,Wind,10,8,30,0,0,0,0,11
+Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Attack,0,0,1,Physical Damage,215,280,200,One Enemy,True,500,100,0,60,9999,Physical Attack,False,0,0,100,Lightning,5,4,10,0,0,0,0,0
+Mana Capture,0,26,41,Magical Damage,215,250,10,One Enemy,False,0,0,0,150,13000,Physical Attack,False,2500,0,120,Fire,0,0,0,0,0,0,0,50
+Spark Spine,0,37,7,Physical Damage,215,390,400,Area Enemies,False,0,0,400,180,15000,Physical Attack,False,1500,2000,50,Lightning,8,4,30,0,0,0,0,0
+Zap All,36,0,2,Magical Damage,215,230,300,All Enemies,False,0,0,0,120,12000,Zap All,True,1000,0,80,Lightning,10,4,15,0,0,0,0,0
+Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Attack,0,0,1,Physical Damage,130,150,70,One Enemy,True,50,110,0,60,9999,Physical Attack,False,0,0,30,Lightning,6,0,0,0,0,0,0,0
+Stram,6,0,1,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,120,12000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
+Zap!,24,0,34,Magical Damage,130,100,150,Area Enemies,False,0,0,600,180,13000,Zap!,False,1000,0,50,Lightning,10,4,15,0,0,0,0,0
+Zap All,36,0,2,Magical Damage,215,230,300,All Enemies,False,0,0,0,120,12000,Zap All,True,1000,0,80,Lightning,10,4,15,0,0,0,0,0
+Cold,7,0,25,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,90,11000,Cold,False,0,0,0,Fire,0,0,0,0,0,-2,0,0
+Attack,0,0,1,Physical Damage,200,320,250,One Enemy,True,8,200,0,30,9999,Physical Attack,False,2500,5000,50,Fire,6,0,0,0,0,0,0,0
+Burnflame,16,0,1,Magical Damage,200,280,250,Area Enemies,False,0,0,600,120,12000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0
+Burnstrike,20,0,1,Magical Damage,200,560,250,One Enemy,False,0,0,0,180,15000,Burnstrike,False,0,0,80,Fire,10,0,0,0,0,0,0,0
+BOOM!,22,0,1,Magical Damage,200,450,200,Area Enemies,False,0,0,600,150,13000,BOOM!,True,2000,0,120,Fire,0,0,0,0,0,0,0,0
+BA-BOOM!,75,0,2,Magical Damage,200,2170,200,All Enemies,False,0,0,0,180,17000,BA-BOOM!,True,2000,0,150,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,195,270,250,One Enemy,True,130,120,0,30,9999,Physical Attack,False,0,0,50,Lightning,5,0,0,0,0,0,0,0
+Lightning Ball,0,42,34,Physical Damage,195,510,200,Area Enemies,False,0,0,400,150,15000,Physical Attack,True,2000,4000,180,Lightning,8,4,25,0,0,0,0,0
+Stram,6,0,21,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,90,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
+DragonZap,58,0,1,Magical Damage,195,420,350,Enemy Line,False,0,0,300,210,14000,DragonZap,True,1500,0,120,Lightning,10,4,20,0,0,0,0,0
+BA-BOOM!,75,0,2,Magical Damage,200,2170,200,All Enemies,False,0,0,0,180,17000,BA-BOOM!,True,2000,0,150,Fire,0,0,0,0,0,0,0,0
+Attack,0,0,1,Physical Damage,235,340,120,One Enemy,True,80,120,0,30,8000,Physical Attack,False,0,0,50,Lightning,4,0,0,0,0,0,0,0
+Killer Voltage,0,38,4,Physical Damage,235,520,150,Enemy Line,False,0,0,150,150,14000,Physical Attack,True,2500,5000,120,Lightning,10,4,25,-1,-1,-1,-1,0
+Spark Slice,0,46,1,Physical Damage,235,410,290,Area Around Self,False,0,0,600,90,12000,Physical Attack,False,1000,3000,100,Lightning,7,4,20,0,0,0,0,0
+Snooze,5,0,2,Enemy Buff/Debuff,0,0,0,All Enemies,False,0,0,0,120,13000,Snooze,False,0,0,0,Fire,0,2,40,0,0,0,0,0
+Gravity,8,0,1,Special,0,0,0,Area Enemies,False,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
+Attack,0,0,1,Physical Damage,240,500,150,One Enemy,True,250,180,0,30,9999,Physical Attack,False,0,0,120,Fire,0,0,0,0,0,0,0,0
+Magna Boring,0,70,1,Physical Damage,240,430,270,One Enemy,False,0,0,0,180,15000,Physical Attack,True,4000,0,150,Fire,0,96,65,0,0,0,0,0
+Magna Ripper,0,50,1,Physical Damage,240,350,600,One Enemy,False,0,0,0,150,13000,Physical Attack,False,3000,5000,80,Fire,0,0,0,0,0,0,0,0
+BOOM!,22,0,1,Magical Damage,240,450,200,Area Enemies,False,0,0,600,90,12000,BOOM!,True,2000,0,120,Fire,0,0,0,0,0,0,0,0
+Gravity,8,0,1,Special,0,0,0,Area Enemies,False,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
+Attack,0,0,1,Physical Damage,240,600,100,One Enemy,True,200,100,0,30,9999,Physical Attack,False,0,0,150,Fire,0,0,0,0,0,0,0,0
+Magna Boring,0,70,1,Physical Damage,240,430,270,One Enemy,False,0,0,0,180,15000,Physical Attack,True,4000,0,150,Fire,0,96,65,0,0,0,0,0
+Magna Ripper,0,50,1,Physical Damage,240,350,600,One Enemy,False,0,0,0,150,13000,Physical Attack,False,3000,5000,80,Fire,0,0,0,0,0,0,0,0
+BOOM!,22,0,1,Magical Damage,240,450,200,Area Enemies,False,0,0,600,90,12000,BOOM!,True,2000,0,120,Fire,0,0,0,0,0,0,0,0
+Gravity,8,0,1,Special,0,0,0,Area Enemies,False,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
+Attack,0,0,1,Physical Damage,50,115,50,One Enemy,True,20,100,0,60,9999,Physical Attack,False,0,0,50,Fire,0,0,0,0,0,0,0,0
+Web Trap,0,12,4,Physical Damage,50,120,100,One Enemy,False,0,0,0,420,12000,Physical Attack,False,1500,3000,0,Fire,0,0,0,0,0,0,-1,0
+Power Crush,0,34,9,Physical Damage,125,380,100,One Enemy,False,0,0,0,270,15000,Physical Attack,True,3000,5000,700,Wind,4,64,50,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+,0,0,0,None,0,0,0,None,False,0,0,0,0,0,Physical Attack,False,0,0,0,Fire,0,0,0,0,0,0,0,0
+Combo,0,0,37,Physical Damage,55,120,60,One Enemy,True,50,110,0,30,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
+Burn!,6,0,37,Magical Damage,55,110,100,One Enemy,False,0,0,0,75,12000,Burn!,False,0,0,80,Fire,10,0,0,0,0,0,0,0
+Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,65,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
+Zap!,24,0,37,Magical Damage,55,110,150,Area Enemies,False,0,0,600,125,13000,Zap!,False,1000,0,50,Lightning,10,4,100,0,0,0,0,0
+Gravity,8,0,1,Special,0,0,0,Area Enemies,False,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
+Combo,0,0,37,Physical Damage,80,180,100,One Enemy,True,170,120,0,30,9999,Physical Attack,False,0,0,100,Fire,0,0,0,0,0,0,0,0
+Beast-Fang Cut,0,26,37,Physical Damage,80,230,200,One Enemy,False,0,0,0,240,13000,Physical Attack,True,3000,6000,150,Fire,0,0,0,0,0,0,0,0
+Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,65,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
+Zap!,24,0,37,Magical Damage,55,110,150,Area Enemies,False,0,0,600,125,13000,Zap!,False,1000,0,50,Lightning,10,4,100,0,0,0,0,0
+Gravity,8,0,1,Special,0,0,0,Area Enemies,False,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
+Attack,0,0,5,Physical Damage,150,190,80,One Enemy,True,100,100,0,60,9999,Physical Attack,False,0,0,100,Fire,0,0,0,0,0,0,0,0
+Delta Burst,0,37,1,Physical Damage,150,270,150,One Enemy,False,0,0,0,270,13000,Physical Attack,False,1000,3000,0,Fire,0,0,0,0,0,0,0,0
+Stram,6,0,37,Enemy Buff/Debuff,0,0,0,One Enemy,False,0,0,0,65,11000,Stram,False,0,0,0,Fire,0,0,0,-2,0,0,0,0
+Zap!,24,0,37,Magical Damage,55,110,150,Area Enemies,False,0,0,600,125,13000,Zap!,False,1000,0,50,Lightning,10,4,100,0,0,0,0,0
+Gravity,8,0,1,Special,0,0,0,Area Enemies,False,0,0,800,60,11000,Gravity,False,0,0,0,Fire,0,0,0,0,0,0,0,12
+Combo,0,0,9,Physical Damage,215,260,100,One Enemy,True,60,110,0,30,9999,Physical Attack,False,0,0,70,Fire,0,0,0,0,0,0,0,0
+Lotus Flower,0,28,5,Physical Damage,215,260,400,Enemy Line,False,0,0,200,60,13000,Physical Attack,True,1500,3000,150,Fire,0,0,0,0,0,0,0,0
+Tornado,0,48,2,Magical Damage,215,260,350,All Enemies,False,0,0,0,120,14000,Physical Attack,True,1500,0,0,Wind,8,0,0,0,0,0,0,0
+Gale,9,0,7,Magical Damage,215,190,225,Area Enemies,False,0,0,500,60,12000,Howl,False,1000,0,100,Wind,10,0,0,0,0,0,0,0
+Silence,0,20,2,Enemy Buff/Debuff,0,0,0,All Enemies,False,0,0,0,90,11000,Shhh!,False,0,0,0,Fire,0,32,50,0,0,0,0,0
+Combo,0,0,1,Physical Damage,240,290,100,One Enemy,True,50,110,0,30,9999,Physical Attack,False,0,0,80,Fire,0,0,0,0,0,0,0,0
+Fallen Wings,0,75,2,Magical Damage,240,200,450,All Enemies,False,0,0,0,180,15000,Physical Attack,True,3000,0,80,Fire,0,0,0,0,0,0,0,0
+Vanish,0,16,2,Status Change,0,0,0,Unknown,False,0,0,0,120,15000,Vanish,False,0,0,0,Fire,0,0,0,0,0,0,0,22
+DragonZap,58,0,9,Magical Damage,240,200,300,Enemy Line,False,0,0,300,150,15000,DragonZap,True,1500,0,120,Lightning,10,4,15,0,0,0,0,0
+Burnflame,16,0,7,Magical Damage,240,170,250,Area Enemies,False,0,0,600,120,13000,Burnflame,False,0,0,50,Fire,10,0,0,0,0,0,0,0

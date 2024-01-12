@@ -75,10 +75,17 @@ public class Levelups : BaseContainer
 			FileMode.Create,
 			FileAccess.Write);
 		using StreamWriter writer = new(stream);
+		using FileStream streamSum = File.Open(
+			ProjectPaths.LevelupsSumCSVPath,
+			FileMode.Create,
+			FileAccess.Write);
+		using StreamWriter writerSum = new(streamSum);
 		writer.WriteLine(CharacterLevelups.CSVHeader);
+		writerSum.WriteLine(CharacterLevelups.CSVHeader);
 		foreach (var levelups in GameLevelups)
 		{
 			levelups.GenerateCSV(writer);
+			levelups.GenerateSumCSV(writerSum);
 		}
 	}
 }

@@ -290,6 +290,51 @@ public class EnemyStats : BaseContainer
         writer.WriteRawShort(Unknown7);
     }
 
+	public static string CSVHeader2 =>
+		$"Name," +
+		$"Unknown #1," +
+		$"Unknown #2," +
+		$"Type #1," +
+		$"Type #2," +
+		$"Level," +
+		$"Health," +
+		$"MP," +
+		$"SP," +
+		$"Vitality," +
+		$"Agility," +
+		$"Speed," +
+		$"Mentality," +
+		$"Stamina," +
+		$"IP Stun Duration," +
+		$"IP Cancel Stun Duration," +
+		$"Still Evasion Rate," +
+		$"Moving Evasion Rate," +
+		$"Fire Resist," +
+		$"Wind Resist," +
+		$"Earth Resist," +
+		$"Lightning Resist," +
+		$"Blizzard Resist," +
+		$"Ailments," +
+		$"Knockback Resist," +
+		$"Status Recovery Time," +
+		$"TDMG," +
+		$"Unknown #3," +
+		$"THEAL," +
+		$"Size," +
+		$"Unknown #4," +
+		$"Unknown #5," +
+		$"No Run Flag," +
+		$"Unknown #6," +
+		$"Experience," +
+		$"Skill Coins," +
+		$"Magic Coins," +
+		$"Gold Coins," +
+		$"Item #1," +
+		$"Item #2," +
+		$"Item #1 Chance," +
+		$"Item #2 Chance," +
+		$"Unknown #7";
+
 	public void GenerateCSV(StreamWriter writer)
 	{
 		writer.Write(

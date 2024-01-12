@@ -8,6 +8,7 @@ public class ProjectPaths
 	public const string SkillsCSVPath = $"{DocumentationDirectory}\\SKILLS.CSV";
 	public const string InitialCSVPath = $"{DocumentationDirectory}\\INITIAL.CSV";
 	public const string LevelupsCSVPath = $"{DocumentationDirectory}\\LEVELUPS.CSV";
+	public const string LevelupsSumCSVPath = $"{DocumentationDirectory}\\LEVELUPS_SUM.CSV";
 	public const string ManaeggsCSVPath = $"{DocumentationDirectory}\\MANAEGGS.CSV";
 	public const string SkillbooksCSVPath = $"{DocumentationDirectory}\\SKILLBOOKS.CSV";
 	public const string SpecialsCSVPath = $"{DocumentationDirectory}\\SPECIALS.CSV";

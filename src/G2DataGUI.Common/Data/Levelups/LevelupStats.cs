@@ -73,6 +73,36 @@ public class LevelupStats : BaseContainer
 			$"{IncreaseMovement}," +
 			$"{IncreaseMagic}," +
 			$"{IncreaseMentality}," +
-			$"{IncreaseSkillSlot}");
+			$"{IncreaseSkillSlot}"
+		);
+	}
+
+	public void GenerateSumCSV(StreamWriter writer, ref LevelupStats levelSum)
+	{
+		levelSum.Experience += Experience;
+		levelSum.IncreaseHP += IncreaseHP;
+		levelSum.IncreaseMP += IncreaseMP;
+		levelSum.IncreaseSP += IncreaseSP;
+		levelSum.IncreaseStrength += IncreaseStrength;
+		levelSum.IncreaseVitality += IncreaseVitality;
+		levelSum.IncreaseAction += IncreaseAction;
+		levelSum.IncreaseMovement += IncreaseMovement;
+		levelSum.IncreaseMagic += IncreaseMagic;
+		levelSum.IncreaseMentality += IncreaseMentality;
+		levelSum.IncreaseSkillSlot += IncreaseSkillSlot;
+
+		writer.Write(
+			$"{levelSum.Experience}," +
+			$"{levelSum.IncreaseHP}," +
+			$"{levelSum.IncreaseMP}," +
+			$"{levelSum.IncreaseSP}," +
+			$"{levelSum.IncreaseStrength}," +
+			$"{levelSum.IncreaseVitality}," +
+			$"{levelSum.IncreaseAction}," +
+			$"{levelSum.IncreaseMovement}," +
+			$"{levelSum.IncreaseMagic}," +
+			$"{levelSum.IncreaseMentality}," +
+			$"{levelSum.IncreaseSkillSlot}"
+		);
 	}
 }

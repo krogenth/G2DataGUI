@@ -30,6 +30,7 @@ public class MapShopSection : BaseContainer
 
 	public void WriteMapShopSection(Stream writer)
 	{
-
+		_title.WriteFixedLengthTitle(writer);
+		Items.WritemapShopItemList(writer);
 	}
 }
