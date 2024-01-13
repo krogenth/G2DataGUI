@@ -19,6 +19,7 @@ public sealed class MapsViewModel : BaseViewModel
 	private readonly MapMOSsViewModel _mosViewModel = MapMOSsViewModel.Instance;
 	private readonly MapIconsViewModel _iconsViewModel = MapIconsViewModel.Instance;
 	private readonly MapShopViewModel _shopViewModel = MapShopViewModel.Instance;
+	private readonly MapDialogueViewModel _dialogueViewModel = MapDialogueViewModel.Instance;
 
 	public static MapsViewModel Instance { get; private set; } = new();
 
@@ -67,6 +68,7 @@ public sealed class MapsViewModel : BaseViewModel
 			_mosViewModel.SelectedMapMOSs = value.MOSs;
 			_iconsViewModel.SelectedMapIcons = value.Icons;
 			_shopViewModel.SelectedMapShop = value.Shop;
+			_dialogueViewModel.SelectedMapDialogueOpcodes = value.Dialogue.DialogueSectionOpcodes;
             OnPropertyChanged(nameof(SelectedMapItem));
         }
     }

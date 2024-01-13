@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NVorbis" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
     <ProjectReference Include="..\G2DataGUI.UI.Common\G2DataGUI.UI.Common.csproj" />
   </ItemGroup>

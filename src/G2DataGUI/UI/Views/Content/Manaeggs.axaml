@@ -104,7 +104,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell1.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -145,7 +145,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell2.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -186,7 +186,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell3.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -227,7 +227,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell4.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -268,7 +268,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell5.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -309,7 +309,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell6.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -370,7 +370,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell7.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -411,7 +411,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell8.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -452,7 +452,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell9.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -493,7 +493,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell10.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -534,7 +534,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell11.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -575,7 +575,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell12.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -636,7 +636,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell13.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -677,7 +677,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell14.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -718,7 +718,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell15.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -759,7 +759,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell16.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -800,7 +800,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell17.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>
@@ -841,7 +841,7 @@
 									<NumericUpDown Value="{Binding SelectedManaeggItem.Spell18.RequiredLevel}"
 												   Increment="1"
 												   Minimum="0"
-												   Maximum="5" />
+												   Maximum="255" />
 								</StackPanel>
 							</Grid>
 						</StackPanel>

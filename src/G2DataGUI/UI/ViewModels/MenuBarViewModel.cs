@@ -13,6 +13,7 @@ using G2DataGUI.Common.Data.Bosses;
 using G2DataGUI.Common.Data.Maps;
 using G2DataGUI.Common.Data.Starting;
 using G2DataGUI.Common.Data.Levelups;
+using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.UI.ViewModels;
 

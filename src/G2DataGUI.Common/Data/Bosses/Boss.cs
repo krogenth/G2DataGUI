@@ -96,6 +96,7 @@ public class Boss : BaseContainer
 	public void GenerateBossCSV(StreamWriter writer)
 	{
 		Stats.GenerateCSV(writer);
+		writer.Write(',');
 		AISection.GenerateCSV(writer);
 		writer.WriteLine();
 	}

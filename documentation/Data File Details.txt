@@ -58,18 +58,27 @@
 .MDT FILES {
 
 	CODES			DETAILS
-	0x05 XX YY		XX = script number? YY = character id
-	0x08 XX YY ZZ	XX = ???, YY = ???(noticed either 0x21 or 0x41), ZZ = ???(only been 0x01)
-	0x0B ???		2 parameters most likely(seen in 2000.mdt at 0x1AB71), according to old notes, this handles camera changes
-	0x11 XX []		adds item to inventory, XX = ???
+	0x03 ???        Seems to have 3 parameters
+	0x04 ???        Seems to have 1 parameter
+	0x05 XX YY		  XX = script number? YY = character id
+	0x06 ???        Unsure on parameter count
+	0x08 XX YY ZZ	  XX = ???, YY = ???(noticed either 0x21 or 0x41), ZZ = ???(only been 0x01)
+	0x09 ???        Seems to have 4 parameters
+	0x10            Unsure on parameter count
+	0x0B ???		    2 parameters most likely(seen in 2000.mdt at 0x1AB71), according to old notes, this handles camera changes
+	0x11 XX []		  adds item to inventory, XX = ???
+	0x14 ???        Unsure on parameter count
+	0x15 ???        Unsure, may be 4 parameters?
 	0x17 XX	[YY ZZ]	Box stuff
-		XX = 00			Remove textbox? Used at end of dialogues
-		XX = 01			Create textbox? Used at beginning of dialogues
+		XX = 00			    Remove textbox? Used at end of dialogues
+		XX = 01			    Create textbox? Used at beginning of dialogues
+		XX = 20         Create sub textbox(textbox that appears top-right of current textbox)
+		XX = 40         Create options textbox(user interaction required)
 		XX = 80, YY ZZ	Create overword textbox, YY = length of textbox, ZZ = height of textbox
-	0x18 00 XX		changes character portrait, XX = character portrait offset
-	0x1A			next page
-	0x1D FF XX		pause(frame/tick?)
-	0x1F			next line
+	0x18 00 XX		  changes character portrait, XX = character portrait offset
+	0x1A			      next page
+	0x1D FF XX		  pause(frame/tick?)
+	0x1F			      next line
 
 	Likely Codes
 		0x02
@@ -77,6 +86,8 @@
 		0x14
 		0x1B	1 byte
 		0x?? 0x70
+
+	Codes likely span from 0x01 to 0x1F, all ASCII values before text.
 
 
 	0x0000	-	Header Length(always 0x200)

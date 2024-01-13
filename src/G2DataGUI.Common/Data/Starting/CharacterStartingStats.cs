@@ -207,6 +207,6 @@ public class CharacterStartingStats : BaseContainer
 			$"{Unknown20}," +
 			$"{Unknown21}," +
 			$"{Unknown22}," +
-			$"{Unknown23},");
+			$"{Unknown23}");
 	}
 }

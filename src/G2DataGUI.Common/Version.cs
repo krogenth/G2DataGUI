@@ -15,8 +15,9 @@ public class Version
         }
     }
 
-    public string RootDataDirectory
-    {
-        get => IsHDVersion ? ".\\content\\data\\afs\\" : ".\\data\\afs\\";
-    }
+	public string RootDataDirectory =>
+		IsHDVersion ? ".\\content\\data\\afs\\" : ".\\data\\afs\\";
+
+	public string RootTextDirectory =>
+		IsHDVersion ? ".\\content\\data\\text" : ".\\data\\text";
 }

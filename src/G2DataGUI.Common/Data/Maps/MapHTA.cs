@@ -59,6 +59,7 @@ public class MapHTA
 		writer.WriteRawInt(Unknown2);
 		writer.WriteRawByte(Attribute);
 		writer.WriteRawByte(Unknown3);
+		writer.WriteRawShort(Unknown4);
 		writer.WriteRawFloat(Unknown5);
 		Minimum.WriteVector3(writer);
 		Maximum.WriteVector3(writer);
