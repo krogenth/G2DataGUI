@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using G2DataGUI.Common.Paths;
 
 namespace G2DataGUI.Common.Data.Maps;
 
@@ -20,7 +22,8 @@ public class Map
 
     public string MapName { get; set; } = "";
     public string FileLocation { get; set; } = "";
-	public string Filename { get; set; } = "";
+	public string ScnrFileLocation { get; set; } = "";
+	public string FileName { get; set; } = "";
 
     public static Map ReadMap(FileStream reader, string filepath)
     {
@@ -28,8 +31,9 @@ public class Map
 		{
 			Header = MapHeader.ReadMapHeader(reader),
 			FileLocation = filepath,
-			Filename = Path.GetFileNameWithoutExtension(filepath),
+			FileName = Path.GetFileNameWithoutExtension(filepath),
         };
+		map.ScnrFileLocation = map.ScnrFilePath();
 
 		reader.Seek(map.Header.OffsetMapEntries, SeekOrigin.Begin);
 		for (var index = 0; index < map.Header.NumMapEntries; index++)
@@ -190,4 +194,7 @@ public class Map
 			}
 		}
 	}
+
+	private string ScnrFilePath() =>
+		$"{Version.Instance.RootTextDirectory}\\en\\scnr\\{FileName}.scn";
 }

@@ -57,11 +57,11 @@ public static class StreamExtensions
     public static ushort ReadRawUShort(this Stream stream) => BinaryPrimitives.ReadUInt16LittleEndian(stream.InternalRead(2));
     public static int ReadRawInt(this Stream stream) => BinaryPrimitives.ReadInt32LittleEndian(stream.InternalRead(4));
     public static uint ReadRawUInt(this Stream stream) => BinaryPrimitives.ReadUInt32LittleEndian(stream.InternalRead(4));
-    public static long ReadRawLong(this Stream stream) => BinaryPrimitives.ReadInt64LittleEndian(stream.InternalRead(4));
-    public static ulong ReadRawULong(this Stream stream) => BinaryPrimitives.ReadUInt64LittleEndian(stream.InternalRead(4));
-    public static Half ReadRawHalf(this Stream stream) => BinaryPrimitives.ReadHalfLittleEndian(stream.InternalRead(2));
+    public static long ReadRawLong(this Stream stream) => BinaryPrimitives.ReadInt64LittleEndian(stream.InternalRead(8));
+    public static ulong ReadRawULong(this Stream stream) => BinaryPrimitives.ReadUInt64LittleEndian(stream.InternalRead(8));
+    public static Half ReadRawHalf(this Stream stream) => BitConverter.Int16BitsToHalf(stream.ReadRawShort());
     public static float ReadRawFloat(this Stream stream) => BitConverter.Int32BitsToSingle(stream.ReadRawInt());
-    public static double ReadRawDouble(this Stream stream) => BitConverter.Int64BitsToDouble(stream.ReadRawInt());
+    public static double ReadRawDouble(this Stream stream) => BitConverter.Int64BitsToDouble(stream.ReadRawLong());
     public static byte[] ReadRawByteArray(this Stream stream, uint numBytes) => stream.InternalRead(numBytes).ToArray();
     public static int[] ReadRawIntArray(this Stream stream, uint numInts)
     {
