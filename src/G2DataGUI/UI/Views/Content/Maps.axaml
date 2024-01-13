@@ -61,6 +61,7 @@
 				<content:MapMOSs Name="MapMOSsPage" />
 				<content:MapIcons Name="MapIconsPage" />
 				<content:MapShop Name="MapShopPage" />
+				<content:MapDialogue Name="MapDialoguePage" />
 			</Grid>
 			<controls:NavigationView Grid.Row="1"
 									 IsSettingsVisible="False"
@@ -89,6 +90,8 @@
 												 Tag="MapIconsPage" />
 					<controls:NavigationViewItem Content="Shop"
 												 Tag="MapShopPage" />
+					<controls:NavigationViewItem Content="Dialogue"
+												 Tag="MapDialoguePage" />
 				</controls:NavigationView.MenuItems>
 			</controls:NavigationView>
 		</Grid>
