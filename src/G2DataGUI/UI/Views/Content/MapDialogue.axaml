@@ -10,10 +10,13 @@
 			 xmlns:textboxOpcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.TextBox"
 			 xmlns:unknown10Opcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Unknown10"
 			 xmlns:highlightOpcodes="using:G2DataGUI.Common.Data.Maps.MapDialogueOpcodes.Highlight"
+			 xmlns:converters="using:G2DataGUI.Converters"
              mc:Ignorable="d"
              Focusable="True"
 			 x:DataType="vm:MapDialogueViewModel">
 	<UserControl.Resources>
+		<converters:ListElementToIndexConverter x:Key="ListElementToIndexConverter" />
+		
 		<selectors:MapOpcodeSelector x:Key="OpcodeTemplate">
 			<TreeDataTemplate x:Key="CameraMoveOpcode"
 						      DataType="{x:Type opcodes:CameraMoveOpcode}">
@@ -1023,8 +1026,8 @@
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
-		<ListBox x:Name="MapDialogueOpcodeList"
-				 Items="{Binding SelectedMapDialogueOpcodes}"
+		<ListBox Items="{Binding SelectedMapDialogueOpcodes}"
+				 x:Name="MapDialogueOpcodeList"
 				 SelectedIndex="{Binding SelectedMapDialogueOpcodeIndex}"
 				 Grid.Column="0">
 			<ListBox.Styles>
@@ -1033,6 +1036,27 @@
 					<Setter Property="HorizontalAlignment" Value="Right" />
 				</Style>
 			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock>
+							<TextBlock.Text>
+								<MultiBinding Converter="{StaticResource ListElementToIndexConverter}">
+									<MultiBinding.Bindings>
+										<Binding Path="$parent[ListBox].Items" />
+										<Binding Path="$parent[ListBoxItem].DataContext" />
+									</MultiBinding.Bindings>
+								</MultiBinding>
+							</TextBlock.Text>
+						</TextBlock>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
 		</ListBox>
 		<TreeView Grid.Column="1"
 				  Items="{Binding SelectedMapDialogueOpcodeItem}"
