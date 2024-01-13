@@ -27,16 +27,18 @@ public class Maps
 
     private void ReadMaps()
     {
+		FileStream reader = null;
 		try
 		{
 			GameMaps.Clear();
 			GameMapIDs.Clear();
 			foreach (var file in Directory.GetFiles(Version.Instance.RootDataDirectory + "map", "*.mdt", SearchOption.AllDirectories))
 			{
-				using FileStream reader = File.Open(file, FileMode.Open);
+				reader = File.Open(file, FileMode.Open);
 				GameMaps.Add(Map.ReadMap(reader, file));
 				var name = new DirectoryInfo(Path.GetDirectoryName(file)).Name;
 				GameMapIDs.Add(Convert.ToUInt16(name, 16));
+				reader.Dispose();
 			}
 
 			CollectionRefreshed?.Invoke(this, EventArgs.Empty);
@@ -44,6 +46,10 @@ public class Maps
 		catch (Exception ex)
 		{
 			Errors.Errors.Instance.AddError(new Error("Maps", ex.Message));
+		}
+		finally
+		{
+			reader?.Dispose();
 		}
 
 		using var vorbis = new NVorbis.VorbisReader("F:\\Steam\\steamapps\\common\\Grandia II Anniversary Edition\\content\\data\\sound\\staffrollus.ogg");
