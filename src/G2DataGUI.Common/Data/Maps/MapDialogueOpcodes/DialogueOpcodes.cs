@@ -46,6 +46,12 @@ public enum DialogueOpcode : byte
 	Unknown09 = 0x09,
 
 	/// <summary>
+	/// Seems to be associated with Textbox Options Opcode,
+	/// links options to function handling
+	/// </summary>
+	Unknown0A = 0x0A,
+
+	/// <summary>
 	/// Seems to deal with camera movement
 	/// </summary>
 	CameraMove = 0x0B,
