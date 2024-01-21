@@ -20,6 +20,7 @@ public static class ParseDialogueOpcode
 			DialogueOpcode.Unknown07 => Unknown07Opcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown08 => Unknown08Opcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown09 => Unknown09Opcode.ReadOpcode(reader),
+			DialogueOpcode.Unknown0A => Unknown0AOpcode.ReadOpcode(reader),
 			DialogueOpcode.CameraMove => CameraMoveOpcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown0C => Unknown0COpcode.ReadOpcode(reader),
 			DialogueOpcode.Unknown0D => Unknown0DOpcode.ReadOpcode(reader),

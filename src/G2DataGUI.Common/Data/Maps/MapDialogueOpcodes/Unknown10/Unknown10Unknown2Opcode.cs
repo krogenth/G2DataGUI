@@ -7,5 +7,5 @@ public class Unknown10Unknown2Opcode : IUnknown10Opcode
 	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Unknown10;
 	public Unknown10Option Option { get; set; } = Unknown10Option.Unknown2;
 
-	public static IMapDialogueOpcode ReadOpcode(Stream reader) => new Unknown10Unknown1Opcode();
+	public static IMapDialogueOpcode ReadOpcode(Stream reader) => new Unknown10Unknown2Opcode();
 }

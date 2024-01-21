@@ -51,9 +51,6 @@ public class Maps
 		{
 			reader?.Dispose();
 		}
-
-		using var vorbis = new NVorbis.VorbisReader("F:\\Steam\\steamapps\\common\\Grandia II Anniversary Edition\\content\\data\\sound\\staffrollus.ogg");
-		var channels = vorbis.Channels;
 	}
 
 	private void WriteMaps()
