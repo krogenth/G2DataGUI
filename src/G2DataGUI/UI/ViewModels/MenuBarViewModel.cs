@@ -105,4 +105,10 @@ public sealed class MenuBarViewModel : BaseViewModel
         DDSViewerWindow ddsViewerWindow = new();
         ddsViewerWindow.Show();
     }
+
+	public void OpenAudioViewer()
+	{
+		AudioViewerWindow audioViewerWindow = new();
+		audioViewerWindow.Show();
+	}
 }

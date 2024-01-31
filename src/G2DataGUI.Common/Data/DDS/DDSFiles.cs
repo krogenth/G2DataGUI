@@ -8,7 +8,7 @@ namespace G2DataGUI.Common.Data.DDS;
 public class DDSFiles
 {
     public static DDSFiles Instance { get; private set; } = new();
-    public ObservableCollection<DDSNode> DirectoryDDSFiles { get; private set; } = new();
+    public ObservableCollection<DDSNode> DirectoryDDSFiles { get; private set; } = [];
     public event EventHandler CollectionRefreshed;
 
     private DDSFiles()
@@ -19,7 +19,7 @@ public class DDSFiles
 	public void Reload() => _ = ReadDDSFileSystemStructureAsync();
 
 	private async Task ReadDDSFileSystemStructureAsync() =>
-		await Task.Run(() => ReadDDSFileSystemStructure()).ConfigureAwait(false);
+		await Task.Run(ReadDDSFileSystemStructure).ConfigureAwait(false);
 
 	private void ReadDDSFileSystemStructure()
     {

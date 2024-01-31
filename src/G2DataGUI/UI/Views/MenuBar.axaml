@@ -43,7 +43,10 @@
 					  Header="Windows">
 				<MenuItem Command="{ReflectionBinding OpenDDSViewer}"
 						  VerticalAlignment="Center"
-						  Header="DDS Viewer"/>
+						  Header="DDS Viewer" />
+				<MenuItem Command="{ReflectionBinding OpenAudioViewer}"
+						  VerticalAlignment="Center"
+						  Header="Audio Viewer" />
 			</MenuItem>
 		</Menu>
 		<StackPanel HorizontalAlignment="Right"

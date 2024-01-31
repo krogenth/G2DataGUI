@@ -28,6 +28,9 @@
 	<PackageReference Include="Avalonia.Diagnostics" Condition="'$(Configuration)' == 'Debug'" />
 	<PackageReference Include="XamlNameReferenceGenerator" />
 	<PackageReference Include="Pfim" />
+	<PackageReference Include="NAudio.Vorbis" />
+	<PackageReference Include="NAudio" />
+	  
   </ItemGroup>
 
   <ItemGroup>

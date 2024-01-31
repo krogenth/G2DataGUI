@@ -1,0 +1,30 @@
+<UserControl x:Class="G2DataGUI.UI.Views.AudioViewerView"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+             mc:Ignorable="d"
+			 Focusable="True"
+			 x:CompileBindings="True"
+			 x:DataType="vm:AudioViewerViewModel">
+	<Grid Name="AudioViewerPage"
+		  Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<TreeView Name="AudioFileTree"
+				  Grid.Column="0"
+				  Items="{Binding GameDirectoryAudioFiles}"
+				  SelectedItem="{Binding SelectedAudioFile}"
+				  Width="{Binding TreeViewWidth}"
+				  VerticalAlignment="Stretch"
+				  HorizontalAlignment="Left">
+			<TreeView.ItemTemplate>
+				<TreeDataTemplate ItemsSource="{Binding Children}">
+					<TextBlock Text="{Binding Title}" />
+				</TreeDataTemplate>
+			</TreeView.ItemTemplate>
+		</TreeView>
+	</Grid>
+</UserControl>
