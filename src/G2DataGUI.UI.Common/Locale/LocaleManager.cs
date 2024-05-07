@@ -23,7 +23,7 @@ public class LocaleManager : BaseViewModel
 
     public void Load()
     {
-        string systemLanguageCode = CultureInfo.CurrentCulture.Name.Replace("-", "_");
+        string systemLanguageCode = GetSupportedLanguage();
         LoadLanguage(systemLanguageCode);
         LoadDefaultLanguage();
     }
@@ -36,9 +36,17 @@ public class LocaleManager : BaseViewModel
         }
     }
 
-	private void LoadDefaultLanguage() => _defaultLocaleStringLists = LoadJsonLanguage();
+    private void LoadDefaultLanguage() => _defaultLocaleStringLists = LoadJsonLanguage();
 
-	private Dictionary<LocaleKeys, List<string>> LoadJsonLanguage(string languageCode = DefaultLanguageCode)
+    private string GetSupportedLanguage()
+    {
+        string systemLanguage = CultureInfo.CurrentCulture.Name.Replace("-", "_");
+
+        // Todo: Check if systemLanguage is in supported locales, at the moment it's only en_US.
+        return DefaultLanguageCode;
+    }
+
+    private Dictionary<LocaleKeys, List<string>> LoadJsonLanguage(string languageCode = DefaultLanguageCode)
     {
         Dictionary<LocaleKeys, List<string>> localeStringLists = new();
         string jsonData = EmbeddedResources.ReadAllText($"G2DataGUI.UI.Common/Assets/Locales/{languageCode}.json");
