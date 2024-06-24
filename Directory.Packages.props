@@ -13,7 +13,7 @@
     <PackageVersion Include="XamlNameReferenceGenerator" Version="1.6.1" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
-    <PackageVersion Include="CommunityToolkit.Diagnostics" Version="8.2.1" />
+    <PackageVersion Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageVersion Include="Pfim" Version="0.11.2" />
 
 		<PackageVersion Include="NVorbis" Version="0.10.5" />
