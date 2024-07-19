@@ -1,0 +1,270 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.Specials"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+             mc:Ignorable="d"
+			 Focusable="True">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:SpecialsViewModel />
+	</Design.DataContext>
+
+	<!-- Since we are using a string array with DataTemplate we cannot do CompileBindings -->
+	<Grid Name="SpecialsPage"
+		  Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="SpecialsList"
+				 ItemsSource="{locale:Locale SpecialChars}"
+				 SelectedIndex="{Binding SelectedSpecialSetIndex}"
+				 Grid.Row="0"
+				 Grid.Column="0"
+				 VerticalAlignment="Stretch">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Grid x:Name="SpecialDataGrid"
+			  Grid.Row="0"
+			  Grid.Column="1"
+			  Margin="20,10"
+			  VerticalAlignment="Stretch">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<StackPanel Grid.Column="0"
+						Margin="4">
+				<TextBlock Text="Slot 1"
+						   HorizontalAlignment="Center"
+						   Classes="h1" />
+				<StackPanel Margin="4">
+					<TextBlock Text="Move:" />
+					<ComboBox HorizontalAlignment="Stretch"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special1.MoveOffset}"
+					          ItemsSource="{Binding GameMoves}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Name}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Margin="4">
+					<TextBlock Text="Starting Level:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special1.StartingLevel}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="5" />
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="4">
+					<TextBlock Text="Story Flag:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special1.StoryFlag}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="65535" />
+				</StackPanel>
+			</StackPanel>
+			
+			<StackPanel Grid.Column="1"
+						Margin="4">
+				<TextBlock Text="Slot 2"
+						   HorizontalAlignment="Center"
+						   Classes="h1" />
+				<StackPanel Margin="4">
+					<TextBlock Text="Move:" />
+					<ComboBox HorizontalAlignment="Stretch"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special2.MoveOffset}"
+					          ItemsSource="{Binding GameMoves}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Name}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Margin="4">
+					<TextBlock Text="Starting Level:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special2.StartingLevel}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="5" />
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="4">
+					<TextBlock Text="Story Flag:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special2.StoryFlag}"
+								   Increment="1"
+							       Minimum="0"
+							       Maximum="65535" />
+				</StackPanel>
+			</StackPanel>
+
+			<StackPanel Grid.Column="2"
+						Margin="4">
+				<TextBlock Text="Slot 3"
+						   HorizontalAlignment="Center"
+						   Classes="h1" />
+				<StackPanel Margin="4">
+					<TextBlock Text="Move:" />
+					<ComboBox HorizontalAlignment="Stretch"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special3.MoveOffset}"
+					          ItemsSource="{Binding GameMoves}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Name}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Margin="4">
+					<TextBlock Text="Starting Level:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special3.StartingLevel}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="5" />
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="4">
+					<TextBlock Text="Story Flag:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special3.StoryFlag}"
+								   Increment="1"
+							       Minimum="0"
+							       Maximum="65535" />
+				</StackPanel>
+			</StackPanel>
+
+			<StackPanel Grid.Column="3"
+						Margin="4">
+				<TextBlock Text="Slot 4"
+						   HorizontalAlignment="Center"
+						   Classes="h1" />
+				<StackPanel Margin="4">
+					<TextBlock Text="Move:" />
+					<ComboBox HorizontalAlignment="Stretch"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special4.MoveOffset}"
+					          ItemsSource="{Binding GameMoves}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Name}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Margin="4">
+					<TextBlock Text="Starting Level:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special4.StartingLevel}"
+								   Increment="1"
+							       Minimum="0"
+							       Maximum="65535" />
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="4">
+					<TextBlock Text="Story Flag:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special4.StoryFlag}"
+								   Increment="1"
+							       Minimum="0"
+							       Maximum="65535" />
+				</StackPanel>
+			</StackPanel>
+
+			<StackPanel Grid.Column="4"
+						Margin="4">
+				<TextBlock Text="Slot 5"
+						   HorizontalAlignment="Center"
+						   Classes="h1" />
+				<StackPanel Margin="4">
+					<TextBlock Text="Move:" />
+					<ComboBox HorizontalAlignment="Stretch"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special5.MoveOffset}"
+					          ItemsSource="{Binding GameMoves}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Name}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Margin="4">
+					<TextBlock Text="Starting Level:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special5.StartingLevel}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="5" />
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="4">
+					<TextBlock Text="Story Flag:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special5.StoryFlag}"
+								   Increment="1"
+							       Minimum="0"
+							       Maximum="65535" />
+				</StackPanel>
+			</StackPanel>
+
+			<StackPanel Grid.Column="5"
+						Margin="4">
+				<TextBlock Text="Slot 6"
+						   HorizontalAlignment="Center"
+						   Classes="h1" />
+				<StackPanel Margin="4">
+					<TextBlock Text="Move:" />
+					<ComboBox HorizontalAlignment="Stretch"
+					          SelectedIndex="{Binding SelectedSpecialSetItem.Special6.MoveOffset}"
+					          ItemsSource="{Binding GameMoves}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Name}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel Margin="4">
+					<TextBlock Text="Starting Level:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special6.StartingLevel}"
+								   Increment="1"
+								   Minimum="0"
+								   Maximum="5" />
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="4">
+					<TextBlock Text="Story Flag:" />
+					<NumericUpDown Value="{Binding SelectedSpecialSetItem.Special6.StoryFlag}"
+								   Increment="1"
+							       Minimum="0"
+							       Maximum="65535" />
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

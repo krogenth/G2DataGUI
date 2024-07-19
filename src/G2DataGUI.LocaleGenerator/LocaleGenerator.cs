@@ -1,29 +1,36 @@
 ﻿using Microsoft.CodeAnalysis;
+using System.Diagnostics;
+using System.Text;
 
 namespace G2DataGUI.LocaleGenerator;
 
 [Generator]
 public class LocaleGenerator : IIncrementalGenerator
 {
-    public void Initialize(IncrementalGeneratorInitializationContext context)
-    {
-        var englishLocaleFile = context.AdditionalTextsProvider.Where(x => x.Path.EndsWith("en_US.json"));
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+	{
+		/*Debugger.Launch();
+		Debugger.Break();*/
 
-        IncrementalValuesProvider<string> contents = englishLocaleFile.Select((text, cancellationToken) => text.GetText(cancellationToken)!.ToString());
+		var englishLocaleFile = context.AdditionalTextsProvider.Where(static x => x.Path.EndsWith("en_US.json"));
 
-        context.RegisterSourceOutput(contents, (spc, content) =>
-        {
-            var lines = content.Split('\n').Where(x => x.Trim().StartsWith("\"") && x.Trim().Contains(":")).Select(x => x.Split(':').First().Trim().Replace("\"", ""));
-            string enumSource = "namespace G2DataGUI.UI.Common.Locale;\n\n";
-            enumSource += "public enum LocaleKeys\n{\n";
-            foreach (var line in lines)
-            {
-                enumSource += $"    {line},\n";
-            }
+		IncrementalValuesProvider<string> contents = englishLocaleFile.Select((text, cancellationToken) => text.GetText(cancellationToken)!.ToString());
 
-            enumSource += "}";
+		context.RegisterSourceOutput(contents, (spc, content) =>
+		{
+			var lines = content.Split('\n').Where(x => x.Trim().StartsWith("\"") && x.Trim().Contains(":")).Select(x => x.Split(':').First().Trim().Replace("\"", ""));
+			StringBuilder enumSourceBuilder = new();
+			enumSourceBuilder.AppendLine("namespace G2DataGUI.UI.Common.Locale;");
+			enumSourceBuilder.AppendLine("public enum LocaleKeys");
+			enumSourceBuilder.AppendLine("{");
+			foreach (var line in lines)
+			{
+				enumSourceBuilder.AppendLine($"    {line},");
+			}
 
-            spc.AddSource("LocaleKeys", enumSource);
-        });
-    }
+			enumSourceBuilder.AppendLine("}");
+
+			spc.AddSource("LocaleKeys", enumSourceBuilder.ToString());
+		});
+	}
 }

@@ -1,0 +1,325 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.MapScripts"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+             mc:Ignorable="d"
+             Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:MapScriptsViewModel">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MapScriptsViewModel />
+	</Design.DataContext>
+
+	<Grid Name="MapScriptsPage"
+		  Margin="20,10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="MapHTAsList"
+				 ItemsSource="{Binding SelectedMapScripts}"
+				 SelectedIndex="{Binding SelectedMapScriptIndex}"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Index, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Column="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="8"
+							Grid.Column="0">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Offset"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="X:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Offset.X}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Y:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Offset.Y}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Z:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Offset.Z}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Direction:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Direction}"
+											   Increment="0.01"
+											   FormatString="{}{0:#0.00}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Transition"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Screen Transition:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedMapScriptItem.TransitionEffect}"
+										  ItemsSource="{locale:Locale ScreenTransitions}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Map ID:" />
+								<TextBox Text="{Binding SelectedMapScriptItem.MapID, Mode=TwoWay}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Margin="8"
+							Grid.Column="1">
+					
+				</StackPanel>
+				<StackPanel Margin="8"
+							Grid.Column="2">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #2:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown2}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #3:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown3}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #4:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown4}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #5:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown5}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #6:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown6}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #7:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown7}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #8:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown8}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #9:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown9}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #10:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown10}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #11:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown11}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #12:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown12}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #13:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown13}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #14:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown14}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #15:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown15}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Unknown #16:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown16}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Unknown #17:" />
+								<NumericUpDown Value="{Binding SelectedMapScriptItem.Unknown17}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using G2DataGUI.Common.Data.Errors;
 using G2DataGUI.Common.Paths;
 
@@ -10,8 +7,8 @@ namespace G2DataGUI.Common.Data.Bosses;
 public class Bosses
 {
 	public static Bosses Instance { get; } = new();
-	public ObservableCollection<Boss> GameBosses = new();
-	public event EventHandler CollectionRefreshed;
+	public ObservableCollection<Boss> GameBosses = [];
+	public event EventHandler? CollectionRefreshed;
 
 	private Bosses()
     {
@@ -23,7 +20,7 @@ public class Bosses
 
 	public void Reload() => _ = ReadBossesAsync();
 
-	private void OnDifficultyChange(object sender, EventArgs eventArgs) => _ = ReadBossesAsync();
+	private void OnDifficultyChange(object? sender, EventArgs eventArgs) => _ = ReadBossesAsync();
 
 	private async Task ReadBossesAsync() =>
 		await Task.Run(ReadBosses).ConfigureAwait(false);

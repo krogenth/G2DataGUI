@@ -15,9 +15,15 @@ public class Version
         }
     }
 
+	public string RootContentDirectory =>
+		IsHDVersion ? ".\\content\\data" : ".\\data";
+
 	public string RootDataDirectory =>
-		IsHDVersion ? ".\\content\\data\\afs\\" : ".\\data\\afs\\";
+		IsHDVersion ? ".\\content\\data\\afs" : ".\\data\\afs";
 
 	public string RootTextDirectory =>
 		IsHDVersion ? ".\\content\\data\\text" : ".\\data\\text";
+
+	public string RootAudioDirectory =>
+		IsHDVersion ? ".\\content\\data\\sound" : ".\\data\\sound";
 }

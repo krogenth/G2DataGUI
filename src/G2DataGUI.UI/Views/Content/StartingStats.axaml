@@ -1,0 +1,575 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.StartingStats"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+	         mc:Ignorable="d"
+	         Focusable="True"
+	         x:CompileBindings="True"
+	         x:DataType="vm:StartingStatsViewModel">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:StartingStatsViewModel />
+	</Design.DataContext>
+
+	<Grid Name="StartingStatsPage"
+		  Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="MovesList"
+				 ItemsSource="{Binding GameStartingStats}"
+				 SelectedIndex="{Binding SelectedStartingStatsIndex}"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding CharacterName, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Column="1">
+			<Grid x:Name="StartingStatDataGrid"
+				  Margin="20,10"
+				  VerticalAlignment="Stretch">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Stats"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Experience:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Experience}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="4294967295" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Stamina:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Stamina}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Status Recovery Time:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.StatusRecoveryTime}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="4294967295" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Knockback Resist:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.KnockbackResist}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Equipment"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Weapon:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedStartingStatsItem.Weapon}"
+										  ItemsSource="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Armor:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedStartingStatsItem.Armor}"
+										  ItemsSource="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Headgear:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedStartingStatsItem.Headgear}"
+										  ItemsSource="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Footwear:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedStartingStatsItem.Footwear}"
+										  ItemsSource="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Accessory:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedStartingStatsItem.Accessory}"
+										  ItemsSource="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Manaegg:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedStartingStatsItem.Manaegg}"
+										  ItemsSource="{Binding GameItems}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Name}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="IP"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Stun:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.IpStun}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Cancel Stun:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.IpCancelStun}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="SP Regen"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Combo:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.ComboSpRegen}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Crit:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.CritSpRegen}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Hit:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.HitSpRegen}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Evasion"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Still:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.EvasionStillRate}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Moving:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.EvasionMovingRate}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #1:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown1}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #2:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown2}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #3:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown3}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #4:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown4}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #5:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown5}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #6:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown6}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #7:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown7}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #8:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown8}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #9:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown9}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #10:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown10}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #11:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown11}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #12:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown12}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #13:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown13}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #14:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown14}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #15:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown15}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #16:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown16}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #17:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown17}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #18:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown18}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #19:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown19}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #20:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown20}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #21:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown21}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #22:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown22}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #23:" />
+								<NumericUpDown Value="{Binding SelectedStartingStatsItem.Unknown23}"
+											   Increment="1"
+											   Minimum="-32768"
+											   Maximum="32767" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

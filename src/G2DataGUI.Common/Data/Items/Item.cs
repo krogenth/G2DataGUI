@@ -17,8 +17,8 @@ public class Item : BaseContainer
     private FixedLengthDescription _description;
     public ItemStats Stats { get; private set; }
     private ItemOffsets _offsets;
-    public Equipment Equipment { get; set; } = null;
-    public Usable Usable { get; set; } = null;
+    public EquipmentStats Equipment { get; set; } = null;
+    public UsableStats Usable { get; set; } = null;
     public uint ID { get; set; }
 
     public string Name
@@ -40,7 +40,7 @@ public class Item : BaseContainer
         {
             if (value && Equipment == null)
 			{
-				Equipment = new Equipment();
+				Equipment = new EquipmentStats();
 			}
 			else if (!value && Equipment != null)
 			{
@@ -57,7 +57,7 @@ public class Item : BaseContainer
         {
             if (value && Usable == null)
 			{
-				Usable = new Usable();
+				Usable = new UsableStats();
 			}
 			else if (!value && Usable != null)
 			{
@@ -83,13 +83,13 @@ public class Item : BaseContainer
         if (item._offsets.EquipmentOffset > 0)
         {
             reader.Seek(item._offsets.EquipmentOffset, SeekOrigin.Begin);
-            item.Equipment = Equipment.ReadEquipmentStats(reader);
+            item.Equipment = EquipmentStats.ReadEquipmentStats(reader);
         }
 
         if (item._offsets.UsableOffset > 0)
         {
             reader.Seek(item._offsets.UsableOffset, SeekOrigin.Begin);
-            item.Usable = Usable.ReadUsableStats(reader);
+            item.Usable = UsableStats.ReadUsableStats(reader);
         }
 
         reader.Seek(currentPos, SeekOrigin.Begin);
@@ -106,7 +106,7 @@ public class Item : BaseContainer
         if (Equipment != null)
         {
             writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += Equipment.ByteSize;
+            ptrOffset += EquipmentStats.ByteSize;
         }
         else
         {
@@ -116,7 +116,7 @@ public class Item : BaseContainer
         if (Usable != null)
         {
             writer.WriteRawUInt(ptrOffset + ItemData.ItemPointerOffset);
-            ptrOffset += Usable.ByteSize;
+            ptrOffset += UsableStats.ByteSize;
         }
         else
         {

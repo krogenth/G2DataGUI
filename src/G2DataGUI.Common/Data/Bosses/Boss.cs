@@ -14,15 +14,15 @@ namespace G2DataGUI.Common.Data.Bosses;
 /// </summary>
 public class Boss : BaseContainer
 {
-    public EnemyStats Stats { get; private set; }
-    public EnemyAISection AISection { get; private set; }
+	public EnemyStats Stats { get; private set; } = new();
+	public EnemyAISection AISection { get; private set; } = new();
 	/// <summary>
 	/// Additional movesets defined in corresponding _act.dat file
 	/// </summary>
-	public ObservableCollection<EnemyMoveset> Movesets { get; private set; } = new();
+	public ObservableCollection<EnemyMoveset> Movesets { get; private set; } = [];
 
-	public bool IsSecond { get; set; }
-	public string Filename { get; set; }
+	public bool IsSecond { get; set; } = false;
+	public string Filename { get; set; } = string.Empty;
 
 	public static int FirstStatsPointerOffset => 0x34;
 	public static int SecondStatsPointerOffset => 0x44;
@@ -62,7 +62,7 @@ public class Boss : BaseContainer
 	public void WriteBoss()
 	{
 		// we need the file to write to
-		if (Filename.Length <= 0)
+		if (string.IsNullOrEmpty(Filename))
 		{
 			return;
 		}

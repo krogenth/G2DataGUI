@@ -20,11 +20,11 @@ public sealed class Move : BaseContainer
             NotifyPropertyChanged(nameof(Name));
         }
     }
-    public uint MaxNameLength { get => FixedLengthName.MaxLength; }
-    public string Description { get => _description.Description; set => _description.Description = value; }
-    public uint MaxDescriptionLength { get => FixedLengthDescription.MaxLength; }
+	public static uint MaxNameLength => FixedLengthName.MaxLength;
+	public string Description { get => _description.Description; set => _description.Description = value; }
+	public static uint MaxDescriptionLength => FixedLengthDescription.MaxLength;
 
-    public static string CSVHeader =>
+	public static string CSVHeader =>
         $"ID,Icon,Name,{MoveStats.CSVHeader},Description";
 
     public static Move ReadMove(Stream reader)

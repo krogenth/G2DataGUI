@@ -3,25 +3,28 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Avalonia" Version="0.10.19" />
-    <PackageVersion Include="Avalonia.Controls.DataGrid" Version="0.10.19" />
-    <PackageVersion Include="Avalonia.Desktop" Version="0.10.19" />
-    <PackageVersion Include="Avalonia.Diagnostics" Version="0.10.19" />
-    <PackageVersion Include="Avalonia.Markup.Xaml.Loader" Version="0.10.19" />
-    <PackageVersion Include="Avalonia.ReactiveUI" Version="0.10.21" />
-    <PackageVersion Include="FluentAvaloniaUI" Version="1.4.5" />
-    <PackageVersion Include="XamlNameReferenceGenerator" Version="1.6.1" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
-    <PackageVersion Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
+    <PackageVersion Include="Avalonia" Version="11.0.10" />
+    <PackageVersion Include="Avalonia.Desktop" Version="11.0.10" />
+    <PackageVersion Include="Avalonia.Diagnostics" Version="11.0.10" />
+    <PackageVersion Include="Avalonia.ReactiveUI" Version="11.0.10" />
+		<PackageVersion Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+		<PackageVersion Include="Avalonia.Markup.Xaml.Loader" Version="11.0.10" />
+		<PackageVersion Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+		<PackageVersion Include="FluentAvaloniaUI" Version="2.0.5" />
+
+		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+		<PackageVersion Include="CommunityToolkit.Diagnostics" Version="8.2.1" />
 		<PackageVersion Include="Pfim" Version="0.11.2" />
 
 		<PackageVersion Include="NVorbis" Version="0.10.5" />
-		
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageVersion Include="NUnit" Version="4.1.0" />
-    <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
-    <PackageVersion Include="NUnit.Analyzers" Version="4.2.0" />
-    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
+		<PackageVersion Include="NAudio.Vorbis" Version="1.5.0" />
+		<packageVersion Include="NAudio" Version="2.2.1" />
+
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+		<PackageVersion Include="NUnit" Version="3.13.3" />
+		<PackageVersion Include="NUnit3TestAdapter" Version="4.4.2" />
+		<PackageVersion Include="NUnit.Analyzers" Version="3.6.1" />
+		<PackageVersion Include="coverlet.collector" Version="6.0.0" />
   </ItemGroup>
 </Project>

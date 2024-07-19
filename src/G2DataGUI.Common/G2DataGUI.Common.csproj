@@ -1,15 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <BaseOutputPath>..\..\build</BaseOutputPath>
-	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
-
+    
   <ItemGroup>
     <PackageReference Include="NVorbis" />
   </ItemGroup>
-
+    
   <ItemGroup>
     <ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
     <ProjectReference Include="..\G2DataGUI.UI.Common\G2DataGUI.UI.Common.csproj" />

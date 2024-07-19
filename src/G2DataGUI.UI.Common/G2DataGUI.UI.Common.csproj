@@ -1,18 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <BaseOutputPath>..\..\build</BaseOutputPath>
-	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Assets\Locales\en_US.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="Assets\Locales\en_US.json" />
-  </ItemGroup>
 
   <ItemGroup>
     <AvaloniaResource Include="Ui\**\*.xaml">
@@ -24,6 +17,7 @@
     <PackageReference Include="Avalonia" />
     <PackageReference Include="Avalonia.Desktop" />
     <PackageReference Include="FluentAvaloniaUI" />
+    <PackageReference Include="Avalonia.Markup.Xaml.Loader" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +31,10 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\Locales\en_US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Assets\Locales\en_US.json" />
   </ItemGroup>
 
 </Project>

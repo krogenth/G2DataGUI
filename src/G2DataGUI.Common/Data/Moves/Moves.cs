@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using G2DataGUI.Common.Data.Errors;
 using G2DataGUI.Common.Paths;
 
@@ -10,8 +7,8 @@ namespace G2DataGUI.Common.Data.Moves;
 public class Moves
 {
     public static Moves Instance { get; } = new();
-    public ObservableCollection<Move> GameMoves { get; private set; } = new();
-    public event EventHandler CollectionRefreshed;
+    public ObservableCollection<Move> GameMoves { get; private set; } = [];
+    public event EventHandler? CollectionRefreshed;
     public static int NumberOfMoves { get; } = 0x80;
 
     private Moves()

@@ -1,0 +1,116 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.MapEntries"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+             mc:Ignorable="d"
+             Focusable="True"
+             x:CompileBindings="True"
+			 x:DataType="vm:MapEntriesViewModel">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MapEntriesViewModel />
+	</Design.DataContext>
+
+	<Grid Name="MapEntriesPage"
+			Margin="20,10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox x:Name="MapEntriesList"
+				 ItemsSource="{Binding SelectedMapEntries}"
+				 SelectedIndex="{Binding SelectedMapEntryIndex}"
+				 Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Id, Mode=OneWay, StringFormat={}{0:x}}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Column="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<StackPanel>
+							<TextBlock Text="Map ID:" />
+							<TextBox Text="{Binding SelectedMapEntryItem.Id, Mode=TwoWay}" />
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Position"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<StackPanel Margin="4">
+							<TextBlock Text="X:" />
+							<NumericUpDown Value="{Binding SelectedMapEntryItem.Position.X}"
+											Increment="0.01"
+											FormatString="{}{0:#0.00}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Y:" />
+							<NumericUpDown Value="{Binding SelectedMapEntryItem.Position.Y}"
+											Increment="0.01"
+											FormatString="{}{0:#0.00}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Z:" />
+							<NumericUpDown Value="{Binding SelectedMapEntryItem.Position.Z}"
+											Increment="0.01"
+											FormatString="{}{0:#0.00}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Direction:" />
+							<NumericUpDown Value="{Binding SelectedMapEntryItem.Direction}"
+											Increment="0.01"
+											FormatString="{}{0:#0.00}" />
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<StackPanel Margin="4">
+							<TextBlock Text="Unknown #1:" />
+							<NumericUpDown Value="{Binding SelectedMapEntryItem.Unknown1}"
+											Increment="0.01"
+											FormatString="{}{0:#0.00}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Unknown #2:" />
+							<NumericUpDown Value="{Binding SelectedMapEntryItem.Unknown2}"
+											Increment="1" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Unknown #3:" />
+							<NumericUpDown Value="{Binding SelectedMapEntryItem.Unknown3}"
+											Increment="1" />
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

@@ -2,24 +2,15 @@
 
 namespace G2DataGUI.Common.Data.DDS;
 
-public class DDSNode
+public class DDSNode(string title, string path, uint guid, bool isFile, ObservableCollection<DDSNode> children)
 {
-    public ObservableCollection<DDSNode> Children { get; }
-    public string Title { get; }
-    public string Path { get; }
-    public bool IsFile { get; }
-	public uint Guid { get; }
+	public ObservableCollection<DDSNode> Children { get; } = children;
+	public string Title { get; } = title;
+	public string Path { get; } = path;
+	public bool IsFile { get; } = isFile;
+	public uint Guid { get; } = guid;
 
-    public DDSNode(string title, string path, uint guid, bool isFile) : this(title, path, guid, isFile, new ObservableCollection<DDSNode>()) { }
-
-    public DDSNode(string title, string path, uint guid, bool isFile, ObservableCollection<DDSNode> children)
-    {
-        Title = title;
-        Path = path;
-		Guid = guid;
-        IsFile = isFile;
-        Children = children;
-    }
+	public DDSNode(string title, string path, uint guid, bool isFile) : this(title, path, guid, isFile, []) { }
 
 	public void AddChild(DDSNode child) => Children.Add(child);
 }

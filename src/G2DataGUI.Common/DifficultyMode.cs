@@ -4,7 +4,7 @@ namespace G2DataGUI.Common;
 public class DifficultyMode
 {
 	public static DifficultyMode Instance { get; } = new();
-	public event EventHandler DifficultyChanged;
+	public event EventHandler? DifficultyChanged;
 	private bool _isHardMode = false;
 	public bool IsHardMode
 	{

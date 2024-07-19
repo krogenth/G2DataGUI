@@ -1,5 +1,4 @@
-﻿using System.IO;
-using CommunityToolkit.Diagnostics;
+﻿using CommunityToolkit.Diagnostics;
 using G2DataGUI.IO.Streams;
 using Pfim;
 
@@ -7,7 +6,7 @@ namespace G2DataGUI.IO.DDS;
 
 public static class DDSLoader
 {
-	public static uint GuidOffset = 0x20;
+	private const uint GuidOffset = 0x20;
 
     public static IImage LoadDDSFile(string file)
     {

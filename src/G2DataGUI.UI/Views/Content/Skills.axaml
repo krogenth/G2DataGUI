@@ -1,0 +1,452 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Content.Skills"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:G2DataGUI.UI.ViewModels"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+             mc:Ignorable="d"
+			 Focusable="True"
+			 x:CompileBindings="True"
+			 x:DataType="vm:SkillsViewModel">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:SkillsViewModel />
+	</Design.DataContext>
+
+	<Grid Name="SkillsPage"
+		  ColumnDefinitions="Auto,*"
+			Margin="4"
+		    VerticalAlignment="Stretch">
+		<ListBox x:Name="SkillsList"
+					ItemsSource="{Binding GameSkills}"
+					SelectedIndex="{Binding SelectedSkillIndex}"
+					Grid.Row="0"
+					Grid.Column="0"
+					VerticalAlignment="Stretch">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4"
+							Margin="0"
+							Padding="10"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"
+							ClipToBounds="True">
+						<TextBlock Text="{Binding Name, Mode=OneWay}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ScrollViewer Grid.Row="0"
+					  Grid.Column="1">
+			<Grid x:Name="SkillDataGrid"
+				  Margin="20,10"
+				  VerticalAlignment="Stretch">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<StackPanel Grid.Column="0"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<StackPanel Margin="4">
+							<TextBlock Text="Name:" />
+							<TextBox Text="{Binding SelectedSkillItem.Name}"
+									 MaxLength="{Binding SelectedSkillItem.MaxNameLength}" />
+						</StackPanel>
+						<StackPanel Margin="4">
+							<TextBlock Text="Description:" />
+							<TextBox Text="{Binding SelectedSkillItem.Description}"
+									 MaxLength="{Binding SelectedSkillItem.MaxDescriptionLength}" />
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Margin="4">
+						<TextBlock Text="Cost Type"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid Margin="20,10">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Cost Type 1:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedSkillItem.Stats.CostType1}"
+										  ItemsSource="{locale:Locale CoinCostTypes}" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Cost Type 2:" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding SelectedSkillItem.Stats.CostType2}"
+										  ItemsSource="{locale:Locale CoinCostTypes}" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Base Stats"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+									Grid.Column="0">
+								<TextBlock Text="Base HP:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseHP}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+									Grid.Column="0">
+								<TextBlock Text="Base SP:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseSP}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Base MP:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseMP}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Base Strength:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseStrength}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+									Grid.Column="1">
+								<TextBlock Text="Base Vitality:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseVitality}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Base Action:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseAction}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+									Grid.Column="1">
+								<TextBlock Text="Base Movement:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseMovement}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Base Magic:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseMagic}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Base Mentality:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.BaseMentality}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #1:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.Unknown1}"
+												Increment="1"
+												Minimum="0"
+												Maximum="255"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #2:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.Unknown2}"
+												Increment="1"
+												Minimum="0"
+												Maximum="255"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #3:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.Unknown3}"
+												Increment="1"
+												Minimum="0"
+												Maximum="255"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Unknown #4:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.Unknown4}"
+												Increment="1"
+												Minimum="0"
+												Maximum="255"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #5:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.Unknown5}"
+												Increment="1"
+												Minimum="0"
+												Maximum="255"/>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Element % Increases"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Fire:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseFirePercent}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Wind:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseWindPercent}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Earth:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseEarthPercent}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Lightning:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseLightningPercent}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Blizzard:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseBlizzardPercent}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Water:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseWaterPercent}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Explosion:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseExplosionPercent}"
+												Increment="1"
+												Minimum="-128"
+												Maximum="127"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Forest:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.IncreaseForestPercent}"
+											   Increment="1"
+											   Minimum="-128"
+											   Maximum="127"/>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Coin Costs"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Level 1:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.CoinCost1}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Level 2:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.CoinCost2}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Level 3:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.CoinCost3}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Level 4:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.CoinCost4}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Level 5:" />
+								<NumericUpDown Value="{Binding SelectedSkillItem.Stats.CoinCost5}"
+												Increment="1"
+												Minimum="-32768"
+												Maximum="32767"/>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<StackPanel>
+							<TextBlock Text="Special"
+									   HorizontalAlignment="Center"
+									   Classes="h2" />
+							<Grid>
+								<StackPanel Margin="4">
+									<TextBlock Text="Special" />
+									<NumericUpDown Value="{Binding SelectedSkillItem.Stats.Special}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="65536" />
+								</StackPanel>
+							</Grid>
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>
