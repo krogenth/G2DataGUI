@@ -9,6 +9,26 @@ public class Vector3
     public float Y { get; set; }
 	public float Z { get; set; }
 
+	public static Vector3 operator+(Vector3 left, Vector3 right)
+	{
+		return new Vector3
+		{
+			X = left.X + right.X,
+			Y = left.Y + right.Y,
+			Z = left.Z + right.Z,
+		};
+	}
+
+	public static Vector3 operator-(Vector3 left, Vector3 right)
+	{
+		return new Vector3
+		{
+			X = left.X - right.X,
+			Y = left.Y - right.Y,
+			Z = left.Z - right.Z,
+		};
+	}
+
 	public static Vector3 ReadVector3(Stream reader)
     {
         Vector3 vector3 = new()

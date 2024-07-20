@@ -30,9 +30,9 @@ public class NJSVertexList
 	/// <summary>
 	/// Should end with a 0xFF000000?
 	/// </summary>
-	public List<Vector3> VertexList { get; set; } = new List<Vector3>();
+	public List<NJSVertex> VertexList { get; set; } = new List<NJSVertex>();
 
-	public static NJSVertexList ReadNJSVertexList(Stream reader)
+	public static NJSVertexList ReadNJSVertexList(Stream reader, NJSBone parentBone)
 	{
 		NJSVertexList list = new()
 		{
@@ -44,7 +44,10 @@ public class NJSVertexList
 
 		for (int index = 0; index < list.Count; index++)
 		{
-			list.VertexList.Add(Vector3.ReadVector3(reader));
+			list.VertexList.Add(new NJSVertex{
+				Position = Vector3.ReadVector3(reader),
+				ParentBone  = parentBone,
+			});
 		}
 
 		return list;

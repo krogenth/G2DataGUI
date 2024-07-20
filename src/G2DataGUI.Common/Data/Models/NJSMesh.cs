@@ -10,17 +10,21 @@ public class NJSMesh
 	// indices
 	public Vector3 Center { get; set; }
 	public float Radius { get; set; }
+	public NJSBone ParentBone { get; set; }
 
-	public static NJSMesh ReadNJSModel(Stream reader, long instanceOffset)
+	public static NJSMesh ReadNJSModel(Stream reader, long instanceOffset, NJSBone parentBone)
 	{
-		NJSMesh model = new();
+		NJSMesh model = new()
+		{
+			ParentBone = parentBone,
+		};
 
 		var vertexOffset = reader.ReadRawUInt();
 		if (vertexOffset > 0)
 		{
 			var position = reader.Position;
 			reader.Seek(instanceOffset + vertexOffset, SeekOrigin.Begin);
-			model.VertexList = NJSVertexList.ReadNJSVertexList(reader);
+			model.VertexList = NJSVertexList.ReadNJSVertexList(reader, parentBone);
 			reader.Seek(position, SeekOrigin.Begin);
 		}
 

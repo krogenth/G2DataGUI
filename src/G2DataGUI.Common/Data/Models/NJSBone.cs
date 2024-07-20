@@ -11,18 +11,21 @@ namespace G2DataGUI.Common.Data.Models;
 public class NJSBone
 {
 	public uint Flags { get; set; }
-	public NJSMesh Model { get; set; } = null;
+	public NJSBone Parent { get; set; }
+	public NJSMesh Mesh { get; set; } = null;
 	public Vector3 Position { get; set; }
 	public Vector3 Angle { get; set; }
 	public Vector3 Scale { get; set; }
 	public NJSBone Child { get; set; } = null;
 	public NJSBone Sibling { get; set; } = null;
+	public Vector3 AbsolutePosition => Parent is not null ? Position + Parent.AbsolutePosition : Position;
 
-	public static NJSBone ReadNJSObject(Stream reader, long instanceOffset)
+	public static NJSBone ReadNJSObject(Stream reader, long instanceOffset,  NJSBone parent = null)
 	{
-		NJSBone obj = new()
+		NJSBone bone = new()
 		{
 			Flags = reader.ReadRawUInt(),
+			Parent = parent,
 		};
 
 		var modelOffset = reader.ReadRawUInt();
@@ -30,20 +33,20 @@ public class NJSBone
 		{
 			long position = reader.Position;
 			reader.Seek(instanceOffset + modelOffset, SeekOrigin.Begin);
-			obj.Model = NJSMesh.ReadNJSModel(reader, instanceOffset);
+			bone.Mesh = NJSMesh.ReadNJSModel(reader, instanceOffset, bone);
 			reader.Seek(position, SeekOrigin.Begin);
 		}
 
-		obj.Position = Vector3.ReadVector3(reader);
-		obj.Angle = Vector3.ReadVector3(reader);
-		obj.Scale = Vector3.ReadVector3(reader);
+		bone.Position = Vector3.ReadVector3(reader);
+		bone.Angle = Vector3.ReadVector3(reader);
+		bone.Scale = Vector3.ReadVector3(reader);
 
 		var childOffset = reader.ReadRawUInt();
 		if (childOffset > 0)
 		{
 			long position = reader.Position;
 			reader.Seek(instanceOffset + childOffset, SeekOrigin.Begin);
-			obj.Child = ReadNJSObject(reader, instanceOffset);
+			bone.Child = ReadNJSObject(reader, instanceOffset, bone);
 			reader.Seek(position, SeekOrigin.Begin);
 		}
 
@@ -52,10 +55,10 @@ public class NJSBone
 		{
 			long position = reader.Position;
 			reader.Seek(instanceOffset + siblingOffset, SeekOrigin.Begin);
-			obj.Sibling = ReadNJSObject(reader, instanceOffset);
+			bone.Sibling = ReadNJSObject(reader, instanceOffset, bone);
 			reader.Seek(position, SeekOrigin.Begin);
 		}
 
-		return obj;
+		return bone;
 	}
 }
