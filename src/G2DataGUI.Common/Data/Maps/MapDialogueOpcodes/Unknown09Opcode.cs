@@ -8,8 +8,7 @@ public class Unknown09Opcode : IMapDialogueOpcode
 	public DialogueOpcode Opcode { get; set; } = DialogueOpcode.Unknown09;
 	public byte Unknown1 { get; set; }
 	public byte Unknown2 { get; set; }
-	public byte Unknown3 { get; set; }
-	public byte Unknown4 { get; set; }
+	public short StoryFlag { get; set; }
 
 	public static IMapDialogueOpcode ReadOpcode(Stream reader)
 	{
@@ -17,8 +16,7 @@ public class Unknown09Opcode : IMapDialogueOpcode
 		{
 			Unknown1 = reader.ReadRawByte(),
 			Unknown2 = reader.ReadRawByte(),
-			Unknown3 = reader.ReadRawByte(),
-			Unknown4 = reader.ReadRawByte(),
+			StoryFlag = reader.ReadRawShort(),
 		};
 	}
 }
