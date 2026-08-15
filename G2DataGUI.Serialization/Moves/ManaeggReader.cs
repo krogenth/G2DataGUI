@@ -27,5 +27,5 @@ public sealed class ManaeggReader : ICollectionDataReader<Manaegg>
 	public async Task<IReadOnlyList<Manaegg>> ReadAsync(
 		Stream stream,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

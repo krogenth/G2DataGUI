@@ -5,8 +5,10 @@ using G2DataGUI.Export.Enemies;
 
 namespace G2DataGUI.Export.Bosses;
 
-/// <summary>See the doc comment on EnemyMovesetCsvExporter — same shape,
-/// one row per move with no boss-identifying column, matching the original.</summary>
+/// <summary>
+/// See the doc comment on EnemyMovesetCsvExporter — same shape,
+/// one row per move with no boss-identifying column, matching the original.
+/// </summary>
 public sealed class BossMovesetCsvExporter(EnemyMoveCsvExporter moveExporter) : ICsvExporter<Boss>
 {
 	public string Header => moveExporter.Header;

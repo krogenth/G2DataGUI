@@ -37,6 +37,28 @@ public class CollectionViewModel<TModel, TViewModel> : BaseViewModel
 
 	public ObservableCollection<TViewModel> Items { get; }
 
+	/// <summary>
+	/// Which item a master-detail page's detail panel is
+	/// currently showing/editing — added here (once, on the shared base)
+	/// rather than per-feature, since every list page needs this the same
+	/// way. Defaults to null (no selection); set it from the View's
+	/// DataGrid/ListBox SelectedItem binding.
+	/// </summary>
+	public TViewModel? SelectedItem
+	{
+		get;
+		set
+		{
+			if (ReferenceEquals(field, value))
+			{
+				return;
+			}
+
+			field = value;
+			OnPropertyChanged(nameof(SelectedItem));
+		}
+	}
+
 	private void OnModelsChanged(object? sender, NotifyCollectionChangedEventArgs e)
 	{
 		switch (e.Action)
@@ -60,6 +82,7 @@ public class CollectionViewModel<TModel, TViewModel> : BaseViewModel
 			case NotifyCollectionChangedAction.Reset:
 				Items.Clear();
 				_viewModelsByModel.Clear();
+				SelectedItem = null;
 
 				foreach (TModel model in _models)
 				{
@@ -83,6 +106,11 @@ public class CollectionViewModel<TModel, TViewModel> : BaseViewModel
 		if (_viewModelsByModel.Remove(model, out TViewModel? viewModel))
 		{
 			Items.Remove(viewModel);
+
+			if (ReferenceEquals(SelectedItem, viewModel))
+			{
+				SelectedItem = null;
+			}
 		}
 	}
 }

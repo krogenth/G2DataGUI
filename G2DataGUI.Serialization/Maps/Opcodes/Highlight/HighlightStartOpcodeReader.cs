@@ -47,5 +47,5 @@ public sealed class HighlightStartOpcodeReader : IDataReader<HighlightStartOpcod
 	}
 
 	public async Task<HighlightStartOpcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

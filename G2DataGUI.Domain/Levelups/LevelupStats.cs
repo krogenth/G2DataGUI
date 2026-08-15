@@ -2,8 +2,10 @@ namespace G2DataGUI.Domain.Levelups;
 
 public sealed class LevelupStats
 {
-	/// <summary>1-based level this row applies to (position within the
-	/// character's 99-row block, not read from the file).</summary>
+	/// <summary>
+	/// 1-based level this row applies to (position within the
+	/// character's 99-row block, not read from the file).
+	/// </summary>
 	public int Level { get; set; }
 
 	public int Experience { get; set; }

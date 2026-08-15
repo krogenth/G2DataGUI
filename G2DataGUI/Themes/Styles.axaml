@@ -1,19 +1,5 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<!--
-	Control styling for the app. Everything here targets Avalonia's own
-	FluentTheme controls/keys — no third-party control library — and every
-	color reference goes through the brushes defined in Colors.axaml, never
-	a raw hex value, so the palette stays centralized in one file.
-
-	Two deliberately app-specific additions beyond the usual DataGrid/
-	TabItem/ListBox reskinning: a "Data" TextBlock style using a monospace
-	font (this app displays a lot of hex offsets, chunk IDs, and byte
-	values — a proportional font makes columns of numbers hard to scan),
-	and a DirtyIndicator style (a small dot) for marking unsaved changes,
-	since every repository in this project already tracks IsDirty and
-	nothing in the UI layer surfaces it yet.
-	-->
 	<Design.PreviewWith>
 		<Border Width="480" Padding="20" Background="{DynamicResource AppBackgroundBrush}">
 			<StackPanel Spacing="10">
@@ -24,7 +10,8 @@
 					<Ellipse Classes="dirtyIndicator" />
 					<TextBlock Text="Unsaved changes" Classes="caption" />
 				</StackPanel>
-				<Button Content="Save" />
+				<Button Content="Save" Classes="accent" />
+				<TextBox Text="Focus me" />
 				<TabControl>
 					<TabItem Header="General" />
 					<TabItem Header="Stats" />
@@ -42,8 +29,9 @@
 	</Style>
 
 	<Style Selector="TextBlock.h1">
-		<Setter Property="FontSize" Value="20" />
+		<Setter Property="FontSize" Value="22" />
 		<Setter Property="FontWeight" Value="SemiBold" />
+		<Setter Property="LetterSpacing" Value="-0.3" />
 		<Setter Property="Margin" Value="0,0,0,4" />
 	</Style>
 
@@ -81,8 +69,8 @@
 	<!-- ===================== Unsaved-changes indicator ===================== -->
 
 	<Style Selector="Ellipse.dirtyIndicator">
-		<Setter Property="Width" Value="8" />
-		<Setter Property="Height" Value="8" />
+		<Setter Property="Width" Value="7" />
+		<Setter Property="Height" Value="7" />
 		<Setter Property="Fill" Value="{DynamicResource AppDirtyIndicatorBrush}" />
 	</Style>
 
@@ -92,15 +80,22 @@
 		<Setter Property="Background" Value="{DynamicResource AppPanelBackgroundBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource AppControlBorderBrush}" />
 		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="CornerRadius" Value="6" />
-		<Setter Property="Padding" Value="12" />
+		<Setter Property="CornerRadius" Value="8" />
+		<Setter Property="Padding" Value="14" />
+		<Setter Property="BoxShadow" Value="0 1 3 0 #22000000" />
 	</Style>
 
 	<!-- ===================== Buttons ===================== -->
 
 	<Style Selector="Button">
 		<Setter Property="MinWidth" Value="72" />
-		<Setter Property="CornerRadius" Value="4" />
+		<Setter Property="CornerRadius" Value="6" />
+		<Setter Property="Padding" Value="14,6" />
+		<Setter Property="Transitions">
+			<Transitions>
+				<BrushTransition Property="Background" Duration="0:0:0.1" />
+			</Transitions>
+		</Setter>
 	</Style>
 
 	<Style Selector="Button.accent">
@@ -108,11 +103,19 @@
 		<Setter Property="Foreground" Value="White" />
 	</Style>
 
+	<Style Selector="Button.accent:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource SystemAccentColorLight1}" />
+	</Style>
+
+	<Style Selector="Button.accent:pressed /template/ ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource SystemAccentColorDark1}" />
+	</Style>
+
 	<!-- ===================== TabItem ===================== -->
 
 	<Style Selector="TabItem">
 		<Setter Property="FontSize" Value="13" />
-		<Setter Property="Padding" Value="12,6" />
+		<Setter Property="Padding" Value="14,8" />
 	</Style>
 
 	<Style Selector="TabItem:selected /template/ Border#PART_LayoutRoot">
@@ -120,16 +123,26 @@
 		<Setter Property="BorderThickness" Value="0,0,0,2" />
 	</Style>
 
-	<!-- ===================== ListBox (feature lists — Moves, Skills, ...) ===================== -->
+	<Style Selector="TabItem:selected TextBlock">
+		<Setter Property="Foreground" Value="{DynamicResource SystemAccentColor}" />
+		<Setter Property="FontWeight" Value="SemiBold" />
+	</Style>
+
+	<!-- ===================== ListBox (nav rail + feature lists — Moves, Skills, ...) ===================== -->
 
 	<Style Selector="ListBox">
 		<Setter Property="Background" Value="{DynamicResource AppContentBackgroundBrush}" />
 	</Style>
 
 	<Style Selector="ListBoxItem">
-		<Setter Property="Padding" Value="8,6" />
-		<Setter Property="CornerRadius" Value="4" />
-		<Setter Property="Margin" Value="2" />
+		<Setter Property="Padding" Value="10,7" />
+		<Setter Property="CornerRadius" Value="6" />
+		<Setter Property="Margin" Value="2,1" />
+		<Setter Property="Transitions">
+			<Transitions>
+				<BrushTransition Property="Background" Duration="0:0:0.08" />
+			</Transitions>
+		</Setter>
 	</Style>
 
 	<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
@@ -138,6 +151,7 @@
 
 	<Style Selector="ListBoxItem:selected TextBlock">
 		<Setter Property="Foreground" Value="White" />
+		<Setter Property="FontWeight" Value="Medium" />
 	</Style>
 
 	<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
@@ -148,7 +162,17 @@
 
 	<Style Selector="TextBox">
 		<Setter Property="VerticalContentAlignment" Value="Center" />
-		<Setter Property="CornerRadius" Value="4" />
+		<Setter Property="CornerRadius" Value="6" />
+		<Setter Property="Background" Value="{DynamicResource AppContentBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource AppControlBorderBrush}" />
+	</Style>
+
+	<!-- Accent-colored focus ring — a standard modern-form detail this
+	     didn't have before. PART_BorderElement is the FluentTheme
+	     TextBox's own border template part. -->
+	<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+		<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
+		<Setter Property="BorderThickness" Value="1.5" />
 	</Style>
 
 	<!-- Number/hex-entry fields — anywhere the ViewModel property is a raw
@@ -169,6 +193,7 @@
 	<Style Selector="FlyoutPresenter, ContextMenu, MenuFlyoutPresenter">
 		<Setter Property="Background" Value="{DynamicResource AppContentBackgroundBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource AppControlBorderBrush}" />
+		<Setter Property="CornerRadius" Value="8" />
 	</Style>
 
 	<Styles.Resources>

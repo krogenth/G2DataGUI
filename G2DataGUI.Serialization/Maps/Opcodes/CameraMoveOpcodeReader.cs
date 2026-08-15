@@ -13,5 +13,5 @@ public sealed class CameraMoveOpcodeReader : IDataReader<CameraMoveOpcode>
 	};
 
 	public async Task<CameraMoveOpcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

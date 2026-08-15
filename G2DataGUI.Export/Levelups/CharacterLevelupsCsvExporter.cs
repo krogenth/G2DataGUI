@@ -4,8 +4,10 @@ using G2DataGUI.Locale;
 
 namespace G2DataGUI.Export.Levelups;
 
-/// <summary>Per-level rows: one CSV row per level, character name repeated
-/// down the first column. Matches the old LEVELUPS.CSV.</summary>
+/// <summary>
+/// Per-level rows: one CSV row per level, character name repeated
+/// down the first column. Matches the old LEVELUPS.CSV.
+/// </summary>
 public sealed class CharacterLevelupsCsvExporter(ILocalizationService locale, LevelupStatsCsvExporter statsExporter) : ICsvExporter<CharacterLevelups>
 {
 	public string Header => $"Character,{statsExporter.Header}";

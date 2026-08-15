@@ -20,5 +20,5 @@ public sealed class SkillWriter : ICollectionDataWriter<Skill>
 		Stream stream,
 		IEnumerable<Skill> items,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(true);
 }

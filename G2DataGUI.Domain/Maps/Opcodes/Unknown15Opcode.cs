@@ -1,6 +1,8 @@
 namespace G2DataGUI.Domain.Maps.Opcodes;
 
-/// <summary>Completely unknown, likely 4 parameters.</summary>
+/// <summary>
+/// Completely unknown, likely 4 parameters.
+/// </summary>
 public sealed class Unknown15Opcode : IMapOpcode
 {
 	public DialogueOpcode Opcode => DialogueOpcode.Unknown15;

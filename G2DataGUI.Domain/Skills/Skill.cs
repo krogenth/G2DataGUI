@@ -4,7 +4,9 @@ namespace G2DataGUI.Domain.Skills;
 
 public sealed class Skill : IIdentifiable<int>
 {
-	/// <summary>Position within SK_PARAM.BIN.</summary>
+	/// <summary>
+	/// Position within SK_PARAM.BIN.
+	/// </summary>
 	public int Id { get; set; }
 
 	public string Name { get; set; } = string.Empty;

@@ -24,8 +24,10 @@ public sealed class MotionAnimation
 
 	public byte[] RawNmdm => NmdmChunk.Payload;
 
-	/// <summary>Lazily parsed on first access — see ChrModel.Model's doc
-	/// comment for why this isn't populated by ChrArchiveReader itself.</summary>
+	/// <summary>
+	/// Lazily parsed on first access — see ChrModel.Model's doc
+	/// comment for why this isn't populated by ChrArchiveReader itself.
+	/// </summary>
 	public NjMotion? Motion { get; set; }
 }
 

@@ -25,8 +25,10 @@ public static class NjPoseEvaluator
 {
 	//private const float AngleScale = MathF.PI * 2f / 4294967296f; // BAMS units are pre-converted to radians already, kept only for reference
 
-	/// <summary>Bind-pose world transform for every bone — what the model
-	/// looks like with no animation applied.</summary>
+	/// <summary>
+	/// Bind-pose world transform for every bone — what the model
+	/// looks like with no animation applied.
+	/// </summary>
 	public static Matrix4x4[] ComputeBindWorldTransforms(NjModel model)
 	{
 		Matrix4x4[] world = new Matrix4x4[model.Bones.Count];
@@ -44,10 +46,12 @@ public static class NjPoseEvaluator
 		return world;
 	}
 
-	/// <summary>World transform for every bone at a given frame of a
+	/// <summary>
+	/// World transform for every bone at a given frame of a
 	/// motion — bones the motion doesn't animate fall back to their own
 	/// bind pose, matching how sparse NJS_MOTION data works (not every
-	/// bone needs a track).</summary>
+	/// bone needs a track).
+	/// </summary>
 	public static Matrix4x4[] ComputeAnimatedWorldTransforms(NjModel model, NjMotion motion, float frame)
 	{
 		Dictionary<int, NjMotionTrack> tracksByBone = motion.Tracks.ToDictionary(t => t.BoneIndex);
@@ -93,9 +97,11 @@ public static class NjPoseEvaluator
 		return world;
 	}
 
-	/// <summary>Weighted-blend a vertex's bone-local position into world
+	/// <summary>
+	/// Weighted-blend a vertex's bone-local position into world
 	/// space using the given world transforms (bind pose or animated —
-	/// same math either way).</summary>
+	/// same math either way).
+	/// </summary>
 	public static Vector3 SkinPosition(NjVertex vertex, IReadOnlyList<Matrix4x4> worldTransforms)
 	{
 		if (vertex.Influences.Count == 0)
@@ -166,17 +172,20 @@ public static class NjPoseEvaluator
 	private static Quaternion EvaluateQuaternion(IReadOnlyList<NjQuaternionKey> keys, float frame) =>
 		Interpolate(keys, frame, k => k.Frame, k => k.Value, Quaternion.Slerp, Quaternion.Identity);
 
-	/// <summary>Generic keyframe lookup + lerp: finds the surrounding pair
+	/// <summary>
+	/// Generic keyframe lookup + lerp: finds the surrounding pair
 	/// of keys for `frame` and interpolates between them. Keys are assumed
 	/// sorted by Frame ascending (true of everything NjMotionReader
-	/// produces).</summary>
+	/// produces).
+	/// </summary>
 	private static T Interpolate<TKey, T>(
 		IReadOnlyList<TKey> keys,
 		float frame,
 		Func<TKey, int> getFrame,
 		Func<TKey, T> getValue,
 		Func<T, T, float, T> lerp,
-		T fallback)
+		T fallback
+	)
 	{
 		if (keys.Count == 0)
 		{

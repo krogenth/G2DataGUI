@@ -37,7 +37,7 @@ public sealed class GameProjectContext : AggregateDataContext<IDataContext>
 			context = new GameVersionContext(Paths.ForVersion(version));
 			_versions.Add(version, context);
 
-			await context.LoadAsync(cancellationToken).ConfigureAwait(false);
+			await context.LoadAsync(cancellationToken).ConfigureAwait(true);
 		}
 
 		CurrentVersion = version;
@@ -48,8 +48,8 @@ public sealed class GameProjectContext : AggregateDataContext<IDataContext>
 		// base.LoadAsync() walks Global + whatever's already in _versions
 		// (nothing yet, on first load) — SwitchVersionAsync below ensures
 		// CurrentVersion actually gets loaded too.
-		await base.LoadAsync(cancellationToken).ConfigureAwait(false);
+		await base.LoadAsync(cancellationToken).ConfigureAwait(true);
 
-		await SwitchVersionAsync(CurrentVersion, cancellationToken).ConfigureAwait(false);
+		await SwitchVersionAsync(CurrentVersion, cancellationToken).ConfigureAwait(true);
 	}
 }

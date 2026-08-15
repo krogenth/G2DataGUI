@@ -35,5 +35,5 @@ public sealed class TextOpcodeReader : IDataReader<TextOpcode>
 	}
 
 	public async Task<TextOpcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

@@ -5,8 +5,10 @@ using G2DataGUI.Serialization.Abstractions;
 
 namespace G2DataGUI.Serialization.Maps.Opcodes.Unknown10;
 
-/// <summary>Sub-dispatches on a second byte (Unknown10Option) — direct port
-/// of the original IUnknown10Opcode.ReadOpcode.</summary>
+/// <summary>
+/// Sub-dispatches on a second byte (Unknown10Option) — direct port
+/// of the original IUnknown10Opcode.ReadOpcode.
+/// </summary>
 public sealed class Unknown10OpcodeReader : IDataReader<IMapOpcode?>
 {
 	public IMapOpcode? Read(Stream stream)
@@ -29,5 +31,5 @@ public sealed class Unknown10OpcodeReader : IDataReader<IMapOpcode?>
 	}
 
 	public async Task<IMapOpcode?> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

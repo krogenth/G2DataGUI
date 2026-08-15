@@ -33,7 +33,7 @@ public sealed class ChrArchiveRepository(string filePath) : IRepository
 
 			Archive = new ChrArchiveReader().Read(stream);
 			Archive.FileName = filePath;
-		}, cancellationToken).ConfigureAwait(false);
+		}, cancellationToken).ConfigureAwait(true);
 
 		IsLoaded = true;
 		IsDirty = false;
@@ -42,7 +42,7 @@ public sealed class ChrArchiveRepository(string filePath) : IRepository
 	}
 
 	public async Task ReloadAsync(CancellationToken cancellationToken = default) =>
-		await LoadAsync(cancellationToken).ConfigureAwait(false);
+		await LoadAsync(cancellationToken).ConfigureAwait(true);
 
 	public async Task SaveAsync(CancellationToken cancellationToken = default)
 	{
@@ -56,7 +56,7 @@ public sealed class ChrArchiveRepository(string filePath) : IRepository
 			using FileStream stream = File.Create(filePath);
 
 			new ChrArchiveWriter().Write(stream, Archive);
-		}, cancellationToken).ConfigureAwait(false);
+		}, cancellationToken).ConfigureAwait(true);
 
 		IsDirty = false;
 

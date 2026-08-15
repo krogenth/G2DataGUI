@@ -12,19 +12,25 @@ namespace G2DataGUI.Domain.Enemies;
 /// </summary>
 public sealed class Enemy : IIdentifiable<int>
 {
-	/// <summary>Assigned by EnemyRepository in directory-scan order — there
-	/// is no on-disk enemy id, same convention as Move.Id.</summary>
+	/// <summary>
+	/// Assigned by EnemyRepository in directory-scan order — there
+	/// is no on-disk enemy id, same convention as Move.Id.
+	/// </summary>
 	public int Id { get; set; }
 
 	public EnemyStats Stats { get; set; } = new();
 	public EnemyAISection AISection { get; set; } = new();
 	public EnemyMoveset Moveset { get; set; } = new();
 
-	/// <summary>True if this is the second enemy packed into Filename.</summary>
+	/// <summary>
+	/// True if this is the second enemy packed into Filename.
+	/// </summary>
 	public bool IsSecond { get; set; }
 
-	/// <summary>Full path of the *_0.dat this entry lives in — needed on
+	/// <summary>
+	/// Full path of the *_0.dat this entry lives in — needed on
 	/// save because writes go back to a pointer offset inside this specific
-	/// file, not to a shared collection file like every other repository.</summary>
+	/// file, not to a shared collection file like every other repository.
+	/// </summary>
 	public string FilePath { get; set; } = string.Empty;
 }

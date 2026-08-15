@@ -43,7 +43,7 @@ public abstract class Repository<T, TId>(
 		using FileStream stream = File.OpenRead(FilePath);
 
 		IReadOnlyList<T> data =
-			await reader.ReadAsync(stream, cancellationToken).ConfigureAwait(false);
+			await reader.ReadAsync(stream, cancellationToken).ConfigureAwait(true);
 
 		Items.Clear();
 
@@ -59,13 +59,13 @@ public abstract class Repository<T, TId>(
 	}
 
 	public async Task ReloadAsync(CancellationToken cancellationToken = default) =>
-		await LoadAsync(cancellationToken).ConfigureAwait(false);
+		await LoadAsync(cancellationToken).ConfigureAwait(true);
 
 	public async Task SaveAsync(CancellationToken cancellationToken = default)
 	{
 		using FileStream stream = File.Create(FilePath);
 
-		await writer.WriteAsync(stream, Items, cancellationToken).ConfigureAwait(false);
+		await writer.WriteAsync(stream, Items, cancellationToken).ConfigureAwait(true);
 
 		IsDirty = false;
 

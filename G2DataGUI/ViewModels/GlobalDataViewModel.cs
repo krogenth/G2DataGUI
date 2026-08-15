@@ -16,33 +16,21 @@ namespace G2DataGUI.ViewModels;
 /// GameVersionViewModel below, nothing here ever gets rebuilt or swapped
 /// out — one instance for the lifetime of the loaded project.
 /// </summary>
-public sealed class GlobalDataViewModel
+public sealed class GlobalDataViewModel(GlobalDataContext context, ILocalizationService locale)
 {
-	public GlobalDataViewModel(GlobalDataContext context, ILocalizationService locale)
-	{
-		Moves = new MovesViewModel(context.Moves);
-		Manaeggs = new ManaeggsViewModel(context.Manaeggs);
-		Skills = new SkillsViewModel(context.Skills);
-		Skillbooks = new SkillbooksViewModel(context.Skillbooks);
-		Levelups = new LevelupsViewModel(context.Levelups, locale);
-		Items = new ItemsViewModel(context.Items);
-		Specials = new SpecialsViewModel(context.Specials, locale);
-		Initial = new InitialViewModel(context.Initial, locale);
-	}
+	public MovesViewModel Moves { get; } = new MovesViewModel(context.Moves, locale);
 
-	public MovesViewModel Moves { get; }
+	public ManaeggsViewModel Manaeggs { get; } = new ManaeggsViewModel(context.Manaeggs);
 
-	public ManaeggsViewModel Manaeggs { get; }
+	public SkillsViewModel Skills { get; } = new SkillsViewModel(context.Skills);
 
-	public SkillsViewModel Skills { get; }
+	public SkillbooksViewModel Skillbooks { get; } = new SkillbooksViewModel(context.Skillbooks);
 
-	public SkillbooksViewModel Skillbooks { get; }
+	public LevelupsViewModel Levelups { get; } = new LevelupsViewModel(context.Levelups, locale);
 
-	public LevelupsViewModel Levelups { get; }
+	public ItemsViewModel Items { get; } = new ItemsViewModel(context.Items);
 
-	public ItemsViewModel Items { get; }
+	public SpecialsViewModel Specials { get; } = new SpecialsViewModel(context.Specials, locale);
 
-	public SpecialsViewModel Specials { get; }
-
-	public InitialViewModel Initial { get; }
+	public InitialViewModel Initial { get; } = new InitialViewModel(context.Initial, locale);
 }

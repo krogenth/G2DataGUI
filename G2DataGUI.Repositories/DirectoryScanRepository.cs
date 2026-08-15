@@ -47,11 +47,15 @@ public abstract class DirectoryScanRepository<T> : IRepository<T, int>
 	public bool Contains(int id) =>
 		Find(id) is not null;
 
-	/// <summary>Read every entry (one or two) out of a single file, already
-	/// positioned at the start. Return them in on-disk order.</summary>
+	/// <summary>
+	/// Read every entry (one or two) out of a single file, already
+	/// positioned at the start. Return them in on-disk order.
+	/// </summary>
 	protected abstract IEnumerable<T> ReadFile(Stream stream, string filePath);
 
-	/// <summary>Write a single entry back to its own FilePath.</summary>
+	/// <summary>
+	/// Write a single entry back to its own FilePath.
+	/// </summary>
 	protected abstract void WriteEntry(T item);
 
 	public async Task LoadAsync(CancellationToken cancellationToken = default)
@@ -77,7 +81,7 @@ public abstract class DirectoryScanRepository<T> : IRepository<T, int>
 			}
 
 			return result;
-		}, cancellationToken).ConfigureAwait(false);
+		}, cancellationToken).ConfigureAwait(true);
 
 		for (int i = 0; i < loaded.Count; i++)
 		{
@@ -98,7 +102,7 @@ public abstract class DirectoryScanRepository<T> : IRepository<T, int>
 	}
 
 	public async Task ReloadAsync(CancellationToken cancellationToken = default) =>
-		await LoadAsync(cancellationToken).ConfigureAwait(false);
+		await LoadAsync(cancellationToken).ConfigureAwait(true);
 
 	public async Task SaveAsync(CancellationToken cancellationToken = default)
 	{
@@ -108,7 +112,7 @@ public abstract class DirectoryScanRepository<T> : IRepository<T, int>
 			{
 				WriteEntry(item);
 			}
-		}, cancellationToken).ConfigureAwait(false);
+		}, cancellationToken).ConfigureAwait(true);
 
 		IsDirty = false;
 

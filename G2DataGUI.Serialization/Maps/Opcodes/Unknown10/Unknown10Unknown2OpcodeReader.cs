@@ -8,5 +8,5 @@ public sealed class Unknown10Unknown2OpcodeReader : IDataReader<Unknown10Unknown
 	public Unknown10Unknown2Opcode Read(Stream stream) => new();
 
 	public async Task<Unknown10Unknown2Opcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

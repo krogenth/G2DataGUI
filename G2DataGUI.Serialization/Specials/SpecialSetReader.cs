@@ -25,5 +25,5 @@ public sealed class SpecialSetReader : ICollectionDataReader<SpecialSet>
 	}
 
 	public async Task<IReadOnlyList<SpecialSet>> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

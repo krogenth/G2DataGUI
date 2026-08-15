@@ -17,5 +17,5 @@ public sealed class SpecialSetWriter : ICollectionDataWriter<SpecialSet>
 	}
 
 	public async Task WriteAsync(Stream stream, IEnumerable<SpecialSet> items, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(true);
 }

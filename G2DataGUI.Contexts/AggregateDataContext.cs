@@ -30,7 +30,7 @@ public abstract class AggregateDataContext<T> : IDataContext
 	{
 		foreach (T child in Children)
 		{
-			await child.LoadAsync(cancellationToken).ConfigureAwait(false);
+			await child.LoadAsync(cancellationToken).ConfigureAwait(true);
 		}
 	}
 
@@ -40,7 +40,7 @@ public abstract class AggregateDataContext<T> : IDataContext
 		{
 			if (child.IsDirty)
 			{
-				await child.SaveAsync(cancellationToken).ConfigureAwait(false);
+				await child.SaveAsync(cancellationToken).ConfigureAwait(true);
 			}
 		}
 	}
@@ -49,7 +49,7 @@ public abstract class AggregateDataContext<T> : IDataContext
 	{
 		foreach (T child in Children)
 		{
-			await child.ReloadAsync(cancellationToken).ConfigureAwait(false);
+			await child.ReloadAsync(cancellationToken).ConfigureAwait(true);
 		}
 	}
 }

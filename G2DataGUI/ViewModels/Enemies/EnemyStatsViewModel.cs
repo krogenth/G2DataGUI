@@ -4,10 +4,12 @@ using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.ViewModels.Enemies;
 
-/// <summary>Shared by EnemyViewModel and BossViewModel — same binary
+/// <summary>
+/// Shared by EnemyViewModel and BossViewModel — same binary
 /// layout on both, see EnemyStats' own doc comment. Item1Offset/
 /// Item2Offset stay as raw editable Item indexes, same convention as
-/// CharacterStartingStatsViewModel's equipment slots.</summary>
+/// CharacterStartingStatsViewModel's equipment slots.
+/// </summary>
 public sealed class EnemyStatsViewModel(EnemyStats model, IRepository repository)
 	: ItemViewModel<EnemyStats>(model, repository)
 {

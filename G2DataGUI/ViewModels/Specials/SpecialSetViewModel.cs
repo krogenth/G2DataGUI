@@ -7,9 +7,11 @@ using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.ViewModels.Specials;
 
-/// <summary>Moves is fixed-size (SpecialSet.MovesPerSet = 6). CharacterName
+/// <summary>
+/// Moves is fixed-size (SpecialSet.MovesPerSet = 6). CharacterName
 /// is read-only, resolved via LocaleKeys.SpecialChars[Id] — same convention
-/// as CharacterLevelupsViewModel.CharacterName.</summary>
+/// as CharacterLevelupsViewModel.CharacterName.
+/// </summary>
 public sealed class SpecialSetViewModel(SpecialSet model, SpecialSetRepository repository, ILocalizationService locale) : ItemViewModel<SpecialSet>(model, repository)
 {
 	public int Id => Model.Id;

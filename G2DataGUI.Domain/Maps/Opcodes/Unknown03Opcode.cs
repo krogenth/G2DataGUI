@@ -1,7 +1,9 @@
 namespace G2DataGUI.Domain.Maps.Opcodes;
 
-/// <summary>Completely unsure, likely 3 parameters — ported verbatim from
-/// the original's own doc comment; field meaning is unknown.</summary>
+/// <summary>
+/// Completely unsure, likely 3 parameters — ported verbatim from
+/// the original's own doc comment; field meaning is unknown.
+/// </summary>
 public sealed class Unknown03Opcode : IMapOpcode
 {
 	public DialogueOpcode Opcode => DialogueOpcode.Unknown03;

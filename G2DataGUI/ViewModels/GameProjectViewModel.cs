@@ -38,13 +38,25 @@ public sealed class GameProjectViewModel : BaseViewModel
 
 	public GameVersion CurrentVersion => _project.CurrentVersion;
 
-	/// <summary>Not valid until LoadAsync has completed — same contract as
-	/// GameProjectContext.Current, which this wraps.</summary>
+	/// <summary>
+	/// Not valid until LoadAsync has completed — same contract as
+	/// GameProjectContext.Current, which this wraps.
+	/// </summary>
 	public GameVersionViewModel Current { get; private set; } = null!;
+
+	/// <summary>
+	/// Whether ANY loaded data — Global, or any version that's
+	/// been switched to at least once, not just the current one — has
+	/// unsaved changes. SaveAsync (below) already only writes what's
+	/// actually dirty, so a Save button bound to this can safely call
+	/// SaveAsync() unconditionally; this is for showing/enabling that
+	/// button, not for skipping the call yourself.
+	/// </summary>
+	public bool IsDirty => _project.IsDirty;
 
 	public async Task LoadAsync(CancellationToken cancellationToken = default)
 	{
-		await _project.LoadAsync(cancellationToken).ConfigureAwait(false);
+		await _project.LoadAsync(cancellationToken).ConfigureAwait(true);
 
 		SetCurrent(_project.Current);
 	}
@@ -56,9 +68,23 @@ public sealed class GameProjectViewModel : BaseViewModel
 			return;
 		}
 
-		await _project.SwitchVersionAsync(version, cancellationToken).ConfigureAwait(false);
+		await _project.SwitchVersionAsync(version, cancellationToken).ConfigureAwait(true);
 
 		SetCurrent(_project.Current);
+	}
+
+	/// <summary>
+	/// Saves everything dirty across the whole project — Global
+	/// data plus every version's data that's been touched, not just
+	/// whichever version is currently active (see GameProjectContext's own
+	/// Children, which includes every visited GameVersionContext, not only
+	/// Current).
+	/// </summary>
+	public async Task SaveAsync(CancellationToken cancellationToken = default)
+	{
+		await _project.SaveAsync(cancellationToken).ConfigureAwait(true);
+
+		OnPropertyChanged(nameof(IsDirty));
 	}
 
 	private void SetCurrent(GameVersionContext context)

@@ -26,8 +26,10 @@ public static class NjModelReader
 	private const byte VertexPositionNormal = 0x29;
 	private const byte VertexPositionNormalFlags = 0x2B;
 
-	/// <summary>Not documented anywhere as a Ninja/PSO vertex format, but
-	/// verified (against a real FBX export) to be byte-identical to 0x2B.</summary>
+	/// <summary>
+	/// Not documented anywhere as a Ninja/PSO vertex format, but
+	/// verified (against a real FBX export) to be byte-identical to 0x2B.
+	/// </summary>
 	private const byte VertexPositionNormalFlagsAlt = 0x2C;
 
 	private const byte StripMin = 0x40;
@@ -649,9 +651,11 @@ public static class NjModelReader
 		}
 	}
 
-	/// <summary>Takes rotation already in RADIANS — the BAMS-to-radians
+	/// <summary>
+	/// Takes rotation already in RADIANS — the BAMS-to-radians
 	/// conversion happens once in ReadObject (see NjBone.Rotation's doc
-	/// comment), not here.</summary>
+	/// comment), not here.
+	/// </summary>
 	private static Matrix4x4 CreateNjTransform(Vector3 position, Vector3 rotationRadians, Vector3 scale)
 	{
 		Matrix4x4 rotationMatrix =

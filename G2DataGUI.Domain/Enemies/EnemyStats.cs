@@ -1,7 +1,9 @@
 namespace G2DataGUI.Domain.Enemies;
 
-/// <summary>Shared by both Enemy and Boss — identical binary layout for
-/// both (same pointer offsets, same field order). See EnemyEntrySerializer.</summary>
+/// <summary>
+/// Shared by both Enemy and Boss — identical binary layout for
+/// both (same pointer offsets, same field order). See EnemyEntrySerializer.
+/// </summary>
 public sealed class EnemyStats
 {
 	public string Name { get; set; } = string.Empty;
@@ -43,7 +45,9 @@ public sealed class EnemyStats
 	public int MagicCoins { get; set; }
 	public int GoldCoins { get; set; }
 
-	/// <summary>Index into Items — resolved via ItemRepository.Find in the exporter.</summary>
+	/// <summary>
+	/// Index into Items — resolved via ItemRepository.Find in the exporter.
+	/// </summary>
 	public short Item1Offset { get; set; }
 	public short Item2Offset { get; set; }
 	public byte Item1Chance { get; set; }

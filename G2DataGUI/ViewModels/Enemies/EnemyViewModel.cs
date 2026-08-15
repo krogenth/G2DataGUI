@@ -4,10 +4,12 @@ using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.ViewModels.Enemies;
 
-/// <summary>No Id setter, and no FilePath/IsSecond exposed for editing —
+/// <summary>
+/// No Id setter, and no FilePath/IsSecond exposed for editing —
 /// both are how EnemyRepository finds this entry's *_0.dat and which
 /// pointer offset to write back to (see EnemyEntrySerializer), not user
-/// data.</summary>
+/// data.
+/// </summary>
 public sealed class EnemyViewModel : ItemViewModel<Enemy>
 {
 	public EnemyViewModel(Enemy model, EnemyRepository repository) : base(model, repository)

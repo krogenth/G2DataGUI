@@ -12,17 +12,23 @@ public sealed class NjMotion
 {
 	public int FrameCount { get; set; } = 1;
 
-	/// <summary>Raw 32-bit value at NMDM offset 8 — NOT the real
+	/// <summary>
+	/// Raw 32-bit value at NMDM offset 8 — NOT the real
 	/// NJS_MOTION.type on its own; see MotionType/InterpolationFunction
-	/// for the correctly split fields. Kept for display/back-compat.</summary>
+	/// for the correctly split fields. Kept for display/back-compat.
+	/// </summary>
 	public uint Type { get; set; }
 
-	/// <summary>NJS_MOTION.type — the real 16-bit channel bitmask
-	/// (NJD_MTYPE_*).</summary>
+	/// <summary>
+	/// NJS_MOTION.type — the real 16-bit channel bitmask
+	/// (NJD_MTYPE_*).
+	/// </summary>
 	public ushort MotionType { get; set; }
 
-	/// <summary>NJS_MOTION.inp_fn — interpolation function, a separate
-	/// field previously (incorrectly) folded into Type.</summary>
+	/// <summary>
+	/// NJS_MOTION.inp_fn — interpolation function, a separate
+	/// field previously (incorrectly) folded into Type.
+	/// </summary>
 	public ushort InterpolationFunction { get; set; }
 
 	public List<NjMotionTrack> Tracks { get; set; } = [];

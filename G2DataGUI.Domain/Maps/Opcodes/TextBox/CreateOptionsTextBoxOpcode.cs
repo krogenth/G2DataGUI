@@ -1,6 +1,8 @@
 namespace G2DataGUI.Domain.Maps.Opcodes.TextBox;
 
-/// <summary>A textbox in the top-left showing a list of options to choose from.</summary>
+/// <summary>
+/// A textbox in the top-left showing a list of options to choose from.
+/// </summary>
 public sealed class CreateOptionsTextBoxOpcode : ITextBoxOpcode
 {
 	public DialogueOpcode Opcode => DialogueOpcode.TextBox;

@@ -23,5 +23,5 @@ public sealed class MoveWriter : ICollectionDataWriter<Move>
 		Stream stream,
 		IEnumerable<Move> items,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(true);
 }

@@ -68,5 +68,5 @@ public sealed class ItemWriter : ICollectionDataWriter<Item>
 	}
 
 	public async Task WriteAsync(Stream stream, IEnumerable<Item> items, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(true);
 }

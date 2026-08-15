@@ -19,5 +19,5 @@ public sealed class CreateSubTextBoxOpcodeReader : IDataReader<CreateSubTextBoxO
 	}
 
 	public async Task<CreateSubTextBoxOpcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

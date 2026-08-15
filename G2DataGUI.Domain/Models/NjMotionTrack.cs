@@ -1,8 +1,10 @@
 namespace G2DataGUI.Domain.Models;
 
-/// <summary>One bone's animated channels within an NjMotion. Kept as
+/// <summary>
+/// One bone's animated channels within an NjMotion. Kept as
 /// plain keyframe lists — no interpolation/evaluation methods here, that's
-/// NjPoseEvaluator's job (Rendering layer), matching NjModel's split.</summary>
+/// NjPoseEvaluator's job (Rendering layer), matching NjModel's split.
+/// </summary>
 public sealed class NjMotionTrack
 {
 	public int BoneIndex { get; set; }

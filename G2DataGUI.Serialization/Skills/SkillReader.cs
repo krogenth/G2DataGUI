@@ -27,5 +27,5 @@ public sealed class SkillReader : ICollectionDataReader<Skill>
 	public async Task<IReadOnlyList<Skill>> ReadAsync(
 		Stream stream,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

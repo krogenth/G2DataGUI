@@ -12,5 +12,5 @@ public sealed class PauseUnknown2OpcodeReader : IDataReader<PauseUnknown2Opcode>
 	};
 
 	public async Task<PauseUnknown2Opcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

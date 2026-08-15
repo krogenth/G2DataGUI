@@ -15,9 +15,11 @@ public sealed class NjModel
 	public List<NjVertex> Vertices { get; set; } = [];
 	public List<NjTriangle> Triangles { get; set; } = [];
 
-	/// <summary>Bind-pose bounding sphere, for camera framing. Computed
+	/// <summary>
+	/// Bind-pose bounding sphere, for camera framing. Computed
 	/// once at read time from bind-pose world positions — see
-	/// NjModelReader. Not recomputed per animation frame.</summary>
+	/// NjModelReader. Not recomputed per animation frame.
+	/// </summary>
 	public Vector3 Center { get; set; }
 	public float Radius { get; set; } = 1f;
 }

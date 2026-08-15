@@ -15,10 +15,12 @@ namespace G2DataGUI.Serialization.Items;
 /// </summary>
 public sealed class ItemReader : IDataReader<Item>, ICollectionDataReader<Item>
 {
-	/// <summary>Exact count of records in ITEM.BIN — the file has no
+	/// <summary>
+	/// Exact count of records in ITEM.BIN — the file has no
 	/// terminator, so unlike Moves/Skills this can't be read-until-EOF
 	/// (trailing Equipment/Usable bytes would be misread as more header
-	/// records). Matches the original Items.NumberOfItems constant.</summary>
+	/// records). Matches the original Items.NumberOfItems constant.
+	/// </summary>
 	public const int Count = 0x31F;
 
 	private const int InvalidOffset = -1; // on-disk 0xFFFFFFFF read as a signed int
@@ -57,7 +59,7 @@ public sealed class ItemReader : IDataReader<Item>, ICollectionDataReader<Item>
 	}
 
 	public async Task<Item> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 
 	// Explicit implementation: IDataReader<Item>.Read and
 	// ICollectionDataReader<Item>.Read can't both be plain "Read(Stream)"
@@ -81,5 +83,5 @@ public sealed class ItemReader : IDataReader<Item>, ICollectionDataReader<Item>
 	}
 
 	async Task<IReadOnlyList<Item>> ICollectionDataReader<Item>.ReadAsync(Stream stream, CancellationToken cancellationToken) =>
-		await Task.Run(() => ((ICollectionDataReader<Item>)this).Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => ((ICollectionDataReader<Item>)this).Read(stream), cancellationToken).ConfigureAwait(true);
 }

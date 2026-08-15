@@ -24,8 +24,10 @@ public sealed class NjBone
 
 	public Vector3 Position { get; set; }
 
-	/// <summary>Radians, already converted from the file's 32-bit BAMS
-	/// angle units — see NjModelReader.</summary>
+	/// <summary>
+	/// Radians, already converted from the file's 32-bit BAMS
+	/// angle units — see NjModelReader.
+	/// </summary>
 	public Vector3 Rotation { get; set; }
 
 	public Vector3 Scale { get; set; } = Vector3.One;

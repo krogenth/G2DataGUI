@@ -20,5 +20,5 @@ public sealed class ManaeggWriter : ICollectionDataWriter<Manaegg>
 		Stream stream,
 		IEnumerable<Manaegg> items,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(true);
 }

@@ -40,7 +40,7 @@ public sealed class ChrArchiveReader : IDataReader<ChrArchive>
 	}
 
 	public async Task<ChrArchive> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 
 	private static void ParseChunks(Stream stream, ChrArchive archive)
 	{

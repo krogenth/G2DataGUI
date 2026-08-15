@@ -28,19 +28,19 @@ public sealed class DataExportService(GameProjectContext project, ILocalizationS
 
 		MoveCsvExporter moveExporter = new(locale, new MoveStatsCsvExporter(locale));
 		await CsvFile.WriteAsync(ProjectPaths.MovesCSVPath, project.Global.Moves.Items, moveExporter, cancellationToken)
-			.ConfigureAwait(false);
+			.ConfigureAwait(true);
 
 		ManaeggCsvExporter manaeggExporter = new(locale, new ManaeggSpellCsvExporter(project.Global.Moves));
 		await CsvFile.WriteAsync(ProjectPaths.ManaeggsCSVPath, project.Global.Manaeggs.Items, manaeggExporter, cancellationToken)
-			.ConfigureAwait(false);
+			.ConfigureAwait(true);
 
 		SkillCsvExporter skillExporter = new(new SkillStatsCsvExporter(locale));
 		await CsvFile.WriteAsync(ProjectPaths.SkillsCSVPath, project.Global.Skills.Items, skillExporter, cancellationToken)
-			.ConfigureAwait(false);
+			.ConfigureAwait(true);
 
 		SkillbookCsvExporter skillbookExporter = new(locale, new SkillbookSkillCsvExporter(project.Global.Skills));
 		await CsvFile.WriteAsync(ProjectPaths.SkillbooksCSVPath, project.Global.Skillbooks.Items, skillbookExporter, cancellationToken)
-			.ConfigureAwait(false);
+			.ConfigureAwait(true);
 
 		LevelupStatsCsvExporter levelupStatsExporter = new();
 		await CsvFile.WriteAsync(
@@ -48,28 +48,28 @@ public sealed class DataExportService(GameProjectContext project, ILocalizationS
 			project.Global.Levelups.Items,
 			new CharacterLevelupsCsvExporter(locale, levelupStatsExporter),
 			cancellationToken
-		).ConfigureAwait(false);
+		).ConfigureAwait(true);
 
 		await CsvFile.WriteAsync(
 			ProjectPaths.LevelupsSumCSVPath,
 			project.Global.Levelups.Items,
 			new CharacterLevelupsSumCsvExporter(locale, levelupStatsExporter),
 			cancellationToken
-		).ConfigureAwait(false);
+		).ConfigureAwait(true);
 
 		ItemCsvExporter itemExporter = new(locale);
 		await CsvFile.WriteAsync(ProjectPaths.ItemsCSVPath, project.Global.Items.Items, itemExporter, cancellationToken)
-			.ConfigureAwait(false);
+			.ConfigureAwait(true);
 
 		SpecialSetCsvExporter specialExporter = new(locale, new SpecialMoveCsvExporter(project.Global.Moves));
 		await CsvFile.WriteAsync(ProjectPaths.SpecialsCSVPath, project.Global.Specials.Items, specialExporter, cancellationToken)
-			.ConfigureAwait(false);
+			.ConfigureAwait(true);
 
 		CharacterStartingStatsCsvExporter initialExporter = new(locale, project.Global.Items);
 		await CsvFile.WriteAsync(ProjectPaths.InitialCSVPath, project.Global.Initial.Items, initialExporter, cancellationToken)
-			.ConfigureAwait(false);
+			.ConfigureAwait(true);
 
-		await ExportCurrentVersionAsync(cancellationToken).ConfigureAwait(false);
+		await ExportCurrentVersionAsync(cancellationToken).ConfigureAwait(true);
 
 		// TODO: Maps, once its opcode reader exists — see PORTING.md.
 	}
@@ -97,27 +97,27 @@ public sealed class DataExportService(GameProjectContext project, ILocalizationS
 			project.Current.Enemies.Items,
 			new EnemyCsvExporter(statsExporter, aiExporter),
 			cancellationToken
-		).ConfigureAwait(false);
+		).ConfigureAwait(true);
 
 		await CsvFile.WriteAsync(
 			isHardMode ? ProjectPaths.EnemyHardmodeMovesCSVPath : ProjectPaths.EnemyMovesCSVPath,
 			project.Current.Enemies.Items,
 			new EnemyMovesetCsvExporter(moveExporter),
 			cancellationToken
-		).ConfigureAwait(false);
+		).ConfigureAwait(true);
 
 		await CsvFile.WriteAsync(
 			isHardMode ? ProjectPaths.BossesHardmodeCSVPath : ProjectPaths.BossesCSVPath,
 			project.Current.Bosses.Items,
 			new BossCsvExporter(statsExporter, aiExporter),
 			cancellationToken
-		).ConfigureAwait(false);
+		).ConfigureAwait(true);
 
 		await CsvFile.WriteAsync(
 			isHardMode ? ProjectPaths.BossHardmodeMovesCSVPath : ProjectPaths.BossMovesCSVPath,
 			project.Current.Bosses.Items,
 			new BossMovesetCsvExporter(moveExporter),
 			cancellationToken
-		).ConfigureAwait(false);
+		).ConfigureAwait(true);
 	}
 }

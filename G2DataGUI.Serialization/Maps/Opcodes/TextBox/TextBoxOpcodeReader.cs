@@ -5,8 +5,10 @@ using G2DataGUI.Serialization.Abstractions;
 
 namespace G2DataGUI.Serialization.Maps.Opcodes.TextBox;
 
-/// <summary>Sub-dispatches on a second byte (TextBoxOption) — direct port
-/// of the original ITextBoxOpcode.ReadOpcode.</summary>
+/// <summary>
+/// Sub-dispatches on a second byte (TextBoxOption) — direct port
+/// of the original ITextBoxOpcode.ReadOpcode.
+/// </summary>
 public sealed class TextBoxOpcodeReader : IDataReader<IMapOpcode?>
 {
 	public IMapOpcode? Read(Stream stream)
@@ -31,5 +33,5 @@ public sealed class TextBoxOpcodeReader : IDataReader<IMapOpcode?>
 	}
 
 	public async Task<IMapOpcode?> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

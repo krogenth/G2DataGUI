@@ -13,5 +13,5 @@ public sealed class CharacterPortraitOpcodeReader : IDataReader<CharacterPortrai
 	};
 
 	public async Task<CharacterPortraitOpcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

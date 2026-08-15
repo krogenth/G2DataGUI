@@ -37,5 +37,5 @@ public sealed class MoveReader : ICollectionDataReader<Move>
 	public async Task<IReadOnlyList<Move>> ReadAsync(
 		Stream stream,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

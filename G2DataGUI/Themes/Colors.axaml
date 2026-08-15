@@ -1,66 +1,50 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<!--
-	Color palette for the app, following the same shape as Avalonia's own
-	FluentTheme resource keys (SystemAccentColor + Light1-3/Dark1-3) so
-	built-in controls pick these up automatically, plus a small set of
-	custom tokens (below the accent ramp) for things specific to this app —
-	a dirty/unsaved indicator, since every repository already tracks
-	IsDirty, and status colors for whatever validation feedback the data
-	editors end up needing.
-
-	Accent is a burnished amber/copper rather than the more common blue —
-	deliberately distinct, and it reads as "old data/treasure" for an
-	editor built around reverse-engineered RPG game files. Selection uses
-	a complementary teal-green instead of a tint of the accent itself, so
-	"this row is selected" stays visually distinct from "this is an
-	accent-colored button" at a glance.
-	-->
 	<ResourceDictionary.ThemeDictionaries>
 		<ResourceDictionary x:Key="Light">
-			<Color x:Key="SystemAccentColor">#FFC97B2E</Color>
-			<Color x:Key="SystemAccentColorDark1">#FFA8631F</Color>
-			<Color x:Key="SystemAccentColorDark2">#FF874E18</Color>
-			<Color x:Key="SystemAccentColorDark3">#FF663A12</Color>
-			<Color x:Key="SystemAccentColorLight1">#FFD89552</Color>
-			<Color x:Key="SystemAccentColorLight2">#FFE4AC76</Color>
-			<Color x:Key="SystemAccentColorLight3">#FFEFC49B</Color>
+			<Color x:Key="SystemAccentColor">#FF6C5CE7</Color>
+			<Color x:Key="SystemAccentColorDark1">#FF5847C9</Color>
+			<Color x:Key="SystemAccentColorDark2">#FF4536A8</Color>
+			<Color x:Key="SystemAccentColorDark3">#FF322686</Color>
+			<Color x:Key="SystemAccentColorLight1">#FF8676ED</Color>
+			<Color x:Key="SystemAccentColorLight2">#FFA192F2</Color>
+			<Color x:Key="SystemAccentColorLight3">#FFBCB0F7</Color>
 
-			<Color x:Key="AppBackgroundColor">#FFFAF8F5</Color>
-			<Color x:Key="AppContentBackgroundColor">#FFF4F1EC</Color>
-			<Color x:Key="AppPanelBackgroundColor">#FFEDE8E0</Color>
-			<Color x:Key="AppControlBorderColor">#FFD8CFC0</Color>
-			<Color x:Key="AppForegroundColor">#FF2B2622</Color>
-			<Color x:Key="AppSecondaryTextColor">#992B2622</Color>
+			<Color x:Key="AppBackgroundColor">#FFF7F8FA</Color>
+			<Color x:Key="AppContentBackgroundColor">#FFFFFFFF</Color>
+			<Color x:Key="AppPanelBackgroundColor">#FFEDEFF2</Color>
+			<Color x:Key="AppControlBorderColor">#FFDDE1E6</Color>
+			<Color x:Key="AppForegroundColor">#FF16181D</Color>
+			<Color x:Key="AppSecondaryTextColor">#8C16181D</Color>
 
-			<Color x:Key="AppSelectionColor">#FF1F8F72</Color>
-			<Color x:Key="AppDirtyIndicatorColor">#FFC97B2E</Color>
-			<Color x:Key="AppErrorColor">#FFC4402E</Color>
-			<Color x:Key="AppWarningColor">#FFB8860B</Color>
-			<Color x:Key="AppSuccessColor">#FF2F8F5B</Color>
+			<Color x:Key="AppSelectionColor">#FF00A896</Color>
+			<Color x:Key="AppDirtyIndicatorColor">#FF6C5CE7</Color>
+			<Color x:Key="AppErrorColor">#FFDC2626</Color>
+			<Color x:Key="AppWarningColor">#FFD97706</Color>
+			<Color x:Key="AppSuccessColor">#FF059669</Color>
 		</ResourceDictionary>
 
 		<ResourceDictionary x:Key="Dark">
-			<Color x:Key="SystemAccentColor">#FFC97B2E</Color>
-			<Color x:Key="SystemAccentColorDark1">#FFA8631F</Color>
-			<Color x:Key="SystemAccentColorDark2">#FF874E18</Color>
-			<Color x:Key="SystemAccentColorDark3">#FF663A12</Color>
-			<Color x:Key="SystemAccentColorLight1">#FFD89552</Color>
-			<Color x:Key="SystemAccentColorLight2">#FFE4AC76</Color>
-			<Color x:Key="SystemAccentColorLight3">#FFEFC49B</Color>
+			<Color x:Key="SystemAccentColor">#FF7C6DF0</Color>
+			<Color x:Key="SystemAccentColorDark1">#FF6C5CE7</Color>
+			<Color x:Key="SystemAccentColorDark2">#FF5847C9</Color>
+			<Color x:Key="SystemAccentColorDark3">#FF4536A8</Color>
+			<Color x:Key="SystemAccentColorLight1">#FF9384F2</Color>
+			<Color x:Key="SystemAccentColorLight2">#FFAB9EF5</Color>
+			<Color x:Key="SystemAccentColorLight3">#FFC3B9F8</Color>
 
-			<Color x:Key="AppBackgroundColor">#FF191510</Color>
-			<Color x:Key="AppContentBackgroundColor">#FF211C17</Color>
-			<Color x:Key="AppPanelBackgroundColor">#FF2A241D</Color>
-			<Color x:Key="AppControlBorderColor">#FF4A4038</Color>
-			<Color x:Key="AppForegroundColor">#FFEFE7DC</Color>
-			<Color x:Key="AppSecondaryTextColor">#99EFE7DC</Color>
+			<Color x:Key="AppBackgroundColor">#FF0F1115</Color>
+			<Color x:Key="AppContentBackgroundColor">#FF16181D</Color>
+			<Color x:Key="AppPanelBackgroundColor">#FF1B1E24</Color>
+			<Color x:Key="AppControlBorderColor">#FF2A2E37</Color>
+			<Color x:Key="AppForegroundColor">#FFE8EAED</Color>
+			<Color x:Key="AppSecondaryTextColor">#99E8EAED</Color>
 
-			<Color x:Key="AppSelectionColor">#FF2FBF8F</Color>
-			<Color x:Key="AppDirtyIndicatorColor">#FFE4AC76</Color>
-			<Color x:Key="AppErrorColor">#FFE05B47</Color>
-			<Color x:Key="AppWarningColor">#FFD9A441</Color>
-			<Color x:Key="AppSuccessColor">#FF4CBE8B</Color>
+			<Color x:Key="AppSelectionColor">#FF2DD9C4</Color>
+			<Color x:Key="AppDirtyIndicatorColor">#FF9384F2</Color>
+			<Color x:Key="AppErrorColor">#FFF87171</Color>
+			<Color x:Key="AppWarningColor">#FFFBBF24</Color>
+			<Color x:Key="AppSuccessColor">#FF34D399</Color>
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 

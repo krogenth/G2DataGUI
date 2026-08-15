@@ -5,8 +5,10 @@ using G2DataGUI.Serialization.Abstractions;
 
 namespace G2DataGUI.Serialization.Maps.Opcodes.Highlight;
 
-/// <summary>Sub-dispatches on a second byte (HighlightOption) — direct port
-/// of the original IHighlightOpcode.ReadOpcode.</summary>
+/// <summary>
+/// Sub-dispatches on a second byte (HighlightOption) — direct port
+/// of the original IHighlightOpcode.ReadOpcode.
+/// </summary>
 public sealed class HighlightOpcodeReader : IDataReader<IMapOpcode?>
 {
 	public IMapOpcode? Read(Stream stream)
@@ -28,5 +30,5 @@ public sealed class HighlightOpcodeReader : IDataReader<IMapOpcode?>
 	}
 
 	public async Task<IMapOpcode?> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

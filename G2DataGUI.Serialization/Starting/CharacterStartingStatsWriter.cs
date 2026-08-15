@@ -57,5 +57,5 @@ public sealed class CharacterStartingStatsWriter : ICollectionDataWriter<Charact
 	}
 
 	public async Task WriteAsync(Stream stream, IEnumerable<CharacterStartingStats> items, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(true);
 }

@@ -1,7 +1,9 @@
 namespace G2DataGUI.Domain.Maps.Opcodes;
 
-/// <summary>Completely unknown, likely 2 parameters — original reader
-/// consumed 3 bytes, so ported as 3.</summary>
+/// <summary>
+/// Completely unknown, likely 2 parameters — original reader
+/// consumed 3 bytes, so ported as 3.
+/// </summary>
 public sealed class Unknown08Opcode : IMapOpcode
 {
 	public DialogueOpcode Opcode => DialogueOpcode.Unknown08;

@@ -13,5 +13,5 @@ public sealed class ScriptCallOpcodeReader : IDataReader<ScriptCallOpcode>
 	};
 
 	public async Task<ScriptCallOpcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

@@ -24,7 +24,7 @@ public static class CsvFile
 	{
 		using StreamWriter writer = new(path);
 
-		await writer.WriteLineAsync(exporter.Header).ConfigureAwait(false);
+		await writer.WriteLineAsync(exporter.Header).ConfigureAwait(true);
 
 		foreach (T item in items)
 		{

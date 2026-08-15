@@ -27,5 +27,5 @@ public sealed class CharacterLevelupsReader : ICollectionDataReader<CharacterLev
 	public async Task<IReadOnlyList<CharacterLevelups>> ReadAsync(
 		Stream stream,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

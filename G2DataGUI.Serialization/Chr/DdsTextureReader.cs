@@ -22,5 +22,5 @@ public sealed class DdsTextureReader(string fileName) : IDataReader<DdsTexture>
 	}
 
 	public async Task<DdsTexture> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

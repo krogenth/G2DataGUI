@@ -2,11 +2,13 @@ using System.Numerics;
 
 namespace G2DataGUI.Serialization.Models;
 
-/// <summary>Local (unmapped) vertex during reading — Id is scoped to
+/// <summary>
+/// Local (unmapped) vertex during reading — Id is scoped to
 /// whichever NjVertexStateData instance created it, NOT the final
 /// Domain.Models.NjVertex.Id (see NjModelReader.MergeIntoModel for the
 /// remap). Kept bone-LOCAL — no transform applied here or anywhere in
-/// Serialization; see NjBone's doc comment.</summary>
+/// Serialization; see NjBone's doc comment.
+/// </summary>
 internal sealed class NjVertexLocal(int id, Vector3 position, Vector3 normal)
 {
 	public int Id { get; } = id;

@@ -24,11 +24,13 @@ namespace G2DataGUI.Domain.Chr;
 /// </summary>
 public static class ChrModelMover
 {
-	/// <summary>Moves a single model (with its motions) from
+	/// <summary>
+	/// Moves a single model (with its motions) from
 	/// <paramref name="source"/> to <paramref name="destination"/> —
 	/// which may be the same archive, to reorder a model within it.
 	/// <paramref name="destinationIndex"/> is clamped to a valid insertion
-	/// position; omit it to append at the end.</summary>
+	/// position; omit it to append at the end.
+	/// </summary>
 	public static void Move(
 		ChrArchive source,
 		int sourceModelIndex,
@@ -75,8 +77,10 @@ public static class ChrModelMover
 		Renumber(destination, destinationOwnership);
 	}
 
-	/// <summary>Removes a model (and its motions) from an archive
-	/// entirely, without moving it anywhere.</summary>
+	/// <summary>
+	/// Removes a model (and its motions) from an archive
+	/// entirely, without moving it anywhere.
+	/// </summary>
 	public static void Remove(ChrArchive archive, int modelIndex)
 	{
 		ChrModel? model = archive.FindModel(modelIndex);
@@ -100,11 +104,13 @@ public static class ChrModelMover
 		Renumber(archive, ownership);
 	}
 
-	/// <summary>Builds the model→motion-sets ownership map from an
+	/// <summary>
+	/// Builds the model→motion-sets ownership map from an
 	/// archive's CURRENT, still-unambiguous state (every model in a single
 	/// archive has a distinct Index, so matching by integer here is safe —
 	/// it's only unsafe after two archives' lists have been merged, which
-	/// is exactly why this is captured before that happens, not after).</summary>
+	/// is exactly why this is captured before that happens, not after).
+	/// </summary>
 	private static Dictionary<ChrModel, List<MotionSet>> GroupByOwner(ChrArchive archive)
 	{
 		Dictionary<ChrModel, List<MotionSet>> ownership = [];
@@ -127,12 +133,14 @@ public static class ChrModelMover
 		return ownership;
 	}
 
-	/// <summary>Reassigns every model's Index (and every one of its
+	/// <summary>
+	/// Reassigns every model's Index (and every one of its
 	/// motion sets'/animations' ModelIndex) to match current list order,
 	/// using the already-known (reference-keyed) ownership map — never
 	/// re-derives ownership from ModelIndex here, since by the time this
 	/// runs on a destination archive that map may contain models from two
-	/// different original archives with overlapping old index values.</summary>
+	/// different original archives with overlapping old index values.
+	/// </summary>
 	private static void Renumber(ChrArchive archive, Dictionary<ChrModel, List<MotionSet>> ownership)
 	{
 		for (int i = 0; i < archive.Models.Count; i++)

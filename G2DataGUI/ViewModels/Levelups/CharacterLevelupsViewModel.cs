@@ -7,10 +7,12 @@ using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.ViewModels.Levelups;
 
-/// <summary>Levels is fixed-size (99 per character) — projected once at
+/// <summary>
+/// Levels is fixed-size (99 per character) — projected once at
 /// construction. CharacterName is read-only: there's no on-disk name, only
 /// the resolved LocaleKeys.Characters[Id] lookup the exporter also uses —
-/// see CharacterLevelups.Id's doc comment.</summary>
+/// see CharacterLevelups.Id's doc comment.
+/// </summary>
 public sealed class CharacterLevelupsViewModel(CharacterLevelups model, LevelupsRepository repository, ILocalizationService locale) : ItemViewModel<CharacterLevelups>(model, repository)
 {
 	public int Id => Model.Id;

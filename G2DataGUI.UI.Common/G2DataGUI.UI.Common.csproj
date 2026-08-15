@@ -31,6 +31,7 @@
 	  wrapper) and LocaleExtension (the XAML markup extension).
 	-->
 	<ItemGroup>
+		<ProjectReference Include="..\G2DataGUI.Common\G2DataGUI.Common.csproj" />
 		<ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
 		<ProjectReference Include="..\G2DataGUI.Locale\G2DataGUI.Locale.csproj" />
 		<!-- ItemViewModel/CollectionViewModel (ViewModels/) call IRepository.MarkDirty

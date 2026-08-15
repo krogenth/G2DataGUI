@@ -33,6 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\G2DataGUI.Common\G2DataGUI.Common.csproj" />
     <ProjectReference Include="..\G2DataGUI.Contexts\G2DataGUI.Contexts.csproj" />
+    <ProjectReference Include="..\G2DataGUI.Locale\G2DataGUI.Locale.csproj" />
     <ProjectReference Include="..\G2DataGUI.Services\G2DataGUI.Services.csproj" />
     <!-- ItemViewModel/CollectionViewModel and BaseViewModel live here. -->
     <ProjectReference Include="..\G2DataGUI.UI.Common\G2DataGUI.UI.Common.csproj" />
@@ -41,5 +42,9 @@
          MoveRepository, Move), so they're listed explicitly here too. -->
     <ProjectReference Include="..\G2DataGUI.Domain\G2DataGUI.Domain.csproj" />
     <ProjectReference Include="..\G2DataGUI.Repositories\G2DataGUI.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
 </Project>

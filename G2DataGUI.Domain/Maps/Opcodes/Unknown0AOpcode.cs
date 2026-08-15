@@ -1,7 +1,9 @@
 namespace G2DataGUI.Domain.Maps.Opcodes;
 
-/// <summary>Seems to be associated with the TextBox Options opcode, links
-/// options to function handling.</summary>
+/// <summary>
+/// Seems to be associated with the TextBox Options opcode, links
+/// options to function handling.
+/// </summary>
 public sealed class Unknown0AOpcode : IMapOpcode
 {
 	public DialogueOpcode Opcode => DialogueOpcode.Unknown0A;

@@ -47,9 +47,11 @@ public sealed class ModelViewport : Control
 	public NjModel? Model { get; private set; }
 	public IReadOnlyList<DdsTexture?> Textures { get; private set; } = [];
 
-	/// <summary>Null means render the bind pose. Set alongside Frame via
+	/// <summary>
+	/// Null means render the bind pose. Set alongside Frame via
 	/// SetAnimation — see its doc comment for why Motion and Frame are
-	/// always changed together rather than as two independent setters.</summary>
+	/// always changed together rather than as two independent setters.
+	/// </summary>
 	public NjMotion? Motion { get; private set; }
 
 	public float Frame { get; private set; }
@@ -72,7 +74,8 @@ public sealed class ModelViewport : Control
 
 	public void SetModel(
 		NjModel? model,
-		IReadOnlyList<DdsTexture?>? textures = null)
+		IReadOnlyList<DdsTexture?>? textures = null
+	)
 	{
 		Model = model;
 		Textures = textures ?? [];
@@ -83,12 +86,14 @@ public sealed class ModelViewport : Control
 		InvalidateVisual();
 	}
 
-	/// <summary>Sets (or clears, with motion: null) which animation frame
+	/// <summary>
+	/// Sets (or clears, with motion: null) which animation frame
 	/// to render. Motion and Frame are set together deliberately — a
 	/// frame number only means something relative to a specific NjMotion
 	/// (its own FrameCount, its own tracks), so there's no valid
 	/// "change just the frame" call once a different motion is playing;
-	/// callers driving playback call this every tick with both.</summary>
+	/// callers driving playback call this every tick with both.
+	/// </summary>
 	public void SetAnimation(NjMotion? motion, float frame)
 	{
 		Motion = motion;
@@ -160,8 +165,7 @@ public sealed class ModelViewport : Control
 
 		foreach (var t in Model.Triangles)
 		{
-			triangleIds.Add((t,
-				(depth[t.A] + depth[t.B] + depth[t.C]) / 3));
+			triangleIds.Add((t, (depth[t.A] + depth[t.B] + depth[t.C]) / 3));
 		}
 
 		// Painter's algorithm no longer needs to be correct now that the
@@ -198,7 +202,8 @@ public sealed class ModelViewport : Control
 						t.UvB,
 						t.UvC,
 						t.TextureFlags,
-						texture);
+						texture
+					);
 				}
 				else
 				{
@@ -209,7 +214,8 @@ public sealed class ModelViewport : Control
 						depth[t.A],
 						depth[t.B],
 						depth[t.C],
-						Color.FromArgb(255, 180, 185, 195));
+						Color.FromArgb(255, 180, 185, 195)
+					);
 				}
 			}
 
@@ -221,17 +227,18 @@ public sealed class ModelViewport : Control
 					_textureCanvas,
 					new Rect(0, 0,
 						_textureCanvas.PixelSize.Width,
-						_textureCanvas.PixelSize.Height),
+						_textureCanvas.PixelSize.Height
+					),
 					new Rect(0, 0,
 						Bounds.Width,
-						Bounds.Height));
+						Bounds.Height
+					)
+				);
 			}
 		}
 		else
 		{
-			var fill =
-				new SolidColorBrush(
-					Color.FromArgb(255, 180, 185, 195));
+			var fill = new SolidColorBrush(Color.FromArgb(255, 180, 185, 195));
 
 			foreach (var (t, z) in triangleIds)
 			{
@@ -240,25 +247,21 @@ public sealed class ModelViewport : Control
 					projected[t.A],
 					projected[t.B],
 					projected[t.C],
-					Wireframe ? null : fill);
+					Wireframe ? null : fill
+				);
 			}
 		}
 
 		// Always draw the wireframe over the textured/solid result when enabled.
 		if (Wireframe)
 		{
-			var wirePen = new Pen(
-				Brushes.White,
-				1);
+			var wirePen = new Pen(Brushes.White, 1);
 
 			foreach (var (t, z) in triangleIds)
 			{
-				ctx.DrawLine(wirePen,
-					projected[t.A], projected[t.B]);
-				ctx.DrawLine(wirePen,
-					projected[t.B], projected[t.C]);
-				ctx.DrawLine(wirePen,
-					projected[t.C], projected[t.A]);
+				ctx.DrawLine(wirePen, projected[t.A], projected[t.B]);
+				ctx.DrawLine(wirePen, projected[t.B], projected[t.C]);
+				ctx.DrawLine(wirePen, projected[t.C], projected[t.A]);
 			}
 		}
 
@@ -271,7 +274,8 @@ public sealed class ModelViewport : Control
 					null,
 					p,
 					1.5,
-					1.5);
+					1.5
+				);
 			}
 		}
 
@@ -283,7 +287,8 @@ public sealed class ModelViewport : Control
 		Point a,
 		Point b,
 		Point c,
-		IBrush? fill)
+		IBrush? fill
+	)
 	{
 		var geometry = new StreamGeometry();
 
@@ -298,14 +303,13 @@ public sealed class ModelViewport : Control
 		ctx.DrawGeometry(
 			fill,
 			new Pen(Brushes.White, 1),
-			geometry);
+			geometry
+		);
 	}
 
 	private void EnsureTextureCanvas(int width, int height)
 	{
-		if (_textureCanvas != null &&
-			_pixelWidth == width &&
-			_pixelHeight == height)
+		if (_textureCanvas != null && _pixelWidth == width && _pixelHeight == height)
 		{
 			return;
 		}
@@ -321,7 +325,8 @@ public sealed class ModelViewport : Control
 			new PixelSize(width, height),
 			new Avalonia.Vector(96, 96),
 			PixelFormat.Bgra8888,
-			AlphaFormat.Opaque);
+			AlphaFormat.Opaque
+		);
 	}
 
 	private void ClearPixelBuffer()
@@ -365,7 +370,8 @@ public sealed class ModelViewport : Control
 				_pixelBuffer,
 				y * sourceStride,
 				fb.Address + (y * fb.RowBytes),
-				sourceStride);
+				sourceStride
+			);
 		}
 	}
 
@@ -376,21 +382,18 @@ public sealed class ModelViewport : Control
 		float depthA,
 		float depthB,
 		float depthC,
-		Color color)
+		Color color
+	)
 	{
 		if (_pixelBuffer == null)
 		{
 			return;
 		}
 
-		int minX = Math.Max(0,
-			(int)Math.Floor(Math.Min(a.X, Math.Min(b.X, c.X))));
-		int maxX = Math.Min(_pixelWidth - 1,
-			(int)Math.Ceiling(Math.Max(a.X, Math.Max(b.X, c.X))));
-		int minY = Math.Max(0,
-			(int)Math.Floor(Math.Min(a.Y, Math.Min(b.Y, c.Y))));
-		int maxY = Math.Min(_pixelHeight - 1,
-			(int)Math.Ceiling(Math.Max(a.Y, Math.Max(b.Y, c.Y))));
+		int minX = Math.Max(0, (int)Math.Floor(Math.Min(a.X, Math.Min(b.X, c.X))));
+		int maxX = Math.Min(_pixelWidth - 1, (int)Math.Ceiling(Math.Max(a.X, Math.Max(b.X, c.X))));
+		int minY = Math.Max(0, (int)Math.Floor(Math.Min(a.Y, Math.Min(b.Y, c.Y))));
+		int maxY = Math.Min(_pixelHeight - 1, (int)Math.Ceiling(Math.Max(a.Y, Math.Max(b.Y, c.Y))));
 
 		double area = Edge(a, b, c);
 		if (Math.Abs(area) < 0.000001)
@@ -422,7 +425,8 @@ public sealed class ModelViewport : Control
 					color.R,
 					color.G,
 					color.B,
-					color.A);
+					color.A
+				);
 			}
 		}
 	}
@@ -438,24 +442,22 @@ public sealed class ModelViewport : Control
 		Vector2 uvB,
 		Vector2 uvC,
 		byte textureFlags,
-		DdsTexture texture)
+		DdsTexture texture
+	)
 	{
 		if (_pixelBuffer == null ||
 			texture.Width <= 0 ||
 			texture.Height <= 0 ||
-			texture.Rgba.Length < texture.Width * texture.Height * 4)
+			texture.Rgba.Length < texture.Width * texture.Height * 4
+		)
 		{
 			return;
 		}
 
-		int minX = Math.Max(0,
-			(int)Math.Floor(Math.Min(a.X, Math.Min(b.X, c.X))));
-		int maxX = Math.Min(_pixelWidth - 1,
-			(int)Math.Ceiling(Math.Max(a.X, Math.Max(b.X, c.X))));
-		int minY = Math.Max(0,
-			(int)Math.Floor(Math.Min(a.Y, Math.Min(b.Y, c.Y))));
-		int maxY = Math.Min(_pixelHeight - 1,
-			(int)Math.Ceiling(Math.Max(a.Y, Math.Max(b.Y, c.Y))));
+		int minX = Math.Max(0, (int)Math.Floor(Math.Min(a.X, Math.Min(b.X, c.X))));
+		int maxX = Math.Min(_pixelWidth - 1, (int)Math.Ceiling(Math.Max(a.X, Math.Max(b.X, c.X))));
+		int minY = Math.Max(0, (int)Math.Floor(Math.Min(a.Y, Math.Min(b.Y, c.Y))));
+		int maxY = Math.Min(_pixelHeight - 1, (int)Math.Ceiling(Math.Max(a.Y, Math.Max(b.Y, c.Y))));
 
 		double area = Edge(a, b, c);
 		if (Math.Abs(area) < 0.000001)
@@ -486,12 +488,14 @@ public sealed class ModelViewport : Control
 				float u = (float)(
 					(uvA.X * w0) +
 					(uvB.X * w1) +
-					(uvC.X * w2));
+					(uvC.X * w2)
+				);
 
 				float v = (float)(
 					(uvA.Y * w0) +
 					(uvB.Y * w1) +
-					(uvC.Y * w2));
+					(uvC.Y * w2)
+				);
 
 				// NJ UVs are already in the same orientation as the
 				// decoded DDS buffer for these CHR files.  Do not
@@ -526,14 +530,16 @@ public sealed class ModelViewport : Control
 					u,
 					v,
 					clampU,
-					clampV);
+					clampV
+				);
 
 				WritePixel(
 					x, y,
 					sampled.R,
 					sampled.G,
 					sampled.B,
-					sampled.A);
+					sampled.A
+				);
 			}
 		}
 	}
@@ -550,7 +556,8 @@ public sealed class ModelViewport : Control
 		float u,
 		float v,
 		bool clampU,
-		bool clampV)
+		bool clampV
+	)
 	{
 		// Standard half-texel-centered bilinear: texel (0,0)'s center is
 		// at u=0.5/width, so subtracting 0.5 before flooring gives the
@@ -583,7 +590,8 @@ public sealed class ModelViewport : Control
 		byte c01,
 		byte c11,
 		float tx,
-		float ty)
+		float ty
+	)
 	{
 		float top = c00 + ((c10 - c00) * tx);
 		float bottom = c01 + ((c11 - c01) * tx);
@@ -592,7 +600,8 @@ public sealed class ModelViewport : Control
 		return (byte)Math.Clamp(
 			MathF.Round(value),
 			0,
-			255);
+			255
+		);
 	}
 
 	private static (byte R, byte G, byte B, byte A) SampleTexel(
@@ -600,7 +609,8 @@ public sealed class ModelViewport : Control
 		int tx,
 		int ty,
 		bool clampU,
-		bool clampV)
+		bool clampV
+	)
 	{
 		tx = WrapTexelCoord(tx, texture.Width, clampU);
 		ty = WrapTexelCoord(ty, texture.Height, clampV);
@@ -611,7 +621,8 @@ public sealed class ModelViewport : Control
 			texture.Rgba[source + 0],
 			texture.Rgba[source + 1],
 			texture.Rgba[source + 2],
-			texture.Rgba[source + 3]);
+			texture.Rgba[source + 3]
+		);
 	}
 
 	private static int WrapTexelCoord(int coord, int size, bool clamp)
@@ -637,12 +648,14 @@ public sealed class ModelViewport : Control
 		byte r,
 		byte g,
 		byte b,
-		byte a)
+		byte a
+	)
 	{
 		if (_pixelBuffer == null ||
 			x < 0 || y < 0 ||
 			x >= _pixelWidth ||
-			y >= _pixelHeight)
+			y >= _pixelHeight
+		)
 		{
 			return;
 		}
@@ -676,12 +689,14 @@ public sealed class ModelViewport : Control
 		double w2,
 		float depthA,
 		float depthB,
-		float depthC)
+		float depthC
+	)
 	{
 		if (_depthBuffer == null ||
 			x < 0 || y < 0 ||
 			x >= _pixelWidth ||
-			y >= _pixelHeight)
+			y >= _pixelHeight
+		)
 		{
 			// No depth buffer available — fall back to the old
 			// draw-order-only behavior rather than blocking every pixel.
@@ -710,7 +725,8 @@ public sealed class ModelViewport : Control
 
 	private static void DrawAxis(
 		DrawingContext ctx,
-		Matrix4x4 rot)
+		Matrix4x4 rot
+	)
 	{
 		var origin = new Point(60, 60);
 
@@ -731,7 +747,8 @@ public sealed class ModelViewport : Control
 		DrawingContext ctx,
 		Point origin,
 		Vector3 v,
-		IBrush brush)
+		IBrush brush
+	)
 	{
 		var end = origin +
 			new Avalonia.Vector(v.X * 28, -v.Y * 28);
@@ -744,7 +761,8 @@ public sealed class ModelViewport : Control
 
 	private void OnPointerPressed(
 		object? sender,
-		PointerPressedEventArgs e)
+		PointerPressedEventArgs e
+	)
 	{
 		if (!e.GetCurrentPoint(this)
 			.Properties.IsLeftButtonPressed)
@@ -759,7 +777,8 @@ public sealed class ModelViewport : Control
 
 	private void OnPointerReleased(
 		object? sender,
-		PointerReleasedEventArgs e)
+		PointerReleasedEventArgs e
+	)
 	{
 		_dragging = false;
 		e.Pointer.Capture(null);
@@ -767,7 +786,8 @@ public sealed class ModelViewport : Control
 
 	private void OnPointerMoved(
 		object? sender,
-		PointerEventArgs e)
+		PointerEventArgs e
+	)
 	{
 		if (!_dragging)
 		{
@@ -788,7 +808,8 @@ public sealed class ModelViewport : Control
 
 	private void OnWheel(
 		object? sender,
-		PointerWheelEventArgs e)
+		PointerWheelEventArgs e
+	)
 	{
 		_distance *= e.Delta.Y > 0
 			? 0.88f

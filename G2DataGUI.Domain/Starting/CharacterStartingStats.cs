@@ -4,13 +4,17 @@ namespace G2DataGUI.Domain.Starting;
 
 public sealed class CharacterStartingStats : IIdentifiable<int>
 {
-	/// <summary>Position within PC_INIT.BIN — resolves to a display name via
-	/// LocaleKeys.Characters, same convention as CharacterLevelups.Id.</summary>
+	/// <summary>
+	/// Position within PC_INIT.BIN — resolves to a display name via
+	/// LocaleKeys.Characters, same convention as CharacterLevelups.Id.
+	/// </summary>
 	public int Id { get; set; }
 
 	public uint Experience { get; set; }
 
-	/// <summary>Index into Items — resolved via ItemRepository.Find in the exporter.</summary>
+	/// <summary>
+	/// Index into Items — resolved via ItemRepository.Find in the exporter.
+	/// </summary>
 	public short Weapon { get; set; }
 	public short Armor { get; set; }
 	public short Headgear { get; set; }

@@ -5,11 +5,13 @@ using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.ViewModels.Starting;
 
-/// <summary>CharacterName is read-only, resolved via
+/// <summary>
+/// CharacterName is read-only, resolved via
 /// LocaleKeys.Characters[Id] — same convention as CharacterLevelupsViewModel.
 /// Weapon/Armor/Headgear/Footwear/Accessory/Manaegg stay as raw editable
 /// Item indexes here, same as EnemyStatsViewModel.Item1Offset/Item2Offset —
-/// resolving them to item names is exporter-side only in this pass.</summary>
+/// resolving them to item names is exporter-side only in this pass.
+/// </summary>
 public sealed class CharacterStartingStatsViewModel(CharacterStartingStats model, CharacterStartingStatsRepository repository, ILocalizationService locale)
 	: ItemViewModel<CharacterStartingStats>(model, repository)
 {

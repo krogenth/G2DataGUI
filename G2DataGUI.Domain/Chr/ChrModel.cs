@@ -21,11 +21,13 @@ public sealed class ChrModel
 
 	public List<MotionAnimation> Animations { get; set; } = [];
 
-	/// <summary>Lazily parsed on first access by whatever needs it (a
+	/// <summary>
+	/// Lazily parsed on first access by whatever needs it (a
 	/// viewer, a pose evaluator) — not populated by ChrArchiveReader
 	/// itself, since not every caller needs geometry (e.g. an archive
 	/// editor moving whole models between files never needs to parse
-	/// NJCM contents at all — see PORTING-Chr.md).</summary>
+	/// NJCM contents at all — see PORTING-Chr.md).
+	/// </summary>
 	public NjModel? Model { get; set; }
 }
 

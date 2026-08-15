@@ -2,8 +2,10 @@ using G2DataGUI.Domain.Common;
 
 namespace G2DataGUI.Domain.Items;
 
-/// <summary>Present on an Item only when its usable-block pointer was
-/// valid — see Equipment for the same convention.</summary>
+/// <summary>
+/// Present on an Item only when its usable-block pointer was
+/// valid — see Equipment for the same convention.
+/// </summary>
 public sealed class Usable
 {
 	public const uint ByteSize = 0x20;

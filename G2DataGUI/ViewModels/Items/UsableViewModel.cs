@@ -4,8 +4,10 @@ using G2DataGUI.UI.Common.ViewModels;
 
 namespace G2DataGUI.ViewModels.Items;
 
-/// <summary>AilmentsBitflag stays raw here — see EquipmentViewModel's doc
-/// comment on why (method-based flags, not per-flag properties).</summary>
+/// <summary>
+/// AilmentsBitflag stays raw here — see EquipmentViewModel's doc
+/// comment on why (method-based flags, not per-flag properties).
+/// </summary>
 public sealed class UsableViewModel(Usable model, IRepository repository)
 	: ItemViewModel<Usable>(model, repository)
 {

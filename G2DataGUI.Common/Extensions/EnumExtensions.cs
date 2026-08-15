@@ -32,5 +32,5 @@ public static class EnumExtensions
 
 	public static IList<TEnum> GetEnumList<TEnum>()
 		where TEnum : struct, Enum =>
-		Enum.GetValues(typeof(TEnum)).Cast<TEnum>().ToList();
+		[.. Enum.GetValues<TEnum>()];
 }

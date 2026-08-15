@@ -5,8 +5,10 @@ using G2DataGUI.Serialization.Abstractions;
 
 namespace G2DataGUI.Serialization.Maps.Opcodes.Pause;
 
-/// <summary>Sub-dispatches on a second byte (PauseOption) — direct port of
-/// the original IPauseOpcode.ReadOpcode. No recursion, unlike TextBox/Highlight.</summary>
+/// <summary>
+/// Sub-dispatches on a second byte (PauseOption) — direct port of
+/// the original IPauseOpcode.ReadOpcode. No recursion, unlike TextBox/Highlight.
+/// </summary>
 public sealed class PauseOpcodeReader : IDataReader<IMapOpcode?>
 {
 	public IMapOpcode? Read(Stream stream)
@@ -27,5 +29,5 @@ public sealed class PauseOpcodeReader : IDataReader<IMapOpcode?>
 	}
 
 	public async Task<IMapOpcode?> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

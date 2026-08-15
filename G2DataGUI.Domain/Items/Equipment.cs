@@ -2,9 +2,11 @@ using G2DataGUI.Domain.Common;
 
 namespace G2DataGUI.Domain.Items;
 
-/// <summary>Present on an Item only when its equipment-block pointer was
+/// <summary>
+/// Present on an Item only when its equipment-block pointer was
 /// valid (see ItemOffsets) — a null Equipment on an Item means "not
-/// equippable", not "unread".</summary>
+/// equippable", not "unread".
+/// </summary>
 public sealed class Equipment
 {
 	public const uint ByteSize = 0x1C;

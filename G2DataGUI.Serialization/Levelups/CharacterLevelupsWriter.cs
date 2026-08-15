@@ -20,5 +20,5 @@ public sealed class CharacterLevelupsWriter : ICollectionDataWriter<CharacterLev
 		Stream stream,
 		IEnumerable<CharacterLevelups> items,
 		CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Write(stream, items), cancellationToken).ConfigureAwait(true);
 }

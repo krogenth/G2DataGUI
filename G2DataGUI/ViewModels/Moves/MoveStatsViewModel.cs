@@ -1,4 +1,5 @@
 using G2DataGUI.Domain.Moves;
+using G2DataGUI.Locale;
 using G2DataGUI.Repositories.Abstractions;
 using G2DataGUI.UI.Common.ViewModels;
 
@@ -9,9 +10,14 @@ namespace G2DataGUI.ViewModels.Moves;
 /// (Stats isn't itself repository-owned, but an edit to it still needs to
 /// mark the containing Move's repository dirty) — see MoveViewModel.
 /// </summary>
-public sealed class MoveStatsViewModel(MoveStats model, IRepository repository)
+public sealed class MoveStatsViewModel(MoveStats model, IRepository repository, ILocalizationService locale)
 	: ItemViewModel<MoveStats>(model, repository)
 {
+	public string TargetEffectName => locale[LocaleKeys.TargetEffects][Model.TargetEffect];
+	public string TargetTypeName => locale[LocaleKeys.TargetTypes][Model.TargetType];
+	public string AnimationName => locale[LocaleKeys.Animations][Model.Animation];
+	public string ElementName => locale[LocaleKeys.Elements][Model.Element];
+
 	public short Cost
 	{
 		get => Model.Cost;
@@ -21,13 +27,21 @@ public sealed class MoveStatsViewModel(MoveStats model, IRepository repository)
 	public byte TargetEffect
 	{
 		get => Model.TargetEffect;
-		set => SetModelValue(value, m => m.TargetEffect, (m, v) => m.TargetEffect = v);
+		set
+		{
+			SetModelValue(value, m => m.TargetEffect, (m, v) => m.TargetEffect = v);
+			OnPropertyChanged(nameof(TargetEffectName));
+		}
 	}
 
 	public byte TargetType
 	{
 		get => Model.TargetType;
-		set => SetModelValue(value, m => m.TargetType, (m, v) => m.TargetType = v);
+		set
+		{
+			SetModelValue(value, m => m.TargetType, (m, v) => m.TargetType = v);
+			OnPropertyChanged(nameof(TargetTypeName));
+		}
 	}
 
 	public short Strength
@@ -69,7 +83,11 @@ public sealed class MoveStatsViewModel(MoveStats model, IRepository repository)
 	public short Animation
 	{
 		get => Model.Animation;
-		set => SetModelValue(value, m => m.Animation, (m, v) => m.Animation = v);
+		set
+		{
+			SetModelValue(value, m => m.Animation, (m, v) => m.Animation = v);
+			OnPropertyChanged(nameof(AnimationName));
+		}
 	}
 
 	public byte Unknown1
@@ -105,7 +123,11 @@ public sealed class MoveStatsViewModel(MoveStats model, IRepository repository)
 	public byte Element
 	{
 		get => Model.Element;
-		set => SetModelValue(value, m => m.Element, (m, v) => m.Element = v);
+		set
+		{
+			SetModelValue(value, m => m.Element, (m, v) => m.Element = v);
+			OnPropertyChanged(nameof(ElementName));
+		}
 	}
 
 	public byte ElementStrength

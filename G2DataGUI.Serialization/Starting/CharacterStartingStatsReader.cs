@@ -65,5 +65,5 @@ public sealed class CharacterStartingStatsReader : ICollectionDataReader<Charact
 	}
 
 	public async Task<IReadOnlyList<CharacterStartingStats>> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

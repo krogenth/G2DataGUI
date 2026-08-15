@@ -80,11 +80,13 @@ public sealed class ChrArchiveWriter
 		}
 	}
 
-	/// <summary>Reconstructs the full chunk sequence (everything after
+	/// <summary>
+	/// Reconstructs the full chunk sequence (everything after
 	/// CDDH) from Models/MotionSets: each model's GIXL, NJCM, and
 	/// associated chunks in order, then (if any motion data exists) the
 	/// original GPHD marker followed by each motion set's MIXL and its
-	/// animations' GAMT/NMDM/POF0 chunks.</summary>
+	/// animations' GAMT/NMDM/POF0 chunks.
+	/// </summary>
 	private static List<ChrChunk> BuildChunkSequence(ChrArchive archive)
 	{
 		List<ChrChunk> chunks = [];

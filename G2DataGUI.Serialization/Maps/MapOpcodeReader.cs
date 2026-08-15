@@ -39,12 +39,12 @@ public sealed class MapOpcodeReader : IDataReader<IMapOpcode?>
 		[DialogueOpcode.Unknown0C] = s => new Unknown0COpcodeReader().Read(s),
 		[DialogueOpcode.Unknown0D] = s => new Unknown0DOpcodeReader().Read(s),
 		[DialogueOpcode.Unknown10] = s => new Unknown10OpcodeReader().Read(s),
-		[DialogueOpcode.ItemAquire] = s => new ItemAcquireOpcodeReader().Read(s),
+		[DialogueOpcode.ItemAcquire] = s => new ItemAcquireOpcodeReader().Read(s),
 		[DialogueOpcode.Unknown14] = s => new Unknown14OpcodeReader().Read(s),
 		[DialogueOpcode.Unknown15] = s => new Unknown15OpcodeReader().Read(s),
 		[DialogueOpcode.Unknown16] = s => new Unknown16OpcodeReader().Read(s),
 		[DialogueOpcode.TextBox] = s => new TextBoxOpcodeReader().Read(s),
-		[DialogueOpcode.CharacterPortait] = s => new CharacterPortraitOpcodeReader().Read(s),
+		[DialogueOpcode.CharacterPortrait] = s => new CharacterPortraitOpcodeReader().Read(s),
 		[DialogueOpcode.NextPage] = s => new NextPageOpcodeReader().Read(s),
 		[DialogueOpcode.Unknown1B] = s => new Unknown1BOpcodeReader().Read(s),
 		[DialogueOpcode.Unknown1C] = s => new Unknown1COpcodeReader().Read(s),
@@ -65,12 +65,14 @@ public sealed class MapOpcodeReader : IDataReader<IMapOpcode?>
 		return ReadFromOpcode(stream, (DialogueOpcode)opcodeByte);
 	}
 
-	/// <summary>Dispatches for a byte the caller has already read and
+	/// <summary>
+	/// Dispatches for a byte the caller has already read and
 	/// identified as a defined DialogueOpcode. Returns null for Text (never
-	/// dispatched this way) and for any opcode with no reader wired up.</summary>
+	/// dispatched this way) and for any opcode with no reader wired up.
+	/// </summary>
 	public static IMapOpcode? ReadFromOpcode(Stream stream, DialogueOpcode opcode) =>
 		_readers.TryGetValue(opcode, out Func<Stream, IMapOpcode?>? read) ? read(stream) : null;
 
 	public async Task<IMapOpcode?> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

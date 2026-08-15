@@ -12,5 +12,5 @@ public sealed class Unknown1COpcodeReader : IDataReader<Unknown1COpcode>
 	};
 
 	public async Task<Unknown1COpcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>
-		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(false);
+		await Task.Run(() => Read(stream), cancellationToken).ConfigureAwait(true);
 }

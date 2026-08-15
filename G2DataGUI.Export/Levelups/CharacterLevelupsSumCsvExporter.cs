@@ -4,9 +4,11 @@ using G2DataGUI.Locale;
 
 namespace G2DataGUI.Export.Levelups;
 
-/// <summary>Cumulative rows: each row is the running total up to and
+/// <summary>
+/// Cumulative rows: each row is the running total up to and
 /// including that level, reset back to zero at the start of each character.
-/// Matches the old LEVELUPS_SUM.CSV.</summary>
+/// Matches the old LEVELUPS_SUM.CSV.
+/// </summary>
 public sealed class CharacterLevelupsSumCsvExporter(ILocalizationService locale, LevelupStatsCsvExporter statsExporter) : ICsvExporter<CharacterLevelups>
 {
 	public string Header => $"Character,{statsExporter.Header}";
