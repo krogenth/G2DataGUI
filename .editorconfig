@@ -247,6 +247,7 @@ dotnet_diagnostic.NUnit2018.severity = error
 dotnet_diagnostic.NUnit2015.severity = error
 dotnet_diagnostic.NUnit2016.severity = error
 dotnet_diagnostic.NUnit2017.severity = error
+csharp_style_prefer_primary_constructors = true:suggestion
 
 #### Naming styles ####
 [*.{cs,vb}]
@@ -382,3 +383,4 @@ tab_width = 4
 dotnet_diagnostic.CA2000.severity = error
 dotnet_diagnostic.CA2002.severity = error
 dotnet_diagnostic.CA2007.severity = warning
+dotnet_style_prefer_collection_expression = when_types_loosely_match:suggestion

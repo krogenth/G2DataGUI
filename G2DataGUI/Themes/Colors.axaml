@@ -1,0 +1,81 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--
+	Color palette for the app, following the same shape as Avalonia's own
+	FluentTheme resource keys (SystemAccentColor + Light1-3/Dark1-3) so
+	built-in controls pick these up automatically, plus a small set of
+	custom tokens (below the accent ramp) for things specific to this app —
+	a dirty/unsaved indicator, since every repository already tracks
+	IsDirty, and status colors for whatever validation feedback the data
+	editors end up needing.
+
+	Accent is a burnished amber/copper rather than the more common blue —
+	deliberately distinct, and it reads as "old data/treasure" for an
+	editor built around reverse-engineered RPG game files. Selection uses
+	a complementary teal-green instead of a tint of the accent itself, so
+	"this row is selected" stays visually distinct from "this is an
+	accent-colored button" at a glance.
+	-->
+	<ResourceDictionary.ThemeDictionaries>
+		<ResourceDictionary x:Key="Light">
+			<Color x:Key="SystemAccentColor">#FFC97B2E</Color>
+			<Color x:Key="SystemAccentColorDark1">#FFA8631F</Color>
+			<Color x:Key="SystemAccentColorDark2">#FF874E18</Color>
+			<Color x:Key="SystemAccentColorDark3">#FF663A12</Color>
+			<Color x:Key="SystemAccentColorLight1">#FFD89552</Color>
+			<Color x:Key="SystemAccentColorLight2">#FFE4AC76</Color>
+			<Color x:Key="SystemAccentColorLight3">#FFEFC49B</Color>
+
+			<Color x:Key="AppBackgroundColor">#FFFAF8F5</Color>
+			<Color x:Key="AppContentBackgroundColor">#FFF4F1EC</Color>
+			<Color x:Key="AppPanelBackgroundColor">#FFEDE8E0</Color>
+			<Color x:Key="AppControlBorderColor">#FFD8CFC0</Color>
+			<Color x:Key="AppForegroundColor">#FF2B2622</Color>
+			<Color x:Key="AppSecondaryTextColor">#992B2622</Color>
+
+			<Color x:Key="AppSelectionColor">#FF1F8F72</Color>
+			<Color x:Key="AppDirtyIndicatorColor">#FFC97B2E</Color>
+			<Color x:Key="AppErrorColor">#FFC4402E</Color>
+			<Color x:Key="AppWarningColor">#FFB8860B</Color>
+			<Color x:Key="AppSuccessColor">#FF2F8F5B</Color>
+		</ResourceDictionary>
+
+		<ResourceDictionary x:Key="Dark">
+			<Color x:Key="SystemAccentColor">#FFC97B2E</Color>
+			<Color x:Key="SystemAccentColorDark1">#FFA8631F</Color>
+			<Color x:Key="SystemAccentColorDark2">#FF874E18</Color>
+			<Color x:Key="SystemAccentColorDark3">#FF663A12</Color>
+			<Color x:Key="SystemAccentColorLight1">#FFD89552</Color>
+			<Color x:Key="SystemAccentColorLight2">#FFE4AC76</Color>
+			<Color x:Key="SystemAccentColorLight3">#FFEFC49B</Color>
+
+			<Color x:Key="AppBackgroundColor">#FF191510</Color>
+			<Color x:Key="AppContentBackgroundColor">#FF211C17</Color>
+			<Color x:Key="AppPanelBackgroundColor">#FF2A241D</Color>
+			<Color x:Key="AppControlBorderColor">#FF4A4038</Color>
+			<Color x:Key="AppForegroundColor">#FFEFE7DC</Color>
+			<Color x:Key="AppSecondaryTextColor">#99EFE7DC</Color>
+
+			<Color x:Key="AppSelectionColor">#FF2FBF8F</Color>
+			<Color x:Key="AppDirtyIndicatorColor">#FFE4AC76</Color>
+			<Color x:Key="AppErrorColor">#FFE05B47</Color>
+			<Color x:Key="AppWarningColor">#FFD9A441</Color>
+			<Color x:Key="AppSuccessColor">#FF4CBE8B</Color>
+		</ResourceDictionary>
+	</ResourceDictionary.ThemeDictionaries>
+
+	<!-- Brushes derived from the tokens above — every Style in Styles.axaml
+	     references these, never a raw Color, so a future palette change
+	     only ever happens in this one file. -->
+	<SolidColorBrush x:Key="AppBackgroundBrush" Color="{DynamicResource AppBackgroundColor}" />
+	<SolidColorBrush x:Key="AppContentBackgroundBrush" Color="{DynamicResource AppContentBackgroundColor}" />
+	<SolidColorBrush x:Key="AppPanelBackgroundBrush" Color="{DynamicResource AppPanelBackgroundColor}" />
+	<SolidColorBrush x:Key="AppControlBorderBrush" Color="{DynamicResource AppControlBorderColor}" />
+	<SolidColorBrush x:Key="AppForegroundBrush" Color="{DynamicResource AppForegroundColor}" />
+	<SolidColorBrush x:Key="AppSecondaryTextBrush" Color="{DynamicResource AppSecondaryTextColor}" />
+	<SolidColorBrush x:Key="AppSelectionBrush" Color="{DynamicResource AppSelectionColor}" />
+	<SolidColorBrush x:Key="AppDirtyIndicatorBrush" Color="{DynamicResource AppDirtyIndicatorColor}" />
+	<SolidColorBrush x:Key="AppErrorBrush" Color="{DynamicResource AppErrorColor}" />
+	<SolidColorBrush x:Key="AppWarningBrush" Color="{DynamicResource AppWarningColor}" />
+	<SolidColorBrush x:Key="AppSuccessBrush" Color="{DynamicResource AppSuccessColor}" />
+</ResourceDictionary>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net10.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <BaseOutputPath>..\..\build</BaseOutputPath>
+	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	  <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>9999</WarningLevel>
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<!--
+	  Intentionally no ProjectReferences here. Domain is the bottom of the
+	  dependency graph: models only, no file I/O, no CSV, no locale lookups,
+	  no INotifyPropertyChanged. If you find yourself wanting to add a
+	  reference from this project, the thing you're adding probably belongs
+	  in Serialization, Export, or a ViewModel instead.
+	-->
+
+</Project>

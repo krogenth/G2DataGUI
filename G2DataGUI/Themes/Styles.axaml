@@ -1,0 +1,180 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--
+	Control styling for the app. Everything here targets Avalonia's own
+	FluentTheme controls/keys — no third-party control library — and every
+	color reference goes through the brushes defined in Colors.axaml, never
+	a raw hex value, so the palette stays centralized in one file.
+
+	Two deliberately app-specific additions beyond the usual DataGrid/
+	TabItem/ListBox reskinning: a "Data" TextBlock style using a monospace
+	font (this app displays a lot of hex offsets, chunk IDs, and byte
+	values — a proportional font makes columns of numbers hard to scan),
+	and a DirtyIndicator style (a small dot) for marking unsaved changes,
+	since every repository in this project already tracks IsDirty and
+	nothing in the UI layer surfaces it yet.
+	-->
+	<Design.PreviewWith>
+		<Border Width="480" Padding="20" Background="{DynamicResource AppBackgroundBrush}">
+			<StackPanel Spacing="10">
+				<TextBlock Classes="h1" Text="Moves" />
+				<TextBlock Text="Regular body text sits here." />
+				<TextBlock Classes="data" Text="0x0000A410  ID 3  Slot 0x2C" />
+				<StackPanel Orientation="Horizontal" Spacing="8">
+					<Ellipse Classes="dirtyIndicator" />
+					<TextBlock Text="Unsaved changes" Classes="caption" />
+				</StackPanel>
+				<Button Content="Save" />
+				<TabControl>
+					<TabItem Header="General" />
+					<TabItem Header="Stats" />
+				</TabControl>
+			</StackPanel>
+		</Border>
+	</Design.PreviewWith>
+
+	<!-- ===================== Typography ===================== -->
+
+	<Style Selector="TextBlock">
+		<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+		<Setter Property="FontSize" Value="13" />
+		<Setter Property="TextWrapping" Value="WrapWithOverflow" />
+	</Style>
+
+	<Style Selector="TextBlock.h1">
+		<Setter Property="FontSize" Value="20" />
+		<Setter Property="FontWeight" Value="SemiBold" />
+		<Setter Property="Margin" Value="0,0,0,4" />
+	</Style>
+
+	<Style Selector="TextBlock.h2">
+		<Setter Property="FontSize" Value="16" />
+		<Setter Property="FontWeight" Value="SemiBold" />
+		<Setter Property="Margin" Value="0,0,0,2" />
+	</Style>
+
+	<Style Selector="TextBlock.caption">
+		<Setter Property="FontSize" Value="11" />
+		<Setter Property="Foreground" Value="{DynamicResource AppSecondaryTextBrush}" />
+	</Style>
+
+	<!-- Monospace, for hex offsets / chunk IDs / raw byte values —
+	     anywhere the app shows reverse-engineered file data rather than
+	     user-facing prose. -->
+	<Style Selector="TextBlock.data">
+		<Setter Property="FontFamily" Value="Cascadia Code,Consolas,Menlo,monospace" />
+		<Setter Property="FontSize" Value="12" />
+	</Style>
+
+	<Style Selector="TextBlock.error">
+		<Setter Property="Foreground" Value="{DynamicResource AppErrorBrush}" />
+	</Style>
+
+	<Style Selector="TextBlock.warning">
+		<Setter Property="Foreground" Value="{DynamicResource AppWarningBrush}" />
+	</Style>
+
+	<Style Selector="TextBlock.success">
+		<Setter Property="Foreground" Value="{DynamicResource AppSuccessBrush}" />
+	</Style>
+
+	<!-- ===================== Unsaved-changes indicator ===================== -->
+
+	<Style Selector="Ellipse.dirtyIndicator">
+		<Setter Property="Width" Value="8" />
+		<Setter Property="Height" Value="8" />
+		<Setter Property="Fill" Value="{DynamicResource AppDirtyIndicatorBrush}" />
+	</Style>
+
+	<!-- ===================== Panels / cards ===================== -->
+
+	<Style Selector="Border.panel">
+		<Setter Property="Background" Value="{DynamicResource AppPanelBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource AppControlBorderBrush}" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="CornerRadius" Value="6" />
+		<Setter Property="Padding" Value="12" />
+	</Style>
+
+	<!-- ===================== Buttons ===================== -->
+
+	<Style Selector="Button">
+		<Setter Property="MinWidth" Value="72" />
+		<Setter Property="CornerRadius" Value="4" />
+	</Style>
+
+	<Style Selector="Button.accent">
+		<Setter Property="Background" Value="{DynamicResource SystemAccentColor}" />
+		<Setter Property="Foreground" Value="White" />
+	</Style>
+
+	<!-- ===================== TabItem ===================== -->
+
+	<Style Selector="TabItem">
+		<Setter Property="FontSize" Value="13" />
+		<Setter Property="Padding" Value="12,6" />
+	</Style>
+
+	<Style Selector="TabItem:selected /template/ Border#PART_LayoutRoot">
+		<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
+		<Setter Property="BorderThickness" Value="0,0,0,2" />
+	</Style>
+
+	<!-- ===================== ListBox (feature lists — Moves, Skills, ...) ===================== -->
+
+	<Style Selector="ListBox">
+		<Setter Property="Background" Value="{DynamicResource AppContentBackgroundBrush}" />
+	</Style>
+
+	<Style Selector="ListBoxItem">
+		<Setter Property="Padding" Value="8,6" />
+		<Setter Property="CornerRadius" Value="4" />
+		<Setter Property="Margin" Value="2" />
+	</Style>
+
+	<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource AppSelectionBrush}" />
+	</Style>
+
+	<Style Selector="ListBoxItem:selected TextBlock">
+		<Setter Property="Foreground" Value="White" />
+	</Style>
+
+	<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource AppPanelBackgroundBrush}" />
+	</Style>
+
+	<!-- ===================== TextBox ===================== -->
+
+	<Style Selector="TextBox">
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="CornerRadius" Value="4" />
+	</Style>
+
+	<!-- Number/hex-entry fields — anywhere the ViewModel property is a raw
+	     byte/short/int backing reverse-engineered data, not free text. -->
+	<Style Selector="TextBox.data">
+		<Setter Property="FontFamily" Value="Cascadia Code,Consolas,Menlo,monospace" />
+	</Style>
+
+	<!-- ===================== Separator ===================== -->
+
+	<Style Selector="Separator">
+		<Setter Property="Background" Value="{DynamicResource AppControlBorderBrush}" />
+		<Setter Property="MinHeight" Value="1" />
+	</Style>
+
+	<!-- ===================== Flyouts / menus ===================== -->
+
+	<Style Selector="FlyoutPresenter, ContextMenu, MenuFlyoutPresenter">
+		<Setter Property="Background" Value="{DynamicResource AppContentBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource AppControlBorderBrush}" />
+	</Style>
+
+	<Styles.Resources>
+		<Thickness x:Key="PageMargin">24,16,24,16</Thickness>
+		<x:Double x:Key="FontSizeSmall">11</x:Double>
+		<x:Double x:Key="FontSizeNormal">13</x:Double>
+		<x:Double x:Key="FontSizeLarge">16</x:Double>
+	</Styles.Resources>
+</Styles>

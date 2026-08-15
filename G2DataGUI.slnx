@@ -1,0 +1,24 @@
+<Solution>
+  <Folder Name="/Solution Files/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+    <File Path="PORTING.md" />
+  </Folder>
+  <Project Path="G2DataGUI.Common/G2DataGUI.Common.csproj" Id="6fc58689-145d-4454-9971-078e7e2879a8" />
+  <Project Path="G2DataGUI.Domain/G2DataGUI.Domain.csproj" />
+  <Project Path="G2DataGUI.IO/G2DataGUI.IO.csproj" Id="51c8b38e-5caf-4e36-a7d2-4890c68b8344" />
+  <Project Path="G2DataGUI.Serialization/G2DataGUI.Serialization.csproj" />
+  <Project Path="G2DataGUI.Repositories/G2DataGUI.Repositories.csproj" />
+  <Project Path="G2DataGUI.Contexts/G2DataGUI.Contexts.csproj" />
+  <Project Path="G2DataGUI.Export/G2DataGUI.Export.csproj" />
+  <Project Path="G2DataGUI.Services/G2DataGUI.Services.csproj" />
+  <Project Path="G2DataGUI.Rendering/G2DataGUI.Rendering.csproj" />
+  <Project Path="G2DataGUI.LocaleGenerator/G2DataGUI.LocaleGenerator.csproj" Id="60686bfb-3b9f-438d-8fb0-71d91e030564" />
+  <Project Path="G2DataGUI.Locale/G2DataGUI.Locale.csproj" />
+  <Project Path="G2DataGUI.UI.Common/G2DataGUI.UI.Common.csproj" Id="8a9e963d-e972-427c-92a0-27f6097af056" />
+  <Project Path="G2DataGUI/G2DataGUI.csproj" />
+</Solution>

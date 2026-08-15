@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net10.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <BaseOutputPath>..\..\build</BaseOutputPath>
+	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	  <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>9999</WarningLevel>
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<WarningLevel>9999</WarningLevel>
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" />
+		<PackageReference Include="Avalonia.Desktop" />
+	</ItemGroup>
+
+	<!--
+	  Locale data (LocaleKeys, LocaleService, the JSON asset) moved to
+	  G2DataGUI.Locale so headless projects (Export) can use it too. This
+	  project keeps only the Avalonia-facing pieces: LocaleValue (bindable
+	  wrapper) and LocaleExtension (the XAML markup extension).
+	-->
+	<ItemGroup>
+		<ProjectReference Include="..\G2DataGUI.IO\G2DataGUI.IO.csproj" />
+		<ProjectReference Include="..\G2DataGUI.Locale\G2DataGUI.Locale.csproj" />
+		<!-- ItemViewModel/CollectionViewModel (ViewModels/) call IRepository.MarkDirty
+		     and read Repository.Items, so this project needs to see Repositories
+		     (and transitively Domain) — everything else here stays Avalonia/UI-facing. -->
+		<ProjectReference Include="..\G2DataGUI.Repositories\G2DataGUI.Repositories.csproj" />
+	</ItemGroup>
+
+</Project>
