@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sections="clr-namespace:G2DataGUI.UI.ViewModels.Maps.Sections"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="500"
+             x:Class="G2DataGUI.UI.Views.Maps.Sections.MapInstancesSection"
+             x:DataType="sections:MapInstancesViewModel">
+	<Grid ColumnDefinitions="Auto,*">
+		<ListBox Grid.Column="0"
+		         ItemsSource="{Binding Items}"
+		         SelectedItem="{Binding SelectedItem}">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="120" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate x:DataType="sections:MapInstanceViewModel">
+					<TextBlock Text="{Binding Id, StringFormat='Instance {0}'}" Classes="data" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<ScrollViewer Grid.Column="1"
+		              IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<StackPanel Margin="16,10" DataContext="{Binding SelectedItem}" x:DataType="sections:MapInstanceViewModel" MaxWidth="640" Spacing="4">
+				<TextBlock Text="{Binding Id, StringFormat='Instance {0}'}" Classes="h1" />
+				<Grid ColumnDefinitions="*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Index" Classes="caption" /><NumericUpDown Value="{Binding Index}" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Unknown #1" Classes="caption" /><NumericUpDown Value="{Binding Unknown1}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Translation" Classes="caption" /><NumericUpDown Value="{Binding Translation}" Minimum="0" Maximum="255" /></StackPanel>
+				</Grid>
+				<Grid ColumnDefinitions="*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Unknown #2" Classes="caption" /><NumericUpDown Value="{Binding Unknown2}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0,0,0"><TextBlock Text="Rotation" Classes="caption" /><NumericUpDown Value="{Binding Rotation}" Increment="0.01" FormatString="0.00" /></StackPanel>
+				</Grid>
+				<TextBlock Text="Position" Classes="h2" Margin="0,8,0,0" />
+				<Grid ColumnDefinitions="*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="X" Classes="caption" /><NumericUpDown Value="{Binding PositionX}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Y" Classes="caption" /><NumericUpDown Value="{Binding PositionY}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Z" Classes="caption" /><NumericUpDown Value="{Binding PositionZ}" Increment="0.01" FormatString="0.00" /></StackPanel>
+				</Grid>
+				<TextBlock Text="Angle" Classes="h2" Margin="0,8,0,0" />
+				<Grid ColumnDefinitions="*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="X" Classes="caption" /><NumericUpDown Value="{Binding AngleX}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Y" Classes="caption" /><NumericUpDown Value="{Binding AngleY}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Z" Classes="caption" /><NumericUpDown Value="{Binding AngleZ}" Increment="0.01" FormatString="0.00" /></StackPanel>
+				</Grid>
+				<TextBlock Text="C" Classes="h2" Margin="0,8,0,0" />
+				<Grid ColumnDefinitions="*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="X" Classes="caption" /><NumericUpDown Value="{Binding CX}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Y" Classes="caption" /><NumericUpDown Value="{Binding CY}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Z" Classes="caption" /><NumericUpDown Value="{Binding CZ}" Increment="0.01" FormatString="0.00" /></StackPanel>
+				</Grid>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

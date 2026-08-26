@@ -5,6 +5,13 @@ namespace G2DataGUI.Domain.Maps;
 /// id, not just a display enum. Ported verbatim from the original,
 /// including the "Completely unknown" gaps; see MapOpcodeReader for what's
 /// actually implemented vs. still a documented TODO.
+///
+/// Unknown0E/Unknown0F/Unknown12 were added after the original port —
+/// see their own opcode types' doc comments for the evidence (byte-level
+/// analysis against ~350KB of real dialogue data across 7 of the game's
+/// largest maps). Unknown13 and Unknown19 remain genuine gaps: 0 confirmed
+/// occurrences across that same sample, so there's no evidence either way
+/// on whether they're real, unused opcodes or not opcodes at all.
 /// </summary>
 public enum DialogueOpcode : byte
 {
@@ -20,8 +27,11 @@ public enum DialogueOpcode : byte
 	CameraMove = 0x0B,
 	Unknown0C = 0x0C,
 	Unknown0D = 0x0D,
+	Unknown0E = 0x0E,
+	Unknown0F = 0x0F,
 	Unknown10 = 0x10,
 	ItemAcquire = 0x11,
+	Unknown12 = 0x12,
 	Unknown14 = 0x14,
 	Unknown15 = 0x15,
 	Unknown16 = 0x16,

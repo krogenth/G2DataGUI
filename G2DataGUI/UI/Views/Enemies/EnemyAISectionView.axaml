@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Enemies"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             x:Class="G2DataGUI.UI.Views.Enemies.EnemyAISectionView"
+             x:DataType="vm:EnemyAISectionViewModel">
+	<!-- Shared by EnemiesView and BossesView, same reasoning as
+	     EnemyStatsSection. Conditions is a fixed-size list (5 per
+	     EnemyAISectionViewModel's own doc comment) — each is "when
+	     Condition is true/met, use these 5 move-slot chances". -->
+	<ItemsControl ItemsSource="{Binding Conditions}">
+		<ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+				<VirtualizingStackPanel />
+			</ItemsPanelTemplate>
+		</ItemsControl.ItemsPanel>
+		<ItemsControl.ItemTemplate>
+			<DataTemplate x:DataType="vm:EnemyAIViewModel">
+				<Border BorderBrush="{DynamicResource AppControlBorderBrush}" BorderThickness="0,0,0,1" Padding="4,10">
+					<StackPanel Spacing="6">
+						<StackPanel Orientation="Horizontal" Spacing="6">
+							<TextBlock Text="Condition" Width="100" VerticalAlignment="Center" />
+							<NumericUpDown Value="{Binding Condition}" Minimum="0" Maximum="255" Width="140" />
+						</StackPanel>
+						<TextBlock Text="Move Slot Chances" Classes="caption" />
+						<Grid ColumnDefinitions="*,*,*,*,*">
+							<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="1" Classes="caption" HorizontalAlignment="Center" /><NumericUpDown Value="{Binding Move1Chance}" Minimum="0" Maximum="255" /></StackPanel>
+							<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="2" Classes="caption" HorizontalAlignment="Center" /><NumericUpDown Value="{Binding Move2Chance}" Minimum="0" Maximum="255" /></StackPanel>
+							<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="3" Classes="caption" HorizontalAlignment="Center" /><NumericUpDown Value="{Binding Move3Chance}" Minimum="0" Maximum="255" /></StackPanel>
+							<StackPanel Grid.Column="3" Margin="4,0"><TextBlock Text="4" Classes="caption" HorizontalAlignment="Center" /><NumericUpDown Value="{Binding Move4Chance}" Minimum="0" Maximum="255" /></StackPanel>
+							<StackPanel Grid.Column="4" Margin="4,0,0,0"><TextBlock Text="5" Classes="caption" HorizontalAlignment="Center" /><NumericUpDown Value="{Binding Move5Chance}" Minimum="0" Maximum="255" /></StackPanel>
+						</Grid>
+					</StackPanel>
+				</Border>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+	</ItemsControl>
+</UserControl>

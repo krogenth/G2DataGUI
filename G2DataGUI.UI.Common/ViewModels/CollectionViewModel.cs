@@ -4,8 +4,8 @@ using System.Collections.Specialized;
 namespace G2DataGUI.UI.Common.ViewModels;
 
 /// <summary>
-/// Projects a repository's ObservableCollection&lt;TModel&gt; (Items) into
-/// an ObservableCollection&lt;TViewModel&gt; for binding, and keeps the two
+/// Projects a repository's ObservableCollection<TModel> (Items) into
+/// an ObservableCollection<TViewModel> for binding, and keeps the two
 /// in sync as the underlying collection changes (LoadAsync clears+refills
 /// it, so Reset is the common case — Add/Remove are handled too in case
 /// something adds a single item later, e.g. an "Add new Move" feature).

@@ -1,0 +1,119 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Enemies"
+             xmlns:items="clr-namespace:G2DataGUI.UI.ViewModels.Items"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="900"
+             x:Class="G2DataGUI.UI.Views.Enemies.EnemyStatsSection"
+             x:DataType="vm:EnemyStatsViewModel">
+	<UserControl.Resources>
+		<DataTemplate x:Key="ItemPickerItemTemplate" x:DataType="items:GameItemViewModel">
+			<TextBlock Text="{Binding Name}" />
+		</DataTemplate>
+	</UserControl.Resources>
+	<!-- Shared by EnemiesView and BossesView — EnemyStats' binary layout
+	     (and this ViewModel) is identical on both, per EnemyStatsViewModel's
+	     own doc comment. Bind DataContext to an EnemyStatsViewModel and
+	     embed this wherever that's shown. -->
+	<StackPanel Spacing="10">
+		<StackPanel Orientation="Horizontal" Spacing="6">
+			<TextBlock Text="Name" Width="140" VerticalAlignment="Center" />
+			<TextBox Text="{Binding Name}" Width="260" />
+		</StackPanel>
+
+		<TextBlock Text="Type / Level" Classes="h2" Margin="0,4,0,0" />
+		<Grid ColumnDefinitions="*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Type 1" Classes="caption" /><NumericUpDown Value="{Binding Type1}" Minimum="0" Maximum="255" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Type 2" Classes="caption" /><NumericUpDown Value="{Binding Type2}" Minimum="0" Maximum="255" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Level" Classes="caption" /><NumericUpDown Value="{Binding Level}" Minimum="-32768" Maximum="32767" /></StackPanel>
+		</Grid>
+
+		<TextBlock Text="Core Stats" Classes="h2" Margin="0,4,0,0" />
+		<Grid ColumnDefinitions="*,*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Health" Classes="caption" /><NumericUpDown Value="{Binding Health}" Minimum="-2147483648" Maximum="2147483647" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="MP" Classes="caption" /><NumericUpDown Value="{Binding MP}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="SP" Classes="caption" /><NumericUpDown Value="{Binding SP}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Vitality" Classes="caption" /><NumericUpDown Value="{Binding Vitality}" Minimum="-32768" Maximum="32767" /></StackPanel>
+		</Grid>
+		<Grid ColumnDefinitions="*,*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Agility" Classes="caption" /><NumericUpDown Value="{Binding Agility}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Speed" Classes="caption" /><NumericUpDown Value="{Binding Speed}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Mentality" Classes="caption" /><NumericUpDown Value="{Binding Mentality}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Stamina" Classes="caption" /><NumericUpDown Value="{Binding Stamina}" Minimum="-32768" Maximum="32767" /></StackPanel>
+		</Grid>
+
+		<TextBlock Text="Combat" Classes="h2" Margin="0,4,0,0" />
+		<Grid ColumnDefinitions="*,*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="IP Stun" Classes="caption" /><NumericUpDown Value="{Binding IpStunDuration}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="IP Cancel Stun" Classes="caption" /><NumericUpDown Value="{Binding IpCancelStunDuration}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Evasion (Still)" Classes="caption" /><NumericUpDown Value="{Binding EvasionStillRate}" Minimum="0" Maximum="255" /></StackPanel>
+			<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Evasion (Moving)" Classes="caption" /><NumericUpDown Value="{Binding EvasionMovingRate}" Minimum="0" Maximum="255" /></StackPanel>
+		</Grid>
+		<Grid ColumnDefinitions="*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Knockback Resist" Classes="caption" /><NumericUpDown Value="{Binding KnockbackResist}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Status Recovery" Classes="caption" /><NumericUpDown Value="{Binding StatusRecoveryTime}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0,0,0"><CheckBox Content="No Run Flag" IsChecked="{Binding NoRunFlag}" Margin="0,18,0,0" /></StackPanel>
+		</Grid>
+		<Grid ColumnDefinitions="*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="TDMG" Classes="caption" /><NumericUpDown Value="{Binding TDMG}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="THEAL" Classes="caption" /><NumericUpDown Value="{Binding THEAL}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Size" Classes="caption" /><NumericUpDown Value="{Binding Size}" Minimum="-32768" Maximum="32767" /></StackPanel>
+		</Grid>
+
+		<TextBlock Text="Elemental Resistance" Classes="h2" Margin="0,4,0,0" />
+		<Grid ColumnDefinitions="*,*,*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Fire" Classes="caption" /><NumericUpDown Value="{Binding FireResist}" Minimum="-128" Maximum="127" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Wind" Classes="caption" /><NumericUpDown Value="{Binding WindResist}" Minimum="-128" Maximum="127" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Earth" Classes="caption" /><NumericUpDown Value="{Binding EarthResist}" Minimum="-128" Maximum="127" /></StackPanel>
+			<StackPanel Grid.Column="3" Margin="4,0"><TextBlock Text="Lightning" Classes="caption" /><NumericUpDown Value="{Binding LightningResist}" Minimum="-128" Maximum="127" /></StackPanel>
+			<StackPanel Grid.Column="4" Margin="4,0,0,0"><TextBlock Text="Blizzard" Classes="caption" /><NumericUpDown Value="{Binding BlizzardResist}" Minimum="-128" Maximum="127" /></StackPanel>
+		</Grid>
+		<StackPanel><TextBlock Text="Ailments Bitflag" Classes="caption" /><NumericUpDown Value="{Binding AilmentsBitflag}" Minimum="0" Maximum="255" HorizontalAlignment="Left" Width="140" /></StackPanel>
+
+		<TextBlock Text="Rewards" Classes="h2" Margin="0,4,0,0" />
+		<Grid ColumnDefinitions="*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Experience" Classes="caption" /><NumericUpDown Value="{Binding Experience}" Minimum="-2147483648" Maximum="2147483647" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Skill Coins" Classes="caption" /><NumericUpDown Value="{Binding SkillCoins}" Minimum="-2147483648" Maximum="2147483647" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Magic Coins" Classes="caption" /><NumericUpDown Value="{Binding MagicCoins}" Minimum="-2147483648" Maximum="2147483647" /></StackPanel>
+		</Grid>
+		<StackPanel><TextBlock Text="Gold Coins" Classes="caption" /><NumericUpDown Value="{Binding GoldCoins}" Minimum="-2147483648" Maximum="2147483647" HorizontalAlignment="Left" Width="200" /></StackPanel>
+
+		<TextBlock Text="Item Drops" Classes="h2" Margin="0,4,0,0" />
+		<Grid ColumnDefinitions="*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0">
+				<TextBlock Text="Item 1" Classes="caption" />
+				<ComboBox HorizontalAlignment="Stretch"
+				          ItemsSource="{Binding AvailableItems}"
+				          SelectedItem="{Binding SelectedItem1, Mode=TwoWay}"
+				          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+				          PlaceholderText="(unresolved item offset)" />
+				<TextBlock Text="{Binding Item1Offset, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+				<TextBlock Text="Chance" Classes="caption" Margin="0,4,0,0" />
+				<NumericUpDown Value="{Binding Item1Chance}" Minimum="0" Maximum="255" />
+			</StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0,0,0">
+				<TextBlock Text="Item 2" Classes="caption" />
+				<ComboBox HorizontalAlignment="Stretch"
+				          ItemsSource="{Binding AvailableItems}"
+				          SelectedItem="{Binding SelectedItem2, Mode=TwoWay}"
+				          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+				          PlaceholderText="(unresolved item offset)" />
+				<TextBlock Text="{Binding Item2Offset, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+				<TextBlock Text="Chance" Classes="caption" Margin="0,4,0,0" />
+				<NumericUpDown Value="{Binding Item2Chance}" Minimum="0" Maximum="255" />
+			</StackPanel>
+		</Grid>
+
+		<TextBlock Text="Unknowns" Classes="h2" Margin="0,4,0,0" />
+		<Grid ColumnDefinitions="*,*,*,*,*,*,*">
+			<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Unk 1" Classes="caption" /><NumericUpDown Value="{Binding Unknown1}" Minimum="0" Maximum="255" /></StackPanel>
+			<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Unk 2" Classes="caption" /><NumericUpDown Value="{Binding Unknown2}" Minimum="0" Maximum="255" /></StackPanel>
+			<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Unk 3" Classes="caption" /><NumericUpDown Value="{Binding Unknown3}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="3" Margin="4,0"><TextBlock Text="Unk 4" Classes="caption" /><NumericUpDown Value="{Binding Unknown4}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="4" Margin="4,0"><TextBlock Text="Unk 5" Classes="caption" /><NumericUpDown Value="{Binding Unknown5}" Minimum="0" Maximum="255" /></StackPanel>
+			<StackPanel Grid.Column="5" Margin="4,0"><TextBlock Text="Unk 6" Classes="caption" /><NumericUpDown Value="{Binding Unknown6}" Minimum="-32768" Maximum="32767" /></StackPanel>
+			<StackPanel Grid.Column="6" Margin="4,0,0,0"><TextBlock Text="Unk 7" Classes="caption" /><NumericUpDown Value="{Binding Unknown7}" Minimum="-32768" Maximum="32767" /></StackPanel>
+		</Grid>
+	</StackPanel>
+</UserControl>

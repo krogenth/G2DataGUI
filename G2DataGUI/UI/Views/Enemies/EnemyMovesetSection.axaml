@@ -1,0 +1,93 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Enemies"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="600"
+             x:Class="G2DataGUI.UI.Views.Enemies.EnemyMovesetSection"
+             x:DataType="vm:EnemyMovesetViewModel">
+	<!-- Shared by EnemiesView and BossesView. Each move in the moveset has
+	     its own Name plus a full EnemyMoveStatsViewModel — shown as a
+	     TabControl of moves rather than one long stacked list, since each
+	     move's own stat block is sizeable (27 fields) and 5 of them
+	     stacked would make this section by far the longest part of the
+	     page. -->
+	<TabControl ItemsSource="{Binding Moves}">
+		<TabControl.ItemTemplate>
+			<DataTemplate x:DataType="vm:EnemyMoveViewModel">
+				<TextBlock Text="{Binding Name}" />
+			</DataTemplate>
+		</TabControl.ItemTemplate>
+		<TabControl.ContentTemplate>
+			<DataTemplate x:DataType="vm:EnemyMoveViewModel">
+				<ScrollViewer>
+					<StackPanel Margin="8" Spacing="8" DataContext="{Binding}">
+						<StackPanel Orientation="Horizontal" Spacing="6">
+							<TextBlock Text="Name" Width="100" VerticalAlignment="Center" />
+							<TextBox Text="{Binding Name}" Width="220" />
+						</StackPanel>
+
+						<StackPanel DataContext="{Binding Stats}" Spacing="8">
+							<TextBlock Text="Targeting" Classes="h2" Margin="0,4,0,0" />
+							<Grid ColumnDefinitions="*,*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Target Effect" Classes="caption" /><NumericUpDown Value="{Binding TargetEffect}" Minimum="0" Maximum="255" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Target Type" Classes="caption" /><NumericUpDown Value="{Binding TargetType}" Minimum="0" Maximum="255" /></StackPanel>
+								<StackPanel Grid.Column="2" Margin="4,0,0,0"><CheckBox Content="Normal Attack" IsChecked="{Binding NormalAttackFlag}" Margin="0,18,0,0" /></StackPanel>
+							</Grid>
+
+							<TextBlock Text="Cost / Power" Classes="h2" Margin="0,4,0,0" />
+							<Grid ColumnDefinitions="*,*,*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="MP" Classes="caption" /><NumericUpDown Value="{Binding MP}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="SP" Classes="caption" /><NumericUpDown Value="{Binding SP}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Strength" Classes="caption" /><NumericUpDown Value="{Binding Strength}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Power" Classes="caption" /><NumericUpDown Value="{Binding Power}" Minimum="-32768" Maximum="32767" /></StackPanel>
+							</Grid>
+							<Grid ColumnDefinitions="*,*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="AD" Classes="caption" /><NumericUpDown Value="{Binding AD}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Distance" Classes="caption" /><NumericUpDown Value="{Binding Distance}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Accuracy" Classes="caption" /><NumericUpDown Value="{Binding Accuracy}" Minimum="-32768" Maximum="32767" /></StackPanel>
+							</Grid>
+
+							<TextBlock Text="Timing" Classes="h2" Margin="0,4,0,0" />
+							<Grid ColumnDefinitions="*,*,*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Range" Classes="caption" /><NumericUpDown Value="{Binding Range}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Cast Time" Classes="caption" /><NumericUpDown Value="{Binding CastTime}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Recovery Time" Classes="caption" /><NumericUpDown Value="{Binding RecoveryTime}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Animation" Classes="caption" /><NumericUpDown Value="{Binding Animation}" Minimum="0" Maximum="255" /></StackPanel>
+							</Grid>
+							<CheckBox Content="Knockdown" IsChecked="{Binding Knockdown}" />
+
+							<TextBlock Text="Impact Points" Classes="h2" Margin="0,4,0,0" />
+							<Grid ColumnDefinitions="*,*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="IP Stun" Classes="caption" /><NumericUpDown Value="{Binding IpStun}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="IP Cancel Stun" Classes="caption" /><NumericUpDown Value="{Binding IpCancelStun}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Knockback" Classes="caption" /><NumericUpDown Value="{Binding Knockback}" Minimum="-32768" Maximum="32767" /></StackPanel>
+							</Grid>
+
+							<TextBlock Text="Element / Ailments" Classes="h2" Margin="0,4,0,0" />
+							<Grid ColumnDefinitions="*,*,*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Element" Classes="caption" /><NumericUpDown Value="{Binding Element}" Minimum="0" Maximum="255" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Element Strength" Classes="caption" /><NumericUpDown Value="{Binding ElementStrength}" Minimum="0" Maximum="255" /></StackPanel>
+								<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Ailments Bitflag" Classes="caption" /><NumericUpDown Value="{Binding AilmentsBitflag}" Minimum="0" Maximum="255" /></StackPanel>
+								<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Ailments Chance" Classes="caption" /><NumericUpDown Value="{Binding AilmentsChance}" Minimum="0" Maximum="255" /></StackPanel>
+							</Grid>
+
+							<TextBlock Text="Modifiers" Classes="h2" Margin="0,4,0,0" />
+							<Grid ColumnDefinitions="*,*,*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Attack" Classes="caption" /><NumericUpDown Value="{Binding AttackModifier}" Minimum="-128" Maximum="127" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Defense" Classes="caption" /><NumericUpDown Value="{Binding DefenseModifier}" Minimum="-128" Maximum="127" /></StackPanel>
+								<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Action" Classes="caption" /><NumericUpDown Value="{Binding ActionModifier}" Minimum="-128" Maximum="127" /></StackPanel>
+								<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Movement" Classes="caption" /><NumericUpDown Value="{Binding MovementModifier}" Minimum="-128" Maximum="127" /></StackPanel>
+							</Grid>
+
+							<Grid ColumnDefinitions="*,*">
+								<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Special" Classes="caption" /><NumericUpDown Value="{Binding Special}" Minimum="-32768" Maximum="32767" /></StackPanel>
+								<StackPanel Grid.Column="1" Margin="4,0,0,0"><TextBlock Text="Unknown 1" Classes="caption" /><NumericUpDown Value="{Binding Unknown1}" Minimum="0" Maximum="255" /></StackPanel>
+							</Grid>
+						</StackPanel>
+					</StackPanel>
+				</ScrollViewer>
+			</DataTemplate>
+		</TabControl.ContentTemplate>
+	</TabControl>
+</UserControl>

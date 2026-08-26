@@ -1,0 +1,97 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Levelups"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="G2DataGUI.UI.Views.Levelups.LevelupsView"
+             x:DataType="vm:LevelupsViewModel">
+	<!-- Left list is characters (by resolved name, not raw ID — see
+	     CharacterLevelupsViewModel.CharacterName). Levels is a flat 99-row
+	     list, not paged like Manaeggs — 99 rows in one scrollable list is
+	     fine since there's no per-row reference-picker widening each row
+	     the way Manaeggs' Move ComboBox does; each row here is just
+	     numbers. -->
+	<Grid Name="LevelupsPage" Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Border Grid.Column="0"
+			        Background="{DynamicResource AppPanelBackgroundBrush}"
+			        BorderBrush="{DynamicResource AppControlBorderBrush}"
+			        BorderThickness="1">
+			<ListBox x:Name="CharactersList"
+					 ItemsSource="{Binding Items}"
+					 SelectedItem="{Binding SelectedItem}"
+					 Margin="4">
+				<ListBox.Styles>
+					<Style Selector="ListBoxItem">
+						<Setter Property="Width" Value="150" />
+						<Setter Property="HorizontalAlignment" Value="Right" />
+					</Style>
+				</ListBox.Styles>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Border CornerRadius="4" Padding="10" HorizontalAlignment="Stretch" ClipToBounds="True">
+							<TextBlock Text="{Binding CharacterName}" />
+						</Border>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
+
+		<ScrollViewer Grid.Column="1"
+		              IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<StackPanel Margin="24,14">
+				<TextBlock Text="{Binding SelectedItem.CharacterName}" Classes="h1" />
+
+				<Grid Margin="4,8,4,4" ColumnDefinitions="Auto,*,*,*,*,*,*,*,*,*,*,*">
+					<TextBlock Grid.Column="0" Text="Lvl" Classes="caption" />
+					<TextBlock Grid.Column="1" Text="XP" Classes="caption" />
+					<TextBlock Grid.Column="2" Text="HP" Classes="caption" />
+					<TextBlock Grid.Column="3" Text="MP" Classes="caption" />
+					<TextBlock Grid.Column="4" Text="SP" Classes="caption" />
+					<TextBlock Grid.Column="5" Text="Str" Classes="caption" />
+					<TextBlock Grid.Column="6" Text="Vit" Classes="caption" />
+					<TextBlock Grid.Column="7" Text="Act" Classes="caption" />
+					<TextBlock Grid.Column="8" Text="Mov" Classes="caption" />
+					<TextBlock Grid.Column="9" Text="Mag" Classes="caption" />
+					<TextBlock Grid.Column="10" Text="Men" Classes="caption" />
+					<TextBlock Grid.Column="11" Text="Skills" Classes="caption" />
+				</Grid>
+
+				<ItemsControl ItemsSource="{Binding SelectedItem.Levels}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate x:DataType="vm:LevelupStatsViewModel">
+							<Border BorderBrush="{DynamicResource AppControlBorderBrush}"
+							        BorderThickness="0,0,0,1"
+							        Padding="4,4">
+								<Grid ColumnDefinitions="Auto,*,*,*,*,*,*,*,*,*,*,*" VerticalAlignment="Center">
+									<TextBlock Grid.Column="0" Text="{Binding Level}" Classes="data" VerticalAlignment="Center" />
+									<NumericUpDown Grid.Column="1" Value="{Binding Experience}" Minimum="0" Maximum="2147483647" />
+									<NumericUpDown Grid.Column="2" Value="{Binding IncreaseHP}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="3" Value="{Binding IncreaseMP}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="4" Value="{Binding IncreaseSP}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="5" Value="{Binding IncreaseStrength}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="6" Value="{Binding IncreaseVitality}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="7" Value="{Binding IncreaseAction}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="8" Value="{Binding IncreaseMovement}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="9" Value="{Binding IncreaseMagic}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="10" Value="{Binding IncreaseMentality}" Minimum="-32768" Maximum="32767" />
+									<NumericUpDown Grid.Column="11" Value="{Binding IncreaseSkillSlot}" Minimum="-32768" Maximum="32767" />
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

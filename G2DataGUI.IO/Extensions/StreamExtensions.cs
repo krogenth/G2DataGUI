@@ -61,6 +61,17 @@ public static class StreamExtensions
     public static float ReadRawFloat(this Stream stream) => BitConverter.Int32BitsToSingle(stream.ReadRawInt());
     public static double ReadRawDouble(this Stream stream) => BitConverter.Int64BitsToDouble(stream.ReadRawInt());
     public static byte[] ReadRawByteArray(this Stream stream, uint numBytes) => stream.InternalRead(numBytes).ToArray();
+
+    /// <summary>Three little-endian floats — used throughout the Maps
+    /// format (positions, angles, bounds) but generically useful for any
+    /// binary format with 3D vectors, which is why this lives here
+    /// alongside the other raw-primitive readers rather than in
+    /// G2DataGUI.Domain.Maps.</summary>
+    public static System.Numerics.Vector3 ReadRawVector3(this Stream stream) =>
+        new(stream.ReadRawFloat(), stream.ReadRawFloat(), stream.ReadRawFloat());
+
+    public static System.Numerics.Vector2 ReadRawVector2(this Stream stream) =>
+        new(stream.ReadRawFloat(), stream.ReadRawFloat());
     public static int[] ReadRawIntArray(this Stream stream, uint numInts)
     {
         int[] arr = new int[numInts];
@@ -137,6 +148,19 @@ public static class StreamExtensions
         stream.Write(buffer);
     }
     public static void WriteRawByteArray(this Stream stream, byte[] value) => stream.Write(value.AsSpan());
+
+    public static void WriteRawVector3(this Stream stream, System.Numerics.Vector3 value)
+    {
+        stream.WriteRawFloat(value.X);
+        stream.WriteRawFloat(value.Y);
+        stream.WriteRawFloat(value.Z);
+    }
+
+    public static void WriteRawVector2(this Stream stream, System.Numerics.Vector2 value)
+    {
+        stream.WriteRawFloat(value.X);
+        stream.WriteRawFloat(value.Y);
+    }
     public static void WriteRawIntArray(this Stream stream, int[] value)
     {
         foreach (var item in value)

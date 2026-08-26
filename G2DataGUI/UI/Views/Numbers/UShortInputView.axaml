@@ -1,0 +1,23 @@
+<UserControl x:Class="G2DataGUI.UI.Views.Numbers.UShortInputView"
+			 xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="using:G2DataGUI.UI.Common.ViewModels.Numbers"
+             x:CompileBindings="True"
+			 x:DataType="vm:UShortInputViewModel">
+
+	<StackPanel Margin="10,0,0,0"
+				  Orientation="Horizontal">
+		<TextBlock TextAlignment="Left"
+				   VerticalAlignment="Center"
+				   Text="{Binding Title}"
+				   Width="250" />
+		<NumericUpDown Value="{Binding Value}"
+					   Width="400"
+					   Increment="{Binding Increment}"
+					   Minimum="{Binding MinValue}"
+					   Maximum="{Binding MaxValue}" />
+	</StackPanel>
+</UserControl>

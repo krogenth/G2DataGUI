@@ -6,7 +6,7 @@ using G2DataGUI.Serialization.Common;
 namespace G2DataGUI.Serialization.Items;
 
 /// <summary>
-/// Collection-only — deliberately does not also implement IDataWriter&lt;Item&gt;.
+/// Collection-only — deliberately does not also implement IDataWriter<Item>.
 /// Writing a single Item's header needs to know the absolute file offset
 /// its Equipment/Usable block will land at, which depends on how many
 /// Equipment/Usable blocks precede it in the file; that's inherently a

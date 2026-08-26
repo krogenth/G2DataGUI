@@ -8,7 +8,7 @@ namespace G2DataGUI.Repositories.Chr;
 /// A .chr/.chr2 archive is a single document, not a collection of
 /// same-shaped items — there's no natural TId for "an archive", so this
 /// implements IRepository directly (Name/IsLoaded/MarkDirty/Load/Save/
-/// Reload) rather than IRepository&lt;T,TId&gt;. Archive is the loaded
+/// Reload) rather than IRepository<T,TId>. Archive is the loaded
 /// document itself; editing it (removing/inserting/moving a ChrModel) is
 /// done directly against Archive.Models and Archive.Chunks, then MarkDirty()
 /// — see ChrModelMover for the cross-archive move operation specifically.

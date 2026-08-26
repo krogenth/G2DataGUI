@@ -1,0 +1,161 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Manaeggs"
+             xmlns:moves="clr-namespace:G2DataGUI.UI.ViewModels.Moves"
+             mc:Ignorable="d"
+             d:DesignWidth="1100"
+             d:DesignHeight="700"
+             x:Class="G2DataGUI.UI.Views.Manaeggs.ManaeggsView"
+             x:DataType="vm:ManaeggsViewModel">
+	<!--
+	Same left-list/right-detail shape as MovesView. Spells are shown as 3
+	side-by-side columns (all 18 visible at once), matching the in-game
+	UI's own paging — Pages always has exactly 3 entries (see
+	ManaeggViewModel), so this uses 3 explicit columns bound to
+	Pages[0]/[1]/[2] rather than a generic templated ItemsControl over
+	Pages, the same way the columns themselves are a fixed, known count
+	rather than something to loop over.
+
+	Each spell row (SpellRowTemplate, below, shared by all 3 columns so
+	the layout is only written once) references a Move by NAME — the
+	ComboBox bound to SelectedMove/AvailableMoves — not by raw byte
+	offset. See ManaeggSpellViewModel's own doc comment for why
+	AvailableMoves is the SAME collection the Moves page itself uses, not
+	a separate copy. The raw SpellOffset stays visible in a small caption
+	for the case a byte doesn't resolve to any currently-loaded Move,
+	same reasoning as MoveViewModel showing IconName next to the raw
+	Icon byte.
+	-->
+	<UserControl.Resources>
+		<DataTemplate x:Key="SpellRowTemplate" x:DataType="vm:ManaeggSpellViewModel">
+			<StackPanel Margin="0,0,0,14">
+				<TextBlock Text="{Binding Title}" Classes="h2" HorizontalAlignment="Center" Margin="0,0,0,4" />
+
+				<TextBlock Text="Spell:" Classes="caption" />
+				<ComboBox HorizontalAlignment="Stretch"
+				          ItemsSource="{Binding AvailableMoves}"
+				          SelectedItem="{Binding SelectedMove, Mode=TwoWay}"
+				          PlaceholderText="(unresolved spell offset)">
+					<ComboBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel />
+						</ItemsPanelTemplate>
+					</ComboBox.ItemsPanel>
+					<ComboBox.ItemTemplate>
+						<DataTemplate x:DataType="moves:MoveViewModel">
+							<TextBlock Text="{Binding Name}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
+				<Grid ColumnDefinitions="*,*" Margin="0,6,0,0">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0">
+						<TextBlock Text="Starting Level:" Classes="caption" />
+						<NumericUpDown Value="{Binding StartingLevel}"
+						               Increment="1"
+						               Minimum="0"
+						               Maximum="255" />
+					</StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0,0,0">
+						<TextBlock Text="Required Level:"
+								   Classes="caption"
+						           ToolTip.Tip="Required egg level to unlock" />
+						<NumericUpDown Value="{Binding RequiredLevel}"
+						               Increment="1"
+						               Minimum="0"
+						               Maximum="255" />
+					</StackPanel>
+				</Grid>
+
+				<StackPanel Margin="0,6,0,0">
+					<TextBlock Text="Unknown #1:" Classes="caption" />
+					<NumericUpDown Value="{Binding Unknown1}"
+					               Increment="1"
+					               Minimum="0"
+					               Maximum="255" />
+				</StackPanel>
+			</StackPanel>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<Grid Name="ManaeggsPage" Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Border Grid.Column="0"
+			        Background="{DynamicResource AppPanelBackgroundBrush}"
+			        BorderBrush="{DynamicResource AppControlBorderBrush}"
+			        BorderThickness="1">
+			<ListBox x:Name="ManaeggsList"
+					 ItemsSource="{Binding Items}"
+					 SelectedItem="{Binding SelectedItem}"
+					 Margin="2">
+				<ListBox.Styles>
+					<Style Selector="ListBoxItem">
+						<Setter Property="Width" Value="140" />
+						<Setter Property="HorizontalAlignment" Value="Right" />
+					</Style>
+				</ListBox.Styles>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Border CornerRadius="4"
+								Margin="0"
+								Padding="10"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								ClipToBounds="True">
+							<TextBlock Text="{Binding Id, StringFormat='Manaegg {0}'}" />
+						</Border>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
+
+		<ScrollViewer Grid.Column="1"
+		              IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<StackPanel Margin="24,14">
+
+				<Grid ColumnDefinitions="*,*,*" Margin="0,12,0,0">
+
+					<StackPanel Grid.Column="0" Margin="0,0,12,0" DataContext="{Binding SelectedItem.Pages[0]}">
+						<TextBlock Text="{Binding Title}" Classes="h1" HorizontalAlignment="Center" Margin="0,0,0,8" />
+						<ItemsControl ItemsSource="{Binding Spells}" ItemTemplate="{StaticResource SpellRowTemplate}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+						</ItemsControl>
+					</StackPanel>
+
+					<StackPanel Grid.Column="1" Margin="12,0" DataContext="{Binding SelectedItem.Pages[1]}">
+						<TextBlock Text="{Binding Title}" Classes="h1" HorizontalAlignment="Center" Margin="0,0,0,8" />
+						<ItemsControl ItemsSource="{Binding Spells}" ItemTemplate="{StaticResource SpellRowTemplate}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+						</ItemsControl>
+					</StackPanel>
+
+					<StackPanel Grid.Column="2" Margin="12,0,0,0" DataContext="{Binding SelectedItem.Pages[2]}">
+						<TextBlock Text="{Binding Title}" Classes="h1" HorizontalAlignment="Center" Margin="0,0,0,8" />
+						<ItemsControl ItemsSource="{Binding Spells}" ItemTemplate="{StaticResource SpellRowTemplate}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+						</ItemsControl>
+					</StackPanel>
+
+				</Grid>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

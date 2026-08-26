@@ -1,0 +1,166 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Starting"
+             xmlns:items="clr-namespace:G2DataGUI.UI.ViewModels.Items"
+             xmlns:manaeggs="clr-namespace:G2DataGUI.UI.ViewModels.Manaeggs"
+             mc:Ignorable="d" d:DesignWidth="820" d:DesignHeight="700"
+             x:Class="G2DataGUI.UI.Views.Starting.InitialView"
+             x:DataType="vm:InitialViewModel">
+	<!-- Flat form, same shape as MovesView's Stats section — every field
+	     is a direct CharacterStartingStatsViewModel property, no
+	     sub-collections. Weapon/Armor/Headgear/Footwear/Accessory
+	     reference Items by name (SelectedWeapon/SelectedArmor/...,
+	     ItemPickerItemTemplate below is shared across all 5 since they're
+	     all pickers over the same AvailableItems); Manaegg references
+	     Manaeggs specifically via its own ManaeggPickerItemTemplate — two
+	     different pools, so two templates, not one reused for both. -->
+	<UserControl.Resources>
+		<DataTemplate x:Key="ItemPickerItemTemplate" x:DataType="items:GameItemViewModel">
+			<TextBlock Text="{Binding Name}" />
+		</DataTemplate>
+		<DataTemplate x:Key="ManaeggPickerItemTemplate" x:DataType="manaeggs:ManaeggViewModel">
+			<TextBlock Text="{Binding Id, StringFormat='Manaegg {0}'}" />
+		</DataTemplate>
+	</UserControl.Resources>
+	<Grid Name="StartingStatsPage" Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ListBox x:Name="CharactersList"
+		         ItemsSource="{Binding Items}"
+		         SelectedItem="{Binding SelectedItem}"
+		         Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="150" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4" Padding="10" HorizontalAlignment="Stretch" ClipToBounds="True">
+						<TextBlock Text="{Binding CharacterName}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<ScrollViewer Grid.Column="1"
+		              IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<StackPanel Margin="24,14" DataContext="{Binding SelectedItem}">
+				<TextBlock Text="{Binding CharacterName}" Classes="h1" />
+
+				<TextBlock Text="Experience" Classes="h2" Margin="0,14,0,4" />
+				<NumericUpDown Value="{Binding Experience}" Minimum="0" Maximum="4294967295" HorizontalAlignment="Left" Width="200" />
+
+				<TextBlock Text="Equipment (raw item index)" Classes="h2" Margin="0,14,0,4" />
+				<Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto">
+					<StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,4,8">
+						<TextBlock Text="Weapon" Classes="caption" />
+						<ComboBox HorizontalAlignment="Stretch"
+						          ItemsSource="{Binding AvailableItems}"
+						          SelectedItem="{Binding SelectedWeapon, Mode=TwoWay}"
+						          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+						          PlaceholderText="(unresolved item offset)" />
+						<TextBlock Text="{Binding Weapon, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+					</StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="1" Margin="4,0,4,8">
+						<TextBlock Text="Armor" Classes="caption" />
+						<ComboBox HorizontalAlignment="Stretch"
+						          ItemsSource="{Binding AvailableItems}"
+						          SelectedItem="{Binding SelectedArmor, Mode=TwoWay}"
+						          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+						          PlaceholderText="(unresolved item offset)" />
+						<TextBlock Text="{Binding Armor, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+					</StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="2" Margin="4,0,0,8">
+						<TextBlock Text="Headgear" Classes="caption" />
+						<ComboBox HorizontalAlignment="Stretch"
+						          ItemsSource="{Binding AvailableItems}"
+						          SelectedItem="{Binding SelectedHeadgear, Mode=TwoWay}"
+						          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+						          PlaceholderText="(unresolved item offset)" />
+						<TextBlock Text="{Binding Headgear, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+					</StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,4,0">
+						<TextBlock Text="Footwear" Classes="caption" />
+						<ComboBox HorizontalAlignment="Stretch"
+						          ItemsSource="{Binding AvailableItems}"
+						          SelectedItem="{Binding SelectedFootwear, Mode=TwoWay}"
+						          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+						          PlaceholderText="(unresolved item offset)" />
+						<TextBlock Text="{Binding Footwear, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+					</StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="1" Margin="4,0">
+						<TextBlock Text="Accessory" Classes="caption" />
+						<ComboBox HorizontalAlignment="Stretch"
+						          ItemsSource="{Binding AvailableItems}"
+						          SelectedItem="{Binding SelectedAccessory, Mode=TwoWay}"
+						          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+						          PlaceholderText="(unresolved item offset)" />
+						<TextBlock Text="{Binding Accessory, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+					</StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="2" Margin="4,0,0,0">
+						<TextBlock Text="Manaegg" Classes="caption" />
+						<ComboBox HorizontalAlignment="Stretch"
+						          ItemsSource="{Binding AvailableManaeggs}"
+						          SelectedItem="{Binding SelectedManaegg, Mode=TwoWay}"
+						          ItemTemplate="{StaticResource ManaeggPickerItemTemplate}"
+						          PlaceholderText="(unresolved manaegg offset)" />
+						<TextBlock Text="{Binding Manaegg, StringFormat='raw offset: 0x{0:X4}'}" Classes="data caption" />
+					</StackPanel>
+				</Grid>
+
+				<TextBlock Text="Combat Stats" Classes="h2" Margin="0,14,0,4" />
+				<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto,Auto">
+					<StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,4,8"><TextBlock Text="Stamina" Classes="caption" /><NumericUpDown Value="{Binding Stamina}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="1" Margin="4,0,4,8"><TextBlock Text="IP Stun" Classes="caption" /><NumericUpDown Value="{Binding IpStun}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="2" Margin="4,0,4,8"><TextBlock Text="IP Cancel Stun" Classes="caption" /><NumericUpDown Value="{Binding IpCancelStun}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="3" Margin="4,0,0,8"><TextBlock Text="Knockback Resist" Classes="caption" /><NumericUpDown Value="{Binding KnockbackResist}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,4,8"><TextBlock Text="Combo SP Regen" Classes="caption" /><NumericUpDown Value="{Binding ComboSpRegen}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="1" Margin="4,0,4,8"><TextBlock Text="Crit SP Regen" Classes="caption" /><NumericUpDown Value="{Binding CritSpRegen}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="2" Margin="4,0,4,8"><TextBlock Text="Hit SP Regen" Classes="caption" /><NumericUpDown Value="{Binding HitSpRegen}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="3" Margin="4,0,0,8"><TextBlock Text="Evasion (Still)" Classes="caption" /><NumericUpDown Value="{Binding EvasionStillRate}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Evasion (Moving)" Classes="caption" /><NumericUpDown Value="{Binding EvasionMovingRate}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="1" Margin="4,0"><TextBlock Text="Status Recovery" Classes="caption" /><NumericUpDown Value="{Binding StatusRecoveryTime}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="2" Margin="4,0"><TextBlock Text="TDMG" Classes="caption" /><NumericUpDown Value="{Binding TDMG}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="THEAL" Classes="caption" /><NumericUpDown Value="{Binding THEAL}" Minimum="-32768" Maximum="32767" /></StackPanel>
+				</Grid>
+
+				<TextBlock Text="Size" Classes="h2" Margin="0,14,0,4" />
+				<NumericUpDown Value="{Binding Size}" Minimum="-32768" Maximum="32767" HorizontalAlignment="Left" Width="200" />
+
+				<TextBlock Text="Unknowns" Classes="h2" Margin="0,14,0,4" />
+				<Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+					<StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,4,6"><TextBlock Text="Unk 1" Classes="caption" /><NumericUpDown Value="{Binding Unknown1}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="1" Margin="4,0,4,6"><TextBlock Text="Unk 2" Classes="caption" /><NumericUpDown Value="{Binding Unknown2}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="2" Margin="4,0,4,6"><TextBlock Text="Unk 3" Classes="caption" /><NumericUpDown Value="{Binding Unknown3}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="3" Margin="4,0,4,6"><TextBlock Text="Unk 4" Classes="caption" /><NumericUpDown Value="{Binding Unknown4}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="0" Grid.Column="4" Margin="4,0,0,6"><TextBlock Text="Unk 5" Classes="caption" /><NumericUpDown Value="{Binding Unknown5}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,4,6"><TextBlock Text="Unk 6" Classes="caption" /><NumericUpDown Value="{Binding Unknown6}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="1" Margin="4,0,4,6"><TextBlock Text="Unk 7" Classes="caption" /><NumericUpDown Value="{Binding Unknown7}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="2" Margin="4,0,4,6"><TextBlock Text="Unk 8" Classes="caption" /><NumericUpDown Value="{Binding Unknown8}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="3" Margin="4,0,4,6"><TextBlock Text="Unk 9" Classes="caption" /><NumericUpDown Value="{Binding Unknown9}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="1" Grid.Column="4" Margin="4,0,0,6"><TextBlock Text="Unk 10" Classes="caption" /><NumericUpDown Value="{Binding Unknown10}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,4,6"><TextBlock Text="Unk 11" Classes="caption" /><NumericUpDown Value="{Binding Unknown11}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="1" Margin="4,0,4,6"><TextBlock Text="Unk 12" Classes="caption" /><NumericUpDown Value="{Binding Unknown12}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="2" Margin="4,0,4,6"><TextBlock Text="Unk 13" Classes="caption" /><NumericUpDown Value="{Binding Unknown13}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="3" Margin="4,0,4,6"><TextBlock Text="Unk 14" Classes="caption" /><NumericUpDown Value="{Binding Unknown14}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="2" Grid.Column="4" Margin="4,0,0,6"><TextBlock Text="Unk 15" Classes="caption" /><NumericUpDown Value="{Binding Unknown15}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="3" Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Unk 16" Classes="caption" /><NumericUpDown Value="{Binding Unknown16}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="3" Grid.Column="1" Margin="4,0"><TextBlock Text="Unk 17" Classes="caption" /><NumericUpDown Value="{Binding Unknown17}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="3" Grid.Column="2" Margin="4,0"><TextBlock Text="Unk 18" Classes="caption" /><NumericUpDown Value="{Binding Unknown18}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="3" Grid.Column="3" Margin="4,0"><TextBlock Text="Unk 19" Classes="caption" /><NumericUpDown Value="{Binding Unknown19}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="3" Grid.Column="4" Margin="4,0,0,0"><TextBlock Text="Unk 20" Classes="caption" /><NumericUpDown Value="{Binding Unknown20}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="4" Grid.Column="0" Margin="0,6,4,0"><TextBlock Text="Unk 21" Classes="caption" /><NumericUpDown Value="{Binding Unknown21}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="4" Grid.Column="1" Margin="4,6,4,0"><TextBlock Text="Unk 22" Classes="caption" /><NumericUpDown Value="{Binding Unknown22}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Row="4" Grid.Column="2" Margin="4,6,0,0"><TextBlock Text="Unk 23" Classes="caption" /><NumericUpDown Value="{Binding Unknown23}" Minimum="-32768" Maximum="32767" /></StackPanel>
+				</Grid>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

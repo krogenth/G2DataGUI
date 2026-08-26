@@ -1,0 +1,178 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Maps"
+             xmlns:rendering="clr-namespace:G2DataGUI.Rendering;assembly=G2DataGUI.Rendering"
+             xmlns:sections="clr-namespace:G2DataGUI.UI.Views.Maps.Sections"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="G2DataGUI.UI.Views.Maps.MapsView"
+             x:DataType="vm:MapsViewModel">
+	<!--
+	Left list is map folders (map/[name]/, each with a [name].mdt — see
+	Map's own doc comment for the folder/file discovery convention). Right
+	side is a TabControl — one tab per .mdt section (Entries, Instances,
+	HTAs, Scripts, Enemy Positions, Enemy Groups, MOSs, Icons, Shop, each
+	its own UserControl under Views/Maps/Sections/), plus a Models tab
+	holding the 3D preview that used to be this page's only content.
+
+	Each section tab's DataContext is bound directly to the corresponding
+	MapViewModel.<Section> property — no code-behind wiring needed there,
+	unlike the Models tab. ModelViewport (G2DataGUI.Rendering) is still a
+	plain Control with imperative SetModel/SetAnimation methods, not
+	bindable properties — that's still the one exception to "pure XAML
+	bindings" in this whole page, and why MapsView.axaml.cs has real logic
+	in it.
+
+	Textures load from map/[name]/textures_[name].pvl/ (discovered by
+	MapRepository, loaded by MapViewModel.LoadPreviewAsync) — a map with a
+	.chr but no textures folder still previews, just untextured.
+	-->
+	<Grid Name="MapsPage" Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ListBox x:Name="MapsList"
+		         ItemsSource="{Binding Items}"
+		         SelectedItem="{Binding SelectedItem}"
+		         Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="140" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4" Padding="10" HorizontalAlignment="Stretch" ClipToBounds="True">
+						<StackPanel>
+							<TextBlock Text="{Binding MapName}" Classes="data" />
+							<Ellipse Classes="dirtyIndicator"
+							         HorizontalAlignment="Left"
+							         Margin="0,4,0,0"
+							         IsVisible="{Binding HasChrArchive}"
+							         ToolTip.Tip="Has an associated .chr archive" />
+						</StackPanel>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<Border Grid.Column="1"
+		        IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<Grid Margin="16,10" RowDefinitions="Auto,*" DataContext="{Binding SelectedItem}">
+
+				<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
+					<TextBlock Text="{Binding Name}" Classes="h1" />
+					<TextBlock Text="{Binding Id, StringFormat='(map {0})'}" Classes="caption" VerticalAlignment="Center" />
+				</StackPanel>
+
+				<TabControl Grid.Row="1" Margin="0,8,0,0">
+					<TabItem Header="Entries">
+						<sections:MapEntriesSection DataContext="{Binding Entries}" Margin="4" />
+					</TabItem>
+					<TabItem Header="Instances">
+						<sections:MapInstancesSection DataContext="{Binding Instances}" Margin="4" />
+					</TabItem>
+					<TabItem Header="HTAs">
+						<sections:MapHTAsSection DataContext="{Binding HTAs}" Margin="4" />
+					</TabItem>
+					<TabItem Header="Scripts">
+						<sections:MapScriptsSection DataContext="{Binding Scripts}" Margin="4" />
+					</TabItem>
+					<TabItem Header="Enemy Positions">
+						<sections:MapEnemyPositionsSection DataContext="{Binding EnemyPositions}" Margin="4" />
+					</TabItem>
+					<TabItem Header="Enemy Groups">
+						<sections:MapEnemyGroupsSection DataContext="{Binding EnemyGroups}" Margin="4" />
+					</TabItem>
+					<TabItem Header="MOSs">
+						<sections:MapMOSsSection DataContext="{Binding MOSs}" Margin="4" />
+					</TabItem>
+					<TabItem Header="Icons">
+						<sections:MapIconsSection DataContext="{Binding Icons}" Margin="4" />
+					</TabItem>
+					<TabItem Header="Dialogue">
+						<sections:MapDialogueSection DataContext="{Binding Dialogue}" Margin="4" />
+					</TabItem>
+					<TabItem Header="Shop">
+						<Grid>
+							<Border IsVisible="{Binding Shop, Converter={x:Static ObjectConverters.IsNotNull}}">
+								<sections:MapShopSectionView DataContext="{Binding Shop}" Margin="4" />
+							</Border>
+							<TextBlock Text="This map has no shop."
+							           Classes="caption"
+							           Margin="16"
+							           IsVisible="{Binding Shop, Converter={x:Static ObjectConverters.IsNull}}" />
+						</Grid>
+					</TabItem>
+					<TabItem Header="Models">
+						<Grid RowDefinitions="Auto,*">
+							<StackPanel Grid.Row="0" Spacing="2" Margin="0,0,0,6">
+								<TextBlock Text="{Binding MdtPath, StringFormat='.mdt: {0}'}" Classes="data caption" />
+								<TextBlock Text="No associated .chr/.chr2 archive found"
+								           Classes="caption"
+								           IsVisible="{Binding !HasChrArchive}" />
+								<TextBlock Text="{Binding PreviewError}"
+								           Classes="error"
+								           IsVisible="{Binding PreviewError, Converter={x:Static ObjectConverters.IsNotNull}}" />
+								<TextBlock Text="Loading preview..."
+								           Classes="caption"
+								           IsVisible="{Binding IsLoadingPreview}" />
+							</StackPanel>
+
+							<Border Grid.Row="1"
+							        Classes="panel"
+							        IsVisible="{Binding HasChrArchive}"
+							        Padding="0"
+							        ClipToBounds="True">
+								<DockPanel>
+									<StackPanel DockPanel.Dock="Top"
+									            Orientation="Horizontal"
+									            Spacing="12"
+									            Margin="10,8">
+										<StackPanel Orientation="Horizontal" Spacing="4">
+											<TextBlock Text="Model:" VerticalAlignment="Center" Classes="caption" />
+											<ComboBox x:Name="ModelPicker"
+											          Width="140"
+											          ItemsSource="{Binding AvailableModels}"
+											          SelectedItem="{Binding SelectedModel, Mode=OneWay}"
+											          SelectionChanged="OnModelSelectionChanged">
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock Text="{Binding Index, StringFormat='Model {0}'}" />
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
+										</StackPanel>
+										<StackPanel Orientation="Horizontal" Spacing="4">
+											<TextBlock Text="Motion:" VerticalAlignment="Center" Classes="caption" />
+											<ComboBox x:Name="MotionPicker"
+											          Width="140"
+											          ItemsSource="{Binding AvailableMotions}"
+											          SelectedItem="{Binding SelectedMotion, Mode=OneWay}"
+											          SelectionChanged="OnMotionSelectionChanged"
+											          PlaceholderText="(bind pose)">
+												<ComboBox.ItemTemplate>
+													<DataTemplate>
+														<TextBlock Text="{Binding Index, StringFormat='Animation {0}'}" />
+													</DataTemplate>
+												</ComboBox.ItemTemplate>
+											</ComboBox>
+										</StackPanel>
+										<CheckBox x:Name="WireframeToggle" Content="Wireframe" />
+										<CheckBox x:Name="PointsToggle" Content="Points" />
+										<Button Content="Reset Camera" Click="OnResetCameraClick" />
+									</StackPanel>
+									<rendering:ModelViewport x:Name="Viewport" MinHeight="300" />
+								</DockPanel>
+							</Border>
+						</Grid>
+					</TabItem>
+				</TabControl>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

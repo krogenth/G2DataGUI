@@ -16,6 +16,30 @@
 					<TabItem Header="General" />
 					<TabItem Header="Stats" />
 				</TabControl>
+				<NumericUpDown />
+				<ComboBox>
+					<ComboBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel />
+						</ItemsPanelTemplate>
+					</ComboBox.ItemsPanel>
+				</ComboBox>
+				<ListBox>
+					<ListBox.Styles>
+						<Style Selector="ListBoxItem">
+							<Setter Property="Width" Value="150"/>
+							<Setter Property="HorizontalAlignment" Value="Right"/>
+						</Style>
+					</ListBox.Styles>
+					<ListBox.Items>
+						<ListBoxItem>Burn!</ListBoxItem>
+						<ListBoxItem>Burnflame</ListBoxItem>
+						<ListBoxItem>Gravity</ListBoxItem>
+						<ListBoxItem>BA-BOOM!</ListBoxItem>
+						<ListBoxItem>Freeze!</ListBoxItem>
+						<ListBoxItem>Tenseiken Slash</ListBoxItem>
+					</ListBox.Items>
+				</ListBox>
 			</StackPanel>
 		</Border>
 	</Design.PreviewWith>
@@ -42,7 +66,7 @@
 	</Style>
 
 	<Style Selector="TextBlock.caption">
-		<Setter Property="FontSize" Value="11" />
+		<Setter Property="FontSize" Value="12" />
 		<Setter Property="Foreground" Value="{DynamicResource AppSecondaryTextBrush}" />
 	</Style>
 
@@ -154,8 +178,16 @@
 		<Setter Property="FontWeight" Value="Medium" />
 	</Style>
 
-	<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource AppPanelBackgroundBrush}" />
+	<!-- ===================== ComboBox ===================== -->
+
+	<Style Selector="ComboBox">
+		<Setter Property="MinWidth" Value="160" />
+	</Style>
+
+	<!-- ===================== NumericUpDown ===================== -->
+
+	<Style Selector="NumericUpDown">
+		<Setter Property="MinWidth" Value="150"/>
 	</Style>
 
 	<!-- ===================== TextBox ===================== -->

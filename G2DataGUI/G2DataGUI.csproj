@@ -7,7 +7,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 	<AllowUnsafeBlocks>False</AllowUnsafeBlocks>
-	<BaseOutputPath>..\..\build</BaseOutputPath>
+	<BaseOutputPath>..\build</BaseOutputPath>
 	<PublishSingleFile>true</PublishSingleFile>
 	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
@@ -42,6 +42,12 @@
          MoveRepository, Move), so they're listed explicitly here too. -->
     <ProjectReference Include="..\G2DataGUI.Domain\G2DataGUI.Domain.csproj" />
     <ProjectReference Include="..\G2DataGUI.Repositories\G2DataGUI.Repositories.csproj" />
+    <!-- New for Maps: MapViewModel parses a .chr archive's NJCM payload
+         directly (NjModelReader/ChrArchiveReader), and MapsView embeds
+         G2DataGUI.Rendering.ModelViewport for the 3D preview. Neither was
+         needed by anything the app referenced before this. -->
+    <ProjectReference Include="..\G2DataGUI.Serialization\G2DataGUI.Serialization.csproj" />
+    <ProjectReference Include="..\G2DataGUI.Rendering\G2DataGUI.Rendering.csproj" />
   </ItemGroup>
 
   <ItemGroup>

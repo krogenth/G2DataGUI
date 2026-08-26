@@ -1,0 +1,84 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sections="clr-namespace:G2DataGUI.UI.ViewModels.Maps.Sections"
+             xmlns:maps="clr-namespace:G2DataGUI.UI.ViewModels.Maps"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="500"
+             x:Class="G2DataGUI.UI.Views.Maps.Sections.MapScriptsSection"
+             x:DataType="sections:MapScriptsViewModel">
+	<UserControl.Resources>
+		<DataTemplate x:Key="MapPickerItemTemplate" x:DataType="maps:MapViewModel">
+			<TextBlock Text="{Binding MapName}" />
+		</DataTemplate>
+	</UserControl.Resources>
+	<Grid ColumnDefinitions="Auto,*">
+		<ListBox Grid.Column="0"
+		         ItemsSource="{Binding Items}"
+		         SelectedItem="{Binding SelectedItem}">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="120" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate x:DataType="sections:MapScriptViewModel">
+					<TextBlock Text="{Binding Index, StringFormat='Script {0}'}" Classes="data" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<ScrollViewer Grid.Column="1"
+		              IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<StackPanel Margin="16,10" DataContext="{Binding SelectedItem}" x:DataType="sections:MapScriptViewModel" MaxWidth="640" Spacing="4">
+				<TextBlock Text="{Binding Index, StringFormat='Script {0}'}" Classes="h1" />
+				<TextBlock Text="Target Map" Classes="h2" Margin="0,4,0,0" />
+				<ComboBox HorizontalAlignment="Stretch"
+				          ItemsSource="{Binding AvailableMaps}"
+				          SelectedItem="{Binding SelectedMap, Mode=TwoWay}"
+				          ItemTemplate="{StaticResource MapPickerItemTemplate}"
+				          PlaceholderText="(unresolved map id)">
+				</ComboBox>
+				<Grid ColumnDefinitions="*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Raw Map ID" Classes="caption" /><NumericUpDown Value="{Binding MapID}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0,0,0"><TextBlock Text="Transition Effect" Classes="caption" /><NumericUpDown Value="{Binding TransitionEffect}" Minimum="0" Maximum="255" /></StackPanel>
+				</Grid>
+				<TextBlock Text="Offset" Classes="h2" Margin="0,8,0,0" />
+				<Grid ColumnDefinitions="*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="X" Classes="caption" /><NumericUpDown Value="{Binding OffsetX}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Y" Classes="caption" /><NumericUpDown Value="{Binding OffsetY}" Increment="0.01" FormatString="0.00" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0,0,0"><TextBlock Text="Z" Classes="caption" /><NumericUpDown Value="{Binding OffsetZ}" Increment="0.01" FormatString="0.00" /></StackPanel>
+				</Grid>
+<TextBlock Text="Direction" Classes="caption" /><NumericUpDown Value="{Binding Direction}" Increment="0.01" FormatString="0.00" />				<Grid ColumnDefinitions="*,*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Unknown #2" Classes="caption" /><NumericUpDown Value="{Binding Unknown2}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Unknown #3" Classes="caption" /><NumericUpDown Value="{Binding Unknown3}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Unknown #4" Classes="caption" /><NumericUpDown Value="{Binding Unknown4}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Unknown #5" Classes="caption" /><NumericUpDown Value="{Binding Unknown5}" Minimum="-32768" Maximum="32767" /></StackPanel>
+				</Grid>
+				<Grid ColumnDefinitions="*,*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Unknown #6" Classes="caption" /><NumericUpDown Value="{Binding Unknown6}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Unknown #7" Classes="caption" /><NumericUpDown Value="{Binding Unknown7}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Unknown #8" Classes="caption" /><NumericUpDown Value="{Binding Unknown8}" Minimum="-32768" Maximum="32767" /></StackPanel>
+					<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Unknown #9" Classes="caption" /><NumericUpDown Value="{Binding Unknown9}" Minimum="0" Maximum="255" /></StackPanel>
+				</Grid>
+				<Grid ColumnDefinitions="*,*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Unknown #10" Classes="caption" /><NumericUpDown Value="{Binding Unknown10}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Unknown #11" Classes="caption" /><NumericUpDown Value="{Binding Unknown11}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Unknown #12" Classes="caption" /><NumericUpDown Value="{Binding Unknown12}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Unknown #13" Classes="caption" /><NumericUpDown Value="{Binding Unknown13}" Minimum="0" Maximum="255" /></StackPanel>
+				</Grid>
+				<Grid ColumnDefinitions="*,*,*,*">
+					<StackPanel Grid.Column="0" Margin="0,0,4,0"><TextBlock Text="Unknown #14" Classes="caption" /><NumericUpDown Value="{Binding Unknown14}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="1" Margin="4,0"><TextBlock Text="Unknown #15" Classes="caption" /><NumericUpDown Value="{Binding Unknown15}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="2" Margin="4,0"><TextBlock Text="Unknown #16" Classes="caption" /><NumericUpDown Value="{Binding Unknown16}" Minimum="0" Maximum="255" /></StackPanel>
+					<StackPanel Grid.Column="3" Margin="4,0,0,0"><TextBlock Text="Unknown #17" Classes="caption" /><NumericUpDown Value="{Binding Unknown17}" Minimum="0" Maximum="255" /></StackPanel>
+				</Grid>
+				<TextBlock Text="Unknown #1 (40 bytes, read-only)" Classes="caption" Margin="0,8,0,0" />
+				<TextBlock Text="{Binding Unknown1Hex}" Classes="data" TextWrapping="Wrap" />
+				<TextBlock Text="Unknown #18 (15 bytes, read-only)" Classes="caption" Margin="0,8,0,0" />
+				<TextBlock Text="{Binding Unknown18Hex}" Classes="data" TextWrapping="Wrap" />
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

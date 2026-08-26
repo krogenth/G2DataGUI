@@ -6,8 +6,8 @@ namespace G2DataGUI.Domain.Maps;
 /// dispatch that replaces the old ParseDialogueOpcode switch statement.
 /// This is exactly the case ICollectionDataReader/IDataWriter (batch, whole
 /// file) doesn't fit: each opcode is a self-contained "read one T" op, so
-/// each concrete opcode gets its own IDataReader&lt;TOpcode&gt;, and
-/// MapOpcodeReader is itself an IDataReader&lt;IMapOpcode&gt; that picks
+/// each concrete opcode gets its own IDataReader<TOpcode>, and
+/// MapOpcodeReader is itself an IDataReader<IMapOpcode> that picks
 /// which one to delegate to based on the byte it just read.
 /// </summary>
 public interface IMapOpcode

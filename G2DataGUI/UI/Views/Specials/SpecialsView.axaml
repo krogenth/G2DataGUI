@@ -1,0 +1,96 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Specials"
+             xmlns:moves="clr-namespace:G2DataGUI.UI.ViewModels.Moves"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="700"
+             x:Class="G2DataGUI.UI.Views.Specials.SpecialsView"
+             x:DataType="vm:SpecialsViewModel">
+	<!-- Same shape as SkillbooksView — SpecialSet.MovesPerSet = 6 is also
+	     exactly one page, one column. Left list shows the resolved
+	     character name (SpecialSetViewModel.CharacterName), not a raw ID —
+	     same convention as LevelupsView. Each row references a Move by
+	     NAME, not raw offset — see SpecialMoveViewModel's own doc comment. -->
+	<Grid Name="SpecialsPage" Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ListBox x:Name="SpecialsList"
+		         ItemsSource="{Binding Items}"
+		         SelectedItem="{Binding SelectedItem}"
+		         Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="150" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4" Padding="10" HorizontalAlignment="Stretch" ClipToBounds="True">
+						<TextBlock Text="{Binding CharacterName}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<ScrollViewer Grid.Column="1"
+		              IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<StackPanel Margin="24,14" MaxWidth="420">
+				<TextBlock Text="{Binding SelectedItem.CharacterName}" Classes="h1" />
+				<TextBlock Text="Special moves" Classes="caption" Margin="0,0,0,8" />
+
+				<ItemsControl ItemsSource="{Binding SelectedItem.Moves}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate x:DataType="vm:SpecialMoveViewModel">
+							<Border BorderBrush="{DynamicResource AppControlBorderBrush}"
+							        BorderThickness="0,0,0,1"
+							        Padding="4,10">
+								<StackPanel>
+									<TextBlock Text="Move:" Classes="caption" />
+									<ComboBox HorizontalAlignment="Stretch"
+									          ItemsSource="{Binding AvailableMoves}"
+									          SelectedItem="{Binding SelectedMove, Mode=TwoWay}"
+									          PlaceholderText="(unresolved move offset)">
+										<ComboBox.ItemsPanel>
+											<ItemsPanelTemplate>
+												<VirtualizingStackPanel />
+											</ItemsPanelTemplate>
+										</ComboBox.ItemsPanel>
+										<ComboBox.ItemTemplate>
+											<DataTemplate x:DataType="moves:MoveViewModel">
+												<TextBlock Text="{Binding Name}" />
+											</DataTemplate>
+										</ComboBox.ItemTemplate>
+									</ComboBox>
+									<TextBlock Text="{Binding MoveOffset, StringFormat='raw offset: 0x{0:X2}'}"
+									           Classes="data caption"
+									           Margin="0,2,0,0" />
+
+									<Grid ColumnDefinitions="*,*" Margin="0,6,0,0">
+										<StackPanel Grid.Column="0" Margin="0,0,4,0">
+											<TextBlock Text="Starting Level" Classes="caption" />
+											<NumericUpDown Value="{Binding StartingLevel}" Minimum="0" Maximum="255" />
+										</StackPanel>
+										<StackPanel Grid.Column="1" Margin="4,0,0,0">
+											<TextBlock Text="Story Flag" Classes="caption" ToolTip.Tip="Story flag required to unlock" />
+											<NumericUpDown Value="{Binding StoryFlag}" Minimum="0" Maximum="65535" />
+										</StackPanel>
+									</Grid>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

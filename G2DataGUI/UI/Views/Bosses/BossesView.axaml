@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Bosses"
+             xmlns:enemies="clr-namespace:G2DataGUI.UI.Views.Enemies"
+             mc:Ignorable="d" d:DesignWidth="820" d:DesignHeight="700"
+             x:Class="G2DataGUI.UI.Views.Bosses.BossesView"
+             x:DataType="vm:BossesViewModel">
+	<!-- Reuses the same 3 sub-views as EnemiesView — Boss.Stats/AISection
+	     are the identical layout to Enemy's, and Movesets' entries are the
+	     same EnemyMoveset shape too (see BossViewModel's own doc comment).
+	     Movesets is a list (Boss can technically have more than one),
+	     but is currently always exactly 1 entry, so this binds directly
+	     to Movesets[0] rather than adding a moveset-picker for a case
+	     that's never actually populated — same reasoning as
+	     ManaeggsView binding straight to Pages[0]/[1]/[2] instead of
+	     looping. If a Boss with multiple movesets ever turns up, this
+	     would need a picker added; nothing here would silently show
+	     wrong data in the meantime, it would just not show the extra
+	     ones. -->
+	<Grid Name="BossesPage" Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<ListBox x:Name="BossesList"
+		         ItemsSource="{Binding Items}"
+		         SelectedItem="{Binding SelectedItem}"
+		         Grid.Column="0">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="175" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="4" Padding="10" HorizontalAlignment="Stretch" ClipToBounds="True">
+						<TextBlock Text="{Binding Stats.Name}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<Border Grid.Column="1"
+		        IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<Grid Margin="16,10"
+			      RowDefinitions="Auto,*"
+			      DataContext="{Binding SelectedItem}">
+
+				<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
+					<TextBlock Text="{Binding Stats.Name}" Classes="h1" />
+					<TextBlock Text="{Binding Id, StringFormat='(ID {0})'}" Classes="caption" VerticalAlignment="Center" />
+				</StackPanel>
+
+				<TabControl Grid.Row="1" Margin="0,8,0,0">
+					<TabItem Header="Stats">
+						<ScrollViewer><enemies:EnemyStatsSection DataContext="{Binding Stats}" Margin="4" /></ScrollViewer>
+					</TabItem>
+					<TabItem Header="AI">
+						<ScrollViewer><enemies:EnemyAISectionView DataContext="{Binding AISection}" Margin="4" /></ScrollViewer>
+					</TabItem>
+					<TabItem Header="Moveset">
+						<enemies:EnemyMovesetSection DataContext="{Binding Movesets[0]}" Margin="4" />
+					</TabItem>
+				</TabControl>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

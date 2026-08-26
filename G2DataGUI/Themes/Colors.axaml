@@ -16,8 +16,9 @@
 			<Color x:Key="AppControlBorderColor">#FFDDE1E6</Color>
 			<Color x:Key="AppForegroundColor">#FF16181D</Color>
 			<Color x:Key="AppSecondaryTextColor">#8C16181D</Color>
+			<Color x:Key="AppHoverBrushColor">#FF8676ED</Color>
 
-			<Color x:Key="AppSelectionColor">#FF00A896</Color>
+			<Color x:Key="AppSelectionColor">#FF4536A8</Color>
 			<Color x:Key="AppDirtyIndicatorColor">#FF6C5CE7</Color>
 			<Color x:Key="AppErrorColor">#FFDC2626</Color>
 			<Color x:Key="AppWarningColor">#FFD97706</Color>
@@ -56,7 +57,8 @@
 	<SolidColorBrush x:Key="AppPanelBackgroundBrush" Color="{DynamicResource AppPanelBackgroundColor}" />
 	<SolidColorBrush x:Key="AppControlBorderBrush" Color="{DynamicResource AppControlBorderColor}" />
 	<SolidColorBrush x:Key="AppForegroundBrush" Color="{DynamicResource AppForegroundColor}" />
-	<SolidColorBrush x:Key="AppSecondaryTextBrush" Color="{DynamicResource AppSecondaryTextColor}" />
+	<SolidColorBrush x:Key="AppSecondaryTextBrush" Color="{DynamicResource AppForegroundColor}" />
+	<SolidColorBrush x:Key="AppHoverBrush" Color="{DynamicResource AppHoverBrushColor}" />
 	<SolidColorBrush x:Key="AppSelectionBrush" Color="{DynamicResource AppSelectionColor}" />
 	<SolidColorBrush x:Key="AppDirtyIndicatorBrush" Color="{DynamicResource AppDirtyIndicatorColor}" />
 	<SolidColorBrush x:Key="AppErrorBrush" Color="{DynamicResource AppErrorColor}" />

@@ -8,7 +8,11 @@ public sealed class Unknown07OpcodeReader : IDataReader<Unknown07Opcode>
 {
 	public Unknown07Opcode Read(Stream stream) => new()
 	{
-		Unknown1 = stream.ReadRawByte()
+		Unknown1 = stream.ReadRawByte(),
+		Unknown2 = stream.ReadRawByte(),
+		Unknown3 = stream.ReadRawByte(),
+		Unknown4 = stream.ReadRawByte(),
+		Unknown5 = stream.ReadRawByte()
 	};
 
 	public async Task<Unknown07Opcode> ReadAsync(Stream stream, CancellationToken cancellationToken = default) =>

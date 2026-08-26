@@ -7,7 +7,7 @@ namespace G2DataGUI.Domain.Enemies;
 /// aren't one row inside a single big file — the game stores one *_0.dat
 /// file per encounter, and some of those files hold a second enemy at a
 /// different pointer offset. EnemyRepository (a DirectoryScanRepository,
-/// not the usual Repository&lt;T,TId&gt;) is what walks the directory and
+/// not the usual Repository<T,TId>) is what walks the directory and
 /// fills these in; see PORTING.md.
 /// </summary>
 public sealed class Enemy : IIdentifiable<int>

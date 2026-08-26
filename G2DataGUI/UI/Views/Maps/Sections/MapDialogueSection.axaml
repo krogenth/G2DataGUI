@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sections="clr-namespace:G2DataGUI.UI.ViewModels.Maps.Sections"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
+             x:Class="G2DataGUI.UI.Views.Maps.Sections.MapDialogueSection"
+             x:DataType="sections:MapDialogueEntriesViewModel">
+	<!--
+	View-only, matching MapDialogueEntryViewModel's own scope — nothing
+	here is editable yet (see its doc comment for why). Left is the list
+	of dialogue sections; right is the selected section's decoded opcode
+	sequence as a TreeView, since some opcodes (TextBox variants, at
+	least) nest further opcodes inside themselves
+	(MapOpcodeViewModel.Children) rather than being flat.
+
+	A section with DecodeError set still shows whatever opcodes DID decode
+	successfully above the error — a partially-decoded section isn't
+	replaced with just an error message.
+	-->
+	<Grid ColumnDefinitions="Auto,*">
+		<ListBox Grid.Column="0"
+		         ItemsSource="{Binding Items}"
+		         SelectedItem="{Binding SelectedItem}">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="140" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+				</Style>
+			</ListBox.Styles>
+			<ListBox.ItemTemplate>
+				<DataTemplate x:DataType="sections:MapDialogueEntryViewModel">
+					<StackPanel>
+						<TextBlock Text="{Binding Index, StringFormat='Section {0}'}" Classes="data" />
+						<TextBlock Text="decode error"
+						           Classes="error caption"
+						           IsVisible="{Binding DecodeError, Converter={x:Static ObjectConverters.IsNotNull}}" />
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<Border Grid.Column="1"
+		        IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<Grid Margin="16,10"
+			      RowDefinitions="Auto,Auto,*"
+			      DataContext="{Binding SelectedItem}"
+			      x:DataType="sections:MapDialogueEntryViewModel">
+
+				<TextBlock Grid.Row="0" Text="{Binding Index, StringFormat='Section {0}'}" Classes="h1" />
+
+				<StackPanel Grid.Row="1" Spacing="2" Margin="0,4,0,10">
+					<TextBlock Text="{Binding DecodeError, StringFormat='Decode error: {0}'}"
+					           Classes="error"
+					           IsVisible="{Binding DecodeError, Converter={x:Static ObjectConverters.IsNotNull}}" />
+					<TextBlock Text="{Binding RawHex}" Classes="data caption" TextWrapping="Wrap" MaxHeight="60" />
+				</StackPanel>
+
+				<TreeView Grid.Row="2" ItemsSource="{Binding Opcodes}">
+					<TreeView.ItemTemplate>
+						<TreeDataTemplate ItemsSource="{Binding Children}" x:DataType="sections:MapOpcodeViewModel">
+							<StackPanel Orientation="Horizontal" Spacing="8">
+								<TextBlock Text="{Binding TypeName}" FontWeight="SemiBold" />
+								<TextBlock Text="{Binding Summary}" Classes="caption" />
+							</StackPanel>
+						</TreeDataTemplate>
+					</TreeView.ItemTemplate>
+				</TreeView>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

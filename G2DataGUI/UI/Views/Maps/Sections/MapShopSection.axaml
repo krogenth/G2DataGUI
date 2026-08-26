@@ -1,0 +1,116 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sections="clr-namespace:G2DataGUI.UI.ViewModels.Maps.Sections"
+             xmlns:items="clr-namespace:G2DataGUI.UI.ViewModels.Items"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="500"
+             x:Class="G2DataGUI.UI.Views.Maps.Sections.MapShopSectionView"
+             x:DataType="sections:MapShopViewModel">
+	<!-- Single object, not a list — a map has at most one shop, so this
+	     doesn't follow the ListBox+detail template every other Maps
+	     section uses. 5 categories (Weapons/Armors/Jewelry/Items/
+	     Regionals) as tabs, each with a title and 12 item slots. -->
+	<UserControl.Resources>
+		<DataTemplate x:Key="ItemPickerItemTemplate" x:DataType="items:GameItemViewModel">
+			<TextBlock Text="{Binding Name}" />
+		</DataTemplate>
+		<DataTemplate x:Key="ShopSlotTemplate" x:DataType="sections:MapShopItemSlotViewModel">
+			<ComboBox Margin="0,2" HorizontalAlignment="Stretch"
+			          ItemsSource="{Binding AvailableItems}"
+			          SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+			          ItemTemplate="{StaticResource ItemPickerItemTemplate}"
+			          PlaceholderText="(empty slot)" />
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<DockPanel Margin="16,10">
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="16" Margin="0,0,0,10">
+			<StackPanel><TextBlock Text="Map Id" Classes="caption" /><NumericUpDown Value="{Binding MapId}" Minimum="0" Maximum="65535" Width="120" /></StackPanel>
+			<StackPanel><TextBlock Text="Categories" Classes="caption" /><NumericUpDown Value="{Binding Categories}" Minimum="0" Maximum="65535" Width="120" /></StackPanel>
+		</StackPanel>
+
+		<TabControl>
+			<TabItem Header="Weapons">
+				<ContentControl Content="{Binding Weapons}">
+					<ContentControl.ContentTemplate>
+						<DataTemplate x:DataType="sections:MapShopSectionViewModel">
+							<ScrollViewer>
+								<StackPanel Margin="8" MaxWidth="360">
+									<TextBlock Text="Title" Classes="caption" />
+									<TextBox Text="{Binding Title}" MaxLength="8" />
+									<TextBlock Text="Items" Classes="caption" Margin="0,8,0,0" />
+									<ItemsControl ItemsSource="{Binding Slots}" ItemTemplate="{StaticResource ShopSlotTemplate}" />
+								</StackPanel>
+							</ScrollViewer>
+						</DataTemplate>
+					</ContentControl.ContentTemplate>
+				</ContentControl>
+			</TabItem>
+			<TabItem Header="Armors">
+				<ContentControl Content="{Binding Armors}">
+					<ContentControl.ContentTemplate>
+						<DataTemplate x:DataType="sections:MapShopSectionViewModel">
+							<ScrollViewer>
+								<StackPanel Margin="8" MaxWidth="360">
+									<TextBlock Text="Title" Classes="caption" />
+									<TextBox Text="{Binding Title}" MaxLength="8" />
+									<TextBlock Text="Items" Classes="caption" Margin="0,8,0,0" />
+									<ItemsControl ItemsSource="{Binding Slots}" ItemTemplate="{StaticResource ShopSlotTemplate}" />
+								</StackPanel>
+							</ScrollViewer>
+						</DataTemplate>
+					</ContentControl.ContentTemplate>
+				</ContentControl>
+			</TabItem>
+			<TabItem Header="Jewelry">
+				<ContentControl Content="{Binding Jewelry}">
+					<ContentControl.ContentTemplate>
+						<DataTemplate x:DataType="sections:MapShopSectionViewModel">
+							<ScrollViewer>
+								<StackPanel Margin="8" MaxWidth="360">
+									<TextBlock Text="Title" Classes="caption" />
+									<TextBox Text="{Binding Title}" MaxLength="8" />
+									<TextBlock Text="Items" Classes="caption" Margin="0,8,0,0" />
+									<ItemsControl ItemsSource="{Binding Slots}" ItemTemplate="{StaticResource ShopSlotTemplate}" />
+								</StackPanel>
+							</ScrollViewer>
+						</DataTemplate>
+					</ContentControl.ContentTemplate>
+				</ContentControl>
+			</TabItem>
+			<TabItem Header="Items">
+				<ContentControl Content="{Binding Items}">
+					<ContentControl.ContentTemplate>
+						<DataTemplate x:DataType="sections:MapShopSectionViewModel">
+							<ScrollViewer>
+								<StackPanel Margin="8" MaxWidth="360">
+									<TextBlock Text="Title" Classes="caption" />
+									<TextBox Text="{Binding Title}" MaxLength="8" />
+									<TextBlock Text="Items" Classes="caption" Margin="0,8,0,0" />
+									<ItemsControl ItemsSource="{Binding Slots}" ItemTemplate="{StaticResource ShopSlotTemplate}" />
+								</StackPanel>
+							</ScrollViewer>
+						</DataTemplate>
+					</ContentControl.ContentTemplate>
+				</ContentControl>
+			</TabItem>
+			<TabItem Header="Regionals">
+				<ContentControl Content="{Binding Regionals}">
+					<ContentControl.ContentTemplate>
+						<DataTemplate x:DataType="sections:MapShopSectionViewModel">
+							<ScrollViewer>
+								<StackPanel Margin="8" MaxWidth="360">
+									<TextBlock Text="Title" Classes="caption" />
+									<TextBox Text="{Binding Title}" MaxLength="8" />
+									<TextBlock Text="Items" Classes="caption" Margin="0,8,0,0" />
+									<ItemsControl ItemsSource="{Binding Slots}" ItemTemplate="{StaticResource ShopSlotTemplate}" />
+								</StackPanel>
+							</ScrollViewer>
+						</DataTemplate>
+					</ContentControl.ContentTemplate>
+				</ContentControl>
+			</TabItem>
+		</TabControl>
+	</DockPanel>
+</UserControl>

@@ -7,7 +7,7 @@ namespace G2DataGUI.Repositories;
 /// <summary>
 /// For features that don't live in one collection file — instead one
 /// *_0.dat per encounter, optionally holding a second entry — see Enemy/
-/// Boss. Doesn't derive from Repository&lt;T,TId&gt; because that base
+/// Boss. Doesn't derive from Repository<T,TId> because that base
 /// assumes exactly one FilePath and one ICollectionDataReader/Writer for
 /// the whole set; here every item can have a different backing file and
 /// writes go back into that specific file, not a shared one.

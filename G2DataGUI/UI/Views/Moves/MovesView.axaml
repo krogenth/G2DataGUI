@@ -1,0 +1,516 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:G2DataGUI.UI.ViewModels.Moves"
+			 xmlns:locale="using:G2DataGUI.UI.Common.Locale"
+             mc:Ignorable="d"
+			 d:DesignWidth="760"
+			 d:DesignHeight="500"
+             x:Class="G2DataGUI.UI.Views.Moves.MovesView"
+             x:DataType="vm:MovesViewModel">
+	<Grid Name="MovesPage"
+		  Margin="4">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Border Grid.Column="0"
+			        Background="{DynamicResource AppPanelBackgroundBrush}"
+			        BorderBrush="{DynamicResource AppControlBorderBrush}"
+			        BorderThickness="1">
+			<ListBox x:Name="MovesList"
+					 ItemsSource="{Binding Items}"
+					 SelectedItem="{Binding SelectedItem}"
+					 Margin="2">
+				<ListBox.Styles>
+					<Style Selector="ListBoxItem">
+						<Setter Property="Width" Value="175"/>
+						<Setter Property="HorizontalAlignment" Value="Right"/>
+					</Style>
+				</ListBox.Styles>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Border CornerRadius="4"
+								Margin="0"
+								Padding="10"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								ClipToBounds="True">
+							<TextBlock Text="{Binding Name, Mode=OneWay}" />
+						</Border>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
+
+		<ScrollViewer Grid.Column="1"
+					  IsVisible="{Binding SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+			<Grid x:Name="MoveDataGrid"
+				  Margin="20,10"
+				  DataContext="{Binding SelectedItem}"
+				  VerticalAlignment="Stretch">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="4" Grid.Column="0">
+					<StackPanel Margin="24,14" >
+						<TextBlock Text="Identifiers"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Name:" Classes="caption" />
+								<TextBox Text="{Binding Name}"
+										 MaxLength="{Binding MaxNameLength}" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Icon:" Classes="caption" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding Icon}"
+										  ItemsSource="{locale:Locale Icons}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+						<StackPanel Margin="4">
+							<TextBlock Text="Description:" Classes="caption" />
+							<TextBox Text="{Binding Description}"
+										MaxLength="{Binding MaxDescriptionLength}" />
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Margin="24,14"
+								DataContext="{Binding Stats}"
+								Grid.Column="1">
+						<TextBlock Text="Targetting"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Target Effect:" Classes="caption" />
+								<ComboBox HorizontalAlignment="Stretch"
+										SelectedIndex="{Binding TargetEffect}"
+										ItemsSource="{locale:Locale TargetEffects}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Target Type:" Classes="caption" />
+								<ComboBox HorizontalAlignment="Stretch"
+											SelectedIndex="{Binding TargetType}"
+											ItemsSource="{locale:Locale TargetTypes}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Range:" Classes="caption" />
+								<NumericUpDown Value="{Binding Range}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+									Grid.Column="1">
+								<TextBlock Text="Knockback:" Classes="caption" />
+								<NumericUpDown Value="{Binding Knockback}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+						</Grid>
+						<StackPanel Margin="4">
+							<CheckBox IsThreeState="False"
+										IsChecked="{Binding Knockdown}">
+								Does Knockdown?
+							</CheckBox>
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Margin="24,14"
+								DataContext="{Binding Stats}"
+								Grid.Column="2">
+						<TextBlock Text="Casting"
+									HorizontalAlignment="Center"
+									Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Cast Time Level 1:" Classes="caption" />
+								<NumericUpDown Value="{Binding Cast1Time}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Cast Time Level 5:" Classes="caption" />
+								<NumericUpDown Value="{Binding Cast5Time}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Recovery Time:" Classes="caption" />
+								<NumericUpDown Value="{Binding RecoveryTime}"
+												Increment="1"
+												Minimum="0"
+												Maximum="65536" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Animation:" Classes="caption" />
+								<ComboBox HorizontalAlignment="Stretch"
+											SelectedIndex="{Binding Animation}"
+											ItemsSource="{locale:Locale Animations}">
+									<ComboBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<VirtualizingStackPanel />
+										</ItemsPanelTemplate>
+									</ComboBox.ItemsPanel>
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							DataContext="{Binding Stats}"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Stats"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Cost:" Classes="caption" />
+								<NumericUpDown Value="{Binding Cost}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Multiplier:" Classes="caption" />
+								<NumericUpDown Value="{Binding Multiplier}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+						</Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Power:" Classes="caption" />
+								<NumericUpDown Value="{Binding Power}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Strength:" Classes="caption" />
+								<NumericUpDown Value="{Binding Strength}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="IP"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<TextBlock Text="Damage:" Classes="caption" />
+								<NumericUpDown Value="{Binding IpDamage}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<TextBlock Text="Cancel Damage:" Classes="caption" />
+								<NumericUpDown Value="{Binding IpCancelDamage}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Ailments"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0"
+										Margin="4">
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding PoisonBitflag}">
+									Poison
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding SleepBitflag}">
+									Sleep
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding ParalysisBitflag}">
+									Paralysis
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding ConfusionBitflag}">
+									Confusion
+								</CheckBox>
+							</StackPanel>
+							<StackPanel Grid.Column="1"
+										Margin="4">
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding PlagueBitflag}">
+									Plague
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding MagicBlockBitflag}">
+									Magic Block
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding MoveBlockBitflag}">
+									Move Block
+								</CheckBox>
+								<CheckBox IsThreeState="False"
+										  IsChecked="{Binding DeathBitflag}">
+									Death
+								</CheckBox>
+							</StackPanel>
+						</Grid>
+						<StackPanel Margin="4">
+							<TextBlock Text="Ailments Chance:" Classes="caption" />
+							<NumericUpDown Value="{Binding AilmentsChance}"
+										   Increment="1"
+										   Minimum="0"
+										   Maximum="100" />
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+							DataContext="{Binding Stats}"
+							Margin="8">
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Element Affinity"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Element:" Classes="caption" />
+								<ComboBox HorizontalAlignment="Stretch"
+										  SelectedIndex="{Binding Element}"
+										  ItemsSource="{locale:Locale Elements}" />
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<TextBlock Text="Element Strength:" Classes="caption" />
+								<NumericUpDown Value="{Binding ElementStrength}"
+												   Increment="1"
+												   Minimum="0"
+												   Maximum="10" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Modifiers"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<StackPanel Margin="4">
+									<TextBlock Text="Attack Modifier:" Classes="caption" />
+									<NumericUpDown Value="{Binding AttackModifier}"
+												   Increment="1"
+												   Minimum="-5"
+												   Maximum="5" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Defense Modifier:" Classes="caption" />
+									<NumericUpDown Value="{Binding DefenseModifier}"
+												   Increment="1"
+												   Minimum="-5"
+												   Maximum="5" />
+								</StackPanel>
+							</StackPanel>
+							<StackPanel Margin="4"
+										Grid.Column="1">
+								<StackPanel Margin="4">
+									<TextBlock Text="Action Modifier:" Classes="caption" />
+									<NumericUpDown Value="{Binding ActionModifier}"
+												   Increment="1"
+												   Minimum="-5"
+												   Maximum="5" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Movement Modifier:" Classes="caption" />
+									<NumericUpDown Value="{Binding MovementModifier}"
+												   Increment="1"
+												   Minimum="-5"
+												   Maximum="5" />
+								</StackPanel>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Coin Costs"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0">
+								<StackPanel Margin="4">
+									<TextBlock Text="Level 1:" Classes="caption" />
+									<NumericUpDown Value="{Binding CoinCost1}"
+												   Increment="1"
+												   Minimum="0"
+												   Maximum="65536" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Level 3:" Classes="caption" />
+									<NumericUpDown Value="{Binding CoinCost3}"
+												   Increment="1"
+												   Minimum="0"
+												   Maximum="65536" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Level 5:" Classes="caption" />
+									<NumericUpDown Value="{Binding CoinCost5}"
+												   Increment="1"
+												   Minimum="0"
+												   Maximum="65536" />
+								</StackPanel>
+							</StackPanel>
+							<StackPanel Grid.Column="1">
+								<StackPanel Margin="4">
+									<TextBlock Text="Level 2:" Classes="caption" />
+									<NumericUpDown Value="{Binding CoinCost2}"
+												   Increment="1"
+												   Minimum="0"
+												   Maximum="65536" />
+								</StackPanel>
+								<StackPanel Margin="4">
+									<TextBlock Text="Level 4:" Classes="caption" />
+									<NumericUpDown Value="{Binding CoinCost4}"
+												   Increment="1"
+												   Minimum="0"
+												   Maximum="65536" />
+								</StackPanel>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Unknowns"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="4"
+										Grid.Column="0">
+								<TextBlock Text="Unknown #1" Classes="caption" />
+								<NumericUpDown Value="{Binding Unknown1}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="256" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+					<StackPanel Margin="24,14">
+						<TextBlock Text="Special"
+								   HorizontalAlignment="Center"
+								   Classes="h2" />
+						<Grid>
+							<StackPanel>
+								<TextBlock Text="Special" Classes="caption" />
+								<NumericUpDown Value="{Binding Special}"
+											   Increment="1"
+											   Minimum="0"
+											   Maximum="65536" />
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>
